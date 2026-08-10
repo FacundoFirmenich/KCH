@@ -1,0 +1,32 @@
+{
+  "description": "KCH proactive consult-first activation gate v0.1.0",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python work/KCH_PROACTIVE_ACTIVATION_GATE_v0.1.0/adapters/codex/kch_activation_user_prompt.py",
+            "commandWindows": "\"C:\\Python314\\python.exe\" -X utf8 \"C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_PROACTIVE_ACTIVATION_GATE_v0.1.0\\adapters\\codex\\kch_activation_user_prompt.py\"",
+            "timeout": 30,
+            "statusMessage": "KCH evalúa activación consultiva",
+            "additionalContextLimit": 12000
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python work/KCH_PROACTIVE_ACTIVATION_GATE_v0.1.0/adapters/codex/kch_activation_session_end.py",
+            "commandWindows": "\"C:\\Python314\\python.exe\" -X utf8 \"C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_PROACTIVE_ACTIVATION_GATE_v0.1.0\\adapters\\codex\\kch_activation_session_end.py\"",
+            "timeout": 3,
+            "statusMessage": "KCH cierra políticas de sesión"
+          }
+        ]
+      }
+    ]
+  }
+}

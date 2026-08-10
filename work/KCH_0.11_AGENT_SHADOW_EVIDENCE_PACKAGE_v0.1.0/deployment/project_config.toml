@@ -1,0 +1,9 @@
+[mcp_servers.kch_0_11]
+command = "C:\\Python314\\python.exe"
+args = ["-X", "utf8", "-u", "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"]
+cwd = "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT"
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+enabled = true
+required = true
+default_tools_approval_mode = "prompt"

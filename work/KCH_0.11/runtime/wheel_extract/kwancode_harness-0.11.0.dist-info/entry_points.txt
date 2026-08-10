@@ -1,0 +1,3 @@
+[console_scripts]
+kch = kwancode_harness.cli:main
+kch-super-mcp = kwancode_harness.mcp_server:main

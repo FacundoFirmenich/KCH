@@ -1,0 +1,443 @@
+{
+  "schema": "kch.prepilot-evaluation.v0.2.0",
+  "case_id": "KCH-PREPILOT-002",
+  "results": {
+    "BASELINE_SIN_KCH": {
+      "source_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-baseline\\outputs\\KCH-PREPILOT-002-receipt.json",
+      "custody_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\receipts\\baseline_sin_kch.json",
+      "bytes": 15178,
+      "sha256": "fd94fb684a2d93171ba6ff670edd6fb4e1224d58de4ed2ed4e462a4393a71d0d",
+      "quality": {
+        "score": 95,
+        "maximum": 95,
+        "sections": {
+          "contract": {
+            "pass": true,
+            "score": 5
+          },
+          "exhaustive_receipt": {
+            "checks": [
+              {
+                "name": "advanced_runtime.py",
+                "pass": true
+              },
+              {
+                "name": "mis_service.py",
+                "pass": true
+              },
+              {
+                "name": "operational_surface.py",
+                "pass": true
+              }
+            ],
+            "score": 30
+          },
+          "cross_module_traceability": {
+            "checks": [
+              {
+                "key": "phl_gate",
+                "references": [
+                  "advanced_runtime.py:1039",
+                  "advanced_runtime.py:1071",
+                  "advanced_runtime.py:1215",
+                  "advanced_runtime.py:1451",
+                  "advanced_runtime.py:638",
+                  "advanced_runtime.py:886",
+                  "mis_service.py:947",
+                  "operational_surface.py:500"
+                ],
+                "pass": true
+              },
+              {
+                "key": "mutation_consent",
+                "references": [
+                  "advanced_runtime.py:1141",
+                  "advanced_runtime.py:667",
+                  "operational_surface.py:14",
+                  "operational_surface.py:53",
+                  "operational_surface.py:631",
+                  "operational_surface.py:68"
+                ],
+                "pass": true
+              },
+              {
+                "key": "mis_and_bridges",
+                "references": [
+                  "advanced_runtime.py:1215",
+                  "advanced_runtime.py:630",
+                  "advanced_runtime.py:975",
+                  "mis_service.py:1110",
+                  "mis_service.py:1147",
+                  "mis_service.py:123",
+                  "mis_service.py:1285",
+                  "mis_service.py:293",
+                  "mis_service.py:323",
+                  "mis_service.py:349",
+                  "mis_service.py:350",
+                  "mis_service.py:893",
+                  "mis_service.py:980",
+                  "mis_service.py:99",
+                  "operational_surface.py:74"
+                ],
+                "pass": true
+              },
+              {
+                "key": "sqlite_lifecycle",
+                "references": [
+                  "advanced_runtime.py:1457",
+                  "mis_service.py:127",
+                  "mis_service.py:132",
+                  "mis_service.py:478"
+                ],
+                "pass": true
+              },
+              {
+                "key": "strategic_coverage",
+                "references": [
+                  "advanced_runtime.py:1440",
+                  "advanced_runtime.py:176",
+                  "advanced_runtime.py:903"
+                ],
+                "pass": true
+              }
+            ],
+            "score": 25
+          },
+          "exact_bind_call": {
+            "checks": {
+              "four_assets": true,
+              "dates": true,
+              "maximum_three": true,
+              "venture_client_financing": true,
+              "concrete_group_id": true
+            },
+            "asset_hits": {
+              "open-innovation": true,
+              "application": true,
+              "faq": true,
+              "BIND-11th-Edition_Use-Case-Dossier.pdf": true
+            },
+            "score": 20
+          },
+          "claim_discipline": {
+            "checks": {
+              "adverse_preserved": true,
+              "abstentions_preserved": true,
+              "not_estimable": true
+            },
+            "score": 10
+          },
+          "bounded_candidates": {
+            "pass": true,
+            "score": 5
+          }
+        }
+      },
+      "condition_integrity": {
+        "checks": {
+          "declared_condition": true,
+          "kch_not_used": true
+        },
+        "gate": "PASS"
+      }
+    },
+    "KCH_RUNTIME_ASSISTED_CANONICAL": {
+      "source_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\KCH-PREPILOT-002-receipt.json",
+      "custody_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\receipts\\kch_runtime_assisted_canonical.json",
+      "bytes": 136344,
+      "sha256": "0d2082b6f5292fdbbea1628340ce6f95621229cbbeb1d6e797582c60c00974f2",
+      "quality": {
+        "score": 95,
+        "maximum": 95,
+        "sections": {
+          "contract": {
+            "pass": true,
+            "score": 5
+          },
+          "exhaustive_receipt": {
+            "checks": [
+              {
+                "name": "advanced_runtime.py",
+                "pass": true
+              },
+              {
+                "name": "mis_service.py",
+                "pass": true
+              },
+              {
+                "name": "operational_surface.py",
+                "pass": true
+              }
+            ],
+            "score": 30
+          },
+          "cross_module_traceability": {
+            "checks": [
+              {
+                "key": "phl_gate",
+                "references": [
+                  "advanced_runtime.py:16",
+                  "advanced_runtime.py:216",
+                  "advanced_runtime.py:344",
+                  "advanced_runtime.py:360",
+                  "advanced_runtime.py:638",
+                  "advanced_runtime.py:639",
+                  "advanced_runtime.py:640",
+                  "advanced_runtime.py:646",
+                  "advanced_runtime.py:647",
+                  "advanced_runtime.py:648",
+                  "advanced_runtime.py:654",
+                  "advanced_runtime.py:655",
+                  "advanced_runtime.py:656",
+                  "advanced_runtime.py:662",
+                  "advanced_runtime.py:663",
+                  "advanced_runtime.py:664",
+                  "advanced_runtime.py:676",
+                  "advanced_runtime.py:677",
+                  "mis_service.py:336",
+                  "mis_service.py:351",
+                  "mis_service.py:353",
+                  "mis_service.py:372",
+                  "mis_service.py:696",
+                  "mis_service.py:81",
+                  "mis_service.py:82",
+                  "mis_service.py:833",
+                  "mis_service.py:849",
+                  "mis_service.py:906",
+                  "mis_service.py:928",
+                  "mis_service.py:941",
+                  "mis_service.py:947",
+                  "mis_service.py:957",
+                  "mis_service.py:958",
+                  "mis_service.py:961",
+                  "mis_service.py:963",
+                  "mis_service.py:964",
+                  "operational_surface.py:205",
+                  "operational_surface.py:298",
+                  "operational_surface.py:482",
+                  "operational_surface.py:503",
+                  "operational_surface.py:737"
+                ],
+                "pass": true
+              },
+              {
+                "key": "mutation_consent",
+                "references": [
+                  "advanced_runtime.py:17",
+                  "advanced_runtime.py:22",
+                  "advanced_runtime.py:230",
+                  "advanced_runtime.py:231",
+                  "advanced_runtime.py:238",
+                  "advanced_runtime.py:239",
+                  "advanced_runtime.py:326",
+                  "advanced_runtime.py:328",
+                  "advanced_runtime.py:345",
+                  "advanced_runtime.py:346",
+                  "advanced_runtime.py:472",
+                  "advanced_runtime.py:664",
+                  "advanced_runtime.py:667",
+                  "advanced_runtime.py:672",
+                  "advanced_runtime.py:686",
+                  "advanced_runtime.py:691",
+                  "advanced_runtime.py:72",
+                  "advanced_runtime.py:9",
+                  "operational_surface.py:14",
+                  "operational_surface.py:310",
+                  "operational_surface.py:311",
+                  "operational_surface.py:312",
+                  "operational_surface.py:334",
+                  "operational_surface.py:335",
+                  "operational_surface.py:336",
+                  "operational_surface.py:440",
+                  "operational_surface.py:443",
+                  "operational_surface.py:449",
+                  "operational_surface.py:60",
+                  "operational_surface.py:61",
+                  "operational_surface.py:636",
+                  "operational_surface.py:68",
+                  "operational_surface.py:69",
+                  "operational_surface.py:70",
+                  "operational_surface.py:807",
+                  "operational_surface.py:808"
+                ],
+                "pass": true
+              },
+              {
+                "key": "mis_and_bridges",
+                "references": [
+                  "advanced_runtime.py:16",
+                  "advanced_runtime.py:176",
+                  "advanced_runtime.py:18",
+                  "advanced_runtime.py:199",
+                  "advanced_runtime.py:20",
+                  "advanced_runtime.py:206",
+                  "advanced_runtime.py:207",
+                  "advanced_runtime.py:214",
+                  "advanced_runtime.py:215",
+                  "advanced_runtime.py:22",
+                  "advanced_runtime.py:222",
+                  "advanced_runtime.py:223",
+                  "advanced_runtime.py:230",
+                  "advanced_runtime.py:231",
+                  "advanced_runtime.py:238",
+                  "advanced_runtime.py:239",
+                  "advanced_runtime.py:72",
+                  "advanced_runtime.py:9",
+                  "mis_service.py:100",
+                  "mis_service.py:102",
+                  "mis_service.py:103",
+                  "mis_service.py:104",
+                  "mis_service.py:115",
+                  "mis_service.py:117",
+                  "mis_service.py:124",
+                  "mis_service.py:127",
+                  "mis_service.py:146",
+                  "mis_service.py:30",
+                  "mis_service.py:31",
+                  "mis_service.py:36",
+                  "mis_service.py:60",
+                  "mis_service.py:78",
+                  "mis_service.py:84",
+                  "mis_service.py:85",
+                  "mis_service.py:86",
+                  "mis_service.py:99",
+                  "operational_surface.py:276",
+                  "operational_surface.py:282",
+                  "operational_surface.py:283",
+                  "operational_surface.py:289",
+                  "operational_surface.py:290",
+                  "operational_surface.py:296",
+                  "operational_surface.py:75",
+                  "operational_surface.py:76",
+                  "operational_surface.py:77",
+                  "operational_surface.py:78",
+                  "operational_surface.py:79",
+                  "operational_surface.py:82",
+                  "operational_surface.py:83",
+                  "operational_surface.py:84",
+                  "operational_surface.py:86",
+                  "operational_surface.py:87",
+                  "operational_surface.py:95",
+                  "operational_surface.py:96"
+                ],
+                "pass": true
+              },
+              {
+                "key": "sqlite_lifecycle",
+                "references": [
+                  "advanced_runtime.py:1008",
+                  "advanced_runtime.py:1049",
+                  "advanced_runtime.py:1457",
+                  "advanced_runtime.py:576",
+                  "advanced_runtime.py:703",
+                  "advanced_runtime.py:704",
+                  "advanced_runtime.py:705",
+                  "advanced_runtime.py:783",
+                  "advanced_runtime.py:784",
+                  "advanced_runtime.py:785",
+                  "advanced_runtime.py:80",
+                  "mis_service.py:127",
+                  "mis_service.py:132",
+                  "mis_service.py:133",
+                  "mis_service.py:134",
+                  "mis_service.py:136",
+                  "mis_service.py:137",
+                  "mis_service.py:138",
+                  "mis_service.py:139",
+                  "mis_service.py:140",
+                  "mis_service.py:141",
+                  "mis_service.py:142",
+                  "mis_service.py:15",
+                  "mis_service.py:201",
+                  "mis_service.py:205",
+                  "mis_service.py:219",
+                  "mis_service.py:235",
+                  "mis_service.py:48",
+                  "mis_service.py:7"
+                ],
+                "pass": true
+              },
+              {
+                "key": "strategic_coverage",
+                "references": [
+                  "advanced_runtime.py:1055",
+                  "advanced_runtime.py:1056",
+                  "advanced_runtime.py:1057",
+                  "advanced_runtime.py:1058",
+                  "advanced_runtime.py:1060",
+                  "advanced_runtime.py:1061",
+                  "advanced_runtime.py:1063",
+                  "advanced_runtime.py:120",
+                  "advanced_runtime.py:176",
+                  "advanced_runtime.py:21",
+                  "advanced_runtime.py:28",
+                  "advanced_runtime.py:31",
+                  "advanced_runtime.py:376",
+                  "advanced_runtime.py:432",
+                  "advanced_runtime.py:862",
+                  "advanced_runtime.py:867",
+                  "advanced_runtime.py:903",
+                  "advanced_runtime.py:917",
+                  "operational_surface.py:191",
+                  "operational_surface.py:631"
+                ],
+                "pass": true
+              }
+            ],
+            "score": 25
+          },
+          "exact_bind_call": {
+            "checks": {
+              "four_assets": true,
+              "dates": true,
+              "maximum_three": true,
+              "venture_client_financing": true,
+              "concrete_group_id": true
+            },
+            "asset_hits": {
+              "open-innovation": true,
+              "application": true,
+              "faq": true,
+              "BIND-11th-Edition_Use-Case-Dossier.pdf": true
+            },
+            "score": 20
+          },
+          "claim_discipline": {
+            "checks": {
+              "adverse_preserved": true,
+              "abstentions_preserved": true,
+              "not_estimable": true
+            },
+            "score": 10
+          },
+          "bounded_candidates": {
+            "pass": true,
+            "score": 5
+          }
+        }
+      },
+      "condition_integrity": {
+        "checks": {
+          "declared_condition": true,
+          "kch_used": true,
+          "canonical_class": true,
+          "canonical_entrypoint": true,
+          "preflight_pass": true,
+          "all_preflight_checks_true": true,
+          "three_ingests": true,
+          "workbench_integrity_pass": true,
+          "close_called": true,
+          "no_external_install": true,
+          "no_real_phl": true
+        },
+        "gate": "PASS"
+      }
+    }
+  },
+  "comparative_condition_gate": "PASS_SINGLE_NONRANDOMIZED_PAIR",
+  "descriptive_outcome": "TIE",
+  "causal_effect": "NOT_ESTIMABLE",
+  "industrial_validation": false,
+  "interpretation": "A valid condition gate would establish only that the intended baseline and canonical KCH-assisted procedures ran. One nonrandomized pair cannot establish causal benefit, industrial validity, user utility or BIND readiness.",
+  "next_gate": "Add distinct historical failure classes, independent repetitions and condition-blinded adjudication; only then begin estimating error-avoidance and process-value signals."
+}

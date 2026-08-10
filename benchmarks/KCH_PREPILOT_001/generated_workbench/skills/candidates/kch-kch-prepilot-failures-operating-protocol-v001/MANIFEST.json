@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "evals/evals.json",
+      "bytes": 1204,
+      "sha256": "e5c65421fd68f6a193f2fb50694189a710cfdef13923966aca42dde7aed9cf9e"
+    },
+    {
+      "path": "references/PROTOCOL.md",
+      "bytes": 15352,
+      "sha256": "fe61066ce424a0722ce46d4ea8f8e96a028137b6757dce468f7f363503e3da5c"
+    },
+    {
+      "path": "references/PROVENANCE.json",
+      "bytes": 480,
+      "sha256": "7823512409c905151c99daa9952d79fa722a06ca0bfa3267374456ef6e5cdd61"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 1549,
+      "sha256": "42d5c62b0d1d84a4e3d9128b5e6320315d4fb1ea0016187ce0b27a0e9685e2a0"
+    }
+  ],
+  "manifest_hash": "61973a3cd5ef91cdb9da9ce37cab8f2d0951573c7561a584e8f32471a4733068"
+}

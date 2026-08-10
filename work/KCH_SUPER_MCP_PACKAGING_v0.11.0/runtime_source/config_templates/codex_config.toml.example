@@ -1,0 +1,13 @@
+[mcp_servers.kch_super_mcp]
+command = "__ABSOLUTE_PYTHON_EXECUTABLE__"
+args = ["-X", "utf8", "-u", "__ABSOLUTE_SUPER_MCP_ROOT__/launcher/run_super_mcp.py"]
+cwd = "__ABSOLUTE_SUPER_MCP_ROOT__"
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+enabled = true
+required = true
+default_tools_approval_mode = "prompt"
+
+[mcp_servers.kch_super_mcp.env]
+KCH_011_PROFILE = "agent-shadow"
+KCH_011_STATE = "__ABSOLUTE_SUPER_MCP_ROOT__/runtime/state/codex_kch_011.sqlite3"

@@ -1,0 +1,326 @@
+{
+  "schema": "kch.real-shadow-deployment-gate-result.v0.1.0",
+  "release": "KCH 0.11",
+  "started_at": "2026-08-09T19:06:54.536839+00:00",
+  "gate": "FAIL",
+  "profile": "agent-shadow",
+  "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+  "phl_real_session": "PROHIBITED_AND_NOT_RUN",
+  "pre_gate_adverse_observations": [
+    {
+      "state": "REPAIRED_BEFORE_SERVER_START",
+      "defect": "Windows PowerShell 5 lacks static RandomNumberGenerator.GetBytes(int)",
+      "consequence": "first launcher probe stopped before MCP initialization"
+    },
+    {
+      "state": "REPAIRED_BEFORE_SERVER_START",
+      "defect": "Windows PowerShell 5 lacks Convert.ToHexString(byte[])",
+      "consequence": "second launcher probe stopped before MCP initialization"
+    },
+    {
+      "state": "REPAIRED_OBSERVER_ASSERTION",
+      "defect": "first full gate expected a synthetic top-level registry audit gate field instead of evaluating the returned totals contract",
+      "consequence": "observer stopped after MCP handshake and a real 19 PASS, 0 FAIL, 0 UNAVAILABLE registry audit; no governed KCH session had been opened"
+    },
+    {
+      "state": "REPAIRED_TRANSPORT_AND_PRESERVED_FAIL_CLOSED_BLOCK",
+      "defect": "Windows PowerShell native-pipeline transcoding changed the signed control name from autorización to autorizaci\\ufffdn",
+      "consequence": "KCH correctly emitted CONTROL_RECEIPT_INTEGRITY_FAILURE and BLOCK; active transport changed to direct unbuffered Python stdio"
+    }
+  ],
+  "completed_at": "2026-08-09T19:06:56.032216+00:00",
+  "failure": {
+    "type": "AssertionError",
+    "message": "gate assertion failed: ACTION_AUTHORIZED_READ_ONLY; observed='BLOCK'",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\scripts\\run_real_shadow_gate.py\", line 335, in main\n    check(authorization[\"decision\"] == \"ALLOW_READ_ONLY\", \"ACTION_AUTHORIZED_READ_ONLY\", assertions, authorization[\"decision\"])\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\scripts\\run_real_shadow_gate.py\", line 117, in check\n    raise AssertionError(f\"gate assertion failed: {label}; observed={observed!r}\")\nAssertionError: gate assertion failed: ACTION_AUTHORIZED_READ_ONLY; observed='BLOCK'\n"
+  },
+  "assertions": [
+    {
+      "assertion": "ALL_DEPLOYMENT_INPUTS_EXIST",
+      "pass": true,
+      "observed": [
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\OBJECTIVE_CONTRACT_KCH_0.11_REAL_SHADOW_DEPLOYMENT_v0.1.0.json",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\PHL_REAL_SESSION_FREEZE_v0.1.0.json",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_0.11_CANONICAL_MACRORELEASE.zip",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\.codex\\config.toml"
+      ]
+    },
+    {
+      "assertion": "PROJECT_MCP_CONFIG_ENABLED",
+      "pass": true,
+      "observed": {
+        "command": "C:\\Python314\\python.exe",
+        "args": [
+          "-u",
+          "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"
+        ],
+        "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT",
+        "startup_timeout_sec": 30,
+        "tool_timeout_sec": 60,
+        "enabled": true,
+        "required": true,
+        "default_tools_approval_mode": "prompt"
+      }
+    },
+    {
+      "assertion": "PROJECT_MCP_CONFIG_REQUIRED",
+      "pass": true,
+      "observed": {
+        "command": "C:\\Python314\\python.exe",
+        "args": [
+          "-u",
+          "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"
+        ],
+        "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT",
+        "startup_timeout_sec": 30,
+        "tool_timeout_sec": 60,
+        "enabled": true,
+        "required": true,
+        "default_tools_approval_mode": "prompt"
+      }
+    },
+    {
+      "assertion": "CANONICAL_ZIP_HASH_EXACT",
+      "pass": true,
+      "observed": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+    },
+    {
+      "assertion": "MCP_SERVER_IDENTITY_EXACT",
+      "pass": true,
+      "observed": {
+        "protocolVersion": "2025-06-18",
+        "capabilities": {
+          "tools": {},
+          "resources": {}
+        },
+        "serverInfo": {
+          "name": "kwancode-harness",
+          "version": "0.11.0"
+        }
+      }
+    },
+    {
+      "assertion": "MCP_PROTOCOL_NEGOTIATED",
+      "pass": true,
+      "observed": "2025-06-18"
+    },
+    {
+      "assertion": "MCP_EXACTLY_49_TOOLS",
+      "pass": true,
+      "observed": 49
+    },
+    {
+      "assertion": "MCP_EXACTLY_28_DIRECT_CONTROLS",
+      "pass": true,
+      "observed": 28
+    },
+    {
+      "assertion": "MCP_EXACTLY_4_RESOURCES",
+      "pass": true,
+      "observed": 4
+    },
+    {
+      "assertion": "NO_PHL_MUTATION_TOOL_EXPOSED",
+      "pass": true,
+      "observed": []
+    },
+    {
+      "assertion": "AGENT_SHADOW_PROFILE_ACTIVE",
+      "pass": true,
+      "observed": "agent-shadow"
+    },
+    {
+      "assertion": "MUTATING_EXECUTION_NOT_AUTHORIZED",
+      "pass": true,
+      "observed": false
+    },
+    {
+      "assertion": "ENFORCED_PROFILE_PROHIBITED",
+      "pass": true,
+      "observed": "PROHIBITED_UNTIL_GATES_PASS"
+    },
+    {
+      "assertion": "REGISTRY_EVIDENCE_AUDIT_PASS",
+      "pass": true,
+      "observed": {
+        "FAIL": 0,
+        "PASS": 19,
+        "UNAVAILABLE": 0
+      }
+    },
+    {
+      "assertion": "SEVEN_FEDERATED_COMPONENT_PACKAGES_AVAILABLE",
+      "pass": true,
+      "observed": {
+        "authority_created": false,
+        "available": 7,
+        "components": [
+          {
+            "component": "PHL_EFFECTIVE_INTEGRATION",
+            "distribution": "kch-phl-effective-integration",
+            "state": "AVAILABLE",
+            "version": "0.2.0"
+          },
+          {
+            "component": "SCO",
+            "distribution": "kch-superchats-orchestrators",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_ADAPTER",
+            "distribution": "kch-mis-v03-integration",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_BACKEND",
+            "distribution": "mis-qualitative-bayes",
+            "state": "AVAILABLE",
+            "version": "0.3.1"
+          },
+          {
+            "component": "OBL_PHL",
+            "distribution": "kch-obl-phl-learning-system",
+            "state": "AVAILABLE",
+            "version": "0.1.1"
+          },
+          {
+            "component": "RGG",
+            "distribution": "kch-rigor-gradient-governor",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "KWANPROMPTS",
+            "distribution": "kwanprompts",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          }
+        ],
+        "release": "KCH 0.11",
+        "schema": "kch.component-status.v0.11.0",
+        "unavailable": 0
+      }
+    },
+    {
+      "assertion": "PHL_PROJECTION_AVAILABLE_READ_ONLY",
+      "pass": true,
+      "observed": "AVAILABLE"
+    },
+    {
+      "assertion": "PHL_EXISTING_LEDGER_INTEGRITY_PASS",
+      "pass": true,
+      "observed": {
+        "decision_count": 11,
+        "defects": [],
+        "emitter_count": 18,
+        "event_count": 63,
+        "feedback_count": 0,
+        "gate": "PASS",
+        "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+        "mutability_count": 29,
+        "request_count": 56
+      }
+    },
+    {
+      "assertion": "PHL_ZERO_REAL_USER_FEEDBACK_BEFORE",
+      "pass": true,
+      "observed": 0
+    },
+    {
+      "assertion": "PHL_NO_ACTIVE_SESSION_BEFORE",
+      "pass": true,
+      "observed": null
+    },
+    {
+      "assertion": "SCO_PROJECTION_AVAILABLE",
+      "pass": true,
+      "observed": "AVAILABLE"
+    },
+    {
+      "assertion": "MIS_CERTIFICATE_ADAPTER_AVAILABLE",
+      "pass": true,
+      "observed": "AVAILABLE"
+    },
+    {
+      "assertion": "KWANPROMPTS_RGG_OBL_PHL_PROBES_AVAILABLE",
+      "pass": true,
+      "observed": {
+        "kwanprompts": {
+          "authority_created": false,
+          "component": "KWANPROMPTS",
+          "module": "kwanprompts",
+          "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kwanprompts-0.1.0-py3-none-any.whl\\kwanprompts\\__init__.py",
+          "state": "AVAILABLE"
+        },
+        "rgg": {
+          "authority_created": false,
+          "component": "RGG",
+          "module": "kch_rigor_governor",
+          "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kch_rigor_gradient_governor-0.1.0-py3-none-any.whl\\kch_rigor_governor\\__init__.py",
+          "state": "AVAILABLE"
+        },
+        "obl_phl": {
+          "authority_created": false,
+          "component": "OBL_PHL",
+          "module": "kch_learning",
+          "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kch_obl_phl_learning_system-0.1.1-py3-none-any.whl\\kch_learning\\__init__.py",
+          "state": "AVAILABLE"
+        }
+      }
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://registry/current",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://controls/28",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://status/current",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://audit/current",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "FIVE_ACTUAL_CONTROLS_COMPOSE_TO_PASS",
+      "pass": true,
+      "observed": {
+        "ABSTAIN": 0,
+        "BLOCK": 0,
+        "PASS": 5,
+        "UNAVAILABLE": 0
+      }
+    },
+    {
+      "assertion": "ALL_PREREGISTERED_EVIDENCE_ADMITTED",
+      "pass": true,
+      "observed": [
+        "KCH011_CANONICAL_ZIP",
+        "PROJECT_MCP_CONFIG",
+        "PHL_REAL_SESSION_FREEZE"
+      ]
+    },
+    {
+      "assertion": "ACTION_AUTHORIZED_READ_ONLY",
+      "pass": false,
+      "observed": "BLOCK"
+    }
+  ],
+  "phl_state_before_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+  "phl_state_after_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+  "mcp_process": {
+    "return_code": 0,
+    "stderr": ""
+  }
+}

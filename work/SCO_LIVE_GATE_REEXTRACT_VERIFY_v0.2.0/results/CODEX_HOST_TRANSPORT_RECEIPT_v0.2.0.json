@@ -1,0 +1,21 @@
+{
+  "schema": "kch.sco.codex-host-transport-receipt.v0.2.0",
+  "thread_id": "019fe6f6-076b-7803-b3c3-88c6f29329f0",
+  "native_uri": "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+  "host_id": "local",
+  "bootstrap_turn_id": "019fe6f6-0ca5-7b72-a646-7d5ff60148b5",
+  "bootstrap_latest_tool_marker": null,
+  "dispatch_id": "SCO-LIVE-DISPATCH-20260809-01",
+  "work_order_id": "wo.sco-live-transport-01",
+  "transport_turn_id": "019fe6fa-b818-7c62-bb0b-d04f0fbb3bb1",
+  "transport_assistant_message_id": "item-4",
+  "transport_latest_tool_marker": null,
+  "native_response_sha256": "e6aa7600f7a9f8fb10d981dca9bf14d8a17f0df5f78dbf46aa3cf2c4dfba8976",
+  "transport_completed_at": "2026-08-09T14:43:45.0000000+00:00",
+  "observed_result": "SCO_LIVE_TRANSPORT_OK",
+  "limitations": [
+    "Codex exposes one turn ID for the user-message and assistant-response pair, not separate request/response IDs.",
+    "No tool marker was reported, but this is host metadata rather than an independent operating-system audit.",
+    "Single local disposable Codex task only."
+  ]
+}

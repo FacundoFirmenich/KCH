@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kch-phl-effective-integration"
+version = "0.2.0"
+description = "Conflict-detecting multi-client PHL integration control plane for KwanCode Harness"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+kch-phl-integration = "kch_phl_integration.server:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

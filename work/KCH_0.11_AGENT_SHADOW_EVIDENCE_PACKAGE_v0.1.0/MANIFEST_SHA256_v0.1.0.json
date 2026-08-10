@@ -1,0 +1,106 @@
+{
+  "claim_ceiling": "REAL_LOCAL_PROJECT_SCOPED_MCP_DEPLOYMENT_AND_BOUNDED_AGENT_SHADOW_EXECUTION_WITHOUT_PHL_REAL_USE",
+  "created_at_utc": "2026-08-09T19:16:33.037684+00:00",
+  "file_count_excluding_manifest": 16,
+  "files": [
+    {
+      "path": "canonical/KCH_0.11_CANONICAL_MACRORELEASE.zip",
+      "sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+      "size": 275766,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_0.11_CANONICAL_MACRORELEASE.zip"
+    },
+    {
+      "path": "checkpoint/CHECKPOINT_07_KCH_0.11_DESPLIEGUE_REAL_AGENT_SHADOW_SIN_PHL_20260809.md",
+      "sha256": "b0cca2d972bcffddd0f4bd6d879562fc27e1848a9ef8174dab9ce54749e5a1f1",
+      "size": 8654,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\CHECKPOINT_07_KCH_0.11_DESPLIEGUE_REAL_AGENT_SHADOW_SIN_PHL_20260809.md"
+    },
+    {
+      "path": "deployment/OBJECTIVE_CONTRACT_KCH_0.11_REAL_SHADOW_DEPLOYMENT_v0.1.0.json",
+      "sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+      "size": 1697,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\OBJECTIVE_CONTRACT_KCH_0.11_REAL_SHADOW_DEPLOYMENT_v0.1.0.json"
+    },
+    {
+      "path": "deployment/PHL_REAL_SESSION_FREEZE_v0.1.0.json",
+      "sha256": "1934042b4aa97233efa15188f051554a6cdd3f964cba823675741e8a36ebe7c8",
+      "size": 611,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\PHL_REAL_SESSION_FREEZE_v0.1.0.json"
+    },
+    {
+      "path": "deployment/kch_011_agent_shadow.sqlite3",
+      "sha256": "c35f43f1da0d738d1ddbcb0d075dc730fe14e3007d71cd045ce873a9c1a01168",
+      "size": 86016,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\runtime\\state\\kch_011_agent_shadow.sqlite3"
+    },
+    {
+      "path": "deployment/project_config.toml",
+      "sha256": "a8a285bf8c23bda32529bf559ab548373e96f7e4e4c3fe795af41e2265209d55",
+      "size": 471,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\.codex\\config.toml"
+    },
+    {
+      "path": "deployment/run_kch_011.py",
+      "sha256": "aa7216feb531e03886551ea5bd969ad7afdf23c524bce7fd4c3aa8ad294d23c6",
+      "size": 952,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"
+    },
+    {
+      "path": "deployment/run_real_shadow_gate.py",
+      "sha256": "1fef5fc67639426eced5dbcda14633d120b93c2539b31b5c87c58b44f6901a17",
+      "size": 24259,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\scripts\\run_real_shadow_gate.py"
+    },
+    {
+      "path": "results/CODEX_HOST_KCH_0.11_STATUS_CALL_LAST_MESSAGE.md",
+      "sha256": "5bfbba8feb0a1ebdf9b36ee15ff440573f1e1ddc2adcbfd3313b016b226c3ecd",
+      "size": 240,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\CODEX_HOST_KCH_0.11_STATUS_CALL_LAST_MESSAGE.md"
+    },
+    {
+      "path": "results/CODEX_HOST_TRANSPORT_RECEIPT_v0.3.0.json",
+      "sha256": "56e5871992313fa3ce3b9d4f8a905f05977db6ad5f7dd2148fd11244f3094272",
+      "size": 3182,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\CODEX_HOST_TRANSPORT_RECEIPT_v0.3.0.json"
+    },
+    {
+      "path": "results/KCH_0.11_INSTALLED_POST_DEPLOYMENT_VALIDATION.json",
+      "sha256": "9a4460e05a7c10627922ec8f28b4dfca1060f3875ec3bc2cae152f45bab351d6",
+      "size": 8746,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\KCH_0.11_INSTALLED_POST_DEPLOYMENT_VALIDATION.json"
+    },
+    {
+      "path": "results/KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_01_FAIL.json",
+      "sha256": "22fd69017b0427ef7b1cb9c6166eb83ee8ca58279bbeac48252c23d98f5d1101",
+      "size": 37431,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_01_FAIL.json"
+    },
+    {
+      "path": "results/KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_02_FAIL_CLOSED_UNICODE_TRANSPORT.json",
+      "sha256": "86c067fc9e00c1dc1167a755c582c32c94cd787f14f17fa5f082b8daff70a94a",
+      "size": 11930,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_02_FAIL_CLOSED_UNICODE_TRANSPORT.json"
+    },
+    {
+      "path": "results/KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_03_FAIL_CLOSED_CP1252_TRANSPORT.json",
+      "sha256": "e87f8a88d07cb418f18b720c84537e6cbb21e3a43886a2d6ce3eca1570ee5143",
+      "size": 12008,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_03_FAIL_CLOSED_CP1252_TRANSPORT.json"
+    },
+    {
+      "path": "results/KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_04_EXECUTED_OBSERVER_SCHEMA_FAIL.json",
+      "sha256": "99598435e991a09f3319b75ff0dd12916c5edc070618a41ab323d55e18e7f2de",
+      "size": 14701,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_ATTEMPT_04_EXECUTED_OBSERVER_SCHEMA_FAIL.json"
+    },
+    {
+      "path": "results/KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_RESULT.json",
+      "sha256": "ce0192b201293a1dff818110d355a3ac2c05b37b34e385ea108f5363dae236f5",
+      "size": 87535,
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\results\\KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE_RESULT.json"
+    }
+  ],
+  "phl_real_session": "NOT_RUN_DEFERRED_BY_USER",
+  "release": "KCH 0.11",
+  "schema": "kch.agent-shadow-evidence-package-manifest.v0.1.0"
+}

@@ -1,0 +1,2139 @@
+{
+  "schema": "kch.prepilot-receipt.v0.2.0",
+  "condition": "KCH_RUNTIME_ASSISTED_CANONICAL",
+  "exhaustive_read_receipt": {
+    "case_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\case.json",
+    "corpus_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus",
+    "case_read_method": "Path.read_text(encoding='utf-8') complete read",
+    "kch_preflight": {
+      "schema": "kch.canonical-preflight.v0.2.0",
+      "gate": "PASS",
+      "canonical_entrypoint": "kch_studio.mcp_server:StudioMCP",
+      "internal_component_not_a_canonical_entrypoint": "kch_studio.advanced_runtime:KCHAdvancedRuntime",
+      "checks": {
+        "compiled_governance": true,
+        "governance_hierarchy": true,
+        "all_strategic_invariant": true,
+        "full_strategic_surface": true,
+        "launcher_blind_spots_absent": true,
+        "phl_authorized": true
+      },
+      "governance": {
+        "state": "VERIFIED_COMPILED_GOVERNANCE",
+        "graph_hash": "d3b85f12dc8451ee260c001f1976895d0009a5a7058506a833833a42c38e705f",
+        "hierarchy": [
+          "HARNESS",
+          "AGENTS",
+          "RULES"
+        ],
+        "node_count": 17,
+        "source_nodes_verified": 17,
+        "compiled_artifacts_verified": 8,
+        "all_strategic_invariant": true
+      },
+      "strategic_surface": {
+        "schema": "kch.strategic-surface-audit.v0.2.0",
+        "gate": "PASS",
+        "classes": 30,
+        "scope": "FULL_INTEGRATED",
+        "public_methods": 221,
+        "tool_exposed_methods": 195,
+        "composition_internal_methods": 26,
+        "missing_classifications": {},
+        "stale_classifications": {},
+        "missing_tools": {},
+        "claim_ceiling": "SURFACE_CLASSIFICATION_AND_BINDING_ONLY",
+        "production_readiness_established": false
+      },
+      "capability_blind_spots": [],
+      "phl": {
+        "authorized": true,
+        "training_executed": false,
+        "real_feedback_executed": false
+      },
+      "external_installation_performed": false,
+      "claim_ceiling": "CANONICAL_LOCAL_STARTUP_AND_BINDING_GATE_ONLY",
+      "industrial_validation_established": false
+    },
+    "workbench_ingest_receipts": [
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"authority\": {\"action\": \"workbench_ingest\", \"attestation_boundary\": \"CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY\", \"authorized_this_call\": true, \"choice\": \"YES\", \"created_at\": \"2026-08-10T19:26:02.291399Z\", \"schema\": \"kch.direct-action-authority-receipt.v0.2.0\", \"scope\": \"THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY\", \"session_policy\": {\"always_this_session\": false, \"never_this_session\": false}}, \"result\": {\"automatic_maintenance\": {\"budget\": {\"accounts\": [], \"aggregate\": {\"automatic_handoff\": false, \"cadence_level\": \"NORMAL\", \"derivation\": \"NO_ESTIMABLE_SAMPLES\", \"next_interval_minutes\": 120, \"state\": \"NOT_ESTIMABLE\"}, \"live_host_telemetry_connected\": false, \"policy\": {\"automatic_external_task_archival\": false, \"automatic_external_task_creation\": false, \"automatic_stage_skills\": true, \"checkpoint_at_remaining_percent\": 25.0, \"critical_at_remaining_percent\": 5.0, \"design_status\": \"USER_CUSTOMIZABLE_DEFAULT_NOT_EMPIRICALLY_CALIBRATED\", \"handoff_at_remaining_percent\": 15.0, \"interval_minutes\": {\"CHECKPOINT\": 30, \"CRITICAL\": 2, \"HANDOFF\": 10, \"NORMAL\": 120, \"REFRESH\": 60}, \"min_procedure_steps\": 2, \"min_protocol_evidence\": 3, \"refresh_at_remaining_percent\": 50.0, \"require_failure_or_correction\": true, \"schema\": \"kch.workbench-budget-policy.v0.1.0\"}, \"prices_inferred\": false, \"schema\": \"kch.workbench-weekly-budget-status.v0.1.0\"}, \"checkpoint_executed\": false, \"checkpoint_requested\": false, \"event\": {\"event_hash\": \"591b96097ad4df1fc45f8182eca1405e889230318479984857f390b69f59f2ab\", \"event_id\": \"WBEVT-939aab35-597d-462b-84d4-4fb7f53ad7c8\", \"event_type\": \"MAINTENANCE_COMPLETED\", \"payload\": {\"handoff_id\": null, \"scopes\": [\"KCH-PREPILOT-002\"], \"trigger\": \"AUTOMATIC_AFTER_SOURCE_INGEST\"}, \"previous_hash\": \"48067b089bf516b3b825ab03790625aece99b02da8aa7a132be57886900636c4\", \"timestamp\": \"2026-08-10T19:26:04.317687Z\"}, \"generated\": [{\"protocol\": {\"blockers\": [\"INSUFFICIENT_PROCEDURE_STEPS\"], \"evidence_count\": 11, \"protocol_generated\": false, \"scope_key\": \"KCH-PREPILOT-002\", \"state\": \"NOT_ESTIMABLE_INSUFFICIENT_EVIDENCE\"}, \"scope_key\": \"KCH-PREPILOT-002\", \"skill\": {\"state\": \"NOT_GENERATED\"}}], \"handoff\": null, \"state\": \"MAINTENANCE_COMPLETED\", \"trigger\": \"AUTOMATIC_AFTER_SOURCE_INGEST\"}, \"custody\": {\"asset_id\": \"ASSET-51ffe8a8-6b8f-4b90-9424-b6f82bdf1fce\", \"bytes\": 920, \"content_sha256\": \"4cb42fa31d22b9486aff7a0af5ad1e09303089a59c3e0138b61d8ce9cb897fed\", \"kind\": \"WORKBENCH_SOURCE_RECEIPT\", \"logical_key\": \"sources/SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da.json\", \"previous_revision_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"recoverable\": true, \"revision_hash\": \"1e0cb9a078844d5d9614e07e5007e52eb35ba8181a87244049c85896a5d62be3\", \"seq\": 1, \"warning_count\": 0}, \"detected_lessons\": [{\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 10, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"CASE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"1bc2842ae1ab5a0080688a420165093849a865426bd19ca3637de993acf437d6\", \"lesson_id\": \"LESSON-3749a469-4676-477e-a44c-1251a4054968\", \"lesson_kind\": \"CASE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"from .constitutional import ConstitutionalWorkspace\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 57, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"CASE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"35a504010adf6e2689b98e115a05b554237f34147a75b6666650a6b5eb3dba19\", \"lesson_id\": \"LESSON-4752f63e-f6eb-4033-9009-e8524cbeb23c\", \"lesson_kind\": \"CASE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"\\\"Read constitutional workspace\\\",\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"EPISTEMOLOGICAL\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 306, \"matched_domain\": \"EPISTEMOLOGICAL\", \"matched_kind\": \"CLAIM_LIMIT\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"4b0f16213d7e7908bd3aecf4057087cae3ff3c9a516adbb322124a83f2a9a07e\", \"lesson_id\": \"LESSON-40406f6a-c3a4-4460-8c40-76d2f813b62c\", \"lesson_kind\": \"CLAIM_LIMIT\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"\\\"Separate action perMISsion from claim ceiling under an explicit RGG profile.\\\",\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"STATISTICAL\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 507, \"matched_domain\": \"STATISTICAL\", \"matched_kind\": \"CLAIM_LIMIT\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"fef2739e76d571f6310ac37b03232fd329cb6732a35a11a82bc071e82f4901a2\", \"lesson_id\": \"LESSON-fcc07bfa-7b84-4765-a06e-9773bc2a7111\", \"lesson_kind\": \"CLAIM_LIMIT\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"\\\"Inspect freezes, outcomes, next prior and local claim ceiling.\\\",\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"EPISTEMOLOGICAL\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 507, \"matched_domain\": \"EPISTEMOLOGICAL\", \"matched_kind\": \"CLAIM_LIMIT\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"897e343d44528d21f72571cff82a37609a1e80d2b430ab4fd5d0d0ac170581f4\", \"lesson_id\": \"LESSON-5240205c-e954-420e-9782-431dfa0913f9\", \"lesson_kind\": \"CLAIM_LIMIT\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"\\\"Inspect freezes, outcomes, next prior and local claim ceiling.\\\",\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 587, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"CASE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"77f6e65ad04000a22cee262a2277f35299d0ff151763add9a11baf838f13feea\", \"lesson_id\": \"LESSON-ed75e2e1-9de9-4c01-995a-c5b06ad43a70\", \"lesson_kind\": \"CASE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"self.constitution = ConstitutionalWorkspace(self.root / \\\"constitution\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"DEPLOYMENT\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 755, \"matched_domain\": \"DEPLOYMENT\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"57a345327e45ccbe891f3d38eff70ab16aff50cb23b492f218d913e395f5e32f\", \"lesson_id\": \"LESSON-9e5d6a67-1c44-4cb0-a441-baa4210649d2\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"raise ValueError(f\\\"duplicate advanced/host handlers: {sorted(overlap)}\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 760, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"d9387d99712d72fdbe6188370b95512f6cb6c8a04f2479e9183e46d9fccd3ae9\", \"lesson_id\": \"LESSON-d3e5d867-bc84-4c54-8cde-108c3cedd504\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"raise ValueError(\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 795, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"dc8c2db0f296750d2a10ed52fdf994ffb032c2342ef42fbd461b1da628aa6882\", \"lesson_id\": \"LESSON-7eced477-56bc-45ef-942d-ce120fa4671b\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"except KeyError:\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 829, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"40d1aa4d031754552ee9a6074a995ba1105a9a78e165ac3bbdb2e3bdb3ed1629\", \"lesson_id\": \"LESSON-ba484094-4aba-4918-bdd3-6919f9badddb\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"raise ValueError(\\\"direct user action requires one of the four exact consent choices\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 858, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"lesson_hash\": \"a1257a1cba64255f00889d42e96c6d14e190d5c7035b51e72fa90c1aac467c7e\", \"lesson_id\": \"LESSON-47e0a035-5beb-4013-8b07-d03988804826\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"statement\": \"raise ValueError(\"}], \"event\": {\"event_hash\": \"48067b089bf516b3b825ab03790625aece99b02da8aa7a132be57886900636c4\", \"event_id\": \"WBEVT-0ee0014b-6e54-4ff6-9b18-fa7d4b66ed53\", \"event_type\": \"SOURCE_INGESTED\", \"payload\": {\"lesson_count\": 11, \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\"}, \"previous_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"timestamp\": \"2026-08-10T19:26:04.195228Z\"}, \"normalization\": {\"competing_candidates\": [], \"normalized_changed\": true, \"raw_preserved\": true, \"resolution_id\": \"DRES-01e3cd60-722f-496e-bacc-0295a8c310cf\", \"resolver_hash\": \"e0abbd686e98bb006f0cd849d7bf6976887f30c18da1c9dbb6501f1f8bb708b0\", \"state\": \"CONTEXTUAL_RESOLVER_APPLIED\"}, \"normalized_path\": \"C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-10\\\\kch-prepilot-002-harness\\\\outputs\\\\kch-prepilot-002-runtime-qx_gow9b\\\\advanced\\\\workbench\\\\normalized\\\\SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da.normalized.txt\", \"original_sha256\": \"c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a\", \"raw_preserved\": true, \"schema\": \"kch.workbench-source-ingest.v0.1.0\", \"scope_key\": \"KCH-PREPILOT-002\", \"secret_references\": [], \"source_id\": \"SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da\", \"source_kind\": \"FILE\", \"storage_state\": \"EXACT_ORIGINAL_BYTES_STORED\", \"stored_path\": \"C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-10\\\\kch-prepilot-002-harness\\\\outputs\\\\kch-prepilot-002-runtime-qx_gow9b\\\\advanced\\\\workbench\\\\raw\\\\SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da.py\"}, \"state\": \"EXECUTED_UNDER_SCOPED_USER_CONSENT\"}"
+          }
+        ],
+        "structuredContent": {
+          "state": "EXECUTED_UNDER_SCOPED_USER_CONSENT",
+          "authority": {
+            "schema": "kch.direct-action-authority-receipt.v0.2.0",
+            "action": "workbench_ingest",
+            "choice": "YES",
+            "authorized_this_call": true,
+            "session_policy": {
+              "always_this_session": false,
+              "never_this_session": false
+            },
+            "scope": "THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY",
+            "attestation_boundary": "CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY",
+            "created_at": "2026-08-10T19:26:02.291399Z"
+          },
+          "result": {
+            "schema": "kch.workbench-source-ingest.v0.1.0",
+            "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+            "source_kind": "FILE",
+            "scope_key": "KCH-PREPILOT-002",
+            "original_sha256": "c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a",
+            "stored_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\kch-prepilot-002-runtime-qx_gow9b\\advanced\\workbench\\raw\\SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da.py",
+            "normalized_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\kch-prepilot-002-runtime-qx_gow9b\\advanced\\workbench\\normalized\\SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da.normalized.txt",
+            "storage_state": "EXACT_ORIGINAL_BYTES_STORED",
+            "raw_preserved": true,
+            "normalization": {
+              "state": "CONTEXTUAL_RESOLVER_APPLIED",
+              "raw_preserved": true,
+              "normalized_changed": true,
+              "resolution_id": "DRES-01e3cd60-722f-496e-bacc-0295a8c310cf",
+              "resolver_hash": "e0abbd686e98bb006f0cd849d7bf6976887f30c18da1c9dbb6501f1f8bb708b0",
+              "competing_candidates": []
+            },
+            "secret_references": [],
+            "detected_lessons": [
+              {
+                "lesson_id": "LESSON-3749a469-4676-477e-a44c-1251a4054968",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "CASE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "from .constitutional import ConstitutionalWorkspace",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 10,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CASE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "1bc2842ae1ab5a0080688a420165093849a865426bd19ca3637de993acf437d6"
+              },
+              {
+                "lesson_id": "LESSON-4752f63e-f6eb-4033-9009-e8524cbeb23c",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "CASE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "\"Read constitutional workspace\",",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 57,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CASE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "35a504010adf6e2689b98e115a05b554237f34147a75b6666650a6b5eb3dba19"
+              },
+              {
+                "lesson_id": "LESSON-40406f6a-c3a4-4460-8c40-76d2f813b62c",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "CLAIM_LIMIT",
+                "domain": "EPISTEMOLOGICAL",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "\"Separate action perMISsion from claim ceiling under an explicit RGG profile.\",",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 306,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CLAIM_LIMIT",
+                  "matched_domain": "EPISTEMOLOGICAL"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "4b0f16213d7e7908bd3aecf4057087cae3ff3c9a516adbb322124a83f2a9a07e"
+              },
+              {
+                "lesson_id": "LESSON-fcc07bfa-7b84-4765-a06e-9773bc2a7111",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "CLAIM_LIMIT",
+                "domain": "STATISTICAL",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "\"Inspect freezes, outcomes, next prior and local claim ceiling.\",",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 507,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CLAIM_LIMIT",
+                  "matched_domain": "STATISTICAL"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "fef2739e76d571f6310ac37b03232fd329cb6732a35a11a82bc071e82f4901a2"
+              },
+              {
+                "lesson_id": "LESSON-5240205c-e954-420e-9782-431dfa0913f9",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "CLAIM_LIMIT",
+                "domain": "EPISTEMOLOGICAL",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "\"Inspect freezes, outcomes, next prior and local claim ceiling.\",",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 507,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CLAIM_LIMIT",
+                  "matched_domain": "EPISTEMOLOGICAL"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "897e343d44528d21f72571cff82a37609a1e80d2b430ab4fd5d0d0ac170581f4"
+              },
+              {
+                "lesson_id": "LESSON-ed75e2e1-9de9-4c01-995a-c5b06ad43a70",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "CASE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "self.constitution = ConstitutionalWorkspace(self.root / \"constitution\")",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 587,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CASE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "77f6e65ad04000a22cee262a2277f35299d0ff151763add9a11baf838f13feea"
+              },
+              {
+                "lesson_id": "LESSON-9e5d6a67-1c44-4cb0-a441-baa4210649d2",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "FAILURE",
+                "domain": "DEPLOYMENT",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(f\"duplicate advanced/host handlers: {sorted(overlap)}\")",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 755,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "DEPLOYMENT"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "57a345327e45ccbe891f3d38eff70ab16aff50cb23b492f218d913e395f5e32f"
+              },
+              {
+                "lesson_id": "LESSON-d3e5d867-bc84-4c54-8cde-108c3cedd504",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 760,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "d9387d99712d72fdbe6188370b95512f6cb6c8a04f2479e9183e46d9fccd3ae9"
+              },
+              {
+                "lesson_id": "LESSON-7eced477-56bc-45ef-942d-ce120fa4671b",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "except KeyError:",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 795,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "dc8c2db0f296750d2a10ed52fdf994ffb032c2342ef42fbd461b1da628aa6882"
+              },
+              {
+                "lesson_id": "LESSON-ba484094-4aba-4918-bdd3-6919f9badddb",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"direct user action requires one of the four exact consent choices\")",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 829,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "40d1aa4d031754552ee9a6074a995ba1105a9a78e165ac3bbdb2e3bdb3ed1629"
+              },
+              {
+                "lesson_id": "LESSON-47e0a035-5beb-4013-8b07-d03988804826",
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(",
+                "evidence": {
+                  "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                  "line_ordinal": 858,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "a1257a1cba64255f00889d42e96c6d14e190d5c7035b51e72fa90c1aac467c7e"
+              }
+            ],
+            "automatic_maintenance": {
+              "state": "MAINTENANCE_COMPLETED",
+              "trigger": "AUTOMATIC_AFTER_SOURCE_INGEST",
+              "generated": [
+                {
+                  "scope_key": "KCH-PREPILOT-002",
+                  "protocol": {
+                    "state": "NOT_ESTIMABLE_INSUFFICIENT_EVIDENCE",
+                    "scope_key": "KCH-PREPILOT-002",
+                    "blockers": [
+                      "INSUFFICIENT_PROCEDURE_STEPS"
+                    ],
+                    "evidence_count": 11,
+                    "protocol_generated": false
+                  },
+                  "skill": {
+                    "state": "NOT_GENERATED"
+                  }
+                }
+              ],
+              "handoff": null,
+              "budget": {
+                "schema": "kch.workbench-weekly-budget-status.v0.1.0",
+                "accounts": [],
+                "aggregate": {
+                  "state": "NOT_ESTIMABLE",
+                  "derivation": "NO_ESTIMABLE_SAMPLES",
+                  "cadence_level": "NORMAL",
+                  "next_interval_minutes": 120,
+                  "automatic_handoff": false
+                },
+                "live_host_telemetry_connected": false,
+                "prices_inferred": false,
+                "policy": {
+                  "automatic_external_task_archival": false,
+                  "automatic_external_task_creation": false,
+                  "automatic_stage_skills": true,
+                  "checkpoint_at_remaining_percent": 25.0,
+                  "critical_at_remaining_percent": 5.0,
+                  "design_status": "USER_CUSTOMIZABLE_DEFAULT_NOT_EMPIRICALLY_CALIBRATED",
+                  "handoff_at_remaining_percent": 15.0,
+                  "interval_minutes": {
+                    "CHECKPOINT": 30,
+                    "CRITICAL": 2,
+                    "HANDOFF": 10,
+                    "NORMAL": 120,
+                    "REFRESH": 60
+                  },
+                  "min_procedure_steps": 2,
+                  "min_protocol_evidence": 3,
+                  "refresh_at_remaining_percent": 50.0,
+                  "require_failure_or_correction": true,
+                  "schema": "kch.workbench-budget-policy.v0.1.0"
+                }
+              },
+              "checkpoint_requested": false,
+              "checkpoint_executed": false,
+              "event": {
+                "event_id": "WBEVT-939aab35-597d-462b-84d4-4fb7f53ad7c8",
+                "timestamp": "2026-08-10T19:26:04.317687Z",
+                "event_type": "MAINTENANCE_COMPLETED",
+                "payload": {
+                  "trigger": "AUTOMATIC_AFTER_SOURCE_INGEST",
+                  "scopes": [
+                    "KCH-PREPILOT-002"
+                  ],
+                  "handoff_id": null
+                },
+                "previous_hash": "48067b089bf516b3b825ab03790625aece99b02da8aa7a132be57886900636c4",
+                "event_hash": "591b96097ad4df1fc45f8182eca1405e889230318479984857f390b69f59f2ab"
+              }
+            },
+            "custody": {
+              "asset_id": "ASSET-51ffe8a8-6b8f-4b90-9424-b6f82bdf1fce",
+              "logical_key": "sources/SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da.json",
+              "kind": "WORKBENCH_SOURCE_RECEIPT",
+              "seq": 1,
+              "bytes": 920,
+              "content_sha256": "4cb42fa31d22b9486aff7a0af5ad1e09303089a59c3e0138b61d8ce9cb897fed",
+              "revision_hash": "1e0cb9a078844d5d9614e07e5007e52eb35ba8181a87244049c85896a5d62be3",
+              "previous_revision_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "warning_count": 0,
+              "recoverable": true
+            },
+            "event": {
+              "event_id": "WBEVT-0ee0014b-6e54-4ff6-9b18-fa7d4b66ed53",
+              "timestamp": "2026-08-10T19:26:04.195228Z",
+              "event_type": "SOURCE_INGESTED",
+              "payload": {
+                "source_id": "SOURCE-c396be46-b4d5-4bc4-aee4-7681a728b6da",
+                "scope_key": "KCH-PREPILOT-002",
+                "lesson_count": 11
+              },
+              "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "event_hash": "48067b089bf516b3b825ab03790625aece99b02da8aa7a132be57886900636c4"
+            }
+          }
+        }
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"authority\": {\"action\": \"workbench_ingest\", \"attestation_boundary\": \"CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY\", \"authorized_this_call\": true, \"choice\": \"YES\", \"created_at\": \"2026-08-10T19:26:04.426966Z\", \"schema\": \"kch.direct-action-authority-receipt.v0.2.0\", \"scope\": \"THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY\", \"session_policy\": {\"always_this_session\": false, \"never_this_session\": false}}, \"result\": {\"automatic_maintenance\": {\"budget\": {\"accounts\": [], \"aggregate\": {\"automatic_handoff\": false, \"cadence_level\": \"NORMAL\", \"derivation\": \"NO_ESTIMABLE_SAMPLES\", \"next_interval_minutes\": 120, \"state\": \"NOT_ESTIMABLE\"}, \"live_host_telemetry_connected\": false, \"policy\": {\"automatic_external_task_archival\": false, \"automatic_external_task_creation\": false, \"automatic_stage_skills\": true, \"checkpoint_at_remaining_percent\": 25.0, \"critical_at_remaining_percent\": 5.0, \"design_status\": \"USER_CUSTOMIZABLE_DEFAULT_NOT_EMPIRICALLY_CALIBRATED\", \"handoff_at_remaining_percent\": 15.0, \"interval_minutes\": {\"CHECKPOINT\": 30, \"CRITICAL\": 2, \"HANDOFF\": 10, \"NORMAL\": 120, \"REFRESH\": 60}, \"min_procedure_steps\": 2, \"min_protocol_evidence\": 3, \"refresh_at_remaining_percent\": 50.0, \"require_failure_or_correction\": true, \"schema\": \"kch.workbench-budget-policy.v0.1.0\"}, \"prices_inferred\": false, \"schema\": \"kch.workbench-weekly-budget-status.v0.1.0\"}, \"checkpoint_executed\": false, \"checkpoint_requested\": false, \"event\": {\"event_hash\": \"14fe31d4e7bce0f578549fc8a8a67eeb3409027c2526697e9073691b5fb76be6\", \"event_id\": \"WBEVT-41d248f9-c879-4bc0-b671-f30cadd3ff88\", \"event_type\": \"MAINTENANCE_COMPLETED\", \"payload\": {\"handoff_id\": null, \"scopes\": [\"KCH-PREPILOT-002\"], \"trigger\": \"AUTOMATIC_AFTER_SOURCE_INGEST\"}, \"previous_hash\": \"5f404ffe625eb61e2585959585ec01c747e77f8cf550e7f43684e52ae7b4b775\", \"timestamp\": \"2026-08-10T19:26:06.736317Z\"}, \"generated\": [{\"protocol\": {\"blockers\": [\"INSUFFICIENT_PROCEDURE_STEPS\"], \"evidence_count\": 38, \"protocol_generated\": false, \"scope_key\": \"KCH-PREPILOT-002\", \"state\": \"NOT_ESTIMABLE_INSUFFICIENT_EVIDENCE\"}, \"scope_key\": \"KCH-PREPILOT-002\", \"skill\": {\"state\": \"NOT_GENERATED\"}}], \"handoff\": null, \"state\": \"MAINTENANCE_COMPLETED\", \"trigger\": \"AUTOMATIC_AFTER_SOURCE_INGEST\"}, \"custody\": {\"asset_id\": \"ASSET-21f14795-f0aa-4c9a-9858-276e0f55d6eb\", \"bytes\": 920, \"content_sha256\": \"d5acb24e53e16fe04d5bbdb6235b2929e34cd0ca9367b9fb695db25235750478\", \"kind\": \"WORKBENCH_SOURCE_RECEIPT\", \"logical_key\": \"sources/SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050.json\", \"previous_revision_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"recoverable\": true, \"revision_hash\": \"5aa7571efe4c333f1dd707f3d5ddba860da6cf2834d942b258496bbb4ab6f040\", \"seq\": 1, \"warning_count\": 0}, \"detected_lessons\": [{\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 103, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"07c33b11f8e22175bc104d6cb750c46b12dafc3e53216f8ea46d1603cf01a7fc\", \"lesson_id\": \"LESSON-38e07a84-2aa7-429c-9847-af67950cf5c5\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"self._error: str | None = None\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 116, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"a8de63b39daf0240a13e20fef78b9608e06fa2c8222af6534961c7ea57e21e3f\", \"lesson_id\": \"LESSON-e0a3c37b-224a-47bd-8ce0-7c0ba83b32d4\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise FileNotFoundError(\\\"MIS v0.3.1 evidence root unavailable\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 133, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"ad5306f8eed1e35e6951b8bdff29fb8559e47225a30ae873250342931078f2d4\", \"lesson_id\": \"LESSON-4f5a9b89-d2a2-497f-aa7d-4f454a8a5bf7\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"except ImportError:\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 150, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"b1343f644eafe759dd695c4139c4d7cd55dddacb0fe051c628ceb449739e057f\", \"lesson_id\": \"LESSON-8d52c868-bdec-47f8-ac93-04a8ab2b75c2\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"self._error = f\\\"{type(exc).__name__}: {exc}\\\"\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 191, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"90269655adc7bf0b43fed405d458a380cbfd0d28cb0d16adc0a84298035ab6fc\", \"lesson_id\": \"LESSON-ab3d2721-e175-4103-ab18-1d2b020c3450\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS certificate digest collision\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 247, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"632c16b7e0d2e70ba66e8a2b4b872e853ca50d9de5889ab1ff46cb0240eed0d6\", \"lesson_id\": \"LESSON-92f5fb09-7f43-436f-88a7-5c8fe73ee581\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"\\\"adapter_error\\\": self._error,\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"COMPUTING\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 312, \"matched_domain\": \"COMPUTING\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"d046e3ed271f16ccbf70b88bdb75a4dcdb2ef197786e2d93d2e98102edda81eb\", \"lesson_id\": \"LESSON-d438aa1e-d23e-4d1d-8ae3-ec95e72d9faa\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS CSI lowering hash MISmatch\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 364, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"6f81d2314411c8b80cf674a4256ecf5b9a329081c894a0d173af58f60857dbf2\", \"lesson_id\": \"LESSON-97d724ea-9c6f-4a89-8779-93fc9404c442\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise PerMISsionError(\\\"new MIS semantic atoms require user authorship\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 378, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"6f2dc202b4d65d8473ba38e1eb2cd899b8ac91fbbe66b79ab07ae47ef63a2132\", \"lesson_id\": \"LESSON-4b145fd9-4f65-4d00-a5c8-57540a4bb61f\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"atom_id collision with different semantics\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 422, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"e7649521fd1deb1411d5c8a840efd74f4fdf5a94b909bc7c8210eff0f3c4b2b9\", \"lesson_id\": \"LESSON-79b76733-b1ae-456e-822f-df9ad106bc96\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(f\\\"{label} must be non-empty text\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 425, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"f18268c67f360167a4d9ce24748aca1a7bd5bd16d010af60e32d119e71248619\", \"lesson_id\": \"LESSON-b0e9c9de-7f94-47f7-b6bd-f381a43c91a1\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"states must be sorted unique and alpha must cover them exactly\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 443, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"7a6adc578244adeb967b725a4e6d91d425fc02b44440db51a3bb3d7003ac18f0\", \"lesson_id\": \"LESSON-a7543236-5eb5-4b43-bd94-438d95a4d007\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"study_id already exists\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 482, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"c41ee23d26f82e38077ef04a3a3554efec3ec3faa2bee87253083eae3709d002\", \"lesson_id\": \"LESSON-c2a0a0ea-ad13-41f1-a5a5-51612827cd9d\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise KeyError(study_id)\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 484, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"bffe489b0fdfdbb693c5f367985f71429ac3c4f2224e7b5b92bb2cf1ec37137e\", \"lesson_id\": \"LESSON-e058d6a2-71cc-4a37-a96d-824a31b7d956\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS prospective study is not active\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 498, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"9c2ca6d26f8fdc442943d7e12156e3039f10de9985c975a62ca81b743f0bc9bb\", \"lesson_id\": \"LESSON-abf3e824-4fee-42c1-a98c-f78a9c76687c\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"previous MIS freeze has no outcome\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 500, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"178ba1bac82fed03d0df8c6311317cb410f384c6332cafc206ac67c21a88b02c\", \"lesson_id\": \"LESSON-4f60051a-7cec-4bb9-affe-aaeb5c8703f7\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS request purpose differs from prospective study\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 502, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"bedb3e80b2bab540641be12f9c441ef8e9ec42e22c490cb79a8daa63aa89e556\", \"lesson_id\": \"LESSON-18a57a24-d9fa-4832-a057-1b66fb0d310f\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS request jurisdiction differs from prospective study\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"STATISTICAL\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 505, \"matched_domain\": \"STATISTICAL\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"62eb05659aee7bb0e875af0f52e63def8e4d5e64b038ba2752c63063cae92b67\", \"lesson_id\": \"LESSON-1173debd-e17d-4250-90cc-c2a1767aa0e5\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS request prior differs from the pre-outcome frozen prior\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"COMPUTING\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 547, \"matched_domain\": \"COMPUTING\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"abe500ccc8a3a22047814970aff5f5dc5e76b6a62c5bf8eb39ba4f04528c7c5a\", \"lesson_id\": \"LESSON-a0b80df5-02b7-435a-abba-4731bf3fa9c4\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"source_unit_hash must be lowercase SHA-256\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 553, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"76829fbf134f4b447d1a783b9b98053735ed175fa6ab915bf62f6a133014d99e\", \"lesson_id\": \"LESSON-3403deea-efdd-4876-8895-f412456b9d6c\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"outcome requires exactly one pending MIS freeze\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 606, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"b3d929d69292cf319daed039d74694957c7bc1273cf80496d84612e274b3da04\", \"lesson_id\": \"LESSON-cdefc6fe-1168-4db4-9418-42c0ad062623\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise KeyError(study_id)\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 629, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"88fe6ec8791d143a2fc24d844cfa79baea9db1de2951f71b91b3729879bdb6a3\", \"lesson_id\": \"LESSON-d030fd2e-6d20-4989-b7a0-a90e32b187c6\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"cannot close a MIS study with a pending outcome\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 663, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"b630cce879e420fc268f50b14e76315f23f121783afc39c5aae901f7b960513a\", \"lesson_id\": \"LESSON-8adf6ce8-e085-43e8-8349-eb431e9e62d2\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 743, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"8c2ae5002c665cde8aa767574e59f40ce0b28c4de4ee0fff6b979330ee146a0f\", \"lesson_id\": \"LESSON-d882ac8d-d27f-4df2-b210-93b783304c0b\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise KeyError(decision_id)\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"STATISTICAL\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 748, \"matched_domain\": \"STATISTICAL\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"21807b009383cf5e43c29d362973763e4b8825f083eab29b6c5e64b489e037b0\", \"lesson_id\": \"LESSON-1661c1c8-6ee5-47a8-b80f-d16673886f9c\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"PHL registration receipt differs from prior bridge receipt\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 820, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"f6f6f58b92f7a83c5c140e253a02568ffcaf9247256864b254e00b053fd476e4\", \"lesson_id\": \"LESSON-3070412e-5305-4ad7-9281-edc7d6849563\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS export path collision\\\")\"}, {\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"PARTICULAR\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 882, \"matched_domain\": \"PARTICULAR\", \"matched_kind\": \"FAILURE\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"lesson_hash\": \"2db05e1b1cfaecea4b7549d99ec0953a731eaa9010caa485eb75f6aa07e27aa9\", \"lesson_id\": \"LESSON-4cee2c62-8f58-4e36-ad22-a087dcf23ae7\", \"lesson_kind\": \"FAILURE\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"statement\": \"raise ValueError(\\\"MIS bridge receipt collision\\\")\"}], \"event\": {\"event_hash\": \"5f404ffe625eb61e2585959585ec01c747e77f8cf550e7f43684e52ae7b4b775\", \"event_id\": \"WBEVT-6cb2f34c-3146-45ed-ac25-3223c70350d9\", \"event_type\": \"SOURCE_INGESTED\", \"payload\": {\"lesson_count\": 27, \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\"}, \"previous_hash\": \"591b96097ad4df1fc45f8182eca1405e889230318479984857f390b69f59f2ab\", \"timestamp\": \"2026-08-10T19:26:06.605305Z\"}, \"normalization\": {\"competing_candidates\": [], \"normalized_changed\": true, \"raw_preserved\": true, \"resolution_id\": \"DRES-c1479af5-b953-49b9-915d-6096b644f063\", \"resolver_hash\": \"5be7dfff7db02e12c0a39dbde8ccbf5f8ef120a996f6513f89ccc5e578a8e9eb\", \"state\": \"CONTEXTUAL_RESOLVER_APPLIED\"}, \"normalized_path\": \"C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-10\\\\kch-prepilot-002-harness\\\\outputs\\\\kch-prepilot-002-runtime-qx_gow9b\\\\advanced\\\\workbench\\\\normalized\\\\SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050.normalized.txt\", \"original_sha256\": \"ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582\", \"raw_preserved\": true, \"schema\": \"kch.workbench-source-ingest.v0.1.0\", \"scope_key\": \"KCH-PREPILOT-002\", \"secret_references\": [], \"source_id\": \"SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050\", \"source_kind\": \"FILE\", \"storage_state\": \"EXACT_ORIGINAL_BYTES_STORED\", \"stored_path\": \"C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-10\\\\kch-prepilot-002-harness\\\\outputs\\\\kch-prepilot-002-runtime-qx_gow9b\\\\advanced\\\\workbench\\\\raw\\\\SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050.py\"}, \"state\": \"EXECUTED_UNDER_SCOPED_USER_CONSENT\"}"
+          }
+        ],
+        "structuredContent": {
+          "state": "EXECUTED_UNDER_SCOPED_USER_CONSENT",
+          "authority": {
+            "schema": "kch.direct-action-authority-receipt.v0.2.0",
+            "action": "workbench_ingest",
+            "choice": "YES",
+            "authorized_this_call": true,
+            "session_policy": {
+              "always_this_session": false,
+              "never_this_session": false
+            },
+            "scope": "THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY",
+            "attestation_boundary": "CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY",
+            "created_at": "2026-08-10T19:26:04.426966Z"
+          },
+          "result": {
+            "schema": "kch.workbench-source-ingest.v0.1.0",
+            "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+            "source_kind": "FILE",
+            "scope_key": "KCH-PREPILOT-002",
+            "original_sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582",
+            "stored_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\kch-prepilot-002-runtime-qx_gow9b\\advanced\\workbench\\raw\\SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050.py",
+            "normalized_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\kch-prepilot-002-runtime-qx_gow9b\\advanced\\workbench\\normalized\\SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050.normalized.txt",
+            "storage_state": "EXACT_ORIGINAL_BYTES_STORED",
+            "raw_preserved": true,
+            "normalization": {
+              "state": "CONTEXTUAL_RESOLVER_APPLIED",
+              "raw_preserved": true,
+              "normalized_changed": true,
+              "resolution_id": "DRES-c1479af5-b953-49b9-915d-6096b644f063",
+              "resolver_hash": "5be7dfff7db02e12c0a39dbde8ccbf5f8ef120a996f6513f89ccc5e578a8e9eb",
+              "competing_candidates": []
+            },
+            "secret_references": [],
+            "detected_lessons": [
+              {
+                "lesson_id": "LESSON-38e07a84-2aa7-429c-9847-af67950cf5c5",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "self._error: str | None = None",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 103,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "07c33b11f8e22175bc104d6cb750c46b12dafc3e53216f8ea46d1603cf01a7fc"
+              },
+              {
+                "lesson_id": "LESSON-e0a3c37b-224a-47bd-8ce0-7c0ba83b32d4",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise FileNotFoundError(\"MIS v0.3.1 evidence root unavailable\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 116,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "a8de63b39daf0240a13e20fef78b9608e06fa2c8222af6534961c7ea57e21e3f"
+              },
+              {
+                "lesson_id": "LESSON-4f5a9b89-d2a2-497f-aa7d-4f454a8a5bf7",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "except ImportError:",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 133,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "ad5306f8eed1e35e6951b8bdff29fb8559e47225a30ae873250342931078f2d4"
+              },
+              {
+                "lesson_id": "LESSON-8d52c868-bdec-47f8-ac93-04a8ab2b75c2",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "self._error = f\"{type(exc).__name__}: {exc}\"",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 150,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "b1343f644eafe759dd695c4139c4d7cd55dddacb0fe051c628ceb449739e057f"
+              },
+              {
+                "lesson_id": "LESSON-ab3d2721-e175-4103-ab18-1d2b020c3450",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS certificate digest collision\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 191,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "90269655adc7bf0b43fed405d458a380cbfd0d28cb0d16adc0a84298035ab6fc"
+              },
+              {
+                "lesson_id": "LESSON-92f5fb09-7f43-436f-88a7-5c8fe73ee581",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "\"adapter_error\": self._error,",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 247,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "632c16b7e0d2e70ba66e8a2b4b872e853ca50d9de5889ab1ff46cb0240eed0d6"
+              },
+              {
+                "lesson_id": "LESSON-d438aa1e-d23e-4d1d-8ae3-ec95e72d9faa",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "COMPUTING",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS CSI lowering hash MISmatch\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 312,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "COMPUTING"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "d046e3ed271f16ccbf70b88bdb75a4dcdb2ef197786e2d93d2e98102edda81eb"
+              },
+              {
+                "lesson_id": "LESSON-97d724ea-9c6f-4a89-8779-93fc9404c442",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise PerMISsionError(\"new MIS semantic atoms require user authorship\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 364,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "6f81d2314411c8b80cf674a4256ecf5b9a329081c894a0d173af58f60857dbf2"
+              },
+              {
+                "lesson_id": "LESSON-4b145fd9-4f65-4d00-a5c8-57540a4bb61f",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"atom_id collision with different semantics\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 378,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "6f2dc202b4d65d8473ba38e1eb2cd899b8ac91fbbe66b79ab07ae47ef63a2132"
+              },
+              {
+                "lesson_id": "LESSON-79b76733-b1ae-456e-822f-df9ad106bc96",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(f\"{label} must be non-empty text\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 422,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "e7649521fd1deb1411d5c8a840efd74f4fdf5a94b909bc7c8210eff0f3c4b2b9"
+              },
+              {
+                "lesson_id": "LESSON-b0e9c9de-7f94-47f7-b6bd-f381a43c91a1",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"states must be sorted unique and alpha must cover them exactly\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 425,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "f18268c67f360167a4d9ce24748aca1a7bd5bd16d010af60e32d119e71248619"
+              },
+              {
+                "lesson_id": "LESSON-a7543236-5eb5-4b43-bd94-438d95a4d007",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"study_id already exists\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 443,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "7a6adc578244adeb967b725a4e6d91d425fc02b44440db51a3bb3d7003ac18f0"
+              },
+              {
+                "lesson_id": "LESSON-c2a0a0ea-ad13-41f1-a5a5-51612827cd9d",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise KeyError(study_id)",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 482,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "c41ee23d26f82e38077ef04a3a3554efec3ec3faa2bee87253083eae3709d002"
+              },
+              {
+                "lesson_id": "LESSON-e058d6a2-71cc-4a37-a96d-824a31b7d956",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS prospective study is not active\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 484,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "bffe489b0fdfdbb693c5f367985f71429ac3c4f2224e7b5b92bb2cf1ec37137e"
+              },
+              {
+                "lesson_id": "LESSON-abf3e824-4fee-42c1-a98c-f78a9c76687c",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"previous MIS freeze has no outcome\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 498,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "9c2ca6d26f8fdc442943d7e12156e3039f10de9985c975a62ca81b743f0bc9bb"
+              },
+              {
+                "lesson_id": "LESSON-4f60051a-7cec-4bb9-affe-aaeb5c8703f7",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS request purpose differs from prospective study\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 500,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "178ba1bac82fed03d0df8c6311317cb410f384c6332cafc206ac67c21a88b02c"
+              },
+              {
+                "lesson_id": "LESSON-18a57a24-d9fa-4832-a057-1b66fb0d310f",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS request jurisdiction differs from prospective study\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 502,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "bedb3e80b2bab540641be12f9c441ef8e9ec42e22c490cb79a8daa63aa89e556"
+              },
+              {
+                "lesson_id": "LESSON-1173debd-e17d-4250-90cc-c2a1767aa0e5",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "STATISTICAL",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS request prior differs from the pre-outcome frozen prior\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 505,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "STATISTICAL"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "62eb05659aee7bb0e875af0f52e63def8e4d5e64b038ba2752c63063cae92b67"
+              },
+              {
+                "lesson_id": "LESSON-a0b80df5-02b7-435a-abba-4731bf3fa9c4",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "COMPUTING",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"source_unit_hash must be lowercase SHA-256\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 547,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "COMPUTING"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "abe500ccc8a3a22047814970aff5f5dc5e76b6a62c5bf8eb39ba4f04528c7c5a"
+              },
+              {
+                "lesson_id": "LESSON-3403deea-efdd-4876-8895-f412456b9d6c",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"outcome requires exactly one pending MIS freeze\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 553,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "76829fbf134f4b447d1a783b9b98053735ed175fa6ab915bf62f6a133014d99e"
+              },
+              {
+                "lesson_id": "LESSON-cdefc6fe-1168-4db4-9418-42c0ad062623",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise KeyError(study_id)",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 606,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "b3d929d69292cf319daed039d74694957c7bc1273cf80496d84612e274b3da04"
+              },
+              {
+                "lesson_id": "LESSON-d030fd2e-6d20-4989-b7a0-a90e32b187c6",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"cannot close a MIS study with a pending outcome\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 629,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "88fe6ec8791d143a2fc24d844cfa79baea9db1de2951f71b91b3729879bdb6a3"
+              },
+              {
+                "lesson_id": "LESSON-8adf6ce8-e085-43e8-8349-eb431e9e62d2",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 663,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "b630cce879e420fc268f50b14e76315f23f121783afc39c5aae901f7b960513a"
+              },
+              {
+                "lesson_id": "LESSON-d882ac8d-d27f-4df2-b210-93b783304c0b",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise KeyError(decision_id)",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 743,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "8c2ae5002c665cde8aa767574e59f40ce0b28c4de4ee0fff6b979330ee146a0f"
+              },
+              {
+                "lesson_id": "LESSON-1661c1c8-6ee5-47a8-b80f-d16673886f9c",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "STATISTICAL",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"PHL registration receipt differs from prior bridge receipt\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 748,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "STATISTICAL"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "21807b009383cf5e43c29d362973763e4b8825f083eab29b6c5e64b489e037b0"
+              },
+              {
+                "lesson_id": "LESSON-3070412e-5305-4ad7-9281-edc7d6849563",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS export path collision\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 820,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "f6f6f58b92f7a83c5c140e253a02568ffcaf9247256864b254e00b053fd476e4"
+              },
+              {
+                "lesson_id": "LESSON-4cee2c62-8f58-4e36-ad22-a087dcf23ae7",
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "lesson_kind": "FAILURE",
+                "domain": "PARTICULAR",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "raise ValueError(\"MIS bridge receipt collision\")",
+                "evidence": {
+                  "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                  "line_ordinal": 882,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "FAILURE",
+                  "matched_domain": "PARTICULAR"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "2db05e1b1cfaecea4b7549d99ec0953a731eaa9010caa485eb75f6aa07e27aa9"
+              }
+            ],
+            "automatic_maintenance": {
+              "state": "MAINTENANCE_COMPLETED",
+              "trigger": "AUTOMATIC_AFTER_SOURCE_INGEST",
+              "generated": [
+                {
+                  "scope_key": "KCH-PREPILOT-002",
+                  "protocol": {
+                    "state": "NOT_ESTIMABLE_INSUFFICIENT_EVIDENCE",
+                    "scope_key": "KCH-PREPILOT-002",
+                    "blockers": [
+                      "INSUFFICIENT_PROCEDURE_STEPS"
+                    ],
+                    "evidence_count": 38,
+                    "protocol_generated": false
+                  },
+                  "skill": {
+                    "state": "NOT_GENERATED"
+                  }
+                }
+              ],
+              "handoff": null,
+              "budget": {
+                "schema": "kch.workbench-weekly-budget-status.v0.1.0",
+                "accounts": [],
+                "aggregate": {
+                  "state": "NOT_ESTIMABLE",
+                  "derivation": "NO_ESTIMABLE_SAMPLES",
+                  "cadence_level": "NORMAL",
+                  "next_interval_minutes": 120,
+                  "automatic_handoff": false
+                },
+                "live_host_telemetry_connected": false,
+                "prices_inferred": false,
+                "policy": {
+                  "automatic_external_task_archival": false,
+                  "automatic_external_task_creation": false,
+                  "automatic_stage_skills": true,
+                  "checkpoint_at_remaining_percent": 25.0,
+                  "critical_at_remaining_percent": 5.0,
+                  "design_status": "USER_CUSTOMIZABLE_DEFAULT_NOT_EMPIRICALLY_CALIBRATED",
+                  "handoff_at_remaining_percent": 15.0,
+                  "interval_minutes": {
+                    "CHECKPOINT": 30,
+                    "CRITICAL": 2,
+                    "HANDOFF": 10,
+                    "NORMAL": 120,
+                    "REFRESH": 60
+                  },
+                  "min_procedure_steps": 2,
+                  "min_protocol_evidence": 3,
+                  "refresh_at_remaining_percent": 50.0,
+                  "require_failure_or_correction": true,
+                  "schema": "kch.workbench-budget-policy.v0.1.0"
+                }
+              },
+              "checkpoint_requested": false,
+              "checkpoint_executed": false,
+              "event": {
+                "event_id": "WBEVT-41d248f9-c879-4bc0-b671-f30cadd3ff88",
+                "timestamp": "2026-08-10T19:26:06.736317Z",
+                "event_type": "MAINTENANCE_COMPLETED",
+                "payload": {
+                  "trigger": "AUTOMATIC_AFTER_SOURCE_INGEST",
+                  "scopes": [
+                    "KCH-PREPILOT-002"
+                  ],
+                  "handoff_id": null
+                },
+                "previous_hash": "5f404ffe625eb61e2585959585ec01c747e77f8cf550e7f43684e52ae7b4b775",
+                "event_hash": "14fe31d4e7bce0f578549fc8a8a67eeb3409027c2526697e9073691b5fb76be6"
+              }
+            },
+            "custody": {
+              "asset_id": "ASSET-21f14795-f0aa-4c9a-9858-276e0f55d6eb",
+              "logical_key": "sources/SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050.json",
+              "kind": "WORKBENCH_SOURCE_RECEIPT",
+              "seq": 1,
+              "bytes": 920,
+              "content_sha256": "d5acb24e53e16fe04d5bbdb6235b2929e34cd0ca9367b9fb695db25235750478",
+              "revision_hash": "5aa7571efe4c333f1dd707f3d5ddba860da6cf2834d942b258496bbb4ab6f040",
+              "previous_revision_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "warning_count": 0,
+              "recoverable": true
+            },
+            "event": {
+              "event_id": "WBEVT-6cb2f34c-3146-45ed-ac25-3223c70350d9",
+              "timestamp": "2026-08-10T19:26:06.605305Z",
+              "event_type": "SOURCE_INGESTED",
+              "payload": {
+                "source_id": "SOURCE-b3a39ef3-3a52-41d2-8b9f-d933554bf050",
+                "scope_key": "KCH-PREPILOT-002",
+                "lesson_count": 27
+              },
+              "previous_hash": "591b96097ad4df1fc45f8182eca1405e889230318479984857f390b69f59f2ab",
+              "event_hash": "5f404ffe625eb61e2585959585ec01c747e77f8cf550e7f43684e52ae7b4b775"
+            }
+          }
+        }
+      },
+      {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"authority\": {\"action\": \"workbench_ingest\", \"attestation_boundary\": \"CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY\", \"authorized_this_call\": true, \"choice\": \"YES\", \"created_at\": \"2026-08-10T19:26:06.840193Z\", \"schema\": \"kch.direct-action-authority-receipt.v0.2.0\", \"scope\": \"THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY\", \"session_policy\": {\"always_this_session\": false, \"never_this_session\": false}}, \"result\": {\"automatic_maintenance\": {\"budget\": {\"accounts\": [], \"aggregate\": {\"automatic_handoff\": false, \"cadence_level\": \"NORMAL\", \"derivation\": \"NO_ESTIMABLE_SAMPLES\", \"next_interval_minutes\": 120, \"state\": \"NOT_ESTIMABLE\"}, \"live_host_telemetry_connected\": false, \"policy\": {\"automatic_external_task_archival\": false, \"automatic_external_task_creation\": false, \"automatic_stage_skills\": true, \"checkpoint_at_remaining_percent\": 25.0, \"critical_at_remaining_percent\": 5.0, \"design_status\": \"USER_CUSTOMIZABLE_DEFAULT_NOT_EMPIRICALLY_CALIBRATED\", \"handoff_at_remaining_percent\": 15.0, \"interval_minutes\": {\"CHECKPOINT\": 30, \"CRITICAL\": 2, \"HANDOFF\": 10, \"NORMAL\": 120, \"REFRESH\": 60}, \"min_procedure_steps\": 2, \"min_protocol_evidence\": 3, \"refresh_at_remaining_percent\": 50.0, \"require_failure_or_correction\": true, \"schema\": \"kch.workbench-budget-policy.v0.1.0\"}, \"prices_inferred\": false, \"schema\": \"kch.workbench-weekly-budget-status.v0.1.0\"}, \"checkpoint_executed\": false, \"checkpoint_requested\": false, \"event\": {\"event_hash\": \"0f257b58a2ee7ef9d4a36982f8406c4e33e7a224c7ef136327242abd1d766a0f\", \"event_id\": \"WBEVT-acdee9a6-7066-4cee-98a7-5cbd7bc5b82a\", \"event_type\": \"MAINTENANCE_COMPLETED\", \"payload\": {\"handoff_id\": null, \"scopes\": [\"KCH-PREPILOT-002\"], \"trigger\": \"AUTOMATIC_AFTER_SOURCE_INGEST\"}, \"previous_hash\": \"9e039fb6ecddf282916ef86205222bec493667872f940cf80b85e2b9bc724cd8\", \"timestamp\": \"2026-08-10T19:26:08.006853Z\"}, \"generated\": [{\"protocol\": {\"blockers\": [\"INSUFFICIENT_PROCEDURE_STEPS\"], \"evidence_count\": 39, \"protocol_generated\": false, \"scope_key\": \"KCH-PREPILOT-002\", \"state\": \"NOT_ESTIMABLE_INSUFFICIENT_EVIDENCE\"}, \"scope_key\": \"KCH-PREPILOT-002\", \"skill\": {\"state\": \"NOT_GENERATED\"}}], \"handoff\": null, \"state\": \"MAINTENANCE_COMPLETED\", \"trigger\": \"AUTOMATIC_AFTER_SOURCE_INGEST\"}, \"custody\": {\"asset_id\": \"ASSET-2d82fd2e-ea0b-4825-9290-4b117cb9e68e\", \"bytes\": 920, \"content_sha256\": \"6dc23f89fe8a6d381dd06414508eff91cc01c9e2bf6e21b83d43ae6d6d09f245\", \"kind\": \"WORKBENCH_SOURCE_RECEIPT\", \"logical_key\": \"sources/SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8.json\", \"previous_revision_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"recoverable\": true, \"revision_hash\": \"8988e9fc4acb91efeb6893383a7219232765ad38d4bb1ac75c1795c6ff9ff8fb\", \"seq\": 1, \"warning_count\": 0}, \"detected_lessons\": [{\"confidence_state\": \"DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW\", \"domain\": \"EPISTEMOLOGICAL\", \"evidence\": {\"detector\": \"DETERMINISTIC_LEXICAL_V0.1.0\", \"line_ordinal\": 48, \"matched_domain\": \"EPISTEMOLOGICAL\", \"matched_kind\": \"CLAIM_LIMIT\", \"source_id\": \"SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8\"}, \"lesson_hash\": \"4e24f31898ef651c2628685f8a97341d14c42dc15d6383ff1b33f382541eb060\", \"lesson_id\": \"LESSON-f49302fa-551f-4848-805c-5ef76afd83f5\", \"lesson_kind\": \"CLAIM_LIMIT\", \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8\", \"statement\": \"\\\"Write one verified exact MIS certificate to the governed local export area without promoting its claim ceiling.\\\",\"}], \"event\": {\"event_hash\": \"9e039fb6ecddf282916ef86205222bec493667872f940cf80b85e2b9bc724cd8\", \"event_id\": \"WBEVT-780b05d6-9a7e-454f-9b32-ac1862c207b1\", \"event_type\": \"SOURCE_INGESTED\", \"payload\": {\"lesson_count\": 1, \"scope_key\": \"KCH-PREPILOT-002\", \"source_id\": \"SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8\"}, \"previous_hash\": \"14fe31d4e7bce0f578549fc8a8a67eeb3409027c2526697e9073691b5fb76be6\", \"timestamp\": \"2026-08-10T19:26:07.878064Z\"}, \"normalization\": {\"competing_candidates\": [], \"normalized_changed\": true, \"raw_preserved\": true, \"resolution_id\": \"DRES-2d25f90e-bd8c-4638-b6e3-2d102e24d0d6\", \"resolver_hash\": \"87916e789230269c5b3ef33245dfb593fc1516a5b201e90a9d90af2e34f5ecf6\", \"state\": \"CONTEXTUAL_RESOLVER_APPLIED\"}, \"normalized_path\": \"C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-10\\\\kch-prepilot-002-harness\\\\outputs\\\\kch-prepilot-002-runtime-qx_gow9b\\\\advanced\\\\workbench\\\\normalized\\\\SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8.normalized.txt\", \"original_sha256\": \"0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f\", \"raw_preserved\": true, \"schema\": \"kch.workbench-source-ingest.v0.1.0\", \"scope_key\": \"KCH-PREPILOT-002\", \"secret_references\": [], \"source_id\": \"SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8\", \"source_kind\": \"FILE\", \"storage_state\": \"EXACT_ORIGINAL_BYTES_STORED\", \"stored_path\": \"C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-10\\\\kch-prepilot-002-harness\\\\outputs\\\\kch-prepilot-002-runtime-qx_gow9b\\\\advanced\\\\workbench\\\\raw\\\\SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8.py\"}, \"state\": \"EXECUTED_UNDER_SCOPED_USER_CONSENT\"}"
+          }
+        ],
+        "structuredContent": {
+          "state": "EXECUTED_UNDER_SCOPED_USER_CONSENT",
+          "authority": {
+            "schema": "kch.direct-action-authority-receipt.v0.2.0",
+            "action": "workbench_ingest",
+            "choice": "YES",
+            "authorized_this_call": true,
+            "session_policy": {
+              "always_this_session": false,
+              "never_this_session": false
+            },
+            "scope": "THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY",
+            "attestation_boundary": "CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY",
+            "created_at": "2026-08-10T19:26:06.840193Z"
+          },
+          "result": {
+            "schema": "kch.workbench-source-ingest.v0.1.0",
+            "source_id": "SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8",
+            "source_kind": "FILE",
+            "scope_key": "KCH-PREPILOT-002",
+            "original_sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f",
+            "stored_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\kch-prepilot-002-runtime-qx_gow9b\\advanced\\workbench\\raw\\SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8.py",
+            "normalized_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-002-harness\\outputs\\kch-prepilot-002-runtime-qx_gow9b\\advanced\\workbench\\normalized\\SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8.normalized.txt",
+            "storage_state": "EXACT_ORIGINAL_BYTES_STORED",
+            "raw_preserved": true,
+            "normalization": {
+              "state": "CONTEXTUAL_RESOLVER_APPLIED",
+              "raw_preserved": true,
+              "normalized_changed": true,
+              "resolution_id": "DRES-2d25f90e-bd8c-4638-b6e3-2d102e24d0d6",
+              "resolver_hash": "87916e789230269c5b3ef33245dfb593fc1516a5b201e90a9d90af2e34f5ecf6",
+              "competing_candidates": []
+            },
+            "secret_references": [],
+            "detected_lessons": [
+              {
+                "lesson_id": "LESSON-f49302fa-551f-4848-805c-5ef76afd83f5",
+                "source_id": "SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8",
+                "lesson_kind": "CLAIM_LIMIT",
+                "domain": "EPISTEMOLOGICAL",
+                "scope_key": "KCH-PREPILOT-002",
+                "statement": "\"Write one verified exact MIS certificate to the governed local export area without promoting its claim ceiling.\",",
+                "evidence": {
+                  "source_id": "SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8",
+                  "line_ordinal": 48,
+                  "detector": "DETERMINISTIC_LEXICAL_V0.1.0",
+                  "matched_kind": "CLAIM_LIMIT",
+                  "matched_domain": "EPISTEMOLOGICAL"
+                },
+                "confidence_state": "DETECTED_CANDIDATE_REQUIRES_EVIDENCE_REVIEW",
+                "lesson_hash": "4e24f31898ef651c2628685f8a97341d14c42dc15d6383ff1b33f382541eb060"
+              }
+            ],
+            "automatic_maintenance": {
+              "state": "MAINTENANCE_COMPLETED",
+              "trigger": "AUTOMATIC_AFTER_SOURCE_INGEST",
+              "generated": [
+                {
+                  "scope_key": "KCH-PREPILOT-002",
+                  "protocol": {
+                    "state": "NOT_ESTIMABLE_INSUFFICIENT_EVIDENCE",
+                    "scope_key": "KCH-PREPILOT-002",
+                    "blockers": [
+                      "INSUFFICIENT_PROCEDURE_STEPS"
+                    ],
+                    "evidence_count": 39,
+                    "protocol_generated": false
+                  },
+                  "skill": {
+                    "state": "NOT_GENERATED"
+                  }
+                }
+              ],
+              "handoff": null,
+              "budget": {
+                "schema": "kch.workbench-weekly-budget-status.v0.1.0",
+                "accounts": [],
+                "aggregate": {
+                  "state": "NOT_ESTIMABLE",
+                  "derivation": "NO_ESTIMABLE_SAMPLES",
+                  "cadence_level": "NORMAL",
+                  "next_interval_minutes": 120,
+                  "automatic_handoff": false
+                },
+                "live_host_telemetry_connected": false,
+                "prices_inferred": false,
+                "policy": {
+                  "automatic_external_task_archival": false,
+                  "automatic_external_task_creation": false,
+                  "automatic_stage_skills": true,
+                  "checkpoint_at_remaining_percent": 25.0,
+                  "critical_at_remaining_percent": 5.0,
+                  "design_status": "USER_CUSTOMIZABLE_DEFAULT_NOT_EMPIRICALLY_CALIBRATED",
+                  "handoff_at_remaining_percent": 15.0,
+                  "interval_minutes": {
+                    "CHECKPOINT": 30,
+                    "CRITICAL": 2,
+                    "HANDOFF": 10,
+                    "NORMAL": 120,
+                    "REFRESH": 60
+                  },
+                  "min_procedure_steps": 2,
+                  "min_protocol_evidence": 3,
+                  "refresh_at_remaining_percent": 50.0,
+                  "require_failure_or_correction": true,
+                  "schema": "kch.workbench-budget-policy.v0.1.0"
+                }
+              },
+              "checkpoint_requested": false,
+              "checkpoint_executed": false,
+              "event": {
+                "event_id": "WBEVT-acdee9a6-7066-4cee-98a7-5cbd7bc5b82a",
+                "timestamp": "2026-08-10T19:26:08.006853Z",
+                "event_type": "MAINTENANCE_COMPLETED",
+                "payload": {
+                  "trigger": "AUTOMATIC_AFTER_SOURCE_INGEST",
+                  "scopes": [
+                    "KCH-PREPILOT-002"
+                  ],
+                  "handoff_id": null
+                },
+                "previous_hash": "9e039fb6ecddf282916ef86205222bec493667872f940cf80b85e2b9bc724cd8",
+                "event_hash": "0f257b58a2ee7ef9d4a36982f8406c4e33e7a224c7ef136327242abd1d766a0f"
+              }
+            },
+            "custody": {
+              "asset_id": "ASSET-2d82fd2e-ea0b-4825-9290-4b117cb9e68e",
+              "logical_key": "sources/SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8.json",
+              "kind": "WORKBENCH_SOURCE_RECEIPT",
+              "seq": 1,
+              "bytes": 920,
+              "content_sha256": "6dc23f89fe8a6d381dd06414508eff91cc01c9e2bf6e21b83d43ae6d6d09f245",
+              "revision_hash": "8988e9fc4acb91efeb6893383a7219232765ad38d4bb1ac75c1795c6ff9ff8fb",
+              "previous_revision_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "warning_count": 0,
+              "recoverable": true
+            },
+            "event": {
+              "event_id": "WBEVT-780b05d6-9a7e-454f-9b32-ac1862c207b1",
+              "timestamp": "2026-08-10T19:26:07.878064Z",
+              "event_type": "SOURCE_INGESTED",
+              "payload": {
+                "source_id": "SOURCE-1085f17a-d6ee-4be1-9f75-cf9898d727d8",
+                "scope_key": "KCH-PREPILOT-002",
+                "lesson_count": 1
+              },
+              "previous_hash": "14fe31d4e7bce0f578549fc8a8a67eeb3409027c2526697e9073691b5fb76be6",
+              "event_hash": "9e039fb6ecddf282916ef86205222bec493667872f940cf80b85e2b9bc724cd8"
+            }
+          }
+        }
+      }
+    ],
+    "workbench_integrity": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"errors\": [], \"event_count\": 6, \"gate\": \"PASS\", \"protocol_count\": 0, \"schema\": \"kch.workbench-integrity.v0.1.0\", \"skill_count\": 0, \"source_count\": 3}"
+        }
+      ],
+      "structuredContent": {
+        "schema": "kch.workbench-integrity.v0.1.0",
+        "gate": "PASS",
+        "event_count": 6,
+        "source_count": 3,
+        "protocol_count": 0,
+        "skill_count": 0,
+        "errors": []
+      }
+    },
+    "kch_used": true,
+    "runtime_class": "kch_studio.mcp_server.StudioMCP",
+    "canonical_entrypoint": "kch_studio.mcp_server:StudioMCP",
+    "close_called": true,
+    "corpus_files": [
+      {
+        "name": "advanced_runtime.py",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+        "bytes": 54946,
+        "physical_lines": 1461,
+        "sha256": "c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a",
+        "method_real_read": "Path.read_bytes() in one complete call over the frozen file, then UTF-8 decode for line-indexed evidence; no head/tail/preview/sampling/oracle substitution",
+        "oracle": {
+          "name": "advanced_runtime.py",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+          "bytes": 54946,
+          "physical_lines": 1461,
+          "sha256": "c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a"
+        },
+        "matches_oracle": {
+          "bytes": true,
+          "physical_lines": true,
+          "sha256": true
+        }
+      },
+      {
+        "name": "mis_service.py",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\mis_service.py",
+        "bytes": 48280,
+        "physical_lines": 1198,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582",
+        "method_real_read": "Path.read_bytes() in one complete call over the frozen file, then UTF-8 decode for line-indexed evidence; no head/tail/preview/sampling/oracle substitution",
+        "oracle": {
+          "name": "mis_service.py",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\mis_service.py",
+          "bytes": 48280,
+          "physical_lines": 1198,
+          "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582"
+        },
+        "matches_oracle": {
+          "bytes": true,
+          "physical_lines": true,
+          "sha256": true
+        }
+      },
+      {
+        "name": "operational_surface.py",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+        "bytes": 36240,
+        "physical_lines": 1026,
+        "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f",
+        "method_real_read": "Path.read_bytes() in one complete call over the frozen file, then UTF-8 decode for line-indexed evidence; no head/tail/preview/sampling/oracle substitution",
+        "oracle": {
+          "name": "operational_surface.py",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+          "bytes": 36240,
+          "physical_lines": 1026,
+          "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f"
+        },
+        "matches_oracle": {
+          "bytes": true,
+          "physical_lines": true,
+          "sha256": true
+        }
+      }
+    ]
+  },
+  "cross_module_findings": {
+    "phl_gate": {
+      "implementation_exposure_integration_test_claim": "Evidence is classified separately: implementation means definitions/handlers; exposure means descriptors or callable surface; integration means explicit cross-module wiring; test means executable verification only where present in these frozen files; claim means stated ceiling/status and is not promoted.",
+      "files": [
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+          "evidence": [
+            {
+              "line": 16,
+              "text": "from .federated_runtime import KwanPromptsRuntime, PHLRuntime, RigorRuntime, SCORuntime"
+            },
+            {
+              "line": 216,
+              "text": "\"Ingest an authorized local file with exact source custody and deterministic structuring.\","
+            },
+            {
+              "line": 344,
+              "text": "\"Custody an authorized audio clip and transcribe with an available local backend.\","
+            },
+            {
+              "line": 360,
+              "text": "\"Inspect OBL lexicon, resolution and PHL-shadow correction counts.\","
+            },
+            {
+              "line": 638,
+              "text": "\"phl_status\","
+            },
+            {
+              "line": 639,
+              "text": "\"Inspect authorized PHL\","
+            },
+            {
+              "line": 640,
+              "text": "\"Inspect the authorized but possibly untrained PHL capability and both linked ledgers.\","
+            },
+            {
+              "line": 646,
+              "text": "\"phl_decision_register\","
+            },
+            {
+              "line": 647,
+              "text": "\"Register PHL-reviewable decision\","
+            },
+            {
+              "line": 648,
+              "text": "\"Register a conformant decision in both effective and learning ledgers; this does not train PHL.\","
+            },
+            {
+              "line": 654,
+              "text": "\"phl_decisions_list\","
+            },
+            {
+              "line": 655,
+              "text": "\"List PHL decisions\","
+            },
+            {
+              "line": 656,
+              "text": "\"List reviewable decisions without starting a PHL session.\","
+            },
+            {
+              "line": 662,
+              "text": "\"phl_session_start\","
+            },
+            {
+              "line": 663,
+              "text": "\"Start exclusive PHL session\","
+            },
+            {
+              "line": 664,
+              "text": "\"Start linked effective and learning PHL sessions under one of the four explicit consent choices.\","
+            },
+            {
+              "line": 676,
+              "text": "\"phl_score\","
+            },
+            {
+              "line": 677,
+              "text": "\"Record user PHL score\","
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\mis_service.py",
+          "evidence": [
+            {
+              "line": 81,
+              "text": "phl_state TEXT NOT NULL,"
+            },
+            {
+              "line": 82,
+              "text": "phl_receipt_json TEXT"
+            },
+            {
+              "line": 336,
+              "text": "\"phl_registration\","
+            },
+            {
+              "line": 351,
+              "text": "\"execution_authorized\": False,"
+            },
+            {
+              "line": 353,
+              "text": "\"training_executed\": False,"
+            },
+            {
+              "line": 372,
+              "text": "\"synergistic_bridges\": [\"CSI\", \"PHL\", \"SCO\", \"RGG\", \"KWANDATA\"],"
+            },
+            {
+              "line": 696,
+              "text": "\"execution_authorized\": False,"
+            },
+            {
+              "line": 833,
+              "text": "\"claim_promotion_authorized\": False,"
+            },
+            {
+              "line": 849,
+              "text": "\"phl_state\": str(existing[\"phl_state\"]),"
+            },
+            {
+              "line": 906,
+              "text": "\"The result becomes reviewable by KCH/PHL; execution, commit and claim \""
+            },
+            {
+              "line": 928,
+              "text": "\"READY_FOR_PHL_REGISTRATION\","
+            },
+            {
+              "line": 941,
+              "text": "\"phl_state\": \"READY_FOR_PHL_REGISTRATION\","
+            },
+            {
+              "line": 947,
+              "text": "def mark_phl_registration(self, decision_id: str, receipt: dict[str, Any]) -> dict[str, Any]:"
+            },
+            {
+              "line": 957,
+              "text": "if row[\"phl_receipt_json\"] is None"
+            },
+            {
+              "line": 958,
+              "text": "else json.loads(str(row[\"phl_receipt_json\"]))"
+            },
+            {
+              "line": 961,
+              "text": "raise ValueError(\"PHL registration receipt differs from prior bridge receipt\")"
+            },
+            {
+              "line": 963,
+              "text": "\"UPDATE reviewable_decisions SET phl_state='REGISTERED_REVIEWABLE_UNTRAINED',\""
+            },
+            {
+              "line": 964,
+              "text": "\"phl_receipt_json=? WHERE decision_id=?\","
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+          "evidence": [
+            {
+              "line": 205,
+              "text": "\"Record warnings and a recovery snapshot for an explicitly user-authorized proposal; this tool does not execute the proposal itself.\","
+            },
+            {
+              "line": 298,
+              "text": "\"Register an authorized finite local root for proactive deterministic ingestion.\","
+            },
+            {
+              "line": 482,
+              "text": "\"Consume one authorized finite lease use and return its bounded receipt.\","
+            },
+            {
+              "line": 503,
+              "text": "\"Record a transcription correction as PHL-authorized but untrained future-only feedback.\","
+            },
+            {
+              "line": 737,
+              "text": "lambda: runtime.risk.proceed(dict(a[\"proposal\"]), user_authorized=True),"
+            }
+          ]
+        }
+      ]
+    },
+    "mutation_consent": {
+      "implementation_exposure_integration_test_claim": "Evidence is classified separately: implementation means definitions/handlers; exposure means descriptors or callable surface; integration means explicit cross-module wiring; test means executable verification only where present in these frozen files; claim means stated ceiling/status and is not promoted.",
+      "files": [
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+          "evidence": [
+            {
+              "line": 9,
+              "text": "from .account_broker import AccountPermissionBroker"
+            },
+            {
+              "line": 17,
+              "text": "from .installation import ConsentDecision, ConsentPolicy"
+            },
+            {
+              "line": 22,
+              "text": "from .permissions import PermissionGovernor"
+            },
+            {
+              "line": 72,
+              "text": "\"Aggregate constitutional, launcher, recovery, data, permission, persistence, account, clipboard, audio, scheduler and MIS state.\","
+            },
+            {
+              "line": 230,
+              "text": "\"permission_status\","
+            },
+            {
+              "line": 231,
+              "text": "\"Inspect permission governor\","
+            },
+            {
+              "line": 238,
+              "text": "\"permission_check\","
+            },
+            {
+              "line": 239,
+              "text": "\"Evaluate permission\","
+            },
+            {
+              "line": 326,
+              "text": "\"account_permission_request\","
+            },
+            {
+              "line": 328,
+              "text": "\"Create a terminal-first, finite-duration account permission request; does not approve or authenticate.\","
+            },
+            {
+              "line": 345,
+              "text": "{\"source\": S, \"culture\": S, \"consent_basis\": S},"
+            },
+            {
+              "line": 346,
+              "text": "[\"source\", \"consent_basis\"],"
+            },
+            {
+              "line": 472,
+              "text": "\"Separate action permission from claim ceiling under an explicit RGG profile.\","
+            },
+            {
+              "line": 664,
+              "text": "\"Start linked effective and learning PHL sessions under one of the four explicit consent choices.\","
+            },
+            {
+              "line": 667,
+              "text": "\"consent\": {"
+            },
+            {
+              "line": 672,
+              "text": "[\"trigger\", \"consent\"],"
+            },
+            {
+              "line": 686,
+              "text": "\"consent\": {"
+            },
+            {
+              "line": 691,
+              "text": "[\"public_session_id\", \"decision_id\", \"score_display\", \"user_authored\", \"consent\"],"
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+          "evidence": [
+            {
+              "line": 14,
+              "text": "CONSENT = {"
+            },
+            {
+              "line": 60,
+              "text": "{**properties, \"consent\": CONSENT},"
+            },
+            {
+              "line": 61,
+              "text": "[*required, \"consent\"],"
+            },
+            {
+              "line": 68,
+              "text": "\"direct_consent_status\","
+            },
+            {
+              "line": 69,
+              "text": "\"Inspect direct-action consent\","
+            },
+            {
+              "line": 70,
+              "text": "\"Inspect per-action session consent without granting authority.\","
+            },
+            {
+              "line": 310,
+              "text": "\"permission_grant\","
+            },
+            {
+              "line": 311,
+              "text": "\"Grant governed permission\","
+            },
+            {
+              "line": 312,
+              "text": "\"User-enact one scoped, ranked and optionally expiring permission rule.\","
+            },
+            {
+              "line": 334,
+              "text": "\"permission_revoke\","
+            },
+            {
+              "line": 335,
+              "text": "\"Revoke governed permission\","
+            },
+            {
+              "line": 336,
+              "text": "\"User-disable one permission rule while retaining its history and receipt.\","
+            },
+            {
+              "line": 440,
+              "text": "\"Start visible microphone monitoring under an explicit consent basis and third-party notice contract.\","
+            },
+            {
+              "line": 443,
+              "text": "\"consent_basis\": S,"
+            },
+            {
+              "line": 449,
+              "text": "[\"consent_basis\"],"
+            },
+            {
+              "line": 636,
+              "text": "\"direct_consent_status\": lambda _a: runtime.direct_consent_status(),"
+            },
+            {
+              "line": 807,
+              "text": "\"permission_grant\": lambda a: guarded("
+            },
+            {
+              "line": 808,
+              "text": "\"permission_grant\","
+            }
+          ]
+        }
+      ]
+    },
+    "mis_and_bridges": {
+      "implementation_exposure_integration_test_claim": "Evidence is classified separately: implementation means definitions/handlers; exposure means descriptors or callable surface; integration means explicit cross-module wiring; test means executable verification only where present in these frozen files; claim means stated ceiling/status and is not promoted.",
+      "files": [
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\mis_service.py",
+          "evidence": [
+            {
+              "line": 30,
+              "text": "CREATE TABLE IF NOT EXISTS certificates ("
+            },
+            {
+              "line": 31,
+              "text": "certificate_sha256 TEXT PRIMARY KEY,"
+            },
+            {
+              "line": 36,
+              "text": "certificate_json TEXT NOT NULL,"
+            },
+            {
+              "line": 60,
+              "text": "decision_certificate_sha256 TEXT NOT NULL REFERENCES certificates(certificate_sha256),"
+            },
+            {
+              "line": 78,
+              "text": "certificate_sha256 TEXT NOT NULL REFERENCES certificates(certificate_sha256),"
+            },
+            {
+              "line": 84,
+              "text": "CREATE TABLE IF NOT EXISTS bridges ("
+            },
+            {
+              "line": 85,
+              "text": "bridge_id TEXT PRIMARY KEY,"
+            },
+            {
+              "line": 86,
+              "text": "bridge_kind TEXT NOT NULL,"
+            },
+            {
+              "line": 99,
+              "text": "class MISService:"
+            },
+            {
+              "line": 100,
+              "text": "\"\"\"Persistent KCH federation around the byte-frozen MIS v0.3.1 engine."
+            },
+            {
+              "line": 102,
+              "text": "MIS performs exact semantic/Bayesian calculations.  This service adds KCH"
+            },
+            {
+              "line": 103,
+              "text": "custody, prospective chronology and explicit bridges, but never converts a"
+            },
+            {
+              "line": 104,
+              "text": "calculation or certificate into execution authority."
+            },
+            {
+              "line": 115,
+              "text": "Path(os.environ[\"KCH_MIS_ROOT\"]).resolve() if os.environ.get(\"KCH_MIS_ROOT\") else None,"
+            },
+            {
+              "line": 117,
+              "text": "Path(__file__).resolve().parents[3] / \"KCH_MIS03_REEXTRACT_v0.1.0\","
+            },
+            {
+              "line": 124,
+              "text": "runtime_root or os.environ.get(\"KCH_MIS_RUNTIME\", Path.cwd() / \".kch-mis-runtime\")"
+            },
+            {
+              "line": 127,
+              "text": "self.path = self.runtime_root / \"mis-federation.sqlite3\""
+            },
+            {
+              "line": 146,
+              "text": "raise FileNotFoundError(\"MIS v0.3.1 evidence root unavailable\")"
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+          "evidence": [
+            {
+              "line": 9,
+              "text": "from .account_broker import AccountPermissionBroker"
+            },
+            {
+              "line": 16,
+              "text": "from .federated_runtime import KwanPromptsRuntime, PHLRuntime, RigorRuntime, SCORuntime"
+            },
+            {
+              "line": 18,
+              "text": "from .kwandata import KwanData"
+            },
+            {
+              "line": 20,
+              "text": "from .mis_service import MISService"
+            },
+            {
+              "line": 22,
+              "text": "from .permissions import PermissionGovernor"
+            },
+            {
+              "line": 72,
+              "text": "\"Aggregate constitutional, launcher, recovery, data, permission, persistence, account, clipboard, audio, scheduler and MIS state.\","
+            },
+            {
+              "line": 176,
+              "text": "\"Inspect exact KCH/SCO custody coverage and external-host transport limits.\","
+            },
+            {
+              "line": 199,
+              "text": "\"Create SCO manifest\","
+            },
+            {
+              "line": 206,
+              "text": "\"kwandata_status\","
+            },
+            {
+              "line": 207,
+              "text": "\"Inspect KwanData\","
+            },
+            {
+              "line": 214,
+              "text": "\"kwandata_ingest\","
+            },
+            {
+              "line": 215,
+              "text": "\"Ingest into KwanData\","
+            },
+            {
+              "line": 222,
+              "text": "\"kwandata_query\","
+            },
+            {
+              "line": 223,
+              "text": "\"Query KwanData\","
+            },
+            {
+              "line": 230,
+              "text": "\"permission_status\","
+            },
+            {
+              "line": 231,
+              "text": "\"Inspect permission governor\","
+            },
+            {
+              "line": 238,
+              "text": "\"permission_check\","
+            },
+            {
+              "line": 239,
+              "text": "\"Evaluate permission\","
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+          "evidence": [
+            {
+              "line": 75,
+              "text": "\"mis_certificate_export\","
+            },
+            {
+              "line": 76,
+              "text": "\"Export MIS certificate\","
+            },
+            {
+              "line": 77,
+              "text": "\"Write one verified exact MIS certificate to the governed local export area without promoting its claim ceiling.\","
+            },
+            {
+              "line": 78,
+              "text": "{\"certificate\": O},"
+            },
+            {
+              "line": 79,
+              "text": "[\"certificate\"],"
+            },
+            {
+              "line": 82,
+              "text": "\"mis_sco_work_order_template\","
+            },
+            {
+              "line": 83,
+              "text": "\"Build MIS SCO template\","
+            },
+            {
+              "line": 84,
+              "text": "\"Build a bounded no-dispatch SCO review work order for one verified MIS certificate.\","
+            },
+            {
+              "line": 86,
+              "text": "\"certificate\": O,"
+            },
+            {
+              "line": 87,
+              "text": "\"sco_id\": S,"
+            },
+            {
+              "line": 95,
+              "text": "\"certificate\","
+            },
+            {
+              "line": 96,
+              "text": "\"sco_id\","
+            },
+            {
+              "line": 276,
+              "text": "\"Read SCO persistence manifest\","
+            },
+            {
+              "line": 282,
+              "text": "\"kwandata_program_create\","
+            },
+            {
+              "line": 283,
+              "text": "\"Create KwanData program\","
+            },
+            {
+              "line": 289,
+              "text": "\"kwandata_supertag_create\","
+            },
+            {
+              "line": 290,
+              "text": "\"Create KwanData supertag\","
+            },
+            {
+              "line": 296,
+              "text": "\"kwandata_watch_add\","
+            }
+          ]
+        }
+      ]
+    },
+    "sqlite_lifecycle": {
+      "implementation_exposure_integration_test_claim": "Evidence is classified separately: implementation means definitions/handlers; exposure means descriptors or callable surface; integration means explicit cross-module wiring; test means executable verification only where present in these frozen files; claim means stated ceiling/status and is not promoted.",
+      "files": [
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\mis_service.py",
+          "evidence": [
+            {
+              "line": 7,
+              "text": "import sqlite3"
+            },
+            {
+              "line": 15,
+              "text": "from .contracts import canonical_json, sha256_bytes, sha256_json, sqlite_connection"
+            },
+            {
+              "line": 48,
+              "text": "closed_at TEXT"
+            },
+            {
+              "line": 127,
+              "text": "self.path = self.runtime_root / \"mis-federation.sqlite3\""
+            },
+            {
+              "line": 132,
+              "text": "with closing(self.connect()) as connection:"
+            },
+            {
+              "line": 133,
+              "text": "connection.executescript(DDL)"
+            },
+            {
+              "line": 134,
+              "text": "connection.commit()"
+            },
+            {
+              "line": 136,
+              "text": "def connect(self) -> sqlite3.Connection:"
+            },
+            {
+              "line": 137,
+              "text": "connection = sqlite_connection(self.path, timeout=30)"
+            },
+            {
+              "line": 138,
+              "text": "connection.row_factory = sqlite3.Row"
+            },
+            {
+              "line": 139,
+              "text": "connection.execute(\"PRAGMA foreign_keys=ON\")"
+            },
+            {
+              "line": 140,
+              "text": "connection.execute(\"PRAGMA journal_mode=WAL\")"
+            },
+            {
+              "line": 141,
+              "text": "connection.execute(\"PRAGMA synchronous=FULL\")"
+            },
+            {
+              "line": 142,
+              "text": "return connection"
+            },
+            {
+              "line": 201,
+              "text": "connection: sqlite3.Connection,"
+            },
+            {
+              "line": 205,
+              "text": "row = connection.execute("
+            },
+            {
+              "line": 219,
+              "text": "connection.execute("
+            },
+            {
+              "line": 235,
+              "text": "connection: sqlite3.Connection,"
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+          "evidence": [
+            {
+              "line": 80,
+              "text": "\"Read the ranked, nested, connected user constitution. Models cannot mutate it.\","
+            },
+            {
+              "line": 576,
+              "text": "\"Connect two independent chats through an explicit disclosure contract.\","
+            },
+            {
+              "line": 703,
+              "text": "\"phl_session_close\","
+            },
+            {
+              "line": 704,
+              "text": "\"Close exclusive PHL session\","
+            },
+            {
+              "line": 705,
+              "text": "\"Close both linked ledgers and release the ordinary-work mutation lock.\","
+            },
+            {
+              "line": 783,
+              "text": "\"mis_study_close\","
+            },
+            {
+              "line": 784,
+              "text": "\"Close MIS study\","
+            },
+            {
+              "line": 785,
+              "text": "\"Close a prospective study only when no outcome is pending.\","
+            },
+            {
+              "line": 1008,
+              "text": "\"mis_study_close\": lambda a: self.mis.close_study(str(a[\"study_id\"])),"
+            },
+            {
+              "line": 1049,
+              "text": "\"phl_session_close\": lambda a: self.phl.close_session(str(a[\"public_session_id\"])),"
+            },
+            {
+              "line": 1457,
+              "text": "def close(self) -> None:"
+            }
+          ]
+        }
+      ]
+    },
+    "strategic_coverage": {
+      "implementation_exposure_integration_test_claim": "Evidence is classified separately: implementation means definitions/handlers; exposure means descriptors or callable surface; integration means explicit cross-module wiring; test means executable verification only where present in these frozen files; claim means stated ceiling/status and is not promoted.",
+      "files": [
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+          "evidence": [
+            {
+              "line": 21,
+              "text": "from .operational_surface import OPERATIONAL_TOOLS, bind_operational_handlers"
+            },
+            {
+              "line": 28,
+              "text": "from .surface_contract import ADVANCED_RUNTIME_REFERENCES, audit_strategic_surface"
+            },
+            {
+              "line": 31,
+              "text": "from .workbench_surface import WORKBENCH_TOOLS, bind_workbench_handlers"
+            },
+            {
+              "line": 120,
+              "text": "\"Inspect background state, capability coverage, and blind spots.\","
+            },
+            {
+              "line": 176,
+              "text": "\"Inspect exact KCH/SCO custody coverage and external-host transport limits.\","
+            },
+            {
+              "line": 376,
+              "text": "\"Distinguish real MIS mathematics from the formerly amputated KCH 0.11 surface.\","
+            },
+            {
+              "line": 432,
+              "text": "\"Inspect structured and full checkpoint coverage without creating a checkpoint.\","
+            },
+            {
+              "line": 862,
+              "text": "extra_handlers: dict[str, Callable[[dict[str, Any]], Any]] | None = None,"
+            },
+            {
+              "line": 867,
+              "text": "self._full_host_composition = extra_handlers is not None"
+            },
+            {
+              "line": 903,
+              "text": "self.handlers: dict[str, Callable[[dict[str, Any]], Any]] = {"
+            },
+            {
+              "line": 917,
+              "text": "\"persistence_status\": lambda _a: {\"coverage\": self.persistence.coverage()},"
+            },
+            {
+              "line": 1055,
+              "text": "self.handlers.update(bind_operational_handlers(self))"
+            },
+            {
+              "line": 1056,
+              "text": "self.handlers.update(bind_workbench_handlers(self))"
+            },
+            {
+              "line": 1057,
+              "text": "if extra_handlers:"
+            },
+            {
+              "line": 1058,
+              "text": "overlap = set(self.handlers) & set(extra_handlers)"
+            },
+            {
+              "line": 1060,
+              "text": "raise ValueError(f\"duplicate advanced/host handlers: {sorted(overlap)}\")"
+            },
+            {
+              "line": 1061,
+              "text": "self.handlers.update(extra_handlers)"
+            },
+            {
+              "line": 1063,
+              "text": "missing_descriptors = set(self.handlers) - set(tool_by_name)"
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+          "evidence": [
+            {
+              "line": 191,
+              "text": "\"Claim and dispatch at most one queued event through governed handlers.\","
+            },
+            {
+              "line": 631,
+              "text": "def bind_operational_handlers(runtime: Any) -> dict[str, Callable[[dict[str, Any]], Any]]:"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "bind_2026_receipt": {
+    "name": "BIND 11th Edition 2026/2027",
+    "application_open": "2026-07-02",
+    "application_deadline": "2026-09-04",
+    "official_sources": {
+      "open-innovation": {
+        "url": "https://bind.spri.eus/open-innovation/",
+        "verified_facts": [
+          "application period 2 July–4 September 2026",
+          "11 blocks",
+          "up to three proposals, each in a different block",
+          "paid project, no equity, no fees",
+          "near-market or market-ready solutions invited"
+        ]
+      },
+      "application": {
+        "url": "https://bind.spri.eus/application/",
+        "verified_facts": [
+          "application in English",
+          "one of 11 use-case groups",
+          "up to three total applications",
+          "different group required for subsequent proposals"
+        ]
+      },
+      "faq": {
+        "url": "https://www.spri.eus/en/faq/?colapse=20276&faq_page=2&tag=bind",
+        "verified_facts": [
+          "deadline 4 September 2026",
+          "Venture Client companies contract real paid projects",
+          "participation free; Venture Clients finance development",
+          "selection September 2026–March 2027",
+          "MVP, legal establishment and maximum eight years are programme requirements"
+        ]
+      },
+      "BIND-11th-Edition_Use-Case-Dossier.pdf": {
+        "url": "https://bind.spri.eus/wp-content/uploads/2026/06/BIND-11th-Edition_Use-Case-Dossier.pdf",
+        "verified_facts": [
+          "46 use cases, 11 thematic groups, 57 partner companies",
+          "up to three proposals, each focused on a different group"
+        ]
+      }
+    },
+    "officially_verified": true,
+    "limits": [
+      "Official programme requirements and use-case fit do not establish that KCH is legally incorporated, has an MVP, is under eight years old, has a market-ready product, or will be selected.",
+      "No industrial integration, human utility, causal superiority, scalability, safety/compliance, or BIND readiness is inferred from this prepilot."
+    ]
+  },
+  "candidate_use_cases": [
+    {
+      "group": "GROUP 6",
+      "group_title": "Digitalisation of internal processes, knowledge and talent management within the organisation",
+      "ids": [
+        "ID31",
+        "ID33",
+        "ID36"
+      ],
+      "case_titles": {
+        "ID31": "Digital management, planning and decision-support systems",
+        "ID33": "Increased efficiency and quality in document management",
+        "ID36": "Knowledge management and transfer within the organisation"
+      },
+      "fit": "DEFENDABLE_PROBLEM_AND_ARCHITECTURAL_FIT_ONLY",
+      "why": "The frozen surface exposes governed decision support, document/evidence custody, and knowledge transfer concepts; the fit is limited to a bounded evidence-governance prepilot.",
+      "not_estimable": [
+        "industrial client demand",
+        "MVP/market readiness",
+        "human utility",
+        "integration effort",
+        "causal benefit",
+        "scalability",
+        "security/compliance",
+        "selection probability"
+      ],
+      "source": "https://bind.spri.eus/open-innovation/"
+    }
+  ],
+  "adverse_findings": [
+    "The corpus oracle is preserved and compared; any mismatch would remain adverse in the per-file match fields.",
+    "A preflight PASS, exposed handlers, and local workbench integrity do not constitute industrial integration or validation.",
+    "PHL is represented as authorized/available in the architecture, but this task executed no real PHL, training, or feedback.",
+    "Consent declarations and permission checks are implementation evidence, not proof of human consent, authority, safety, or compliance.",
+    "MIS bridges and certificates preserve explicit boundaries but do not establish predictive superiority or global authority.",
+    "SQLite presence/lifecycle code is not a runtime durability or concurrency validation of the frozen corpus."
+  ],
+  "claim_ceiling": "DESCRIPTIVE_LOCAL_PREPILOT_ONLY_NOT_CAUSAL_NOT_INDUSTRIAL_VALIDATION",
+  "abstentions": [
+    "NO_PHL_EXECUTION",
+    "NO_TRAINING",
+    "NO_EXTERNAL_INSTALLATION",
+    "NO_CREDENTIALS",
+    "NO_INDUSTRIAL_INTEGRATION_CLAIM",
+    "NO_HUMAN_UTILITY_CLAIM",
+    "NO_CAUSAL_SUPERIORITY_CLAIM",
+    "NO_SCALABILITY_CLAIM",
+    "NO_SAFETY_OR_COMPLIANCE_CLAIM",
+    "NO_BIND_READINESS_OR_SELECTION_CLAIM",
+    "NOT_ESTIMABLE_FOR_ALL_UNOBSERVED_EXTERNAL_OUTCOMES"
+  ]
+}

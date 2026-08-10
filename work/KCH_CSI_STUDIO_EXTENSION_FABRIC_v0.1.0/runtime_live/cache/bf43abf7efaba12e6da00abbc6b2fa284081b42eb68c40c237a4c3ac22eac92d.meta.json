@@ -1,0 +1,9 @@
+{
+  "cache_hit": false,
+  "etag": "\"0e0efd51058120f7c760148b690763846\"",
+  "fetched_at": "2026-08-10T12:04:18.595591Z",
+  "last_modified": null,
+  "sha256": "401dab2253ebadcc7a858678cfd092fce38d33321e2a75a85b048c49d3889e61",
+  "status": 200,
+  "url": "https://open-vsx.org/api/-/search?query=cline&size=3"
+}

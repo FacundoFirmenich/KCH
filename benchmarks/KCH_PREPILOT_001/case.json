@@ -1,0 +1,73 @@
+{
+  "schema": "kch.prepilot-case.v0.1.0",
+  "case_id": "KCH-PREPILOT-001",
+  "title": "Lectura exhaustiva multarchivo y adaptación a la convocatoria BIND exacta",
+  "historical_failure_classes": [
+    "CLAIMED_COMPLETE_READING_AFTER_PARTIAL_SAMPLING",
+    "GENERIC_WEB_SEARCH_INSTEAD_OF_EXACT_CALL",
+    "LOSS_OF_CROSS_MODULE_CONSTRAINTS",
+    "IMPLEMENTATION_CONFUSED_WITH_INTEGRATION_OR_VALIDATION",
+    "ADVERSE_GATE_HIDDEN_OR_RESOLVED_BY_NARRATIVE"
+  ],
+  "design": {
+    "model": "gpt-5.6-luna",
+    "thinking": "medium",
+    "same_underlying_task": true,
+    "arms": [
+      {
+        "condition": "BASELINE_SIN_KCH",
+        "thread_id": "019fecfe-cfde-7f81-b29d-4da9a0d8dfc4"
+      },
+      {
+        "condition": "KCH_CANDIDATO_CON_ARNES",
+        "thread_id": "019fecff-08ef-7e53-85dc-53fde6705acf"
+      }
+    ],
+    "evaluator_blinded": false,
+    "randomized": false,
+    "replicated": false
+  },
+  "corpus_oracle": [
+    {
+      "name": "advanced_runtime.py",
+      "bytes": 52906,
+      "physical_lines": 1413,
+      "sha256": "e1f27d84301f5f180c46b67a41c6af7aea39a4324fd37d552c85e8cde8988894"
+    },
+    {
+      "name": "mis_service.py",
+      "bytes": 48280,
+      "physical_lines": 1198,
+      "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582"
+    },
+    {
+      "name": "operational_surface.py",
+      "bytes": 36240,
+      "physical_lines": 1026,
+      "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f"
+    }
+  ],
+  "exact_call": {
+    "name": "BIND 11th Edition 2026/2027",
+    "application_open": "2026-07-02",
+    "application_deadline": "2026-09-04",
+    "official_domains": [
+      "bind.spri.eus",
+      "www.spri.eus",
+      "www.euskadi.eus"
+    ],
+    "required_official_assets": [
+      "open-innovation",
+      "application",
+      "faq",
+      "BIND-11th-Edition_Use-Case-Dossier.pdf"
+    ]
+  },
+  "condition_integrity": {
+    "baseline": "PASS",
+    "harness": "FAIL_WRONG_INTERNAL_ENTRYPOINT_AND_FALSE_FULL_SURFACE_SCOPE",
+    "comparative_efficacy_gate": "INVALID_CONDITION_INTEGRITY",
+    "historical_result_immutable": true
+  },
+  "claim_ceiling": "DESCRIPTIVE_LOCAL_PREPILOT_ONLY_NOT_CAUSAL_NOT_INDUSTRIAL_VALIDATION"
+}

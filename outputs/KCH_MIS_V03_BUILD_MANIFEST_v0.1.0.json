@@ -1,0 +1,221 @@
+{
+  "schema": "kch.mis.v03.build-manifest.v0.1.0",
+  "version": "0.1.0",
+  "state": "LOCAL_VALIDATED_EFFECTIVE_INTEGRATION_CANDIDATE",
+  "gate": "PASS_BOUNDED",
+  "gate_checks": "21/21",
+  "unit_tests": "7/7",
+  "historical_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+  "source_kch_state_unchanged": true,
+  "authority_created": false,
+  "automatic_promotion": false,
+  "file_count_excluding_manifest_and_archive": 40,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2317,
+      "sha256": "03764f5d917d32e55da3535ba77c1ea9190ba16a65313d5f957b8fa591275459"
+    },
+    {
+      "path": "config/MIS_MUTABILITY_CATALOG_v0.1.0.json",
+      "bytes": 772,
+      "sha256": "4d9e0baf13b3c77e62105e1453549a4d4e03ce8675b18878dadee62c9874d04e"
+    },
+    {
+      "path": "dist/kch_mis_v03_integration-0.1.0-py3-none-any.whl",
+      "bytes": 15355,
+      "sha256": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae"
+    },
+    {
+      "path": "evidence/KCH_BASELINE_STATE_v0.5.0.sqlite3",
+      "bytes": 204800,
+      "sha256": "1027fa8da1a583b107521bb5298a3f5774e1abbeb887a3772cea70c4e1c969a8"
+    },
+    {
+      "path": "evidence/KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.5.0.json",
+      "bytes": 13335,
+      "sha256": "204dd6f069b898d5a263590fe82809aee933c6599bf6df87f500aeaf391dc653"
+    },
+    {
+      "path": "evidence/KHC_TWO_BATTERY_MASTER_RESULTS_v2.0.7.json",
+      "bytes": 664301,
+      "sha256": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c"
+    },
+    {
+      "path": "evidence/MIS_RELEASE_MANIFEST_v0.3.1.json",
+      "bytes": 5724,
+      "sha256": "57ae25461c6c1eca1694a4cd24d79450e07e1ccca0b87d7f3a357f55379b5419"
+    },
+    {
+      "path": "evidence/MIS_v0_3_EXPERIMENT_REPORT.json",
+      "bytes": 5335,
+      "sha256": "de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83"
+    },
+    {
+      "path": "evidence/MIS_v0_3_KHC_FUTURE_ONLY_LEDGERS.json",
+      "bytes": 936133,
+      "sha256": "605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 451,
+      "sha256": "767d0832693a83939ea894d1df342850efe7d6f670f067e2242899239867e8f7"
+    },
+    {
+      "path": "results/KCH_MIS_V03_CSI_LOWERING_v0.1.0.json",
+      "bytes": 3650,
+      "sha256": "7a1f546a24495e8d0540ad91b8b1239209906d500a8144daf96c3b67af26373a"
+    },
+    {
+      "path": "results/KCH_MIS_V03_EFFECTIVE_INTEGRATION_RESULT_v0.1.0.json",
+      "bytes": 4947,
+      "sha256": "aff625e7cbb1187a47f3c5f64de470258ad39ce8025342f582268bc83099e0a5"
+    },
+    {
+      "path": "results/KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+      "bytes": 1816,
+      "sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a"
+    },
+    {
+      "path": "results/KCH_MIS_V03_REVIEWABLE_DECISIONS_v0.1.0.json",
+      "bytes": 5809,
+      "sha256": "0b0833e33d92d0cd075c6d644fd591fe4faafb98f0f4d45c1eca70c7f026e660"
+    },
+    {
+      "path": "results/KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.6.0.json",
+      "bytes": 14304,
+      "sha256": "e7b10e6fc2560540c675dbe9e90514bba4623d9695d7e8c0323d6ac1efdb939b"
+    },
+    {
+      "path": "runtime/KCH_MIS_V03_INTEGRATION_REPLICA_v0.1.0.sqlite3",
+      "bytes": 249856,
+      "sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21"
+    },
+    {
+      "path": "runtime/wheel_smoke/bin/kch-mis-v03-gate.exe",
+      "bytes": 108359,
+      "sha256": "00a8524c116fe3aeefa212bac834dd8cba2f94fb4a6669517ce876e525b3c0a6"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/INSTALLER",
+      "bytes": 4,
+      "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/METADATA",
+      "bytes": 178,
+      "sha256": "71ae4ede7384c109a1a8390b0aad8f4c95279c44c32cbad239f4558190f6977e"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/RECORD",
+      "bytes": 1661,
+      "sha256": "a2bd61602720714639eb723b6963ec6efd3e12e107f2969352b4083d2819b279"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/REQUESTED",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/WHEEL",
+      "bytes": 91,
+      "sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/direct_url.json",
+      "bytes": 356,
+      "sha256": "c62c2849655657c67be432794c4bc99c2166949206997b31b0d1ee46ca31d850"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/entry_points.txt",
+      "bytes": 71,
+      "sha256": "8f2d5213934554331d5fd62511676742f10146473c2ad234b388a5e7061c72a9"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration-0.1.0.dist-info/top_level.txt",
+      "bytes": 24,
+      "sha256": "06e1def2bd29fdacf2ebc1f756fba954cf3ff4e9b5b9db00401b7a930642f531"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration/__init__.py",
+      "bytes": 385,
+      "sha256": "aa600869e7a194d524997074eaa1e930120e1b1bf757c195626e08f455167ca5"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration/adapter.py",
+      "bytes": 4536,
+      "sha256": "7835c8b4e1077516bba023c4fd1838ec04d23f984d29756762a8eb53246dcd09"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration/adapter_base.py",
+      "bytes": 14415,
+      "sha256": "3bf0bd5b0f9d209a6bf2c7974cdcf835177836ede396930404db3077e36f668c"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration/csi.py",
+      "bytes": 3880,
+      "sha256": "594cb600624980dad1d1cb51b6078430759da38371663f1985e8fc920ddf93f0"
+    },
+    {
+      "path": "runtime/wheel_smoke/kch_mis_v03_integration/gate.py",
+      "bytes": 19185,
+      "sha256": "e2cbf1ffe4de24afef484ba403ab5009c5d776c8237b0ddef703dcde7784d5ea"
+    },
+    {
+      "path": "seal_release.py",
+      "bytes": 3636,
+      "sha256": "5fdfb175fd42d4abfea90b04c341b02ea0d84af3da54210883f856071dabb51b"
+    },
+    {
+      "path": "src/kch_mis_v03_integration/__init__.py",
+      "bytes": 385,
+      "sha256": "aa600869e7a194d524997074eaa1e930120e1b1bf757c195626e08f455167ca5"
+    },
+    {
+      "path": "src/kch_mis_v03_integration/adapter.py",
+      "bytes": 4536,
+      "sha256": "7835c8b4e1077516bba023c4fd1838ec04d23f984d29756762a8eb53246dcd09"
+    },
+    {
+      "path": "src/kch_mis_v03_integration/adapter_base.py",
+      "bytes": 14415,
+      "sha256": "3bf0bd5b0f9d209a6bf2c7974cdcf835177836ede396930404db3077e36f668c"
+    },
+    {
+      "path": "src/kch_mis_v03_integration/csi.py",
+      "bytes": 3880,
+      "sha256": "594cb600624980dad1d1cb51b6078430759da38371663f1985e8fc920ddf93f0"
+    },
+    {
+      "path": "src/kch_mis_v03_integration/gate.py",
+      "bytes": 19185,
+      "sha256": "e2cbf1ffe4de24afef484ba403ab5009c5d776c8237b0ddef703dcde7784d5ea"
+    },
+    {
+      "path": "tests/test_adapter.py",
+      "bytes": 4675,
+      "sha256": "0127203374b5f6c42ccc2a9f7eee76ca6660ebf9716154d80b9ce9d8ec0d0d94"
+    },
+    {
+      "path": "vendor/kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+      "bytes": 11281,
+      "sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936"
+    },
+    {
+      "path": "vendor/mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+      "bytes": 19051,
+      "sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157"
+    },
+    {
+      "path": "verify_release.py",
+      "bytes": 2631,
+      "sha256": "a4ab8f2206993708604a6f9b743e982ad7d7db3647aed767d6c826fa601b23ee"
+    }
+  ],
+  "portable_gate_inputs": {
+    "source_state": "evidence/KCH_BASELINE_STATE_v0.5.0.sqlite3",
+    "integration_control_plane_wheel": "vendor/kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+    "mis_wheel": "vendor/mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+    "registry": "evidence/KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.5.0.json"
+  }
+}

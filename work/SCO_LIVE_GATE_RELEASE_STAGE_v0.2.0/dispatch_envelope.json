@@ -1,0 +1,13 @@
+{
+  "schema": "kch.sco.host-dispatch-envelope.v0.2.0",
+  "dispatch_id": "SCO-LIVE-DISPATCH-20260809-01",
+  "order_id": "wo.sco-live-transport-01",
+  "target_node_id": "sco-disposable-live-probe-01",
+  "target_native_uri": "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+  "nonce": "SCO-LIVE-NONCE-20260809-01",
+  "authority_granted": ["RETURN_BOUNDED_TEXT_RECEIPT"],
+  "forbidden_actions": ["FILESYSTEM_MUTATION", "EXTERNAL_NETWORK", "OTHER_THREAD_CONTACT", "CONTEXT_OR_MEMORY_EXPORT"],
+  "expected_receipt_schema": "kch.sco.native-transport-receipt.v0.2.0",
+  "payload_disclosure": "WORK_ORDER_FIELDS_ONLY_NO_NATIVE_CONTEXT_OR_MEMORY",
+  "retry_policy": "SAME_DISPATCH_ID_MUST_NOT_SEND_AGAIN_AFTER_SENT_OR_RECEIVED"
+}

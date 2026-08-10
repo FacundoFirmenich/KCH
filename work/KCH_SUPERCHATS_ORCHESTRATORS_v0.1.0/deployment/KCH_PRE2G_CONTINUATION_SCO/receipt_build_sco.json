@@ -1,0 +1,25 @@
+{
+  "schema": "kch.sco.receipt.v0.1.0",
+  "receipt_id": "receipt.deploy-sco-v0.1.0",
+  "order_id": "wo.deploy-sco-v0.1.0",
+  "node_id": "kch-sco-builder",
+  "outcome": "SUCCEEDED",
+  "output_refs": [
+    "work/KCH_SUPERCHATS_ORCHESTRATORS_v0.1.0",
+    "results/SCO_VALIDATION_RESULT_v0.1.0.json",
+    "results/SCO_KCH_PRE2G_CSI_LOWERING_v0.1.0.json"
+  ],
+  "evidence_ids": ["SCO_UNIT_GATE_21_OF_21", "SCO_REAL_TWO_NODE_GATE", "SCO_CSI_LOWERING_GATE"],
+  "claims": [
+    "Two observed Codex task references are composed in one explicit graph without native-context ingestion.",
+    "The local ledger, graph, work-order, receipt, authority and CSI-lowering paths pass their bounded gates."
+  ],
+  "limitations": [
+    "The standalone package does not perform live provider dispatch.",
+    "Cline, Cowork and OpenCode bridges remain untested and unavailable.",
+    "No comparative outcome campaign against classical Projects has been executed.",
+    "No distributed or multi-host consensus has been demonstrated."
+  ],
+  "authority_exercised": ["BUILD_SCO_LOCAL", "PRODUCE_GATE_EVIDENCE", "REGISTER_KCH_COMPONENT_CANDIDATE"],
+  "completed_at": "UNAVAILABLE_EXACT_TIME_ON_2026-08-09"
+}

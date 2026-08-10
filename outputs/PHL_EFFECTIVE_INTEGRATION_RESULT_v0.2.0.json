@@ -1,0 +1,100 @@
+{
+  "schema": "kch.phl-effective-integration-gate-result.v0.2.0",
+  "gate": "PASS_BOUNDED",
+  "claim": "Effective transactional path demonstrated on an isolated replica; global emitter coverage is not demonstrated.",
+  "checks": {
+    "source_initial_has_seven_decisions": true,
+    "source_initial_has_zero_feedback": true,
+    "source_initial_integrity_pass": true,
+    "mutability_catalog_exact": true,
+    "admitted_registry_inventory_exact": true,
+    "request_idempotency": true,
+    "multi_client_stale_write_rejected": true,
+    "phl_blocks_mutating_route_before_executor": true,
+    "phl_preserves_read_only_route": true,
+    "phl_lock_closed_cleanly": true,
+    "final_integrity_pass": true,
+    "zero_user_feedback_after_gate": true,
+    "bounded_gate_due_unavailable_contracts": true,
+    "peer_divergence_detectable": true,
+    "source_state_byte_identical": true,
+    "all_expected_checks_present": true
+  },
+  "checks_passed": 16,
+  "checks_total": 16,
+  "initial_projection": {
+    "head_hash": "266b875d740e77d9399d525ea7bc7b9638261fa6f0a167348e6ab3866dfc0ebc",
+    "events": 7,
+    "decisions": 7,
+    "feedback": 0,
+    "requests": 0,
+    "mutability_methods": 0,
+    "emitters": 0,
+    "emitter_states": {},
+    "active_phl_session_id": null
+  },
+  "final_projection": {
+    "head_hash": "84aa55c69cdd431bd091a5177ba46a1693c65091bb8f2cf469b77fe8e6aeb354",
+    "events": 46,
+    "decisions": 9,
+    "feedback": 0,
+    "requests": 39,
+    "mutability_methods": 17,
+    "emitters": 16,
+    "emitter_states": {
+      "DECISION_EMITTER": 2,
+      "NON_DECISION_SERVICE": 2,
+      "UNAVAILABLE_CONTRACT": 12
+    },
+    "active_phl_session_id": null
+  },
+  "integrity": {
+    "gate": "PASS",
+    "defects": [],
+    "head_hash": "84aa55c69cdd431bd091a5177ba46a1693c65091bb8f2cf469b77fe8e6aeb354",
+    "event_count": 46,
+    "decision_count": 9,
+    "feedback_count": 0,
+    "request_count": 39,
+    "mutability_count": 17,
+    "emitter_count": 16
+  },
+  "integration_gate_state": {
+    "state": "PASS_EFFECTIVE_KCH_PHL_INTEGRATION_BOUNDED",
+    "expected_admitted_rows": 16,
+    "head_hash": "84aa55c69cdd431bd091a5177ba46a1693c65091bb8f2cf469b77fe8e6aeb354",
+    "events": 46,
+    "decisions": 9,
+    "feedback": 0,
+    "requests": 39,
+    "mutability_methods": 17,
+    "emitters": 16,
+    "emitter_states": {
+      "DECISION_EMITTER": 2,
+      "NON_DECISION_SERVICE": 2,
+      "UNAVAILABLE_CONTRACT": 12
+    },
+    "active_phl_session_id": null
+  },
+  "catalog_records": 17,
+  "inventory_records": 16,
+  "unavailable_contracts": 12,
+  "source_state": "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KCH_OBL_PHL_LEARNING_SYSTEM_v0.1.0\\runtime\\KCH_PERSONAL_LEARNING_STATE_v0.1.0.sqlite3",
+  "source_hashes_before": {
+    "main": "a81724487739c37825e251c0de68a9aaf2033e2e14418f9aac8215f6a976527d",
+    "wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "source_hashes_after": {
+    "main": "a81724487739c37825e251c0de68a9aaf2033e2e14418f9aac8215f6a976527d",
+    "wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "replica": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_PHL_EFFECTIVE_INTEGRATION_v0.2.0\\results\\GATE_PHL_EFFECTIVE_INTEGRATION_REPLICA_v0.2.0.sqlite3",
+  "replica_sha256": "5ced75b2950c202ad32cecd338ea1c7bd30a150dfd37ea1ee11a62863938057d",
+  "limitations": [
+    "No user PHL feedback was collected.",
+    "No training packet or policy activation was performed.",
+    "Twelve admitted registry rows still lack an inspected v0.2 decision-emitter contract.",
+    "Two decision records are explicitly marked instrumentation probes, not substantive KCH decisions.",
+    "Validation is local and replica-bounded; cross-process and distributed deployment remain outside this gate."
+  ]
+}

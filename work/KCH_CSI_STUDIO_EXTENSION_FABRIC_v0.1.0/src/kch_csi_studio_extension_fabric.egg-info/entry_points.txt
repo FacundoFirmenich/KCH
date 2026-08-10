@@ -1,0 +1,4 @@
+[console_scripts]
+kch-studio = kch_studio.cli:main
+kch-studio-mcp = kch_studio.mcp_server:main
+kch-super-mcp-studio = kch_studio.super_mcp_overlay:main

@@ -1,0 +1,27 @@
+from __future__ import annotations
+
+import sqlite3
+from contextlib import closing
+
+import effective_integration_cases as cases
+
+
+class EffectiveIntegrationTests(cases.EffectiveIntegrationTests):
+    def test_event_tampering_is_detected(self):
+        self.write(self.service.register_decision, "tamper-event", cases.decision())
+        with closing(sqlite3.connect(self.path)) as connection:
+            connection.execute("UPDATE events SET payload_json='{}' WHERE sequence=1")
+            connection.commit()
+        self.assertEqual(self.service.verify()["gate"], "FAIL")
+
+    def test_projection_tampering_is_detected(self):
+        self.write(self.service.register_decision, "tamper-projection", cases.decision())
+        with closing(sqlite3.connect(self.path)) as connection:
+            connection.execute("UPDATE decisions SET record_json='{}' WHERE decision_id='decision-001'")
+            connection.commit()
+        self.assertEqual(self.service.verify()["gate"], "FAIL")
+
+
+class HTTPBoundaryTests(cases.HTTPBoundaryTests):
+    pass
+

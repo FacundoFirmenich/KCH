@@ -1,0 +1,2800 @@
+{
+  "schema": "kch.prepilot-receipt.v0.3.0",
+  "condition": "BASELINE_RELEASE_AUDIT",
+  "input_receipt": {
+    "case_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_003\\case.json",
+    "case_id": "KCH-PREPILOT-003",
+    "inputs": [
+      {
+        "name": "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R9.zip",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\release_build\\KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R9.zip",
+        "expected_bytes": 22014573,
+        "actual_bytes": 22014573,
+        "bytes_equal": true,
+        "expected_sha256": "038d4abff544793253abab3caeb2ff541f09e385c94c3d3d6fd28fb90983ab14",
+        "actual_sha256": "038d4abff544793253abab3caeb2ff541f09e385c94c3d3d6fd28fb90983ab14",
+        "sha256_equal": true
+      },
+      {
+        "name": "KCH_PORTABLE_INSTALL_FAILURE_R6.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_INSTALL_FAILURE_R6.json",
+        "expected_bytes": 1632,
+        "actual_bytes": 1632,
+        "bytes_equal": true,
+        "expected_sha256": "c2bb4a2eb47fddb32b73e29bd6075c753eb9d303e4f7bcb7c379faa1500ba7af",
+        "actual_sha256": "c2bb4a2eb47fddb32b73e29bd6075c753eb9d303e4f7bcb7c379faa1500ba7af",
+        "sha256_equal": true
+      },
+      {
+        "name": "KCH_PORTABLE_POST_INSTALL_FAILURE_R7.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_FAILURE_R7.json",
+        "expected_bytes": 554,
+        "actual_bytes": 554,
+        "bytes_equal": true,
+        "expected_sha256": "c7de5dd2bdb091c10d1804bacffb049a9ce2a74ae2695bd856972e9f14a6d40b",
+        "actual_sha256": "c7de5dd2bdb091c10d1804bacffb049a9ce2a74ae2695bd856972e9f14a6d40b",
+        "sha256_equal": true
+      },
+      {
+        "name": "KCH_PORTABLE_POST_INSTALL_TIMEOUT_R8.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_TIMEOUT_R8.json",
+        "expected_bytes": 583,
+        "actual_bytes": 583,
+        "bytes_equal": true,
+        "expected_sha256": "5c2007f48490d295a7e41f0b0fad53474c7ec6b6a7ab20d0c697d92a027b24aa",
+        "actual_sha256": "5c2007f48490d295a7e41f0b0fad53474c7ec6b6a7ab20d0c697d92a027b24aa",
+        "sha256_equal": true
+      },
+      {
+        "name": "KCH_R8_INITIALIZE_DIAGNOSIS.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_R8_INITIALIZE_DIAGNOSIS.json",
+        "expected_bytes": 723,
+        "actual_bytes": 723,
+        "bytes_equal": true,
+        "expected_sha256": "294a4275027770bb9ce1e8d2d792b91c0f7b65c28abf2e7baa803b42462821ca",
+        "actual_sha256": "294a4275027770bb9ce1e8d2d792b91c0f7b65c28abf2e7baa803b42462821ca",
+        "sha256_equal": true
+      },
+      {
+        "name": "KCH_PORTABLE_INSTALL_RECEIPT_R9.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_INSTALL_RECEIPT_R9.json",
+        "expected_bytes": 5447,
+        "actual_bytes": 5447,
+        "bytes_equal": true,
+        "expected_sha256": "23e47846f774481cf1b0a174c02e4eba3f89b179eb34d6ebf29ef69d83693952",
+        "actual_sha256": "23e47846f774481cf1b0a174c02e4eba3f89b179eb34d6ebf29ef69d83693952",
+        "sha256_equal": true
+      },
+      {
+        "name": "KCH_PORTABLE_POST_INSTALL_GATE_R9.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_GATE_R9.json",
+        "expected_bytes": 4931,
+        "actual_bytes": 4931,
+        "bytes_equal": true,
+        "expected_sha256": "f317abf08a75fcc7c33b90d31752297d859fd3de63b3d28a9afd1c38db1c7b9d",
+        "actual_sha256": "f317abf08a75fcc7c33b90d31752297d859fd3de63b3d28a9afd1c38db1c7b9d",
+        "sha256_equal": true
+      },
+      {
+        "name": "evaluation.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_001\\evaluation.json",
+        "expected_bytes": 10285,
+        "actual_bytes": 10285,
+        "bytes_equal": true,
+        "expected_sha256": "980206a300e38ee72a09e20b88f3317044f21de3ba9b1e35f0571bf07b92631f",
+        "actual_sha256": "980206a300e38ee72a09e20b88f3317044f21de3ba9b1e35f0571bf07b92631f",
+        "sha256_equal": true
+      },
+      {
+        "name": "evaluation.json",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\evaluation.json",
+        "expected_bytes": 16870,
+        "actual_bytes": 16870,
+        "bytes_equal": true,
+        "expected_sha256": "85171262ed073f14cc664687575ef573117ddae63d09bb5e975be1bf13446128",
+        "actual_sha256": "85171262ed073f14cc664687575ef573117ddae63d09bb5e975be1bf13446128",
+        "sha256_equal": true
+      },
+      {
+        "name": "BIND_2026_PREPILOTO.md",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\docs\\BIND_2026_PREPILOTO.md",
+        "expected_bytes": 4419,
+        "actual_bytes": 4419,
+        "bytes_equal": true,
+        "expected_sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+        "actual_sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+        "sha256_equal": true
+      }
+    ],
+    "all_inputs_exact": true
+  },
+  "archive_verification": {
+    "archive_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\release_build\\KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R9.zip",
+    "archive_bytes": 22014573,
+    "archive_sha256": "038d4abff544793253abab3caeb2ff541f09e385c94c3d3d6fd28fb90983ab14",
+    "zipfile_testzip_first_bad_member": null,
+    "root": [
+      "KCH_0.11_PRE2G_R9"
+    ],
+    "root_count": 1,
+    "member_count": 241,
+    "unique_member_count": 241,
+    "duplicate_member_names": [],
+    "manifest_path": "KCH_0.11_PRE2G_R9/MANIFEST_PRESEAL.json",
+    "manifest_schema": "kch.0.11.pre2g-integrated-candidate-manifest.v0.2.0",
+    "manifest_declared_count": 240,
+    "manifest_actual_declared_entries": 240,
+    "declared_member_verification": [
+      {
+        "path": "CHECK_KCH.cmd",
+        "bytes": 270,
+        "sha256": "70a69d238a828ed5d5fa075412b2d9ec303c3d7858866018b905526b0ef934e6",
+        "crc32": 3893207348,
+        "manifest_bytes": 270,
+        "manifest_sha256": "70a69d238a828ed5d5fa075412b2d9ec303c3d7858866018b905526b0ef934e6",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "INSTALL_KCH.cmd",
+        "bytes": 100,
+        "sha256": "a73fd7e2ee36bfb8b5314c1ff9b2d20dadc844808f760c33c4c6fbd9a501fa4b",
+        "crc32": 534177509,
+        "manifest_bytes": 100,
+        "manifest_sha256": "a73fd7e2ee36bfb8b5314c1ff9b2d20dadc844808f760c33c4c6fbd9a501fa4b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "LAUNCH_KCH_UI.cmd",
+        "bytes": 252,
+        "sha256": "278333f28ffdd4005ac36d6d91805db7749dce1dad92f15b6210b2afd3e56668",
+        "crc32": 1261536694,
+        "manifest_bytes": 252,
+        "manifest_sha256": "278333f28ffdd4005ac36d6d91805db7749dce1dad92f15b6210b2afd3e56668",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "LAUNCH_SUPER_MCP.cmd",
+        "bytes": 196,
+        "sha256": "3cd978406472e9b4449c90797dcc0d0ffb45cbe268b08378ed39e091658d2ce5",
+        "crc32": 2651664078,
+        "manifest_bytes": 196,
+        "manifest_sha256": "3cd978406472e9b4449c90797dcc0d0ffb45cbe268b08378ed39e091658d2ce5",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "README_ES.md",
+        "bytes": 5460,
+        "sha256": "89c87570fd1fb15ccb551acd354ec8f9b6cc0ae2ac4bcd4c5b2e1a2d469165e2",
+        "crc32": 3249407377,
+        "manifest_bytes": 5460,
+        "manifest_sha256": "89c87570fd1fb15ccb551acd354ec8f9b6cc0ae2ac4bcd4c5b2e1a2d469165e2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "adapters/cline_mcp_settings.json",
+        "bytes": 438,
+        "sha256": "1bbd28823e5123bb3c6a68a8b27c9f3e7f22b6bb171e60e36991320430cb0b36",
+        "crc32": 617357819,
+        "manifest_bytes": 438,
+        "manifest_sha256": "1bbd28823e5123bb3c6a68a8b27c9f3e7f22b6bb171e60e36991320430cb0b36",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "adapters/codex-plugin.json",
+        "bytes": 194,
+        "sha256": "fff3c3e9c86e82a97f5efc953dc1bc0a0c9a54ee7b1fe72956b65462c6fdfb20",
+        "crc32": 1583053980,
+        "manifest_bytes": 194,
+        "manifest_sha256": "fff3c3e9c86e82a97f5efc953dc1bc0a0c9a54ee7b1fe72956b65462c6fdfb20",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "adapters/opencode.json",
+        "bytes": 512,
+        "sha256": "a5fcaae46f452948a1430c95269c61d2777f86db72b2d1a8c47c4917d1099ac7",
+        "crc32": 523814751,
+        "manifest_bytes": 512,
+        "manifest_sha256": "a5fcaae46f452948a1430c95269c61d2777f86db72b2d1a8c47c4917d1099ac7",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "adapters/vscode.mcp.json",
+        "bytes": 383,
+        "sha256": "65c98ea5f34bfaf1867e05ebde02bb3b7da76e1de90ead9d83dc032569fe1cfa",
+        "crc32": 3527957198,
+        "manifest_bytes": 383,
+        "manifest_sha256": "65c98ea5f34bfaf1867e05ebde02bb3b7da76e1de90ead9d83dc032569fe1cfa",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "docs/ADAPTADORES_HOST.md",
+        "bytes": 1622,
+        "sha256": "c141c71708a544c8525da6f6fdaae80f647e880e4d76bf00728ce402118bb7f6",
+        "crc32": 1216101379,
+        "manifest_bytes": 1622,
+        "manifest_sha256": "c141c71708a544c8525da6f6fdaae80f647e880e4d76bf00728ce402118bb7f6",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "docs/ARQUITECTURA_INTEGRADA.md",
+        "bytes": 4336,
+        "sha256": "cab0b65fea4030c05735b3dc445323baebcae2faa8195a3a5c2dd14138b721de",
+        "crc32": 1482505,
+        "manifest_bytes": 4336,
+        "manifest_sha256": "cab0b65fea4030c05735b3dc445323baebcae2faa8195a3a5c2dd14138b721de",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "docs/BIND_2026_PREPILOTO.md",
+        "bytes": 4419,
+        "sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+        "crc32": 1018092443,
+        "manifest_bytes": 4419,
+        "manifest_sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "docs/CLAIMS_Y_GATES.md",
+        "bytes": 3228,
+        "sha256": "d185f83496542eabccd84828025fb477852157a1c0e1d0c49ddc172c6c46b958",
+        "crc32": 77734045,
+        "manifest_bytes": 3228,
+        "manifest_sha256": "d185f83496542eabccd84828025fb477852157a1c0e1d0c49ddc172c6c46b958",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "docs/TRABAJO_APRENDIZAJE_CONTINUIDAD.md",
+        "bytes": 4863,
+        "sha256": "51a4d75b3d07ca6393db25d567621c33f4228a8b4c8c5962a09590d213ad6500",
+        "crc32": 1657967899,
+        "manifest_bytes": 4863,
+        "manifest_sha256": "51a4d75b3d07ca6393db25d567621c33f4228a8b4c8c5962a09590d213ad6500",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "crc32": 3529164606,
+        "manifest_bytes": 2369,
+        "manifest_sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/HARNESS.md",
+        "bytes": 4173,
+        "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "crc32": 4014111003,
+        "manifest_bytes": 4173,
+        "manifest_sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/RULES.md",
+        "bytes": 1681,
+        "sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "crc32": 381312430,
+        "manifest_bytes": 1681,
+        "manifest_sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+        "crc32": 1301968727,
+        "manifest_bytes": 758,
+        "manifest_sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+        "crc32": 884263618,
+        "manifest_bytes": 1123,
+        "manifest_sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+        "crc32": 1136625588,
+        "manifest_bytes": 729,
+        "manifest_sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+        "crc32": 3841330949,
+        "manifest_bytes": 1726,
+        "manifest_sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+        "crc32": 3195587725,
+        "manifest_bytes": 776,
+        "manifest_sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+        "crc32": 3529944925,
+        "manifest_bytes": 639,
+        "manifest_sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/governance.lock.json",
+        "bytes": 10334,
+        "sha256": "7a4200756379234d23e8520cb86695d3753d1e99c2c3ff02da31e7845f169c89",
+        "crc32": 1928064524,
+        "manifest_bytes": 10334,
+        "manifest_sha256": "7a4200756379234d23e8520cb86695d3753d1e99c2c3ff02da31e7845f169c89",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/governance_graph.json",
+        "bytes": 18049,
+        "sha256": "2a3f4e0a25e223bdc5fee6ad68f63cc8236b8de36a018044a6b319a25306a393",
+        "crc32": 2044232781,
+        "manifest_bytes": 18049,
+        "manifest_sha256": "2a3f4e0a25e223bdc5fee6ad68f63cc8236b8de36a018044a6b319a25306a393",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+        "crc32": 1903734381,
+        "manifest_bytes": 1408,
+        "manifest_sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+        "crc32": 1167076093,
+        "manifest_bytes": 758,
+        "manifest_sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+        "crc32": 203701486,
+        "manifest_bytes": 1883,
+        "manifest_sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+        "crc32": 3279901475,
+        "manifest_bytes": 779,
+        "manifest_sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+        "crc32": 3625173940,
+        "manifest_bytes": 845,
+        "manifest_sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+        "crc32": 2496911495,
+        "manifest_bytes": 897,
+        "manifest_sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+        "crc32": 3117554874,
+        "manifest_bytes": 890,
+        "manifest_sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "governance/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+        "crc32": 450229327,
+        "manifest_bytes": 803,
+        "manifest_sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/KCH_BASELINE_STATE_v0.5.0.sqlite3",
+        "bytes": 204800,
+        "sha256": "1027fa8da1a583b107521bb5298a3f5774e1abbeb887a3772cea70c4e1c969a8",
+        "crc32": 224767989,
+        "manifest_bytes": 204800,
+        "manifest_sha256": "1027fa8da1a583b107521bb5298a3f5774e1abbeb887a3772cea70c4e1c969a8",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/KCH_BASELINE_STATE_v0.5.0.sqlite3-shm",
+        "bytes": 32768,
+        "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+        "crc32": 3720677046,
+        "manifest_bytes": 32768,
+        "manifest_sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/KCH_BASELINE_STATE_v0.5.0.sqlite3-wal",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "crc32": 0,
+        "manifest_bytes": 0,
+        "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.5.0.json",
+        "bytes": 13335,
+        "sha256": "204dd6f069b898d5a263590fe82809aee933c6599bf6df87f500aeaf391dc653",
+        "crc32": 1291493710,
+        "manifest_bytes": 13335,
+        "manifest_sha256": "204dd6f069b898d5a263590fe82809aee933c6599bf6df87f500aeaf391dc653",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/KHC_TWO_BATTERY_MASTER_RESULTS_v2.0.7.json",
+        "bytes": 664301,
+        "sha256": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+        "crc32": 133126158,
+        "manifest_bytes": 664301,
+        "manifest_sha256": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/MIS_RELEASE_MANIFEST_v0.3.1.json",
+        "bytes": 5724,
+        "sha256": "57ae25461c6c1eca1694a4cd24d79450e07e1ccca0b87d7f3a357f55379b5419",
+        "crc32": 2476411661,
+        "manifest_bytes": 5724,
+        "manifest_sha256": "57ae25461c6c1eca1694a4cd24d79450e07e1ccca0b87d7f3a357f55379b5419",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/MIS_v0_3_EXPERIMENT_REPORT.json",
+        "bytes": 5335,
+        "sha256": "de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83",
+        "crc32": 2346997179,
+        "manifest_bytes": 5335,
+        "manifest_sha256": "de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/evidence/MIS_v0_3_KHC_FUTURE_ONLY_LEDGERS.json",
+        "bytes": 936133,
+        "sha256": "605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca",
+        "crc32": 482382623,
+        "manifest_bytes": 936133,
+        "manifest_sha256": "605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/results/KCH_MIS_V03_BUILD_MANIFEST_v0.1.0.json",
+        "bytes": 8379,
+        "sha256": "7240a3db884c682ad5d6b856cbb7c3eac85cf90d8d7a03517b73bdfdb340f704",
+        "crc32": 4184521267,
+        "manifest_bytes": 8379,
+        "manifest_sha256": "7240a3db884c682ad5d6b856cbb7c3eac85cf90d8d7a03517b73bdfdb340f704",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/results/KCH_MIS_V03_CSI_LOWERING_v0.1.0.json",
+        "bytes": 3650,
+        "sha256": "7a1f546a24495e8d0540ad91b8b1239209906d500a8144daf96c3b67af26373a",
+        "crc32": 4132761886,
+        "manifest_bytes": 3650,
+        "manifest_sha256": "7a1f546a24495e8d0540ad91b8b1239209906d500a8144daf96c3b67af26373a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/results/KCH_MIS_V03_EFFECTIVE_INTEGRATION_RESULT_v0.1.0.json",
+        "bytes": 4947,
+        "sha256": "aff625e7cbb1187a47f3c5f64de470258ad39ce8025342f582268bc83099e0a5",
+        "crc32": 2426577257,
+        "manifest_bytes": 4947,
+        "manifest_sha256": "aff625e7cbb1187a47f3c5f64de470258ad39ce8025342f582268bc83099e0a5",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/results/KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+        "bytes": 1816,
+        "sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+        "crc32": 3439658115,
+        "manifest_bytes": 1816,
+        "manifest_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/results/KCH_MIS_V03_REVIEWABLE_DECISIONS_v0.1.0.json",
+        "bytes": 5809,
+        "sha256": "0b0833e33d92d0cd075c6d644fd591fe4faafb98f0f4d45c1eca70c7f026e660",
+        "crc32": 1624599430,
+        "manifest_bytes": 5809,
+        "manifest_sha256": "0b0833e33d92d0cd075c6d644fd591fe4faafb98f0f4d45c1eca70c7f026e660",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/results/KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.6.0.json",
+        "bytes": 14304,
+        "sha256": "e7b10e6fc2560540c675dbe9e90514bba4623d9695d7e8c0323d6ac1efdb939b",
+        "crc32": 1336239294,
+        "manifest_bytes": 14304,
+        "manifest_sha256": "e7b10e6fc2560540c675dbe9e90514bba4623d9695d7e8c0323d6ac1efdb939b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/vendor/kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+        "bytes": 11281,
+        "sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+        "crc32": 1270810771,
+        "manifest_bytes": 11281,
+        "manifest_sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "mis/vendor/mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+        "bytes": 19051,
+        "sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+        "crc32": 2044929622,
+        "manifest_bytes": 19051,
+        "manifest_sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "plugin/kch-csi-studio/.codex-plugin/plugin.json",
+        "bytes": 1022,
+        "sha256": "44bc5fe19038a73013d6a153a48282e76964d85d8f131d11a02d50dbe68f7626",
+        "crc32": 3054149837,
+        "manifest_bytes": 1022,
+        "manifest_sha256": "44bc5fe19038a73013d6a153a48282e76964d85d8f131d11a02d50dbe68f7626",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "plugin/kch-csi-studio/.mcp.json",
+        "bytes": 114,
+        "sha256": "1e0ef2fc91442ba3b6c4c060192d43413bc2d292e7e4423d1662112477c96fdc",
+        "crc32": 3263992410,
+        "manifest_bytes": 114,
+        "manifest_sha256": "1e0ef2fc91442ba3b6c4c060192d43413bc2d292e7e4423d1662112477c96fdc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "plugin/kch-csi-studio/skills/operate-kch-csi-studio/SKILL.md",
+        "bytes": 2520,
+        "sha256": "af21e6b93435bf7225cb613eb8bb0d48b888be1856dde04a316948ba6f5976ce",
+        "crc32": 4144294782,
+        "manifest_bytes": 2520,
+        "manifest_sha256": "af21e6b93435bf7225cb613eb8bb0d48b888be1856dde04a316948ba6f5976ce",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "plugin/kch-csi-studio/skills/operate-kch-csi-studio/agents/openai.yaml",
+        "bytes": 211,
+        "sha256": "fc0a5090660c506be9e2f1bf9cc37d59b67177b42307cf8a4e612a3401526531",
+        "crc32": 66457127,
+        "manifest_bytes": 211,
+        "manifest_sha256": "fc0a5090660c506be9e2f1bf9cc37d59b67177b42307cf8a4e612a3401526531",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "scripts/portable_bootstrap.py",
+        "bytes": 5852,
+        "sha256": "4fda463b56e50b05ad7106ee583030be4550b2f5986907a9694af8cfe2362ce8",
+        "crc32": 294114451,
+        "manifest_bytes": 5852,
+        "manifest_sha256": "4fda463b56e50b05ad7106ee583030be4550b2f5986907a9694af8cfe2362ce8",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "scripts/post_install_gate.py",
+        "bytes": 7678,
+        "sha256": "51ceb086f31b892a519557caebefabb1051db50031f4895e3ebf3787f91ae091",
+        "crc32": 2507857628,
+        "manifest_bytes": 7678,
+        "manifest_sha256": "51ceb086f31b892a519557caebefabb1051db50031f4895e3ebf3787f91ae091",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/KCH_0.11_RELEASE_CONTRACT.md",
+        "bytes": 4209,
+        "sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+        "crc32": 2007595692,
+        "manifest_bytes": 4209,
+        "manifest_sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/LICENSE_INVENTORY_v0.11.0.json",
+        "bytes": 3420,
+        "sha256": "fa9873f4343f124e4e28dbd11e39b3e281fa2f180537801ec94e6f0fb90f8b49",
+        "crc32": 3928361903,
+        "manifest_bytes": 3420,
+        "manifest_sha256": "fa9873f4343f124e4e28dbd11e39b3e281fa2f180537801ec94e6f0fb90f8b49",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/MANIFEST_SHA256_v0.11.0.json",
+        "bytes": 13419,
+        "sha256": "94cb1088c376fa10ad9567d72130b7ae689ac6fc3a8a8b5fe6467c708af17574",
+        "crc32": 1661912692,
+        "manifest_bytes": 13419,
+        "manifest_sha256": "94cb1088c376fa10ad9567d72130b7ae689ac6fc3a8a8b5fe6467c708af17574",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/NETWORK_SURFACE_AUDIT_v0.11.0.json",
+        "bytes": 1252,
+        "sha256": "914170cb9b922029f42dfddaa484b4d00ac1321b8e64f009d8b2e07f78c3459d",
+        "crc32": 136955512,
+        "manifest_bytes": 1252,
+        "manifest_sha256": "914170cb9b922029f42dfddaa484b4d00ac1321b8e64f009d8b2e07f78c3459d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/README.md",
+        "bytes": 2037,
+        "sha256": "d5a62ab6ac4e1f748ce05106bb04c3d25f88caf45f7c8f06048d34455747fb85",
+        "crc32": 4109816312,
+        "manifest_bytes": 2037,
+        "manifest_sha256": "d5a62ab6ac4e1f748ce05106bb04c3d25f88caf45f7c8f06048d34455747fb85",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/RELEASE_SEAL_v0.11.0.json",
+        "bytes": 938,
+        "sha256": "c2d02d1b32af4d17f01cff1b2f3fd33dc35223e265f9fa79ba8dc80bc14e8eb1",
+        "crc32": 935885164,
+        "manifest_bytes": 938,
+        "manifest_sha256": "c2d02d1b32af4d17f01cff1b2f3fd33dc35223e265f9fa79ba8dc80bc14e8eb1",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/SBOM_SPDX_v0.11.0.json",
+        "bytes": 6060,
+        "sha256": "7880e52803c025babd61ac9354f8c88fe82ddc88f307e3a364a5f064f134537a",
+        "crc32": 1378612986,
+        "manifest_bytes": 6060,
+        "manifest_sha256": "7880e52803c025babd61ac9354f8c88fe82ddc88f307e3a364a5f064f134537a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/config/KCH_REGISTRY_v0.11.0.json",
+        "bytes": 20333,
+        "sha256": "170ac6b7a7f442e1baf08b5995dbf774c9cdf4573d7190f8606ad2188c25a9b2",
+        "crc32": 578896957,
+        "manifest_bytes": 20333,
+        "manifest_sha256": "170ac6b7a7f442e1baf08b5995dbf774c9cdf4573d7190f8606ad2188c25a9b2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/config/VENDOR_WHEEL_LOCK_v0.11.0.json",
+        "bytes": 2879,
+        "sha256": "df182fa907f0e3e73dd9b010f8997966f7a1ecfd68e537a1ec5e5597a1bdd63b",
+        "crc32": 1050961444,
+        "manifest_bytes": 2879,
+        "manifest_sha256": "df182fa907f0e3e73dd9b010f8997966f7a1ecfd68e537a1ec5e5597a1bdd63b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+        "bytes": 249856,
+        "sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+        "crc32": 3001712392,
+        "manifest_bytes": 249856,
+        "manifest_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+        "bytes": 1816,
+        "sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+        "crc32": 3439658115,
+        "manifest_bytes": 1816,
+        "manifest_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/KCH_PRE2G_SCO_v0.1.0.sqlite3",
+        "bytes": 102400,
+        "sha256": "afd6fbe114fe1b50e2ae9eaa62159136947c5ff079b398efaf6bbefcaf3ca880",
+        "crc32": 39268287,
+        "manifest_bytes": 102400,
+        "manifest_sha256": "afd6fbe114fe1b50e2ae9eaa62159136947c5ff079b398efaf6bbefcaf3ca880",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/KCH_REGISTRY_CUSTODY_v0.11.0.json",
+        "bytes": 9546,
+        "sha256": "de843f71a7463480732ba66884b52272b1ee002cee624bc4c4a642aa85337369",
+        "crc32": 4098237964,
+        "manifest_bytes": 9546,
+        "manifest_sha256": "de843f71a7463480732ba66884b52272b1ee002cee624bc4c4a642aa85337369",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328_KWANPROMPTS_TS01R_RESULT_v0.1.0.json",
+        "bytes": 3875,
+        "sha256": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+        "crc32": 184632574,
+        "manifest_bytes": 3875,
+        "manifest_sha256": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a_KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+        "bytes": 1816,
+        "sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+        "crc32": 3439658115,
+        "manifest_bytes": 1816,
+        "manifest_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d_VALIDATION_REPORT_v0.10.0.md",
+        "bytes": 1863,
+        "sha256": "309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d",
+        "crc32": 1819562504,
+        "manifest_bytes": 1863,
+        "manifest_sha256": "309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021_VALIDATION_REPORT_v0.1.0.json",
+        "bytes": 6107,
+        "sha256": "4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021",
+        "crc32": 42825849,
+        "manifest_bytes": 6107,
+        "manifest_sha256": "4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d_VALIDATION_REPORT_v0.8.0.md",
+        "bytes": 1039,
+        "sha256": "47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d",
+        "crc32": 824204874,
+        "manifest_bytes": 1039,
+        "manifest_sha256": "47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json",
+        "bytes": 3770,
+        "sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+        "crc32": 2343894541,
+        "manifest_bytes": 3770,
+        "manifest_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856_RELEASE_NOTES_v0.9.2.md",
+        "bytes": 245,
+        "sha256": "6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856",
+        "crc32": 3655996538,
+        "manifest_bytes": 245,
+        "manifest_sha256": "6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f_VALIDATION_REPORT_v0.2.0.md",
+        "bytes": 2119,
+        "sha256": "6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f",
+        "crc32": 1535716089,
+        "manifest_bytes": 2119,
+        "manifest_sha256": "6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b_VALIDATION_REPORT_v0.1.0.md",
+        "bytes": 1808,
+        "sha256": "6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b",
+        "crc32": 3648131230,
+        "manifest_bytes": 1808,
+        "manifest_sha256": "6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b_INFORME_MAESTRO_ES.md",
+        "bytes": 4988,
+        "sha256": "72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b",
+        "crc32": 2765083625,
+        "manifest_bytes": 4988,
+        "manifest_sha256": "72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32_VALIDATION_LEARNING_v0.1.json",
+        "bytes": 1899,
+        "sha256": "7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32",
+        "crc32": 2246967161,
+        "manifest_bytes": 1899,
+        "manifest_sha256": "7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c_KCH_ENTERPRISE_OPERATOR_APPLICATION_REPORT_v0.5.0.md",
+        "bytes": 1653,
+        "sha256": "8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c",
+        "crc32": 440867058,
+        "manifest_bytes": 1653,
+        "manifest_sha256": "8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37_KCH_BAYESIAN_MCP_FABRIC_REPORT_v0.6.0.md",
+        "bytes": 2444,
+        "sha256": "93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37",
+        "crc32": 4117467717,
+        "manifest_bytes": 2444,
+        "manifest_sha256": "93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79_KCH_0.11_RELEASE_CONTRACT.md",
+        "bytes": 4209,
+        "sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+        "crc32": 2007595692,
+        "manifest_bytes": 4209,
+        "manifest_sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db_VALIDATION_REPORT_v0.9.1.md",
+        "bytes": 1563,
+        "sha256": "964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db",
+        "crc32": 3864614987,
+        "manifest_bytes": 1563,
+        "manifest_sha256": "964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941_SCIENTIFIC_TECHNICAL_REPORT_v0.4.0.md",
+        "bytes": 1823,
+        "sha256": "96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941",
+        "crc32": 2518047460,
+        "manifest_bytes": 1823,
+        "manifest_sha256": "96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/cb596b1ed4fe18d52e0951c813ed6e4f6d10faa53290f237824757b80a877871_UNIVERSAL_ACTIVE_SUPPORT_KCH_v0.7.0.md",
+        "bytes": 1279,
+        "sha256": "cb596b1ed4fe18d52e0951c813ed6e4f6d10faa53290f237824757b80a877871",
+        "crc32": 680830154,
+        "manifest_bytes": 1279,
+        "manifest_sha256": "cb596b1ed4fe18d52e0951c813ed6e4f6d10faa53290f237824757b80a877871",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6_SCO_VALIDATION_RESULT_v0.1.0.json",
+        "bytes": 3741,
+        "sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+        "crc32": 3279538294,
+        "manifest_bytes": 3741,
+        "manifest_sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/evidence/registry/f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302_VALIDATION_REPORT_v0.9.0.md",
+        "bytes": 1688,
+        "sha256": "f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302",
+        "crc32": 3606483205,
+        "manifest_bytes": 1688,
+        "manifest_sha256": "f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/pyproject.toml",
+        "bytes": 587,
+        "sha256": "5ffabddba27a94e980074b24f693af8345b12a6537f7251dfebb907dce7246d0",
+        "crc32": 3803594956,
+        "manifest_bytes": 587,
+        "manifest_sha256": "5ffabddba27a94e980074b24f693af8345b12a6537f7251dfebb907dce7246d0",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/scripts/prepare_release.py",
+        "bytes": 6025,
+        "sha256": "5fca714b1edf8e68f8a2679aa43ad511b1c44f7a2741ffeedc4527ab0bfc3e02",
+        "crc32": 2394239248,
+        "manifest_bytes": 6025,
+        "manifest_sha256": "5fca714b1edf8e68f8a2679aa43ad511b1c44f7a2741ffeedc4527ab0bfc3e02",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/scripts/run_component_suites.py",
+        "bytes": 2426,
+        "sha256": "d0d6437a7edac46e599afe7a7aff11d0be768d2673afea2732f52bbecc4652c4",
+        "crc32": 4077655892,
+        "manifest_bytes": 2426,
+        "manifest_sha256": "d0d6437a7edac46e599afe7a7aff11d0be768d2673afea2732f52bbecc4652c4",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/scripts/validate_installed.py",
+        "bytes": 4565,
+        "sha256": "91d9eb02b515a6549623c8f8fa5296069a6467a277954b88a24b675477df170e",
+        "crc32": 1849895471,
+        "manifest_bytes": 4565,
+        "manifest_sha256": "91d9eb02b515a6549623c8f8fa5296069a6467a277954b88a24b675477df170e",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/scripts/verify_bundle.py",
+        "bytes": 1157,
+        "sha256": "e6d356fbe61e7f70d3e9f5fca0846e9776cc0e3de51a645ef2e00e01a855cdd3",
+        "crc32": 3624596543,
+        "manifest_bytes": 1157,
+        "manifest_sha256": "e6d356fbe61e7f70d3e9f5fca0846e9776cc0e3de51a645ef2e00e01a855cdd3",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/__init__.py",
+        "bytes": 200,
+        "sha256": "7dc9adea8e65b33b17350e5dd688f93f6f897dd0c710c7d68c48123414dfdf4d",
+        "crc32": 2053414386,
+        "manifest_bytes": 200,
+        "manifest_sha256": "7dc9adea8e65b33b17350e5dd688f93f6f897dd0c710c7d68c48123414dfdf4d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/adapters.py",
+        "bytes": 4835,
+        "sha256": "6a86758b72c7afb6c62baa1084380b4a10054f934509dbaa7174a5d90b31bc41",
+        "crc32": 1800380311,
+        "manifest_bytes": 4835,
+        "manifest_sha256": "6a86758b72c7afb6c62baa1084380b4a10054f934509dbaa7174a5d90b31bc41",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/canonical.py",
+        "bytes": 1550,
+        "sha256": "79fbb7f407f70a37178a7e5320b25005b2c7777439ca4c2a0019fe3f32458c60",
+        "crc32": 198645084,
+        "manifest_bytes": 1550,
+        "manifest_sha256": "79fbb7f407f70a37178a7e5320b25005b2c7777439ca4c2a0019fe3f32458c60",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/cli.py",
+        "bytes": 2104,
+        "sha256": "21c0a33a86201312e8c977e693affaf036cf118edb00b6332501114333615982",
+        "crc32": 2559689245,
+        "manifest_bytes": 2104,
+        "manifest_sha256": "21c0a33a86201312e8c977e693affaf036cf118edb00b6332501114333615982",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/controls.py",
+        "bytes": 16264,
+        "sha256": "3bacfeea513aa3a25f5e7417778633cf8562f2b992701328596e54e9dbe6f4fb",
+        "crc32": 185488710,
+        "manifest_bytes": 16264,
+        "manifest_sha256": "3bacfeea513aa3a25f5e7417778633cf8562f2b992701328596e54e9dbe6f4fb",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/data/KCH_REGISTRY_v0.11.0.json",
+        "bytes": 20333,
+        "sha256": "170ac6b7a7f442e1baf08b5995dbf774c9cdf4573d7190f8606ad2188c25a9b2",
+        "crc32": 578896957,
+        "manifest_bytes": 20333,
+        "manifest_sha256": "170ac6b7a7f442e1baf08b5995dbf774c9cdf4573d7190f8606ad2188c25a9b2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/gateway.py",
+        "bytes": 23096,
+        "sha256": "5aef73f9b165a3354bba6c92ca824d1e2ab0c1aec89eb742e818940ecf01e100",
+        "crc32": 1988895924,
+        "manifest_bytes": 23096,
+        "manifest_sha256": "5aef73f9b165a3354bba6c92ca824d1e2ab0c1aec89eb742e818940ecf01e100",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/ledger.py",
+        "bytes": 6665,
+        "sha256": "4e6201fc8c8893b41c2f03cdf74f38c1f52a159dd6c2ebd2257ce7dd81a8ef53",
+        "crc32": 3371712922,
+        "manifest_bytes": 6665,
+        "manifest_sha256": "4e6201fc8c8893b41c2f03cdf74f38c1f52a159dd6c2ebd2257ce7dd81a8ef53",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/mcp_server.py",
+        "bytes": 934,
+        "sha256": "107f1f21fba24ccabf5dfea980254cd7865ea5fe576af83bfda37b1e5028ae19",
+        "crc32": 2345053636,
+        "manifest_bytes": 934,
+        "manifest_sha256": "107f1f21fba24ccabf5dfea980254cd7865ea5fe576af83bfda37b1e5028ae19",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/mcp_server_base.py",
+        "bytes": 14685,
+        "sha256": "ee9d534a74ca22287f0595386b3e4ed38afc19bc9cfcb6a6d4b97a25b256e507",
+        "crc32": 3966840906,
+        "manifest_bytes": 14685,
+        "manifest_sha256": "ee9d534a74ca22287f0595386b3e4ed38afc19bc9cfcb6a6d4b97a25b256e507",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/src/kwancode_harness/registry.py",
+        "bytes": 3460,
+        "sha256": "e869068e4f02529129e252881d580aea1c1e927bf3797fb40a5177abb563618a",
+        "crc32": 2122689050,
+        "manifest_bytes": 3460,
+        "manifest_sha256": "e869068e4f02529129e252881d580aea1c1e927bf3797fb40a5177abb563618a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/tests/test_controls.py",
+        "bytes": 4802,
+        "sha256": "f2591edbd0caf6c3d6bacc95da84fe2aeb5aa618a45391d29eb3c2743ff775f6",
+        "crc32": 694031575,
+        "manifest_bytes": 4802,
+        "manifest_sha256": "f2591edbd0caf6c3d6bacc95da84fe2aeb5aa618a45391d29eb3c2743ff775f6",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/tests/test_gateway.py",
+        "bytes": 5619,
+        "sha256": "af22e146a2f6f31a1489aa5db48cc6a41e9af43c217714f66eb7888a301b855b",
+        "crc32": 500809172,
+        "manifest_bytes": 5619,
+        "manifest_sha256": "af22e146a2f6f31a1489aa5db48cc6a41e9af43c217714f66eb7888a301b855b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/tests/test_mcp_schemas.py",
+        "bytes": 813,
+        "sha256": "64413849bafa26250863defcc5c98d4f62eac6335639756ba2fd2c4d0e78105b",
+        "crc32": 828910515,
+        "manifest_bytes": 813,
+        "manifest_sha256": "64413849bafa26250863defcc5c98d4f62eac6335639756ba2fd2c4d0e78105b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/kch_mis_v03_integration-0.1.0-py3-none-any.whl",
+        "bytes": 15355,
+        "sha256": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+        "crc32": 277373996,
+        "manifest_bytes": 15355,
+        "manifest_sha256": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/kch_obl_phl_learning_system-0.1.1-py3-none-any.whl",
+        "bytes": 25779,
+        "sha256": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+        "crc32": 3379520778,
+        "manifest_bytes": 25779,
+        "manifest_sha256": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+        "bytes": 11281,
+        "sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+        "crc32": 1270810771,
+        "manifest_bytes": 11281,
+        "manifest_sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/kch_rigor_gradient_governor-0.1.0-py3-none-any.whl",
+        "bytes": 9018,
+        "sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+        "crc32": 1713776302,
+        "manifest_bytes": 9018,
+        "manifest_sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+        "bytes": 14327,
+        "sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+        "crc32": 552481653,
+        "manifest_bytes": 14327,
+        "manifest_sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/kwanprompts-0.1.0-py3-none-any.whl",
+        "bytes": 13443,
+        "sha256": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+        "crc32": 222419114,
+        "manifest_bytes": 13443,
+        "manifest_sha256": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-0.11-frozen/vendor/mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+        "bytes": 19051,
+        "sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+        "crc32": 2044929622,
+        "manifest_bytes": 19051,
+        "manifest_sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/README_ES.md",
+        "bytes": 5460,
+        "sha256": "89c87570fd1fb15ccb551acd354ec8f9b6cc0ae2ac4bcd4c5b2e1a2d469165e2",
+        "crc32": 3249407377,
+        "manifest_bytes": 5460,
+        "manifest_sha256": "89c87570fd1fb15ccb551acd354ec8f9b6cc0ae2ac4bcd4c5b2e1a2d469165e2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/docs/ADAPTADORES_HOST.md",
+        "bytes": 1622,
+        "sha256": "c141c71708a544c8525da6f6fdaae80f647e880e4d76bf00728ce402118bb7f6",
+        "crc32": 1216101379,
+        "manifest_bytes": 1622,
+        "manifest_sha256": "c141c71708a544c8525da6f6fdaae80f647e880e4d76bf00728ce402118bb7f6",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/docs/ARQUITECTURA_INTEGRADA.md",
+        "bytes": 4336,
+        "sha256": "cab0b65fea4030c05735b3dc445323baebcae2faa8195a3a5c2dd14138b721de",
+        "crc32": 1482505,
+        "manifest_bytes": 4336,
+        "manifest_sha256": "cab0b65fea4030c05735b3dc445323baebcae2faa8195a3a5c2dd14138b721de",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/docs/BIND_2026_PREPILOTO.md",
+        "bytes": 4419,
+        "sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+        "crc32": 1018092443,
+        "manifest_bytes": 4419,
+        "manifest_sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/docs/CLAIMS_Y_GATES.md",
+        "bytes": 3228,
+        "sha256": "d185f83496542eabccd84828025fb477852157a1c0e1d0c49ddc172c6c46b958",
+        "crc32": 77734045,
+        "manifest_bytes": 3228,
+        "manifest_sha256": "d185f83496542eabccd84828025fb477852157a1c0e1d0c49ddc172c6c46b958",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/docs/TRABAJO_APRENDIZAJE_CONTINUIDAD.md",
+        "bytes": 4863,
+        "sha256": "51a4d75b3d07ca6393db25d567621c33f4228a8b4c8c5962a09590d213ad6500",
+        "crc32": 1657967899,
+        "manifest_bytes": 4863,
+        "manifest_sha256": "51a4d75b3d07ca6393db25d567621c33f4228a8b4c8c5962a09590d213ad6500",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "crc32": 3529164606,
+        "manifest_bytes": 2369,
+        "manifest_sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/HARNESS.md",
+        "bytes": 4173,
+        "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "crc32": 4014111003,
+        "manifest_bytes": 4173,
+        "manifest_sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/RULES.md",
+        "bytes": 1681,
+        "sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "crc32": 381312430,
+        "manifest_bytes": 1681,
+        "manifest_sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+        "crc32": 1301968727,
+        "manifest_bytes": 758,
+        "manifest_sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+        "crc32": 884263618,
+        "manifest_bytes": 1123,
+        "manifest_sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+        "crc32": 1136625588,
+        "manifest_bytes": 729,
+        "manifest_sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+        "crc32": 3841330949,
+        "manifest_bytes": 1726,
+        "manifest_sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+        "crc32": 3195587725,
+        "manifest_bytes": 776,
+        "manifest_sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+        "crc32": 3529944925,
+        "manifest_bytes": 639,
+        "manifest_sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+        "crc32": 1903734381,
+        "manifest_bytes": 1408,
+        "manifest_sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+        "crc32": 1167076093,
+        "manifest_bytes": 758,
+        "manifest_sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+        "crc32": 203701486,
+        "manifest_bytes": 1883,
+        "manifest_sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+        "crc32": 3279901475,
+        "manifest_bytes": 779,
+        "manifest_sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+        "crc32": 3625173940,
+        "manifest_bytes": 845,
+        "manifest_sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+        "crc32": 2496911495,
+        "manifest_bytes": 897,
+        "manifest_sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+        "crc32": 3117554874,
+        "manifest_bytes": 890,
+        "manifest_sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/governance/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+        "crc32": 450229327,
+        "manifest_bytes": 803,
+        "manifest_sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/plugin/kch-csi-studio/.codex-plugin/plugin.json",
+        "bytes": 1022,
+        "sha256": "44bc5fe19038a73013d6a153a48282e76964d85d8f131d11a02d50dbe68f7626",
+        "crc32": 3054149837,
+        "manifest_bytes": 1022,
+        "manifest_sha256": "44bc5fe19038a73013d6a153a48282e76964d85d8f131d11a02d50dbe68f7626",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/plugin/kch-csi-studio/.mcp.json",
+        "bytes": 114,
+        "sha256": "1e0ef2fc91442ba3b6c4c060192d43413bc2d292e7e4423d1662112477c96fdc",
+        "crc32": 3263992410,
+        "manifest_bytes": 114,
+        "manifest_sha256": "1e0ef2fc91442ba3b6c4c060192d43413bc2d292e7e4423d1662112477c96fdc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/plugin/kch-csi-studio/skills/operate-kch-csi-studio/SKILL.md",
+        "bytes": 2520,
+        "sha256": "af21e6b93435bf7225cb613eb8bb0d48b888be1856dde04a316948ba6f5976ce",
+        "crc32": 4144294782,
+        "manifest_bytes": 2520,
+        "manifest_sha256": "af21e6b93435bf7225cb613eb8bb0d48b888be1856dde04a316948ba6f5976ce",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/plugin/kch-csi-studio/skills/operate-kch-csi-studio/agents/openai.yaml",
+        "bytes": 211,
+        "sha256": "fc0a5090660c506be9e2f1bf9cc37d59b67177b42307cf8a4e612a3401526531",
+        "crc32": 66457127,
+        "manifest_bytes": 211,
+        "manifest_sha256": "fc0a5090660c506be9e2f1bf9cc37d59b67177b42307cf8a4e612a3401526531",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/pyproject.toml",
+        "bytes": 1558,
+        "sha256": "0ab6b2750d3892d01863e565de5e132aa7355f2d1d0ad8c21223ef25b8e7c9ef",
+        "crc32": 399511479,
+        "manifest_bytes": 1558,
+        "manifest_sha256": "0ab6b2750d3892d01863e565de5e132aa7355f2d1d0ad8c21223ef25b8e7c9ef",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/scripts/build_portable_release.py",
+        "bytes": 10792,
+        "sha256": "ad248e80cec1bd2f898fa03861c5d7eb27c6047270dff970b566fc2893690d7e",
+        "crc32": 1639914322,
+        "manifest_bytes": 10792,
+        "manifest_sha256": "ad248e80cec1bd2f898fa03861c5d7eb27c6047270dff970b566fc2893690d7e",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/scripts/extract_and_install.py",
+        "bytes": 5754,
+        "sha256": "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d",
+        "crc32": 1117078253,
+        "manifest_bytes": 5754,
+        "manifest_sha256": "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/scripts/portable_bootstrap.py",
+        "bytes": 5852,
+        "sha256": "4fda463b56e50b05ad7106ee583030be4550b2f5986907a9694af8cfe2362ce8",
+        "crc32": 294114451,
+        "manifest_bytes": 5852,
+        "manifest_sha256": "4fda463b56e50b05ad7106ee583030be4550b2f5986907a9694af8cfe2362ce8",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/scripts/post_install_gate.py",
+        "bytes": 7678,
+        "sha256": "51ceb086f31b892a519557caebefabb1051db50031f4895e3ebf3787f91ae091",
+        "crc32": 2507857628,
+        "manifest_bytes": 7678,
+        "manifest_sha256": "51ceb086f31b892a519557caebefabb1051db50031f4895e3ebf3787f91ae091",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/scripts/run_live_provider_gate.py",
+        "bytes": 3662,
+        "sha256": "b9caaedb3f4645d0cb1c9ae8e742fb9832d77a34c2f986a7c10dc15569faf881",
+        "crc32": 228063641,
+        "manifest_bytes": 3662,
+        "manifest_sha256": "b9caaedb3f4645d0cb1c9ae8e742fb9832d77a34c2f986a7c10dc15569faf881",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_csi_studio_extension_fabric.egg-info/PKG-INFO",
+        "bytes": 753,
+        "sha256": "ed1ce466e08c6c1002488ec500b8395e91f4f1fba4911e7c0c211a0cdaa6ef14",
+        "crc32": 2352977489,
+        "manifest_bytes": 753,
+        "manifest_sha256": "ed1ce466e08c6c1002488ec500b8395e91f4f1fba4911e7c0c211a0cdaa6ef14",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_csi_studio_extension_fabric.egg-info/SOURCES.txt",
+        "bytes": 3392,
+        "sha256": "a9918d61485f6d13bae967efbd6e97a6cbf11cc397bc776c2a0e80754d90183a",
+        "crc32": 1547630752,
+        "manifest_bytes": 3392,
+        "manifest_sha256": "a9918d61485f6d13bae967efbd6e97a6cbf11cc397bc776c2a0e80754d90183a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_csi_studio_extension_fabric.egg-info/dependency_links.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "crc32": 852952723,
+        "manifest_bytes": 1,
+        "manifest_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_csi_studio_extension_fabric.egg-info/entry_points.txt",
+        "bytes": 152,
+        "sha256": "235c260300969154aa7f4228dfc42632a67abd25098908fd62460c21395a8f75",
+        "crc32": 2640181142,
+        "manifest_bytes": 152,
+        "manifest_sha256": "235c260300969154aa7f4228dfc42632a67abd25098908fd62460c21395a8f75",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_csi_studio_extension_fabric.egg-info/requires.txt",
+        "bytes": 356,
+        "sha256": "cbdcc6185eb40e9fe95e424a1771b558ee21106b607324e9ffcfee6af1f1c5a5",
+        "crc32": 3560574456,
+        "manifest_bytes": 356,
+        "manifest_sha256": "cbdcc6185eb40e9fe95e424a1771b558ee21106b607324e9ffcfee6af1f1c5a5",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_csi_studio_extension_fabric.egg-info/top_level.txt",
+        "bytes": 11,
+        "sha256": "3b65e8851c4c53aab05e3f0450b70be5de03074f542af1150ee446ee1ed16ebb",
+        "crc32": 3303815526,
+        "manifest_bytes": 11,
+        "manifest_sha256": "3b65e8851c4c53aab05e3f0450b70be5de03074f542af1150ee446ee1ed16ebb",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/__init__.py",
+        "bytes": 247,
+        "sha256": "6327b98f25726524d6cc3f53ebd6fbfdb55992ddff923b4a567dd8f554bc30ba",
+        "crc32": 101042933,
+        "manifest_bytes": 247,
+        "manifest_sha256": "6327b98f25726524d6cc3f53ebd6fbfdb55992ddff923b4a567dd8f554bc30ba",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/account_broker.py",
+        "bytes": 16510,
+        "sha256": "cec601abc44e58f13ed6fb389aee6eb4e448ae4630040992f155e7c8dc7de734",
+        "crc32": 4047905042,
+        "manifest_bytes": 16510,
+        "manifest_sha256": "cec601abc44e58f13ed6fb389aee6eb4e448ae4630040992f155e7c8dc7de734",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/adapters.py",
+        "bytes": 4921,
+        "sha256": "a608277da1cd485d79398daf90537bdf2b9e7fb186501c26465b5f470138d9cf",
+        "crc32": 676435702,
+        "manifest_bytes": 4921,
+        "manifest_sha256": "a608277da1cd485d79398daf90537bdf2b9e7fb186501c26465b5f470138d9cf",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/advanced_runtime.py",
+        "bytes": 54946,
+        "sha256": "c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a",
+        "crc32": 29821013,
+        "manifest_bytes": 54946,
+        "manifest_sha256": "c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/audio_hub.py",
+        "bytes": 16741,
+        "sha256": "5b40ec570a0f6538722af81992c53fa6af19a1a84820f6c0af3bc3271c1e991f",
+        "crc32": 4061573079,
+        "manifest_bytes": 16741,
+        "manifest_sha256": "5b40ec570a0f6538722af81992c53fa6af19a1a84820f6c0af3bc3271c1e991f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/checkpoints.py",
+        "bytes": 15580,
+        "sha256": "d6645412e66031520eff4d226fb0a7431b01de11a11cc021ca60976a2a85e9fd",
+        "crc32": 3927546726,
+        "manifest_bytes": 15580,
+        "manifest_sha256": "d6645412e66031520eff4d226fb0a7431b01de11a11cc021ca60976a2a85e9fd",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/cli.py",
+        "bytes": 2860,
+        "sha256": "ae7ad93ac96a76ba30446d3f2c33d76624ad7cba512a4539e8e003e9c97548ff",
+        "crc32": 1645916650,
+        "manifest_bytes": 2860,
+        "manifest_sha256": "ae7ad93ac96a76ba30446d3f2c33d76624ad7cba512a4539e8e003e9c97548ff",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/clipboard_hub.py",
+        "bytes": 23731,
+        "sha256": "9b779e00fd945debfa3001f30ee143d5b1b3d8cabc06c483770d45c5e2e74f5f",
+        "crc32": 3342866033,
+        "manifest_bytes": 23731,
+        "manifest_sha256": "9b779e00fd945debfa3001f30ee143d5b1b3d8cabc06c483770d45c5e2e74f5f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/constitutional.py",
+        "bytes": 12220,
+        "sha256": "d63e08b2ccfaf29814e5c74f7dea490090e211d4bc50cb5d818edec2473ac76d",
+        "crc32": 4153404694,
+        "manifest_bytes": 12220,
+        "manifest_sha256": "d63e08b2ccfaf29814e5c74f7dea490090e211d4bc50cb5d818edec2473ac76d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/construct_mode.py",
+        "bytes": 13082,
+        "sha256": "4583a8bde7cc7851545b21a32f894a870b66bc263e0756862d4986085d4e4166",
+        "crc32": 3163877062,
+        "manifest_bytes": 13082,
+        "manifest_sha256": "4583a8bde7cc7851545b21a32f894a870b66bc263e0756862d4986085d4e4166",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/contracts.py",
+        "bytes": 6797,
+        "sha256": "31221f806a221c3d40a3932065c5481de17472a6cb983c69480be089bee21fe9",
+        "crc32": 2239655914,
+        "manifest_bytes": 6797,
+        "manifest_sha256": "31221f806a221c3d40a3932065c5481de17472a6cb983c69480be089bee21fe9",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/__init__.py",
+        "bytes": 81,
+        "sha256": "b30644b2fc8cfe1c7605e8d459309ca0c6b8d5f5c1e2b1376bb91d4e76df8d54",
+        "crc32": 3012753381,
+        "manifest_bytes": 81,
+        "manifest_sha256": "b30644b2fc8cfe1c7605e8d459309ca0c6b8d5f5c1e2b1376bb91d4e76df8d54",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/audio/speak_windows.ps1",
+        "bytes": 622,
+        "sha256": "7d367a36d04060c9d21e1bd4f0ac8bab21b954f77dd5876270a4c741066d66ee",
+        "crc32": 1150780203,
+        "manifest_bytes": 622,
+        "manifest_sha256": "7d367a36d04060c9d21e1bd4f0ac8bab21b954f77dd5876270a4c741066d66ee",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/audio/transcribe_windows.ps1",
+        "bytes": 1646,
+        "sha256": "afb281f742feafc186cd99dbd4f8c99ce973e57e7c0907172fce27a77d84d5a3",
+        "crc32": 409370200,
+        "manifest_bytes": 1646,
+        "manifest_sha256": "afb281f742feafc186cd99dbd4f8c99ce973e57e7c0907172fce27a77d84d5a3",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/.kch-csi-generated-v0.1.0",
+        "bytes": 33,
+        "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a",
+        "crc32": 213275312,
+        "manifest_bytes": 33,
+        "manifest_sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/codex/.codex/rules/kch-generated.rules",
+        "bytes": 216,
+        "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc",
+        "crc32": 2253153677,
+        "manifest_bytes": 216,
+        "manifest_sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/codex/AGENTS.md",
+        "bytes": 15776,
+        "sha256": "65666430041d6dfce1a3fc50b7e357d477a5fe906148fd181b896ed57a683b95",
+        "crc32": 3388749154,
+        "manifest_bytes": 15776,
+        "manifest_sha256": "65666430041d6dfce1a3fc50b7e357d477a5fe906148fd181b896ed57a683b95",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/codex/COMPATIBILITY_RECEIPT.json",
+        "bytes": 640,
+        "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf",
+        "crc32": 4290572907,
+        "manifest_bytes": 640,
+        "manifest_sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/csi/governance_graph.json",
+        "bytes": 18049,
+        "sha256": "2a3f4e0a25e223bdc5fee6ad68f63cc8236b8de36a018044a6b319a25306a393",
+        "crc32": 2044232781,
+        "manifest_bytes": 18049,
+        "manifest_sha256": "2a3f4e0a25e223bdc5fee6ad68f63cc8236b8de36a018044a6b319a25306a393",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/generic/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "crc32": 3529164606,
+        "manifest_bytes": 2369,
+        "manifest_sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/generic/HARNESS.md",
+        "bytes": 4173,
+        "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "crc32": 4014111003,
+        "manifest_bytes": 4173,
+        "manifest_sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/generic/RULES.md",
+        "bytes": 1681,
+        "sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "crc32": 381312430,
+        "manifest_bytes": 1681,
+        "manifest_sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/governance.lock.json",
+        "bytes": 10334,
+        "sha256": "7a4200756379234d23e8520cb86695d3753d1e99c2c3ff02da31e7845f169c89",
+        "crc32": 1928064524,
+        "manifest_bytes": 10334,
+        "manifest_sha256": "7a4200756379234d23e8520cb86695d3753d1e99c2c3ff02da31e7845f169c89",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "crc32": 3529164606,
+        "manifest_bytes": 2369,
+        "manifest_sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/HARNESS.md",
+        "bytes": 4173,
+        "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "crc32": 4014111003,
+        "manifest_bytes": 4173,
+        "manifest_sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/RULES.md",
+        "bytes": 1681,
+        "sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "crc32": 381312430,
+        "manifest_bytes": 1681,
+        "manifest_sha256": "5ea543028ace7be81108501ceeaee4cd2eeaa397ebe668788679ac466f89d9ae",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+        "crc32": 1301968727,
+        "manifest_bytes": 758,
+        "manifest_sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+        "crc32": 884263618,
+        "manifest_bytes": 1123,
+        "manifest_sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+        "crc32": 1136625588,
+        "manifest_bytes": 729,
+        "manifest_sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+        "crc32": 3841330949,
+        "manifest_bytes": 1726,
+        "manifest_sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+        "crc32": 3195587725,
+        "manifest_bytes": 776,
+        "manifest_sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+        "crc32": 3529944925,
+        "manifest_bytes": 639,
+        "manifest_sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+        "crc32": 1903734381,
+        "manifest_bytes": 1408,
+        "manifest_sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+        "crc32": 1167076093,
+        "manifest_bytes": 758,
+        "manifest_sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+        "crc32": 203701486,
+        "manifest_bytes": 1883,
+        "manifest_sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+        "crc32": 3279901475,
+        "manifest_bytes": 779,
+        "manifest_sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+        "crc32": 3625173940,
+        "manifest_bytes": 845,
+        "manifest_sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+        "crc32": 2496911495,
+        "manifest_bytes": 897,
+        "manifest_sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+        "crc32": 3117554874,
+        "manifest_bytes": 890,
+        "manifest_sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/data/governance/source/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+        "crc32": 450229327,
+        "manifest_bytes": 803,
+        "manifest_sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/diction_learning.py",
+        "bytes": 12480,
+        "sha256": "1ab599b58ed155383b901dac57d4ad715180fcd2165fdcde67734ef6881fdf69",
+        "crc32": 693997804,
+        "manifest_bytes": 12480,
+        "manifest_sha256": "1ab599b58ed155383b901dac57d4ad715180fcd2165fdcde67734ef6881fdf69",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/extension.py",
+        "bytes": 23529,
+        "sha256": "7f83e2e9b6303eb9123093ed0a1108279421a0a6df9fc369e6da4776eaaaf19d",
+        "crc32": 2500996649,
+        "manifest_bytes": 23529,
+        "manifest_sha256": "7f83e2e9b6303eb9123093ed0a1108279421a0a6df9fc369e6da4776eaaaf19d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/federated_runtime.py",
+        "bytes": 22884,
+        "sha256": "3895c1b02321c2e3adc636263fce5919177bda1426aed01f738866c79a37ac5f",
+        "crc32": 2890491164,
+        "manifest_bytes": 22884,
+        "manifest_sha256": "3895c1b02321c2e3adc636263fce5919177bda1426aed01f738866c79a37ac5f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/generators.py",
+        "bytes": 41018,
+        "sha256": "2b138aa1af28bcca57ae63c877e40eeaca79f14b97fe1a82644419751f00e7f9",
+        "crc32": 3058022646,
+        "manifest_bytes": 41018,
+        "manifest_sha256": "2b138aa1af28bcca57ae63c877e40eeaca79f14b97fe1a82644419751f00e7f9",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/installation.py",
+        "bytes": 6527,
+        "sha256": "59b080708e4c91eb6cd149f70290344f6cd9c8a9aa5230489a32c26549414239",
+        "crc32": 4183919680,
+        "manifest_bytes": 6527,
+        "manifest_sha256": "59b080708e4c91eb6cd149f70290344f6cd9c8a9aa5230489a32c26549414239",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/kwandata.py",
+        "bytes": 22297,
+        "sha256": "c39054cb93a32ee5be6ecbc9bf96868228fec41ee86dcc94eaa917b0a20c64af",
+        "crc32": 2373172692,
+        "manifest_bytes": 22297,
+        "manifest_sha256": "c39054cb93a32ee5be6ecbc9bf96868228fec41ee86dcc94eaa917b0a20c64af",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/launcher.py",
+        "bytes": 9902,
+        "sha256": "0369c41311e90541c645751c9a8717b56f4bc294708314c52b9244b58643a759",
+        "crc32": 208754925,
+        "manifest_bytes": 9902,
+        "manifest_sha256": "0369c41311e90541c645751c9a8717b56f4bc294708314c52b9244b58643a759",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/mcp_server.py",
+        "bytes": 14464,
+        "sha256": "676809b089f142ba4bfabc6fb24f5cd8aed017d05c4ce28f74a0328eafa384b4",
+        "crc32": 3773141588,
+        "manifest_bytes": 14464,
+        "manifest_sha256": "676809b089f142ba4bfabc6fb24f5cd8aed017d05c4ce28f74a0328eafa384b4",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/mis_service.py",
+        "bytes": 48280,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582",
+        "crc32": 445513673,
+        "manifest_bytes": 48280,
+        "manifest_sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/operational_surface.py",
+        "bytes": 36240,
+        "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f",
+        "crc32": 4113223474,
+        "manifest_bytes": 36240,
+        "manifest_sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/permissions.py",
+        "bytes": 13656,
+        "sha256": "ba8d48b7a964a4cddff62a68836f1a037297c8323e8b7a416c75f722ac301d5f",
+        "crc32": 883386464,
+        "manifest_bytes": 13656,
+        "manifest_sha256": "ba8d48b7a964a4cddff62a68836f1a037297c8323e8b7a416c75f722ac301d5f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/persistence.py",
+        "bytes": 14588,
+        "sha256": "dfce6eac6a1f825819a4d500418e60873a9ee35608bbd514cd75da5997ce7b1a",
+        "crc32": 480762265,
+        "manifest_bytes": 14588,
+        "manifest_sha256": "dfce6eac6a1f825819a4d500418e60873a9ee35608bbd514cd75da5997ce7b1a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/proactive.py",
+        "bytes": 14306,
+        "sha256": "c1d3b37e6a170cb59dbe82804480672df74fd92679262a5ac945da975f2b5403",
+        "crc32": 1239421594,
+        "manifest_bytes": 14306,
+        "manifest_sha256": "c1d3b37e6a170cb59dbe82804480672df74fd92679262a5ac945da975f2b5403",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/recovery.py",
+        "bytes": 14268,
+        "sha256": "eb8553944ecdf7e76a96073ebdd33d6958f4ea6155c4f41e2c2d58896c13c039",
+        "crc32": 2468367120,
+        "manifest_bytes": 14268,
+        "manifest_sha256": "eb8553944ecdf7e76a96073ebdd33d6958f4ea6155c4f41e2c2d58896c13c039",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/safeguards.py",
+        "bytes": 4513,
+        "sha256": "381414abd62ee6691d91ae07f1883ed73fb7d58a5a5c17870b724e1a78883ecd",
+        "crc32": 2818656383,
+        "manifest_bytes": 4513,
+        "manifest_sha256": "381414abd62ee6691d91ae07f1883ed73fb7d58a5a5c17870b724e1a78883ecd",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/scheduler.py",
+        "bytes": 15384,
+        "sha256": "acd4ea866f331429a76b274624e639b955e0d0e5faa1ea547fc8ee34388da226",
+        "crc32": 3489854333,
+        "manifest_bytes": 15384,
+        "manifest_sha256": "acd4ea866f331429a76b274624e639b955e0d0e5faa1ea547fc8ee34388da226",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/store.py",
+        "bytes": 11645,
+        "sha256": "dd70fe8b4301f2a83640ac587a513f57e30e35502c39b2fc28443bc5ac446485",
+        "crc32": 4134662673,
+        "manifest_bytes": 11645,
+        "manifest_sha256": "dd70fe8b4301f2a83640ac587a513f57e30e35502c39b2fc28443bc5ac446485",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/studio.py",
+        "bytes": 12740,
+        "sha256": "2338a290b3dfd49bf5fd46b2a62fcfc7afbdd78f25cba938c7652d8f852f8ab0",
+        "crc32": 3291405417,
+        "manifest_bytes": 12740,
+        "manifest_sha256": "2338a290b3dfd49bf5fd46b2a62fcfc7afbdd78f25cba938c7652d8f852f8ab0",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/super_mcp_overlay.py",
+        "bytes": 8583,
+        "sha256": "568c88c36c2f12a94b61bf182bce7313cb8cec62bd107cfa10f308d2b1ba7adc",
+        "crc32": 33561309,
+        "manifest_bytes": 8583,
+        "manifest_sha256": "568c88c36c2f12a94b61bf182bce7313cb8cec62bd107cfa10f308d2b1ba7adc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/surface_contract.py",
+        "bytes": 15463,
+        "sha256": "385e05e7d28cdf6345c23d419366fc5c2efba8bde20a1e628f18f8b478449b3f",
+        "crc32": 2848976258,
+        "manifest_bytes": 15463,
+        "manifest_sha256": "385e05e7d28cdf6345c23d419366fc5c2efba8bde20a1e628f18f8b478449b3f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/ui.py",
+        "bytes": 71648,
+        "sha256": "23951a8c0c5e9ede087021b7274bc8a9a50df9bd504595513f4a41b8fb99c5a4",
+        "crc32": 3542575312,
+        "manifest_bytes": 71648,
+        "manifest_sha256": "23951a8c0c5e9ede087021b7274bc8a9a50df9bd504595513f4a41b8fb99c5a4",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/universal_text.py",
+        "bytes": 16467,
+        "sha256": "d0cdf6718a3772c6202de6ac48a41598b9acb2711a5413a264437aee6d5bed95",
+        "crc32": 3430729491,
+        "manifest_bytes": 16467,
+        "manifest_sha256": "d0cdf6718a3772c6202de6ac48a41598b9acb2711a5413a264437aee6d5bed95",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/workbench_suite.py",
+        "bytes": 70869,
+        "sha256": "00783cf6ab4b26b1d4158d07166e1f37af4bf904c1b9a8b81d3a4dce9c886383",
+        "crc32": 3471300422,
+        "manifest_bytes": 70869,
+        "manifest_sha256": "00783cf6ab4b26b1d4158d07166e1f37af4bf904c1b9a8b81d3a4dce9c886383",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/src/kch_studio/workbench_surface.py",
+        "bytes": 13154,
+        "sha256": "f955fcd9811117c3c94c07ea4acbabeaa341da6fc385fb7d20b949e24e603746",
+        "crc32": 76301328,
+        "manifest_bytes": 13154,
+        "manifest_sha256": "f955fcd9811117c3c94c07ea4acbabeaa341da6fc385fb7d20b949e24e603746",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_advanced_layers.py",
+        "bytes": 11417,
+        "sha256": "1b68a689870b4b7aa2445b8c4e483203e0c7f776ca3da7860c1970806ba9c5bc",
+        "crc32": 3292686434,
+        "manifest_bytes": 11417,
+        "manifest_sha256": "1b68a689870b4b7aa2445b8c4e483203e0c7f776ca3da7860c1970806ba9c5bc",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_extension.py",
+        "bytes": 2449,
+        "sha256": "d0bd24a0ae44dc3795556dd9f48db4d0fbecc3729673c14d3c4ff39494060e3d",
+        "crc32": 2830423490,
+        "manifest_bytes": 2449,
+        "manifest_sha256": "d0bd24a0ae44dc3795556dd9f48db4d0fbecc3729673c14d3c4ff39494060e3d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_mcp_ui.py",
+        "bytes": 2878,
+        "sha256": "d94058d6aff412846b1061d6f10d67e6f632d11f9e4b0793bb33c9a2915e8e63",
+        "crc32": 2907908252,
+        "manifest_bytes": 2878,
+        "manifest_sha256": "d94058d6aff412846b1061d6f10d67e6f632d11f9e4b0793bb33c9a2915e8e63",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_mis_federation.py",
+        "bytes": 5254,
+        "sha256": "4229fc16f9c2f2b44f5d5985ff5d397cdd733ddccd385ffddb4e1b2c8c179e5f",
+        "crc32": 2618985629,
+        "manifest_bytes": 5254,
+        "manifest_sha256": "4229fc16f9c2f2b44f5d5985ff5d397cdd733ddccd385ffddb4e1b2c8c179e5f",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_operational_surface.py",
+        "bytes": 6068,
+        "sha256": "715fcddb477f89ff8312d8149afa44be73736a509788b3214c290b6cdbaaf22a",
+        "crc32": 4091731430,
+        "manifest_bytes": 6068,
+        "manifest_sha256": "715fcddb477f89ff8312d8149afa44be73736a509788b3214c290b6cdbaaf22a",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_portable_paths.py",
+        "bytes": 1076,
+        "sha256": "2602e6f3c3642dacd9456be9ea625b9dbb1cceb580f3be2ffab034a81a3b12b5",
+        "crc32": 4198697245,
+        "manifest_bytes": 1076,
+        "manifest_sha256": "2602e6f3c3642dacd9456be9ea625b9dbb1cceb580f3be2ffab034a81a3b12b5",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_studio.py",
+        "bytes": 8316,
+        "sha256": "d47ad7a5810d03d3158d168fa275c228d351dfb976e40789c3487f9e16029974",
+        "crc32": 2413030980,
+        "manifest_bytes": 8316,
+        "manifest_sha256": "d47ad7a5810d03d3158d168fa275c228d351dfb976e40789c3487f9e16029974",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "source/kch-studio/tests/test_workbench_suite.py",
+        "bytes": 7262,
+        "sha256": "38eee9ef78acc623169fa743f6e63460e8c1321b6db9427c08faef4f0817cd31",
+        "crc32": 502534076,
+        "manifest_bytes": 7262,
+        "manifest_sha256": "38eee9ef78acc623169fa743f6e63460e8c1321b6db9427c08faef4f0817cd31",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/cffi-2.1.1-cp314-cp314-win_amd64.whl",
+        "bytes": 187949,
+        "sha256": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48",
+        "crc32": 460092081,
+        "manifest_bytes": 187949,
+        "manifest_sha256": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kch_csi_studio_extension_fabric-0.2.0-py3-none-any.whl",
+        "bytes": 214415,
+        "sha256": "a7855f80ebbf2347f6482b755f1fbf6827df05e2ec1a7446c938bc2fc52c373e",
+        "crc32": 1696498713,
+        "manifest_bytes": 214415,
+        "manifest_sha256": "a7855f80ebbf2347f6482b755f1fbf6827df05e2ec1a7446c938bc2fc52c373e",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kch_mis_v03_integration-0.1.0-py3-none-any.whl",
+        "bytes": 15355,
+        "sha256": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+        "crc32": 277373996,
+        "manifest_bytes": 15355,
+        "manifest_sha256": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kch_obl_phl_learning_system-0.1.1-py3-none-any.whl",
+        "bytes": 25779,
+        "sha256": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+        "crc32": 3379520778,
+        "manifest_bytes": 25779,
+        "manifest_sha256": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+        "bytes": 11281,
+        "sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+        "crc32": 1270810771,
+        "manifest_bytes": 11281,
+        "manifest_sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kch_rigor_gradient_governor-0.1.0-py3-none-any.whl",
+        "bytes": 9018,
+        "sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+        "crc32": 1713776302,
+        "manifest_bytes": 9018,
+        "manifest_sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+        "bytes": 14327,
+        "sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+        "crc32": 552481653,
+        "manifest_bytes": 14327,
+        "manifest_sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kwancode_harness-0.11.0-py3-none-any.whl",
+        "bytes": 30497,
+        "sha256": "1895dfadba8ceea025bd1ff5090fa2f96af66304bf550fe474751186f6799930",
+        "crc32": 149781414,
+        "manifest_bytes": 30497,
+        "manifest_sha256": "1895dfadba8ceea025bd1ff5090fa2f96af66304bf550fe474751186f6799930",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/kwanprompts-0.1.0-py3-none-any.whl",
+        "bytes": 13443,
+        "sha256": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+        "crc32": 222419114,
+        "manifest_bytes": 13443,
+        "manifest_sha256": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+        "bytes": 19051,
+        "sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+        "crc32": 2044929622,
+        "manifest_bytes": 19051,
+        "manifest_sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/numpy-2.5.2-cp314-cp314-win_amd64.whl",
+        "bytes": 12597627,
+        "sha256": "7587f53dfbd5edc0f7b87c6217b4c6d2d1f2ef9c3da70bc1315e7db5f8d7ec9d",
+        "crc32": 315102147,
+        "manifest_bytes": 12597627,
+        "manifest_sha256": "7587f53dfbd5edc0f7b87c6217b4c6d2d1f2ef9c3da70bc1315e7db5f8d7ec9d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/pillow-12.3.0-cp314-cp314-win_amd64.whl",
+        "bytes": 7237707,
+        "sha256": "fdafc9cce40277e0f7a0feabce0ee50dd2fa1800f3b38015e51296b5e814048d",
+        "crc32": 638526607,
+        "manifest_bytes": 7237707,
+        "manifest_sha256": "fdafc9cce40277e0f7a0feabce0ee50dd2fa1800f3b38015e51296b5e814048d",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/pycparser-3.0-py3-none-any.whl",
+        "bytes": 48172,
+        "sha256": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+        "crc32": 2508215293,
+        "manifest_bytes": 48172,
+        "manifest_sha256": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/pypdf-6.15.0-py3-none-any.whl",
+        "bytes": 378123,
+        "sha256": "14e001d6504822cb1ca9c7ed9a69bccb320f59b320730f55af804361abe4d5ee",
+        "crc32": 1017620509,
+        "manifest_bytes": 378123,
+        "manifest_sha256": "14e001d6504822cb1ca9c7ed9a69bccb320f59b320730f55af804361abe4d5ee",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/sounddevice-0.5.5-py3-none-win_amd64.whl",
+        "bytes": 365324,
+        "sha256": "cfc6b2c49fb7f555591c78cb8ecf48d6a637fd5b6e1db5fec6ed9365d64b3519",
+        "crc32": 620439796,
+        "manifest_bytes": 365324,
+        "manifest_sha256": "cfc6b2c49fb7f555591c78cb8ecf48d6a637fd5b6e1db5fec6ed9365d64b3519",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "wheelhouse/tzdata-2025.2-py2.py3-none-any.whl",
+        "bytes": 347839,
+        "sha256": "1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
+        "crc32": 2204730611,
+        "manifest_bytes": 347839,
+        "manifest_sha256": "1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
+        "bytes_match": true,
+        "sha256_match": true
+      }
+    ],
+    "undeclared_members": [
+      "KCH_0.11_PRE2G_R9/MANIFEST_PRESEAL.json"
+    ],
+    "missing_declared_members": [],
+    "all_declared_bytes_match": true,
+    "all_declared_sha256_match": true,
+    "manifest_count_matches_declared_entries": true,
+    "unique_root_pass": true
+  },
+  "adverse_chronology": {
+    "R6": {
+      "release": "R6",
+      "installation": "INSTALL_FAILED_PRESERVED",
+      "class": "bootstrap",
+      "observed": "Traceback (most recent call last):\n  File \"C:\\Users\\User\\AppData\\Local\\KCH\\packages\\pre2g-r6\\KCH_0.11_PRE2G_R6\\scripts\\portable_bootstrap.py\", line 173, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\User\\AppData\\Local\\KCH\\packages\\pre2g-r6\\KCH_0.11_PRE2G_R6\\scripts\\portable_bootstrap.py\", line 53, in main\n    runtime.mkdir(exist_ok=True)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 1016, in mkdir\n    os.mkdir(self, mode)\n    ~~~~~~~~^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] El sistema no puede encontrar la ruta especificada: 'C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\KCH\\\\runtimes\\\\819881d98d5b'\n",
+      "meaning": "El bootstrap no pudo crear el runtime por ruta padre inexistente; el fallo quedó preservado."
+    },
+    "R7": {
+      "release": "R7",
+      "installation": "PASS",
+      "class": "wrapper",
+      "observed": "CHECK_WRAPPER_MISSING_PATH_SEPARATOR_AFTER_RUNTIME_PATHS_RELOAD",
+      "path": "KCH_0.11_PRE2G_R7scripts/post_install_gate.py",
+      "meaning": "La instalación pasó, pero CHECK no llegó a ejecutar el gate por separador de ruta ausente; no adjudica fallo al runtime."
+    },
+    "R8": {
+      "release": "R8",
+      "installation": "PASS",
+      "class": "runtime_dependency",
+      "observed": "TIMEOUT_NO_FINAL_RECEIPT",
+      "diagnosis": {
+        "schema": "kch.portable-initialize-diagnosis.v0.1.0",
+        "release": "KCH_0.11_PRE2G_R8",
+        "observed_gate_stage": "initialize",
+        "observed_timeout_seconds": 60,
+        "direct_constructor_probe": "FAIL",
+        "exception": "zoneinfo._common.ZoneInfoNotFoundError",
+        "missing_zone": "Europe/Madrid",
+        "causal_localization": "tzdata wheel absent from clean Windows venv",
+        "global_python_tzdata_version": "2025.2",
+        "source_suite_false_green_reason": "global interpreter had tzdata; clean portable runtime did not",
+        "runtime_or_super_mcp_initialized": false,
+        "historical_result_immutable": true,
+        "corrective_action": "Declare tzdata, include its verified wheel in the offline wheelhouse and require it at build time."
+      },
+      "meaning": "El runtime limpio alcanzó initialize y falló por dependencia tzdata ausente; el intérprete global produjo un falso verde de la suite de fuente."
+    },
+    "R9": {
+      "release": "R9",
+      "installation": "INSTALL_COMPLETED",
+      "class": "builder_and_clean_release_repair",
+      "observed": {
+        "install": "INSTALL_COMPLETED",
+        "gate": "PASS_BOUNDED",
+        "checks": "14/14"
+      },
+      "meaning": "El rebuild incorporó la reparación de bootstrap/wrapper/dependencia y produjo instalación limpia con gate persistido PASS_BOUNDED; esto no es validación industrial."
+    },
+    "failure_class_boundaries": {
+      "builder": "R9 es evidencia de release reconstruido; no existe un recibo separado que adjudique un fallo de builder como causa única.",
+      "bootstrap": "R6.",
+      "wrapper": "R7.",
+      "dependency": "R8 tzdata ausente.",
+      "runtime": "R8 initialize/ZoneInfoNotFoundError."
+    },
+    "historical_results_immutable": true
+  },
+  "installed_gate_verification": {
+    "live_kch_used": false,
+    "source": "persisted R9 installation and post-install receipts only",
+    "gate": "PASS_BOUNDED",
+    "checks_passed": 14,
+    "checks_total": 14,
+    "all_gate_checks_true": true,
+    "combined_tool_count": 247,
+    "wheel_count": 16,
+    "wheel_names": [
+      "cffi-2.1.1-cp314-cp314-win_amd64.whl",
+      "kch_csi_studio_extension_fabric-0.2.0-py3-none-any.whl",
+      "kch_mis_v03_integration-0.1.0-py3-none-any.whl",
+      "kch_obl_phl_learning_system-0.1.1-py3-none-any.whl",
+      "kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+      "kch_rigor_gradient_governor-0.1.0-py3-none-any.whl",
+      "kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+      "kwancode_harness-0.11.0-py3-none-any.whl",
+      "kwanprompts-0.1.0-py3-none-any.whl",
+      "mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+      "numpy-2.5.2-cp314-cp314-win_amd64.whl",
+      "pillow-12.3.0-cp314-cp314-win_amd64.whl",
+      "pycparser-3.0-py3-none-any.whl",
+      "pypdf-6.15.0-py3-none-any.whl",
+      "sounddevice-0.5.5-py3-none-win_amd64.whl",
+      "tzdata-2025.2-py2.py3-none-any.whl"
+    ],
+    "tzdata_wheel_2025_2_present": true,
+    "canonical_preflight": {
+      "schema": "kch.canonical-preflight.v0.2.0",
+      "gate": "PASS",
+      "canonical_entrypoint": "kch_studio.mcp_server:StudioMCP",
+      "internal_component_not_a_canonical_entrypoint": "kch_studio.advanced_runtime:KCHAdvancedRuntime",
+      "checks": {
+        "compiled_governance": true,
+        "governance_hierarchy": true,
+        "all_strategic_invariant": true,
+        "full_strategic_surface": true,
+        "launcher_blind_spots_absent": true,
+        "phl_authorized": true
+      },
+      "governance": {
+        "state": "VERIFIED_COMPILED_GOVERNANCE",
+        "graph_hash": "d3b85f12dc8451ee260c001f1976895d0009a5a7058506a833833a42c38e705f",
+        "hierarchy": [
+          "HARNESS",
+          "AGENTS",
+          "RULES"
+        ],
+        "node_count": 17,
+        "source_nodes_verified": 17,
+        "compiled_artifacts_verified": 8,
+        "all_strategic_invariant": true
+      },
+      "strategic_surface": {
+        "schema": "kch.strategic-surface-audit.v0.2.0",
+        "gate": "PASS",
+        "classes": 30,
+        "scope": "FULL_INTEGRATED",
+        "public_methods": 221,
+        "tool_exposed_methods": 195,
+        "composition_internal_methods": 26,
+        "missing_classifications": {},
+        "stale_classifications": {},
+        "missing_tools": {},
+        "claim_ceiling": "SURFACE_CLASSIFICATION_AND_BINDING_ONLY",
+        "production_readiness_established": false
+      },
+      "capability_blind_spots": [],
+      "phl": {
+        "authorized": true,
+        "training_executed": false,
+        "real_feedback_executed": false
+      },
+      "external_installation_performed": false,
+      "claim_ceiling": "CANONICAL_LOCAL_STARTUP_AND_BINDING_GATE_ONLY",
+      "industrial_validation_established": false
+    },
+    "governance_node_count": 17,
+    "integrated_surface": {
+      "schema": "kch.strategic-surface-audit.v0.2.0",
+      "gate": "PASS",
+      "classes": 30,
+      "scope": "FULL_INTEGRATED",
+      "public_methods": 221,
+      "tool_exposed_methods": 195,
+      "composition_internal_methods": 26,
+      "missing_classifications": {},
+      "stale_classifications": {},
+      "missing_tools": {},
+      "claim_ceiling": "SURFACE_CLASSIFICATION_AND_BINDING_ONLY",
+      "production_readiness_established": false
+    },
+    "workbench_integrity": {
+      "schema": "kch.workbench-integrity.v0.1.0",
+      "gate": "PASS",
+      "event_count": 0,
+      "source_count": 0,
+      "protocol_count": 0,
+      "skill_count": 0,
+      "errors": []
+    },
+    "mis_480_records": true,
+    "mis_60_ledgers": true,
+    "mis_authority_false": true,
+    "authority_false": true,
+    "phl_authorized": true,
+    "phl_training_executed": false,
+    "phl_real_executed": false,
+    "external_installation_performed": false,
+    "receipt_archive_hash_matches_case": true
+  },
+  "prepilot_reconciliation": {
+    "evaluations": [
+      {
+        "case_id": "KCH-PREPILOT-001",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_001\\evaluation.json",
+        "condition_integrity": {
+          "baseline": "PASS",
+          "harness": "FAIL_WRONG_INTERNAL_ENTRYPOINT_AND_FALSE_FULL_SURFACE_SCOPE",
+          "comparative_efficacy_gate": "INVALID_CONDITION_INTEGRITY",
+          "historical_result_immutable": true
+        },
+        "comparative_condition_gate": "INVALID_CONDITION_INTEGRITY",
+        "descriptive_outcome": "NOT_ESTIMABLE",
+        "causal_effect": "NOT_ESTIMABLE",
+        "industrial_validation": false,
+        "interpretation": "Both arms completed the deterministic corpus receipt and exact-call research, but the harness arm invoked a noncanonical internal component and failed its own preflight. Scores are descriptive response-quality diagnostics only and cannot estimate KCH benefit.",
+        "next_gate": "Repeat the same frozen case with kch_preflight through StudioMCP, then add replicated historical failure cases under a blinded evaluator."
+      },
+      {
+        "case_id": "KCH-PREPILOT-002",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\evaluation.json",
+        "condition_integrity": {
+          "baseline": "PASS",
+          "harness": "FAIL_WRONG_INTERNAL_ENTRYPOINT_AND_FALSE_FULL_SURFACE_SCOPE",
+          "comparative_efficacy_gate": "INVALID_CONDITION_INTEGRITY",
+          "historical_result_immutable": true
+        },
+        "comparative_condition_gate": "PASS_SINGLE_NONRANDOMIZED_PAIR",
+        "descriptive_outcome": "TIE",
+        "causal_effect": "NOT_ESTIMABLE",
+        "industrial_validation": false,
+        "interpretation": "A valid condition gate would establish only that the intended baseline and canonical KCH-assisted procedures ran. One nonrandomized pair cannot establish causal benefit, industrial validity, user utility or BIND readiness.",
+        "next_gate": "Add distinct historical failure classes, independent repetitions and condition-blinded adjudication; only then begin estimating error-avoidance and process-value signals."
+      }
+    ],
+    "effect_boundary": "001 INVALID_CONDITION_INTEGRITY and NOT_ESTIMABLE; 002 conditions PASS, descriptive TIE 95/95, causal effect NOT_ESTIMABLE; neither establishes superiority or industrial validation."
+  },
+  "release_adjudication": {
+    "adjudication": "READY_FOR_CONTROLLED_DOGFOOD_NOT_INDUSTRIAL_VALIDATION",
+    "allowed": [
+      "NOT_READY",
+      "READY_FOR_CONTROLLED_DOGFOOD_NOT_INDUSTRIAL_VALIDATION",
+      "INDUSTRIAL_VALIDATION_ESTABLISHED"
+    ],
+    "reason": "Todos los gates de release solicitados pasan en los recibos persistidos de R9, pero no hay PHL entrenado, no hay ejecución viva en esta auditoría, no hay evidencia industrial ni efecto causal estimable."
+  },
+  "bind_boundary": {
+    "document": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\docs\\BIND_2026_PREPILOTO.md",
+    "document_sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c",
+    "document_bytes": 4419,
+    "document_contains_exact_group": true,
+    "primary_fit": "Grupo 6 / ID36 — Knowledge management and transfer within the organisation",
+    "secondary_fit": [
+      "Grupo 6 / ID31",
+      "Grupo 6 / ID33",
+      "Grupo 6 / ID42"
+    ],
+    "boundary": "Encaje de problema no equivale a piloto, market readiness, selección, contrato, integración industrial, certificación o eficacia de ciberseguridad."
+  },
+  "claim_ceiling": {
+    "ceiling": "LOCAL_PORTABLE_PREPRODUCTION_AND_PREPILOT_EVIDENCE_ONLY",
+    "not_established": [
+      "superioridad causal",
+      "ergonomía o utilidad de usuario",
+      "seguridad independiente",
+      "completitud de hosts",
+      "PHL entrenado",
+      "piloto industrial",
+      "industrial validation",
+      "BIND market readiness",
+      "selección o contrato BIND"
+    ],
+    "positive_evidence": [
+      "integridad exacta de inputs",
+      "ZIP R9 verificable",
+      "instalación portable limpia persistida",
+      "gate R9 14/14",
+      "preflight canónico PASS",
+      "superficie integrada clasificada",
+      "MIS 480/60 reportado",
+      "autoridad no escalada",
+      "PHL autorizado pero no ejecutado"
+    ]
+  },
+  "abstentions": [
+    "No se importó, instanció ni llamó KCH.",
+    "No se ejecutó PHL.",
+    "No se extrajo ni modificó el ZIP.",
+    "No se ejecutó el runtime instalado.",
+    "No se estimó efecto causal a partir de 001/002.",
+    "No se promovieron tests, hashes, clean install, empate ni preflight a superioridad, seguridad, ergonomía, completitud de hosts, piloto industrial o readiness BIND."
+  ]
+}

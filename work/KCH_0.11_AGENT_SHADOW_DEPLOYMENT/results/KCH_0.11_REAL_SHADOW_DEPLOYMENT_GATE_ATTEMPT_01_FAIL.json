@@ -1,0 +1,297 @@
+{
+  "schema": "kch.real-shadow-deployment-gate-result.v0.1.0",
+  "release": "KCH 0.11",
+  "started_at": "2026-08-09T19:02:37.590313+00:00",
+  "gate": "FAIL",
+  "profile": "agent-shadow",
+  "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+  "phl_real_session": "PROHIBITED_AND_NOT_RUN",
+  "pre_gate_adverse_observations": [
+    {
+      "state": "REPAIRED_BEFORE_SERVER_START",
+      "defect": "Windows PowerShell 5 lacks static RandomNumberGenerator.GetBytes(int)",
+      "consequence": "first launcher probe stopped before MCP initialization"
+    },
+    {
+      "state": "REPAIRED_BEFORE_SERVER_START",
+      "defect": "Windows PowerShell 5 lacks Convert.ToHexString(byte[])",
+      "consequence": "second launcher probe stopped before MCP initialization"
+    }
+  ],
+  "completed_at": "2026-08-09T19:02:45.307702+00:00",
+  "failure": {
+    "type": "AssertionError",
+    "message": "gate assertion failed: REGISTRY_EVIDENCE_AUDIT_PASS; observed={'release': 'KCH 0.11', 'rows': [{'active_name': 'KCH typed LLM runtime', 'expected_sha256': '72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b', 'observed_sha256': '72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b_INFORME_MAESTRO_ES.md', 'state': 'PASS'}, {'active_name': 'KCH Bayesian learning', 'expected_sha256': '7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32', 'observed_sha256': '7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32_VALIDATION_LEARNING_v0.1.json', 'state': 'PASS'}, {'active_name': 'KCH dynamic Bayesian metaarchitecture', 'expected_sha256': '96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941', 'observed_sha256': '96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941_SCIENTIFIC_TECHNICAL_REPORT_v0.4.0.md', 'state': 'PASS'}, {'active_name': 'KCH enterprise active authority', 'expected_sha256': '8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c', 'observed_sha256': '8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c_KCH_ENTERPRISE_OPERATOR_APPLICATION_REPORT_v0.5.0.md', 'state': 'PASS'}, {'active_name': 'KCH Bayesian MCP fabric', 'expected_sha256': '93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37', 'observed_sha256': '93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37_KCH_BAYESIAN_MCP_FABRIC_REPORT_v0.6.0.md', 'state': 'PASS'}, {'active_name': 'CSI volumetric runtime', 'expected_sha256': '6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b', 'observed_sha256': '6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b_VALIDATION_REPORT_v0.1.0.md', 'state': 'PASS'}, {'active_name': 'CSI operator suite', 'expected_sha256': '6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f', 'observed_sha256': '6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f_VALIDATION_REPORT_v0.2.0.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': '47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d', 'observed_sha256': '47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d_VALIDATION_REPORT_v0.8.0.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': 'f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302', 'observed_sha256': 'f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302_VALIDATION_REPORT_v0.9.0.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': '964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db', 'observed_sha256': '964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db_VALIDATION_REPORT_v0.9.1.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': '6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856', 'observed_sha256': '6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856_RELEASE_NOTES_v0.9.2.md', 'state': 'PASS'}, {'active_name': 'KwanForks assimilation', 'expected_sha256': '309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d', 'observed_sha256': '309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d_VALIDATION_REPORT_v0.10.0.md', 'state': 'PASS'}, {'active_name': 'KCH Rigor Gradient Governor', 'expected_sha256': '4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021', 'observed_sha256': '4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021_VALIDATION_REPORT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KwanPrompts', 'expected_sha256': '011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328', 'observed_sha256': '011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328_KWANPROMPTS_TS01R_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KCH Onboarding Learning (OBL)', 'expected_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'observed_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KCH Post Hoc Learning (PHL)', 'expected_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'observed_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KCH SuperChats Orchestrators (SCO)', 'expected_sha256': 'ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6', 'observed_sha256': 'ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6_SCO_VALIDATION_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'MIS v0.3.1 exact qualitative Bayes service', 'expected_sha256': '1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a', 'observed_sha256': '1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a_KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KwanCode Harness', 'expected_sha256': '960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79', 'observed_sha256': '960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79_KCH_0.11_RELEASE_CONTRACT.md', 'state': 'PASS'}], 'schema': 'kch.registry-evidence-audit.v0.11.0', 'totals': {'FAIL': 0, 'PASS': 19, 'UNAVAILABLE': 0}}",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\scripts\\run_real_shadow_gate.py\", line 216, in main\n    check(registry_audit.get(\"gate\") == \"PASS\", \"REGISTRY_EVIDENCE_AUDIT_PASS\", assertions, registry_audit)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\scripts\\run_real_shadow_gate.py\", line 119, in check\n    raise AssertionError(f\"gate assertion failed: {label}; observed={observed!r}\")\nAssertionError: gate assertion failed: REGISTRY_EVIDENCE_AUDIT_PASS; observed={'release': 'KCH 0.11', 'rows': [{'active_name': 'KCH typed LLM runtime', 'expected_sha256': '72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b', 'observed_sha256': '72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b_INFORME_MAESTRO_ES.md', 'state': 'PASS'}, {'active_name': 'KCH Bayesian learning', 'expected_sha256': '7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32', 'observed_sha256': '7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32_VALIDATION_LEARNING_v0.1.json', 'state': 'PASS'}, {'active_name': 'KCH dynamic Bayesian metaarchitecture', 'expected_sha256': '96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941', 'observed_sha256': '96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941_SCIENTIFIC_TECHNICAL_REPORT_v0.4.0.md', 'state': 'PASS'}, {'active_name': 'KCH enterprise active authority', 'expected_sha256': '8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c', 'observed_sha256': '8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c_KCH_ENTERPRISE_OPERATOR_APPLICATION_REPORT_v0.5.0.md', 'state': 'PASS'}, {'active_name': 'KCH Bayesian MCP fabric', 'expected_sha256': '93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37', 'observed_sha256': '93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37_KCH_BAYESIAN_MCP_FABRIC_REPORT_v0.6.0.md', 'state': 'PASS'}, {'active_name': 'CSI volumetric runtime', 'expected_sha256': '6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b', 'observed_sha256': '6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b_VALIDATION_REPORT_v0.1.0.md', 'state': 'PASS'}, {'active_name': 'CSI operator suite', 'expected_sha256': '6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f', 'observed_sha256': '6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f_VALIDATION_REPORT_v0.2.0.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': '47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d', 'observed_sha256': '47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d_VALIDATION_REPORT_v0.8.0.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': 'f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302', 'observed_sha256': 'f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302_VALIDATION_REPORT_v0.9.0.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': '964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db', 'observed_sha256': '964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db_VALIDATION_REPORT_v0.9.1.md', 'state': 'PASS'}, {'active_name': 'KwanForks', 'expected_sha256': '6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856', 'observed_sha256': '6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856_RELEASE_NOTES_v0.9.2.md', 'state': 'PASS'}, {'active_name': 'KwanForks assimilation', 'expected_sha256': '309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d', 'observed_sha256': '309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d_VALIDATION_REPORT_v0.10.0.md', 'state': 'PASS'}, {'active_name': 'KCH Rigor Gradient Governor', 'expected_sha256': '4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021', 'observed_sha256': '4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021_VALIDATION_REPORT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KwanPrompts', 'expected_sha256': '011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328', 'observed_sha256': '011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328_KWANPROMPTS_TS01R_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KCH Onboarding Learning (OBL)', 'expected_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'observed_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KCH Post Hoc Learning (PHL)', 'expected_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'observed_sha256': '543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KCH SuperChats Orchestrators (SCO)', 'expected_sha256': 'ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6', 'observed_sha256': 'ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6_SCO_VALIDATION_RESULT_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'MIS v0.3.1 exact qualitative Bayes service', 'expected_sha256': '1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a', 'observed_sha256': '1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a_KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json', 'state': 'PASS'}, {'active_name': 'KwanCode Harness', 'expected_sha256': '960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79', 'observed_sha256': '960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79', 'path': 'C:\\\\Users\\\\User\\\\Documents\\\\Codex\\\\2026-08-09\\\\kch-pre2g-continuacion-integral\\\\work\\\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\\\bundle\\\\evidence\\\\registry\\\\960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79_KCH_0.11_RELEASE_CONTRACT.md', 'state': 'PASS'}], 'schema': 'kch.registry-evidence-audit.v0.11.0', 'totals': {'FAIL': 0, 'PASS': 19, 'UNAVAILABLE': 0}}\n"
+  },
+  "assertions": [
+    {
+      "assertion": "ALL_DEPLOYMENT_INPUTS_EXIST",
+      "pass": true,
+      "observed": [
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.ps1",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\OBJECTIVE_CONTRACT_KCH_0.11_REAL_SHADOW_DEPLOYMENT_v0.1.0.json",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\PHL_REAL_SESSION_FREEZE_v0.1.0.json",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_0.11_CANONICAL_MACRORELEASE.zip",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\.codex\\config.toml"
+      ]
+    },
+    {
+      "assertion": "PROJECT_MCP_CONFIG_ENABLED",
+      "pass": true,
+      "observed": {
+        "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "args": [
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.ps1"
+        ],
+        "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT",
+        "startup_timeout_sec": 30,
+        "tool_timeout_sec": 60,
+        "enabled": true,
+        "required": true,
+        "default_tools_approval_mode": "prompt"
+      }
+    },
+    {
+      "assertion": "PROJECT_MCP_CONFIG_REQUIRED",
+      "pass": true,
+      "observed": {
+        "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "args": [
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.ps1"
+        ],
+        "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT",
+        "startup_timeout_sec": 30,
+        "tool_timeout_sec": 60,
+        "enabled": true,
+        "required": true,
+        "default_tools_approval_mode": "prompt"
+      }
+    },
+    {
+      "assertion": "CANONICAL_ZIP_HASH_EXACT",
+      "pass": true,
+      "observed": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+    },
+    {
+      "assertion": "MCP_SERVER_IDENTITY_EXACT",
+      "pass": true,
+      "observed": {
+        "protocolVersion": "2025-06-18",
+        "capabilities": {
+          "tools": {},
+          "resources": {}
+        },
+        "serverInfo": {
+          "name": "kwancode-harness",
+          "version": "0.11.0"
+        }
+      }
+    },
+    {
+      "assertion": "MCP_PROTOCOL_NEGOTIATED",
+      "pass": true,
+      "observed": "2025-06-18"
+    },
+    {
+      "assertion": "MCP_EXACTLY_49_TOOLS",
+      "pass": true,
+      "observed": 49
+    },
+    {
+      "assertion": "MCP_EXACTLY_28_DIRECT_CONTROLS",
+      "pass": true,
+      "observed": 28
+    },
+    {
+      "assertion": "MCP_EXACTLY_4_RESOURCES",
+      "pass": true,
+      "observed": 4
+    },
+    {
+      "assertion": "NO_PHL_MUTATION_TOOL_EXPOSED",
+      "pass": true,
+      "observed": []
+    },
+    {
+      "assertion": "AGENT_SHADOW_PROFILE_ACTIVE",
+      "pass": true,
+      "observed": "agent-shadow"
+    },
+    {
+      "assertion": "MUTATING_EXECUTION_NOT_AUTHORIZED",
+      "pass": true,
+      "observed": false
+    },
+    {
+      "assertion": "ENFORCED_PROFILE_PROHIBITED",
+      "pass": true,
+      "observed": "PROHIBITED_UNTIL_GATES_PASS"
+    },
+    {
+      "assertion": "REGISTRY_EVIDENCE_AUDIT_PASS",
+      "pass": false,
+      "observed": {
+        "release": "KCH 0.11",
+        "rows": [
+          {
+            "active_name": "KCH typed LLM runtime",
+            "expected_sha256": "72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b",
+            "observed_sha256": "72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b_INFORME_MAESTRO_ES.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH Bayesian learning",
+            "expected_sha256": "7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32",
+            "observed_sha256": "7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32_VALIDATION_LEARNING_v0.1.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH dynamic Bayesian metaarchitecture",
+            "expected_sha256": "96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941",
+            "observed_sha256": "96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941_SCIENTIFIC_TECHNICAL_REPORT_v0.4.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH enterprise active authority",
+            "expected_sha256": "8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c",
+            "observed_sha256": "8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c_KCH_ENTERPRISE_OPERATOR_APPLICATION_REPORT_v0.5.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH Bayesian MCP fabric",
+            "expected_sha256": "93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37",
+            "observed_sha256": "93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37_KCH_BAYESIAN_MCP_FABRIC_REPORT_v0.6.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "CSI volumetric runtime",
+            "expected_sha256": "6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b",
+            "observed_sha256": "6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b_VALIDATION_REPORT_v0.1.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "CSI operator suite",
+            "expected_sha256": "6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f",
+            "observed_sha256": "6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f_VALIDATION_REPORT_v0.2.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanForks",
+            "expected_sha256": "47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d",
+            "observed_sha256": "47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d_VALIDATION_REPORT_v0.8.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanForks",
+            "expected_sha256": "f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302",
+            "observed_sha256": "f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302_VALIDATION_REPORT_v0.9.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanForks",
+            "expected_sha256": "964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db",
+            "observed_sha256": "964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db_VALIDATION_REPORT_v0.9.1.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanForks",
+            "expected_sha256": "6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856",
+            "observed_sha256": "6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856_RELEASE_NOTES_v0.9.2.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanForks assimilation",
+            "expected_sha256": "309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d",
+            "observed_sha256": "309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d_VALIDATION_REPORT_v0.10.0.md",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH Rigor Gradient Governor",
+            "expected_sha256": "4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021",
+            "observed_sha256": "4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021_VALIDATION_REPORT_v0.1.0.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanPrompts",
+            "expected_sha256": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+            "observed_sha256": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328_KWANPROMPTS_TS01R_RESULT_v0.1.0.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH Onboarding Learning (OBL)",
+            "expected_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+            "observed_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH Post Hoc Learning (PHL)",
+            "expected_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+            "observed_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KCH SuperChats Orchestrators (SCO)",
+            "expected_sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+            "observed_sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6_SCO_VALIDATION_RESULT_v0.1.0.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "MIS v0.3.1 exact qualitative Bayes service",
+            "expected_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+            "observed_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a_KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+            "state": "PASS"
+          },
+          {
+            "active_name": "KwanCode Harness",
+            "expected_sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+            "observed_sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+            "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79_KCH_0.11_RELEASE_CONTRACT.md",
+            "state": "PASS"
+          }
+        ],
+        "schema": "kch.registry-evidence-audit.v0.11.0",
+        "totals": {
+          "FAIL": 0,
+          "PASS": 19,
+          "UNAVAILABLE": 0
+        }
+      }
+    }
+  ],
+  "phl_state_before_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+  "phl_state_after_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+  "mcp_process": {
+    "return_code": 0,
+    "stderr": ""
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "kch.sco.wheel-smoke-result.v0.1.0",
+  "gate": "PASS",
+  "wheel": "kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+  "wheel_sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+  "installed_distribution_version": "0.1.0",
+  "installed_projection": {
+    "schema": "kch.sco.projection.v0.1.0",
+    "sco_id": "sco.kch-pre2g-continuation.20260809",
+    "superchats": 1,
+    "nodes": 2,
+    "edges": 1,
+    "work_orders": 1,
+    "conflicts": 0,
+    "receipts": 1,
+    "provider_counts": {
+      "CODEX": 2
+    },
+    "order_states": {
+      "COMPLETED": 1
+    },
+    "events": 6,
+    "commands": 6,
+    "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2",
+    "native_contexts_merged": false
+  },
+  "isolated_build_attempt": "TIMEOUT_INSTALLING_BUILD_DEPENDENCIES_NO_RUNTIME_INFERENCE",
+  "no_build_isolation_retry": "PASS",
+  "claim_boundary": "Wheel installs locally and reads the validated SCO state; no external provider bridge is exercised."
+}

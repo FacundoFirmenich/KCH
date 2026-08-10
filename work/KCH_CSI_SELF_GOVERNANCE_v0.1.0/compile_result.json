@@ -1,0 +1,10 @@
+{
+  "agent_count": 4,
+  "gate": "PASS",
+  "installation_authorized": false,
+  "node_count": 13,
+  "rule_count": 6,
+  "schema": "kch.csi-self-governance-compile-result.v0.1.0",
+  "source_graph_sha256": "2a19eb48af091526fbccc14a36ba37b9bb90bdf5743ce9a5e1f1e8943b7eea46",
+  "target": "C:\\Users\\User\\AppData\\Local\\Temp\\tmpycbabk7e\\dist"
+}

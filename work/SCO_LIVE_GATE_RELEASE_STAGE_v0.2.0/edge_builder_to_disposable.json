@@ -1,0 +1,16 @@
+{
+  "schema": "kch.sco.edge.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "edge_id": "sco-builder-dispatches-disposable-01",
+  "source_node_id": "kch-sco-builder",
+  "target_node_id": "sco-disposable-live-probe-01",
+  "relation": "IMPLEMENTS",
+  "disclosure_contract": {
+    "schema": "kch.sco.scoped-disclosure.v0.1.0",
+    "allowed_ref_kinds": ["WORK_ORDER_REF", "NONCE_REF", "AUTHORITY_REF"],
+    "maximum_payload_bytes": 8192,
+    "forbidden_transfers": ["FULL_CONTEXT_MERGE", "NATIVE_MEMORY_COPY", "IMPLICIT_AUTHORITY_TRANSFER"]
+  },
+  "activation_condition": "One explicitly prepared and deduplicated transport dispatch.",
+  "gate_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0"
+}

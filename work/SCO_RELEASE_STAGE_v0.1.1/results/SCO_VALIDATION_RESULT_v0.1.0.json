@@ -1,0 +1,87 @@
+{
+  "schema": "kch.sco.validation-result.v0.1.0",
+  "gate": "PASS_BOUNDED",
+  "checks": {
+    "unit_tests_21_of_21": true,
+    "ledger_integrity_pass": true,
+    "real_superchat_exactly_one": true,
+    "real_nodes_exactly_two": true,
+    "real_edge_exactly_one": true,
+    "real_work_order_and_receipt_exact": true,
+    "real_work_order_completed": true,
+    "exact_native_uris_preserved": true,
+    "native_content_absent": true,
+    "native_memory_absent": true,
+    "authority_not_created_in_bundle": true,
+    "sovereignty_policies_exact": true,
+    "mandatory_transfer_prohibitions_present": true,
+    "graph_diagnostics_clean_for_first_dag": true,
+    "pre_receipt_dispatch_envelope_was_blocked_honestly": true,
+    "provider_reference_families_declared": true,
+    "unverified_bridges_remain_unavailable": true,
+    "csi_only_uses_existing_primitives": true,
+    "csi_preserves_sovereignty_and_authority": true,
+    "csi_reproducible_from_bundle": true,
+    "phl_predecessor_gate_is_bounded_pass": true,
+    "phl_source_state_was_preserved": true,
+    "bundle_hash_valid": true
+  },
+  "checks_passed": 23,
+  "checks_total": 23,
+  "unit_test_count": 21,
+  "unit_test_returncode": 0,
+  "integrity": {
+    "schema": "kch.sco.integrity-result.v0.1.0",
+    "gate": "PASS",
+    "defects": [],
+    "event_count": 6,
+    "command_count": 6,
+    "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2"
+  },
+  "projection": {
+    "schema": "kch.sco.projection.v0.1.0",
+    "sco_id": "sco.kch-pre2g-continuation.20260809",
+    "superchats": 1,
+    "nodes": 2,
+    "edges": 1,
+    "work_orders": 1,
+    "conflicts": 0,
+    "receipts": 1,
+    "provider_counts": {
+      "CODEX": 2
+    },
+    "order_states": {
+      "COMPLETED": 1
+    },
+    "events": 6,
+    "commands": 6,
+    "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2",
+    "native_contexts_merged": false
+  },
+  "graph": {
+    "schema": "kch.sco.graph-diagnostics.v0.1.0",
+    "sco_id": "sco.kch-pre2g-continuation.20260809",
+    "active_nodes": 2,
+    "active_edges": 1,
+    "cycles": [],
+    "cycle_policy": "PRESERVED_AND_VISIBLE_NOT_SILENTLY_FLATTENED"
+  },
+  "bundle_sha256": "fcab2d59983b4d2869107b70b66edd49d2229e1a3492f8093c48672b174ad550",
+  "csi_program_sha256": "b4f899a2541703376a994d38b9c21e07c7b4f3ca60612b5a9924216ef48445b8",
+  "state_sha256": "afd6fbe114fe1b50e2ae9eaa62159136947c5ff079b398efaf6bbefcaf3ca880",
+  "claim": "A functional local sovereign-chat orchestration plane and a real two-Codex-task graph are demonstrated; live cross-provider dispatch and comparative outcome superiority are not demonstrated.",
+  "limitations": [
+    "Codex references were host-observed, but standalone automatic dispatch remains blocked.",
+    "Cline, Cowork and OpenCode support is limited to validated native-reference contracts and dispatch envelopes.",
+    "No native chat content or memory was ingested; semantic work quality cannot be compared in this gate.",
+    "No distributed consensus, crash recovery campaign or multi-host transport gate was run.",
+    "SCO is an integration candidate for KCH, not yet a globally admitted KCH release."
+  ],
+  "artifact_hashes": {
+    "portable_bundle": "d28aa3ba5ffa4c14e474874d4a999731bd768e7f8f1e8179407064ec6043a7b0",
+    "csi_lowering": "58b5a7ec501dc278fdf1afc6aabaae6aa1ec4a63e8a87c2f6699fc09f0e805ad",
+    "pre_receipt_envelopes": "792b5773686f44771aba6a1447b724d5ece7ead4b0eba2dcaf1d3fefea00713a",
+    "provider_matrix": "8d5ccadc444e0438604cade644e67c597c75f5c02148e30469aa42cb44169f53",
+    "phl_gate_result": "792fe7af5a8e07cd331e2ed81b708d29458e01b82e519b2d64dc210302ebd0c9"
+  }
+}

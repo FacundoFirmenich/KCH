@@ -1,0 +1,17 @@
+{
+  "schema": "kch.sco.work-order.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "order_id": "wo.sco-live-transport-01",
+  "target_node_id": "sco-disposable-live-probe-01",
+  "objective": "Return the exact bounded SCO native-transport receipt for dispatch SCO-LIVE-DISPATCH-20260809-01 without filesystem, network, cross-thread or context-export side effects.",
+  "input_refs": [
+    "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0#turn=019fe6f6-0ca5-7b72-a646-7d5ff60148b5",
+    "gate://GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0"
+  ],
+  "disclosed_fragments": [],
+  "required_outputs": ["kch.sco.native-transport-receipt.v0.2.0"],
+  "authority_granted": ["RETURN_BOUNDED_TEXT_RECEIPT"],
+  "depends_on": [],
+  "termination": "One schema-conformant receipt is bound to the native response turn and no duplicate dispatch occurs.",
+  "claim_ceiling": "CODEX_TEXT_TRANSPORT_AND_RECEIPT_BINDING_FOR_ONE_DISPOSABLE_NODE_ONLY"
+}

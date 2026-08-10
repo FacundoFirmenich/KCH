@@ -1,0 +1,2 @@
+[console_scripts]
+mis-v03-experiments = mis_v03.experiments:main

@@ -1,0 +1,17 @@
+{
+  "schema": "kch.prepilot-dispatch.v0.1.0",
+  "case_id": "KCH-PREPILOT-003",
+  "model": "gpt-5.6-luna",
+  "thinking": "medium",
+  "arms": [
+    {
+      "condition": "BASELINE_RELEASE_AUDIT",
+      "thread_id": "019fed5b-d638-72e3-b38f-5ff33648839f"
+    },
+    {
+      "condition": "KCH_INSTALLED_R9_ASSISTED",
+      "thread_id": "019fed5c-5fba-74c0-a0fc-9282e107dfce"
+    }
+  ],
+  "case_manifest_modified_after_dispatch": false
+}

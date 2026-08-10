@@ -1,0 +1,41 @@
+﻿{
+    "schema":  "kwancode.learning.validation.v1",
+    "date":  "2026-08-04",
+    "test_suite":  {
+                       "status":  "PASS",
+                       "tests":  71,
+                       "failures":  0,
+                       "errors":  0,
+                       "preexisting_kch_tests_preserved":  63,
+                       "new_learning_tests":  8
+                   },
+    "mcp":  {
+                "server":  "kwancode-bayesian-learning",
+                "version":  "0.1.0",
+                "tools":  9,
+                "resources":  2
+            },
+    "experiment":  {
+                       "id":  "KWANCODE_LEARNING_KCH_AB_v0.1",
+                       "source":  "KCH_CODEX_AB_v0.2",
+                       "paired_outcomes":  4,
+                       "adjudicated_state":  "NEUTRAL",
+                       "prior_neutral_before":  0.3333333333333333,
+                       "prior_neutral_after":  0.6296296296296295,
+                       "authority":  "TOP_2_NEUTRAL_BENEFIT",
+                       "parent_immutable":  true,
+                       "ledger_valid":  true,
+                       "industrial_authority":  false
+                   },
+    "model_boundary":  "Modular cut hierarchical Dirichlet model; not joint MCMC.",
+    "claim_boundary":  "Functional future-only learning and governance demonstrated; generative and industrial gains not demonstrated.",
+    "kch_import":  {
+                       "status":  "PASS",
+                       "instruction_id":  "learning-prior-0c04c659014000f64eeb",
+                       "issued_seq":  1,
+                       "resolution":  "RESOLVED",
+                       "governing":  true,
+                       "rank":  "(1,1,10)",
+                       "evidence":  "artifacts/KWANCODE_LEARNING_KCH_AB_v0.1/KCH_IMPORT_CONFORMANCE.jsonl"
+                   }
+}

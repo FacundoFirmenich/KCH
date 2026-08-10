@@ -1,0 +1,88 @@
+{
+  "schema": "kch.obl_phl.ts01.result.v0.1.0",
+  "jurisdiction": "LOCAL_PAIRED_INTERFACE_CUSTODY_AND_EXCLUSIVITY_THIN_SLICE",
+  "frozen_input_hashes": {
+    "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KCH_OBL_PHL_LEARNING_SYSTEM_v0.1.0\\KCH_OBL_PHL_TS01_PREREGISTRATION_v0.1.0.md": {
+      "observed": "a7e51248443b700f3f21390a305aa8bbddcb4d6ca01bbd1d1fb1204cb9ba14df",
+      "expected": "a7e51248443b700f3f21390a305aa8bbddcb4d6ca01bbd1d1fb1204cb9ba14df"
+    },
+    "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KWANPROMPTS_v0.1.0\\results\\KWANPROMPTS_TS01R_RESULT_v0.1.0.json": {
+      "observed": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+      "expected": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328"
+    },
+    "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KWANPROMPTS_v0.1.0\\fixtures\\KWANPROMPTS_TS01_REAL_MESSAGES_v0.1.0.json": {
+      "observed": "ef960ada42d68664669484297101b7bf856d6c3bdbf21c6dc3a0a5f7c2584ab5",
+      "expected": "ef960ada42d68664669484297101b7bf856d6c3bdbf21c6dc3a0a5f7c2584ab5"
+    }
+  },
+  "target_decision": "kwanprompts.ts01r.KP02_KCH_CORRECTION",
+  "obl_pair": {
+    "same_decision_payload": true,
+    "same_record_hash": true,
+    "distinct_session_ids": true,
+    "user_provenance": true,
+    "model_provenance": true,
+    "interface": "ONE_LINE_COMMAND_BOX"
+  },
+  "phl": {
+    "session_id": "f47ccb9c-32bf-416d-8e06-98c7363bed26",
+    "visible_decision_count": 7,
+    "gate_during": {
+      "ordinary_kch_work_allowed": false,
+      "active_phl_session_id": "f47ccb9c-32bf-416d-8e06-98c7363bed26",
+      "reason": "PHL_EXCLUSIVE_PERSONAL_TRAINING_MODE"
+    },
+    "ordinary_probe_error": "ordinary KCH work blocked by active PHL session f47ccb9c-32bf-416d-8e06-98c7363bed26",
+    "user_feedback_count": 0,
+    "first_real_user_score": "PENDING",
+    "packet_id": "9628b1be-40c2-4b45-9a49-6e761391c4ff",
+    "packet_hash": "939c25860a8447827348cd598126da80fa7d8615efe53e3b6ffa141592c34a20",
+    "packet_activation": "PENDING_REPLAY_AND_USER_APPROVAL",
+    "gate_after": {
+      "ordinary_kch_work_allowed": true,
+      "active_phl_session_id": null,
+      "reason": null
+    }
+  },
+  "checks": {
+    "imported_exactly_seven_real_decisions": true,
+    "all_imports_non_idempotent": true,
+    "obl_pair_all_checks": true,
+    "obl_one_line_interface": true,
+    "phl_exclusive": true,
+    "phl_closed_ordinary_gate": true,
+    "ordinary_registration_failed_closed": true,
+    "no_prohibited_probe_admitted": true,
+    "zero_user_feedback_preserved": true,
+    "empty_packet_without_fabrication": true,
+    "packet_future_only_pending": true,
+    "phl_close_reopened_gate": true,
+    "ledger_pass": true
+  },
+  "ledger": {
+    "gate": "PASS",
+    "defects": [],
+    "event_count": 14,
+    "decision_count": 7,
+    "feedback_count": 0,
+    "head_hash": "ba4b536cb6157eaac10ea4257d1e1739c2495fa5148075323e1ac5e3bafbb8bb"
+  },
+  "ledger_after_state_move": {
+    "gate": "PASS",
+    "defects": [],
+    "event_count": 14,
+    "decision_count": 7,
+    "feedback_count": 0,
+    "head_hash": "ba4b536cb6157eaac10ea4257d1e1739c2495fa5148075323e1ac5e3bafbb8bb"
+  },
+  "summary": {
+    "passed_checks": 13,
+    "total_checks": 13,
+    "gate": "PASS"
+  },
+  "claim_boundary": [
+    "No real user OBL verdict or PHL score was supplied or fabricated.",
+    "No personal preference improvement, model-weight fine-tuning, native UI interception or global KCH actuator lock is claimed.",
+    "CSI executable equivalence remains pending a separate paired compiler/replay gate."
+  ]
+}

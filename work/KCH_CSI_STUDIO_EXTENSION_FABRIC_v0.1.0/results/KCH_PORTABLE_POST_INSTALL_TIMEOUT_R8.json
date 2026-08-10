@@ -1,0 +1,13 @@
+{
+  "schema": "kch.portable-post-install-adverse-receipt.v0.1.0",
+  "release": "KCH_0.11_PRE2G_R8",
+  "installation": "PASS",
+  "post_install_gate": "TIMEOUT_NO_FINAL_RECEIPT",
+  "timeout_seconds": 300,
+  "stage_localized": false,
+  "orphan_processes_observed": true,
+  "orphan_processes_terminated_after_exact_commandline_verification": true,
+  "external_host_configuration_modified": false,
+  "historical_result_immutable": true,
+  "corrective_action": "Add per-RPC stage markers, finite timeouts and owned-process-tree cleanup; diagnose against installed R8 before rebuilding."
+}

@@ -1,0 +1,37 @@
+{
+  "canonical_zip_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+  "gate": "PASS",
+  "packages": [
+    {
+      "bytes": 24840,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_SUPER_MCP_DOCUMENTACION_Y_USO_v0.11.0.zip",
+      "seal": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_SUPER_MCP_DOCUMENTACION_Y_USO_v0.11.0_SEAL_v0.11.0.json",
+      "sha256": "cde9cc103b1dfe7ec4dac5dd3fcd17b856e57508cbfd586f90a90fdb4dd78f63",
+      "type": "documentation"
+    },
+    {
+      "bytes": 622415,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0.zip",
+      "seal": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0_SEAL_v0.11.0.json",
+      "sha256": "4790f768fef54c7449b748e7cbbde5b7ebb3f929be4b5a6d8df2f91c37cce19b",
+      "type": "runtime"
+    }
+  ],
+  "phl_real_session": "NOT_RUN",
+  "reextraction": {
+    "documentation": {
+      "checked": 19,
+      "failures": [],
+      "gate": "PASS",
+      "root": "C:\\Users\\User\\Documents\\Codex\\_kchsmcp011b\\xd\\KCH_SUPER_MCP_DOCUMENTACION_Y_USO_v0.11.0"
+    },
+    "runtime": {
+      "checked": 106,
+      "failures": [],
+      "gate": "PASS",
+      "root": "C:\\Users\\User\\Documents\\Codex\\_kchsmcp011b\\xr\\KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0"
+    }
+  },
+  "release": "KCH 0.11",
+  "schema": "kch.super-mcp-two-package-build-result.v0.11.0"
+}

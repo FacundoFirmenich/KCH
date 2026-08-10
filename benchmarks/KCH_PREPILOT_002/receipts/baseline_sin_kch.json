@@ -1,0 +1,160 @@
+{
+  "schema": "kch.prepilot-receipt.v0.2.0",
+  "condition": "BASELINE_SIN_KCH",
+  "exhaustive_read_receipt": {
+    "kch_used": false,
+    "case_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\case.json",
+    "corpus_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus",
+    "method": "Read case.json in full with Get-Content -Raw; read each .py in full with Python Path.read_bytes(), decoded the complete byte sequence as UTF-8, split the complete text with splitlines(keepends=True), computed byte length, physical line count and SHA-256 locally, then performed static line-addressed inspection. No preview, head/tail, sampling, oracle substitution, import, instantiation or runtime call was used.",
+    "files": [
+      {
+        "name": "advanced_runtime.py",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\advanced_runtime.py",
+        "bytes": 54946,
+        "physical_lines": 1461,
+        "sha256": "c5d98ed0645e2845939df4c480a6dd0da40a021eb0a810f0101428faf858414a",
+        "encoding_and_newlines": "UTF-8; 1461 LF bytes; 0 CRLF; 0 CR",
+        "oracle_comparison": "MATCH"
+      },
+      {
+        "name": "mis_service.py",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\mis_service.py",
+        "bytes": 48280,
+        "physical_lines": 1198,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582",
+        "encoding_and_newlines": "UTF-8; 1198 LF bytes; 0 CRLF; 0 CR",
+        "oracle_comparison": "MATCH"
+      },
+      {
+        "name": "operational_surface.py",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\corpus\\operational_surface.py",
+        "bytes": 36240,
+        "physical_lines": 1026,
+        "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f",
+        "encoding_and_newlines": "UTF-8; 1026 LF bytes; 0 CRLF; 0 CR",
+        "oracle_comparison": "MATCH"
+      }
+    ],
+    "corpus_modified": false
+  },
+  "cross_module_findings": {
+    "phl_gate": {
+      "implementation": [
+        "advanced_runtime.py:886 constructs a PHLRuntime path and advanced_runtime.py:1039-1049 binds PHL status, registration, session, scoring, packet and close handlers.",
+        "advanced_runtime.py:1215-1228 bridges a verified MIS decision into a reviewable PHL record while explicitly returning training_executed=false and automatic_promotion=false.",
+        "mis_service.py:947-978 persists REGISTERED_REVIEWABLE_UNTRAINED and training_executed=false."
+      ],
+      "exposure": [
+        "advanced_runtime.py:638-708 exposes PHL control and session tools; advanced_runtime.py:1071-1076 routes non-control tools through PHL dispatch.",
+        "operational_surface.py:500-510 exposes diction_correction_record as PHL-authorized but untrained future-only feedback."
+      ],
+      "integration": "Static code shows a local PHL/MIS registration bridge and dispatch composition, but no execution was performed under BASELINE_SIN_KCH; the corpus does not establish real PHL training, human utility, or external integration.",
+      "test": "No test suite was executed and no independent test receipt is present in the frozen three-file corpus; static declarations are not test evidence.",
+      "claim": "advanced_runtime.py:1451-1453 reports phl_authorized=true and aliases phl_real_executed to training_executed. This is a status-surface claim, not evidence that real PHL ran here; the defensible ceiling is local reviewable/untrained pathway only."
+    },
+    "mutation_consent": {
+      "implementation": [
+        "operational_surface.py:14-17 defines the four exact consent values; operational_surface.py:53-63 injects consent into every mutating tool schema.",
+        "advanced_runtime.py:1141-1184 scopes direct consent per action and runtime session, rejects missing consent, returns NOT_EXECUTED_CONSENT_DENIED when unauthorized, and states that the caller declaration is not cryptographic host identity."
+      ],
+      "exposure": "advanced_runtime.py:667-670 and :686-689 expose YES, NO, NEVER_THIS_SESSION and ALWAYS_THIS_SESSION for PHL operations; operational_surface.py:68-70 exposes consent status without granting authority.",
+      "integration": "operational_surface.py:631-640 wraps certificate export with runtime.direct_user_action; the visible operational binding therefore demonstrates a consent interposition point, not host identity, broad permission or successful external mutation.",
+      "test": "No runtime consent sequence was executed in this baseline; no test artifact is present in the frozen corpus.",
+      "claim": "The implementation supports scoped consent semantics. It does not establish cryptographic user authentication, generalized authorization, or safe execution of every mutating handler."
+    },
+    "mis_and_bridges": {
+      "implementation": [
+        "mis_service.py:99-105 defines a persistent MIS federation around MIS v0.3.1 and explicitly says calculation/certificate never becomes execution authority.",
+        "mis_service.py:123-142 creates a local SQLite federation database with foreign keys, WAL and synchronous=FULL; mis_service.py:293-310 reads counts for events, certificates, studies, rounds, atoms, reviewable decisions and bridges.",
+        "advanced_runtime.py:975-1013 exposes MIS exact decision, audit, certificate verification, prospective studies, PHL registration, CSI lowering, KwanData archive, SCO review and RGG adjudication handlers."
+      ],
+      "exposure": "mis_service.py:323-337 lists the expanded MIS surface and synergistic bridge targets; operational_surface.py:74-84 exposes certificate export and a bounded no-dispatch SCO work-order template.",
+      "integration": [
+        "advanced_runtime.py:1215-1228 implements the MIS-to-PHL bridge; mis_service.py:1110-1145 records idempotent hashed bridges; mis_service.py:980-1053 lowers certificates to CSI without authority transfer.",
+        "The integration assessment is explicitly only PERSISTENT_SYNERGISTIC_FEDERATION_CANDIDATE at mis_service.py:349; host dispatch remains external/required in the advanced runtime surface at advanced_runtime.py:630-632 and mis_service.py:1285-1286."
+      ],
+      "test": "mis_service.py:1147-1198 contains a static integrity verifier for event chains, certificates, ledgers and reviewable decisions, but it was not run and is not independent validation of industrial behavior.",
+      "claim": "Exactness is limited to declared formal inputs: mis_service.py:893-900 states that it does not validate empirical adequacy or authorize action; mis_service.py:350-363 preserves authority_created=false, execution_authorized=false, automatic_promotion=false, training_executed=false and NOT_DEMONSTRATED boundaries."
+    },
+    "sqlite_lifecycle": {
+      "implementation": [
+        "mis_service.py:132-142 uses closing(self.connect()), configures SQLite and commits DDL; the service stores its path at mis_service.py:127.",
+        "Mutating methods repeatedly use closing(), BEGIN IMMEDIATE, commit and rollback, including semantic atoms at mis_service.py:478-505, prospective freezes at :635-685, outcomes at :709-747, study close at :807-826, PHL registration at :948-972 and bridges at :1114-1145."
+      ],
+      "exposure": "The SQLite lifecycle is internal to MISService; no separate corpus-level lifecycle receipt or external database contract is exposed.",
+      "integration": "Per-operation connection closure is statically visible, but advanced_runtime.py:1457-1461 closes clipboard, scheduler, audio and launcher only; it does not call a MISService.close method. This leaves integrated runtime shutdown coverage unproven, even though each shown MIS operation uses closing().",
+      "test": "No connection-leak, Windows handle, rollback, WAL recovery or shutdown test was executed; no such test receipt is in the frozen corpus.",
+      "claim": "The code supports bounded transactional persistence locally. It does not justify a claim of production durability, concurrency validation, disaster recovery or deployment readiness."
+    },
+    "strategic_coverage": {
+      "implementation": [
+        "advanced_runtime.py:903-1068 composes advanced handlers, operational handlers and workbench handlers, checks missing tool descriptors, registers PHL capabilities and wraps non-control handlers through PHL dispatch.",
+        "advanced_runtime.py:1440-1450 computes a strategic-surface audit and exposes capability_blind_spots and strategic_surface_gate."
+      ],
+      "exposure": "The exposed surface includes status, permission, persistence, MIS, PHL, SCO, checkpoints, operational tools and workbench tools; advanced_runtime.py:176 and :630-632 explicitly state that external-host transport/bridge remains a boundary.",
+      "integration": "Composition is local and static. There is no evidence in the three files of a customer system, industrial data plane, deployment, human workflow, safety/compliance certification, or external host bridge execution.",
+      "test": "No strategic-surface audit, coverage result, integration test, or independent replay was run; the presence of an audit function is not its passing result.",
+      "claim": "The most defensible interpretation is descriptive local prepilot coverage with explicit blind spots. It cannot support causal improvement, industrial utility, superiority, scalability, security/compliance or BIND readiness."
+    }
+  },
+  "bind_2026_receipt": {
+    "call": "BIND 11th Edition 2026/2027",
+    "application_open": "2026-07-02",
+    "application_deadline": "2026-09-04",
+    "official_sources": {
+      "open-innovation": {
+        "url": "https://bind.spri.eus/open-innovation/",
+        "verified_facts": ["Worldwide startup applications", "11 use-case blocks", "up to three proposals, each in a different block", "application period 2 July-4 September 2026", "paid open-innovation project and no equity/fees"]
+      },
+      "application": {
+        "url": "https://bind.spri.eus/application/",
+        "verified_facts": ["Application is in English", "up to three applications total", "each additional proposal must select a different use-case group"]
+      },
+      "faq": {
+        "url": "https://bind.spri.eus/faq/",
+        "verified_facts": ["Venture Client companies pay project development; no equity or participation fee", "selection has pre-selection, Venture Client finalist selection, then matchmaking and agreement", "indicative minimum project value is 25000 EUR excluding VAT", "travel-related financial support may be available outside the Basque Country and Navarre"]
+      },
+      "BIND-11th-Edition_Use-Case-Dossier.pdf": {
+        "url": "https://bind.spri.eus/wp-content/uploads/2026/06/BIND-11th-Edition_Use-Case-Dossier.pdf",
+        "verified_facts": ["46 published use cases", "11 thematic groups", "57 partner companies", "up to three proposals in different groups", "Group 6 contains ID31, ID32, ID33, ID34, ID36, ID41 and ID42; ID40 is in Group 5", "Group 10 contains ID13, ID43 and ID44"]
+      }
+    },
+    "source_boundary": "Official web assets were consulted; no claim is made about applicant eligibility, Venture Client interest in KCH, contract award or funding beyond the facts stated in these assets."
+  },
+  "candidate_use_cases": [
+    {
+      "group": "GROUP_6",
+      "group_title": "Digitalisation of internal processes, knowledge and talent management within the organisation",
+      "use_case_ids": ["ID31", "ID42"],
+      "use_case_titles": ["Digital management, planning and decision-support systems", "Internal reporting and management systems, including monitoring and communication"],
+      "fit": "Defensible as a narrowly scoped evidence/decision-governance pilot: the corpus exposes decision-support, provenance, ledgers, reviewable decisions, reporting/status and human-review boundaries.",
+      "evidence_boundary": "Only local static implementation and exposure are evidenced. Customer workflow fit, data access, adoption, measurable human utility, operational integration and paid pilot outcomes are NOT_ESTIMABLE.",
+      "submission_note": "One Group 6 proposal could cover both related IDs; they are not two separate BIND proposals because BIND requires different groups for separate proposals."
+    },
+    {
+      "group": "GROUP_5",
+      "group_title": "Cybersecurity, physical security, employee health and regulatory compliance",
+      "use_case_ids": ["ID40"],
+      "use_case_title": "Regulatory compliance, risk management and regulatory traceability (compliance and legal)",
+      "fit": "Defensible only as a governance and traceability pilot involving immutable evidence, scoped authority, risk/claim boundaries and auditable event/bridge records.",
+      "evidence_boundary": "The corpus does not establish legal compliance, certification, security assurance, threat-model coverage, regulator acceptance, or safety performance; those are NOT_ESTIMABLE and cannot be implied by hashes, SQLite or consent schemas."
+    }
+  ],
+  "adverse_findings": [
+    "The requested exact receipt is a static baseline assessment; no PHL execution, training, external installation, credentials, customer system or industrial data was used.",
+    "The corpus contains status/claim exposure that can overread capability: advanced_runtime.py:1451-1453 exposes phl_authorized and phl_real_executed fields, while the actual bridge path explicitly says training_executed=false at :1226-1228. Preserve this contradiction as an adverse interpretive risk.",
+    "advanced_runtime.py:1457-1461 has no MISService shutdown call; connection closure is visible per operation but integrated shutdown behavior remains unvalidated.",
+    "The MIS adapter loader at mis_service.py:162-189 can import an integration adapter when runtime is used, but that path was deliberately not imported or executed under BASELINE_SIN_KCH.",
+    "No test, benchmark outcome, causal comparison, prospective customer replay, safety/compliance review or industrial deployment receipt is present in this evaluation output; all such claims remain NOT_ESTIMABLE."
+  ],
+  "claim_ceiling": "DESCRIPTIVE_LOCAL_PREPILOT_ONLY_NOT_CAUSAL_NOT_INDUSTRIAL_VALIDATION_NOT_HUMAN_UTILITY_NOT_SUPERIORITY_NOT_SCALABILITY_NOT_SECURITY_OR_COMPLIANCE_READINESS_NOT_BIND_READINESS",
+  "abstentions": [
+    "ABSTAINED_FROM_KCH_IMPORT_INSTANTIATION_AND_RUNTIME_EXECUTION",
+    "ABSTAINED_FROM_REAL_PHL_EXECUTION_AND_TRAINING",
+    "ABSTAINED_FROM_EXTERNAL_INSTALLATION_CREDENTIALS_AND_NETWORK_SIDE_EFFECTS",
+    "ABSTAINED_FROM_INDUSTRIAL_INTEGRATION_CUSTOMER_VALUE_AND_PAID_PILOT_CLAIMS",
+    "ABSTAINED_FROM_CAUSAL_SUPERIORITY_PREDICTIVE_SUPERIORITY_GLOBAL_WINNER_AND_OPEN_DOMAIN_SCALABILITY",
+    "ABSTAINED_FROM_SECURITY_COMPLIANCE_CERTIFICATION_AND_SAFETY_CLAIMS",
+    "ABSTAINED_FROM_PROMOTING_BUNDLED_STATIC_SURFACES_TO_OPERATIONAL_AUTHORITY"
+  ]
+}

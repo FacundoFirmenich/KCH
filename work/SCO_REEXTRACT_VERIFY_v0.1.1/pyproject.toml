@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kch-superchats-orchestrators"
+version = "0.1.0"
+description = "Sovereign multi-chat orchestration plane for KwanCode Harness"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+sco = "kch_sco.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

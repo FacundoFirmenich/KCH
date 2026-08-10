@@ -1,0 +1,169 @@
+from __future__ import annotations
+
+import json
+import sqlite3
+import threading
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Iterator
+from uuid import uuid4
+
+from .canonical import canonical_json, sha256_json
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+class Ledger:
+    def __init__(self, path: str | Path):
+        self.path = Path(path)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self._lock = threading.RLock()
+        self._initialize()
+
+    def _connect(self) -> sqlite3.Connection:
+        connection = sqlite3.connect(self.path, timeout=30)
+        connection.row_factory = sqlite3.Row
+        connection.execute("PRAGMA foreign_keys=ON")
+        return connection
+
+    def _initialize(self) -> None:
+        connection = self._connect()
+        try:
+            connection.executescript(
+                """
+                CREATE TABLE IF NOT EXISTS events(
+                    sequence INTEGER PRIMARY KEY AUTOINCREMENT,
+                    event_id TEXT UNIQUE NOT NULL,
+                    event_type TEXT NOT NULL,
+                    occurred_at TEXT NOT NULL,
+                    payload_json TEXT NOT NULL,
+                    previous_hash TEXT NOT NULL,
+                    event_hash TEXT UNIQUE NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS sessions(
+                    session_id TEXT PRIMARY KEY,
+                    contract_json TEXT NOT NULL,
+                    contract_sha256 TEXT NOT NULL,
+                    created_event_hash TEXT NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS evidence(
+                    session_id TEXT NOT NULL,
+                    evidence_id TEXT NOT NULL,
+                    record_json TEXT NOT NULL,
+                    record_sha256 TEXT NOT NULL,
+                    event_hash TEXT NOT NULL,
+                    PRIMARY KEY(session_id,evidence_id),
+                    FOREIGN KEY(session_id) REFERENCES sessions(session_id)
+                );
+                CREATE TABLE IF NOT EXISTS proposals(
+                    proposal_id TEXT PRIMARY KEY,
+                    session_id TEXT NOT NULL,
+                    proposal_json TEXT NOT NULL,
+                    proposal_sha256 TEXT NOT NULL,
+                    state TEXT NOT NULL,
+                    event_hash TEXT NOT NULL,
+                    FOREIGN KEY(session_id) REFERENCES sessions(session_id)
+                );
+                CREATE TABLE IF NOT EXISTS consumed_capabilities(
+                    nonce TEXT PRIMARY KEY,
+                    session_id TEXT NOT NULL,
+                    operation TEXT NOT NULL,
+                    consumed_at TEXT NOT NULL
+                );
+                """
+            )
+            connection.commit()
+        finally:
+            connection.close()
+
+    @contextmanager
+    def transaction(self) -> Iterator[sqlite3.Connection]:
+        with self._lock:
+            connection = self._connect()
+            try:
+                connection.execute("BEGIN IMMEDIATE")
+                yield connection
+                connection.commit()
+            except Exception:
+                connection.rollback()
+                raise
+            finally:
+                connection.close()
+
+    @contextmanager
+    def read(self) -> Iterator[sqlite3.Connection]:
+        connection = self._connect()
+        try:
+            yield connection
+        finally:
+            connection.close()
+
+    @staticmethod
+    def head(connection: sqlite3.Connection) -> str:
+        row = connection.execute("SELECT event_hash FROM events ORDER BY sequence DESC LIMIT 1").fetchone()
+        return row[0] if row else "GENESIS"
+
+    @staticmethod
+    def append(connection: sqlite3.Connection, event_type: str, payload: dict[str, Any]) -> dict[str, Any]:
+        body = {
+            "event_id": str(uuid4()),
+            "event_type": event_type,
+            "occurred_at": _utc_now(),
+            "payload": payload,
+            "previous_hash": Ledger.head(connection),
+        }
+        event_hash = sha256_json(body)
+        connection.execute(
+            "INSERT INTO events(event_id,event_type,occurred_at,payload_json,previous_hash,event_hash) VALUES(?,?,?,?,?,?)",
+            (body["event_id"], body["event_type"], body["occurred_at"], canonical_json(payload), body["previous_hash"], event_hash),
+        )
+        return {**body, "event_hash": event_hash}
+
+    def verify(self) -> dict[str, Any]:
+        defects: list[str] = []
+        previous = "GENESIS"
+        with self.read() as connection:
+            rows = connection.execute("SELECT * FROM events ORDER BY sequence").fetchall()
+            session_count = connection.execute("SELECT COUNT(*) FROM sessions").fetchone()[0]
+            evidence_count = connection.execute("SELECT COUNT(*) FROM evidence").fetchone()[0]
+            proposal_count = connection.execute("SELECT COUNT(*) FROM proposals").fetchone()[0]
+        for row in rows:
+            body = {
+                "event_id": row["event_id"],
+                "event_type": row["event_type"],
+                "occurred_at": row["occurred_at"],
+                "payload": json.loads(row["payload_json"]),
+                "previous_hash": row["previous_hash"],
+            }
+            if row["previous_hash"] != previous or sha256_json(body) != row["event_hash"]:
+                defects.append(f"EVENT_CHAIN:{row['sequence']}")
+            previous = row["event_hash"]
+        return {
+            "gate": "PASS" if not defects else "FAIL",
+            "defects": defects,
+            "head_hash": previous,
+            "event_count": len(rows),
+            "session_count": session_count,
+            "evidence_count": evidence_count,
+            "proposal_count": proposal_count,
+        }
+
+    def export(self) -> dict[str, Any]:
+        with self.read() as connection:
+            events = [
+                {
+                    "sequence": row["sequence"],
+                    "event_id": row["event_id"],
+                    "event_type": row["event_type"],
+                    "occurred_at": row["occurred_at"],
+                    "payload": json.loads(row["payload_json"]),
+                    "previous_hash": row["previous_hash"],
+                    "event_hash": row["event_hash"],
+                }
+                for row in connection.execute("SELECT * FROM events ORDER BY sequence")
+            ]
+        core = {"schema": "kch.audit-export.v0.11.0", "release": "KCH 0.11", "events": events}
+        return {**core, "export_sha256": sha256_json(core)}

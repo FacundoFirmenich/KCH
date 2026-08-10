@@ -1,0 +1,275 @@
+{
+  "schema": "kch.sco.portable-orchestration-bundle.v0.1.0",
+  "superchat": {
+    "claim_ceiling": "TWO_REAL_CODEX_TASKS_GROUPED_AS_SOVEREIGN_REFERENCES_WITH_A_VALIDATED_LOCAL_ORCHESTRATION_PATH",
+    "jurisdiction": "KCH pre-second-generation continuation initiated on 2026-08-09; local orchestration ledger and exact native references only.",
+    "name": "KCH pre-2G sovereign continuation SCO",
+    "non_goals": [
+      "Do not replace either native task with a project-level context.",
+      "Do not copy complete chat histories into the SCO ledger.",
+      "Do not create execution authority through grouping.",
+      "Do not claim live provider dispatch from the standalone v0.1.0 package."
+    ],
+    "objective": "Orchestrate the native KCH lineage task and the current integration task without fusing either task's context, memory, capabilities or lifecycle.",
+    "schema": "kch.sco.superchat.v0.1.0",
+    "sco_id": "sco.kch-pre2g-continuation.20260809"
+  },
+  "nodes": [
+    {
+      "authority_granted": [
+        "SUPPLY_EXISTING_EVIDENCE_REFERENCE"
+      ],
+      "autonomy_level": "OBSERVE_ONLY",
+      "capabilities": [
+        "NATIVE_THREAD_REFERENCE",
+        "HOST_READABLE_FULL_HISTORY"
+      ],
+      "connector_state": "HOST_VERIFIED_REFERENCE",
+      "context_policy": "SCOPED_DISCLOSURE_ONLY",
+      "memory_policy": "NATIVE_MEMORY_PRESERVED",
+      "native_uri": "codex://threads/019fd938-8000-7121-9078-d196bdd15ae4",
+      "node_id": "kch-canonical-lineage-source",
+      "provider": "CODEX",
+      "responsibilities": [
+        "Remain the unmerged native chronological source.",
+        "Supply exact turn-level evidence only through explicit host reads.",
+        "Retain historical formulations, corrections and adverse results."
+      ],
+      "role": "CANONICAL_LINEAGE_EVIDENCE_SOURCE",
+      "schema": "kch.sco.node.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "source_provenance": "Codex app list_threads live observation on 2026-08-09; native thread was read exhaustively earlier in the current task.",
+      "title": "KCH native chronological lineage source"
+    },
+    {
+      "authority_granted": [
+        "BUILD_SCO_LOCAL",
+        "PRODUCE_GATE_EVIDENCE",
+        "REGISTER_KCH_COMPONENT_CANDIDATE",
+        "ISSUE_SCOPED_WORK_ORDERS"
+      ],
+      "autonomy_level": "EXECUTE_WITHIN_SCOPE",
+      "capabilities": [
+        "LOCAL_ENGINEERING",
+        "SCIENTIFIC_ADJUDICATION",
+        "CODEX_HOST_BRIDGE",
+        "CSI_LOWERING"
+      ],
+      "connector_state": "HOST_VERIFIED_REFERENCE",
+      "context_policy": "SCOPED_DISCLOSURE_ONLY",
+      "memory_policy": "NATIVE_MEMORY_PRESERVED",
+      "native_uri": "codex://threads/019fe6b4-c2dd-7880-847e-d1fd16ea67a2",
+      "node_id": "kch-sco-builder",
+      "provider": "CODEX",
+      "responsibilities": [
+        "Build the SCO control plane under the user's sovereign-chat invariants.",
+        "Validate isolation, authority, graph, work-order, receipt and CSI-lowering contracts.",
+        "Preserve evidence boundaries and report unavailable live bridges."
+      ],
+      "role": "ARCHITECT_IMPLEMENTER_VALIDATOR",
+      "schema": "kch.sco.node.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "source_provenance": "Codex app list_threads live observation on 2026-08-09; this is the currently executing task.",
+      "title": "KCH pre-2G integrator and SCO builder"
+    },
+    {
+      "authority_granted": [
+        "RETURN_BOUNDED_TEXT_RECEIPT"
+      ],
+      "autonomy_level": "RESPOND_WITHIN_SCOPE",
+      "capabilities": [
+        "RETURN_BOUNDED_TEXT_RECEIPT"
+      ],
+      "connector_state": "HOST_VERIFIED_REFERENCE",
+      "context_policy": "SCOPED_DISCLOSURE_ONLY",
+      "memory_policy": "NATIVE_MEMORY_PRESERVED",
+      "native_uri": "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+      "node_id": "sco-disposable-live-probe-01",
+      "provider": "CODEX",
+      "responsibilities": [
+        "Receive one bounded SCO work order.",
+        "Return an exact textual receipt without side effects.",
+        "Preserve native context and refuse undeclared authority."
+      ],
+      "role": "DISPOSABLE_LIVE_TRANSPORT_PROBE",
+      "schema": "kch.sco.node.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "source_provenance": "Codex create_thread and bootstrap receipt observed on 2026-08-09; bootstrap turn 019fe6f6-0ca5-7b72-a646-7d5ff60148b5.",
+      "title": "SCO disposable live transport probe 01"
+    }
+  ],
+  "edges": [
+    {
+      "activation_condition": "Explicit evidence need within a declared KCH work order.",
+      "disclosure_contract": {
+        "allowed_ref_kinds": [
+          "NATIVE_TURN_REF",
+          "ARTIFACT_REF",
+          "HASH_REF",
+          "GATE_REF"
+        ],
+        "forbidden_transfers": [
+          "FULL_CONTEXT_MERGE",
+          "NATIVE_MEMORY_COPY",
+          "IMPLICIT_AUTHORITY_TRANSFER"
+        ],
+        "maximum_payload_bytes": 262144,
+        "schema": "kch.sco.scoped-disclosure.v0.1.0"
+      },
+      "edge_id": "kch-lineage-supplies-sco-builder",
+      "gate_id": "FULL_NATIVE_THREAD_READ_AND_PROVENANCE_PRESERVATION",
+      "relation": "SUPPLIES_EVIDENCE",
+      "schema": "kch.sco.edge.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "source_node_id": "kch-canonical-lineage-source",
+      "target_node_id": "kch-sco-builder"
+    },
+    {
+      "activation_condition": "One explicitly prepared and deduplicated transport dispatch.",
+      "disclosure_contract": {
+        "allowed_ref_kinds": [
+          "WORK_ORDER_REF",
+          "NONCE_REF",
+          "AUTHORITY_REF"
+        ],
+        "forbidden_transfers": [
+          "FULL_CONTEXT_MERGE",
+          "NATIVE_MEMORY_COPY",
+          "IMPLICIT_AUTHORITY_TRANSFER"
+        ],
+        "maximum_payload_bytes": 8192,
+        "schema": "kch.sco.scoped-disclosure.v0.1.0"
+      },
+      "edge_id": "sco-builder-dispatches-disposable-01",
+      "gate_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0",
+      "relation": "IMPLEMENTS",
+      "schema": "kch.sco.edge.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "source_node_id": "kch-sco-builder",
+      "target_node_id": "sco-disposable-live-probe-01"
+    }
+  ],
+  "work_orders": [
+    {
+      "authority_granted": [
+        "BUILD_SCO_LOCAL",
+        "PRODUCE_GATE_EVIDENCE",
+        "REGISTER_KCH_COMPONENT_CANDIDATE"
+      ],
+      "claim_ceiling": "LOCAL_FUNCTIONAL_ORCHESTRATION_AND_REFERENCE_INTEROPERABILITY_ONLY",
+      "depends_on": [],
+      "disclosed_fragments": [],
+      "input_refs": [
+        "codex://threads/019fd938-8000-7121-9078-d196bdd15ae4",
+        "codex://threads/019fe6b4-c2dd-7880-847e-d1fd16ea67a2",
+        "GATE_PHL_EFFECTIVE_KCH_INTEGRATION_v0.2.0",
+        "KCH_CSI_PRESET_COMPILER_v0.1.0"
+      ],
+      "objective": "Implement and validate SCO v0.1.0 as a sovereign multi-chat orchestration plane, then register this exact KCH continuation as its first real two-node graph.",
+      "order_id": "wo.deploy-sco-v0.1.0",
+      "required_outputs": [
+        "EXECUTABLE_SCO_PACKAGE",
+        "ADVERSARIAL_TEST_RESULT",
+        "REAL_TWO_NODE_DEPLOYMENT",
+        "CSI_LOWERING_RECEIPT",
+        "CLAIM_AND_LIMITATION_LEDGER"
+      ],
+      "schema": "kch.sco.work-order.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "target_node_id": "kch-sco-builder",
+      "termination": "All local gates adjudicated and connector limitations persisted without overclaiming."
+    },
+    {
+      "authority_granted": [
+        "RETURN_BOUNDED_TEXT_RECEIPT"
+      ],
+      "claim_ceiling": "CODEX_TEXT_TRANSPORT_AND_RECEIPT_BINDING_FOR_ONE_DISPOSABLE_NODE_ONLY",
+      "depends_on": [],
+      "disclosed_fragments": [],
+      "input_refs": [
+        "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0#turn=019fe6f6-0ca5-7b72-a646-7d5ff60148b5",
+        "gate://GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0"
+      ],
+      "objective": "Return the exact bounded SCO native-transport receipt for dispatch SCO-LIVE-DISPATCH-20260809-01 without filesystem, network, cross-thread or context-export side effects.",
+      "order_id": "wo.sco-live-transport-01",
+      "required_outputs": [
+        "kch.sco.native-transport-receipt.v0.2.0"
+      ],
+      "schema": "kch.sco.work-order.v0.1.0",
+      "sco_id": "sco.kch-pre2g-continuation.20260809",
+      "target_node_id": "sco-disposable-live-probe-01",
+      "termination": "One schema-conformant receipt is bound to the native response turn and no duplicate dispatch occurs."
+    }
+  ],
+  "receipts": [
+    {
+      "authority_exercised": [
+        "BUILD_SCO_LOCAL",
+        "PRODUCE_GATE_EVIDENCE",
+        "REGISTER_KCH_COMPONENT_CANDIDATE"
+      ],
+      "claims": [
+        "Two observed Codex task references are composed in one explicit graph without native-context ingestion.",
+        "The local ledger, graph, work-order, receipt, authority and CSI-lowering paths pass their bounded gates."
+      ],
+      "completed_at": "UNAVAILABLE_EXACT_TIME_ON_2026-08-09",
+      "evidence_ids": [
+        "SCO_UNIT_GATE_21_OF_21",
+        "SCO_REAL_TWO_NODE_GATE",
+        "SCO_CSI_LOWERING_GATE"
+      ],
+      "limitations": [
+        "The standalone package does not perform live provider dispatch.",
+        "Cline, Cowork and OpenCode bridges remain untested and unavailable.",
+        "No comparative outcome campaign against classical Projects has been executed.",
+        "No distributed or multi-host consensus has been demonstrated."
+      ],
+      "node_id": "kch-sco-builder",
+      "order_id": "wo.deploy-sco-v0.1.0",
+      "outcome": "SUCCEEDED",
+      "output_refs": [
+        "work/KCH_SUPERCHATS_ORCHESTRATORS_v0.1.0",
+        "results/SCO_VALIDATION_RESULT_v0.1.0.json",
+        "results/SCO_KCH_PRE2G_CSI_LOWERING_v0.1.0.json"
+      ],
+      "receipt_id": "receipt.deploy-sco-v0.1.0",
+      "schema": "kch.sco.receipt.v0.1.0"
+    },
+    {
+      "authority_exercised": [
+        "RETURN_BOUNDED_TEXT_RECEIPT"
+      ],
+      "claims": [
+        "One bounded Codex work order was delivered to the exact disposable native task and returned a schema-conformant receipt.",
+        "A repeated prepare operation for the same received dispatch returned should_send=false."
+      ],
+      "completed_at": "2026-08-09T14:43:45.0000000+00:00",
+      "evidence_ids": [
+        "SCO-LIVE-DISPATCH-20260809-01",
+        "SCO-LIVE-NONCE-20260809-01",
+        "transport-guard:36628d888851a6b429fcfa0eca1cccb4fa553bfb36167e1aca9afdf54773e6a8"
+      ],
+      "limitations": [
+        "Single disposable Codex node only.",
+        "Textual receipt and host-tool metadata; no independent operating-system audit of the remote task.",
+        "The Codex API exposed one turn identifier for the user-message/assistant-response turn rather than separate request and response identifiers.",
+        "No other provider and no semantic work-product quality was tested."
+      ],
+      "node_id": "sco-disposable-live-probe-01",
+      "order_id": "wo.sco-live-transport-01",
+      "outcome": "SUCCEEDED",
+      "output_refs": [
+        "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0#turn=019fe6fa-b818-7c62-bb0b-d04f0fbb3bb1",
+        "sha256:e6aa7600f7a9f8fb10d981dca9bf14d8a17f0df5f78dbf46aa3cf2c4dfba8976"
+      ],
+      "receipt_id": "receipt.sco-live-transport-01",
+      "schema": "kch.sco.receipt.v0.1.0"
+    }
+  ],
+  "conflicts": [],
+  "ledger_head_hash": "f16d59257e100f344df6dd599d821372e7d94c6729c79ad17a010a0d15a0e171",
+  "native_chat_content_included": false,
+  "native_memory_included": false,
+  "authority_created": false,
+  "bundle_sha256": "5b33938fb182e2268acfb177c8d69161cc2529ddad2e30a38e18654cc95d2fac"
+}

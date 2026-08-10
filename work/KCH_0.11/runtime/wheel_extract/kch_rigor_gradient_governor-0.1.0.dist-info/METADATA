@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: kch-rigor-gradient-governor
+Version: 0.1.0
+Summary: Purpose-calibrated rigor and epistemic latitude governor for KCH
+License: Proprietary research checkpoint
+Requires-Python: >=3.11

@@ -1,0 +1,198 @@
+{
+  "canonical_kch_modified": false,
+  "entries": [
+    {
+      "bytes": 1006,
+      "path": "README.md",
+      "sha256": "7baa68e5fc5ced39a136005cad7fa0b9fef14550c19302075c9b32d0ecb87f40"
+    },
+    {
+      "bytes": 2026,
+      "path": "catalogs/artifact_types.v0.1.0.json",
+      "sha256": "5cc8e18514106925be8a9cf527d392e93d723de69288635b4ac1a041259c3651"
+    },
+    {
+      "bytes": 2188,
+      "path": "catalogs/discovery_providers.v0.1.0.json",
+      "sha256": "6cafb80db5e47c872c57eed5a0e1f1f014a1ef4400ce8a8fbb095285e2fbe0b1"
+    },
+    {
+      "bytes": 352,
+      "path": "compile_result.json",
+      "sha256": "6181b8c07d348d19cd15310a7f37c81c43ccf9fc3fa07f1c696d26779da90cc5"
+    },
+    {
+      "bytes": 33,
+      "path": "dist/.kch-csi-generated-v0.1.0",
+      "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+    },
+    {
+      "bytes": 216,
+      "path": "dist/codex/.codex/rules/kch-generated.rules",
+      "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+    },
+    {
+      "bytes": 9437,
+      "path": "dist/codex/AGENTS.md",
+      "sha256": "4fccf2d4bdec2cb098b566c3c11efe605cfa813a47568cb77452e05ce4488790"
+    },
+    {
+      "bytes": 640,
+      "path": "dist/codex/COMPATIBILITY_RECEIPT.json",
+      "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+    },
+    {
+      "bytes": 11608,
+      "path": "dist/csi/governance_graph.json",
+      "sha256": "2e4805c7c4d336fa86dbbd3d5e49c2f9d9cf4134431cefe5bab2cd78571be5ce"
+    },
+    {
+      "bytes": 1742,
+      "path": "dist/generic/AGENTS.md",
+      "sha256": "ce4063273abcbb945b6e213550316791db00c4c40551205db2b27e058a2630ea"
+    },
+    {
+      "bytes": 2716,
+      "path": "dist/generic/HARNESS.md",
+      "sha256": "907fbce94e4cf5bf7e7ac4e0f22251e5862605422e12abfd3685ee63acf72988"
+    },
+    {
+      "bytes": 1300,
+      "path": "dist/generic/RULES.md",
+      "sha256": "e204a895c87d96dd26288f736fd93e4fe6dd25fa6183f41f331dbc8df7af4824"
+    },
+    {
+      "bytes": 7993,
+      "path": "dist/governance.lock.json",
+      "sha256": "3543e947e3e9e67ccc2f414e64715b58dbcc2fe28702e6e9822ceacfcd44e584"
+    },
+    {
+      "bytes": 5892,
+      "path": "docs/CSI_STUDIO_ARCHITECTURE.md",
+      "sha256": "de8fbe9babdee3c411ab43b64d80886ea0030a8623f61bce9669912ef8030e21"
+    },
+    {
+      "bytes": 5904,
+      "path": "docs/EXTENSION_FABRIC_ARCHITECTURE.md",
+      "sha256": "df1f021a2f89420284ddbec169feaebc4f078f07845d347863aeff13ce0e3ca9"
+    },
+    {
+      "bytes": 1742,
+      "path": "governance/AGENTS.md",
+      "sha256": "ce4063273abcbb945b6e213550316791db00c4c40551205db2b27e058a2630ea"
+    },
+    {
+      "bytes": 2716,
+      "path": "governance/HARNESS.md",
+      "sha256": "907fbce94e4cf5bf7e7ac4e0f22251e5862605422e12abfd3685ee63acf72988"
+    },
+    {
+      "bytes": 1300,
+      "path": "governance/RULES.md",
+      "sha256": "e204a895c87d96dd26288f736fd93e4fe6dd25fa6183f41f331dbc8df7af4824"
+    },
+    {
+      "bytes": 758,
+      "path": "governance/agents/artifact-builder.md",
+      "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+    },
+    {
+      "bytes": 729,
+      "path": "governance/agents/csi-studio-orchestrator.md",
+      "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+    },
+    {
+      "bytes": 776,
+      "path": "governance/agents/extension-curator.md",
+      "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+    },
+    {
+      "bytes": 639,
+      "path": "governance/agents/governance-compiler.md",
+      "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+    },
+    {
+      "bytes": 758,
+      "path": "governance/rules/authority-nonescalation.md",
+      "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+    },
+    {
+      "bytes": 779,
+      "path": "governance/rules/extension-acquisition.md",
+      "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+    },
+    {
+      "bytes": 845,
+      "path": "governance/rules/generation-staged.md",
+      "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+    },
+    {
+      "bytes": 897,
+      "path": "governance/rules/host-projection.md",
+      "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+    },
+    {
+      "bytes": 890,
+      "path": "governance/rules/interface-transparency.md",
+      "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+    },
+    {
+      "bytes": 803,
+      "path": "governance/rules/recommendation-evidence.md",
+      "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+    },
+    {
+      "bytes": 376,
+      "path": "pyproject.toml",
+      "sha256": "2d5969cb6f9df4eba052bd2253617cf9d3ec2c6797468d035f04e3c5a9d57019"
+    },
+    {
+      "bytes": 63,
+      "path": "src/kch_self_governance/__init__.py",
+      "sha256": "47daaf7fd270e0a19d0d7796bad7f95376f0b43fdb842c14a1e0f9075a841928"
+    },
+    {
+      "bytes": 31,
+      "path": "src/kch_self_governance/__main__.py",
+      "sha256": "e7dc861204dcba0612b29adafd5a3425c46e576414d9dd40d809186b69a52d80"
+    },
+    {
+      "bytes": 1186,
+      "path": "src/kch_self_governance/cli.py",
+      "sha256": "3975ea0724c112930a727cbbf1c31e9a11651a16ff05a335ae4bf5c17c30e4f7"
+    },
+    {
+      "bytes": 5235,
+      "path": "src/kch_self_governance/compiler.py",
+      "sha256": "1dfb8d2da7b9f222214f3e35c6c36c25ec7777cfeec1c250f5d3c537e4cf0c0f"
+    },
+    {
+      "bytes": 5492,
+      "path": "src/kch_self_governance/graph.py",
+      "sha256": "3ddc731bc8e001643c31bdce277d2c6b153252cf593f0a12f97ee4bbae4d17f4"
+    },
+    {
+      "bytes": 4260,
+      "path": "src/kch_self_governance/model.py",
+      "sha256": "00d6d5ecbd55c1f03673baa1185062f6993aa38a9878330bde1d546bc6976664"
+    },
+    {
+      "bytes": 7046,
+      "path": "tests/test_self_governance.py",
+      "sha256": "99a219dd05590821ecba8e3b149e4971882a027d31c08d7cc42821aee70fadd1"
+    },
+    {
+      "bytes": 7259,
+      "path": "validate_and_seal.py",
+      "sha256": "a8b7d2136e804490f25efca84e709da98556728d3c2a9a78bf06f5ba1bad5854"
+    },
+    {
+      "bytes": 11627,
+      "path": "validation_result.json",
+      "sha256": "e71897cd409cad0eb3955b16b0ff918aa1f3005fc0b9c405fc44b4cc07fa7489"
+    }
+  ],
+  "external_environment_modified": false,
+  "release": "KCH CSI Self-Governance v0.1.0",
+  "schema": "kch.csi-self-governance-manifest.v0.1.0"
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "kch.adverse-result.v0.11.0",
+  "release": "KCH 0.11",
+  "result_id": "ADVERSE_RESULT_02_MCP_SCHEMA_SEMANTIC_MISMATCH",
+  "observed": "The real stdio tools/list smoke exposed that R05 deliverables and cost_receipt plus R16 genealogy were typed as strings although their executable contracts use array, object and array respectively.",
+  "impact": "A schema-validating MCP client could reject semantically valid control inputs before evaluation.",
+  "repair": "The MCP schema binding now declares deliverables=array, cost_receipt=object and genealogy=array; three regression tests were added.",
+  "preservation": "The pre-fix wheel and ZIP are retained outside the canonical release tree under work/KCH_0.11_PRE_SCHEMA_FIX.",
+  "historical_result_rewritten": false
+}

@@ -1,0 +1,169 @@
+{
+  "file_count": 32,
+  "files": [
+    {
+      "bytes": 3531,
+      "path": "ADDENDUM_CIERRE_MIS_v0_3_1_2026-08-07.md",
+      "sha256": "4c0982bcf6e99531916e063eca384b810e04460656db3d59af311f3f77c5e28d"
+    },
+    {
+      "bytes": 1672,
+      "path": "CIERRE_FINAL_MIS_v0_3_1_2026-08-07.md",
+      "sha256": "dca783ffc8955947c805d51a85090302f4887c37e61cb97067141448be35db25"
+    },
+    {
+      "bytes": 5974,
+      "path": "CIERRE_SUSTANTIVO_MIS_v0_3_2026-08-07.md",
+      "sha256": "3350df661158f1d4bda5163e93b41f1e770382f124a19ca3ffb0da24ce527780"
+    },
+    {
+      "bytes": 19051,
+      "path": "dist/mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+      "sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157"
+    },
+    {
+      "bytes": 1578,
+      "path": "evidence/EVIDENCE_RECEIPTS.json",
+      "sha256": "a5df9489bbf315b9e1273bbb5f23eda391836cb1cea02fe8ba46cb0789cb49c3"
+    },
+    {
+      "bytes": 4995,
+      "path": "evidence/KHC_CIERRE_COMPARATIVO_8x8_v2.0.7.md",
+      "sha256": "235ce5066b3ee12cb9f61cbd625f71226d410d827ecdaf0c172e9095534d688d"
+    },
+    {
+      "bytes": 664301,
+      "path": "evidence/KHC_TWO_BATTERY_MASTER_RESULTS_v2.0.7.json",
+      "sha256": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c"
+    },
+    {
+      "bytes": 5341,
+      "path": "evidence/Statistical_Programming_Runtime_v0_2_EXECUTION_REPORT.md",
+      "sha256": "41c0217a96bf552e8cd987beb4a51e9517e70e5694dc6e3d8cf8b323bd9daae8"
+    },
+    {
+      "bytes": 6830,
+      "path": "FORMAL_SPEC_MIS_v0_3.md",
+      "sha256": "e9b835311152fe3b3fa4d5eb47fc0e0f01980848527b545d3d0b0b7a9edb3c8e"
+    },
+    {
+      "bytes": 4174,
+      "path": "PREREGISTRATION_MIS_v0_3_2026-08-07.md",
+      "sha256": "06ddfce4581b5d68523b884d2c3c838b444e988251494db5ff9f99606b87721a"
+    },
+    {
+      "bytes": 564,
+      "path": "pyproject.toml",
+      "sha256": "f433a12c57321adfdf5d35c96cd01d649f5f3b3dfc35abebb829df1a7d392fb5"
+    },
+    {
+      "bytes": 2189,
+      "path": "README.md",
+      "sha256": "2892289202813338234d513de43d4d46ef62b8cc666fb10c2bccc5246cd83976"
+    },
+    {
+      "bytes": 318,
+      "path": "results/ISOLATED_WHEEL_SMOKE_TEST.txt",
+      "sha256": "1be186306d289f1ec3c79b85e01a58246255522d39cd1fcbb7f1fcc2b97803c6"
+    },
+    {
+      "bytes": 5335,
+      "path": "results/MIS_v0_3_EXPERIMENT_REPORT.json",
+      "sha256": "de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83"
+    },
+    {
+      "bytes": 936133,
+      "path": "results/MIS_v0_3_KHC_FUTURE_ONLY_LEDGERS.json",
+      "sha256": "605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca"
+    },
+    {
+      "bytes": 515,
+      "path": "results/REPRODUCIBILITY_CHECK.json",
+      "sha256": "fab843dda753e3a3b049fd8edd44349054d302e9c163e2265067039e00004827"
+    },
+    {
+      "bytes": 243,
+      "path": "results/TEST_REPORT_44_OF_44_PASS.txt",
+      "sha256": "fd714f36d68a1ff1eb8e6369d0861a1acfc13d6d85f4fa780ef72a14ef966dbf"
+    },
+    {
+      "bytes": 1574,
+      "path": "scripts/build_manifest.py",
+      "sha256": "8e25aca7417e7475d5703c4cb8ccee9716746b294c1d8e8827a9a403a32d27d0"
+    },
+    {
+      "bytes": 1729,
+      "path": "scripts/build_release_zip.py",
+      "sha256": "0b68cf4b2844463f3098391d1b7eb6bd9493c8a74370bc6d72a0e5e9709bc38f"
+    },
+    {
+      "bytes": 232,
+      "path": "scripts/run_experiments.py",
+      "sha256": "3788a3b608a3392587ce61e82df98d843051b6c4d95d8a6b73c666c807f662e6"
+    },
+    {
+      "bytes": 1122,
+      "path": "scripts/verify_manifest.py",
+      "sha256": "9dc22e976a848eb33757e45ecd4af79f53fd3ff0fd9b6592f1c6fd0ef5304183"
+    },
+    {
+      "bytes": 999,
+      "path": "src/mis_v03/__init__.py",
+      "sha256": "6fce26e15034076955a2a39b91c5c8e217b02d268e2709f476c71b3734f29193"
+    },
+    {
+      "bytes": 2465,
+      "path": "src/mis_v03/atoms.py",
+      "sha256": "84d1e01033322b31bddad4b4ccad3020f9cc4775751363b595e0affbce9c2f3b"
+    },
+    {
+      "bytes": 3675,
+      "path": "src/mis_v03/canonical.py",
+      "sha256": "ffe7be81820550747340d23860edea7612b513afbd992a9519e3e869fc5a8b43"
+    },
+    {
+      "bytes": 6440,
+      "path": "src/mis_v03/decision.py",
+      "sha256": "818d03ef3d5eea1c091fd1ec399b3d13c1cbb1b2d575d45f7bff975478404286"
+    },
+    {
+      "bytes": 5274,
+      "path": "src/mis_v03/exact.py",
+      "sha256": "20ac463a41f614aa897afde2ca0b79b2d7e333b9605dff1b1955c42c7e337b59"
+    },
+    {
+      "bytes": 11795,
+      "path": "src/mis_v03/experiments.py",
+      "sha256": "4cdfd2b9c882bae1fb00d17c94197f4c1574c8754a799fac0f5bd3339b091544"
+    },
+    {
+      "bytes": 17770,
+      "path": "src/mis_v03/freeze.py",
+      "sha256": "98fedae472325230f9962079e44c668b089cc087be9bf1013aa942aba4dc3c7b"
+    },
+    {
+      "bytes": 14319,
+      "path": "src/mis_v03/khc.py",
+      "sha256": "47190f54d02643003bdfc1b7fb60ca547ceab6dfd92d0be547c68cf465f6712a"
+    },
+    {
+      "bytes": 8113,
+      "path": "tests/test_core.py",
+      "sha256": "585e9ad5f4c8e1c2d9fc821781399ec021d6c0468d19c339809992945af0200f"
+    },
+    {
+      "bytes": 6171,
+      "path": "tests/test_persistence_portability.py",
+      "sha256": "470068eb181e82dba4e2307c3ade295ddbf40888198ee168f3f573ca50e65074"
+    },
+    {
+      "bytes": 6621,
+      "path": "tests/test_strict_exact_types.py",
+      "sha256": "e52e00b04510bddfc1977d3ae3fa439da184125cc30fda3276ff07ece667b678"
+    }
+  ],
+  "manifest_self_hash": null,
+  "note": "The manifest excludes itself, patch probes, transient caches and compiled bytecode.",
+  "schema": "MIS_RELEASE_MANIFEST_v0.3.1",
+  "version": "0.3.1"
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "kwanprompts.ts01r.resource_repair.result.v0.1.0",
+  "jurisdiction": "WINDOWS_RESOURCE_LIFECYCLE_REPAIR_WITH_FROZEN_SEMANTICS",
+  "preregistration_sha256": "e3ddb51cdbc9e29ebe93800d7b215f203fca5878acc4daffd64ed8e503721595",
+  "fixture_sha256": "ef960ada42d68664669484297101b7bf856d6c3bdbf21c6dc3a0a5f7c2584ab5",
+  "parent_result_sha256": "5d478ce08d2ecac586377c3d1ab0c32bba1d4ddb1b91af9560439c0677b31e5d",
+  "cases": [
+    {
+      "case_id": "KP01_CONTINUE",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "INTERMEDIATE_OR_IRRELEVANT",
+        "raw_sha256": "d604d846f93e956885226f11516643846e401726766c797332afeeff218ee26d"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    },
+    {
+      "case_id": "KP02_KCH_CORRECTION",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "STRATEGIC_OR_INFORMATIVE",
+        "raw_sha256": "a0ade5fc3cf8bc686ca6b01304637463fd360a1f23a29b308097ae9694c7855e"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    },
+    {
+      "case_id": "KP03_QAS_CAS_RDSS",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "STRATEGIC_OR_INFORMATIVE",
+        "raw_sha256": "d9e2d1883ff453a6c0e334dabf46094930ffc4c92cdd8b7ed65f6ba738600d62"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    },
+    {
+      "case_id": "KP04_EXECUTION_STATE",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "STRATEGIC_OR_INFORMATIVE",
+        "raw_sha256": "7126b0e2a687733696134e5248db39d2915f917421951dab42dfdf75b33038cc"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    },
+    {
+      "case_id": "KP05_MIDI_PROVENANCE",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "STRATEGIC_OR_INFORMATIVE",
+        "raw_sha256": "6931a10218395d9c3d3aa015257f34538085bf2db74ad2be70e43c87098bd86b"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    },
+    {
+      "case_id": "KP06_NO_METAPHOR_RULE",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "STRATEGIC_OR_INFORMATIVE",
+        "raw_sha256": "ebe74563ee37d19fe4dc2ce206ca011541868d2d787dc1ba90df2a2cbbab8d57"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    },
+    {
+      "case_id": "KP07_NEW_KWANPROMPTS",
+      "observed": {
+        "disposition": "CLASSIFIED",
+        "branch": "STRATEGIC_OR_INFORMATIVE",
+        "raw_sha256": "2ede634765d1f8ba6b99ff48ee64ac2850308a00dcb53f195f3801a77635e882"
+      },
+      "expected_exact_match": true,
+      "parent_semantic_identity": true
+    }
+  ],
+  "ledger_before_move": {
+    "schema": "kwanprompts.ledger-verification.v0.1.0",
+    "gate": "PASS",
+    "event_count": 7,
+    "message_count": 7,
+    "adjudication_count": 0,
+    "head_hash": "aef432c4527eef94bb6e5e38e5996452b9543a32eecd169600bfe9e167c4b44f",
+    "defects": []
+  },
+  "ledger_after_move": {
+    "schema": "kwanprompts.ledger-verification.v0.1.0",
+    "gate": "PASS",
+    "event_count": 7,
+    "message_count": 7,
+    "adjudication_count": 0,
+    "head_hash": "aef432c4527eef94bb6e5e38e5996452b9543a32eecd169600bfe9e167c4b44f",
+    "defects": []
+  },
+  "resource_probe": "SQLITE_STATE_RENAMED_OUT_AND_BACK_WITHIN_SAME_PROCESS",
+  "summary": {
+    "exact_matches": 7,
+    "parent_semantic_identities": 7,
+    "total": 7,
+    "gate": "PASS"
+  },
+  "claim_boundary": [
+    "Repairs deterministic SQLite handle closure only.",
+    "Does not expand the seven-message semantic jurisdiction of TS01.",
+    "Does not establish universal classification, KwanDocs ingestion, canonization or execution authority."
+  ]
+}

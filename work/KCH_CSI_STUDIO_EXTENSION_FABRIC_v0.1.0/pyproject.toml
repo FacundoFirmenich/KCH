@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kch-csi-studio-extension-fabric"
+version = "0.3.0"
+description = "Transactional CSI Studio and governed extension fabric for KwanCode Harness"
+requires-python = ">=3.11"
+dependencies = [
+  "Pillow>=12,<13",
+  "pypdf>=6,<7",
+  "numpy>=2,<3",
+  "sounddevice>=0.5,<1",
+  "tzdata>=2025.2,<2026",
+  "kwancode-harness>=0.11,<0.12",
+  "kch-obl-phl-learning-system>=0.1.1,<0.2",
+  "kch-phl-effective-integration>=0.2,<0.3",
+  "kch-superchats-orchestrators>=0.1,<0.2",
+  "kch-rigor-gradient-governor>=0.1,<0.2",
+  "kwanprompts>=0.1,<0.2",
+  "kch-mis-v03-integration>=0.1,<0.2",
+  "mis-qualitative-bayes>=0.3.1,<0.4",
+]
+
+[project.scripts]
+kch-studio = "kch_studio.cli:main"
+kch-studio-mcp = "kch_studio.mcp_server:main"
+kch-super-mcp-studio = "kch_studio.super_mcp_overlay:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+kch_studio = [
+  "data/governance/*.json",
+  "data/governance/.kch-csi-generated-v0.1.0",
+  "data/governance/csi/*.json",
+  "data/governance/generic/*.md",
+  "data/governance/codex/*.md",
+  "data/governance/codex/*.json",
+  "data/governance/codex/.codex/rules/*.rules",
+  "data/governance/source/*.md",
+  "data/governance/source/agents/*.md",
+  "data/governance/source/rules/*.md",
+  "data/audio/*.ps1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

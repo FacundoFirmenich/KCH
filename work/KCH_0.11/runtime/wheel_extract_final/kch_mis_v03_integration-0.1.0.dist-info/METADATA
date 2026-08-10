@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: kch-mis-v03-integration
+Version: 0.1.0
+Summary: Authority-separating MIS v0.3.1 integration adapter for KwanCode Harness
+Requires-Python: >=3.11

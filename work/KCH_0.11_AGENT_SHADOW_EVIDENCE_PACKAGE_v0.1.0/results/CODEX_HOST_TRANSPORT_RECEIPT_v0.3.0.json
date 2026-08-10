@@ -1,0 +1,74 @@
+{
+  "schema": "kch.codex-host-transport-receipt.v0.3.0",
+  "release": "KCH 0.11",
+  "observed_at_utc": "2026-08-09T19:11:45Z",
+  "host": "Codex CLI invoked from the trusted KCH project",
+  "host_thread_id": "019fe7ef-cf51-7af2-958c-56beba66f87f",
+  "session_persistence": "EPHEMERAL",
+  "configuration_discovery": {
+    "server_name": "kch_0_11",
+    "transport": "stdio",
+    "command": "C:\\Python314\\python.exe",
+    "args": [
+      "-X",
+      "utf8",
+      "-u",
+      "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"
+    ],
+    "enabled": true,
+    "required": true,
+    "default_tools_approval_mode": "prompt",
+    "project_config_sha256": "a8a285bf8c23bda32529bf559ab548373e96f7e4e4c3fe795af41e2265209d55"
+  },
+  "host_execution": {
+    "exit_code": 0,
+    "mcp_tool_calls_observed": 1,
+    "shell_tool_calls_observed": 0,
+    "server": "kch_0_11",
+    "tool": "kch.super.status",
+    "arguments": {},
+    "status": "completed",
+    "result_projection": {
+      "release": "KCH 0.11",
+      "package_version": "0.11.0",
+      "profile": "agent-shadow",
+      "mode": "SHADOW_AND_READ_ONLY_FEDERATION",
+      "mutating_execution_authorized": false,
+      "reflexive_controls": 28,
+      "component_packages_available": 7,
+      "component_packages_unavailable": 0,
+      "ledger_gate": "PASS",
+      "ledger_event_count": 30,
+      "ledger_session_count": 4,
+      "ledger_evidence_count": 12,
+      "ledger_proposal_count": 4
+    }
+  },
+  "phl_boundary": {
+    "phl_tool_calls_observed": 0,
+    "phl_real_session_started": false,
+    "phl_feedback_created": false,
+    "phl_state_sha256_after_host_call": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21"
+  },
+  "evidence": {
+    "last_message_file": "results/CODEX_HOST_KCH_0.11_STATUS_CALL_LAST_MESSAGE.md",
+    "last_message_sha256": "5bfbba8feb0a1ebdf9b36ee15ff440573f1e1ddc2adcbfd3313b016b226c3ecd",
+    "real_shadow_gate_result_sha256": "ce0192b201293a1dff818110d355a3ac2c05b37b34e385ea108f5363dae236f5"
+  },
+  "adverse_observations": [
+    {
+      "state": "NO_SESSION_CREATED",
+      "observation": "The first host command combined --approve-for-me with --sandbox read-only; this CLI version rejected that flag combination before execution."
+    },
+    {
+      "state": "NONBLOCKING_HOST_WARNINGS",
+      "observation": "The successful ephemeral host emitted unrelated skill/plugin metadata warnings and a PowerShell shell-snapshot warning; the requested MCP call completed successfully."
+    }
+  ],
+  "claim_ceiling": "CODEX_HOST_DISCOVERED_AND_CALLED_KCH_0.11_STATUS_ONCE_IN_AN_EPHEMERAL_READ_ONLY_INTENT_SESSION",
+  "limitations": [
+    "This receipt preserves the observed Codex JSONL event projection and hashed last message, not a separately captured raw JSONL stream.",
+    "One status call does not demonstrate longitudinal reliability, production deployment, mutating authority, enforced governance or effectiveness superiority.",
+    "The current already-running desktop task cannot dynamically acquire a newly added MCP surface; a new task or app reload is required for interactive exposure."
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "kch.sco.live-gate-build-manifest.v0.2.0",
+  "gate_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0",
+  "release_state": "PASS_BOUNDED_EVIDENCE_PACKAGE",
+  "file_count": 24,
+  "files": [
+    {
+      "path": "dispatch_envelope.json",
+      "bytes": 727,
+      "sha256": "aa500c492d3aa50155ef602d5d03dc311dac3e70b431ed62d7331f69abb8e440"
+    },
+    {
+      "path": "edge_builder_to_disposable.json",
+      "bytes": 724,
+      "sha256": "5d5882a80c5066a6d15d32139464992cd9e6a4aee444e971d0a61814e406be30"
+    },
+    {
+      "path": "native_response_SCO-LIVE-DISPATCH-20260809-01.json",
+      "bytes": 497,
+      "sha256": "cdf4808b93f4a1bf7a5d93356cbe6a1eacc895bb7f507e125c6966964311feed"
+    },
+    {
+      "path": "node_disposable.json",
+      "bytes": 959,
+      "sha256": "8236ea9deef92bb41fb01bf549ddd5ff5dc6dd5e9f4f16da51447dc406969236"
+    },
+    {
+      "path": "results/CODEX_BOOTSTRAP_RECEIPT_v0.2.0.json",
+      "bytes": 302,
+      "sha256": "0622b352feba899857401e1b70fb88ea13b6556ffea2b866ae19e59fa7502f1b"
+    },
+    {
+      "path": "results/CODEX_HOST_TRANSPORT_RECEIPT_v0.2.0.json",
+      "bytes": 1069,
+      "sha256": "a37c319af083c674f0ef436433fe3491d6e074e36a507f8f99801c347c72b67b"
+    },
+    {
+      "path": "results/SCO_DECISION_ADAPTER_GATE_RESULT_v0.2.0.json",
+      "bytes": 2116,
+      "sha256": "b3cd1588c25505229a1a7c802a16efc00c455d223f15105ba64d98cbd23d7bf1"
+    },
+    {
+      "path": "results/SCO_KCH_REVIEWABLE_DECISIONS_v0.2.0.json",
+      "bytes": 4524,
+      "sha256": "97770e49d11f2ad7c985eac6a9aebcfad8025ec024c986b331f652160a007fe3"
+    },
+    {
+      "path": "results/SCO_LIVE_GATE_CSI_LOWERING_v0.2.0.json",
+      "bytes": 8593,
+      "sha256": "3a704255473d57bd6d37a23bd6e56490bec771ce5e38917c2644324a02b28228"
+    },
+    {
+      "path": "results/SCO_LIVE_GATE_PORTABLE_BUNDLE_v0.2.0.json",
+      "bytes": 12009,
+      "sha256": "7c707aee65d1816ee0894d985439186ab5108d2d20d2d4f22845213eeda90937"
+    },
+    {
+      "path": "results/SCO_LIVE_GATE_RESULT_v0.2.0.json",
+      "bytes": 6093,
+      "sha256": "600a7072f0a672a69ebf3ffc6a9c17ac92f3e6b2a07a504749d4ef613602417c"
+    },
+    {
+      "path": "run_decision_adapter_gate.py",
+      "bytes": 12063,
+      "sha256": "26a977f3548dd47283d8daa584ecda46bd39769a039ce2cd0602bcde41408dfc"
+    },
+    {
+      "path": "runtime/KCH_PHL_SCO_ADAPTER_GATE_v0.2.0.sqlite3",
+      "bytes": 204800,
+      "sha256": "1027fa8da1a583b107521bb5298a3f5774e1abbeb887a3772cea70c4e1c969a8"
+    },
+    {
+      "path": "runtime/KCH_SCO_LIVE_GATE_v0.2.0.sqlite3",
+      "bytes": 114688,
+      "sha256": "51afbdeacbb5cc7f90188e4f860125968b5c7d1c1ce9a5c4a8abc5ab5df12e49"
+    },
+    {
+      "path": "runtime/KCH_SCO_LIVE_GATE_v0.2.0_EMPTY_AFTER_SOURCE_COPY_PATH_ERROR.sqlite3",
+      "bytes": 94208,
+      "sha256": "00ee2e5d2ab6fa381bf08f4410849927688ea123c50ee1b6b602adbb11c233a6"
+    },
+    {
+      "path": "runtime/SCO_TRANSPORT_GUARD_v0.2.0.sqlite3",
+      "bytes": 12288,
+      "sha256": "237dce41d644a9ca62e57e096120028097708c38ca783959bd8744646b1d8ddf"
+    },
+    {
+      "path": "sco_receipt_live_transport.json",
+      "bytes": 1337,
+      "sha256": "2dcc06a8c9c9c4db04c12a9c64e355f22eece68378c62ec0b1d0ee394251a89e"
+    },
+    {
+      "path": "seal_live_gate.py",
+      "bytes": 1805,
+      "sha256": "a833b42b9f594f5924a8159e55ffd39f5e62f2c74610f2bed4de3b8617415d7b"
+    },
+    {
+      "path": "test_transport_guard.py",
+      "bytes": 2943,
+      "sha256": "c39e9467de9c8a8a83abe09ad20f0e8a19344d2b006e35382d1181f57d2508d9"
+    },
+    {
+      "path": "transport_cli.py",
+      "bytes": 1687,
+      "sha256": "20caa6b37c5907cace6229e413697d58e4418ea5b9cd572ccf4d7a9acc88bfb7"
+    },
+    {
+      "path": "transport_guard.py",
+      "bytes": 726,
+      "sha256": "e2ba5d5c222b40051a44f8ab7f34f43d907d9edc48accd811cc6b2e5e32acc19"
+    },
+    {
+      "path": "transport_guard_base.py",
+      "bytes": 8035,
+      "sha256": "8882cfc161179f0a8368a07ac20cc84be002fe28d27efbbb2c50f3fe9c41e26f"
+    },
+    {
+      "path": "validate_live_gate.py",
+      "bytes": 7396,
+      "sha256": "2edcb52391e834afaa1c5cd66bfd87ed32a79b6a00a29c66086f4ff9e9430509"
+    },
+    {
+      "path": "work_order_live_transport.json",
+      "bytes": 963,
+      "sha256": "d7c3e88674668ccc2eec81fcea16a7f6023eaf2d8f4a966bf6ba596f744f8cbc"
+    }
+  ],
+  "exclusions": [
+    "__pycache__",
+    "SQLite WAL/SHM sidecars",
+    "manifest self"
+  ],
+  "live_gate_result_sha256": "600a7072f0a672a69ebf3ffc6a9c17ac92f3e6b2a07a504749d4ef613602417c",
+  "decision_adapter_result_sha256": "b3cd1588c25505229a1a7c802a16efc00c455d223f15105ba64d98cbd23d7bf1",
+  "native_response_sha256": "cdf4808b93f4a1bf7a5d93356cbe6a1eacc895bb7f507e125c6966964311feed",
+  "authority_created": false
+}

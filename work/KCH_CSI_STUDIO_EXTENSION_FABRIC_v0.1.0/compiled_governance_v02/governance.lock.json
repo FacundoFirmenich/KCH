@@ -1,0 +1,310 @@
+{
+  "artifacts": [
+    {
+      "bytes": 33,
+      "path": ".kch-csi-generated-v0.1.0",
+      "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+    },
+    {
+      "bytes": 216,
+      "path": "codex/.codex/rules/kch-generated.rules",
+      "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+    },
+    {
+      "bytes": 12994,
+      "path": "codex/AGENTS.md",
+      "sha256": "e0d97f86bbf81a13080877cfa9b5f21b69efc31732835573c8976c7f861177c6"
+    },
+    {
+      "bytes": 640,
+      "path": "codex/COMPATIBILITY_RECEIPT.json",
+      "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+    },
+    {
+      "bytes": 14679,
+      "path": "csi/governance_graph.json",
+      "sha256": "49d921b9d1ed4b5e580e3258d3f5faee4c009f5c94c504f682846fe83dc3a0cb"
+    },
+    {
+      "bytes": 2145,
+      "path": "generic/AGENTS.md",
+      "sha256": "b5fd0d8bceaa697c542e4b11fcc6effd308f37d3505f050f550ffc2843549011"
+    },
+    {
+      "bytes": 4173,
+      "path": "generic/HARNESS.md",
+      "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3"
+    },
+    {
+      "bytes": 1640,
+      "path": "generic/RULES.md",
+      "sha256": "bcfe8031b14e327df9bde6736f2eb011e73212255f162b8b43de09b77dff3295"
+    }
+  ],
+  "authority_inherited": false,
+  "installation_authorized": false,
+  "schema": "kch.csi-self-governance-lock.v0.1.0",
+  "source_graph_sha256": "d51ab3a44552d5fc2b81209e4e212157cadd1e301a0183f3dc344d1c3d1acb80",
+  "source_nodes": [
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [
+        "KCH-AGENTS"
+      ],
+      "id": "KCH-HARNESS",
+      "kind": "HARNESS",
+      "parent": "",
+      "path": "HARNESS.md",
+      "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+      "title": "KCH integral self-governance harness",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [
+        "AGENT-CORAL-INTEGRATION-AUDITOR",
+        "AGENT-GOVERNANCE-COMPILER",
+        "AGENT-CSI-STUDIO-ORCHESTRATOR",
+        "AGENT-EXTENSION-CURATOR",
+        "KCH-RULES"
+      ],
+      "id": "KCH-AGENTS",
+      "kind": "AGENTS",
+      "parent": "KCH-HARNESS",
+      "path": "AGENTS.md",
+      "sha256": "b5fd0d8bceaa697c542e4b11fcc6effd308f37d3505f050f550ffc2843549011",
+      "title": "KCH sovereign and coral agent topology",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-CORAL-INTEGRATION-AUDITOR",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/coral-integration-auditor.md",
+      "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+      "title": "Coral strategic integration auditor",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [
+        "AGENT-ARTIFACT-BUILDER"
+      ],
+      "id": "AGENT-CSI-STUDIO-ORCHESTRATOR",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/csi-studio-orchestrator.md",
+      "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+      "title": "CSI Studio orchestrator",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-ARTIFACT-BUILDER",
+      "kind": "AGENT",
+      "parent": "AGENT-CSI-STUDIO-ORCHESTRATOR",
+      "path": "agents/artifact-builder.md",
+      "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+      "title": "CSI artifact builder",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL"
+      ],
+      "children": [],
+      "id": "AGENT-EXTENSION-CURATOR",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/extension-curator.md",
+      "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+      "title": "Extension curator",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-GOVERNANCE-COMPILER",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/governance-compiler.md",
+      "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+      "title": "Governance compiler",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [
+        "RULE-ALL-STRATEGIC-CORAL-INTEGRATION",
+        "RULE-AUTHORITY-NONESCALATION",
+        "RULE-GENERATION-STAGED",
+        "RULE-EXTENSION-ACQUISITION",
+        "RULE-RECOMMENDATION-EVIDENCE",
+        "RULE-INTERFACE-TRANSPARENCY",
+        "RULE-HOST-PROJECTION"
+      ],
+      "id": "KCH-RULES",
+      "kind": "RULES",
+      "parent": "KCH-AGENTS",
+      "path": "RULES.md",
+      "sha256": "bcfe8031b14e327df9bde6736f2eb011e73212255f162b8b43de09b77dff3295",
+      "title": "KCH semantic rules, routines and subroutines",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-ALL-STRATEGIC-CORAL-INTEGRATION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/all-strategic-coral-integration.md",
+      "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+      "title": "Every KCH element is strategic and must integrate chorally",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-AUTHORITY-NONESCALATION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/authority-nonescalation.md",
+      "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+      "title": "Authority non-escalation",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL"
+      ],
+      "children": [],
+      "id": "RULE-EXTENSION-ACQUISITION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/extension-acquisition.md",
+      "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+      "title": "Governed extension acquisition",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-GENERATION-STAGED",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/generation-staged.md",
+      "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+      "title": "Staged artifact generation",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-HOST-PROJECTION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/host-projection.md",
+      "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+      "title": "Loss-aware host projection",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL"
+      ],
+      "children": [],
+      "id": "RULE-INTERFACE-TRANSPARENCY",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/interface-transparency.md",
+      "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+      "title": "Visible and prudent interaction",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "RECOMMEND"
+      ],
+      "children": [],
+      "id": "RULE-RECOMMENDATION-EVIDENCE",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/recommendation-evidence.md",
+      "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+      "title": "Evidence-bounded recommendations",
+      "version": "0.1.0"
+    }
+  ]
+}

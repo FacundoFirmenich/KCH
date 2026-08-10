@@ -1,0 +1,35 @@
+{
+  "skill_name": "kch-kch-prepilot-failures-operating-protocol",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Aplica el protocolo de KCH-PREPILOT-FAILURES a un caso nuevo conservando trazabilidad.",
+      "expected_output": "Pasos aplicados con referencias, límites y próxima acción.",
+      "files": [],
+      "expectations": [
+        "Uses the dated protocol",
+        "Preserves evidence and claim boundaries"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Revisa una ejecución de KCH-PREPILOT-FAILURES que podría repetir un fallo histórico.",
+      "expected_output": "Identifica el fallo registrado y propone prevención verificable.",
+      "files": [],
+      "expectations": [
+        "Names an evidenced failure",
+        "Does not invent a new failure"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Falta evidencia para completar un paso de KCH-PREPILOT-FAILURES; decide cómo continuar.",
+      "expected_output": "Abstiene o solicita la mínima evidencia sin rellenar huecos.",
+      "files": [],
+      "expectations": [
+        "Returns NOT_ESTIMABLE or a bounded request",
+        "Does not fabricate values"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "release": "KCH 0.11",
+  "schema": "kch.vendor-wheel-lock.v0.11.0",
+  "wheels": [
+    {
+      "authority_inherited": false,
+      "filename": "kch_mis_v03_integration-0.1.0-py3-none-any.whl",
+      "sha256": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_MIS03_v0.1.0\\dist\\kch_mis_v03_integration-0.1.0-py3-none-any.whl"
+    },
+    {
+      "authority_inherited": false,
+      "filename": "kch_obl_phl_learning_system-0.1.1-py3-none-any.whl",
+      "sha256": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KCH_OBL_PHL_LEARNING_SYSTEM_v0.1.0\\dist_canonical_v0_1_1\\kch_obl_phl_learning_system-0.1.1-py3-none-any.whl"
+    },
+    {
+      "authority_inherited": false,
+      "filename": "kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+      "sha256": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_PHL_EFFECTIVE_INTEGRATION_v0.2.0\\dist\\kch_phl_effective_integration-0.2.0-py3-none-any.whl"
+    },
+    {
+      "authority_inherited": false,
+      "filename": "kch_rigor_gradient_governor-0.1.0-py3-none-any.whl",
+      "sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KCH_RIGOR_GRADIENT_GOVERNOR_v0.1.0\\dist\\kch_rigor_gradient_governor-0.1.0-py3-none-any.whl"
+    },
+    {
+      "authority_inherited": false,
+      "filename": "kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+      "sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_SUPERCHATS_ORCHESTRATORS_v0.1.0\\dist\\kch_superchats_orchestrators-0.1.0-py3-none-any.whl"
+    },
+    {
+      "authority_inherited": false,
+      "filename": "kwanprompts-0.1.0-py3-none-any.whl",
+      "sha256": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11\\vendor_build\\kwanprompts-0.1.0-py3-none-any.whl"
+    },
+    {
+      "authority_inherited": false,
+      "filename": "mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+      "sha256": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+      "source": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_MIS03_v0.1.0\\vendor\\mis_qualitative_bayes-0.3.1-py3-none-any.whl"
+    }
+  ]
+}

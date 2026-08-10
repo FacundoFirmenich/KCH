@@ -1,0 +1,21 @@
+{
+  "schema": "kch.sco.node.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "node_id": "kch-canonical-lineage-source",
+  "provider": "CODEX",
+  "native_uri": "codex://threads/019fd938-8000-7121-9078-d196bdd15ae4",
+  "title": "KCH native chronological lineage source",
+  "role": "CANONICAL_LINEAGE_EVIDENCE_SOURCE",
+  "responsibilities": [
+    "Remain the unmerged native chronological source.",
+    "Supply exact turn-level evidence only through explicit host reads.",
+    "Retain historical formulations, corrections and adverse results."
+  ],
+  "capabilities": ["NATIVE_THREAD_REFERENCE", "HOST_READABLE_FULL_HISTORY"],
+  "authority_granted": ["SUPPLY_EXISTING_EVIDENCE_REFERENCE"],
+  "autonomy_level": "OBSERVE_ONLY",
+  "context_policy": "SCOPED_DISCLOSURE_ONLY",
+  "memory_policy": "NATIVE_MEMORY_PRESERVED",
+  "connector_state": "HOST_VERIFIED_REFERENCE",
+  "source_provenance": "Codex app list_threads live observation on 2026-08-09; native thread was read exhaustively earlier in the current task."
+}

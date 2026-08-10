@@ -1,0 +1,11 @@
+{
+  "schema": "kch.generated-skill-provenance.v0.1.0",
+  "skill_id": "SKILL-01e64a85-8651-4576-a26c-ab2cd2741311",
+  "protocol_id": "PROTOCOL-f13bcd4b-ee93-4a06-96d4-d71b67314264",
+  "scope_key": "KCH-PREPILOT-FAILURES",
+  "pre_generation_hash": "db7ac2b8367156a1d152cf1db390ef8a1caecfda6a696bea884ae9e0be054278",
+  "generated_at": "2026-08-10T19:11:38.369939Z",
+  "secret_values_included": false,
+  "installation_authorized": false,
+  "activation_authorized": false
+}

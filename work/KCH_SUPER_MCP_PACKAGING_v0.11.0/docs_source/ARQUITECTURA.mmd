@@ -1,0 +1,13 @@
+flowchart TD
+    C["Cliente: Cline, Codex o VS Code"] -->|"MCP por STDIO"| M["Super-MCP KCH 0.11"]
+    M --> G["Gateway gobernado"]
+    G --> L["Ledger local append-only"]
+    G --> R["Registro federado canónico"]
+    G --> X["28 controles reflexivos"]
+    G --> A["Adaptadores soberanos de lectura"]
+    A --> P["PHL: proyección, no sesión real"]
+    A --> S["SCO: grafo sin fusionar chats"]
+    A --> I["MIS: certificado histórico verificado"]
+    A --> O["KwanPrompts, RGG y OBL/PHL: probes"]
+    G --> E["Sólo rutas READ_ONLY"]
+    E --> AU["Resultado y auditoría verificable"]

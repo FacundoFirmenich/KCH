@@ -1,0 +1,150 @@
+{
+  "schema": "kch.sco.build-manifest.v0.1.0",
+  "canonical_name": "KCH SuperChats Orchestrators (SCO)",
+  "version": "0.1.0",
+  "release_state": "LOCAL_VALIDATED_INTEGRATION_CANDIDATE",
+  "file_count": 26,
+  "files": [
+    {
+      "path": "config/PROVIDER_ADAPTER_MATRIX_v0.1.0.json",
+      "bytes": 2254,
+      "sha256": "8d5ccadc444e0438604cade644e67c597c75f5c02148e30469aa42cb44169f53"
+    },
+    {
+      "path": "deployment/KCH_PRE2G_CONTINUATION_SCO/edge_source_to_builder.json",
+      "bytes": 726,
+      "sha256": "f0d946d00b5ff259104655a2f4dc18dae48f036048a01b5c524566d8794e8d5b"
+    },
+    {
+      "path": "deployment/KCH_PRE2G_CONTINUATION_SCO/node_builder.json",
+      "bytes": 1127,
+      "sha256": "5475e7921a494cc4cb58c3ced81515de64a589e7c7352269b2a5336f4c00269a"
+    },
+    {
+      "path": "deployment/KCH_PRE2G_CONTINUATION_SCO/node_source.json",
+      "bytes": 1022,
+      "sha256": "93fa50378da5284fd88075829c3539b6982f86bb642ba6b848d992ef0a4a309d"
+    },
+    {
+      "path": "deployment/KCH_PRE2G_CONTINUATION_SCO/receipt_build_sco.json",
+      "bytes": 1182,
+      "sha256": "1ac4edf5e1e1b6f51f2276128b3ad07d8ecf52a3828095b8cd6ed91a9e2f277f"
+    },
+    {
+      "path": "deployment/KCH_PRE2G_CONTINUATION_SCO/superchat.json",
+      "bytes": 866,
+      "sha256": "00c90dbfd5ceb3df154cbf4d966938e4b870780b1ba7a5cf92dcbac69f712b06"
+    },
+    {
+      "path": "deployment/KCH_PRE2G_CONTINUATION_SCO/work_order_build_sco.json",
+      "bytes": 1109,
+      "sha256": "c09ad6fe369851e4cadfd042b85871fd8cb98c0cd50003ee237257eb9c661450"
+    },
+    {
+      "path": "dist/kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+      "bytes": 14327,
+      "sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 368,
+      "sha256": "31e368bc92232517b2b9eaa7fa0c185fd72f442a4665681eb94f5df364683472"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2743,
+      "sha256": "3edbdc818fcdf3cfe32b687e44099e1a474b3cdbad17068a8bbf4e0de465ffec"
+    },
+    {
+      "path": "results/KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.5.0.json",
+      "bytes": 13335,
+      "sha256": "204dd6f069b898d5a263590fe82809aee933c6599bf6df87f500aeaf391dc653"
+    },
+    {
+      "path": "results/SCO_KCH_PRE2G_CSI_LOWERING_v0.1.0.json",
+      "bytes": 6586,
+      "sha256": "58b5a7ec501dc278fdf1afc6aabaae6aa1ec4a63e8a87c2f6699fc09f0e805ad"
+    },
+    {
+      "path": "results/SCO_KCH_PRE2G_PORTABLE_BUNDLE_v0.1.0.json",
+      "bytes": 7434,
+      "sha256": "d28aa3ba5ffa4c14e474874d4a999731bd768e7f8f1e8179407064ec6043a7b0"
+    },
+    {
+      "path": "results/SCO_READY_ENVELOPES_PRE_RECEIPT_v0.1.0.json",
+      "bytes": 1596,
+      "sha256": "792b5773686f44771aba6a1447b724d5ece7ead4b0eba2dcaf1d3fefea00713a"
+    },
+    {
+      "path": "results/SCO_VALIDATION_RESULT_v0.1.0.json",
+      "bytes": 3741,
+      "sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6"
+    },
+    {
+      "path": "results/SCO_WHEEL_SMOKE_RESULT_v0.1.0.json",
+      "bytes": 1047,
+      "sha256": "9b8fa8dc422ee31bd22aa4b9fbf57e06bfa63f7c57eb900331d79e3034e17c9a"
+    },
+    {
+      "path": "runtime/KCH_PRE2G_SCO_v0.1.0.sqlite3",
+      "bytes": 102400,
+      "sha256": "afd6fbe114fe1b50e2ae9eaa62159136947c5ff079b398efaf6bbefcaf3ca880"
+    },
+    {
+      "path": "seal_release.py",
+      "bytes": 6078,
+      "sha256": "b63ed78a5c8a35e03291567edfcc95630bd4f7ebd04ced18a14c4122f1ea6681"
+    },
+    {
+      "path": "src/kch_sco/__init__.py",
+      "bytes": 230,
+      "sha256": "caaf4e6d59386cda6017b55996686350adaa8f331febe1cbaa6ee9c98b530930"
+    },
+    {
+      "path": "src/kch_sco/cli.py",
+      "bytes": 3784,
+      "sha256": "bf86b63564b412cb263ba216f621d3adc54ffce73304b5753c1e8f6a64363230"
+    },
+    {
+      "path": "src/kch_sco/csi.py",
+      "bytes": 5459,
+      "sha256": "8cd995197c64f03786392ded5ea1bdf728346f049d4d9f3f8b3698dd3801364a"
+    },
+    {
+      "path": "src/kch_sco/ledger.py",
+      "bytes": 955,
+      "sha256": "247c79b0bcd1540f75f1f8572e7b3212548334ea1a333bd3b14be844b35ec108"
+    },
+    {
+      "path": "src/kch_sco/ledger_base.py",
+      "bytes": 30735,
+      "sha256": "1e27e3a59bd65b31adb1e60679fe162f6cdfb55832e77dcabaeca9ac22a95898"
+    },
+    {
+      "path": "src/kch_sco/models.py",
+      "bytes": 8469,
+      "sha256": "95f3291c06c75fe864a4dbe0760b6975b565081b8388c3155d1928d7ac5ecc0f"
+    },
+    {
+      "path": "tests/test_sco.py",
+      "bytes": 12767,
+      "sha256": "271b5e20c62fd36f815165cd5b6e9e2b3dc3654eb91d772b01b36b13c01a18a4"
+    },
+    {
+      "path": "validate_release.py",
+      "bytes": 7154,
+      "sha256": "22818c4fb82c8304e69c6fd6507636f2dc5f568041fd5ad4f133694724bc8fff"
+    }
+  ],
+  "exclusions": [
+    "__pycache__",
+    "*.egg-info",
+    "runtime/wheel_smoke",
+    "SQLite WAL/SHM sidecars",
+    "manifest self"
+  ],
+  "wheel_sha256": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+  "validation_sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+  "registry_v0_5_sha256": "204dd6f069b898d5a263590fe82809aee933c6599bf6df87f500aeaf391dc653",
+  "authority_created": false
+}

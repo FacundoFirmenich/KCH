@@ -1,0 +1,171 @@
+{
+  "aggregation_warning": "Counts are execution totals across distinct suites; they are not asserted statistically independent.",
+  "gate": "PASS",
+  "release": "KCH 0.11",
+  "schema": "kch.component-suite-aggregate.v0.11.0",
+  "suite_count": 7,
+  "suites": [
+    {
+      "duration_seconds": 6.054,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11",
+      "state": "PASS",
+      "suite": "KCH",
+      "tail": [
+        "test_audit_export_is_hash_bound (test_gateway.GatewayTests.test_audit_export_is_hash_bound) ... ok",
+        "test_capability_replay_is_blocked (test_gateway.GatewayTests.test_capability_replay_is_blocked) ... ok",
+        "test_enforced_profile_is_prohibited (test_gateway.GatewayTests.test_enforced_profile_is_prohibited) ... ok",
+        "test_mcp_surface_has_49_tools_and_28_direct_controls (test_gateway.GatewayTests.test_mcp_surface_has_49_tools_and_28_direct_controls) ... ok",
+        "test_mutating_proposal_abstains (test_gateway.GatewayTests.test_mutating_proposal_abstains) ... ok",
+        "test_read_only_proposal_can_execute (test_gateway.GatewayTests.test_read_only_proposal_can_execute) ... ok",
+        "test_session_evidence_and_precommit (test_gateway.GatewayTests.test_session_evidence_and_precommit) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 15 tests in 3.873s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests",
+      "tests": 15
+    },
+    {
+      "duration_seconds": 12.407,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_PHL_EFFECTIVE_INTEGRATION_v0.2.0",
+      "state": "PASS",
+      "suite": "PHL",
+      "tail": [
+        "test_request_collision_is_rejected (test_effective_integration.EffectiveIntegrationTests.test_request_collision_is_rejected) ... ok",
+        "test_request_idempotency_does_not_append_event (test_effective_integration.EffectiveIntegrationTests.test_request_idempotency_does_not_append_event) ... ok",
+        "test_restart_retains_active_phl_lock (test_effective_integration.EffectiveIntegrationTests.test_restart_retains_active_phl_lock) ... ok",
+        "test_stale_head_rejects_second_client (test_effective_integration.EffectiveIntegrationTests.test_stale_head_rejects_second_client) ... ok",
+        "test_unclassified_method_fails_closed (test_effective_integration.EffectiveIntegrationTests.test_unclassified_method_fails_closed) ... ok",
+        "test_http_clients_detect_stale_head (test_effective_integration.HTTPBoundaryTests.test_http_clients_detect_stale_head) ... ok",
+        "test_http_rejects_unauthorized_client (test_effective_integration.HTTPBoundaryTests.test_http_rejects_unauthorized_client) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 20 tests in 10.184s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests",
+      "tests": 20
+    },
+    {
+      "duration_seconds": 11.385,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_SUPERCHATS_ORCHESTRATORS_v0.1.0",
+      "state": "PASS",
+      "suite": "SCO",
+      "tail": [
+        "test_retirement_preserves_node_record (test_sco.SCOTests.test_retirement_preserves_node_record) ... ok",
+        "test_same_native_chat_cannot_be_selected_twice (test_sco.SCOTests.test_same_native_chat_cannot_be_selected_twice) ... ok",
+        "test_sovereign_references_export_without_native_content (test_sco.SCOTests.test_sovereign_references_export_without_native_content) ... ok",
+        "test_stale_writer_is_rejected (test_sco.SCOTests.test_stale_writer_is_rejected) ... ok",
+        "test_success_receipt_requires_output_reference (test_sco.SCOTests.test_success_receipt_requires_output_reference) ... ok",
+        "test_untampered_ledger_passes_integrity (test_sco.SCOTests.test_untampered_ledger_passes_integrity) ... ok",
+        "test_work_order_cannot_escalate_node_authority (test_sco.SCOTests.test_work_order_cannot_escalate_node_authority) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 21 tests in 9.792s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests",
+      "tests": 21
+    },
+    {
+      "duration_seconds": 13.034,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_MIS03_v0.1.0",
+      "state": "PASS",
+      "suite": "MIS",
+      "tail": [
+        "test_csi_lowering_preserves_authority_separation (test_adapter.MISV03AdapterTests.test_csi_lowering_preserves_authority_separation) ... ok",
+        "test_custody_hashes_are_exact (test_adapter.MISV03AdapterTests.test_custody_hashes_are_exact) ... ok",
+        "test_description_creates_no_authority (test_adapter.MISV03AdapterTests.test_description_creates_no_authority) ... ok",
+        "test_exact_decision_matches_frozen_formal_example (test_adapter.MISV03AdapterTests.test_exact_decision_matches_frozen_formal_example) ... ok",
+        "test_full_historical_certificate_and_persisted_ledgers (test_adapter.MISV03AdapterTests.test_full_historical_certificate_and_persisted_ledgers) ... ok",
+        "test_historical_certificate_tamper_is_rejected (test_adapter.MISV03AdapterTests.test_historical_certificate_tamper_is_rejected) ... ok",
+        "test_noncanonical_fraction_fails_closed (test_adapter.MISV03AdapterTests.test_noncanonical_fraction_fails_closed) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 7 tests in 11.382s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests",
+      "tests": 7
+    },
+    {
+      "duration_seconds": 10.628,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KCH_OBL_PHL_LEARNING_SYSTEM_v0.1.0",
+      "state": "PASS",
+      "suite": "OBL_PHL",
+      "tail": [
+        "test_05_phl_requires_no_active_obl_session (test_learning_system.LearningSystemTests.test_05_phl_requires_no_active_obl_session) ... ok",
+        "test_06_phl_exclusive_lock_blocks_ordinary_learning_work (test_learning_system.LearningSystemTests.test_06_phl_exclusive_lock_blocks_ordinary_learning_work) ... ok",
+        "test_07_phl_score_preserves_000_100_format_without_linear_reward_claim (test_learning_system.LearningSystemTests.test_07_phl_score_preserves_000_100_format_without_linear_reward_claim) ... ok",
+        "test_08_training_packet_cannot_self_activate (test_learning_system.LearningSystemTests.test_08_training_packet_cannot_self_activate) ... ok",
+        "test_09_workbench_supports_extensive_inventory_operations (test_learning_system.LearningSystemTests.test_09_workbench_supports_extensive_inventory_operations) ... ok",
+        "test_10_ledger_detects_projection_tamper (test_learning_system.LearningSystemTests.test_10_ledger_detects_projection_tamper) ... ok",
+        "test_11_cli_and_workbench_process_smoke (test_learning_system.LearningSystemTests.test_11_cli_and_workbench_process_smoke) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 11 tests in 8.656s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests",
+      "tests": 11
+    },
+    {
+      "duration_seconds": 1.585,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KCH_RIGOR_GRADIENT_GOVERNOR_v0.1.0",
+      "state": "PASS",
+      "suite": "RGG",
+      "tail": [
+        "test_08_labeled_synthetic_fixture_is_allowed_only_for_instrument_use (test_rigor_governor.PreregisteredCases.test_08_labeled_synthetic_fixture_is_allowed_only_for_instrument_use) ... ok",
+        "test_09_irreversible_execution_without_r7_is_blocked (test_rigor_governor.PreregisteredCases.test_09_irreversible_execution_without_r7_is_blocked) ... ok",
+        "test_10_claim_scoped_preregistration_stop_cannot_escape_to_action (test_rigor_governor.PreregisteredCases.test_10_claim_scoped_preregistration_stop_cannot_escape_to_action) ... ok",
+        "test_11_user_action_stop_blocks (test_rigor_governor.PreregisteredCases.test_11_user_action_stop_blocks) ... ok",
+        "test_12_confirmatory_to_internal_transition_preserves_parent_in_new_branch (test_rigor_governor.PreregisteredCases.test_12_confirmatory_to_internal_transition_preserves_parent_in_new_branch) ... ok",
+        "test_13_internal_to_confirmatory_transition_requires_fresh_future_only_protocol (test_rigor_governor.PreregisteredCases.test_13_internal_to_confirmatory_transition_requires_fresh_future_only_protocol) ... ok",
+        "test_14_corrected_three_plane_review_is_accepted (test_rigor_governor.PreregisteredCases.test_14_corrected_three_plane_review_is_accepted) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 22 tests in 0.006s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests",
+      "tests": 22
+    },
+    {
+      "duration_seconds": 6.458,
+      "exit_code": 0,
+      "root": "C:\\Users\\User\\Documents\\Codex\\2026-08-07\\kwancode-second-generation-agents\\work\\KWANPROMPTS_v0.1.0",
+      "state": "PASS",
+      "suite": "KWANPROMPTS",
+      "tail": [
+        "test_03_unknown_text_requires_review (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_03_unknown_text_requires_review) ... ok",
+        "test_04_idempotency_and_collision (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_04_idempotency_and_collision) ... ok",
+        "test_05_review_is_append_only_and_noncanonical (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_05_review_is_append_only_and_noncanonical) ... ok",
+        "test_06_kwandocs_envelope_is_not_ingestion (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_06_kwandocs_envelope_is_not_ingestion) ... ok",
+        "test_07_csi_projection_is_nested_and_non_authoritative (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_07_csi_projection_is_nested_and_non_authoritative) ... ok",
+        "test_08_ledger_detects_projection_tamper_and_closes_probe (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_08_ledger_detects_projection_tamper_and_closes_probe) ... ok",
+        "test_09_mcp_stdio_smoke (test_kwanprompts_release_final.KwanPromptsFinalReleaseTests.test_09_mcp_stdio_smoke) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 9 tests in 4.617s",
+        "",
+        "OK"
+      ],
+      "test_directory": "tests_release_final",
+      "tests": 9
+    }
+  ],
+  "test_total": 105
+}

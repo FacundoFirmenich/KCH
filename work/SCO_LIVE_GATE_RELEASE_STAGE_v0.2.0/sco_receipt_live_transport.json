@@ -1,0 +1,28 @@
+{
+  "schema": "kch.sco.receipt.v0.1.0",
+  "receipt_id": "receipt.sco-live-transport-01",
+  "order_id": "wo.sco-live-transport-01",
+  "node_id": "sco-disposable-live-probe-01",
+  "outcome": "SUCCEEDED",
+  "output_refs": [
+    "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0#turn=019fe6fa-b818-7c62-bb0b-d04f0fbb3bb1",
+    "sha256:e6aa7600f7a9f8fb10d981dca9bf14d8a17f0df5f78dbf46aa3cf2c4dfba8976"
+  ],
+  "evidence_ids": [
+    "SCO-LIVE-DISPATCH-20260809-01",
+    "SCO-LIVE-NONCE-20260809-01",
+    "transport-guard:36628d888851a6b429fcfa0eca1cccb4fa553bfb36167e1aca9afdf54773e6a8"
+  ],
+  "claims": [
+    "One bounded Codex work order was delivered to the exact disposable native task and returned a schema-conformant receipt.",
+    "A repeated prepare operation for the same received dispatch returned should_send=false."
+  ],
+  "limitations": [
+    "Single disposable Codex node only.",
+    "Textual receipt and host-tool metadata; no independent operating-system audit of the remote task.",
+    "The Codex API exposed one turn identifier for the user-message/assistant-response turn rather than separate request and response identifiers.",
+    "No other provider and no semantic work-product quality was tested."
+  ],
+  "authority_exercised": ["RETURN_BOUNDED_TEXT_RECEIPT"],
+  "completed_at": "2026-08-09T14:43:45.0000000+00:00"
+}

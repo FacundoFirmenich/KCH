@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/kch_phl_effective_integration.egg-info/PKG-INFO
+src/kch_phl_effective_integration.egg-info/SOURCES.txt
+src/kch_phl_effective_integration.egg-info/dependency_links.txt
+src/kch_phl_effective_integration.egg-info/entry_points.txt
+src/kch_phl_effective_integration.egg-info/top_level.txt
+src/kch_phl_integration/__init__.py
+src/kch_phl_integration/client.py
+src/kch_phl_integration/contracts.py
+src/kch_phl_integration/server.py
+src/kch_phl_integration/service.py
+tests/test_effective_integration.py

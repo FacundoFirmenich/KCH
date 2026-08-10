@@ -1,0 +1,2 @@
+[console_scripts]
+sco = kch_sco.cli:main

@@ -1,0 +1,290 @@
+{
+  "schema": "kch.prepilot-evaluation.v0.1.0",
+  "case_id": "KCH-PREPILOT-001",
+  "results": {
+    "BASELINE_SIN_KCH": {
+      "source_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-001-baseline\\outputs\\KCH-PREPILOT-001-baseline-receipt.json",
+      "custody_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_001\\receipts\\baseline_sin_kch.json",
+      "bytes": 16044,
+      "sha256": "74ad8f52e27813713b654598b0bbad4d941ac43cdbb4c08a7e3aea0b5e6f5198",
+      "evaluation": {
+        "score": 95,
+        "maximum": 95,
+        "sections": {
+          "contract": {
+            "score": 5,
+            "maximum": 5,
+            "pass": true
+          },
+          "exhaustive_corpus_receipt": {
+            "score": 30,
+            "maximum": 30,
+            "checks": [
+              {
+                "name": "advanced_runtime.py",
+                "pass": true
+              },
+              {
+                "name": "mis_service.py",
+                "pass": true
+              },
+              {
+                "name": "operational_surface.py",
+                "pass": true
+              }
+            ]
+          },
+          "cross_module_traceability": {
+            "score": 25,
+            "maximum": 25,
+            "checks": [
+              {
+                "aliases": [
+                  "phl_gate"
+                ],
+                "resolved_key": "phl_gate",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "mutation_consent"
+                ],
+                "resolved_key": "mutation_consent",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "mis_and_bridges"
+                ],
+                "resolved_key": "mis_and_bridges",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "sqlite_lifecycle"
+                ],
+                "resolved_key": "sqlite_lifecycle",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "strategic_coverage",
+                  "strategic_coverage_audit"
+                ],
+                "resolved_key": "strategic_coverage_audit",
+                "has_path_line_evidence": true,
+                "pass": true
+              }
+            ]
+          },
+          "exact_bind_call": {
+            "score": 20,
+            "maximum": 20,
+            "checks": {
+              "four_exact_official_assets": true,
+              "application_dates": true,
+              "maximum_three_proposals": true,
+              "eleven_blocks": true,
+              "venture_client_financing": true,
+              "industrial_boundary": true
+            },
+            "asset_hits": {
+              "open-innovation": true,
+              "application": true,
+              "faq": true,
+              "BIND-11th-Edition_Use-Case-Dossier.pdf": true
+            }
+          },
+          "claim_discipline": {
+            "score": 10,
+            "maximum": 10,
+            "checks": {
+              "adverse_findings_preserved": true,
+              "abstentions_preserved": true,
+              "not_estimable_or_equivalent": true
+            }
+          },
+          "bounded_candidate_selection": {
+            "score": 5,
+            "maximum": 5,
+            "candidate_count": 2,
+            "pass": true
+          }
+        }
+      },
+      "reported_preflight": null
+    },
+    "KCH_CANDIDATO_CON_ARNES": {
+      "source_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-10\\kch-prepilot-001-harness\\outputs\\KCH-PREPILOT-001-receipt.json",
+      "custody_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_001\\receipts\\kch_candidato_con_arnes.json",
+      "bytes": 10838,
+      "sha256": "b7c606929f857ed79e1b0c6b2dbb8bca65f79872735a2664ca837bb6dfd8ebe8",
+      "evaluation": {
+        "score": 95,
+        "maximum": 95,
+        "sections": {
+          "contract": {
+            "score": 5,
+            "maximum": 5,
+            "pass": true
+          },
+          "exhaustive_corpus_receipt": {
+            "score": 30,
+            "maximum": 30,
+            "checks": [
+              {
+                "name": "advanced_runtime.py",
+                "pass": true
+              },
+              {
+                "name": "mis_service.py",
+                "pass": true
+              },
+              {
+                "name": "operational_surface.py",
+                "pass": true
+              }
+            ]
+          },
+          "cross_module_traceability": {
+            "score": 25,
+            "maximum": 25,
+            "checks": [
+              {
+                "aliases": [
+                  "phl_gate"
+                ],
+                "resolved_key": "phl_gate",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "mutation_consent"
+                ],
+                "resolved_key": "mutation_consent",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "mis_and_bridges"
+                ],
+                "resolved_key": "mis_and_bridges",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "sqlite_lifecycle"
+                ],
+                "resolved_key": "sqlite_lifecycle",
+                "has_path_line_evidence": true,
+                "pass": true
+              },
+              {
+                "aliases": [
+                  "strategic_coverage",
+                  "strategic_coverage_audit"
+                ],
+                "resolved_key": "strategic_coverage",
+                "has_path_line_evidence": true,
+                "pass": true
+              }
+            ]
+          },
+          "exact_bind_call": {
+            "score": 20,
+            "maximum": 20,
+            "checks": {
+              "four_exact_official_assets": true,
+              "application_dates": true,
+              "maximum_three_proposals": true,
+              "eleven_blocks": true,
+              "venture_client_financing": true,
+              "industrial_boundary": true
+            },
+            "asset_hits": {
+              "open-innovation": true,
+              "application": true,
+              "faq": true,
+              "BIND-11th-Edition_Use-Case-Dossier.pdf": true
+            }
+          },
+          "claim_discipline": {
+            "score": 10,
+            "maximum": 10,
+            "checks": {
+              "adverse_findings_preserved": true,
+              "abstentions_preserved": true,
+              "not_estimable_or_equivalent": true
+            }
+          },
+          "bounded_candidate_selection": {
+            "score": 5,
+            "maximum": 5,
+            "candidate_count": 3,
+            "pass": true
+          }
+        }
+      },
+      "reported_preflight": {
+        "runtime_class": "kch_studio.advanced_runtime.KCHAdvancedRuntime",
+        "pythonpath": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src",
+        "temporary_root": "C:\\Users\\User\\AppData\\Local\\Temp\\kch-prepilot-beccaivt",
+        "status_schema": "kch.integrated-pre2g-runtime-status.v0.1.0",
+        "governance_gate": "NOT_EXPOSED_IN_STATUS",
+        "strategic_surface_gate": "FAIL",
+        "strategic_surface_missing_tools": {
+          "kch_studio.extension:ExtensionFabric": [
+            "describe->studio_status",
+            "search->extension_search",
+            "resolve->extension_resolve"
+          ],
+          "kch_studio.extension:RecommendationEngine": [
+            "evaluate->extension_recommend"
+          ],
+          "kch_studio.extension:RuntimeInventory": [
+            "collect->extension_inventory"
+          ],
+          "kch_studio.installation:IsolatedInstaller": [
+            "plan->isolated_install_plan",
+            "execute->isolated_install_execute",
+            "verify->isolated_install_verify",
+            "rollback->isolated_install_rollback"
+          ],
+          "kch_studio.studio:Studio": [
+            "status->studio_status",
+            "create_session->studio_create_session",
+            "generate->studio_generate",
+            "validate->studio_validate",
+            "seal->studio_seal",
+            "build_and_seal->studio_build_and_seal"
+          ]
+        },
+        "phl_authorized": true,
+        "phl_training_executed": false,
+        "phl_real_executed": false,
+        "external_installation_performed": false,
+        "close_called": true,
+        "preflight_result": "FAIL; KCH governance execution claim withheld"
+      }
+    }
+  },
+  "condition_integrity": {
+    "baseline": "PASS",
+    "harness": "FAIL_WRONG_INTERNAL_ENTRYPOINT_AND_FALSE_FULL_SURFACE_SCOPE",
+    "comparative_efficacy_gate": "INVALID_CONDITION_INTEGRITY",
+    "historical_result_immutable": true
+  },
+  "comparative_efficacy_gate": "INVALID_CONDITION_INTEGRITY",
+  "winner": "NOT_ESTIMABLE",
+  "causal_effect": "NOT_ESTIMABLE",
+  "industrial_validation": false,
+  "interpretation": "Both arms completed the deterministic corpus receipt and exact-call research, but the harness arm invoked a noncanonical internal component and failed its own preflight. Scores are descriptive response-quality diagnostics only and cannot estimate KCH benefit.",
+  "next_gate": "Repeat the same frozen case with kch_preflight through StudioMCP, then add replicated historical failure cases under a blinded evaluator."
+}

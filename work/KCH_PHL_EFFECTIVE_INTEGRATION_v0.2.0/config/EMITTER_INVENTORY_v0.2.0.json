@@ -1,0 +1,18 @@
+[
+  {"component_id":"kch.typed_llm_runtime","registry_name":"KCH typed LLM runtime","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KCH typed LLM runtime"},
+  {"component_id":"kch.bayesian_learning","registry_name":"KCH Bayesian learning","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KCH Bayesian learning"},
+  {"component_id":"kch.dynamic_bayesian_metaarchitecture","registry_name":"KCH dynamic Bayesian metaarchitecture","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KCH dynamic Bayesian metaarchitecture"},
+  {"component_id":"kch.enterprise_active_authority","registry_name":"KCH enterprise active authority","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KCH enterprise active authority"},
+  {"component_id":"kch.bayesian_mcp_fabric","registry_name":"KCH Bayesian MCP fabric","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KCH Bayesian MCP fabric"},
+  {"component_id":"csi.volumetric_runtime.v0.1.0","registry_name":"CSI volumetric runtime","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#CSI volumetric runtime"},
+  {"component_id":"csi.operator_suite.v0.2.0","registry_name":"CSI operator suite","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#CSI operator suite"},
+  {"component_id":"kwanforks.v0.8.0","registry_name":"KwanForks","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KWANCODE_MICROCOSMIC_HARNESS_v0.8.0_RELEASE"},
+  {"component_id":"kwanforks.v0.9.0","registry_name":"KwanForks","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KWANCODE_MICROCOSMIC_HARNESS_v0.9.0_RELEASE"},
+  {"component_id":"kwanforks.v0.9.1","registry_name":"KwanForks","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KWANCODE_MICROCOSMIC_HARNESS_v0.9.1_RELEASE"},
+  {"component_id":"kwanforks.v0.9.2","registry_name":"KwanForks","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KWANCODE_MICROCOSMIC_HARNESS_v0.9.2_RELEASE"},
+  {"component_id":"kwanforks.assimilation.v0.10.0","registry_name":"KwanForks assimilation","inventory_state":"UNAVAILABLE_CONTRACT","evidence_ref":"KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.4.0#KWANCODE_MICROCOSMIC_HARNESS_v0.10.0_VALIDATED_DELIVERY"},
+  {"component_id":"kch.rgg","registry_name":"KCH Rigor Gradient Governor","inventory_state":"DECISION_EMITTER","evidence_ref":"KCH_RIGOR_GRADIENT_GOVERNOR_v0.1.0/VALIDATION_REPORT_v0.1.0.json"},
+  {"component_id":"kch.kwanprompts","registry_name":"KwanPrompts","inventory_state":"DECISION_EMITTER","evidence_ref":"KWANPROMPTS_v0.1.0/results/KWANPROMPTS_TS01R_RESULT_v0.1.0.json"},
+  {"component_id":"kch.obl","registry_name":"KCH Onboarding Learning (OBL)","inventory_state":"NON_DECISION_SERVICE","evidence_ref":"KCH_OBL_PHL_LEARNING_SYSTEM_v0.1.0/results/KCH_OBL_PHL_TS01_RESULT_v0.1.0.json"},
+  {"component_id":"kch.phl","registry_name":"KCH Post Hoc Learning (PHL)","inventory_state":"NON_DECISION_SERVICE","evidence_ref":"KCH_OBL_PHL_LEARNING_SYSTEM_v0.1.0/results/KCH_OBL_PHL_TS01_RESULT_v0.1.0.json"}
+]

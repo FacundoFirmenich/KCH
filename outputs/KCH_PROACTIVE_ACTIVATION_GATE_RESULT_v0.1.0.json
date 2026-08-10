@@ -1,0 +1,48 @@
+{
+  "schema": "kch.proactive-activation-gate-result.v0.1.0",
+  "observed_at_utc": "2026-08-09T23:37:43.911147Z",
+  "gate": "PASS",
+  "checks": {
+    "tests_11_of_11": true,
+    "kch_0_11_canonical_zip_unchanged": true,
+    "phl_source_state_unchanged": true,
+    "phl_deployed_replica_unchanged": true,
+    "codex_mcp_points_to_overlay": true,
+    "codex_hooks_enabled": true,
+    "user_prompt_hook_declared": true,
+    "session_end_hook_declared": true,
+    "exact_consent_strings_in_hook_result": true,
+    "no_phl_real_rule_target": true
+  },
+  "test_count": 11,
+  "test_return_code": 0,
+  "test_output": "test_codex_hook_blocks_then_replays_and_applies_session_policy (test_activation_gate.ActivationGateIntegrationTests.test_codex_hook_blocks_then_replays_and_applies_session_policy) ... ok\ntest_overlay_mcp_exposes_base_plus_activation_without_phl_execution (test_activation_gate.ActivationGateIntegrationTests.test_overlay_mcp_exposes_base_plus_activation_without_phl_execution) ... ok\ntest_always_executes_current_and_future_matching_events_only_in_session (test_activation_gate.ActivationGateUnitTests.test_always_executes_current_and_future_matching_events_only_in_session) ... ok\ntest_exact_four_choices_and_yes_is_one_use (test_activation_gate.ActivationGateUnitTests.test_exact_four_choices_and_yes_is_one_use) ... ok\ntest_failed_executor_is_not_recorded_as_success_or_always_policy (test_activation_gate.ActivationGateUnitTests.test_failed_executor_is_not_recorded_as_success_or_always_policy) ... ok\ntest_invalid_response_does_not_infer_consent (test_activation_gate.ActivationGateUnitTests.test_invalid_response_does_not_infer_consent) ... ok\ntest_ledger_tampering_is_detected (test_activation_gate.ActivationGateUnitTests.test_ledger_tampering_is_detected) ... ok\ntest_never_is_same_rule_same_tool_same_session_only (test_activation_gate.ActivationGateUnitTests.test_never_is_same_rule_same_tool_same_session_only) ... ok\ntest_no_declines_once_without_policy (test_activation_gate.ActivationGateUnitTests.test_no_declines_once_without_policy) ... ok\ntest_pending_prompt_is_bypassed_by_unrelated_new_prompt (test_activation_gate.ActivationGateUnitTests.test_pending_prompt_is_bypassed_by_unrelated_new_prompt) ... ok\ntest_session_close_erases_policies_but_preserves_valid_chain (test_activation_gate.ActivationGateUnitTests.test_session_close_erases_policies_but_preserves_valid_chain) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 5.283s\n\nOK\n",
+  "surface": {
+    "kch_0_11_tools": 49,
+    "activation_tools": 4,
+    "total_tools": 53
+  },
+  "consent_contract": [
+    "Sí",
+    "No",
+    "Nunca en esta sesión",
+    "Siempre en esta sesión"
+  ],
+  "default_mode": "CONSULT_FIRST",
+  "mutating_autoexecution": false,
+  "phl_real_execution": false,
+  "canonical_kch_zip_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+  "phl_state_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+  "manifest_sha256": "587fc869105bf14486e0aacb7bafe54a1efd0a136f16af1ebb48a83fa2c8d9a6",
+  "adverse_results_repaired": [
+    "SQLite read connections remained open on Windows until garbage collection; explicit close semantics were added.",
+    "SessionEnd initially ignored an injected activation-state path; environment-aware state selection was added."
+  ],
+  "claim_ceiling": "LOCAL_CODEX_HOOK_AND_MCP_PROACTIVE_CONSULT_FIRST_GATE_PASS_WITH_READ_ONLY_TARGETS_AND_NO_REAL_PHL_EXECUTION",
+  "limitations": [
+    "Project-local hooks require a new/reloaded trusted Codex task and explicit hash review via /hooks.",
+    "Rules are deterministic lexical triggers, not a validated general semantic activation model.",
+    "Cline, Cowork, OpenCode and other host adapters are not yet validated.",
+    "No longitudinal human-use reliability or causal benefit has been demonstrated."
+  ]
+}

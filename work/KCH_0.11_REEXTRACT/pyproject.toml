@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kwancode-harness"
+version = "0.11.0"
+description = "KCH 0.11 canonical pre-second-generation federated governance runtime"
+requires-python = ">=3.11"
+dependencies = []
+readme = "README.md"
+
+[project.scripts]
+kch = "kwancode_harness.cli:main"
+kch-super-mcp = "kwancode_harness.mcp_server:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+kwancode_harness = ["data/*.json"]

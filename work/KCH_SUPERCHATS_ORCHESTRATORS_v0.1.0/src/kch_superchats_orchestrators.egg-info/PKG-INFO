@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: kch-superchats-orchestrators
+Version: 0.1.0
+Summary: Sovereign multi-chat orchestration plane for KwanCode Harness
+Requires-Python: >=3.11

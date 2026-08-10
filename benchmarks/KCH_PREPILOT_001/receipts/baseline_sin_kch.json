@@ -1,0 +1,208 @@
+{
+  "schema": "kch-prepilot-001.baseline-receipt.v1",
+  "condition": "BASELINE_SIN_KCH",
+  "exhaustive_read_receipt": {
+    "method": "ReadAllBytes followed by UTF-8 decoding for complete-file ingestion; physical lines counted from LF delimiters; SHA-256 calculated with Get-FileHash -Algorithm SHA256. Source files were not modified.",
+    "files": [
+      {
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\advanced_runtime.py",
+        "bytes": 52906,
+        "physical_lines": 1413,
+        "sha256": "E1F27D84301F5F180C46B67A41C6AF7AEA39A4324FD37D552C85E8CDE8988894",
+        "full_read_demonstrated": true
+      },
+      {
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\mis_service.py",
+        "bytes": 48280,
+        "physical_lines": 1198,
+        "sha256": "ECBCCFEB8BC9F6A9741FBCBCEBD67906B60BADA8ABE097233CB75E2C45FAB582",
+        "full_read_demonstrated": true
+      },
+      {
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\operational_surface.py",
+        "bytes": 36240,
+        "physical_lines": 1026,
+        "sha256": "0BF3B77DFC538E6987A602E483945D2877045A5C0914DE30E09EEC9BA242476F",
+        "full_read_demonstrated": true
+      }
+    ],
+    "tests_executed": false
+  },
+  "cross_module_findings": {
+    "phl_gate": {
+      "implementation": [
+        "PHL tools are declared as status, decision registration, session start, scoring, packet compilation and session closure at advanced_runtime.py:635-706.",
+        "The MIS-to-PHL bridge registers a reviewable MIS decision, calls PHL registration, persists the bridge and explicitly reports training_executed=false and automatic_promotion=false at advanced_runtime.py:1172-1186.",
+        "MIS persists READY_FOR_PHL_REGISTRATION and later REGISTERED_REVIEWABLE_UNTRAINED states at mis_service.py:920-945 and mis_service.py:947-978."
+      ],
+      "exposure": "The runtime exposes PHL through handlers and dispatches non-control tools through PHL at advanced_runtime.py:1032-1042 and advanced_runtime.py:1060-1070.",
+      "integration": "The visible integration is registration and ledger custody, not training or activation.",
+      "tests": "No tests are present in the three requested files and no tests were executed.",
+      "claim": "The code supports a bounded reviewable, untrained PHL registration path. It does not establish trained PHL behaviour, predictive benefit, causal improvement or operational deployment."
+    },
+    "mutation_consent": {
+      "implementation": [
+        "operational_surface.py:14-17 defines four exact consent values: YES, NO, NEVER_THIS_SESSION and ALWAYS_THIS_SESSION.",
+        "The mut helper injects consent into operational mutating schemas at operational_surface.py:53-63.",
+        "direct_user_action rejects absent consent, limits authority to the action and runtime session, records the caller-declared boundary and suppresses execution when unauthorized at advanced_runtime.py:1110-1142.",
+        "The runtime explicitly reports that session consent does not create general authority and that host identity is not cryptographically verified at advanced_runtime.py:1098-1108."
+      ],
+      "contradiction_or_gap": "Consent coverage is not visibly uniform across the three files. For example, phl_decision_register is declared mutating without a consent property at advanced_runtime.py:643-649 and its handler calls PHL directly at advanced_runtime.py:1032-1034, whereas operational-surface mutations use guarded direct_user_action at operational_surface.py:631-640 and operational_surface.py:651-680.",
+      "claim": "There is a real scoped-consent mechanism for direct actions and selected operational mutations, but these files do not demonstrate that every mutating advanced handler is uniformly consent-gated."
+    },
+    "mis_and_bridges": {
+      "implementation": [
+        "MIS uses SQLite tables for events, certificates, studies, ledgers, rounds, atoms, reviewable decisions and bridges at mis_service.py:19-92.",
+        "The service explicitly separates exact calculation, custody, prospective chronology and bridges from execution authority at mis_service.py:99-105.",
+        "Prospective studies require sorted unique states and exact alpha coverage at mis_service.py:525-557.",
+        "Freeze requires purpose, jurisdiction and prior equality and records an outcome-unknown future-only certificate at mis_service.py:628-697.",
+        "Observation requires a pending freeze, records the source hash and marks causal quality as not adjudicated at mis_service.py:699-758.",
+        "MIS exposes CSI, PHL, SCO, RGG and KWANDATA bridges at mis_service.py:367-373; concrete bridge creation is implemented at advanced_runtime.py:1172-1244 and mis_service.py:1110-1145."
+      ],
+      "claim_ceiling": "The service itself declares historical structural exact replay only, prospective local future-only observation until separate adjudication, and no demonstrated causal KCH improvement, prospective predictive superiority, human utility, open-domain scalability or global winner at mis_service.py:349-364.",
+      "meaning": "This is a persistent evidence-and-bridge federation candidate, not evidence of a validated superior decision system or authority-bearing deployment."
+    },
+    "sqlite_lifecycle": {
+      "implementation": [
+        "The constructor creates the SQLite schema and closes the initialization connection at mis_service.py:109-134.",
+        "Connections enable foreign keys, WAL and synchronous=FULL at mis_service.py:136-142.",
+        "Operational methods consistently use context-managed closing(self.connect()) blocks, including status at mis_service.py:280-305, study operations at mis_service.py:560-585, freeze/observe at mis_service.py:628-747, bridge recording at mis_service.py:1110-1145 and verification at mis_service.py:1147-1183."
+      ],
+      "gap": "KCHAdvancedRuntime.close stops clipboard, scheduler, audio and launcher but does not call a MIS close method at advanced_runtime.py:1409-1413. This is not an observed open-connection defect because MIS does not retain a persistent connection handle, but explicit runtime-level SQLite shutdown is absent.",
+      "claim": "Per-operation SQLite connections are explicitly closed; runtime shutdown does not provide a separate MIS lifecycle hook."
+    },
+    "strategic_coverage_audit": {
+      "implementation": [
+        "The constructor validates that every handler has a tool descriptor at advanced_runtime.py:1054-1059.",
+        "Capabilities are registered with PHL and non-control handlers are wrapped in PHL dispatch at advanced_runtime.py:1060-1070.",
+        "Runtime status invokes audit_strategic_surface over the registered handlers at advanced_runtime.py:1372-1396.",
+        "The status result exposes launcher blind spots, the strategic surface gate, PHL training state and external-installation state at advanced_runtime.py:1397-1407."
+      ],
+      "exposure": "operational_surface.py:631-1026 binds the operational handlers, including MIS export, permission operations, recovery, microphone, account, construct and asset functions.",
+      "claim": "The files implement a descriptor/handler coverage audit surface, but no execution result from that audit and no test evidence are contained in the three files. Therefore the actual strategic coverage outcome is NOT_ESTIMABLE from this bounded corpus alone."
+    }
+  },
+  "bind_2026_receipt": {
+    "official_sources": [
+      "https://bind.spri.eus/open-innovation/",
+      "https://bind.spri.eus/application/",
+      "https://bind.spri.eus/wp-content/uploads/2026/06/BIND-11th-Edition_Use-Case-Dossier.pdf",
+      "https://www.spri.eus/en/faq/?colapse=20276&faq_page=2&tag=bind"
+    ],
+    "edition": "BIND 11th Edition 2026/2027",
+    "application_period": "2 July 2026 to 4 September 2026",
+    "timeline": {
+      "preselection": "7-18 September 2026",
+      "pitch_week": "20-22 October 2026",
+      "finalists": "6 November 2026",
+      "project_definition": "November 2026-March 2027",
+      "project_development": "April-July 2027",
+      "demo_day": "1 July 2027"
+    },
+    "requirements": [
+      "Legally established startup.",
+      "Minimum viable product already in place.",
+      "Operating for eight years or less.",
+      "Applications completed in English.",
+      "Founder/team presentation video required; supporting demo or pitch materials may be attached.",
+      "The application form requires selecting one use-case group and explaining the concrete fit."
+    ],
+    "venture_client_model": "BIND connects startups with corporate and SME Venture Clients. Venture Clients contract and pay for real projects without equity exchange; startups retain their intellectual-property rights.",
+    "funding": "Participation is free; Venture Client companies finance project development.",
+    "proposal_limit": "Up to three applications are allowed, each for a different use-case group.",
+    "eleven_blocks": [
+      "1 Automation and robotisation of industrial plants and warehouses",
+      "2 Monitoring, simulation and maintenance of industrial assets",
+      "3 Design, manufacture and life-cycle analysis of industrial products",
+      "4 Fleet management, distribution logistics and electrification of industrial mobility",
+      "5 Cybersecurity, physical security, employee health and regulatory compliance",
+      "6 Digitalisation of internal processes, knowledge and talent management",
+      "7 Energy efficiency, consumption traceability and environmental-impact measurement",
+      "8 Reduction and management of CO2, water and industrial waste",
+      "9 Generation, storage and integration of renewable energy",
+      "10 Demand forecasting, supply-chain management and commercial intelligence",
+      "11 Customer relations and development of new business models"
+    ],
+    "industrial_boundary": "BIND targets near-market or market-ready solutions and real paid projects with Venture Clients. The three-file corpus demonstrates a local runtime and bounded evidence mechanisms, not industrial validation, customer deployment or a signed Venture Client project."
+  },
+  "candidate_use_cases": [
+    {
+      "priority": 1,
+      "block": "Group 6 - Digitalisation of internal processes, knowledge and talent management within the organisation",
+      "concrete_use_cases": [
+        "ID31 Digital management, planning and decision-support systems",
+        "ID32 Automation of business and internal processes",
+        "ID33 Increased efficiency and quality in document management",
+        "ID36 Knowledge management and transfer within the organisation",
+        "ID42 Internal reporting and management systems"
+      ],
+      "fit": "Strongest hypothetical fit. The code exposes structured decision support, prospective studies, document/evidence custody, recovery, persistence, knowledge bridges, internal status and management surfaces at advanced_runtime.py:1372-1407, mis_service.py:367-373 and operational_surface.py:631-1026.",
+      "evidence_boundary": {
+        "hypothetical_fit": "Supported by architectural correspondence only.",
+        "local_mvp": "The three files show a local executable runtime surface and persistent MIS federation candidate.",
+        "comparative_evidence": "NOT_ESTIMABLE from the three files; no comparator campaign or measured user utility is present.",
+        "industrial_validation": "Absent; no Venture Client, production integration, customer outcome or industrial pilot is evidenced."
+      }
+    },
+    {
+      "priority": 2,
+      "block": "Group 5 - Cybersecurity, physical security, employee health and regulatory compliance",
+      "concrete_use_cases": [
+        "ID37 Logical cybersecurity",
+        "ID40 Regulatory compliance, risk management and regulatory traceability"
+      ],
+      "fit": "Partial hypothetical fit. The code contains permission governance, scoped authorization, append-only hash-linked events, recovery, certificate verification, risk surfaces and explicit authority boundaries at advanced_runtime.py:1098-1142, mis_service.py:200-278 and mis_service.py:1147-1183.",
+      "evidence_boundary": {
+        "hypothetical_fit": "Reasonable only for logical governance, evidence traceability and compliance-support workflows.",
+        "local_mvp": "Some local mechanisms are implemented.",
+        "comparative_evidence": "NOT_ESTIMABLE; no security benchmark, threat model validation, compliance audit or false-positive/false-negative evaluation is present.",
+        "industrial_validation": "Absent; no OT environment, plant access-control deployment or regulatory customer validation is evidenced."
+      }
+    }
+  ],
+  "adverse_findings": [
+    {
+      "finding": "PHL authorization is represented as a hard-coded status claim.",
+      "evidence": "advanced_runtime.py:1397-1406 returns phl_authorized=true while training_executed is derived from runtime state.",
+      "meaning": "This supports a declared capability boundary, not proof of external authorization, training or effective operation."
+    },
+    {
+      "finding": "Consent is not visibly uniform across all mutating advanced tools.",
+      "evidence": "advanced_runtime.py:643-649 declares phl_decision_register mutating without a consent field, while operational_surface.py:53-63 injects consent and operational_surface.py:631-640 applies guarded execution.",
+      "meaning": "Uniform mutation-consent coverage is NOT_ESTIMABLE from these files."
+    },
+    {
+      "finding": "Runtime shutdown lacks an explicit MIS close call.",
+      "evidence": "advanced_runtime.py:1409-1413 stops four subsystems but not MIS.",
+      "meaning": "Per-operation connections are closed, but lifecycle closure is not centrally expressed."
+    },
+    {
+      "finding": "No tests, benchmark outputs or industrial evidence are contained in the requested corpus.",
+      "meaning": "Claims about reliability, comparative superiority, customer value, scalability, safety or deployment remain unsupported."
+    }
+  ],
+  "claim_ceiling": {
+    "supported": [
+      "The three source files were read completely and their byte counts, physical-line counts and SHA-256 values were calculated.",
+      "A local runtime exposes PHL, scoped consent, MIS prospective workflows, SQLite persistence, evidence bridges and strategic-surface auditing.",
+      "MIS preserves purpose, jurisdiction, exact-input limits, future-only chronology and non-authority boundaries.",
+      "The strongest BIND 11th Edition hypothesis is Group 6, with a secondary bounded hypothesis for Group 5 ID37/ID40."
+    ],
+    "not_supported": [
+      "Trained or causally beneficial PHL.",
+      "Uniform consent enforcement for every mutating capability.",
+      "Predictive superiority or global winner.",
+      "Human utility or customer value.",
+      "Industrial validation, production deployment or Venture Client traction.",
+      "Eligibility for BIND, because legal incorporation, age, MVP maturity, team, revenue and company identity were not evidenced by the corpus."
+    ]
+  },
+  "abstentions": [
+    "No KCH harness, KCH protocol or KCH activation was loaded or invoked.",
+    "No source file was modified.",
+    "No claim was made that the BIND application requirements are satisfied by the code alone.",
+    "No third candidate block was selected because the three-file corpus does not directly implement the industrial, forecasting, supply-chain, customer-development or new-business-model functions required for Groups 10 or 11.",
+    "Strategic-audit outcome, comparative evidence, empirical adequacy, customer utility and industrial validation are NOT_ESTIMABLE from the bounded corpus.",
+    "No tests were claimed or inferred because none were executed."
+  ]
+}

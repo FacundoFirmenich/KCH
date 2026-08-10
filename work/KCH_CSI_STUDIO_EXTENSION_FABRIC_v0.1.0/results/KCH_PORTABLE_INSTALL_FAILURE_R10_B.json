@@ -1,0 +1,21 @@
+{
+  "schema": "kch.safe-short-extract-install-receipt.v0.2.0",
+  "archive": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\release_build\\KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R10.zip",
+  "archive_sha256": "90069c91fe8d57aca44b19d515fa7fad0664395c06e5ab99dfd0803ab39c67ea",
+  "target": "D:\\KCH_TESTS_R10\\package-r10",
+  "target_characters": 28,
+  "path_strategy": "SHORT_LOCALAPPDATA_NEW_ROOT_NO_OVERWRITE",
+  "release_tag": "r10",
+  "extraction": {
+    "package": "D:\\KCH_TESTS_R10\\package-r10\\KCH_0.11_PRE2G_R10",
+    "file_count": 246,
+    "files_hash": "495ac97689abe81312268cb938d026f9dda446b9a09dc78e6118dc2112af5f11"
+  },
+  "install": {
+    "state": "INSTALL_FAILED_PRESERVED",
+    "returncode": 1,
+    "stdout_tail": "",
+    "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\KCH_TESTS_R10\\package-r10\\KCH_0.11_PRE2G_R10\\scripts\\portable_bootstrap.py\", line 173, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\KCH_TESTS_R10\\package-r10\\KCH_0.11_PRE2G_R10\\scripts\\portable_bootstrap.py\", line 56, in main\n    steps.append(run([sys.executable, \"-m\", \"venv\", str(venv)]))\n                 ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KCH_TESTS_R10\\package-r10\\KCH_0.11_PRE2G_R10\\scripts\\portable_bootstrap.py\", line 20, in run\n    raise RuntimeError(json.dumps(receipt, ensure_ascii=False))\nRuntimeError: {\"command\": [\"C:\\\\Python314\\\\python.exe\", \"-m\", \"venv\", \"D:\\\\KCH_TESTS_R10\\\\localappdata\\\\KCH\\\\runtimes\\\\c2b6a683ba1f\\\\venv\"], \"returncode\": 1, \"stdout_tail\": \"\", \"stderr_tail\": \"Error: Command '['D:\\\\\\\\KCH_TESTS_R10\\\\\\\\localappdata\\\\\\\\KCH\\\\\\\\runtimes\\\\\\\\c2b6a683ba1f\\\\\\\\venv\\\\\\\\Scripts\\\\\\\\python.exe', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\\n\"}\n"
+  },
+  "external_host_configuration_modified": false
+}

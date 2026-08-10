@@ -1,0 +1,93 @@
+{
+  "schema": "kch.pre2g.integrated-macrogate.v0.1.0",
+  "release_identity": {
+    "frozen_base": "KCH 0.11",
+    "candidate": "KCH 0.11 PRE2G INTEGRATED CANDIDATE",
+    "base_modified": false,
+    "candidate_is_successor_overlay": true
+  },
+  "gate": "PASS_BOUNDED",
+  "source_tests": {
+    "passed": 20,
+    "failed": 0,
+    "coverage": [
+      "CSI Studio 11 generators",
+      "Extension Fabric",
+      "Super-MCP composition",
+      "Tk UI",
+      "user-sovereign constitution",
+      "programmed proactive policy",
+      "universal text exact recovery",
+      "chat persistence and SCO no-merge",
+      "KwanData CSV/TSV/JSON/supertags",
+      "permissions and finite account leases",
+      "clipboard and post-it revisions",
+      "OBL/PHL-shadow diction",
+      "structured/full checkpoint gates",
+      "CONSTRUCT successor validation and rollback",
+      "cron day/weekday semantics"
+    ]
+  },
+  "portable_gate": {
+    "fresh_installation": true,
+    "offline_wheels": 15,
+    "checks_passed": 9,
+    "checks_total": 9,
+    "combined_super_mcp_tools": 107,
+    "background_launcher_running": true,
+    "capability_blind_spots": [],
+    "ui": {"tk_version": 8.6, "tabs": 9, "passed": true},
+    "external_host_configuration_modified": false,
+    "credentials_embedded": false,
+    "microphone_activated": false,
+    "phl_real_executed": false
+  },
+  "mis": {
+    "adapter_available": true,
+    "records": 480,
+    "streams": 60,
+    "persisted_ledgers_verified": 60,
+    "historical_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+    "authority_created": false,
+    "execution_authorized": false,
+    "csi_lowering_instruction_count": 4,
+    "csi_lowering_assessment": "BOUNDED_DECLARATIVE_LOWERING_NOT_FULL_KCH_GOVERNANCE"
+  },
+  "audio": {
+    "windows_system_speech_available": true,
+    "sounddevice_monitor_available_in_portable_runtime": true,
+    "openai_whisper_available": false,
+    "native_streaming_claim": false,
+    "microphone_activated_during_gate": false
+  },
+  "artifacts": {
+    "frozen_kch_0_11_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+    "candidate_zip_sha256": "8ad71ceea36fcabed189fb8fa15aba4b9b70a1ccbd900c46016351d06ba07443",
+    "candidate_zip_bytes": 21565607,
+    "candidate_preseal_file_count": 190,
+    "candidate_preseal_manifest_sha256": "c5b51b92f34324bea1d5dfbe5f0efabf48684f78606d64a559a03e599c45f473",
+    "fresh_install_receipt_sha256": "649581f5f5a12e90a7ba0d7771f1939fa27a165b165209795aab6816e051320b",
+    "fresh_post_install_gate_sha256": "7062af4be5734b19018e479fe888e089b685150c760d770c8def5572fc4174ee",
+    "phl_database_sha256_preserved": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21"
+  },
+  "demonstrated": [
+    "LOCAL_SOURCE_AND_INSTALLED_RUNTIME_FUNCTIONALITY",
+    "PORTABLE_OFFLINE_INSTALLATION_ON_WINDOWS_PYTHON_3_14",
+    "STDIO_SUPER_MCP_COMPOSITION",
+    "USER_ONLY_CONSTITUTIONAL_MUTATION",
+    "VERSIONED_RECOVERY_AND_STRUCTURED_RECONSTRUCTION",
+    "BACKGROUND_PROGRAMMED_CAPABILITY_DISPATCH",
+    "BOUNDED_MIS_EXACT_REPLAY"
+  ],
+  "not_demonstrated": [
+    "SUSTAINED_REAL_USER_UTILITY",
+    "COMPLETE_EXTERNAL_CHAT_PERSISTENCE_WITHOUT_HOST_CONNECTORS",
+    "CAUSAL_KCH_IMPROVEMENT",
+    "PROSPECTIVE_PREDICTIVE_SUPERIORITY",
+    "OPEN_DOMAIN_SCALABILITY",
+    "INDEPENDENT_SECURITY_AUDIT",
+    "CROSS_PLATFORM_PORTABILITY",
+    "REAL_PHL_LEARNING"
+  ],
+  "next_decision_critical_action": "Install or run the candidate in an isolated user-selected workspace and begin real use with the constitution, SCO and structured persistence; defer real PHL until the final authorized phase."
+}

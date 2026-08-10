@@ -1,0 +1,1 @@
+{"schema":"kch.sco.bootstrap-receipt.v0.2.0","node_state":"READY_FOR_SCOPED_WORK_ORDER","accepted_authority":["RETURN_BOUNDED_TEXT_RECEIPT"],"forbidden_actions":["FILESYSTEM_MUTATION","EXTERNAL_NETWORK","OTHER_THREAD_CONTACT","CONTEXT_OR_MEMORY_EXPORT"],"bootstrap_nonce":"SCO-DISPOSABLE-20260809-01"}

@@ -1,0 +1,190 @@
+{
+  "schema": "kch.rigor.validation.v0.1.0",
+  "generated_at": "2026-08-09T11:48:57.452837Z",
+  "gate": "PASS",
+  "checks_passed": 15,
+  "checks_total": 15,
+  "checks": [
+    {
+      "id": "UNIT_TESTS",
+      "pass": true,
+      "evidence": {
+        "returncode": 0,
+        "tests": 22
+      }
+    },
+    {
+      "id": "PREREGISTRATION_HASH",
+      "pass": true,
+      "evidence": "043ffe70c6a6bdd697813e09ff350320a4268ccd6ec6184fd6e53169d9228a2c"
+    },
+    {
+      "id": "MATRIX_GATE",
+      "pass": true,
+      "evidence": {
+        "exact_matches": 14,
+        "total": 14,
+        "gate": "PASS"
+      }
+    },
+    {
+      "id": "MATRIX_EXACT_14",
+      "pass": true,
+      "evidence": {
+        "exact_matches": 14,
+        "total": 14,
+        "gate": "PASS"
+      }
+    },
+    {
+      "id": "FIXTURE_HASH",
+      "pass": true,
+      "evidence": "8fd6d7fc0edb3480c270b07b56825bdc4986f856384c07d04eaba27a1047029b"
+    },
+    {
+      "id": "SOURCE_CASE_CUSTODY",
+      "pass": true,
+      "evidence": "d3dec9a79cc7bd4bbd8b4a9fd0d5e4db1ec69db31af4b59fe14b96dda71f4812"
+    },
+    {
+      "id": "INSTALLED_SMOKE",
+      "pass": true,
+      "evidence": {
+        "schema": "kch.rigor.installed_smoke.v0.1.0",
+        "gate": "PASS",
+        "wheel": "kch_rigor_gradient_governor-0.1.0-py3-none-any.whl",
+        "wheel_sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+        "server": "kch-rigor-gradient-governor",
+        "version": "0.1.0",
+        "tool_count": 4,
+        "tools": [
+          "kch.rigor.profile.resolve",
+          "kch.rigor.action.adjudicate",
+          "kch.rigor.review.audit",
+          "kch.rigor.transition.plan"
+        ],
+        "schemas_strict": true,
+        "stderr_empty": true,
+        "draft_profile": "R1_DRAFTING",
+        "audit_verdict": "REJECT_REVIEW",
+        "audit_defects": [
+          "CLAIM_ACTION_CONFLATION",
+          "PROTOCOL_SCOPE_OVERREACH"
+        ],
+        "authority_created": false
+      }
+    },
+    {
+      "id": "WHEEL_HASH",
+      "pass": true,
+      "evidence": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741"
+    },
+    {
+      "id": "WHEEL_CONTENT",
+      "pass": true,
+      "evidence": [
+        "kch_rigor_governor/__init__.py",
+        "kch_rigor_governor/core.py",
+        "kch_rigor_governor/mcp_server.py",
+        "kch_rigor_gradient_governor-0.1.0.dist-info/METADATA",
+        "kch_rigor_gradient_governor-0.1.0.dist-info/WHEEL",
+        "kch_rigor_gradient_governor-0.1.0.dist-info/entry_points.txt",
+        "kch_rigor_gradient_governor-0.1.0.dist-info/top_level.txt",
+        "kch_rigor_gradient_governor-0.1.0.dist-info/RECORD"
+      ]
+    },
+    {
+      "id": "MCP_FOUR_TOOLS",
+      "pass": true,
+      "evidence": [
+        "kch.rigor.profile.resolve",
+        "kch.rigor.action.adjudicate",
+        "kch.rigor.review.audit",
+        "kch.rigor.transition.plan"
+      ]
+    },
+    {
+      "id": "STRICT_SCHEMAS",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "ANTI_CLAIM_ACTION_CONFLATION",
+      "pass": true,
+      "evidence": [
+        "CLAIM_ACTION_CONFLATION",
+        "PROTOCOL_SCOPE_OVERREACH"
+      ]
+    },
+    {
+      "id": "NO_AUTHORITY_CREATED",
+      "pass": true,
+      "evidence": false
+    },
+    {
+      "id": "MU_CORRECT_DISPOSITION",
+      "pass": true,
+      "evidence": {
+        "schema": "kch.rigor.action.receipt.v0.1.0",
+        "profile_id": "R3_INTERNAL_CHARACTERIZATION",
+        "action": "ADD_REPLICATIONS_AFTER_RESULTS",
+        "overall": "ALLOW_WITH_SEPARATE_BRANCH",
+        "action_disposition": "ALLOW_WITH_SEPARATE_BRANCH",
+        "claim_disposition": "ALLOW",
+        "requested_claim": "INTERNAL_CHARACTERIZATION",
+        "authorized_claim": "INTERNAL_CHARACTERIZATION",
+        "action_reasons": [
+          "POST_RESULT_EXTENSION_SEPARATED_FROM_PARENT"
+        ],
+        "claim_reasons": [],
+        "requirements": [
+          "LABEL_EXTENSION_POST_RESULT",
+          "PRESERVE_PARENT",
+          "RESET_CLAIM_IDENTITY"
+        ],
+        "scope_escape_rejected": [],
+        "parent_mutation_authorized": false,
+        "execution_authorized": false,
+        "mode": "SHADOW_ONLY",
+        "authority_created": false,
+        "receipt_sha256": "0a7a64c9c219ef1e15df3e2ca7d85fd1a1847fd9d0393dc4d9be4895baa0a4f6"
+      }
+    },
+    {
+      "id": "DOWNWARD_DISTORTION_DETECTED",
+      "pass": true,
+      "evidence": {
+        "schema": "kch.rigor.review.receipt.v0.1.0",
+        "verdict": "REJECT_REVIEW",
+        "defects": [
+          "DOWNWARD_EVIDENCE_DISTORTION"
+        ],
+        "protocol_gate_status": "NOT_ESTIMABLE_WITHIN_PREREGISTERED_BUDGET",
+        "fact_judgment": "OBSERVED_SIGNAL_PRESENT",
+        "claim_judgment": "NO_CONFIRMATORY_AUTHORITY",
+        "action_judgment": "PRESERVE_PARENT_AND_OPEN_INTERNAL_EXTENSION",
+        "corrective_principle": "CLAIM_CEILING_IS_NOT_RESEARCH_CEILING",
+        "parent_mutation_authorized": false,
+        "mode": "SHADOW_ONLY",
+        "authority_created": false,
+        "receipt_sha256": "ba948bbc62bf59dd39505f8a58e63a950264a32aefb0b5943c834ce9d28dc1d0"
+      }
+    }
+  ],
+  "artifacts": {
+    "wheel_sha256": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+    "preregistration_sha256": "043ffe70c6a6bdd697813e09ff350320a4268ccd6ec6184fd6e53169d9228a2c",
+    "matrix_result_sha256": "c1c7593962996ca8031336e36cafc047700688971fb74b927c1c746eb965c830",
+    "fixture_sha256": "8fd6d7fc0edb3480c270b07b56825bdc4986f856384c07d04eaba27a1047029b",
+    "source_case_sha256": "d3dec9a79cc7bd4bbd8b4a9fd0d5e4db1ec69db31af4b59fe14b96dda71f4812"
+  },
+  "claim_boundary": {
+    "validated": "structured deterministic rigor-profile, action, review and transition conformance",
+    "not_validated": [
+      "autonomous free-text extraction",
+      "execution authority",
+      "population effectiveness",
+      "full KCH integration"
+    ]
+  }
+}

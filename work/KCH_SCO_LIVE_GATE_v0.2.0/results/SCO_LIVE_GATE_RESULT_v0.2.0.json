@@ -1,0 +1,146 @@
+{
+  "schema": "kch.sco.live-gate-result.v0.2.0",
+  "gate": "PASS_BOUNDED",
+  "checks": {
+    "transport_guard_tests_5_of_5": true,
+    "transport_guard_integrity_pass": true,
+    "receipt_bound_to_exact_native_response_hash": true,
+    "retry_suppressed_without_resend": true,
+    "native_identity_and_nonce_exact": true,
+    "authority_exact_no_escalation": true,
+    "all_forbidden_actions_attested": true,
+    "host_reports_no_tool_markers": true,
+    "bootstrap_exact": true,
+    "sco_integrity_pass": true,
+    "sco_successor_projection_exact": true,
+    "decision_adapter_pass": true,
+    "zero_user_feedback": true,
+    "personal_state_unchanged": true,
+    "sealed_v01_state_unchanged": true,
+    "failed_empty_replica_preserved": true
+  },
+  "checks_passed": 16,
+  "checks_total": 16,
+  "disposable_thread_id": "019fe6f6-076b-7803-b3c3-88c6f29329f0",
+  "disposable_native_uri": "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+  "bootstrap_turn_id": "019fe6f6-0ca5-7b72-a646-7d5ff60148b5",
+  "transport_turn_id": "019fe6fa-b818-7c62-bb0b-d04f0fbb3bb1",
+  "dispatch_id": "SCO-LIVE-DISPATCH-20260809-01",
+  "native_response_sha256": "e6aa7600f7a9f8fb10d981dca9bf14d8a17f0df5f78dbf46aa3cf2c4dfba8976",
+  "sco_projection": {
+    "schema": "kch.sco.projection.v0.1.0",
+    "sco_id": "sco.kch-pre2g-continuation.20260809",
+    "superchats": 1,
+    "nodes": 3,
+    "edges": 2,
+    "work_orders": 2,
+    "conflicts": 0,
+    "receipts": 2,
+    "provider_counts": {
+      "CODEX": 3
+    },
+    "order_states": {
+      "COMPLETED": 2
+    },
+    "events": 10,
+    "commands": 10,
+    "head_hash": "f16d59257e100f344df6dd599d821372e7d94c6729c79ad17a010a0d15a0e171",
+    "native_contexts_merged": false
+  },
+  "sco_integrity": {
+    "schema": "kch.sco.integrity-result.v0.1.0",
+    "gate": "PASS",
+    "defects": [],
+    "event_count": 10,
+    "command_count": 10,
+    "head_hash": "f16d59257e100f344df6dd599d821372e7d94c6729c79ad17a010a0d15a0e171"
+  },
+  "transport_integrity": {
+    "gate": "PASS",
+    "defects": [],
+    "dispatches": 1,
+    "received": 1
+  },
+  "decision_adapter_result": {
+    "schema": "kch.sco.decision-adapter-gate-result.v0.2.0",
+    "gate": "PASS_BOUNDED",
+    "checks": {
+      "two_decisions_conformant": true,
+      "sco_registered_as_decision_emitter": true,
+      "registry_v05_admitted_inventory_complete": true,
+      "sco_mutability_methods_registered": true,
+      "phl_replica_integrity_pass": true,
+      "bounded_gate_preserved": true,
+      "zero_feedback": true,
+      "personal_source_unchanged": true
+    },
+    "checks_passed": 8,
+    "checks_total": 8,
+    "decision_ids": [
+      "sco-decision:wo.sco-live-transport-01:issued",
+      "sco-decision:conflict-adjudication:abstain:no-conflict"
+    ],
+    "decision_hashes": [
+      "73bedeac1ff83319447bd52a84b92378548e8f1d784e19a51424a0774b39ae96",
+      "1969000e7b58ff478f21438d709f5869c1914c8afd5f7e7c6d7d65a8fa168f03"
+    ],
+    "integrity": {
+      "gate": "PASS",
+      "defects": [],
+      "head_hash": "007fc3ed97e14c59798828e0d567a506a2bf4e1143d071fd996d6719ce88410c",
+      "event_count": 51,
+      "decision_count": 9,
+      "feedback_count": 0,
+      "request_count": 44,
+      "mutability_count": 25,
+      "emitter_count": 17
+    },
+    "gate_state": {
+      "state": "PASS_EFFECTIVE_KCH_PHL_INTEGRATION_BOUNDED",
+      "expected_admitted_rows": 17,
+      "head_hash": "007fc3ed97e14c59798828e0d567a506a2bf4e1143d071fd996d6719ce88410c",
+      "events": 51,
+      "decisions": 9,
+      "feedback": 0,
+      "requests": 44,
+      "mutability_methods": 25,
+      "emitters": 17,
+      "emitter_states": {
+        "DECISION_EMITTER": 3,
+        "NON_DECISION_SERVICE": 2,
+        "UNAVAILABLE_CONTRACT": 12
+      },
+      "active_phl_session_id": null
+    },
+    "source_sha256_before": "a81724487739c37825e251c0de68a9aaf2033e2e14418f9aac8215f6a976527d",
+    "source_sha256_after": "a81724487739c37825e251c0de68a9aaf2033e2e14418f9aac8215f6a976527d",
+    "limitations": [
+      "SCO decision adaptation is demonstrated only for work-order issuance and zero-conflict abstention.",
+      "Twelve earlier KCH registry rows still have UNAVAILABLE_CONTRACT.",
+      "The PHL state is an isolated replica; no personal policy activation or feedback occurred."
+    ]
+  },
+  "failed_preparation_evidence": {
+    "state": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_SCO_LIVE_GATE_v0.2.0\\runtime\\KCH_SCO_LIVE_GATE_v0.2.0_EMPTY_AFTER_SOURCE_COPY_PATH_ERROR.sqlite3",
+    "sha256": "00ee2e5d2ab6fa381bf08f4410849927688ea123c50ee1b6b602adbb11c233a6",
+    "events": 0,
+    "commands": 0
+  },
+  "claim": "One bounded, idempotency-guarded Codex textual transport cycle and SCO-to-KCH decision adaptation are demonstrated on isolated successor states.",
+  "limitations": [
+    "One disposable local Codex task only; no second independent target and no other provider.",
+    "No independent operating-system audit of the disposable task; no-tool evidence is host metadata plus the task receipt.",
+    "Codex exposed one shared turn identifier for request and response.",
+    "Decision adaptation covers work-order issuance and zero-conflict abstention only.",
+    "Twelve earlier KCH emitter contracts remain unavailable; overall KCH integration remains bounded.",
+    "No comparative semantic-quality campaign against Projects was run."
+  ],
+  "artifact_hashes": {
+    "sco_successor_state": "51afbdeacbb5cc7f90188e4f860125968b5c7d1c1ce9a5c4a8abc5ab5df12e49",
+    "transport_state": "237dce41d644a9ca62e57e096120028097708c38ca783959bd8744646b1d8ddf",
+    "decision_result": "b3cd1588c25505229a1a7c802a16efc00c455d223f15105ba64d98cbd23d7bf1",
+    "bootstrap": "0622b352feba899857401e1b70fb88ea13b6556ffea2b866ae19e59fa7502f1b",
+    "native_response": "cdf4808b93f4a1bf7a5d93356cbe6a1eacc895bb7f507e125c6966964311feed",
+    "host_receipt": "a37c319af083c674f0ef436433fe3491d6e074e36a507f8f99801c347c72b67b"
+  }
+}

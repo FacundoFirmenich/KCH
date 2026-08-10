@@ -1,0 +1,3 @@
+[console_scripts]
+kch-obl = kch_learning.obl_cli_release:main
+kch-phl = kch_learning.phl_workbench_praxis:main

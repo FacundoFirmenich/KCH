@@ -1,0 +1,23 @@
+{
+  "schema": "kch.phl-real-session-freeze.v0.1.0",
+  "state": "DEFERRED_BY_USER_UNTIL_FINAL",
+  "effective_for_gate": "KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE",
+  "prohibited": [
+    "START_PHL_SESSION",
+    "CREATE_USER_FEEDBACK",
+    "CLOSE_PHL_SESSION",
+    "COMMIT_PHL_POLICY",
+    "CLAIM_PHL_REAL_USE"
+  ],
+  "allowed": [
+    "READ_EXISTING_PHL_PROJECTION",
+    "VERIFY_EXISTING_PHL_INTEGRITY",
+    "VERIFY_PHL_SOURCE_HASH_UNCHANGED"
+  ],
+  "expected_preexisting_state": {
+    "active_phl_session": null,
+    "real_user_feedback_count": 0
+  },
+  "authority_created": false,
+  "automatic_activation": false
+}

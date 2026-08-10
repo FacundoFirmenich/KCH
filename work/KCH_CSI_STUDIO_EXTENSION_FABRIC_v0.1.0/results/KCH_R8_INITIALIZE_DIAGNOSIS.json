@@ -1,0 +1,15 @@
+{
+  "schema": "kch.portable-initialize-diagnosis.v0.1.0",
+  "release": "KCH_0.11_PRE2G_R8",
+  "observed_gate_stage": "initialize",
+  "observed_timeout_seconds": 60,
+  "direct_constructor_probe": "FAIL",
+  "exception": "zoneinfo._common.ZoneInfoNotFoundError",
+  "missing_zone": "Europe/Madrid",
+  "causal_localization": "tzdata wheel absent from clean Windows venv",
+  "global_python_tzdata_version": "2025.2",
+  "source_suite_false_green_reason": "global interpreter had tzdata; clean portable runtime did not",
+  "runtime_or_super_mcp_initialized": false,
+  "historical_result_immutable": true,
+  "corrective_action": "Declare tzdata, include its verified wheel in the offline wheelhouse and require it at build time."
+}

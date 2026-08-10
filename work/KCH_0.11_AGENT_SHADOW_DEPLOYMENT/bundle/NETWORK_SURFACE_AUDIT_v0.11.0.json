@@ -1,0 +1,48 @@
+{
+  "findings": [
+    {
+      "hits": {},
+      "wheel": "kch_mis_v03_integration-0.1.0-py3-none-any.whl"
+    },
+    {
+      "hits": {},
+      "wheel": "kch_obl_phl_learning_system-0.1.1-py3-none-any.whl"
+    },
+    {
+      "hits": {
+        "http_server": [
+          "kch_phl_integration/server.py"
+        ],
+        "urllib": [
+          "kch_phl_integration/client.py"
+        ]
+      },
+      "wheel": "kch_phl_effective_integration-0.2.0-py3-none-any.whl"
+    },
+    {
+      "hits": {},
+      "wheel": "kch_rigor_gradient_governor-0.1.0-py3-none-any.whl"
+    },
+    {
+      "hits": {},
+      "wheel": "kch_superchats_orchestrators-0.1.0-py3-none-any.whl"
+    },
+    {
+      "hits": {},
+      "wheel": "kwancode_harness-0.11.0-py3-none-any.whl"
+    },
+    {
+      "hits": {},
+      "wheel": "kwanprompts-0.1.0-py3-none-any.whl"
+    },
+    {
+      "hits": {},
+      "wheel": "mis_qualitative_bayes-0.3.1-py3-none-any.whl"
+    }
+  ],
+  "kch_super_mcp_transport": "STDIO",
+  "method": "Static token scan of Python sources inside bundled wheels; not a dynamic penetration test.",
+  "release": "KCH 0.11",
+  "remote_listener_enabled_by_default": false,
+  "schema": "kch.network-surface-audit.v0.11.0"
+}

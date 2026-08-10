@@ -1,0 +1,2 @@
+[console_scripts]
+kch-rigor-governor = kch_rigor_governor.mcp_server:main

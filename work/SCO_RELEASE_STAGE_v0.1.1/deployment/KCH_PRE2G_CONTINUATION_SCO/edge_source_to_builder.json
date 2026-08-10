@@ -1,0 +1,16 @@
+{
+  "schema": "kch.sco.edge.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "edge_id": "kch-lineage-supplies-sco-builder",
+  "source_node_id": "kch-canonical-lineage-source",
+  "target_node_id": "kch-sco-builder",
+  "relation": "SUPPLIES_EVIDENCE",
+  "disclosure_contract": {
+    "schema": "kch.sco.scoped-disclosure.v0.1.0",
+    "allowed_ref_kinds": ["NATIVE_TURN_REF", "ARTIFACT_REF", "HASH_REF", "GATE_REF"],
+    "maximum_payload_bytes": 262144,
+    "forbidden_transfers": ["FULL_CONTEXT_MERGE", "NATIVE_MEMORY_COPY", "IMPLICIT_AUTHORITY_TRANSFER"]
+  },
+  "activation_condition": "Explicit evidence need within a declared KCH work order.",
+  "gate_id": "FULL_NATIVE_THREAD_READ_AND_PROVENANCE_PRESERVATION"
+}

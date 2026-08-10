@@ -1,0 +1,13 @@
+{
+  "archive_bytes": 622415,
+  "archive_name": "KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0.zip",
+  "archive_sha256": "4790f768fef54c7449b748e7cbbde5b7ebb3f929be4b5a6d8df2f91c37cce19b",
+  "canonical_kch_0_11_zip_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+  "manifest_sha256": "9dc4c4a158234272e9e8bb7b148e37b0f9a0a8eaaeadbe6946bd5f091be81a30",
+  "package_type": "COMPLETE_PORTABLE_RUNTIME",
+  "payload_file_count": 106,
+  "phl_real_session": "NOT_RUN",
+  "reextracted_manifest_gate": "PASS",
+  "release": "KCH 0.11",
+  "schema": "kch.super-mcp-package-seal.v0.11.0"
+}

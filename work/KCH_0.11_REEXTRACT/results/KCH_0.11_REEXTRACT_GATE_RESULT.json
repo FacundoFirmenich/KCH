@@ -1,0 +1,295 @@
+{
+  "checks": [
+    {
+      "check": "CANONICAL_IDENTITY",
+      "observed": {
+        "release": "KCH 0.11",
+        "version": "0.11.0"
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "CONTROL_COUNT",
+      "observed": 28,
+      "state": "PASS"
+    },
+    {
+      "check": "MCP_TOOL_COUNT",
+      "observed": 49,
+      "state": "PASS"
+    },
+    {
+      "check": "DIRECT_CONTROL_TOOLS",
+      "observed": [
+        "kch.super.status",
+        "kch.super.registry",
+        "kch.super.controls",
+        "kch.super.session.open",
+        "kch.super.evidence.admit",
+        "kch.super.context.compile",
+        "kch.super.action.propose",
+        "kch.super.action.authorize",
+        "kch.super.action.execute",
+        "kch.super.precommit.verify",
+        "kch.super.rollback",
+        "kch.super.outcome.register",
+        "kch.super.audit.export",
+        "kch.super.registry.evidence.audit",
+        "kch.component.status",
+        "kch.phl.projection",
+        "kch.sco.projection",
+        "kch.mis.certificate.verify",
+        "kch.kwanprompts.probe",
+        "kch.rgg.probe",
+        "kch.obl_phl.probe",
+        "kch.control.R01",
+        "kch.control.R02",
+        "kch.control.R03",
+        "kch.control.R04",
+        "kch.control.R05",
+        "kch.control.R06",
+        "kch.control.R07",
+        "kch.control.R08",
+        "kch.control.R09",
+        "kch.control.R10",
+        "kch.control.R11",
+        "kch.control.R12",
+        "kch.control.R13",
+        "kch.control.R14",
+        "kch.control.R15",
+        "kch.control.R16",
+        "kch.control.R17",
+        "kch.control.R18",
+        "kch.control.R19",
+        "kch.control.R20",
+        "kch.control.R21",
+        "kch.control.R22",
+        "kch.control.R23",
+        "kch.control.R24",
+        "kch.control.R25",
+        "kch.control.R26",
+        "kch.control.R27",
+        "kch.control.R28"
+      ],
+      "state": "PASS"
+    },
+    {
+      "check": "REGISTRY_EVIDENCE",
+      "observed": {
+        "FAIL": 0,
+        "PASS": 19,
+        "UNAVAILABLE": 0
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "SOVEREIGN_PACKAGES",
+      "observed": {
+        "authority_created": false,
+        "available": 7,
+        "components": [
+          {
+            "component": "PHL_EFFECTIVE_INTEGRATION",
+            "distribution": "kch-phl-effective-integration",
+            "state": "AVAILABLE",
+            "version": "0.2.0"
+          },
+          {
+            "component": "SCO",
+            "distribution": "kch-superchats-orchestrators",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_ADAPTER",
+            "distribution": "kch-mis-v03-integration",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_BACKEND",
+            "distribution": "mis-qualitative-bayes",
+            "state": "AVAILABLE",
+            "version": "0.3.1"
+          },
+          {
+            "component": "OBL_PHL",
+            "distribution": "kch-obl-phl-learning-system",
+            "state": "AVAILABLE",
+            "version": "0.1.1"
+          },
+          {
+            "component": "RGG",
+            "distribution": "kch-rigor-gradient-governor",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "KWANPROMPTS",
+            "distribution": "kwanprompts",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          }
+        ],
+        "release": "KCH 0.11",
+        "schema": "kch.component-status.v0.11.0",
+        "unavailable": 0
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "PHL_EFFECTIVE_STATE",
+      "observed": {
+        "authority_created": false,
+        "integrity": {
+          "decision_count": 11,
+          "defects": [],
+          "emitter_count": 18,
+          "event_count": 63,
+          "feedback_count": 0,
+          "gate": "PASS",
+          "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+          "mutability_count": 29,
+          "request_count": 56
+        },
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_REEXTRACT\\evidence\\KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+        "projection": {
+          "active_phl_session_id": null,
+          "decisions": 11,
+          "emitter_states": {
+            "DECISION_EMITTER": 4,
+            "NON_DECISION_SERVICE": 2,
+            "UNAVAILABLE_CONTRACT": 12
+          },
+          "emitters": 18,
+          "events": 63,
+          "feedback": 0,
+          "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+          "mutability_methods": 29,
+          "requests": 56
+        },
+        "state": "AVAILABLE"
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "SCO_STATE",
+      "observed": {
+        "authority_created": false,
+        "integrity": {
+          "command_count": 6,
+          "defects": [],
+          "event_count": 6,
+          "gate": "PASS",
+          "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2",
+          "schema": "kch.sco.integrity-result.v0.1.0"
+        },
+        "live_cross_provider_dispatch": false,
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_REEXTRACT\\evidence\\KCH_PRE2G_SCO_v0.1.0.sqlite3",
+        "projection": {
+          "commands": 6,
+          "conflicts": 0,
+          "edges": 1,
+          "events": 6,
+          "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2",
+          "native_contexts_merged": false,
+          "nodes": 2,
+          "order_states": {
+            "COMPLETED": 1
+          },
+          "provider_counts": {
+            "CODEX": 2
+          },
+          "receipts": 1,
+          "schema": "kch.sco.projection.v0.1.0",
+          "sco_id": "ALL",
+          "superchats": 1,
+          "work_orders": 1
+        },
+        "state": "AVAILABLE"
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "MIS_CERTIFICATE",
+      "observed": {
+        "authority_created": false,
+        "automatic_promotion": false,
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_REEXTRACT\\evidence\\KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+        "state": "AVAILABLE",
+        "verification": {
+          "certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+          "schema": "kch.mis.v03.historical-certificate.v0.1.0",
+          "valid": true
+        }
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "MCP_INITIALIZE",
+      "observed": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "result": {
+          "capabilities": {
+            "resources": {},
+            "tools": {}
+          },
+          "protocolVersion": "2025-06-18",
+          "serverInfo": {
+            "name": "kwancode-harness",
+            "version": "0.11.0"
+          }
+        }
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "MCP_LIST",
+      "observed": 49,
+      "state": "PASS"
+    },
+    {
+      "check": "LEDGER_INTEGRITY",
+      "observed": {
+        "defects": [],
+        "event_count": 0,
+        "evidence_count": 0,
+        "gate": "PASS",
+        "head_hash": "GENESIS",
+        "proposal_count": 0,
+        "session_count": 0
+      },
+      "state": "PASS"
+    },
+    {
+      "check": "ENFORCED_PROHIBITED",
+      "observed": "PROHIBITED_UNTIL_GATES_PASS",
+      "state": "PASS"
+    }
+  ],
+  "checks_passed": 13,
+  "checks_total": 13,
+  "claims_established": [
+    "CANONICAL_PACKAGE_AND_MCP_IDENTITY",
+    "28_INVOKABLE_CONTROL_CONTRACTS",
+    "LOCAL_READ_ONLY_FEDERATED_COMPOSITION",
+    "PORTABLE_REGISTRY_EVIDENCE_CUSTODY",
+    "FAIL_CLOSED_MUTATING_AUTHORITY"
+  ],
+  "gate": "PASS_KCH_0.11_LOCAL_BOUNDED",
+  "not_demonstrated": [
+    "EFFECTIVENESS_OF_ALL_28_CONTROLS_IN_REAL_USE",
+    "CAUSAL_KCH_IMPROVEMENT",
+    "PAIRED_SHADOW_SUPERIORITY",
+    "EXTERNAL_LINUX_REPLICATION",
+    "TYPESCRIPT_CONFORMANCE_FOR_0.11",
+    "ENFORCED_PROFILE_SAFETY",
+    "LIVE_CROSS_PROVIDER_DISPATCH",
+    "COMPLETE_KWANFORKS",
+    "CSI_17_OF_17",
+    "MIS_LUNA_ESTIMABILITY"
+  ],
+  "release": "KCH 0.11",
+  "schema": "kch.release-gate-result.v0.11.0"
+}

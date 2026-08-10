@@ -1,0 +1,19 @@
+{
+  "schema": "kch.csi-studio-artifact-types.v0.1.0",
+  "guided_modes": ["GUIDED_COMPLETE", "ASSISTED", "EXPERT"],
+  "lifecycle": ["DRAFT", "SPECIFIED", "GENERATED_STAGED", "VALIDATED", "SEALED_CANDIDATE", "INSTALL_REQUESTED", "INSTALLED", "ENABLED"],
+  "implemented_through": "SPECIFICATION_ONLY",
+  "artifact_types": [
+    {"id": "SKILL", "required_contracts": ["frontmatter", "instructions", "type_validator", "staged_install_plan"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "TOOL", "required_contracts": ["input_schema", "output_schema", "action_class", "tests"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "MCP", "required_contracts": ["server_identity", "tool_schemas", "transport", "annotations", "conformance"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "OPERATOR", "required_contracts": ["csi_signature", "invariants", "composition_rules", "adversarial_tests"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "AGENT", "required_contracts": ["role", "authority", "reads", "writes", "topology"], "provider_state": "GOVERNANCE_SCHEMA_IMPLEMENTED_EDITOR_NOT_IMPLEMENTED"},
+    {"id": "RULE", "required_contracts": ["scope", "routines", "subroutines", "conflict_policy"], "provider_state": "GOVERNANCE_SCHEMA_IMPLEMENTED_EDITOR_NOT_IMPLEMENTED"},
+    {"id": "KWANFORK", "required_contracts": ["parent_lineage", "divergence", "authority", "merge_policy"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "MOD", "required_contracts": ["target", "patch_contract", "compatibility", "rollback"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "PLUGIN", "required_contracts": ["manifest", "skills", "mcp_servers", "optional_ui", "security_review"], "provider_state": "NOT_IMPLEMENTED"},
+    {"id": "HOST_ADAPTER", "required_contracts": ["host_capabilities", "projection", "degradation_receipt", "tests"], "provider_state": "CODEX_GOVERNANCE_PROJECTION_ONLY"},
+    {"id": "PRESET", "required_contracts": ["csi_atoms", "parameters", "jurisdiction", "version"], "provider_state": "NOT_IMPLEMENTED"}
+  ]
+}

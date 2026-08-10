@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: kch-phl-effective-integration
+Version: 0.2.0
+Summary: Conflict-detecting multi-client PHL integration control plane for KwanCode Harness
+Requires-Python: >=3.11

@@ -1,0 +1,2036 @@
+{
+  "schema": "kch.real-shadow-deployment-gate-result.v0.1.0",
+  "release": "KCH 0.11",
+  "started_at": "2026-08-09T19:10:18.159069+00:00",
+  "gate": "PASS",
+  "profile": "agent-shadow",
+  "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+  "phl_real_session": "PROHIBITED_AND_NOT_RUN",
+  "pre_gate_adverse_observations": [
+    {
+      "state": "REPAIRED_BEFORE_SERVER_START",
+      "defect": "Windows PowerShell 5 lacks static RandomNumberGenerator.GetBytes(int)",
+      "consequence": "first launcher probe stopped before MCP initialization"
+    },
+    {
+      "state": "REPAIRED_BEFORE_SERVER_START",
+      "defect": "Windows PowerShell 5 lacks Convert.ToHexString(byte[])",
+      "consequence": "second launcher probe stopped before MCP initialization"
+    },
+    {
+      "state": "REPAIRED_OBSERVER_ASSERTION",
+      "defect": "first full gate expected a synthetic top-level registry audit gate field instead of evaluating the returned totals contract",
+      "consequence": "observer stopped after MCP handshake and a real 19 PASS, 0 FAIL, 0 UNAVAILABLE registry audit; no governed KCH session had been opened"
+    },
+    {
+      "state": "PROVISIONAL_LOCALIZATION_SUPERSEDED",
+      "defect": "Windows PowerShell native-pipeline transcoding was initially suspected after autorización arrived as autorizaci\\ufffdn",
+      "consequence": "KCH correctly emitted CONTROL_RECEIPT_INTEGRITY_FAILURE and BLOCK; direct Python reproduction showed the deeper cause was the Python Windows stdio encoding"
+    },
+    {
+      "state": "REPAIRED_AND_PRESERVED_FAIL_CLOSED_BLOCK",
+      "defect": "Python emitted MCP JSON in Windows CP1252 (byte F3) instead of UTF-8 (bytes C3 B3)",
+      "consequence": "active bootstrap now forces Python UTF-8 mode and reconfigures stdin/stdout defensively"
+    },
+    {
+      "state": "REPAIRED_OBSERVER_ASSERTION_AFTER_SUCCESSFUL_EXECUTION",
+      "defect": "observer expected ledger integrity inside audit.export although the API exposes it through status.ledger",
+      "consequence": "the attempt had already completed ALLOW_READ_ONLY execution, ALLOW_SHADOW_PRECOMMIT and outcome registration; final observer now verifies both the status ledger gate and audit export content hash"
+    }
+  ],
+  "completed_at": "2026-08-09T19:10:19.479963+00:00",
+  "hashes": {
+    "canonical_zip_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+    "objective_contract_sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+    "project_mcp_config_sha256": "a8a285bf8c23bda32529bf559ab548373e96f7e4e4c3fe795af41e2265209d55",
+    "phl_freeze_sha256": "1934042b4aa97233efa15188f051554a6cdd3f964cba823675741e8a36ebe7c8",
+    "phl_state_before_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+    "phl_state_after_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21"
+  },
+  "mcp": {
+    "initialize": {
+      "protocolVersion": "2025-06-18",
+      "capabilities": {
+        "tools": {},
+        "resources": {}
+      },
+      "serverInfo": {
+        "name": "kwancode-harness",
+        "version": "0.11.0"
+      }
+    },
+    "tool_count": 49,
+    "direct_control_count": 28,
+    "resource_count": 4,
+    "tool_names": [
+      "kch.super.status",
+      "kch.super.registry",
+      "kch.super.controls",
+      "kch.super.session.open",
+      "kch.super.evidence.admit",
+      "kch.super.context.compile",
+      "kch.super.action.propose",
+      "kch.super.action.authorize",
+      "kch.super.action.execute",
+      "kch.super.precommit.verify",
+      "kch.super.rollback",
+      "kch.super.outcome.register",
+      "kch.super.audit.export",
+      "kch.super.registry.evidence.audit",
+      "kch.component.status",
+      "kch.phl.projection",
+      "kch.sco.projection",
+      "kch.mis.certificate.verify",
+      "kch.kwanprompts.probe",
+      "kch.rgg.probe",
+      "kch.obl_phl.probe",
+      "kch.control.R01",
+      "kch.control.R02",
+      "kch.control.R03",
+      "kch.control.R04",
+      "kch.control.R05",
+      "kch.control.R06",
+      "kch.control.R07",
+      "kch.control.R08",
+      "kch.control.R09",
+      "kch.control.R10",
+      "kch.control.R11",
+      "kch.control.R12",
+      "kch.control.R13",
+      "kch.control.R14",
+      "kch.control.R15",
+      "kch.control.R16",
+      "kch.control.R17",
+      "kch.control.R18",
+      "kch.control.R19",
+      "kch.control.R20",
+      "kch.control.R21",
+      "kch.control.R22",
+      "kch.control.R23",
+      "kch.control.R24",
+      "kch.control.R25",
+      "kch.control.R26",
+      "kch.control.R27",
+      "kch.control.R28"
+    ],
+    "resources": [
+      {
+        "uri": "kch://registry/current",
+        "name": "KCH 0.11 canonical federated registry",
+        "mimeType": "application/json"
+      },
+      {
+        "uri": "kch://controls/28",
+        "name": "KCH 0.11 reflexive control catalog",
+        "mimeType": "application/json"
+      },
+      {
+        "uri": "kch://status/current",
+        "name": "KCH 0.11 runtime status",
+        "mimeType": "application/json"
+      },
+      {
+        "uri": "kch://audit/current",
+        "name": "KCH 0.11 append-only audit export",
+        "mimeType": "application/json"
+      }
+    ]
+  },
+  "direct_read_only_surfaces": {
+    "status": {
+      "automatic_promotion": false,
+      "claim_ceiling": "CANONICAL_PRE2G_MACRORELEASE_WITH_BOUNDED_EXECUTABLE_INTEGRATION",
+      "component_packages": {
+        "authority_created": false,
+        "available": 7,
+        "components": [
+          {
+            "component": "PHL_EFFECTIVE_INTEGRATION",
+            "distribution": "kch-phl-effective-integration",
+            "state": "AVAILABLE",
+            "version": "0.2.0"
+          },
+          {
+            "component": "SCO",
+            "distribution": "kch-superchats-orchestrators",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_ADAPTER",
+            "distribution": "kch-mis-v03-integration",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_BACKEND",
+            "distribution": "mis-qualitative-bayes",
+            "state": "AVAILABLE",
+            "version": "0.3.1"
+          },
+          {
+            "component": "OBL_PHL",
+            "distribution": "kch-obl-phl-learning-system",
+            "state": "AVAILABLE",
+            "version": "0.1.1"
+          },
+          {
+            "component": "RGG",
+            "distribution": "kch-rigor-gradient-governor",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "KWANPROMPTS",
+            "distribution": "kwanprompts",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          }
+        ],
+        "release": "KCH 0.11",
+        "schema": "kch.component-status.v0.11.0",
+        "unavailable": 0
+      },
+      "enforced_profile": "PROHIBITED_UNTIL_GATES_PASS",
+      "ledger": {
+        "defects": [],
+        "event_count": 21,
+        "evidence_count": 9,
+        "gate": "PASS",
+        "head_hash": "4a8de2bcfbefbe6a4ab2346bafce6e010bba5d2db5dc37fc2a0fcdc827030d65",
+        "proposal_count": 3,
+        "session_count": 3
+      },
+      "mode": "SHADOW_AND_READ_ONLY_FEDERATION",
+      "mutating_execution_authorized": false,
+      "package_version": "0.11.0",
+      "profile": "agent-shadow",
+      "reflexive_controls": 28,
+      "registry_sha256": "6a679f28d559e37be48843054645c82f71c886cff3cb29a92a8f8bf9f36ad792",
+      "release": "KCH 0.11",
+      "schema": "kch.status.v0.11.0"
+    },
+    "registry_evidence_audit": {
+      "release": "KCH 0.11",
+      "rows": [
+        {
+          "active_name": "KCH typed LLM runtime",
+          "expected_sha256": "72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b",
+          "observed_sha256": "72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\72698a651f44a96ece811713686f3afda8b5dfa3634f608d92c71eaa0b65966b_INFORME_MAESTRO_ES.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH Bayesian learning",
+          "expected_sha256": "7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32",
+          "observed_sha256": "7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\7c5a75e86a649175de077182dc07712afa3757acc2b65f84b81dd57a6959fd32_VALIDATION_LEARNING_v0.1.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH dynamic Bayesian metaarchitecture",
+          "expected_sha256": "96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941",
+          "observed_sha256": "96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\96f121e93dfc1db7ad90248204b22ac105654f3c4abe950d62e264428a7be941_SCIENTIFIC_TECHNICAL_REPORT_v0.4.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH enterprise active authority",
+          "expected_sha256": "8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c",
+          "observed_sha256": "8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\8d2dbe461f77f9d329d359fbd36e435bebbfe0d536c0df3c6d175825b0d83d2c_KCH_ENTERPRISE_OPERATOR_APPLICATION_REPORT_v0.5.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH Bayesian MCP fabric",
+          "expected_sha256": "93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37",
+          "observed_sha256": "93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\93c21827a317d41528b1b5cf22a544727ae994de0c971ae615b5e3dd09c7ca37_KCH_BAYESIAN_MCP_FABRIC_REPORT_v0.6.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "CSI volumetric runtime",
+          "expected_sha256": "6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b",
+          "observed_sha256": "6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\6d521caa49b5adfa36a8b6c496d5a41d024e63e83f78f57e2a933f9ab9682d4b_VALIDATION_REPORT_v0.1.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "CSI operator suite",
+          "expected_sha256": "6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f",
+          "observed_sha256": "6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\6be6e43e724201697cf99111e8d0e6552c350dd75607fbc5d2ff6d04e14e1e3f_VALIDATION_REPORT_v0.2.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanForks",
+          "expected_sha256": "47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d",
+          "observed_sha256": "47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\47455da3600b8c762501c35b6aa1bd5809a2a1f5a0c0db8d8f07f8c1a1a34f4d_VALIDATION_REPORT_v0.8.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanForks",
+          "expected_sha256": "f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302",
+          "observed_sha256": "f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\f177a97c29d55c8f9231426531c5352bafe92781ee454d59641f120a8d6ab302_VALIDATION_REPORT_v0.9.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanForks",
+          "expected_sha256": "964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db",
+          "observed_sha256": "964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\964c25963831004cf3e87956e7320656ff4e24cd3ebfe6fa4d4e2af9c5ae78db_VALIDATION_REPORT_v0.9.1.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanForks",
+          "expected_sha256": "6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856",
+          "observed_sha256": "6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\6488553f5d3cd267f8f4f5b5417a9e1a70b1113a01b79fc7e6481db5e643e856_RELEASE_NOTES_v0.9.2.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanForks assimilation",
+          "expected_sha256": "309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d",
+          "observed_sha256": "309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\309a4595b49f519882ed40e4dd60eedab0dd1a767013262d6c466602f622f18d_VALIDATION_REPORT_v0.10.0.md",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH Rigor Gradient Governor",
+          "expected_sha256": "4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021",
+          "observed_sha256": "4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\4036bcd2e5e0237a286297aeed7b5772f7ab4c65e3b5d26d964acf98e751c021_VALIDATION_REPORT_v0.1.0.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanPrompts",
+          "expected_sha256": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+          "observed_sha256": "011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\011176f24225e80eb2449dc9122e154729ebd6f4647ad8d582cffddb41dbe328_KWANPROMPTS_TS01R_RESULT_v0.1.0.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH Onboarding Learning (OBL)",
+          "expected_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+          "observed_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH Post Hoc Learning (PHL)",
+          "expected_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+          "observed_sha256": "543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\543220aac9914723022a534dab312fed699186dd7f2a92f8fb4a53f6e7f32137_KCH_OBL_PHL_TS01_RESULT_v0.1.0.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KCH SuperChats Orchestrators (SCO)",
+          "expected_sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+          "observed_sha256": "ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\ec051c7c93cfe54a1ecf5c426750d34747441b7ed03ae005c0f1aedab55c9bd6_SCO_VALIDATION_RESULT_v0.1.0.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "MIS v0.3.1 exact qualitative Bayes service",
+          "expected_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+          "observed_sha256": "1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\1bbe2885eed1dd53618f9b0af9c21cee3d0bfdde1aace48dbfcf9b56e9bd775a_KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+          "state": "PASS"
+        },
+        {
+          "active_name": "KwanCode Harness",
+          "expected_sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+          "observed_sha256": "960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79",
+          "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\registry\\960b0ccc23d4ca838f139d7db44ecb2c657aa24c7fb4113e9ae2e4e0725e2f79_KCH_0.11_RELEASE_CONTRACT.md",
+          "state": "PASS"
+        }
+      ],
+      "schema": "kch.registry-evidence-audit.v0.11.0",
+      "totals": {
+        "FAIL": 0,
+        "PASS": 19,
+        "UNAVAILABLE": 0
+      }
+    },
+    "component_status": {
+      "authority_created": false,
+      "available": 7,
+      "components": [
+        {
+          "component": "PHL_EFFECTIVE_INTEGRATION",
+          "distribution": "kch-phl-effective-integration",
+          "state": "AVAILABLE",
+          "version": "0.2.0"
+        },
+        {
+          "component": "SCO",
+          "distribution": "kch-superchats-orchestrators",
+          "state": "AVAILABLE",
+          "version": "0.1.0"
+        },
+        {
+          "component": "MIS_ADAPTER",
+          "distribution": "kch-mis-v03-integration",
+          "state": "AVAILABLE",
+          "version": "0.1.0"
+        },
+        {
+          "component": "MIS_BACKEND",
+          "distribution": "mis-qualitative-bayes",
+          "state": "AVAILABLE",
+          "version": "0.3.1"
+        },
+        {
+          "component": "OBL_PHL",
+          "distribution": "kch-obl-phl-learning-system",
+          "state": "AVAILABLE",
+          "version": "0.1.1"
+        },
+        {
+          "component": "RGG",
+          "distribution": "kch-rigor-gradient-governor",
+          "state": "AVAILABLE",
+          "version": "0.1.0"
+        },
+        {
+          "component": "KWANPROMPTS",
+          "distribution": "kwanprompts",
+          "state": "AVAILABLE",
+          "version": "0.1.0"
+        }
+      ],
+      "release": "KCH 0.11",
+      "schema": "kch.component-status.v0.11.0",
+      "unavailable": 0
+    },
+    "phl_before": {
+      "authority_created": false,
+      "integrity": {
+        "decision_count": 11,
+        "defects": [],
+        "emitter_count": 18,
+        "event_count": 63,
+        "feedback_count": 0,
+        "gate": "PASS",
+        "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+        "mutability_count": 29,
+        "request_count": 56
+      },
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+      "projection": {
+        "active_phl_session_id": null,
+        "decisions": 11,
+        "emitter_states": {
+          "DECISION_EMITTER": 4,
+          "NON_DECISION_SERVICE": 2,
+          "UNAVAILABLE_CONTRACT": 12
+        },
+        "emitters": 18,
+        "events": 63,
+        "feedback": 0,
+        "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+        "mutability_methods": 29,
+        "requests": 56
+      },
+      "state": "AVAILABLE"
+    },
+    "phl_after": {
+      "authority_created": false,
+      "integrity": {
+        "decision_count": 11,
+        "defects": [],
+        "emitter_count": 18,
+        "event_count": 63,
+        "feedback_count": 0,
+        "gate": "PASS",
+        "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+        "mutability_count": 29,
+        "request_count": 56
+      },
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+      "projection": {
+        "active_phl_session_id": null,
+        "decisions": 11,
+        "emitter_states": {
+          "DECISION_EMITTER": 4,
+          "NON_DECISION_SERVICE": 2,
+          "UNAVAILABLE_CONTRACT": 12
+        },
+        "emitters": 18,
+        "events": 63,
+        "feedback": 0,
+        "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+        "mutability_methods": 29,
+        "requests": 56
+      },
+      "state": "AVAILABLE"
+    },
+    "sco_projection": {
+      "authority_created": false,
+      "integrity": {
+        "command_count": 6,
+        "defects": [],
+        "event_count": 6,
+        "gate": "PASS",
+        "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2",
+        "schema": "kch.sco.integrity-result.v0.1.0"
+      },
+      "live_cross_provider_dispatch": false,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_PRE2G_SCO_v0.1.0.sqlite3",
+      "projection": {
+        "commands": 6,
+        "conflicts": 0,
+        "edges": 1,
+        "events": 6,
+        "head_hash": "de54ae2a9bf61fa01a8f7a127a9b70ed140d131759945965d56622c5172b00f2",
+        "native_contexts_merged": false,
+        "nodes": 2,
+        "order_states": {
+          "COMPLETED": 1
+        },
+        "provider_counts": {
+          "CODEX": 2
+        },
+        "receipts": 1,
+        "schema": "kch.sco.projection.v0.1.0",
+        "sco_id": "ALL",
+        "superchats": 1,
+        "work_orders": 1
+      },
+      "state": "AVAILABLE"
+    },
+    "mis_verification": {
+      "authority_created": false,
+      "automatic_promotion": false,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_MIS_V03_HISTORICAL_CERTIFICATE_v0.1.0.json",
+      "state": "AVAILABLE",
+      "verification": {
+        "certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+        "schema": "kch.mis.v03.historical-certificate.v0.1.0",
+        "valid": true
+      }
+    },
+    "component_probes": {
+      "kwanprompts": {
+        "authority_created": false,
+        "component": "KWANPROMPTS",
+        "module": "kwanprompts",
+        "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kwanprompts-0.1.0-py3-none-any.whl\\kwanprompts\\__init__.py",
+        "state": "AVAILABLE"
+      },
+      "rgg": {
+        "authority_created": false,
+        "component": "RGG",
+        "module": "kch_rigor_governor",
+        "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kch_rigor_gradient_governor-0.1.0-py3-none-any.whl\\kch_rigor_governor\\__init__.py",
+        "state": "AVAILABLE"
+      },
+      "obl_phl": {
+        "authority_created": false,
+        "component": "OBL_PHL",
+        "module": "kch_learning",
+        "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kch_obl_phl_learning_system-0.1.1-py3-none-any.whl\\kch_learning\\__init__.py",
+        "state": "AVAILABLE"
+      }
+    }
+  },
+  "governed_execution": {
+    "session": {
+      "actor": "USER",
+      "authority_granted": [
+        "READ",
+        "REGISTER_EVIDENCE",
+        "APPEND_LEDGER"
+      ],
+      "expected_evidence_ids": [
+        "KCH011_CANONICAL_ZIP",
+        "PROJECT_MCP_CONFIG",
+        "PHL_REAL_SESSION_FREEZE"
+      ],
+      "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+      "objective_contract_sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+      "objective_id": "KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE",
+      "project_id": "KCH_PRE2G_CONTINUACION_INTEGRAL",
+      "schema": "kch.session.v0.11.0",
+      "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+      "stop_condition_ids": [
+        "STOP_ON_MUTATING_ROUTE",
+        "STOP_ON_ENFORCED_PROFILE",
+        "STOP_ON_PHL_REAL_SESSION_OR_FEEDBACK",
+        "STOP_ON_EVIDENCE_HASH_DIVERGENCE"
+      ]
+    },
+    "session_contract_sha256": "8d7db1460b94ac73ae72fbcf4852549b74cfe62012e0a353b97debbebb153036",
+    "controls": {
+      "authority_created": false,
+      "composition_state": "PASS",
+      "receipt_sha256": "57ff88f37c07beb8058da08a5008d89d586fc3ca771397ff7cbe24c31382d880",
+      "receipts": [
+        {
+          "authority_created": false,
+          "automatic_promotion": false,
+          "context_sha256": "196aba5b3b9ba1466b8286a98b318de055df0a4857293c4f8ca28fcd9e3dfba3",
+          "control_id": "R01",
+          "control_name": "Bloqueo del objetivo gobernante",
+          "reasons": [],
+          "receipt_sha256": "1c31278dc480e372a13ee2084aa2c7060c6e58556438c40723f3fd700021e2fc",
+          "release": "KCH 0.11",
+          "schema": "kch.control.receipt.v0.11.0",
+          "verdict": "PASS"
+        },
+        {
+          "authority_created": false,
+          "automatic_promotion": false,
+          "context_sha256": "8c04879d56b8fe34281037552db6ca4efc34519784f42341a1dc29f4e2ceebe4",
+          "control_id": "R02",
+          "control_name": "Firewall entre proyectos",
+          "reasons": [],
+          "receipt_sha256": "2ad0acf6e83ab56cf10ab5158c62c17e7eaa02b17e751e51cb069c25cf07f957",
+          "release": "KCH 0.11",
+          "schema": "kch.control.receipt.v0.11.0",
+          "verdict": "PASS"
+        },
+        {
+          "authority_created": false,
+          "automatic_promotion": false,
+          "context_sha256": "d1863df2e870bbbfe970f11c2db157b623dc980c61c0d4bb8f53494688aead06",
+          "control_id": "R03",
+          "control_name": "Compilador de autorización",
+          "reasons": [],
+          "receipt_sha256": "63f437738448b94dd141bc87ac87d399e1b7625a1851aa489e9764240d9e47c2",
+          "release": "KCH 0.11",
+          "schema": "kch.control.receipt.v0.11.0",
+          "verdict": "PASS"
+        },
+        {
+          "authority_created": false,
+          "automatic_promotion": false,
+          "context_sha256": "8be3f5dc6bf9958b7ecfe923a0177a187a6449de6df78691a8d5512db442f9f3",
+          "control_id": "R27",
+          "control_name": "Control de completitud de transporte y fallos unitarios",
+          "reasons": [],
+          "receipt_sha256": "8f2801defb56c120b6ff8e8e1ad18b8d79e4a32628d19454feca758abe19ca8b",
+          "release": "KCH 0.11",
+          "schema": "kch.control.receipt.v0.11.0",
+          "verdict": "PASS"
+        },
+        {
+          "authority_created": false,
+          "automatic_promotion": false,
+          "context_sha256": "2b28ca08d2f0673c31159099335bcc52943bc867e38397a02825e4ffb24430ff",
+          "control_id": "R28",
+          "control_name": "Degradación automática de autoridad cuando se pierde evidencia",
+          "reasons": [],
+          "receipt_sha256": "d41099518b4d84395624a74e975a56df48a0825ffe4fa156f9633c33f6f5909f",
+          "release": "KCH 0.11",
+          "schema": "kch.control.receipt.v0.11.0",
+          "verdict": "PASS"
+        }
+      ],
+      "release": "KCH 0.11",
+      "schema": "kch.context-compile-receipt.v0.11.0",
+      "verdict_counts": {
+        "ABSTAIN": 0,
+        "BLOCK": 0,
+        "PASS": 5,
+        "UNAVAILABLE": 0
+      }
+    },
+    "admitted_evidence": {
+      "KCH011_CANONICAL_ZIP": {
+        "admitted": true,
+        "authority_created": false,
+        "event_hash": "c15ce634fa228235fc8725a2571f36e3c0ba5ed3820a92f8a7487dcd79539041",
+        "record_sha256": "edc36bfe414e9602814176c0995880ac1576cfc594d0b3d03656954e2fcac72a"
+      },
+      "PROJECT_MCP_CONFIG": {
+        "admitted": true,
+        "authority_created": false,
+        "event_hash": "a3220fe00982a2647b5695dfdfe2a0a0333e0bde4e972f7584df2a66a421bf84",
+        "record_sha256": "3d12781711397e6e8304c182a4d7ae6fa5ce47644c9ec6e31d4c5883b89f77bb"
+      },
+      "PHL_REAL_SESSION_FREEZE": {
+        "admitted": true,
+        "authority_created": false,
+        "event_hash": "2d1ca733c6de9bfd694b39107c88d5e08cf75a0dfd8fd24fdbfcc9861b223f82",
+        "record_sha256": "a7d95d7abf9f3809ee228cb90e9bdd190d5240aefb02bec69a069b88b6bfd655"
+      }
+    },
+    "proposal": {
+      "action_class": "READ_ONLY",
+      "arguments": {},
+      "evidence_ids": [
+        "KCH011_CANONICAL_ZIP",
+        "PROJECT_MCP_CONFIG",
+        "PHL_REAL_SESSION_FREEZE"
+      ],
+      "proposal_id": "b079fca0-bf17-4104-954d-f79c244c6c81",
+      "requested_authority": [
+        "READ"
+      ],
+      "route": "kch.component.status",
+      "schema": "kch.action-proposal.v0.11.0",
+      "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414"
+    },
+    "proposal_sha256": "b8a8619d523d3f99678ea646a341ba6e2aaff0c74c1741e7d8e3c14e05344cbf",
+    "authorization": {
+      "abstain_reasons": [],
+      "authority_created": false,
+      "automatic_promotion": false,
+      "control_receipt_sha256s": [
+        "1c31278dc480e372a13ee2084aa2c7060c6e58556438c40723f3fd700021e2fc",
+        "2ad0acf6e83ab56cf10ab5158c62c17e7eaa02b17e751e51cb069c25cf07f957",
+        "63f437738448b94dd141bc87ac87d399e1b7625a1851aa489e9764240d9e47c2",
+        "8f2801defb56c120b6ff8e8e1ad18b8d79e4a32628d19454feca758abe19ca8b",
+        "d41099518b4d84395624a74e975a56df48a0825ffe4fa156f9633c33f6f5909f"
+      ],
+      "decision": "ALLOW_READ_ONLY",
+      "event_hash": "a88d54172c63e9e60c17a9f795912081cd8cfa46b2b8ade476780202770d904d",
+      "hard_reasons": [],
+      "proposal_id": "b079fca0-bf17-4104-954d-f79c244c6c81",
+      "receipt_sha256": "d9169afb07756f65433b4518eadcc5de667c1871311c653dde00b6d8f13aa370",
+      "schema": "kch.action-authorization.v0.11.0"
+    },
+    "execution": {
+      "authority_created": false,
+      "event_hash": "177ff4279c786ebee9d5ab502379aab1644c809b33913f7f331bf7f4d47f4240",
+      "executed": true,
+      "execution_class": "READ_ONLY",
+      "result": {
+        "authority_created": false,
+        "available": 7,
+        "components": [
+          {
+            "component": "PHL_EFFECTIVE_INTEGRATION",
+            "distribution": "kch-phl-effective-integration",
+            "state": "AVAILABLE",
+            "version": "0.2.0"
+          },
+          {
+            "component": "SCO",
+            "distribution": "kch-superchats-orchestrators",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_ADAPTER",
+            "distribution": "kch-mis-v03-integration",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_BACKEND",
+            "distribution": "mis-qualitative-bayes",
+            "state": "AVAILABLE",
+            "version": "0.3.1"
+          },
+          {
+            "component": "OBL_PHL",
+            "distribution": "kch-obl-phl-learning-system",
+            "state": "AVAILABLE",
+            "version": "0.1.1"
+          },
+          {
+            "component": "RGG",
+            "distribution": "kch-rigor-gradient-governor",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "KWANPROMPTS",
+            "distribution": "kwanprompts",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          }
+        ],
+        "release": "KCH 0.11",
+        "schema": "kch.component-status.v0.11.0",
+        "unavailable": 0
+      },
+      "route": "kch.component.status"
+    },
+    "precommit": {
+      "abstain_reasons": [],
+      "automatic_promotion": false,
+      "decision": "ALLOW_SHADOW_PRECOMMIT",
+      "event_hash": "06198b20cedae38856239af16192afbf2ac447647b888dbe0aa5288087ebd930",
+      "evidence_ids": [
+        "KCH011_CANONICAL_ZIP",
+        "PHL_REAL_SESSION_FREEZE",
+        "PROJECT_MCP_CONFIG"
+      ],
+      "hard_reasons": [],
+      "mutating_execution_authorized": false,
+      "receipt_sha256": "2c9b216ab07eb38244323e21f82a2649f86af3f4d97fb441638d39fe635c4e93",
+      "schema": "kch.precommit-receipt.v0.11.0",
+      "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414"
+    },
+    "outcome": {
+      "adverse": false,
+      "event_hash": "69741390091b46b430a834a61926e3cd2d7151aa9f3828ec97ca1fd63a7ad82f",
+      "evidence_ids": [
+        "KCH011_CANONICAL_ZIP",
+        "PROJECT_MCP_CONFIG",
+        "PHL_REAL_SESSION_FREEZE"
+      ],
+      "historical_result_rewritten": false,
+      "interpretation": "The sealed KCH 0.11 MCP initialized and governed one real local read-only action; this establishes bounded project-scoped shadow execution only and excludes PHL real use, enforced governance, mutation, production, and outcome superiority.",
+      "outcome_id": "KCH_0.11_PROJECT_SCOPED_AGENT_SHADOW_DEPLOYMENT",
+      "schema": "kch.outcome.v0.11.0",
+      "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+      "state": "PASS_BOUNDED_REAL_MCP_SHADOW_DEPLOYMENT_NO_PHL_SESSION"
+    },
+    "audit": {
+      "events": [
+        {
+          "event_hash": "6a70da75633cc089fe32288d8c51062a748bfa248ca1ff4817ee950d2cde1566",
+          "event_id": "ed3269c2-bc0e-4f51-8b4d-e1acbc669418",
+          "event_type": "SESSION_OPENED",
+          "occurred_at": "2026-08-09T19:03:51.040790Z",
+          "payload": {
+            "contract_sha256": "c2b84392cd7516f999448f9b9b6c44e6a85bebfeab05df17abf56cd0c7363a77",
+            "session": {
+              "actor": "USER",
+              "authority_granted": [
+                "READ",
+                "REGISTER_EVIDENCE",
+                "APPEND_LEDGER"
+              ],
+              "expected_evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "objective_contract_sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+              "objective_id": "KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE",
+              "project_id": "KCH_PRE2G_CONTINUACION_INTEGRAL",
+              "schema": "kch.session.v0.11.0",
+              "session_id": "KCH011-DEPLOY-50306355-1425-4092-ad3c-02cbcc09aaf3",
+              "stop_condition_ids": [
+                "STOP_ON_MUTATING_ROUTE",
+                "STOP_ON_ENFORCED_PROFILE",
+                "STOP_ON_PHL_REAL_SESSION_OR_FEEDBACK",
+                "STOP_ON_EVIDENCE_HASH_DIVERGENCE"
+              ]
+            }
+          },
+          "previous_hash": "GENESIS",
+          "sequence": 1
+        },
+        {
+          "event_hash": "6836207863d8f4b444ebe07045ef9a348d9d97868bbfbd50373d8435a255c96c",
+          "event_id": "0dcab9c2-7898-4255-b024-da858ef049c5",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:03:51.076274Z",
+          "payload": {
+            "record": {
+              "evidence_id": "KCH011_CANONICAL_ZIP",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "KCH_0.11_RELEASE_SEAL"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-50306355-1425-4092-ad3c-02cbcc09aaf3",
+              "source_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+            },
+            "record_sha256": "8a79b6d14cae3115b7d1dcf1d585e8bfdde162ad3783b46ae73e579a2f149923"
+          },
+          "previous_hash": "6a70da75633cc089fe32288d8c51062a748bfa248ca1ff4817ee950d2cde1566",
+          "sequence": 2
+        },
+        {
+          "event_hash": "1e3ad3fc1750271e6a5458aea87130828248bf9b628e34532da929329c67a6d9",
+          "event_id": "3f9356dd-eda7-4368-9f6a-67ef236326da",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:03:51.107936Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PROJECT_MCP_CONFIG",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "OPENAI_CODEX_PROJECT_MCP_CONFIG"
+              ],
+              "role": "EXECUTION",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-50306355-1425-4092-ad3c-02cbcc09aaf3",
+              "source_sha256": "c8ad52396b8b847a04669665c4a9b60d3579c9612af8945f79bf4a559df630f6"
+            },
+            "record_sha256": "e41afff26504343a519f954ecdc764bef9d09a8d3864b1da0919071ec3a2d408"
+          },
+          "previous_hash": "6836207863d8f4b444ebe07045ef9a348d9d97868bbfbd50373d8435a255c96c",
+          "sequence": 3
+        },
+        {
+          "event_hash": "dbe445f16d40b18149171200398f762c0e3150b5a834541977d5a6292584ff42",
+          "event_id": "ec90b553-86af-42ad-a321-dc3da179ccf8",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:03:51.152718Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PHL_REAL_SESSION_FREEZE",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "USER_DIRECTIVE_2026-08-09"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-50306355-1425-4092-ad3c-02cbcc09aaf3",
+              "source_sha256": "1934042b4aa97233efa15188f051554a6cdd3f964cba823675741e8a36ebe7c8"
+            },
+            "record_sha256": "1128f9209600c52e363896ffbd58c06f31b03c4a9476e8f39ac55ed95be2ac0a"
+          },
+          "previous_hash": "1e3ad3fc1750271e6a5458aea87130828248bf9b628e34532da929329c67a6d9",
+          "sequence": 4
+        },
+        {
+          "event_hash": "ad194a9781beced5ea2e22398214dcf308ed939d3ab72f76cdadfa457e761030",
+          "event_id": "867a0128-e4eb-4228-82c6-1e8a1572a182",
+          "event_type": "ACTION_PROPOSED",
+          "occurred_at": "2026-08-09T19:03:51.185374Z",
+          "payload": {
+            "proposal": {
+              "action_class": "READ_ONLY",
+              "arguments": {},
+              "evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "proposal_id": "eab1571d-c2a2-4be8-9737-095461b737d6",
+              "requested_authority": [
+                "READ"
+              ],
+              "route": "kch.component.status",
+              "schema": "kch.action-proposal.v0.11.0",
+              "session_id": "KCH011-DEPLOY-50306355-1425-4092-ad3c-02cbcc09aaf3"
+            },
+            "proposal_sha256": "3be2b167d2fb92a692c3eb924b8519ccd7ac8cc773f93b295d6ad8f8b72f728d"
+          },
+          "previous_hash": "dbe445f16d40b18149171200398f762c0e3150b5a834541977d5a6292584ff42",
+          "sequence": 5
+        },
+        {
+          "event_hash": "0d6e6c27f14a07ac5a6bd701f9a183365fd6f8b7e956fe64b9b9918e5efe670a",
+          "event_id": "6f3d393c-3d7c-4d82-b1f4-e06df62a17e8",
+          "event_type": "ACTION_AUTHORIZED",
+          "occurred_at": "2026-08-09T19:03:51.211432Z",
+          "payload": {
+            "receipt": {
+              "abstain_reasons": [],
+              "authority_created": false,
+              "automatic_promotion": false,
+              "control_receipt_sha256s": [
+                "1c31278dc480e372a13ee2084aa2c7060c6e58556438c40723f3fd700021e2fc",
+                "2ad0acf6e83ab56cf10ab5158c62c17e7eaa02b17e751e51cb069c25cf07f957",
+                "63f437738448b94dd141bc87ac87d399e1b7625a1851aa489e9764240d9e47c2",
+                "8f2801defb56c120b6ff8e8e1ad18b8d79e4a32628d19454feca758abe19ca8b",
+                "d41099518b4d84395624a74e975a56df48a0825ffe4fa156f9633c33f6f5909f"
+              ],
+              "decision": "BLOCK",
+              "hard_reasons": [
+                "CONTROL_RECEIPT_INTEGRITY_FAILURE"
+              ],
+              "proposal_id": "eab1571d-c2a2-4be8-9737-095461b737d6",
+              "schema": "kch.action-authorization.v0.11.0"
+            },
+            "receipt_sha256": "17bd05f9f2e75cc6d9c4cc93b73d7676e6180b06ffd299ce0261190a4d280b0d"
+          },
+          "previous_hash": "ad194a9781beced5ea2e22398214dcf308ed939d3ab72f76cdadfa457e761030",
+          "sequence": 6
+        },
+        {
+          "event_hash": "a6aca87f436d6deac22fe7d2794c9b20a00f9b30ca116538c4c7ff703db8f8c6",
+          "event_id": "ba4c93b8-bb3f-4b60-8163-44306639c762",
+          "event_type": "SESSION_OPENED",
+          "occurred_at": "2026-08-09T19:06:55.871902Z",
+          "payload": {
+            "contract_sha256": "85987511b82cac371f8ee503e621db57d7a8448661dc1894928eebda1fecb2aa",
+            "session": {
+              "actor": "USER",
+              "authority_granted": [
+                "READ",
+                "REGISTER_EVIDENCE",
+                "APPEND_LEDGER"
+              ],
+              "expected_evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "objective_contract_sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+              "objective_id": "KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE",
+              "project_id": "KCH_PRE2G_CONTINUACION_INTEGRAL",
+              "schema": "kch.session.v0.11.0",
+              "session_id": "KCH011-DEPLOY-cb5cb9ec-0d88-4694-af81-4bb802962ef5",
+              "stop_condition_ids": [
+                "STOP_ON_MUTATING_ROUTE",
+                "STOP_ON_ENFORCED_PROFILE",
+                "STOP_ON_PHL_REAL_SESSION_OR_FEEDBACK",
+                "STOP_ON_EVIDENCE_HASH_DIVERGENCE"
+              ]
+            }
+          },
+          "previous_hash": "0d6e6c27f14a07ac5a6bd701f9a183365fd6f8b7e956fe64b9b9918e5efe670a",
+          "sequence": 7
+        },
+        {
+          "event_hash": "01cd964d8da5d7cb58609bbb7dc08e49abfa0cb50c67c150710cbe6e51425152",
+          "event_id": "93cd9215-76c7-42a9-9206-c45585520340",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:06:55.906669Z",
+          "payload": {
+            "record": {
+              "evidence_id": "KCH011_CANONICAL_ZIP",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "KCH_0.11_RELEASE_SEAL"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-cb5cb9ec-0d88-4694-af81-4bb802962ef5",
+              "source_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+            },
+            "record_sha256": "ad6099888dd06f8cb4671b1a2ea3f21780abf86a598d0dbee298b3683ffd7dac"
+          },
+          "previous_hash": "a6aca87f436d6deac22fe7d2794c9b20a00f9b30ca116538c4c7ff703db8f8c6",
+          "sequence": 8
+        },
+        {
+          "event_hash": "25c364725a9960d07ae6d3677a53cda166d182e5525f74f2401adb1bee6b9bef",
+          "event_id": "95c0b4eb-2fd6-4aff-9030-998dc017fb17",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:06:55.935074Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PROJECT_MCP_CONFIG",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "OPENAI_CODEX_PROJECT_MCP_CONFIG"
+              ],
+              "role": "EXECUTION",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-cb5cb9ec-0d88-4694-af81-4bb802962ef5",
+              "source_sha256": "ece418793a69595a1eb062da5f3257c565eeda5fff9e2125d0d8d737157ae08e"
+            },
+            "record_sha256": "3a82de9294ff22b40ba29a73e967de3f949517668eda883de82cea2f1523e6a1"
+          },
+          "previous_hash": "01cd964d8da5d7cb58609bbb7dc08e49abfa0cb50c67c150710cbe6e51425152",
+          "sequence": 9
+        },
+        {
+          "event_hash": "84b0c038442fdacb5b0fb5d04795ea43f025be1b13594cf0f29a2487f39ffd36",
+          "event_id": "5ec774cd-662d-42d9-80ab-7a7864e91f90",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:06:55.963572Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PHL_REAL_SESSION_FREEZE",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "USER_DIRECTIVE_2026-08-09"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-cb5cb9ec-0d88-4694-af81-4bb802962ef5",
+              "source_sha256": "1934042b4aa97233efa15188f051554a6cdd3f964cba823675741e8a36ebe7c8"
+            },
+            "record_sha256": "6a50d288ef14a9227f6ba8a3d66bbb1d5d4206421eab7ee27b4aca26a8cb3ae2"
+          },
+          "previous_hash": "25c364725a9960d07ae6d3677a53cda166d182e5525f74f2401adb1bee6b9bef",
+          "sequence": 10
+        },
+        {
+          "event_hash": "e7dbb1ac2d4d169a573ddbd78cefb01ae5befb1851d1e361f62cfc86a705845b",
+          "event_id": "3de1c3db-7a96-4f78-aaf0-9fab6fcf6259",
+          "event_type": "ACTION_PROPOSED",
+          "occurred_at": "2026-08-09T19:06:55.990749Z",
+          "payload": {
+            "proposal": {
+              "action_class": "READ_ONLY",
+              "arguments": {},
+              "evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "proposal_id": "35af7fc4-fd58-4dc1-bb1a-93fbcc5c46e2",
+              "requested_authority": [
+                "READ"
+              ],
+              "route": "kch.component.status",
+              "schema": "kch.action-proposal.v0.11.0",
+              "session_id": "KCH011-DEPLOY-cb5cb9ec-0d88-4694-af81-4bb802962ef5"
+            },
+            "proposal_sha256": "65cfe6d198cfe8a750d93e43ec9ca183cf89ec11f6647641334f38963fee12b8"
+          },
+          "previous_hash": "84b0c038442fdacb5b0fb5d04795ea43f025be1b13594cf0f29a2487f39ffd36",
+          "sequence": 11
+        },
+        {
+          "event_hash": "3d6df335710ed4c3ca6cde3990502e3f82c3c5c8ceecab636064e9dd97317c6e",
+          "event_id": "070e2123-9a2b-4b67-86bd-eb613bae7576",
+          "event_type": "ACTION_AUTHORIZED",
+          "occurred_at": "2026-08-09T19:06:56.015372Z",
+          "payload": {
+            "receipt": {
+              "abstain_reasons": [],
+              "authority_created": false,
+              "automatic_promotion": false,
+              "control_receipt_sha256s": [
+                "1c31278dc480e372a13ee2084aa2c7060c6e58556438c40723f3fd700021e2fc",
+                "2ad0acf6e83ab56cf10ab5158c62c17e7eaa02b17e751e51cb069c25cf07f957",
+                "63f437738448b94dd141bc87ac87d399e1b7625a1851aa489e9764240d9e47c2",
+                "8f2801defb56c120b6ff8e8e1ad18b8d79e4a32628d19454feca758abe19ca8b",
+                "d41099518b4d84395624a74e975a56df48a0825ffe4fa156f9633c33f6f5909f"
+              ],
+              "decision": "BLOCK",
+              "hard_reasons": [
+                "CONTROL_RECEIPT_INTEGRITY_FAILURE"
+              ],
+              "proposal_id": "35af7fc4-fd58-4dc1-bb1a-93fbcc5c46e2",
+              "schema": "kch.action-authorization.v0.11.0"
+            },
+            "receipt_sha256": "275b3426000c5fcc84ac3d7a789c0846b9b7e617e014e87afc53d35e723d4b8a"
+          },
+          "previous_hash": "e7dbb1ac2d4d169a573ddbd78cefb01ae5befb1851d1e361f62cfc86a705845b",
+          "sequence": 12
+        },
+        {
+          "event_hash": "433bf51c6226b75e7dc7c0e31e9cbfde6d609253354339cdcf9e018aa8cb9ac4",
+          "event_id": "8a3a0639-fbf3-4723-abe5-91f1b7aac416",
+          "event_type": "SESSION_OPENED",
+          "occurred_at": "2026-08-09T19:09:21.146557Z",
+          "payload": {
+            "contract_sha256": "d582f5e9cb18dab6de56768de74fd6344f7790a8b1d42b21a8949c308e65db14",
+            "session": {
+              "actor": "USER",
+              "authority_granted": [
+                "READ",
+                "REGISTER_EVIDENCE",
+                "APPEND_LEDGER"
+              ],
+              "expected_evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "objective_contract_sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+              "objective_id": "KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE",
+              "project_id": "KCH_PRE2G_CONTINUACION_INTEGRAL",
+              "schema": "kch.session.v0.11.0",
+              "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2",
+              "stop_condition_ids": [
+                "STOP_ON_MUTATING_ROUTE",
+                "STOP_ON_ENFORCED_PROFILE",
+                "STOP_ON_PHL_REAL_SESSION_OR_FEEDBACK",
+                "STOP_ON_EVIDENCE_HASH_DIVERGENCE"
+              ]
+            }
+          },
+          "previous_hash": "3d6df335710ed4c3ca6cde3990502e3f82c3c5c8ceecab636064e9dd97317c6e",
+          "sequence": 13
+        },
+        {
+          "event_hash": "72f65b313e830a427eaddae9ee79bf2cd6ad1082b869c6435cf8d7fcdd4bcd32",
+          "event_id": "4c3c7152-7be8-447a-ba72-91a5ff73e7f0",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:09:21.174770Z",
+          "payload": {
+            "record": {
+              "evidence_id": "KCH011_CANONICAL_ZIP",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "KCH_0.11_RELEASE_SEAL"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2",
+              "source_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+            },
+            "record_sha256": "544f8fa9111a40da00c41c80ce5eae81d7647b7f2520f401363b064d5182c911"
+          },
+          "previous_hash": "433bf51c6226b75e7dc7c0e31e9cbfde6d609253354339cdcf9e018aa8cb9ac4",
+          "sequence": 14
+        },
+        {
+          "event_hash": "2361660a76ce52be5000d5922758ba5807dfa20e321955a713bbaf0bf3617d67",
+          "event_id": "7f8f80f9-2b1c-40e5-8373-e6f8cf31e378",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:09:21.201388Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PROJECT_MCP_CONFIG",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "OPENAI_CODEX_PROJECT_MCP_CONFIG"
+              ],
+              "role": "EXECUTION",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2",
+              "source_sha256": "a8a285bf8c23bda32529bf559ab548373e96f7e4e4c3fe795af41e2265209d55"
+            },
+            "record_sha256": "e153650e5e806b2d7acbf8eabd4c23016036a95f9dfdf2727afa184e8e367537"
+          },
+          "previous_hash": "72f65b313e830a427eaddae9ee79bf2cd6ad1082b869c6435cf8d7fcdd4bcd32",
+          "sequence": 15
+        },
+        {
+          "event_hash": "6fa964ae5114414cef3a35250ffd5d0656a1851c25bd9190e13c37a92228a7b6",
+          "event_id": "44f9dc01-e561-4d8e-a1ff-48b13cd392b4",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:09:21.226143Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PHL_REAL_SESSION_FREEZE",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "USER_DIRECTIVE_2026-08-09"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2",
+              "source_sha256": "1934042b4aa97233efa15188f051554a6cdd3f964cba823675741e8a36ebe7c8"
+            },
+            "record_sha256": "cc39c08bbaf6036a73be33b8a19d27e876960e9b81d57f1c0b6cd08c30bda075"
+          },
+          "previous_hash": "2361660a76ce52be5000d5922758ba5807dfa20e321955a713bbaf0bf3617d67",
+          "sequence": 16
+        },
+        {
+          "event_hash": "09f7ab5b21c09633256aedbba8b8f0285704113f1e348bc9ede80e420902363b",
+          "event_id": "ef1abb65-46b0-4c86-a531-2a073f5712cf",
+          "event_type": "ACTION_PROPOSED",
+          "occurred_at": "2026-08-09T19:09:21.265650Z",
+          "payload": {
+            "proposal": {
+              "action_class": "READ_ONLY",
+              "arguments": {},
+              "evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "proposal_id": "e80e1d37-23e5-458c-be18-515fe1a490c4",
+              "requested_authority": [
+                "READ"
+              ],
+              "route": "kch.component.status",
+              "schema": "kch.action-proposal.v0.11.0",
+              "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2"
+            },
+            "proposal_sha256": "71093b7bc5f4916be96444fdc2e967b3d209fe6e3ca74eac8db3ff10467af294"
+          },
+          "previous_hash": "6fa964ae5114414cef3a35250ffd5d0656a1851c25bd9190e13c37a92228a7b6",
+          "sequence": 17
+        },
+        {
+          "event_hash": "ac31ec5811c92ded5d572c3218788908c6e2ce66558a8902871bd435687533bc",
+          "event_id": "d57e24f9-6f93-48eb-a15f-07fea2d18b0a",
+          "event_type": "ACTION_AUTHORIZED",
+          "occurred_at": "2026-08-09T19:09:21.295437Z",
+          "payload": {
+            "receipt": {
+              "abstain_reasons": [],
+              "authority_created": false,
+              "automatic_promotion": false,
+              "control_receipt_sha256s": [
+                "1c31278dc480e372a13ee2084aa2c7060c6e58556438c40723f3fd700021e2fc",
+                "2ad0acf6e83ab56cf10ab5158c62c17e7eaa02b17e751e51cb069c25cf07f957",
+                "63f437738448b94dd141bc87ac87d399e1b7625a1851aa489e9764240d9e47c2",
+                "8f2801defb56c120b6ff8e8e1ad18b8d79e4a32628d19454feca758abe19ca8b",
+                "d41099518b4d84395624a74e975a56df48a0825ffe4fa156f9633c33f6f5909f"
+              ],
+              "decision": "ALLOW_READ_ONLY",
+              "hard_reasons": [],
+              "proposal_id": "e80e1d37-23e5-458c-be18-515fe1a490c4",
+              "schema": "kch.action-authorization.v0.11.0"
+            },
+            "receipt_sha256": "018fb79dc5af935756e16a2a92e3125fa385f9b08062168b07524b9e606b6b1e"
+          },
+          "previous_hash": "09f7ab5b21c09633256aedbba8b8f0285704113f1e348bc9ede80e420902363b",
+          "sequence": 18
+        },
+        {
+          "event_hash": "08287f94e7acac5b981be3d07ca378ea91cd46055efd8be51f85f25ac93f9c81",
+          "event_id": "19ca913c-eda8-4ab2-9989-7bd12e1335d9",
+          "event_type": "READ_ONLY_ACTION_EXECUTED",
+          "occurred_at": "2026-08-09T19:09:21.332658Z",
+          "payload": {
+            "proposal_id": "e80e1d37-23e5-458c-be18-515fe1a490c4",
+            "result_sha256": "973c7fcfa5de7ac2756ca994bd57e73673672d36cebc533cb8e7d98e8682bdbd",
+            "route": "kch.component.status"
+          },
+          "previous_hash": "ac31ec5811c92ded5d572c3218788908c6e2ce66558a8902871bd435687533bc",
+          "sequence": 19
+        },
+        {
+          "event_hash": "91e198c9bd2f734fa95e2322cb4955222caa6ed124c28fca43d9b9aeed4102ee",
+          "event_id": "be23dc97-1e63-49f0-aa37-f14ea5b414c7",
+          "event_type": "PRECOMMIT_VERIFIED",
+          "occurred_at": "2026-08-09T19:09:21.356560Z",
+          "payload": {
+            "receipt": {
+              "abstain_reasons": [],
+              "automatic_promotion": false,
+              "decision": "ALLOW_SHADOW_PRECOMMIT",
+              "evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PHL_REAL_SESSION_FREEZE",
+                "PROJECT_MCP_CONFIG"
+              ],
+              "hard_reasons": [],
+              "mutating_execution_authorized": false,
+              "schema": "kch.precommit-receipt.v0.11.0",
+              "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2"
+            },
+            "receipt_sha256": "d73e6166f37e7a3e0d52ce744c97e42737984a2ea3156a473f791082a1e5b91f"
+          },
+          "previous_hash": "08287f94e7acac5b981be3d07ca378ea91cd46055efd8be51f85f25ac93f9c81",
+          "sequence": 20
+        },
+        {
+          "event_hash": "4a8de2bcfbefbe6a4ab2346bafce6e010bba5d2db5dc37fc2a0fcdc827030d65",
+          "event_id": "16910e78-4fc0-4147-95d5-baf52c60e1ad",
+          "event_type": "OUTCOME_REGISTERED",
+          "occurred_at": "2026-08-09T19:09:21.386523Z",
+          "payload": {
+            "adverse": false,
+            "evidence_ids": [
+              "KCH011_CANONICAL_ZIP",
+              "PROJECT_MCP_CONFIG",
+              "PHL_REAL_SESSION_FREEZE"
+            ],
+            "interpretation": "The sealed KCH 0.11 MCP initialized and governed one real local read-only action; this establishes bounded project-scoped shadow execution only and excludes PHL real use, enforced governance, mutation, production, and outcome superiority.",
+            "outcome_id": "KCH_0.11_PROJECT_SCOPED_AGENT_SHADOW_DEPLOYMENT",
+            "schema": "kch.outcome.v0.11.0",
+            "session_id": "KCH011-DEPLOY-e915218b-9afa-4bc7-aabe-8a5761fb5ff2",
+            "state": "PASS_BOUNDED_REAL_MCP_SHADOW_DEPLOYMENT_NO_PHL_SESSION"
+          },
+          "previous_hash": "91e198c9bd2f734fa95e2322cb4955222caa6ed124c28fca43d9b9aeed4102ee",
+          "sequence": 21
+        },
+        {
+          "event_hash": "149b11459ea11f42847a8615d23920e76bd03fddd6df3adcd96c2775c787b37c",
+          "event_id": "11fc009b-103f-46d8-82fc-8941ee1ec442",
+          "event_type": "SESSION_OPENED",
+          "occurred_at": "2026-08-09T19:10:19.204033Z",
+          "payload": {
+            "contract_sha256": "8d7db1460b94ac73ae72fbcf4852549b74cfe62012e0a353b97debbebb153036",
+            "session": {
+              "actor": "USER",
+              "authority_granted": [
+                "READ",
+                "REGISTER_EVIDENCE",
+                "APPEND_LEDGER"
+              ],
+              "expected_evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "objective_contract_sha256": "e0dcaf359ea29b16c7469dd2f190a627931cb1bffc2164c8cc700b5b0dbf1987",
+              "objective_id": "KCH_0.11_REAL_SHADOW_DEPLOYMENT_GATE",
+              "project_id": "KCH_PRE2G_CONTINUACION_INTEGRAL",
+              "schema": "kch.session.v0.11.0",
+              "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+              "stop_condition_ids": [
+                "STOP_ON_MUTATING_ROUTE",
+                "STOP_ON_ENFORCED_PROFILE",
+                "STOP_ON_PHL_REAL_SESSION_OR_FEEDBACK",
+                "STOP_ON_EVIDENCE_HASH_DIVERGENCE"
+              ]
+            }
+          },
+          "previous_hash": "4a8de2bcfbefbe6a4ab2346bafce6e010bba5d2db5dc37fc2a0fcdc827030d65",
+          "sequence": 22
+        },
+        {
+          "event_hash": "c15ce634fa228235fc8725a2571f36e3c0ba5ed3820a92f8a7487dcd79539041",
+          "event_id": "020c7795-2a85-47cb-8ee7-81a8d6218540",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:10:19.232948Z",
+          "payload": {
+            "record": {
+              "evidence_id": "KCH011_CANONICAL_ZIP",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "KCH_0.11_RELEASE_SEAL"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+              "source_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+            },
+            "record_sha256": "edc36bfe414e9602814176c0995880ac1576cfc594d0b3d03656954e2fcac72a"
+          },
+          "previous_hash": "149b11459ea11f42847a8615d23920e76bd03fddd6df3adcd96c2775c787b37c",
+          "sequence": 23
+        },
+        {
+          "event_hash": "a3220fe00982a2647b5695dfdfe2a0a0333e0bde4e972f7584df2a66a421bf84",
+          "event_id": "11eed0cd-405d-47c4-9710-899a6ed2bf99",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:10:19.260033Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PROJECT_MCP_CONFIG",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "OPENAI_CODEX_PROJECT_MCP_CONFIG"
+              ],
+              "role": "EXECUTION",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+              "source_sha256": "a8a285bf8c23bda32529bf559ab548373e96f7e4e4c3fe795af41e2265209d55"
+            },
+            "record_sha256": "3d12781711397e6e8304c182a4d7ae6fa5ce47644c9ec6e31d4c5883b89f77bb"
+          },
+          "previous_hash": "c15ce634fa228235fc8725a2571f36e3c0ba5ed3820a92f8a7487dcd79539041",
+          "sequence": 24
+        },
+        {
+          "event_hash": "2d1ca733c6de9bfd694b39107c88d5e08cf75a0dfd8fd24fdbfcc9861b223f82",
+          "event_id": "3bd3350e-a0da-446f-befb-bef4382c45b2",
+          "event_type": "EVIDENCE_ADMITTED",
+          "occurred_at": "2026-08-09T19:10:19.286502Z",
+          "payload": {
+            "record": {
+              "evidence_id": "PHL_REAL_SESSION_FREEZE",
+              "jurisdiction": "LOCAL_CODEX_PROJECT_AGENT_SHADOW",
+              "provenance_ids": [
+                "USER_DIRECTIVE_2026-08-09"
+              ],
+              "role": "DIRECT",
+              "schema": "kch.evidence.v0.11.0",
+              "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+              "source_sha256": "1934042b4aa97233efa15188f051554a6cdd3f964cba823675741e8a36ebe7c8"
+            },
+            "record_sha256": "a7d95d7abf9f3809ee228cb90e9bdd190d5240aefb02bec69a069b88b6bfd655"
+          },
+          "previous_hash": "a3220fe00982a2647b5695dfdfe2a0a0333e0bde4e972f7584df2a66a421bf84",
+          "sequence": 25
+        },
+        {
+          "event_hash": "2cdd0fec5e934daa59858a019dfd92e0ca83759913d762f4a03c00b1cebf2574",
+          "event_id": "ae6ead16-3417-484f-a02e-397b2686edac",
+          "event_type": "ACTION_PROPOSED",
+          "occurred_at": "2026-08-09T19:10:19.312365Z",
+          "payload": {
+            "proposal": {
+              "action_class": "READ_ONLY",
+              "arguments": {},
+              "evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PROJECT_MCP_CONFIG",
+                "PHL_REAL_SESSION_FREEZE"
+              ],
+              "proposal_id": "b079fca0-bf17-4104-954d-f79c244c6c81",
+              "requested_authority": [
+                "READ"
+              ],
+              "route": "kch.component.status",
+              "schema": "kch.action-proposal.v0.11.0",
+              "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414"
+            },
+            "proposal_sha256": "b8a8619d523d3f99678ea646a341ba6e2aaff0c74c1741e7d8e3c14e05344cbf"
+          },
+          "previous_hash": "2d1ca733c6de9bfd694b39107c88d5e08cf75a0dfd8fd24fdbfcc9861b223f82",
+          "sequence": 26
+        },
+        {
+          "event_hash": "a88d54172c63e9e60c17a9f795912081cd8cfa46b2b8ade476780202770d904d",
+          "event_id": "3898648f-922b-427e-a400-fb5415653bb5",
+          "event_type": "ACTION_AUTHORIZED",
+          "occurred_at": "2026-08-09T19:10:19.337246Z",
+          "payload": {
+            "receipt": {
+              "abstain_reasons": [],
+              "authority_created": false,
+              "automatic_promotion": false,
+              "control_receipt_sha256s": [
+                "1c31278dc480e372a13ee2084aa2c7060c6e58556438c40723f3fd700021e2fc",
+                "2ad0acf6e83ab56cf10ab5158c62c17e7eaa02b17e751e51cb069c25cf07f957",
+                "63f437738448b94dd141bc87ac87d399e1b7625a1851aa489e9764240d9e47c2",
+                "8f2801defb56c120b6ff8e8e1ad18b8d79e4a32628d19454feca758abe19ca8b",
+                "d41099518b4d84395624a74e975a56df48a0825ffe4fa156f9633c33f6f5909f"
+              ],
+              "decision": "ALLOW_READ_ONLY",
+              "hard_reasons": [],
+              "proposal_id": "b079fca0-bf17-4104-954d-f79c244c6c81",
+              "schema": "kch.action-authorization.v0.11.0"
+            },
+            "receipt_sha256": "d9169afb07756f65433b4518eadcc5de667c1871311c653dde00b6d8f13aa370"
+          },
+          "previous_hash": "2cdd0fec5e934daa59858a019dfd92e0ca83759913d762f4a03c00b1cebf2574",
+          "sequence": 27
+        },
+        {
+          "event_hash": "177ff4279c786ebee9d5ab502379aab1644c809b33913f7f331bf7f4d47f4240",
+          "event_id": "2a4992ce-71b7-44b8-96fb-47fcb39321aa",
+          "event_type": "READ_ONLY_ACTION_EXECUTED",
+          "occurred_at": "2026-08-09T19:10:19.374635Z",
+          "payload": {
+            "proposal_id": "b079fca0-bf17-4104-954d-f79c244c6c81",
+            "result_sha256": "973c7fcfa5de7ac2756ca994bd57e73673672d36cebc533cb8e7d98e8682bdbd",
+            "route": "kch.component.status"
+          },
+          "previous_hash": "a88d54172c63e9e60c17a9f795912081cd8cfa46b2b8ade476780202770d904d",
+          "sequence": 28
+        },
+        {
+          "event_hash": "06198b20cedae38856239af16192afbf2ac447647b888dbe0aa5288087ebd930",
+          "event_id": "1367707e-a592-4170-a43b-807f15df6002",
+          "event_type": "PRECOMMIT_VERIFIED",
+          "occurred_at": "2026-08-09T19:10:19.396626Z",
+          "payload": {
+            "receipt": {
+              "abstain_reasons": [],
+              "automatic_promotion": false,
+              "decision": "ALLOW_SHADOW_PRECOMMIT",
+              "evidence_ids": [
+                "KCH011_CANONICAL_ZIP",
+                "PHL_REAL_SESSION_FREEZE",
+                "PROJECT_MCP_CONFIG"
+              ],
+              "hard_reasons": [],
+              "mutating_execution_authorized": false,
+              "schema": "kch.precommit-receipt.v0.11.0",
+              "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414"
+            },
+            "receipt_sha256": "2c9b216ab07eb38244323e21f82a2649f86af3f4d97fb441638d39fe635c4e93"
+          },
+          "previous_hash": "177ff4279c786ebee9d5ab502379aab1644c809b33913f7f331bf7f4d47f4240",
+          "sequence": 29
+        },
+        {
+          "event_hash": "69741390091b46b430a834a61926e3cd2d7151aa9f3828ec97ca1fd63a7ad82f",
+          "event_id": "d763fe43-65a6-4d4c-8597-c8cab2c492c3",
+          "event_type": "OUTCOME_REGISTERED",
+          "occurred_at": "2026-08-09T19:10:19.418213Z",
+          "payload": {
+            "adverse": false,
+            "evidence_ids": [
+              "KCH011_CANONICAL_ZIP",
+              "PROJECT_MCP_CONFIG",
+              "PHL_REAL_SESSION_FREEZE"
+            ],
+            "interpretation": "The sealed KCH 0.11 MCP initialized and governed one real local read-only action; this establishes bounded project-scoped shadow execution only and excludes PHL real use, enforced governance, mutation, production, and outcome superiority.",
+            "outcome_id": "KCH_0.11_PROJECT_SCOPED_AGENT_SHADOW_DEPLOYMENT",
+            "schema": "kch.outcome.v0.11.0",
+            "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414",
+            "state": "PASS_BOUNDED_REAL_MCP_SHADOW_DEPLOYMENT_NO_PHL_SESSION"
+          },
+          "previous_hash": "06198b20cedae38856239af16192afbf2ac447647b888dbe0aa5288087ebd930",
+          "sequence": 30
+        }
+      ],
+      "export_sha256": "5567b20fcf4dbea5d8a5794ba8b161c6731f0f57784758e1799aa83a0ccbdd64",
+      "release": "KCH 0.11",
+      "schema": "kch.audit-export.v0.11.0"
+    },
+    "status_after": {
+      "automatic_promotion": false,
+      "claim_ceiling": "CANONICAL_PRE2G_MACRORELEASE_WITH_BOUNDED_EXECUTABLE_INTEGRATION",
+      "component_packages": {
+        "authority_created": false,
+        "available": 7,
+        "components": [
+          {
+            "component": "PHL_EFFECTIVE_INTEGRATION",
+            "distribution": "kch-phl-effective-integration",
+            "state": "AVAILABLE",
+            "version": "0.2.0"
+          },
+          {
+            "component": "SCO",
+            "distribution": "kch-superchats-orchestrators",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_ADAPTER",
+            "distribution": "kch-mis-v03-integration",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_BACKEND",
+            "distribution": "mis-qualitative-bayes",
+            "state": "AVAILABLE",
+            "version": "0.3.1"
+          },
+          {
+            "component": "OBL_PHL",
+            "distribution": "kch-obl-phl-learning-system",
+            "state": "AVAILABLE",
+            "version": "0.1.1"
+          },
+          {
+            "component": "RGG",
+            "distribution": "kch-rigor-gradient-governor",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "KWANPROMPTS",
+            "distribution": "kwanprompts",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          }
+        ],
+        "release": "KCH 0.11",
+        "schema": "kch.component-status.v0.11.0",
+        "unavailable": 0
+      },
+      "enforced_profile": "PROHIBITED_UNTIL_GATES_PASS",
+      "ledger": {
+        "defects": [],
+        "event_count": 30,
+        "evidence_count": 12,
+        "gate": "PASS",
+        "head_hash": "69741390091b46b430a834a61926e3cd2d7151aa9f3828ec97ca1fd63a7ad82f",
+        "proposal_count": 4,
+        "session_count": 4
+      },
+      "mode": "SHADOW_AND_READ_ONLY_FEDERATION",
+      "mutating_execution_authorized": false,
+      "package_version": "0.11.0",
+      "profile": "agent-shadow",
+      "reflexive_controls": 28,
+      "registry_sha256": "6a679f28d559e37be48843054645c82f71c886cff3cb29a92a8f8bf9f36ad792",
+      "release": "KCH 0.11",
+      "schema": "kch.status.v0.11.0"
+    }
+  },
+  "assertions": [
+    {
+      "assertion": "ALL_DEPLOYMENT_INPUTS_EXIST",
+      "pass": true,
+      "observed": [
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\OBJECTIVE_CONTRACT_KCH_0.11_REAL_SHADOW_DEPLOYMENT_v0.1.0.json",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\PHL_REAL_SESSION_FREEZE_v0.1.0.json",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\evidence\\KCH_CURRENT_INTEGRATION_STATE_v0.6.0.sqlite3",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\outputs\\KCH_0.11_CANONICAL_MACRORELEASE.zip",
+        "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\.codex\\config.toml"
+      ]
+    },
+    {
+      "assertion": "PROJECT_MCP_CONFIG_ENABLED",
+      "pass": true,
+      "observed": {
+        "command": "C:\\Python314\\python.exe",
+        "args": [
+          "-X",
+          "utf8",
+          "-u",
+          "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"
+        ],
+        "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT",
+        "startup_timeout_sec": 30,
+        "tool_timeout_sec": 60,
+        "enabled": true,
+        "required": true,
+        "default_tools_approval_mode": "prompt"
+      }
+    },
+    {
+      "assertion": "PROJECT_MCP_CONFIG_REQUIRED",
+      "pass": true,
+      "observed": {
+        "command": "C:\\Python314\\python.exe",
+        "args": [
+          "-X",
+          "utf8",
+          "-u",
+          "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\run_kch_011.py"
+        ],
+        "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT",
+        "startup_timeout_sec": 30,
+        "tool_timeout_sec": 60,
+        "enabled": true,
+        "required": true,
+        "default_tools_approval_mode": "prompt"
+      }
+    },
+    {
+      "assertion": "CANONICAL_ZIP_HASH_EXACT",
+      "pass": true,
+      "observed": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02"
+    },
+    {
+      "assertion": "MCP_SERVER_IDENTITY_EXACT",
+      "pass": true,
+      "observed": {
+        "protocolVersion": "2025-06-18",
+        "capabilities": {
+          "tools": {},
+          "resources": {}
+        },
+        "serverInfo": {
+          "name": "kwancode-harness",
+          "version": "0.11.0"
+        }
+      }
+    },
+    {
+      "assertion": "MCP_PROTOCOL_NEGOTIATED",
+      "pass": true,
+      "observed": "2025-06-18"
+    },
+    {
+      "assertion": "MCP_EXACTLY_49_TOOLS",
+      "pass": true,
+      "observed": 49
+    },
+    {
+      "assertion": "MCP_EXACTLY_28_DIRECT_CONTROLS",
+      "pass": true,
+      "observed": 28
+    },
+    {
+      "assertion": "MCP_EXACTLY_4_RESOURCES",
+      "pass": true,
+      "observed": 4
+    },
+    {
+      "assertion": "NO_PHL_MUTATION_TOOL_EXPOSED",
+      "pass": true,
+      "observed": []
+    },
+    {
+      "assertion": "AGENT_SHADOW_PROFILE_ACTIVE",
+      "pass": true,
+      "observed": "agent-shadow"
+    },
+    {
+      "assertion": "MUTATING_EXECUTION_NOT_AUTHORIZED",
+      "pass": true,
+      "observed": false
+    },
+    {
+      "assertion": "ENFORCED_PROFILE_PROHIBITED",
+      "pass": true,
+      "observed": "PROHIBITED_UNTIL_GATES_PASS"
+    },
+    {
+      "assertion": "REGISTRY_EVIDENCE_AUDIT_PASS",
+      "pass": true,
+      "observed": {
+        "FAIL": 0,
+        "PASS": 19,
+        "UNAVAILABLE": 0
+      }
+    },
+    {
+      "assertion": "SEVEN_FEDERATED_COMPONENT_PACKAGES_AVAILABLE",
+      "pass": true,
+      "observed": {
+        "authority_created": false,
+        "available": 7,
+        "components": [
+          {
+            "component": "PHL_EFFECTIVE_INTEGRATION",
+            "distribution": "kch-phl-effective-integration",
+            "state": "AVAILABLE",
+            "version": "0.2.0"
+          },
+          {
+            "component": "SCO",
+            "distribution": "kch-superchats-orchestrators",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_ADAPTER",
+            "distribution": "kch-mis-v03-integration",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "MIS_BACKEND",
+            "distribution": "mis-qualitative-bayes",
+            "state": "AVAILABLE",
+            "version": "0.3.1"
+          },
+          {
+            "component": "OBL_PHL",
+            "distribution": "kch-obl-phl-learning-system",
+            "state": "AVAILABLE",
+            "version": "0.1.1"
+          },
+          {
+            "component": "RGG",
+            "distribution": "kch-rigor-gradient-governor",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          },
+          {
+            "component": "KWANPROMPTS",
+            "distribution": "kwanprompts",
+            "state": "AVAILABLE",
+            "version": "0.1.0"
+          }
+        ],
+        "release": "KCH 0.11",
+        "schema": "kch.component-status.v0.11.0",
+        "unavailable": 0
+      }
+    },
+    {
+      "assertion": "PHL_PROJECTION_AVAILABLE_READ_ONLY",
+      "pass": true,
+      "observed": "AVAILABLE"
+    },
+    {
+      "assertion": "PHL_EXISTING_LEDGER_INTEGRITY_PASS",
+      "pass": true,
+      "observed": {
+        "decision_count": 11,
+        "defects": [],
+        "emitter_count": 18,
+        "event_count": 63,
+        "feedback_count": 0,
+        "gate": "PASS",
+        "head_hash": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e",
+        "mutability_count": 29,
+        "request_count": 56
+      }
+    },
+    {
+      "assertion": "PHL_ZERO_REAL_USER_FEEDBACK_BEFORE",
+      "pass": true,
+      "observed": 0
+    },
+    {
+      "assertion": "PHL_NO_ACTIVE_SESSION_BEFORE",
+      "pass": true,
+      "observed": null
+    },
+    {
+      "assertion": "SCO_PROJECTION_AVAILABLE",
+      "pass": true,
+      "observed": "AVAILABLE"
+    },
+    {
+      "assertion": "MIS_CERTIFICATE_ADAPTER_AVAILABLE",
+      "pass": true,
+      "observed": "AVAILABLE"
+    },
+    {
+      "assertion": "KWANPROMPTS_RGG_OBL_PHL_PROBES_AVAILABLE",
+      "pass": true,
+      "observed": {
+        "kwanprompts": {
+          "authority_created": false,
+          "component": "KWANPROMPTS",
+          "module": "kwanprompts",
+          "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kwanprompts-0.1.0-py3-none-any.whl\\kwanprompts\\__init__.py",
+          "state": "AVAILABLE"
+        },
+        "rgg": {
+          "authority_created": false,
+          "component": "RGG",
+          "module": "kch_rigor_governor",
+          "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kch_rigor_gradient_governor-0.1.0-py3-none-any.whl\\kch_rigor_governor\\__init__.py",
+          "state": "AVAILABLE"
+        },
+        "obl_phl": {
+          "authority_created": false,
+          "component": "OBL_PHL",
+          "module": "kch_learning",
+          "origin": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_0.11_AGENT_SHADOW_DEPLOYMENT\\bundle\\vendor\\kch_obl_phl_learning_system-0.1.1-py3-none-any.whl\\kch_learning\\__init__.py",
+          "state": "AVAILABLE"
+        }
+      }
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://registry/current",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://controls/28",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://status/current",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "RESOURCE_READ_kch://audit/current",
+      "pass": true,
+      "observed": 1
+    },
+    {
+      "assertion": "FIVE_ACTUAL_CONTROLS_COMPOSE_TO_PASS",
+      "pass": true,
+      "observed": {
+        "ABSTAIN": 0,
+        "BLOCK": 0,
+        "PASS": 5,
+        "UNAVAILABLE": 0
+      }
+    },
+    {
+      "assertion": "ALL_PREREGISTERED_EVIDENCE_ADMITTED",
+      "pass": true,
+      "observed": [
+        "KCH011_CANONICAL_ZIP",
+        "PROJECT_MCP_CONFIG",
+        "PHL_REAL_SESSION_FREEZE"
+      ]
+    },
+    {
+      "assertion": "ACTION_AUTHORIZED_READ_ONLY",
+      "pass": true,
+      "observed": "ALLOW_READ_ONLY"
+    },
+    {
+      "assertion": "GOVERNED_ACTION_EXECUTED_READ_ONLY",
+      "pass": true,
+      "observed": {
+        "authority_created": false,
+        "event_hash": "177ff4279c786ebee9d5ab502379aab1644c809b33913f7f331bf7f4d47f4240",
+        "executed": true,
+        "execution_class": "READ_ONLY",
+        "result": {
+          "authority_created": false,
+          "available": 7,
+          "components": [
+            {
+              "component": "PHL_EFFECTIVE_INTEGRATION",
+              "distribution": "kch-phl-effective-integration",
+              "state": "AVAILABLE",
+              "version": "0.2.0"
+            },
+            {
+              "component": "SCO",
+              "distribution": "kch-superchats-orchestrators",
+              "state": "AVAILABLE",
+              "version": "0.1.0"
+            },
+            {
+              "component": "MIS_ADAPTER",
+              "distribution": "kch-mis-v03-integration",
+              "state": "AVAILABLE",
+              "version": "0.1.0"
+            },
+            {
+              "component": "MIS_BACKEND",
+              "distribution": "mis-qualitative-bayes",
+              "state": "AVAILABLE",
+              "version": "0.3.1"
+            },
+            {
+              "component": "OBL_PHL",
+              "distribution": "kch-obl-phl-learning-system",
+              "state": "AVAILABLE",
+              "version": "0.1.1"
+            },
+            {
+              "component": "RGG",
+              "distribution": "kch-rigor-gradient-governor",
+              "state": "AVAILABLE",
+              "version": "0.1.0"
+            },
+            {
+              "component": "KWANPROMPTS",
+              "distribution": "kwanprompts",
+              "state": "AVAILABLE",
+              "version": "0.1.0"
+            }
+          ],
+          "release": "KCH 0.11",
+          "schema": "kch.component-status.v0.11.0",
+          "unavailable": 0
+        },
+        "route": "kch.component.status"
+      }
+    },
+    {
+      "assertion": "SHADOW_PRECOMMIT_ALLOWED",
+      "pass": true,
+      "observed": {
+        "abstain_reasons": [],
+        "automatic_promotion": false,
+        "decision": "ALLOW_SHADOW_PRECOMMIT",
+        "event_hash": "06198b20cedae38856239af16192afbf2ac447647b888dbe0aa5288087ebd930",
+        "evidence_ids": [
+          "KCH011_CANONICAL_ZIP",
+          "PHL_REAL_SESSION_FREEZE",
+          "PROJECT_MCP_CONFIG"
+        ],
+        "hard_reasons": [],
+        "mutating_execution_authorized": false,
+        "receipt_sha256": "2c9b216ab07eb38244323e21f82a2649f86af3f4d97fb441638d39fe635c4e93",
+        "schema": "kch.precommit-receipt.v0.11.0",
+        "session_id": "KCH011-DEPLOY-df9b01ef-ea13-4ee0-89be-6e443016a414"
+      }
+    },
+    {
+      "assertion": "KCH_APPEND_ONLY_LEDGER_INTEGRITY_PASS",
+      "pass": true,
+      "observed": {
+        "defects": [],
+        "event_count": 30,
+        "evidence_count": 12,
+        "gate": "PASS",
+        "head_hash": "69741390091b46b430a834a61926e3cd2d7151aa9f3828ec97ca1fd63a7ad82f",
+        "proposal_count": 4,
+        "session_count": 4
+      }
+    },
+    {
+      "assertion": "KCH_AUDIT_EXPORT_HASH_EXACT",
+      "pass": true,
+      "observed": "5567b20fcf4dbea5d8a5794ba8b161c6731f0f57784758e1799aa83a0ccbdd64"
+    },
+    {
+      "assertion": "PHL_SOURCE_BYTES_UNCHANGED",
+      "pass": true,
+      "observed": {
+        "before": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+        "after": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21"
+      }
+    },
+    {
+      "assertion": "PHL_ZERO_REAL_USER_FEEDBACK_AFTER",
+      "pass": true,
+      "observed": 0
+    },
+    {
+      "assertion": "PHL_NO_ACTIVE_SESSION_AFTER",
+      "pass": true,
+      "observed": null
+    },
+    {
+      "assertion": "PHL_LEDGER_HEAD_UNCHANGED",
+      "pass": true,
+      "observed": "86bac67ac26ebe3cb3c74b2fa2ccc6b618031dc1597903b69d67499b01fd4e9e"
+    }
+  ],
+  "claim_ceiling": "REAL_LOCAL_PROJECT_SCOPED_MCP_DEPLOYMENT_AND_BOUNDED_AGENT_SHADOW_EXECUTION_WITHOUT_PHL_REAL_USE",
+  "not_demonstrated": [
+    "PRODUCTION_DEPLOYMENT",
+    "MUTATING_EXECUTION",
+    "ENFORCED_GOVERNANCE",
+    "ALL_28_CONTROLS_EFFECTIVE_IN_REAL_USE",
+    "PHL_REAL_USER_SESSION_OR_LEARNING",
+    "CROSS_PROVIDER_LIVE_ORCHESTRATION",
+    "EXTERNAL_INDEPENDENT_LAB_VALIDATION"
+  ],
+  "mcp_process": {
+    "return_code": 0,
+    "stderr": ""
+  }
+}

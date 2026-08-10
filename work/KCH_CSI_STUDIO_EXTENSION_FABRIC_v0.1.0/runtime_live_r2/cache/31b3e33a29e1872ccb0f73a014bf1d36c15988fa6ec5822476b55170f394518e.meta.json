@@ -1,0 +1,9 @@
+{
+  "cache_hit": false,
+  "etag": null,
+  "fetched_at": "2026-08-10T12:10:13.671294Z",
+  "last_modified": null,
+  "sha256": "8b8e7ac86623ecf197fd097e13e166c1c6b48c0da333c5cd77b1db1149025fdc",
+  "status": 200,
+  "url": "https://registry.modelcontextprotocol.io/v0.1/servers?search=filesystem&version=latest&limit=3"
+}

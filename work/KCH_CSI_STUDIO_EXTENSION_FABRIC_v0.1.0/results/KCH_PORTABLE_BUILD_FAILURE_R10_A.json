@@ -1,0 +1,10 @@
+{
+  "schema": "kch.portable-build-adverse.v0.1.0",
+  "release": "KCH_0.11_PRE2G_R10",
+  "state": "BUILD_FAILED_NO_FINAL_ARCHIVE",
+  "failure_class": "UNDECLARED_PYTEST_RESIDUE_ENTERED_SOURCE_COPY",
+  "cause": "The builder exclusion set did not cover the locked .pytest_response_modes directory created by an earlier invalid basetemp placement.",
+  "correction": "Exclude every .pytest* transient directory before source custody copy.",
+  "final_archive_created": false,
+  "historical_evidence_preserved": true
+}

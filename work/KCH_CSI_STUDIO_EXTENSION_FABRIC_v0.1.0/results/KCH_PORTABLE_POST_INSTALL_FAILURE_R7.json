@@ -1,0 +1,12 @@
+{
+  "schema": "kch.portable-post-install-adverse-receipt.v0.1.0",
+  "release": "KCH_0.11_PRE2G_R7",
+  "installation": "PASS",
+  "post_install_gate": "FAIL_BEFORE_GATE_EXECUTION",
+  "failure": "CHECK_WRAPPER_MISSING_PATH_SEPARATOR_AFTER_RUNTIME_PATHS_RELOAD",
+  "observed_path": "KCH_0.11_PRE2G_R7scripts/post_install_gate.py",
+  "runtime_or_super_mcp_adjudicated": false,
+  "external_host_configuration_modified": false,
+  "historical_result_immutable": true,
+  "corrective_action": "Generate CHECK_KCH.cmd with explicit separators and rebuild as R8."
+}

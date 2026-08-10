@@ -1,0 +1,13 @@
+{
+  "archive_bytes": 24840,
+  "archive_name": "KCH_SUPER_MCP_DOCUMENTACION_Y_USO_v0.11.0.zip",
+  "archive_sha256": "cde9cc103b1dfe7ec4dac5dd3fcd17b856e57508cbfd586f90a90fdb4dd78f63",
+  "canonical_kch_0_11_zip_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+  "manifest_sha256": "80fe27f990b8721eb6e1c6ea1768f60f37d080042aa3702a0da95da0f1080e3e",
+  "package_type": "EXPLANATORY_AND_INSTRUCTIONAL",
+  "payload_file_count": 19,
+  "phl_real_session": "NOT_RUN",
+  "reextracted_manifest_gate": "PASS",
+  "release": "KCH 0.11",
+  "schema": "kch.super-mcp-package-seal.v0.11.0"
+}

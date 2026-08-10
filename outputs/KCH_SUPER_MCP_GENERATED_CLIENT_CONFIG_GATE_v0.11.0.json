@@ -1,0 +1,47 @@
+{
+  "actual_cline_codex_vscode_host_invocation": "NOT_RUN_BY_THIS_GATE",
+  "checks": {
+    "cline_auto_approve_empty": true,
+    "codex_approval_prompt": true,
+    "states_are_explicit_and_distinct": true,
+    "three_config_launches": true
+  },
+  "clients": [
+    {
+      "client_config": "cline",
+      "gate": "PASS",
+      "process": {
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "resources": 4,
+      "state": "C:\\Users\\User\\Documents\\Codex\\_kchsmcp011b\\xr\\KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0\\runtime\\state\\cline_kch_011.sqlite3",
+      "tools": 49
+    },
+    {
+      "client_config": "vscode",
+      "gate": "PASS",
+      "process": {
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "resources": 4,
+      "state": "C:\\Users\\User\\Documents\\Codex\\_kchsmcp011b\\xr\\KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0\\runtime\\state\\vscode_kch_011.sqlite3",
+      "tools": 49
+    },
+    {
+      "client_config": "codex",
+      "gate": "PASS",
+      "process": {
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "resources": 4,
+      "state": "C:\\Users\\User\\Documents\\Codex\\_kchsmcp011b\\xr\\KCH_SUPER_MCP_COMPLETO_PORTABLE_v0.11.0\\runtime\\state\\codex_kch_011.sqlite3",
+      "tools": 49
+    }
+  ],
+  "gate": "PASS",
+  "phl_real_session": "NOT_RUN",
+  "schema": "kch.super-mcp-generated-client-config-gate.v0.11.0"
+}

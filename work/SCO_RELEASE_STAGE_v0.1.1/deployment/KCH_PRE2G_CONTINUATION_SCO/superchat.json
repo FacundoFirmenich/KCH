@@ -1,0 +1,14 @@
+{
+  "schema": "kch.sco.superchat.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "name": "KCH pre-2G sovereign continuation SCO",
+  "objective": "Orchestrate the native KCH lineage task and the current integration task without fusing either task's context, memory, capabilities or lifecycle.",
+  "non_goals": [
+    "Do not replace either native task with a project-level context.",
+    "Do not copy complete chat histories into the SCO ledger.",
+    "Do not create execution authority through grouping.",
+    "Do not claim live provider dispatch from the standalone v0.1.0 package."
+  ],
+  "jurisdiction": "KCH pre-second-generation continuation initiated on 2026-08-09; local orchestration ledger and exact native references only.",
+  "claim_ceiling": "TWO_REAL_CODEX_TASKS_GROUPED_AS_SOVEREIGN_REFERENCES_WITH_A_VALIDATED_LOCAL_ORCHESTRATION_PATH"
+}

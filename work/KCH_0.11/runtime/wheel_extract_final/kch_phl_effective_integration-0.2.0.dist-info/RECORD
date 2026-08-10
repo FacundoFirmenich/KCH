@@ -1,0 +1,10 @@
+kch_phl_integration/__init__.py,sha256=jO0Of00fdEdA6HV03VmGpPrRGzgdUxMooY8mESOCsvM,381
+kch_phl_integration/client.py,sha256=SlYvWIwwgPUWT62jdbEr_XqUEOeu442uMZEj8CcMge8,2693
+kch_phl_integration/contracts.py,sha256=TT0Og7Zn3Z527SUBGDoH4VWwZLjseLAuC7akhtShhSw,4054
+kch_phl_integration/server.py,sha256=UeOJwACN8cctpOhBfObZCTgEs8f3MxPHseAi7XZ4N78,4692
+kch_phl_integration/service.py,sha256=yBUhADZpgzaCFPRek7N9GoFRsAF3PpBgbAeg20cWY4w,24647
+kch_phl_effective_integration-0.2.0.dist-info/METADATA,sha256=YaznQZcKwWmlDhy0KGqCcv_I9NpHlIw4BKUTDzO89K0,194
+kch_phl_effective_integration-0.2.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+kch_phl_effective_integration-0.2.0.dist-info/entry_points.txt,sha256=5IRijy96wbpOjJI_rKjCvg98EdDyMO55vpZJtW9Mx80,72
+kch_phl_effective_integration-0.2.0.dist-info/top_level.txt,sha256=-G0l-YXnsF3sb4LyiEQLVms8t3fo1h_XZQcOHzwgkLk,20
+kch_phl_effective_integration-0.2.0.dist-info/RECORD,,

@@ -1,0 +1,11 @@
+{
+  "schema": "kch.adverse-result.v0.11.0",
+  "release": "KCH 0.11",
+  "result_id": "ADVERSE_RESULT_01_SQLITE_HANDLE_LEAK",
+  "observed": "The first unit-suite run completed all functional assertions but seven Windows tearDown operations failed with WinError 32 on state.sqlite3.",
+  "cause": "Ledger._initialize used sqlite3.Connection as a transaction context but did not close the connection object.",
+  "repair": "The initializer now commits explicitly and closes the connection in finally.",
+  "preservation": "The failing implementation is retained under results/adverse_attempts/ledger_handle_leak_attempt.py.txt.",
+  "post_repair_validation": "15/15 KCH tests PASS; clean wheel and extracted-wheel gates are evaluated separately.",
+  "historical_result_rewritten": false
+}

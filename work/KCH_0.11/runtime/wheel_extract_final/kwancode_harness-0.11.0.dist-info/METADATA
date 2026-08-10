@@ -1,0 +1,45 @@
+Metadata-Version: 2.4
+Name: kwancode-harness
+Version: 0.11.0
+Summary: KCH 0.11 canonical pre-second-generation federated governance runtime
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE_INVENTORY_v0.11.0.json
+Dynamic: license-file
+
+# KCH 0.11
+
+KCH 0.11 es la macrorelease canónica pre-agente de segunda generación de **KwanCode Harness**. Integra un Super-MCP federado, los 28 controles reflexivos prescritos, custodia de evidencia y adapters soberanos de sólo lectura. La versión de paquete es `0.11.0`; el nombre humano y arquitectónico es exactamente `KCH 0.11`.
+
+## Frontera de la release
+
+- unifica descubrimiento, contratos, routing, receipts y auditoría;
+- no fusiona autoridad, estado, memoria ni jurisdicción de los servicios;
+- permite ejecutar rutas federadas `READ_ONLY` sólo después de sesión, evidencia, controles y capability token de un uso;
+- no autoriza acciones mutantes ni promoción automática;
+- conserva `UNAVAILABLE`, `ABSTAIN`, resultados adversos y componentes incompletos;
+- no afirma KCH 2G, superioridad causal, eficacia universal ni readiness productiva.
+
+## Superficie
+
+El servidor MCP publica 12 operaciones estables de orquestación, nueve operaciones de inspección federada y 28 herramientas `kch.control.R01` a `kch.control.R28`. También publica recursos para el registro, los controles, el estado y la cadena de auditoría.
+
+## Arranque local
+
+```powershell
+$env:KCH_011_HMAC_SECRET='replace-with-at-least-32-bytes-of-secret-material'
+$env:KCH_011_BUNDLE_ROOT='C:\ruta\a\KCH_0.11'
+$env:KCH_011_STATE='C:\ruta\a\estado\kch_011.sqlite3'
+kch status
+kch-super-mcp
+```
+
+El perfil predeterminado es `agent-shadow`. `KCH_011_PROFILE=enforced` falla de forma explícita hasta superar los gates restantes.
+
+## Instalación offline
+
+Instale primero `dist/kwancode_harness-0.11.0-py3-none-any.whl` y luego los wheels soberanos de `vendor/` que necesite. El bundle incluye hashes, manifiesto, inventario de licencias y SBOM; ningún wheel heredado obtiene autoridad por quedar incluido.
+
+## Evidencia y claims
+
+Consulte `KCH_0.11_RELEASE_CONTRACT.md` y `results/KCH_0.11_GATE_RESULT.json`. Los tests prueban contratos, integridad y composición local; no sustituyen uso real, campaña pareada, réplica Linux ni validación causal.

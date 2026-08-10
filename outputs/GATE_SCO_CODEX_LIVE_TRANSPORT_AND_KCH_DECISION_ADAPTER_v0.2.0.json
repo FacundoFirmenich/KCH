@@ -1,0 +1,44 @@
+{
+  "schema": "kch.gate-definition.v0.2.0",
+  "gate_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0",
+  "status": "READY_FOR_PREREGISTRATION_NOT_EXECUTED",
+  "governing_objective": "Demonstrate that SCO can discover, read, dispatch to and receive a verifiable receipt from an explicitly writable Codex task while preserving node sovereignty, then translate governance-relevant SCO events into the strict KCH reviewable-decision contract.",
+  "preconditions": [
+    "The user selects an existing writable Codex task or explicitly authorizes creation of a disposable task; the canonical lineage source remains read-only.",
+    "The exact target native URI, role, authority, autonomy and disclosure contract are sealed before dispatch.",
+    "No complete native history or native memory is copied into SCO.",
+    "The PHL integration service is run on a replica unless the user separately authorizes personal-state mutation."
+  ],
+  "required_cases": [
+    "DISCOVER_EXACT_NATIVE_ID",
+    "READ_MINIMUM_AUTHORIZED_STATE",
+    "DISPATCH_ONE_SCOPED_WORK_ORDER",
+    "RECEIVE_AND_BIND_NATIVE_RESPONSE_RECEIPT",
+    "RETRY_WITHOUT_DUPLICATE_DISPATCH",
+    "REJECT_STALE_OR_WRONG_TARGET_RECEIPT",
+    "REJECT_AUTHORITY_ESCALATION",
+    "PROVE_NO_FULL_CONTEXT_OR_MEMORY_TRANSFER",
+    "EMIT_KCH_REVIEWABLE_DECISION_v0.2.0_FOR_WORK_ORDER_ISSUANCE",
+    "EMIT_KCH_REVIEWABLE_DECISION_v0.2.0_FOR_CONFLICT_ADJUDICATION_OR_ABSTAIN_IF_NONE",
+    "REGISTER_SCO_MUTABILITY_METHODS_IN_SUPER_MCP_CATALOG",
+    "REPLAY_EVENT_CHAIN_AND_COMPARE_NATIVE_RECEIPT_HASHES"
+  ],
+  "pass_states": {
+    "PASS_BOUNDED": "All Codex transport and KCH decision-adapter cases pass locally; other providers remain unavailable.",
+    "PASS_FULL_THIS_GATE": "All cases pass and the transport is repeated across two independent writable Codex tasks without leakage or duplicate execution."
+  },
+  "fail_closed_conditions": [
+    "Native target identity cannot be verified.",
+    "The bridge requires complete-context fusion or memory replacement.",
+    "Dispatch authority exceeds the node or work-order ceiling.",
+    "A receipt cannot be bound to the exact native response and work order.",
+    "A governance event cannot satisfy kch.reviewable-decision.v0.2.0 without invented fields."
+  ],
+  "non_claims": [
+    "No Cline, Cowork, OpenCode or ChatGPT live transport is implied.",
+    "No semantic superiority over Projects is implied.",
+    "No global KCH admission is implied.",
+    "No autonomous multi-agent safety claim is implied."
+  ],
+  "decision_required_from_user": "Select or authorize the writable Codex task for the first live SCO transport pilot; the lineage-source task will not be mutated."
+}

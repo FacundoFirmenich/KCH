@@ -1,0 +1,100 @@
+[
+  {
+    "schema": "kch.reviewable-decision.v0.2.0",
+    "decision_id": "sco-decision:wo.sco-live-transport-01:issued",
+    "emitted_at": "2026-08-09T14:42:56.363475+00:00",
+    "component_id": "kch.sco",
+    "decision_type": "SCO_WORK_ORDER_ISSUANCE",
+    "initiator": "codex-current-task",
+    "trigger": "USER_AUTHORIZED_DISPOSABLE_TASK_LIVE_GATE",
+    "objective_contract_sha256": "15554f6d3d3b27d3ce1f135c0140e2ef91169bc6facc77a2cc8fe79a32f1301d",
+    "purpose_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0",
+    "jurisdiction": "One disposable Codex task and one bounded textual receipt.",
+    "input_provenance_ids": [
+      "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+      "SCO-LIVE-DISPATCH-20260809-01"
+    ],
+    "source_event_ids": [
+      "9abadbed-8387-4621-b7c5-c1bf35eb49f1"
+    ],
+    "evidence_ids": [
+      "sha256:36628d888851a6b429fcfa0eca1cccb4fa553bfb36167e1aca9afdf54773e6a8"
+    ],
+    "active_rule_ids": [
+      "SCOPED_DISCLOSURE_ONLY",
+      "NATIVE_MEMORY_PRESERVED",
+      "NO_IMPLICIT_AUTHORITY_TRANSFER"
+    ],
+    "summary": "Issue one bounded textual-receipt work order to the explicitly authorized disposable Codex node.",
+    "rationale": "The user authorized creation of a disposable target; the canonical lineage task remained read-only and the target received no native history or memory.",
+    "alternatives_considered": [
+      "DO_NOT_DISPATCH",
+      "MUTATE_CANONICAL_LINEAGE_TASK_PROHIBITED"
+    ],
+    "confidence_representation": {
+      "kind": "DETERMINISTIC_LEDGER_AND_HOST_RECEIPT",
+      "value": "OBSERVED",
+      "meaning": "Identity and transport fields are exact; no semantic-quality inference."
+    },
+    "risk_class": "BOUNDED_DISPOSABLE_TEXT_TRANSPORT",
+    "authority_granted": [
+      "RETURN_BOUNDED_TEXT_RECEIPT"
+    ],
+    "authority_exercised": [
+      "RETURN_BOUNDED_TEXT_RECEIPT"
+    ],
+    "claim_ceiling": "CODEX_TEXT_TRANSPORT_AND_RECEIPT_BINDING_FOR_ONE_DISPOSABLE_NODE_ONLY",
+    "consequence": "The target may return one exact textual receipt and perform no other action.",
+    "reversibility": "The disposable task can be archived; immutable evidence remains preserved.",
+    "stop_condition_ids": [
+      "TARGET_IDENTITY_MISMATCH",
+      "AUTHORITY_ESCALATION",
+      "NONCE_MISMATCH",
+      "CONTEXT_OR_MEMORY_EXPORT"
+    ],
+    "source_uri": "sco://sco.kch-pre2g-continuation.20260809/events/9abadbed-8387-4621-b7c5-c1bf35eb49f1"
+  },
+  {
+    "schema": "kch.reviewable-decision.v0.2.0",
+    "decision_id": "sco-decision:conflict-adjudication:abstain:no-conflict",
+    "emitted_at": "2026-08-09T14:46:58.452847+00:00",
+    "component_id": "kch.sco",
+    "decision_type": "SCO_CONFLICT_ADJUDICATION_ABSTENTION",
+    "initiator": "sco-decision-adapter",
+    "trigger": "NO_CONFLICT_RECORD_PRESENT",
+    "objective_contract_sha256": "8d35a68436253f7038828967972c034d79836e54d4e717ffd0bc3d1631801a77",
+    "purpose_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0",
+    "jurisdiction": "Current SCO ledger head only; zero persisted conflicts.",
+    "input_provenance_ids": [
+      "sco-ledger-head:f16d59257e100f344df6dd599d821372e7d94c6729c79ad17a010a0d15a0e171"
+    ],
+    "source_event_ids": [],
+    "evidence_ids": [
+      "sco-conflict-count:0"
+    ],
+    "active_rule_ids": [
+      "NO_ADJUDICATION_WITHOUT_CONFLICT",
+      "PRESERVE_DIVERGENCE_IF_PRESENT"
+    ],
+    "summary": "Abstain from conflict adjudication because the SCO ledger contains no conflict record.",
+    "rationale": "Creating an adjudication outcome without competing receipts would invent a controversy and authority exercise.",
+    "alternatives_considered": [
+      "INVENT_CONFLICT_PROHIBITED"
+    ],
+    "confidence_representation": {
+      "kind": "DETERMINISTIC_LEDGER_QUERY",
+      "value": "ZERO_CONFLICT_ROWS",
+      "meaning": "Applies only to the exact ledger head."
+    },
+    "risk_class": "NO_ACTION_ABSTENTION",
+    "authority_granted": [],
+    "authority_exercised": [],
+    "claim_ceiling": "NO_CONFLICT_PRESENT_AT_EXACT_LEDGER_HEAD",
+    "consequence": "No adjudication event and no authority exercise are created.",
+    "reversibility": "Not applicable; abstention changes no SCO state.",
+    "stop_condition_ids": [
+      "ANY_CONFLICT_RECORD_PRESENT"
+    ],
+    "source_uri": "sco://sco.kch-pre2g-continuation.20260809/head/f16d59257e100f344df6dd599d821372e7d94c6729c79ad17a010a0d15a0e171"
+  }
+]

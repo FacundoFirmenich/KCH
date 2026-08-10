@@ -1,0 +1,47 @@
+{
+  "canonical_kch_zip_sha256": "a4e08bb2833dffbfe3a3f2036579d1c8e56c20ea67ec94d4685a3618d528ee02",
+  "checks": {
+    "codex_projection_declares_loss": true,
+    "extension_catalog_is_specification_only": true,
+    "four_agents": true,
+    "fresh_compile_matches_persisted_dist": true,
+    "graph_13_nodes": true,
+    "hierarchy_exact": true,
+    "kch_0_11_unchanged": true,
+    "no_install_authority": true,
+    "phl_state_unchanged": true,
+    "semantic_rules_not_misrepresented_as_native_rules": true,
+    "six_rules": true,
+    "studio_catalog_is_specification_only": true,
+    "tests_11_of_11": true
+  },
+  "claim_ceiling": "EXECUTABLE_KCH_CSI_SELF_GOVERNANCE_FOUNDATION_WITH_LOSS_AWARE_CODEX_PROJECTION_NO_INSTALLATION",
+  "external_environment_modified": false,
+  "gate": "PASS",
+  "implemented": [
+    "HARNESS_AGENTS_RULES_CONTRACT",
+    "CSI_GOVERNANCE_GRAPH",
+    "AUTHORITY_VALIDATOR",
+    "DETERMINISTIC_COMPILER",
+    "CODEX_LOSS_AWARE_PROJECTION",
+    "LOCK_AND_HASHES"
+  ],
+  "installation_authorized": false,
+  "manifest_sha256": "d331f2f404e257d750ca16edadc7f99ee66d8d7a533d440412173f1f321bcd42",
+  "observed_at_utc": "2026-08-10T11:27:09.793525Z",
+  "phl_real_execution": false,
+  "phl_state_sha256": "d17a982e55203cdce6ffba1a2a2455260bea1df88536ac4456969ae755a07c21",
+  "schema": "kch.csi-self-governance-gate-result.v0.1.0",
+  "source_graph_sha256": "2a19eb48af091526fbccc14a36ba37b9bb90bdf5743ce9a5e1f1e8943b7eea46",
+  "specified_not_implemented": [
+    "CSI_STUDIO_VISUAL",
+    "GUIDED_ARTIFACT_GENERATORS",
+    "EXTENSION_FABRIC",
+    "MCP_SEARCH_AND_RECOMMENDER",
+    "PYPI_PROVIDER",
+    "NPM_PROVIDER",
+    "HOST_ADDON_INSTALLERS"
+  ],
+  "test_output": "test_authority_escalation_fails_closed (test_self_governance.SelfGovernanceTests.test_authority_escalation_fails_closed) ... ok\ntest_canonical_hierarchy_and_counts (test_self_governance.SelfGovernanceTests.test_canonical_hierarchy_and_counts) ... ok\ntest_compilation_is_deterministic (test_self_governance.SelfGovernanceTests.test_compilation_is_deterministic) ... ok\ntest_compile_emits_loss_aware_codex_projection (test_self_governance.SelfGovernanceTests.test_compile_emits_loss_aware_codex_projection) ... ok\ntest_future_catalogs_are_explicit_and_do_not_claim_implementation (test_self_governance.SelfGovernanceTests.test_future_catalogs_are_explicit_and_do_not_claim_implementation) ... ok\ntest_horizontal_and_subhierarchical_agents_are_preserved (test_self_governance.SelfGovernanceTests.test_horizontal_and_subhierarchical_agents_are_preserved) ... ok\ntest_lock_contains_source_and_artifact_hashes (test_self_governance.SelfGovernanceTests.test_lock_contains_source_and_artifact_hashes) ... ok\ntest_replace_requires_generated_marker_and_explicit_flag (test_self_governance.SelfGovernanceTests.test_replace_requires_generated_marker_and_explicit_flag) ... ok\ntest_rule_routines_and_subroutines_are_material (test_self_governance.SelfGovernanceTests.test_rule_routines_and_subroutines_are_material) ... ok\ntest_semantic_rules_do_not_grant_native_command_permissions (test_self_governance.SelfGovernanceTests.test_semantic_rules_do_not_grant_native_command_permissions) ... ok\ntest_undeclared_child_fails_closed (test_self_governance.SelfGovernanceTests.test_undeclared_child_fails_closed) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.997s\n\nOK\n",
+  "tests": 11
+}

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "kch-super-mcp": {
+      "command": "__ABSOLUTE_PYTHON_EXECUTABLE__",
+      "args": [
+        "-X",
+        "utf8",
+        "-u",
+        "__ABSOLUTE_SUPER_MCP_ROOT__/launcher/run_super_mcp.py"
+      ],
+      "env": {
+        "KCH_011_PROFILE": "agent-shadow",
+        "KCH_011_STATE": "__ABSOLUTE_SUPER_MCP_ROOT__/runtime/state/cline_kch_011.sqlite3"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

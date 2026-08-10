@@ -1,0 +1,105 @@
+[
+  {
+    "schema": "kch.reviewable-decision.v0.2.0",
+    "emitted_at": "2026-08-09T15:11:01.249331+00:00",
+    "component_id": "kch.mis.v03.adapter",
+    "initiator": "kch-mis-v03-adapter",
+    "objective_contract_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+    "purpose_id": "GATE_KCH_MIS_V03_EFFECTIVE_INTEGRATION_v0.1.0",
+    "jurisdiction": "MIS v0.3.1 exact structural replay over the sealed KHC v2.0.7 corpus; no causal or prospective jurisdiction.",
+    "input_provenance_ids": [
+      "sha256:be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+      "sha256:e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+      "sha256:de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83",
+      "sha256:605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca"
+    ],
+    "source_event_ids": [
+      "d4e6dbfe3f9648ad19754997330424c8a26a55cd6251af4c586c4a2e258d0efd"
+    ],
+    "evidence_ids": [
+      "sha256:66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed"
+    ],
+    "authority_granted": [],
+    "authority_exercised": [],
+    "reversibility": "The integration ledger is an isolated replica; source MIS and personal KCH state remain byte-identical.",
+    "source_uri": "mis://v0.3.1/certificates/66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+    "decision_id": "mis-v03:structural-certificate:admit:66d400e747fa35bc",
+    "decision_type": "MIS_STRUCTURAL_CERTIFICATE_ADMISSION",
+    "trigger": "LIVE_KCH_ROUTED_MIS_V03_REPLAY_EXACT_MATCH",
+    "active_rule_ids": [
+      "DECISION_EQUIVALENCE_IS_NOT_AUTHORITY_EQUIVALENCE",
+      "PRESERVE_PROVENANCE_PURPOSE_JURISDICTION",
+      "CAPABILITY_DOES_NOT_IMPLY_PERMISSION",
+      "FUTURE_ONLY_CHRONOLOGY"
+    ],
+    "summary": "Admit the exact MIS v0.3.1 structural certificate as reviewable KCH evidence.",
+    "rationale": "KCH routed the sealed MIS wheel over all 480 real KHC records; the live audit and 60 persisted ledgers match the qualified frozen report exactly.",
+    "alternatives_considered": [
+      "REJECT_HASH_MISMATCHED_EVIDENCE",
+      "TREAT_MIS_OUTPUT_AS_EXECUTION_AUTHORITY_PROHIBITED"
+    ],
+    "confidence_representation": {
+      "kind": "DETERMINISTIC_EXACT_REPLAY",
+      "value": "480_RECORDS_60_STREAMS_EXACT_MATCH",
+      "meaning": "Confidence is limited to custody, exact calculation, structural round-trip and future-only ledger integrity."
+    },
+    "risk_class": "BOUNDED_MATHEMATICAL_EVIDENCE_ADMISSION",
+    "claim_ceiling": "STRUCTURAL_LOSSLESS_REPRESENTATION_EXACT_REPLAY_AND_FUTURE_ONLY_INTEGRITY_ONLY",
+    "consequence": "The certificate becomes KCH-reviewable evidence; no action, commit, promotion or authority is created.",
+    "stop_condition_ids": [
+      "ANY_CUSTODY_HASH_MISMATCH",
+      "CERTIFICATE_TAMPER",
+      "PURPOSE_OR_JURISDICTION_DRIFT"
+    ]
+  },
+  {
+    "schema": "kch.reviewable-decision.v0.2.0",
+    "emitted_at": "2026-08-09T15:11:01.249376+00:00",
+    "component_id": "kch.mis.v03.adapter",
+    "initiator": "kch-mis-v03-adapter",
+    "objective_contract_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+    "purpose_id": "GATE_KCH_MIS_V03_EFFECTIVE_INTEGRATION_v0.1.0",
+    "jurisdiction": "MIS v0.3.1 exact structural replay over the sealed KHC v2.0.7 corpus; no causal or prospective jurisdiction.",
+    "input_provenance_ids": [
+      "sha256:be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+      "sha256:e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+      "sha256:de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83",
+      "sha256:605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca"
+    ],
+    "source_event_ids": [
+      "d4e6dbfe3f9648ad19754997330424c8a26a55cd6251af4c586c4a2e258d0efd"
+    ],
+    "evidence_ids": [
+      "sha256:66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed"
+    ],
+    "authority_granted": [],
+    "authority_exercised": [],
+    "reversibility": "The integration ledger is an isolated replica; source MIS and personal KCH state remain byte-identical.",
+    "source_uri": "mis://v0.3.1/certificates/66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+    "decision_id": "mis-v03:causal-global-promotion:abstain:66d400e747fa35bc",
+    "decision_type": "MIS_CAUSAL_AND_GLOBAL_PROMOTION_ABSTENTION",
+    "trigger": "HISTORICAL_REPLAY_HAS_NO_ADJUDICATED_CAUSAL_OUTCOME",
+    "active_rule_ids": [
+      "NO_CAUSAL_CLAIM_FROM_HISTORICAL_ACTION_REPLAY",
+      "NO_GLOBAL_WINNER_WITHOUT_PROSPECTIVE_EVIDENCE",
+      "PRESERVE_NOT_ESTIMABLE_AND_ABSTENTION"
+    ],
+    "summary": "Abstain from promoting MIS v0.3.1 to a causal, prospective or globally superior claim.",
+    "rationale": "The replay observes historical model actions rather than adjudicated quality outcomes; exact reproduction cannot manufacture the missing empirical jurisdiction.",
+    "alternatives_considered": [
+      "OVERPROMOTE_STRUCTURAL_REPLAY_PROHIBITED",
+      "REWRITE_HISTORICAL_RESULTS_PROHIBITED"
+    ],
+    "confidence_representation": {
+      "kind": "EVIDENCE_BOUNDARY",
+      "value": "NOT_DEMONSTRATED",
+      "meaning": "Causal improvement, prospective superiority, human utility, open-domain scaling and a global winner remain outside this gate."
+    },
+    "risk_class": "NO_PROMOTION_ABSTENTION",
+    "claim_ceiling": "NO_CAUSAL_PROSPECTIVE_OR_GLOBAL_PROMOTION_AUTHORIZED",
+    "consequence": "MIS is integrated as bounded decision support while KCH retains authority and empirical promotion gates remain closed.",
+    "stop_condition_ids": [
+      "PROSPECTIVE_OUTCOME_EVIDENCE_AVAILABLE_FOR_NEW_PREREGISTERED_GATE"
+    ]
+  }
+]

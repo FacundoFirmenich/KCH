@@ -1,0 +1,20 @@
+[
+  {"service_id":"Super-MCP","method":"status","classification":"READ_ONLY","evidence_ref":"KCH_SUPER_MCP_MINIMAL_GATE_v0.1.0"},
+  {"service_id":"Super-MCP","method":"registry.describe","classification":"READ_ONLY","evidence_ref":"KCH_SUPER_MCP_MINIMAL_GATE_v0.1.0"},
+  {"service_id":"Super-MCP","method":"open_session","classification":"MUTATING","evidence_ref":"kch_learning.super_mcp_bridge.LearningAwareGateway"},
+  {"service_id":"Super-MCP","method":"admit_evidence","classification":"MUTATING","evidence_ref":"kch_learning.super_mcp_bridge.LearningAwareGateway"},
+  {"service_id":"Super-MCP","method":"precommit_verify","classification":"MUTATING","evidence_ref":"kch_learning.super_mcp_bridge.LearningAwareGateway"},
+  {"service_id":"KwanPrompts","method":"capture","classification":"MUTATING","evidence_ref":"KWANPROMPTS_TS01R_RESULT_v0.1.0"},
+  {"service_id":"KwanPrompts","method":"inspect","classification":"READ_ONLY","evidence_ref":"KWANPROMPTS_TS01R_RESULT_v0.1.0"},
+  {"service_id":"RGG","method":"resolve_profile","classification":"READ_ONLY","evidence_ref":"KCH_RIGOR_GRADIENT_GOVERNOR_v0.1.0"},
+  {"service_id":"RGG","method":"emit_decision","classification":"MUTATING","evidence_ref":"KCH_RIGOR_GRADIENT_GOVERNOR_v0.1.0"},
+  {"service_id":"OBL","method":"launch","classification":"MUTATING","evidence_ref":"KCH_OBL_PHL_TS01_RESULT_v0.1.0"},
+  {"service_id":"OBL","method":"submit","classification":"MUTATING","evidence_ref":"KCH_OBL_PHL_TS01_RESULT_v0.1.0"},
+  {"service_id":"PHL","method":"dashboard","classification":"READ_ONLY","evidence_ref":"PHL_SELF_TEST_01_RESULT_v0.1.0"},
+  {"service_id":"PHL","method":"start","classification":"MUTATING","evidence_ref":"PHL_SELF_TEST_01_RESULT_v0.1.0"},
+  {"service_id":"PHL","method":"close","classification":"MUTATING","evidence_ref":"PHL_SELF_TEST_01_RESULT_v0.1.0"},
+  {"service_id":"PHL","method":"save_workbench_state","classification":"MUTATING","evidence_ref":"kch_learning.ledger_praxis.PraxisLearningLedger"},
+  {"service_id":"PHL","method":"score","classification":"MUTATING","evidence_ref":"kch_learning.phl_workbench_release.PHLWorkbench"},
+  {"service_id":"PHL","method":"compile_packet","classification":"MUTATING","evidence_ref":"kch_learning.service.LearningService"}
+]
+

@@ -1,0 +1,21 @@
+{
+  "schema": "kch.sco.node.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "node_id": "kch-sco-builder",
+  "provider": "CODEX",
+  "native_uri": "codex://threads/019fe6b4-c2dd-7880-847e-d1fd16ea67a2",
+  "title": "KCH pre-2G integrator and SCO builder",
+  "role": "ARCHITECT_IMPLEMENTER_VALIDATOR",
+  "responsibilities": [
+    "Build the SCO control plane under the user's sovereign-chat invariants.",
+    "Validate isolation, authority, graph, work-order, receipt and CSI-lowering contracts.",
+    "Preserve evidence boundaries and report unavailable live bridges."
+  ],
+  "capabilities": ["LOCAL_ENGINEERING", "SCIENTIFIC_ADJUDICATION", "CODEX_HOST_BRIDGE", "CSI_LOWERING"],
+  "authority_granted": ["BUILD_SCO_LOCAL", "PRODUCE_GATE_EVIDENCE", "REGISTER_KCH_COMPONENT_CANDIDATE", "ISSUE_SCOPED_WORK_ORDERS"],
+  "autonomy_level": "EXECUTE_WITHIN_SCOPE",
+  "context_policy": "SCOPED_DISCLOSURE_ONLY",
+  "memory_policy": "NATIVE_MEMORY_PRESERVED",
+  "connector_state": "HOST_VERIFIED_REFERENCE",
+  "source_provenance": "Codex app list_threads live observation on 2026-08-09; this is the currently executing task."
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "kch.mis.v03.historical-certificate.v0.1.0",
+  "adapter_version": "0.1.0",
+  "mis_version": "0.3.1",
+  "custody": {
+    "wheel": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+    "corpus": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+    "report": "de2de79d320ade464c2727b6525cdad41694f3305c5021fa5f6014c5bea71b83",
+    "ledgers": "605cdac85d554ecd282799dcfe91f0c9ab79aff54d36fef74093feb6a3d3eaca",
+    "manifest": "57ae25461c6c1eca1694a4cd24d79450e07e1ccca0b87d7f3a357f55379b5419"
+  },
+  "source_schema": "KHC_TWO_BATTERY_COMPARATIVE_8x8_v2.0.7",
+  "records": 480,
+  "coordinates_unique": 480,
+  "units_unique": 480,
+  "unit_hash_sequence_sha256": "9e17e5a9e631b590f38878af185e6de88087cba15394f3d2ed638720e8c1e26a",
+  "streams": 60,
+  "freezes": 480,
+  "outcomes": 480,
+  "persisted_ledgers_verified": 60,
+  "persisted_ledger_set_sha256": "fb3aac89569f270885dbd21591439a918801860eba0275cca9690103277ceb3d",
+  "policy_hash": "e2029857038607feed6d002cc0a0f9d0da71f86b3151bc7e614d55f8554d9020",
+  "live_audit_sha256": "79e22baa7305d823ab288e28dcf56a89611c7fb00cb823450efa4ae394efc16f",
+  "live_replay_sha256": "c6457ac9af42628fa84edcde5b64cbb46d84d8118d92930aef240354b107957b",
+  "frozen_report_exact_match": true,
+  "future_only_chronology_verified": true,
+  "authority_created": false,
+  "execution_authorized": false,
+  "automatic_promotion": false,
+  "claim_ceiling": "STRUCTURAL_LOSSLESS_REPRESENTATION_EXACT_REPLAY_AND_FUTURE_ONLY_INTEGRITY_ONLY",
+  "not_demonstrated": [
+    "CAUSAL_KCH_IMPROVEMENT",
+    "PROSPECTIVE_PREDICTIVE_SUPERIORITY",
+    "HUMAN_UTILITY",
+    "OPEN_DOMAIN_SCALABILITY",
+    "GLOBAL_WINNER"
+  ],
+  "certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed"
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "kch.proactive-activation-gate-manifest.v0.1.0",
+  "release": "KCH Proactive Activation Gate v0.1.0",
+  "canonical_kch_release_modified": false,
+  "entries": [
+    {
+      "path": "README.md",
+      "bytes": 4101,
+      "sha256": "8a0e7d1374252f2be59487675f19a4ed6ee6b6a8d0570d81b0a7175070bd93ee"
+    },
+    {
+      "path": "adapters/codex/kch_activation_session_end.py",
+      "bytes": 579,
+      "sha256": "16d77a91e5cc802b738ba75b528722273d4d624a49d4eb599601a963487519b0"
+    },
+    {
+      "path": "adapters/codex/kch_activation_user_prompt.py",
+      "bytes": 2458,
+      "sha256": "cb52b66f4f348a1939cc0baf9f4c5958e362ce9be54bd5fb385af448aa95a5f8"
+    },
+    {
+      "path": "config/activation_rules.v0.1.0.json",
+      "bytes": 5021,
+      "sha256": "a8a2cf6069373945fe6330e74c6acf90f1663f158421d0bdd7097d33fa14a181"
+    },
+    {
+      "path": "launcher/run_kch_activation.py",
+      "bytes": 563,
+      "sha256": "8970f92e9025d21c47851be0210b2ea9785533189f60d4719713a5a269401908"
+    },
+    {
+      "path": "src/kch_activation/__init__.py",
+      "bytes": 106,
+      "sha256": "11ed86a60c7ab02a8ecb2937a50a467b57299ef9b81d61506541b1a880cb63bc"
+    },
+    {
+      "path": "src/kch_activation/bootstrap.py",
+      "bytes": 1545,
+      "sha256": "8bb7b312c854c6052dc72a6019e6ee2076c0f9e10836b7ab49150476875a5d4a"
+    },
+    {
+      "path": "src/kch_activation/canonical.py",
+      "bytes": 696,
+      "sha256": "d32950611b533762e32e12228c87f2ee18bdf80169a5b4eef7df75e7f8512ac2"
+    },
+    {
+      "path": "src/kch_activation/engine.py",
+      "bytes": 8687,
+      "sha256": "0101155b41d983e73d48d9ad5a2513f91f71fc3fcdb05d69edb2fad34452eee3"
+    },
+    {
+      "path": "src/kch_activation/ledger.py",
+      "bytes": 20684,
+      "sha256": "2cf72451d19e91b0e5c57f621fe869f42a268ddfd0913c6ad08a44fe0df6737f"
+    },
+    {
+      "path": "src/kch_activation/overlay_server.py",
+      "bytes": 5587,
+      "sha256": "af76983026de57207fb176f8ff883759b54a05e98eb4911e6d24517125e41e3e"
+    },
+    {
+      "path": "src/kch_activation/rules.py",
+      "bytes": 5362,
+      "sha256": "89ea10ffe64e5f38ed0b1d9c5648edd0d7b0e797aecbdf950f1a1b63e28b7f4e"
+    },
+    {
+      "path": "src/kch_activation/runtime.py",
+      "bytes": 1382,
+      "sha256": "8e6c4afc9b9c34d3d3511c6d0a7ce40a8ea9849fe639986640d7f59f0db9b6be"
+    },
+    {
+      "path": "tests/test_activation_gate.py",
+      "bytes": 11584,
+      "sha256": "64a57da1231eb43d56c09d770141c79f4db5eb567b94ac5c345e3759f8fd3a63"
+    },
+    {
+      "path": "validate_and_seal.py",
+      "bytes": 7128,
+      "sha256": "9392000497316b632d1dd961777b427be0da2ee6bdc4658858fea275046c70ce"
+    }
+  ]
+}

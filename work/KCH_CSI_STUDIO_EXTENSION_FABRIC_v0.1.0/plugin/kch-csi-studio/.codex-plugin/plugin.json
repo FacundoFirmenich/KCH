@@ -1,0 +1,26 @@
+{
+  "name": "kch-csi-studio",
+  "version": "0.1.0",
+  "description": "Integrated constitutional, proactive, persistent and compositional KCH pre-2G runtime.",
+  "author": {
+    "name": "KwanCode Harness"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "KCH CSI Studio",
+    "shortDescription": "Run integrated KCH pre-2G governance.",
+    "longDescription": "Operate constitutional CSI governance, proactive programs, Studio generators, Extension Fabric, SCO, KwanData, MIS, checkpoints, clipboard, voice, permissions, schedules and versioned CONSTRUCT successors under HARNESS > AGENTS > RULES.",
+    "developerName": "KwanCode Harness",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Inspect the effective KCH constitution and integrated runtime.",
+      "Create and validate a staged CSI artifact.",
+      "Orchestrate persistent chats with SCO without merging them."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

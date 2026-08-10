@@ -1,0 +1,2 @@
+[console_scripts]
+kwanprompts-mcp = kwanprompts.mcp_server:main

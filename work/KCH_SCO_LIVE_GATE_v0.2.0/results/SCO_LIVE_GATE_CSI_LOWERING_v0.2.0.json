@@ -1,0 +1,237 @@
+{
+  "schema": "kch.sco.csi-lowering.v0.1.0",
+  "preset_id": "kch.preset.sco.orchestration",
+  "topological_address": [
+    "KCH",
+    "ORCHESTRATION",
+    "SCO",
+    "sco.kch-pre2g-continuation.20260809"
+  ],
+  "identitas_sha256": "e99f3a70e8a9bbce4d627f3a8d8d7f108ee2e4e78ab2b3a1c861b1fde00a5c86",
+  "source_bundle_sha256": "5b33938fb182e2268acfb177c8d69161cc2529ddad2e30a38e18654cc95d2fac",
+  "raw_csi_program": [
+    {
+      "kind": "OPEN_SESSION",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "label": "kch.preset.sco.orchestration",
+        "epoch": 0
+      }
+    },
+    {
+      "kind": "SEAL_IDENTITAS",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "statements": [
+          "Orchestrate selected sovereign chats without fusing them",
+          "Preserve every node's native context, memory, capabilities and lifecycle",
+          "Exchange only scoped references through explicit work orders and receipts",
+          "Preserve adverse results, abstentions and unresolved conflicts",
+          "Never create authority through orchestration"
+        ],
+        "strata": [
+          [
+            "SCO",
+            "SUPERCHATS_ORCHESTRATORS"
+          ],
+          [
+            "SOVEREIGN_NODES",
+            "NO_CONTEXT_FUSION"
+          ],
+          [
+            "GRAPH_ORCHESTRATION",
+            "EVIDENCE_LINKED_RECEIPTS"
+          ]
+        ],
+        "explicitly_extensible": true
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "datum": {
+          "datum_id": "sco-contract",
+          "role": "CONSTRAINT",
+          "payload": {
+            "sco_id": "sco.kch-pre2g-continuation.20260809",
+            "objective": "Orchestrate the native KCH lineage task and the current integration task without fusing either task's context, memory, capabilities or lifecycle.",
+            "non_goals": [
+              "Do not replace either native task with a project-level context.",
+              "Do not copy complete chat histories into the SCO ledger.",
+              "Do not create execution authority through grouping.",
+              "Do not claim live provider dispatch from the standalone v0.1.0 package."
+            ],
+            "jurisdiction": "KCH pre-second-generation continuation initiated on 2026-08-09; local orchestration ledger and exact native references only.",
+            "claim_ceiling": "TWO_REAL_CODEX_TASKS_GROUPED_AS_SOVEREIGN_REFERENCES_WITH_A_VALIDATED_LOCAL_ORCHESTRATION_PATH",
+            "native_contexts_merged": false,
+            "native_memories_replaced": false
+          },
+          "priority": 2,
+          "source": "kch-sco/0.1.0"
+        }
+      }
+    },
+    {
+      "kind": "MODE_ON",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "modus": {
+          "modus_id": "SOVEREIGN_CHAT_ORCHESTRATION",
+          "description": "Graph orchestration of sovereign heterogeneous chat nodes",
+          "preserves_identitas": true,
+          "parameters": {
+            "routing": "EXPLICIT_GRAPH",
+            "disclosure": "SCOPED_REFERENCES_ONLY",
+            "memory": "NATIVE_MEMORY_PRESERVED",
+            "conflicts": "PRESERVED_UNTIL_ADJUDICATED"
+          }
+        }
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "datum": {
+          "datum_id": "node:kch-canonical-lineage-source",
+          "role": "CONSTRAINT",
+          "payload": {
+            "node_id": "kch-canonical-lineage-source",
+            "provider": "CODEX",
+            "native_uri": "codex://threads/019fd938-8000-7121-9078-d196bdd15ae4",
+            "role": "CANONICAL_LINEAGE_EVIDENCE_SOURCE",
+            "autonomy_level": "OBSERVE_ONLY",
+            "authority_granted": [
+              "SUPPLY_EXISTING_EVIDENCE_REFERENCE"
+            ],
+            "connector_state": "HOST_VERIFIED_REFERENCE"
+          },
+          "priority": 2,
+          "source": "kch-sco-node-registry"
+        }
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "datum": {
+          "datum_id": "node:kch-sco-builder",
+          "role": "CONSTRAINT",
+          "payload": {
+            "node_id": "kch-sco-builder",
+            "provider": "CODEX",
+            "native_uri": "codex://threads/019fe6b4-c2dd-7880-847e-d1fd16ea67a2",
+            "role": "ARCHITECT_IMPLEMENTER_VALIDATOR",
+            "autonomy_level": "EXECUTE_WITHIN_SCOPE",
+            "authority_granted": [
+              "BUILD_SCO_LOCAL",
+              "PRODUCE_GATE_EVIDENCE",
+              "REGISTER_KCH_COMPONENT_CANDIDATE",
+              "ISSUE_SCOPED_WORK_ORDERS"
+            ],
+            "connector_state": "HOST_VERIFIED_REFERENCE"
+          },
+          "priority": 2,
+          "source": "kch-sco-node-registry"
+        }
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "datum": {
+          "datum_id": "node:sco-disposable-live-probe-01",
+          "role": "CONSTRAINT",
+          "payload": {
+            "node_id": "sco-disposable-live-probe-01",
+            "provider": "CODEX",
+            "native_uri": "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+            "role": "DISPOSABLE_LIVE_TRANSPORT_PROBE",
+            "autonomy_level": "RESPOND_WITHIN_SCOPE",
+            "authority_granted": [
+              "RETURN_BOUNDED_TEXT_RECEIPT"
+            ],
+            "connector_state": "HOST_VERIFIED_REFERENCE"
+          },
+          "priority": 2,
+          "source": "kch-sco-node-registry"
+        }
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "datum": {
+          "datum_id": "edge:kch-lineage-supplies-sco-builder",
+          "role": "CONSTRAINT",
+          "payload": {
+            "source_node_id": "kch-canonical-lineage-source",
+            "target_node_id": "kch-sco-builder",
+            "relation": "SUPPLIES_EVIDENCE",
+            "disclosure_contract": {
+              "allowed_ref_kinds": [
+                "NATIVE_TURN_REF",
+                "ARTIFACT_REF",
+                "HASH_REF",
+                "GATE_REF"
+              ],
+              "forbidden_transfers": [
+                "FULL_CONTEXT_MERGE",
+                "NATIVE_MEMORY_COPY",
+                "IMPLICIT_AUTHORITY_TRANSFER"
+              ],
+              "maximum_payload_bytes": 262144,
+              "schema": "kch.sco.scoped-disclosure.v0.1.0"
+            },
+            "activation_condition": "Explicit evidence need within a declared KCH work order.",
+            "gate_id": "FULL_NATIVE_THREAD_READ_AND_PROVENANCE_PRESERVATION"
+          },
+          "priority": 2,
+          "source": "kch-sco-edge-registry"
+        }
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:sco:dbd3823e3ed9d8ac58a59554",
+      "params": {
+        "datum": {
+          "datum_id": "edge:sco-builder-dispatches-disposable-01",
+          "role": "CONSTRAINT",
+          "payload": {
+            "source_node_id": "kch-sco-builder",
+            "target_node_id": "sco-disposable-live-probe-01",
+            "relation": "IMPLEMENTS",
+            "disclosure_contract": {
+              "allowed_ref_kinds": [
+                "WORK_ORDER_REF",
+                "NONCE_REF",
+                "AUTHORITY_REF"
+              ],
+              "forbidden_transfers": [
+                "FULL_CONTEXT_MERGE",
+                "NATIVE_MEMORY_COPY",
+                "IMPLICIT_AUTHORITY_TRANSFER"
+              ],
+              "maximum_payload_bytes": 8192,
+              "schema": "kch.sco.scoped-disclosure.v0.1.0"
+            },
+            "activation_condition": "One explicitly prepared and deduplicated transport dispatch.",
+            "gate_id": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0"
+          },
+          "priority": 2,
+          "source": "kch-sco-edge-registry"
+        }
+      }
+    }
+  ],
+  "raw_csi_program_sha256": "040e055d39046ca4c82e6c20303bff046e6b68d5574866af3caf93daf57fe78a",
+  "authority_created": false,
+  "native_contexts_merged": false,
+  "native_memories_replaced": false,
+  "execution_authorized": false
+}

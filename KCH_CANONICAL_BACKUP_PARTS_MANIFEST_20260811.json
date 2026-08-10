@@ -1,0 +1,23 @@
+﻿{
+    "schema":  "kch.split-backup-manifest.v1.0.0",
+    "original_name":  "KCH_CANONICAL_BACKUP_20260811.zip",
+    "original_bytes":  181374030,
+    "original_sha256":  "983ea61138c280108c67d9b0290d373ed2ae3b6bfdd13b6688ea2ba7cc7fb140",
+    "part_size_limit_bytes":  94371840,
+    "reassembly_order":  "ascending index; binary concatenation without separators",
+    "powershell_reassembly":  "Get-Content .\\\\KCH_CANONICAL_BACKUP_20260811.zip.part* -AsByteStream | Set-Content .\\\\KCH_CANONICAL_BACKUP_20260811.zip -AsByteStream",
+    "parts":  [
+                  {
+                      "index":  1,
+                      "name":  "KCH_CANONICAL_BACKUP_20260811.zip.part001",
+                      "bytes":  94371840,
+                      "sha256":  "3205c2678819cf3fd4b744ba9e1bea1420c5d81c3dc6adab0e77b986713201cb"
+                  },
+                  {
+                      "index":  2,
+                      "name":  "KCH_CANONICAL_BACKUP_20260811.zip.part002",
+                      "bytes":  87002190,
+                      "sha256":  "a6c7e6f38a5604fdd5d9fa4feee977df772bf2e90a37a59e4a6713b4e0f694af"
+                  }
+              ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "kch.response-modes-test-adverse.v0.1.0",
+  "observed_at": "2026-08-11",
+  "state": "INVALID_TEST_ENVIRONMENT_PATH_THEN_CORRECTED",
+  "initial_result": {
+    "passed": 5,
+    "failed": 2,
+    "failure_classes": [
+      "RUNTIME_LOCATED_INSIDE_CONSTRUCT_STABLE_TREE",
+      "WINDOWS_DEEP_PATH_SQLITE_OPEN_FAILURE"
+    ]
+  },
+  "causal_localization": "The pytest basetemp was created inside the candidate tree that CONSTRUCT hashes and at a Windows path deep enough to prevent a nested SQLite database from opening. The five response-mode tests had already passed.",
+  "corrections": [
+    "Rerun from a short basetemp outside the candidate stable tree",
+    "Use the KCH deterministic-closing SQLite connection factory for response-mode storage"
+  ],
+  "corrected_result": {
+    "passed": 7,
+    "failed": 0,
+    "elapsed_seconds": 74.76
+  },
+  "claim_boundary": "This adverse result is evidence about test-path construction and Windows file-handle discipline, not evidence that the response-mode semantics failed."
+}

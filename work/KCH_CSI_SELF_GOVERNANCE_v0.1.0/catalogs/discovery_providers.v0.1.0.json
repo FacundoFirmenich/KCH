@@ -1,0 +1,20 @@
+{
+  "schema": "kch.extension-fabric-providers.v0.1.0",
+  "implemented_through": "SPECIFICATION_ONLY",
+  "providers": [
+    {"id": "CODEX_PLUGIN", "source_class": "HOST_ADDON", "search": true, "inspect": true, "install": "FUTURE_GOVERNED", "state": "NOT_IMPLEMENTED"},
+    {"id": "VSCODE_MARKETPLACE", "source_class": "HOST_ADDON", "search": true, "inspect": true, "install": "FUTURE_GOVERNED", "state": "NOT_IMPLEMENTED"},
+    {"id": "OPEN_VSX", "source_class": "HOST_ADDON", "search": true, "inspect": true, "install": "FUTURE_GOVERNED", "state": "NOT_IMPLEMENTED"},
+    {"id": "MCP_REGISTRY", "source_class": "MCP", "search": true, "inspect": true, "install": "FUTURE_GOVERNED", "state": "NOT_IMPLEMENTED"},
+    {"id": "PYPI", "source_class": "PACKAGE", "search": true, "inspect": true, "install": "FUTURE_ISOLATED", "state": "NOT_IMPLEMENTED"},
+    {"id": "NPM", "source_class": "PACKAGE", "search": true, "inspect": true, "install": "FUTURE_ISOLATED", "state": "NOT_IMPLEMENTED"},
+    {"id": "CONDA", "source_class": "PACKAGE", "search": true, "inspect": true, "install": "FUTURE_ISOLATED", "state": "NOT_IMPLEMENTED"},
+    {"id": "GITHUB_RELEASE", "source_class": "SOURCE_RELEASE", "search": true, "inspect": true, "install": "FUTURE_GOVERNED", "state": "NOT_IMPLEMENTED"},
+    {"id": "OCI", "source_class": "CONTAINER", "search": true, "inspect": true, "install": "FUTURE_ISOLATED", "state": "NOT_IMPLEMENTED"},
+    {"id": "OS_PACKAGE", "source_class": "RUNTIME", "search": true, "inspect": true, "install": "FUTURE_EXPLICIT", "state": "NOT_IMPLEMENTED"},
+    {"id": "CRATES_IO", "source_class": "FUTURE_PACKAGE", "search": false, "inspect": false, "install": "OUT_OF_INITIAL_SCOPE", "state": "DECLARED_FUTURE"},
+    {"id": "GO_MODULES", "source_class": "FUTURE_PACKAGE", "search": false, "inspect": false, "install": "OUT_OF_INITIAL_SCOPE", "state": "DECLARED_FUTURE"},
+    {"id": "NUGET", "source_class": "FUTURE_PACKAGE", "search": false, "inspect": false, "install": "OUT_OF_INITIAL_SCOPE", "state": "DECLARED_FUTURE"},
+    {"id": "MAVEN", "source_class": "FUTURE_PACKAGE", "search": false, "inspect": false, "install": "OUT_OF_INITIAL_SCOPE", "state": "DECLARED_FUTURE"}
+  ]
+}

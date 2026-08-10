@@ -1,0 +1,21 @@
+{
+  "schema": "kch.sco.node.v0.1.0",
+  "sco_id": "sco.kch-pre2g-continuation.20260809",
+  "node_id": "sco-disposable-live-probe-01",
+  "provider": "CODEX",
+  "native_uri": "codex://threads/019fe6f6-076b-7803-b3c3-88c6f29329f0",
+  "title": "SCO disposable live transport probe 01",
+  "role": "DISPOSABLE_LIVE_TRANSPORT_PROBE",
+  "responsibilities": [
+    "Receive one bounded SCO work order.",
+    "Return an exact textual receipt without side effects.",
+    "Preserve native context and refuse undeclared authority."
+  ],
+  "capabilities": ["RETURN_BOUNDED_TEXT_RECEIPT"],
+  "authority_granted": ["RETURN_BOUNDED_TEXT_RECEIPT"],
+  "autonomy_level": "RESPOND_WITHIN_SCOPE",
+  "context_policy": "SCOPED_DISCLOSURE_ONLY",
+  "memory_policy": "NATIVE_MEMORY_PRESERVED",
+  "connector_state": "HOST_VERIFIED_REFERENCE",
+  "source_provenance": "Codex create_thread and bootstrap receipt observed on 2026-08-09; bootstrap turn 019fe6f6-0ca5-7b72-a646-7d5ff60148b5."
+}

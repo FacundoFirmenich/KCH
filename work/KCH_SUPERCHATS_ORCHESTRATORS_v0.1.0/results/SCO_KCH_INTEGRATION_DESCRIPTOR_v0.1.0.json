@@ -1,0 +1,39 @@
+{
+  "schema": "kch.component-integration-descriptor.v0.1.0",
+  "component_id": "kch.sco",
+  "canonical_name": "KCH SuperChats Orchestrators (SCO)",
+  "version": "0.1.0",
+  "family": "KCH_ORCHESTRATION_SERVICE",
+  "state": "LOCAL_VALIDATED_INTEGRATION_CANDIDATE",
+  "kch_role": "Select and graph-orchestrate sovereign native chat/task sessions without fusing their context, memory, capabilities, authority or lifecycle.",
+  "csi_preset_id": "kch.preset.sco.orchestration",
+  "csi_lowering_state": "LOCAL_SEALED_BOUNDED",
+  "super_mcp_route_state": "NOT_REGISTERED",
+  "phl_emitter_inventory_state": "UNAVAILABLE_CONTRACT",
+  "kch_reviewable_decision_contract_state": "NOT_IMPLEMENTED_FOR_SCO_EVENTS",
+  "live_transport_states": {
+    "CODEX": "HOST_REFERENCE_VERIFIED_LIVE_WRITE_NOT_GATED",
+    "CHATGPT": "REFERENCE_ONLY_NO_LIVE_BRIDGE",
+    "CLINE": "UNAVAILABLE_NOT_TESTED",
+    "COWORK": "UNAVAILABLE_NOT_TESTED",
+    "OPENCODE": "UNAVAILABLE_NOT_TESTED"
+  },
+  "authority_inheritance": false,
+  "native_contexts_merged": false,
+  "native_memories_replaced": false,
+  "claim_ceiling": "LOCAL_FUNCTIONAL_SOVEREIGN_ORCHESTRATION_AND_REFERENCE_INTEROPERABILITY",
+  "promotion_blockers": [
+    "No live Codex write/read/receipt transport campaign through an SCO bridge.",
+    "No KCH reviewable-decision v0.2.0 adapter for governance-relevant SCO events.",
+    "No Super-MCP route registration or mutability catalogue entry for SCO.",
+    "No cross-provider live bridge gate.",
+    "No comparative outcome campaign against classical shared-context Projects."
+  ],
+  "next_gate": "GATE_SCO_CODEX_LIVE_TRANSPORT_AND_KCH_DECISION_ADAPTER_v0.2.0",
+  "evidence_refs": [
+    "SCO_VALIDATION_RESULT_v0.1.0.json",
+    "SCO_KCH_PRE2G_PORTABLE_BUNDLE_v0.1.0.json",
+    "SCO_KCH_PRE2G_CSI_LOWERING_v0.1.0.json",
+    "KCH_SUPER_MCP_FEDERATED_REGISTRY_v0.5.0.json"
+  ]
+}

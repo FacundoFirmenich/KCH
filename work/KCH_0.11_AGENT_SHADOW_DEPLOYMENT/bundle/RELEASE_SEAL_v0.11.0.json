@@ -1,0 +1,21 @@
+{
+  "automatic_promotion": false,
+  "claim_ceiling": "CANONICAL_PRE2G_MACRORELEASE_WITH_BOUNDED_EXECUTABLE_INTEGRATION",
+  "component_suite_tests": 108,
+  "component_suites": 7,
+  "component_suites_sha256": "cc20266e508191ea97979f3149d5cbc081ffe2329f46d7168e2af8b3826cf6fd",
+  "core_wheel_sha256": "1895dfadba8ceea025bd1ff5090fa2f96af66304bf550fe474751186f6799930",
+  "extracted_wheels_gate_sha256": "02439ecbab9e79458e10644601da2ff124eef9054e16752c5b2567508188f4a6",
+  "local_gate_sha256": "02439ecbab9e79458e10644601da2ff124eef9054e16752c5b2567508188f4a6",
+  "mutating_execution_authorized": false,
+  "package_version": "0.11.0",
+  "profiles": {
+    "agent-shadow": "DEFAULT",
+    "enforced": "PROHIBITED_UNTIL_GATES_PASS",
+    "minimal": "AVAILABLE",
+    "research": "AVAILABLE"
+  },
+  "release": "KCH 0.11",
+  "schema": "kch.release-seal.v0.11.0",
+  "state": "SEALED_CANONICAL_PRE2G_MACRORELEASE_LOCAL_BOUNDED"
+}

@@ -1,0 +1,2 @@
+[console_scripts]
+kch-phl-integration = kch_phl_integration.server:main

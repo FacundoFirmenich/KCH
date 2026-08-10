@@ -1,0 +1,11 @@
+{
+  "archive": "KCH_0.11_AGENT_SHADOW_EVIDENCE_PACKAGE_v0.1.0.zip",
+  "archive_sha256": "565b12429fb1a9079bbaf814c29c5b9edc8e83717f78afe60c1df272d6df4d5d",
+  "failures": [],
+  "manifest_sha256": "e88aeba9e9fb3de3723352ce16c1e580b30cfba1cfd309f4c433079c972a458e",
+  "phl_real_session": "NOT_RUN_DEFERRED_BY_USER",
+  "reextraction_gate": "PASS",
+  "release": "KCH 0.11",
+  "schema": "kch.agent-shadow-evidence-package-seal.v0.1.0",
+  "verified_files": 16
+}

@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: kch-obl-phl-learning-system
+Version: 0.1.1
+Summary: KCH Onboarding Learning and persistent Post Hoc Learning praxis workbench
+Requires-Python: >=3.11
+Dynamic: requires-python
+Dynamic: summary

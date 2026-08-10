@@ -1,0 +1,40 @@
+{
+  "schema": "kch.portable-post-install-gate.v0.1.0",
+  "gate": "PASS_BOUNDED",
+  "checks": {
+    "initialize_protocol": true,
+    "combined_tool_surface": true,
+    "advanced_tools_present": true,
+    "launcher_running": true,
+    "launcher_blind_spots_zero": true,
+    "phl_real_not_executed": true,
+    "mis_480_records": true,
+    "mis_60_ledgers": true,
+    "mis_authority_false": true
+  },
+  "checks_passed": 9,
+  "checks_total": 9,
+  "combined_tool_count": 107,
+  "mis_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+  "wheel_hashes": {
+    "cffi-2.1.1-cp314-cp314-win_amd64.whl": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48",
+    "kch_csi_studio_extension_fabric-0.1.0-py3-none-any.whl": "ec6f60861dbf7b124a0086ecaff956643b47ee634eef19ab3abcbc1007e6f331",
+    "kch_mis_v03_integration-0.1.0-py3-none-any.whl": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+    "kch_obl_phl_learning_system-0.1.1-py3-none-any.whl": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+    "kch_phl_effective_integration-0.2.0-py3-none-any.whl": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+    "kch_rigor_gradient_governor-0.1.0-py3-none-any.whl": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+    "kch_superchats_orchestrators-0.1.0-py3-none-any.whl": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+    "kwancode_harness-0.11.0-py3-none-any.whl": "1895dfadba8ceea025bd1ff5090fa2f96af66304bf550fe474751186f6799930",
+    "kwanprompts-0.1.0-py3-none-any.whl": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+    "mis_qualitative_bayes-0.3.1-py3-none-any.whl": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+    "numpy-2.5.2-cp314-cp314-win_amd64.whl": "7587f53dfbd5edc0f7b87c6217b4c6d2d1f2ef9c3da70bc1315e7db5f8d7ec9d",
+    "pillow-12.3.0-cp314-cp314-win_amd64.whl": "fdafc9cce40277e0f7a0feabce0ee50dd2fa1800f3b38015e51296b5e814048d",
+    "pycparser-3.0-py3-none-any.whl": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+    "pypdf-6.15.0-py3-none-any.whl": "14e001d6504822cb1ca9c7ed9a69bccb320f59b320730f55af804361abe4d5ee",
+    "sounddevice-0.5.5-py3-none-win_amd64.whl": "cfc6b2c49fb7f555591c78cb8ecf48d6a637fd5b6e1db5fec6ed9365d64b3519"
+  },
+  "external_host_configuration_modified": false,
+  "microphone_activated": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "LOCAL_PORTABLE_INSTALLATION_STDIO_COMPOSITION_AND_BOUNDED_MIS_REPLAY"
+}

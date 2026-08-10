@@ -1,0 +1,253 @@
+{
+  "schema": "kch.prepilot-evaluation.v0.3.0",
+  "case_id": "KCH-PREPILOT-003",
+  "independent_archive_oracle": {
+    "archive_sha256": "038d4abff544793253abab3caeb2ff541f09e385c94c3d3d6fd28fb90983ab14",
+    "crc_pass": true,
+    "single_root": true,
+    "member_count": 241,
+    "manifest_file_count": 240,
+    "manifest_mismatches": [],
+    "undeclared_except_manifest": []
+  },
+  "results": {
+    "BASELINE_RELEASE_AUDIT": {
+      "bytes": 120044,
+      "sha256": "4feac57a1eb14fe62650a379677255c6dba5c5f2eeb8ff76b2d61ccf1a65577f",
+      "quality": {
+        "score": 100,
+        "maximum": 100,
+        "sections": {
+          "contract": {
+            "pass": true,
+            "score": 5
+          },
+          "input_receipt": {
+            "checks": [
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\release_build\\KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R9.zip",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_INSTALL_FAILURE_R6.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_FAILURE_R7.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_TIMEOUT_R8.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_R8_INITIALIZE_DIAGNOSIS.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_INSTALL_RECEIPT_R9.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_GATE_R9.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_001\\evaluation.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\evaluation.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\docs\\BIND_2026_PREPILOTO.md",
+                "pass": true
+              }
+            ],
+            "score": 20
+          },
+          "archive": {
+            "checks": {
+              "archive_hash": true,
+              "crc": true,
+              "single_root": true,
+              "manifest_all": true,
+              "undeclared_none": true
+            },
+            "score": 20
+          },
+          "chronology": {
+            "checks": {
+              "r6": true,
+              "r7": true,
+              "r8": true,
+              "r9": true
+            },
+            "score": 16
+          },
+          "installed_gate": {
+            "checks": {
+              "247_tools": true,
+              "14_checks": true,
+              "17_governance": true,
+              "mis_480_60": true,
+              "authority_false": true,
+              "preflight_pass": true,
+              "workbench_pass": true
+            },
+            "score": 14
+          },
+          "prepilots": {
+            "pass": true,
+            "score": 10
+          },
+          "adjudication": {
+            "pass": true,
+            "score": 5
+          },
+          "bind": {
+            "pass": true,
+            "score": 5
+          },
+          "discipline": {
+            "pass": true,
+            "score": 5
+          }
+        }
+      },
+      "condition_integrity": {
+        "checks": {
+          "condition": true,
+          "live_kch_false": true
+        },
+        "gate": "PASS"
+      }
+    },
+    "KCH_INSTALLED_R9_ASSISTED": {
+      "bytes": 118520,
+      "sha256": "61475ac020b092ba6f9950b3e3af104af9a6d662809b12ef00dde6bed5a9b683",
+      "quality": {
+        "score": 100,
+        "maximum": 100,
+        "sections": {
+          "contract": {
+            "pass": true,
+            "score": 5
+          },
+          "input_receipt": {
+            "checks": [
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\release_build\\KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R9.zip",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_INSTALL_FAILURE_R6.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_FAILURE_R7.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_TIMEOUT_R8.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_R8_INITIALIZE_DIAGNOSIS.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_INSTALL_RECEIPT_R9.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\results\\KCH_PORTABLE_POST_INSTALL_GATE_R9.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_001\\evaluation.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_PREPILOT_002\\evaluation.json",
+                "pass": true
+              },
+              {
+                "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\docs\\BIND_2026_PREPILOTO.md",
+                "pass": true
+              }
+            ],
+            "score": 20
+          },
+          "archive": {
+            "checks": {
+              "archive_hash": true,
+              "crc": true,
+              "single_root": true,
+              "manifest_all": true,
+              "undeclared_none": true
+            },
+            "score": 20
+          },
+          "chronology": {
+            "checks": {
+              "r6": true,
+              "r7": true,
+              "r8": true,
+              "r9": true
+            },
+            "score": 16
+          },
+          "installed_gate": {
+            "checks": {
+              "247_tools": true,
+              "14_checks": true,
+              "17_governance": true,
+              "mis_480_60": true,
+              "authority_false": true,
+              "preflight_pass": true,
+              "workbench_pass": true
+            },
+            "score": 14
+          },
+          "prepilots": {
+            "pass": true,
+            "score": 10
+          },
+          "adjudication": {
+            "pass": true,
+            "score": 5
+          },
+          "bind": {
+            "pass": true,
+            "score": 5
+          },
+          "discipline": {
+            "pass": true,
+            "score": 5
+          }
+        }
+      },
+      "condition_integrity": {
+        "checks": {
+          "condition": true,
+          "live_kch_true": true,
+          "installed_executable": true,
+          "247_tools": true,
+          "preflight_pass": true,
+          "workbench_pass": true,
+          "mis_480_60": true,
+          "closed": true
+        },
+        "gate": "PASS"
+      }
+    }
+  },
+  "comparative_condition_gate": "PASS_SINGLE_NONRANDOMIZED_PAIR",
+  "descriptive_outcome": "TIE",
+  "causal_effect": "NOT_ESTIMABLE",
+  "industrial_validation": false,
+  "release_state": "READY_FOR_CONTROLLED_DOGFOOD_NOT_INDUSTRIAL_VALIDATION",
+  "next_gate": "Replicate distinct failure cases with condition-blinded adjudication and then perform controlled host dogfooding without real PHL."
+}

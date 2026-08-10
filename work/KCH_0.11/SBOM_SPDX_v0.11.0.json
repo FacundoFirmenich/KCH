@@ -1,0 +1,191 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2026-08-09T00:00:00Z",
+    "creators": [
+      "Tool: KCH-0.11-sealer"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://kwancode.local/spdx/KCH-0.11/da6df2e42dddac3f67da3f24809105aa1522d0c557b132d15beee7b17eb1a7cc",
+  "name": "KCH-0.11-offline-bundle",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-kch-mis-v03-integration",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kch-mis-v03-integration@0.1.0",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "kch-mis-v03-integration",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kch-obl-phl-learning-system",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kch-obl-phl-learning-system@0.1.1",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "kch-obl-phl-learning-system",
+      "versionInfo": "0.1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kch-phl-effective-integration",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kch-phl-effective-integration@0.2.0",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "kch-phl-effective-integration",
+      "versionInfo": "0.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kch-rigor-gradient-governor",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kch-rigor-gradient-governor@0.1.0",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Proprietary research checkpoint",
+      "name": "kch-rigor-gradient-governor",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kch-superchats-orchestrators",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kch-superchats-orchestrators@0.1.0",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "kch-superchats-orchestrators",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kwancode-harness",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1895dfadba8ceea025bd1ff5090fa2f96af66304bf550fe474751186f6799930"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kwancode-harness@0.11.0",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "kwancode-harness",
+      "versionInfo": "0.11.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kwanprompts",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/kwanprompts@0.1.0",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "kwanprompts",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-mis-qualitative-bayes",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157"
+        }
+      ],
+      "downloadLocation": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:pypi/mis-qualitative-bayes@0.3.1",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Proprietary research software",
+      "name": "mis-qualitative-bayes",
+      "versionInfo": "0.3.1"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}

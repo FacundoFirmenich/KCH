@@ -1,0 +1,1388 @@
+{
+  "initialized": {
+    "capabilities": {
+      "resources": {},
+      "tools": {}
+    },
+    "protocolVersion": "2025-06-18",
+    "serverInfo": {
+      "name": "kwancode-harness",
+      "version": "0.11.0"
+    }
+  },
+  "resource_count": 4,
+  "resources": [
+    {
+      "mimeType": "application/json",
+      "name": "KCH 0.11 canonical federated registry",
+      "uri": "kch://registry/current"
+    },
+    {
+      "mimeType": "application/json",
+      "name": "KCH 0.11 reflexive control catalog",
+      "uri": "kch://controls/28"
+    },
+    {
+      "mimeType": "application/json",
+      "name": "KCH 0.11 runtime status",
+      "uri": "kch://status/current"
+    },
+    {
+      "mimeType": "application/json",
+      "name": "KCH 0.11 append-only audit export",
+      "uri": "kch://audit/current"
+    }
+  ],
+  "schema": "kch.super-mcp-live-interface.v0.11.0",
+  "tool_count": 49,
+  "tools": [
+    {
+      "description": "Return KCH 0.11 runtime, profile, ledger, component and claim-boundary status.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.super.status"
+    },
+    {
+      "description": "Return the canonical KCH 0.11 federated registry without merging service authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.super.registry"
+    },
+    {
+      "description": "Return the exact catalog of 28 reflexive controls and evidence ceiling.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.super.controls"
+    },
+    {
+      "description": "Open a governed session and issue one-use objective-bound capabilities.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "USER",
+              "SYSTEM_AUTHORITY"
+            ]
+          },
+          "authority_granted": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "expected_evidence_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "jurisdiction": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "objective_contract_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "objective_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "project_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "stop_condition_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ttl_seconds": {
+            "maximum": 3600,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "session_id",
+          "actor",
+          "objective_id",
+          "objective_contract_sha256",
+          "project_id",
+          "jurisdiction",
+          "authority_granted",
+          "stop_condition_ids",
+          "expected_evidence_ids"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.session.open"
+    },
+    {
+      "description": "Admit one preregistered evidence record with explicit role, provenance and jurisdiction.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "jurisdiction": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "provenance_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "role": {
+            "enum": [
+              "DIRECT",
+              "DERIVED",
+              "TRANSPORT",
+              "EXECUTION",
+              "OUTCOME"
+            ]
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_id",
+          "evidence_id",
+          "source_sha256",
+          "jurisdiction",
+          "role",
+          "provenance_ids",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.evidence.admit"
+    },
+    {
+      "description": "Evaluate an explicit subset of R01-R28 and compose their receipts without creating authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "controls": {
+            "additionalProperties": {
+              "type": "object"
+            },
+            "minProperties": 1,
+            "type": "object"
+          }
+        },
+        "required": [
+          "controls"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.context.compile"
+    },
+    {
+      "description": "Record a governed action proposal; proposal is not authorization.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "action_class": {
+            "enum": [
+              "READ_ONLY",
+              "MUTATING"
+            ]
+          },
+          "arguments": {
+            "type": "object"
+          },
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "requested_authority": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "route": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ttl_seconds": {
+            "maximum": 3600,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "session_id",
+          "route",
+          "action_class",
+          "requested_authority",
+          "evidence_ids",
+          "arguments",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.action.propose"
+    },
+    {
+      "description": "Authorize only evidence-complete read-only proposals; mutating execution remains unavailable.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "control_receipts": {
+            "items": {
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "proposal_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ttl_seconds": {
+            "maximum": 3600,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "session_id",
+          "proposal_id",
+          "control_receipts",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.action.authorize"
+    },
+    {
+      "description": "Execute a one-use authorized read-only federated route. Mutating routes are prohibited in KCH 0.11.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "proposal_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_id",
+          "proposal_id",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.action.execute"
+    },
+    {
+      "description": "Verify objective, jurisdiction, evidence, artifact identity and external observer before shadow precommit.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_artifact_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "external_observer_verdict": {
+            "enum": [
+              "PASS",
+              "BLOCK",
+              "UNAVAILABLE"
+            ]
+          },
+          "jurisdiction": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "objective_contract_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "observed_artifact_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_id",
+          "objective_contract_sha256",
+          "jurisdiction",
+          "evidence_ids",
+          "candidate_artifact_sha256",
+          "observed_artifact_sha256",
+          "external_observer_verdict",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.precommit.verify"
+    },
+    {
+      "description": "Append an immutable compensating rollback record; it never rewrites history or silently mutates files.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "human_authorized": {
+            "type": "boolean"
+          },
+          "reason": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_event_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_id",
+          "target_event_hash",
+          "reason",
+          "human_authorized",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.rollback"
+    },
+    {
+      "description": "Register an outcome, including adverse results, without rewriting historical evidence.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "adverse": {
+            "type": "boolean"
+          },
+          "capability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "interpretation": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "outcome_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "session_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "state": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_id",
+          "outcome_id",
+          "state",
+          "evidence_ids",
+          "adverse",
+          "interpretation",
+          "capability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.super.outcome.register"
+    },
+    {
+      "description": "Export the append-only KCH 0.11 event chain and content hash.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.super.audit.export"
+    },
+    {
+      "description": "Rehash the portable evidence copies referenced by the registry.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.super.registry.evidence.audit"
+    },
+    {
+      "description": "Probe installed sovereign component distributions without invoking mutations.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.component.status"
+    },
+    {
+      "description": "Read and verify the effectively integrated PHL/KCH state projection.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.phl.projection"
+    },
+    {
+      "description": "Read and verify an SCO graph projection while preserving chat sovereignty.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "sco_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.sco.projection"
+    },
+    {
+      "description": "Verify the sealed MIS v0.3.1 historical integration certificate; creates no KCH authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.mis.certificate.verify"
+    },
+    {
+      "description": "Probe KwanPrompts package availability only.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.kwanprompts.probe"
+    },
+    {
+      "description": "Probe Rigor Gradient Governor package availability only.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.rgg.probe"
+    },
+    {
+      "description": "Probe OBL/PHL learning package availability only.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "kch.obl_phl.probe"
+    },
+    {
+      "description": "Bloqueo del objetivo gobernante. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_objective_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "governing_objective_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "governing_objective_id",
+          "candidate_objective_id"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R01"
+    },
+    {
+      "description": "Firewall entre proyectos. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "authority_inherited": {
+            "type": "boolean"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_project_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_project_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          },
+          "transfer_contract_verified": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "source_project_id",
+          "target_project_id",
+          "transfer_contract_verified",
+          "authority_inherited"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R02"
+    },
+    {
+      "description": "Compilador de autorización. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "action_classified": {
+            "type": "boolean"
+          },
+          "granted_authority": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "requested_authority": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "requested_authority",
+          "granted_authority",
+          "action_classified"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R03"
+    },
+    {
+      "description": "KCH aplicado al propio agente. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "external_observer": {
+            "type": "boolean"
+          },
+          "observer_independence_verified": {
+            "type": "boolean"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "external_observer",
+          "observer_independence_verified"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R04"
+    },
+    {
+      "description": "Recibo previo de coste y alcance. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "cost_receipt": {
+            "type": "object"
+          },
+          "deliverables": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "scope": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "scope",
+          "deliverables",
+          "cost_receipt"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R05"
+    },
+    {
+      "description": "Presupuesto de tokens y fan-out. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "fanout_budget": {
+            "type": "integer"
+          },
+          "projected_fanout": {
+            "type": "integer"
+          },
+          "projected_tokens": {
+            "type": "integer"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "token_budget": {
+            "type": "integer"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "token_budget",
+          "fanout_budget",
+          "projected_tokens",
+          "projected_fanout"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R06"
+    },
+    {
+      "description": "Probe barato obligatorio. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "probe_applicable": {
+            "type": "boolean"
+          },
+          "probe_executed": {
+            "type": "boolean"
+          },
+          "probe_result": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "probe_applicable",
+          "probe_executed",
+          "probe_result"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R07"
+    },
+    {
+      "description": "Parada por irrelevancia. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "relevance_state": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "relevance_state"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R08"
+    },
+    {
+      "description": "Firewall ciencia-producto. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "boundary_explicit": {
+            "type": "boolean"
+          },
+          "claim_mode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "governing_mode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "governing_mode",
+          "claim_mode",
+          "boundary_explicit"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R09"
+    },
+    {
+      "description": "Mapa directo-transferible-no aplicable. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "applicability": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "applicability"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R10"
+    },
+    {
+      "description": "Auditor del significado de avance. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_delta": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "position_change": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "position_change",
+          "evidence_delta"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R11"
+    },
+    {
+      "description": "Ledger de coste de oportunidad. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "options": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "options"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R12"
+    },
+    {
+      "description": "Control de comunicación completa. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limitations": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "meaning": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "next_critical_action": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "observed_result": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "observed_result",
+          "meaning",
+          "limitations",
+          "next_critical_action"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R13"
+    },
+    {
+      "description": "Firewall de readiness comercial. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "commercial_readiness_claimed": {
+            "type": "boolean"
+          },
+          "readiness_evidence": {
+            "type": "object"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "commercial_readiness_claimed",
+          "readiness_evidence"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R14"
+    },
+    {
+      "description": "Enlace claim-fuente-ejecución-jurisdicción. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "claims": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R15"
+    },
+    {
+      "description": "Registro canónico de nombre y genealogía. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "canonical_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "collision_free": {
+            "type": "boolean"
+          },
+          "genealogy": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "canonical_name",
+          "genealogy",
+          "collision_free"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R16"
+    },
+    {
+      "description": "Ledger de últimas correcciones del usuario. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "corrections": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "corrections"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R17"
+    },
+    {
+      "description": "Detector de contaminación entre tareas. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "contamination_hits": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "contamination_hits"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R18"
+    },
+    {
+      "description": "Validador de handoff mínimo y suficiente. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "handoff": {
+            "type": "object"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "handoff"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R19"
+    },
+    {
+      "description": "Limitador de proliferación documental. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "necessary_artifacts": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "planned_artifacts": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "planned_artifacts",
+          "necessary_artifacts"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R20"
+    },
+    {
+      "description": "Extractor de valor de resultados adversos. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "adverse_results": {
+            "type": "array"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "adverse_results"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R21"
+    },
+    {
+      "description": "Ledger de reparación. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "repairs": {
+            "type": "array"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "repairs"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R22"
+    },
+    {
+      "description": "Interrupción humana prioritaria. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "human_interrupt_pending": {
+            "type": "boolean"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "human_interrupt_pending"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R23"
+    },
+    {
+      "description": "Auditor de divergencia decisión-evidencia. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "decision_equivalent": {
+            "type": "boolean"
+          },
+          "evidence_contract_equivalent": {
+            "type": "boolean"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "decision_equivalent",
+          "evidence_contract_equivalent"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R24"
+    },
+    {
+      "description": "Canonicalizador de roles de evidencia. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_roles": {
+            "type": "object"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "evidence_roles"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R25"
+    },
+    {
+      "description": "Veto de métricas degeneradas. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "metric_discriminates": {
+            "type": "boolean"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "type": "integer"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          },
+          "unique_values": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sample_count",
+          "unique_values",
+          "metric_discriminates"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R26"
+    },
+    {
+      "description": "Control de completitud de transporte y fallos unitarios. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          },
+          "transport_complete": {
+            "type": "boolean"
+          },
+          "unit_failures": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "transport_complete",
+          "unit_failures"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R27"
+    },
+    {
+      "description": "Degradación automática de autoridad cuando se pierde evidencia. Returns a signed-by-content governance receipt; never creates authority.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "authority_after_loss": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_available": {
+            "type": "boolean"
+          },
+          "redundancy_justification": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "transfer_conditions": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "evidence_available",
+          "authority_after_loss"
+        ],
+        "type": "object"
+      },
+      "name": "kch.control.R28"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "kch.sco.provider-adapter-matrix.v0.1.0",
+  "providers": [
+    {
+      "provider": "CODEX",
+      "native_uri_prefix": "codex://threads/",
+      "selection": "HOST_BRIDGE_VERIFIED_THIS_RUN",
+      "standalone_discovery": "HOST_BRIDGE_REQUIRED",
+      "standalone_read": "HOST_BRIDGE_REQUIRED",
+      "standalone_dispatch": "HOST_BRIDGE_REQUIRED",
+      "verified_capabilities": ["REGISTER_EXACT_REFERENCE", "PRESERVE_NATIVE_ID", "EMIT_DISPATCH_ENVELOPE"]
+    },
+    {
+      "provider": "CHATGPT",
+      "native_uri_prefix": "chatgpt://threads/",
+      "selection": "REFERENCE_REGISTRATION_SUPPORTED",
+      "standalone_discovery": "HOST_BRIDGE_REQUIRED",
+      "standalone_read": "HOST_BRIDGE_REQUIRED",
+      "standalone_dispatch": "HOST_BRIDGE_REQUIRED",
+      "verified_capabilities": ["REGISTER_EXACT_REFERENCE", "PRESERVE_NATIVE_ID", "EMIT_DISPATCH_ENVELOPE"]
+    },
+    {
+      "provider": "CLINE",
+      "native_uri_prefix": "cline://tasks/",
+      "selection": "REFERENCE_REGISTRATION_SUPPORTED",
+      "standalone_discovery": "UNAVAILABLE_NOT_TESTED",
+      "standalone_read": "UNAVAILABLE_NOT_TESTED",
+      "standalone_dispatch": "UNAVAILABLE_NOT_TESTED",
+      "verified_capabilities": ["REGISTER_EXACT_REFERENCE", "PRESERVE_NATIVE_ID", "EMIT_DISPATCH_ENVELOPE"]
+    },
+    {
+      "provider": "COWORK",
+      "native_uri_prefix": "cowork://tasks/",
+      "selection": "REFERENCE_REGISTRATION_SUPPORTED",
+      "standalone_discovery": "UNAVAILABLE_NOT_TESTED",
+      "standalone_read": "UNAVAILABLE_NOT_TESTED",
+      "standalone_dispatch": "UNAVAILABLE_NOT_TESTED",
+      "verified_capabilities": ["REGISTER_EXACT_REFERENCE", "PRESERVE_NATIVE_ID", "EMIT_DISPATCH_ENVELOPE"]
+    },
+    {
+      "provider": "OPENCODE",
+      "native_uri_prefix": "opencode://sessions/",
+      "selection": "REFERENCE_REGISTRATION_SUPPORTED",
+      "standalone_discovery": "UNAVAILABLE_NOT_TESTED",
+      "standalone_read": "UNAVAILABLE_NOT_TESTED",
+      "standalone_dispatch": "UNAVAILABLE_NOT_TESTED",
+      "verified_capabilities": ["REGISTER_EXACT_REFERENCE", "PRESERVE_NATIVE_ID", "EMIT_DISPATCH_ENVELOPE"]
+    }
+  ],
+  "global_claim_ceiling": "REFERENCE_AND_ENVELOPE_INTEROPERABILITY_ONLY_UNTIL_LIVE_PROVIDER_BRIDGES_PASS_SEPARATE_GATES"
+}

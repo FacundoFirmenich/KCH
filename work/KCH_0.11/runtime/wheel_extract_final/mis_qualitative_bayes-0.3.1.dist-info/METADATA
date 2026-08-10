@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: mis-qualitative-bayes
+Version: 0.3.1
+Summary: Exact Bayesian decision calculus over native qualitative semantic states
+Author: Facundo Firmenich
+License: Proprietary research software
+Requires-Python: >=3.11

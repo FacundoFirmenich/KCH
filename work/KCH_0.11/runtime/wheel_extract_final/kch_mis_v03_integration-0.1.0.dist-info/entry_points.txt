@@ -1,0 +1,2 @@
+[console_scripts]
+kch-mis-v03-gate = kch_mis_v03_integration.gate:main

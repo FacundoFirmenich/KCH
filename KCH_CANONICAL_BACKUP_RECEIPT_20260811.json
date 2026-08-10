@@ -1,0 +1,15 @@
+﻿{
+    "schema":  "kch.canonical-backup-local-receipt.v1.0.0",
+    "created_at":  "2026-08-11T01:52:19.9534648+02:00",
+    "archive":  "D:\\KCH_BACKUP_STAGING_20260811\\KCH_CANONICAL_BACKUP_20260811.zip",
+    "archive_bytes":  181374030,
+    "archive_sha256":  "983ea61138c280108c67d9b0290d373ed2ae3b6bfdd13b6688ea2ba7cc7fb140",
+    "zip_entry_count":  1934,
+    "zip_list_gate":  "PASS",
+    "file_manifest":  "D:\\KCH_BACKUP_STAGING_20260811\\repo\\KCH_BACKUP_FILE_MANIFEST_20260811.json",
+    "file_manifest_sha256":  "015a2efc1d09b1de36c7b2421ca5965ef979e45f47577af306a7c455b6040f5b",
+    "r10_sha256":  "90069c91fe8d57aca44b19d515fa7fad0664395c06e5ab99dfd0803ab39c67ea",
+    "drive_folder_id":  "1f0vH7T7oLwOh7or5wKs4FoNgnY7quVR3",
+    "github_repository":  "FacundoFirmenich/KCH",
+    "github_required_visibility":  "PRIVATE"
+}

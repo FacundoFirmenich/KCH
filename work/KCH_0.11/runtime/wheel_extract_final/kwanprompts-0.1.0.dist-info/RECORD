@@ -1,0 +1,16 @@
+kwanprompts/__init__.py,sha256=2mHXix1oyqW8rEknSj96GFv_TOEKyjT2gnMqZHTNslg,229
+kwanprompts/canonical.py,sha256=4urYOv2VqF9dkKtxse7FpLeBaLZZbkHLz9oJG4Ymd5k,494
+kwanprompts/classifier.py,sha256=gTfWAXWTHS1id5j2Eu_RfdNEUy0ABxr_QBc2ESt_1K4,7906
+kwanprompts/classifier_final.py,sha256=A6eyQ3sqotTXAl5_DR-YoySIgZGfR9mEWyAm6JPlpSM,429
+kwanprompts/ledger.py,sha256=ftyMfU839oBgQ9h4scLmerDBya2SHXraaJkYH82UE3I,7802
+kwanprompts/ledger_final.py,sha256=BxTS0Fi0kNFxrhqEWxCBiNeFKa7ZjvxgYPuvq2xa7lk,877
+kwanprompts/mcp_server.py,sha256=Grxrh5sLG0a2amMlRGP5hLLz6Sji56Osg5MjbxPBZWI,5421
+kwanprompts/mcp_server_final.py,sha256=VqUgm5xslobPPuasFiglzPLlbiJq8dly2BTb3GU78oE,954
+kwanprompts/mcp_server_release.py,sha256=acZcbnJXzrdt9BwLqQL0ZV0aKeEtLzdG5EteR8cPUYM,960
+kwanprompts/service.py,sha256=nUOfKaTpHO1wrunpGmA0q-3UO8SUmBXjzRw6F6PoAvk,7206
+kwanprompts/service_final.py,sha256=1-2OyQVEn7dHrBC2ejmvc8m0jVCia-1U7Kvyir8sUXs,358
+kwanprompts-0.1.0.dist-info/METADATA,sha256=UkaZ4V3O5IL9J9Q_xMW9UDXQotvuZJvqk7A2gUcgszA,159
+kwanprompts-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+kwanprompts-0.1.0.dist-info/entry_points.txt,sha256=PbiVon8NknrAdQFT2sQ5t_QGJlljyFpjuAznt_XrjRE,64
+kwanprompts-0.1.0.dist-info/top_level.txt,sha256=9FGonUP8aqGT0JF3Ho7oexlWwfm1ZlmbmXSiS8NCL1c,12
+kwanprompts-0.1.0.dist-info/RECORD,,

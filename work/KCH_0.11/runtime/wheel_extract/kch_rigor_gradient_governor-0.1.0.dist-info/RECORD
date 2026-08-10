@@ -1,0 +1,8 @@
+kch_rigor_governor/__init__.py,sha256=onDxC9RbZEenpTfX5x-i_LpxijtXNqzkYkHJn7_W5DU,245
+kch_rigor_governor/core.py,sha256=-ItLo3qd8JrRRHWeMg-QZaHK-z7bciPL8Iv0GZCKcFE,19979
+kch_rigor_governor/mcp_server.py,sha256=sAiG4w8tkOEKni3uWyM0c7E2RJtHGQYyC41D8F-Bpmk,6186
+kch_rigor_gradient_governor-0.1.0.dist-info/METADATA,sha256=EsEBK7sv5TCGLt5-UpEus4WOUxEt-7BNGu6F5Bo1Wrw,216
+kch_rigor_gradient_governor-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+kch_rigor_gradient_governor-0.1.0.dist-info/entry_points.txt,sha256=LXwBz38v_11inTxBuv12wQ2XPL6ZlRlsOPJZm_mbeWQ,74
+kch_rigor_gradient_governor-0.1.0.dist-info/top_level.txt,sha256=0IVVHgW3WeEfSqHBka5_IENQxmsOiH6Yqp0V_NdPFEs,19
+kch_rigor_gradient_governor-0.1.0.dist-info/RECORD,,

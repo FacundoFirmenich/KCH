@@ -1,0 +1,12 @@
+{
+  "schema": "kch.release-build-adverse-receipt.v0.1.0",
+  "release": "KCH_0.11_PRE2G_R7",
+  "gate": "FAIL_BEFORE_ARCHIVE",
+  "failure": "INACCESSIBLE_EPHEMERAL_PYTEST_DIRECTORY_NOT_EXCLUDED",
+  "path_name": ".pytest_tmp_review",
+  "error": "WinError 5 access denied during shutil.copytree",
+  "source_or_runtime_failure": false,
+  "external_state_modified": false,
+  "historical_result_immutable": true,
+  "corrective_action": "Exclude .pytest_tmp* and runtime_* from release source copies, then rebuild in a new staging root."
+}

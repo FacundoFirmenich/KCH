@@ -1,0 +1,4 @@
+interface:
+  display_name: "Operate KCH CSI Studio"
+  short_description: "Build governed CSI artifacts with KCH"
+  default_prompt: "Use $operate-kch-csi-studio to create and validate a staged KCH artifact."
