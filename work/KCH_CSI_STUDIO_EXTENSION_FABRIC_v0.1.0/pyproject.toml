@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kch-csi-studio-extension-fabric"
-version = "0.3.0"
+version = "0.3.11"
 description = "Transactional CSI Studio and governed extension fabric for KwanCode Harness"
 requires-python = ">=3.11"
 dependencies = [
@@ -27,6 +27,8 @@ dependencies = [
 kch-studio = "kch_studio.cli:main"
 kch-studio-mcp = "kch_studio.mcp_server:main"
 kch-super-mcp-studio = "kch_studio.super_mcp_overlay:main"
+kch-codex-bootstrap-mcp = "kch_studio.codex_bootstrap_mcp:main"
+kch-codex-preflight-mcp = "kch_studio.codex_preflight_mcp:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -6,6 +6,21 @@ KCH es el sistema nodriza de integración, orquestación y gobierno multicapas y
 
 ## Estado verificable de esta captura
 
+La captura canónica vigente es R21. R10 permanece en el historial y en sus artefactos como evidencia precedente; no fue reescrita.
+
+- Candidato portable integrado: `KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip`.
+- SHA-256 del candidato R21: `98ba1faa4c63302f67ec386b9ecf684762e7923febc3039cd8c201a024091b54`.
+- Regresión fuente final: **102/102** pruebas y Ruff PASS, sin relanzamientos y con fuente idéntica antes/después.
+- Gate postinstalación fresca A2: **22/22**, estado `PASS_BOUNDED`, 294 herramientas combinadas.
+- Gobernanza compilada: 23 nodos, 7 agentes y 13 reglas.
+- R21 incorpora llaves constitucionales opcionales: bloqueo antes del efecto, propuesta explicada, autorización local exacta de un uso y detección de deriva acotada.
+- El gate instalado verificó que `ALWAYS_THIS_SESSION` no atraviesa una llave, que una alteración no consume la autorización y que el cambio exacto sólo puede ejecutarse una vez.
+- PHL continúa autorizado, no entrenado y no ejecutado.
+
+Evidencia principal: `benchmarks/KCH_R21_LOCK_KEYS_GATE/`. Checkpoint sustantivo: `CHECKPOINT_MATERIAL_R21_LLAVES_CONSTITUCIONALES_ES.md`.
+
+## Captura histórica R10
+
 - Candidato portable integrado: `KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R10.zip`.
 - SHA-256 del candidato R10: `90069c91fe8d57aca44b19d515fa7fad0664395c06e5ab99dfd0803ab39c67ea`.
 - Regresión local exhaustiva dividida: **40/40** pruebas superadas.

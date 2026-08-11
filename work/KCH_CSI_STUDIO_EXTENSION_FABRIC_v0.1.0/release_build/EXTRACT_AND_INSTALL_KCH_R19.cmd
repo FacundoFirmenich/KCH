@@ -1,0 +1,2 @@
+@echo off
+python "%~dp0EXTRACT_AND_INSTALL_KCH_R19.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R19.zip"

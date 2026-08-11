@@ -567,10 +567,38 @@ OPERATIONAL_TOOLS = [
         ["session_id"],
     ),
     mut(
+        "construct_file_write_propose",
+        "Propose an exact locked CONSTRUCT write",
+        "Compute the exact candidate preimage, proposed hash and recovery-bound change request without modifying candidate bytes. Only a trusted local user gesture may authorize it.",
+        {
+            "session_id": S,
+            "relative_path": S,
+            "content": S,
+            "rationale": S,
+            "impact": S,
+            "dependencies": A,
+            "recovery_plan": S,
+        },
+        [
+            "session_id",
+            "relative_path",
+            "content",
+            "rationale",
+            "impact",
+            "dependencies",
+            "recovery_plan",
+        ],
+    ),
+    mut(
         "construct_file_write",
         "Write CONSTRUCT candidate file",
-        "Write only inside a versioned candidate while preserving any preimage.",
-        {"session_id": S, "relative_path": S, "content": S},
+        "Write only inside a versioned candidate while preserving any preimage. A matching constitutional lock requires an exact one-shot authorization id.",
+        {
+            "session_id": S,
+            "relative_path": S,
+            "content": S,
+            "lock_authorization_id": S,
+        },
         ["session_id", "relative_path", "content"],
     ),
     mut(
@@ -976,11 +1004,29 @@ def bind_operational_handlers(runtime: Any) -> dict[str, Callable[[dict[str, Any
             lambda: runtime.construct.start(str(a["objective"]), actor=Actor.USER),
         ),
         "construct_session_get": lambda a: runtime.construct.state(str(a["session_id"])),
+        "construct_file_write_propose": lambda a: guarded(
+            "construct_file_write_propose",
+            a,
+            lambda: runtime.construct.propose_write(
+                str(a["session_id"]),
+                str(a["relative_path"]),
+                str(a["content"]),
+                rationale=str(a["rationale"]),
+                impact=str(a["impact"]),
+                dependencies=[str(item) for item in a["dependencies"]],
+                recovery_plan=str(a["recovery_plan"]),
+                actor=Actor.MODEL,
+            ),
+        ),
         "construct_file_write": lambda a: guarded(
             "construct_file_write",
             a,
             lambda: runtime.construct.write_file(
-                str(a["session_id"]), str(a["relative_path"]), str(a["content"]), actor=Actor.USER
+                str(a["session_id"]),
+                str(a["relative_path"]),
+                str(a["content"]),
+                actor=Actor.USER,
+                lock_authorization_id=a.get("lock_authorization_id"),
             ),
         ),
         "construct_validate": lambda a: guarded(

@@ -1,0 +1,1758 @@
+{
+  "schema": "kch.r21-durable-full-source-gate.v0.1.0",
+  "attempt": 2,
+  "executed_at": "2026-08-11T20:07:01.819758Z",
+  "gate": "PASS",
+  "checks": {
+    "pytest_terminal_pass": true,
+    "ruff_terminal_pass": true,
+    "source_unchanged_during_gate": true,
+    "pytest_not_relaunched": true,
+    "ruff_not_relaunched": true,
+    "phl_not_executed": true
+  },
+  "pytest": {
+    "launch": {
+      "schema": "kch.monitored-process-launch.v0.1.0",
+      "commitment_id": "MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0",
+      "launcher_pid": 5768,
+      "worker_pid": 5768,
+      "worker_pid_source": "CANONICAL_RUNNING_RECEIPT",
+      "launcher_worker_pid_match": true,
+      "startup_receipt_sha256": "f6ac24a55b88311980bc43d9a5da27faf378222edb4eb5766f053d55dc9f1049",
+      "process_identity": "windows-filetime:134309522468195944",
+      "process_identity_captured": true,
+      "request_sha256": "2a14c28bdf86c80d494c25ea3c4b8737083330c573b30e9a066acc35c9998c04",
+      "environment_keys": [
+        "PYTHONDONTWRITEBYTECODE",
+        "PYTHONPATH",
+        "PYTHONUTF8"
+      ],
+      "stdout_path": "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stdout.log",
+      "stderr_path": "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stderr.log",
+      "terminal_receipt": "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\terminal.json",
+      "initial_observation": {
+        "schema": "kch.commitment-observation.v0.2.0",
+        "commitment_id": "MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0",
+        "checked_at": "2026-08-11T20:04:07.189756Z",
+        "check_sequence": 1,
+        "mode": "OWNED_SUPERVISOR",
+        "worker_pid": 5768,
+        "process_running": true,
+        "expected_process_identity": "windows-filetime:134309522468195944",
+        "observed_process_identity": "windows-filetime:134309522468195944",
+        "process_identity_match": true,
+        "status": "MONITORING",
+        "terminal": false,
+        "exit_code": null,
+        "expected_exit_codes": [
+          0
+        ],
+        "error_markers": [],
+        "logs": {
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stdout.log": {
+            "exists": true,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stderr.log": {
+            "exists": true,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "artifacts": {},
+        "terminal_receipt": null,
+        "alert_emitted_now": false,
+        "relaunch_performed": false
+      },
+      "shell_used": false,
+      "relaunch_performed": false
+    },
+    "wait": {
+      "schema": "kch.commitment-wait.v0.1.0",
+      "gate": "TERMINAL_OBSERVED",
+      "terminal": true,
+      "checks": 327,
+      "elapsed_seconds": 173.46984,
+      "observation": {
+        "schema": "kch.commitment-observation.v0.2.0",
+        "commitment_id": "MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0",
+        "checked_at": "2026-08-11T20:07:00.659747Z",
+        "check_sequence": 328,
+        "mode": "OWNED_SUPERVISOR",
+        "worker_pid": 5768,
+        "process_running": false,
+        "expected_process_identity": "windows-filetime:134309522468195944",
+        "observed_process_identity": null,
+        "process_identity_match": false,
+        "status": "COMPLETED_PASS",
+        "terminal": true,
+        "exit_code": 0,
+        "expected_exit_codes": [
+          0
+        ],
+        "error_markers": [],
+        "logs": {
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stdout.log": {
+            "exists": true,
+            "bytes": 195,
+            "sha256": "32246768229ca128e1291c0f298a15c773bd5e76e0d82d225ce0bce205717bfc"
+          },
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stderr.log": {
+            "exists": true,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "artifacts": {},
+        "terminal_receipt": {
+          "valid": true,
+          "failure": null,
+          "claimed_sha256": "6da39b8beb192b978898d1a0a17150eacecaf0733d894dc77eeb871d3ff33915",
+          "actual_sha256": "6da39b8beb192b978898d1a0a17150eacecaf0733d894dc77eeb871d3ff33915"
+        },
+        "alert_emitted_now": true,
+        "relaunch_performed": false
+      },
+      "relaunch_performed": false
+    },
+    "evidence": {
+      "schema": "kch.commitment-evidence.v0.1.0",
+      "commitment_id": "MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0",
+      "label": "KCH_R21_FULL_SOURCE_PYTEST_ATTEMPT_02",
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 5768,
+      "process_token": "windows-filetime:134309522468195944",
+      "created_at": "2026-08-11T20:04:07.165989Z",
+      "updated_at": "2026-08-11T20:07:00.688537Z",
+      "status": "COMPLETED_PASS",
+      "monitor_errors": 0,
+      "check_sequence": 329,
+      "latest_observation": {
+        "schema": "kch.commitment-observation.v0.2.0",
+        "commitment_id": "MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0",
+        "checked_at": "2026-08-11T20:07:00.681326Z",
+        "check_sequence": 329,
+        "mode": "OWNED_SUPERVISOR",
+        "worker_pid": 5768,
+        "process_running": false,
+        "expected_process_identity": "windows-filetime:134309522468195944",
+        "observed_process_identity": null,
+        "process_identity_match": false,
+        "status": "COMPLETED_PASS",
+        "terminal": true,
+        "exit_code": 0,
+        "expected_exit_codes": [
+          0
+        ],
+        "error_markers": [],
+        "logs": {
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stdout.log": {
+            "exists": true,
+            "bytes": 195,
+            "sha256": "32246768229ca128e1291c0f298a15c773bd5e76e0d82d225ce0bce205717bfc"
+          },
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-dc1c19b8-fc78-47d0-a9b6-e98160c119a0\\stderr.log": {
+            "exists": true,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "artifacts": {},
+        "terminal_receipt": {
+          "valid": true,
+          "failure": null,
+          "claimed_sha256": "6da39b8beb192b978898d1a0a17150eacecaf0733d894dc77eeb871d3ff33915",
+          "actual_sha256": "6da39b8beb192b978898d1a0a17150eacecaf0733d894dc77eeb871d3ff33915"
+        },
+        "alert_emitted_now": false,
+        "relaunch_performed": false
+      },
+      "claim_ceiling": "LOCAL_OWNED_OR_REGISTERED_PROCESS_TERMINAL_EVIDENCE_ONLY_NOT_GENERAL_EXECUTION_SUCCESS",
+      "sha256": "634e93182a066353c47532158c6a42cf749af45a9ff4f4c9eecdbbed74154e42"
+    },
+    "stdout": "........................................................................ [ 70%]\n..............................                                           [100%]\n102 passed in 171.43s (0:02:51)\n",
+    "stderr": "",
+    "counts": {
+      "passed": 102,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "terminal_summary": "102 passed in 171.43s (0:02:51)"
+    }
+  },
+  "ruff": {
+    "launch": {
+      "schema": "kch.monitored-process-launch.v0.1.0",
+      "commitment_id": "MONITOR-008efc67-d72c-4965-8a48-f8466b37e438",
+      "launcher_pid": 11384,
+      "worker_pid": 11384,
+      "worker_pid_source": "CANONICAL_RUNNING_RECEIPT",
+      "launcher_worker_pid_match": true,
+      "startup_receipt_sha256": "0d4fc7fc99340531fede19107b46bef37dcdf2a2aff75451100e819024aa99a3",
+      "process_identity": "windows-filetime:134309524207066599",
+      "process_identity_captured": true,
+      "request_sha256": "e4de26fa9287d256703fa8b68f9ee61cd1bb3271611610ce054d234d7f8ff287",
+      "environment_keys": [
+        "PYTHONDONTWRITEBYTECODE",
+        "PYTHONPATH",
+        "PYTHONUTF8"
+      ],
+      "stdout_path": "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stdout.log",
+      "stderr_path": "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stderr.log",
+      "terminal_receipt": "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\terminal.json",
+      "initial_observation": {
+        "schema": "kch.commitment-observation.v0.2.0",
+        "commitment_id": "MONITOR-008efc67-d72c-4965-8a48-f8466b37e438",
+        "checked_at": "2026-08-11T20:07:01.059029Z",
+        "check_sequence": 1,
+        "mode": "OWNED_SUPERVISOR",
+        "worker_pid": 11384,
+        "process_running": true,
+        "expected_process_identity": "windows-filetime:134309524207066599",
+        "observed_process_identity": "windows-filetime:134309524207066599",
+        "process_identity_match": true,
+        "status": "MONITORING",
+        "terminal": false,
+        "exit_code": null,
+        "expected_exit_codes": [
+          0
+        ],
+        "error_markers": [],
+        "logs": {
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stdout.log": {
+            "exists": true,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stderr.log": {
+            "exists": true,
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "artifacts": {},
+        "terminal_receipt": null,
+        "alert_emitted_now": false,
+        "relaunch_performed": false
+      },
+      "shell_used": false,
+      "relaunch_performed": false
+    },
+    "wait": {
+      "schema": "kch.commitment-wait.v0.1.0",
+      "gate": "TERMINAL_OBSERVED",
+      "terminal": true,
+      "checks": 2,
+      "elapsed_seconds": 0.558864,
+      "observation": {
+        "schema": "kch.commitment-observation.v0.2.0",
+        "commitment_id": "MONITOR-008efc67-d72c-4965-8a48-f8466b37e438",
+        "checked_at": "2026-08-11T20:07:01.611042Z",
+        "check_sequence": 3,
+        "mode": "OWNED_SUPERVISOR",
+        "worker_pid": 11384,
+        "process_running": true,
+        "expected_process_identity": "windows-filetime:134309524207066599",
+        "observed_process_identity": "windows-filetime:134309524207066599",
+        "process_identity_match": true,
+        "status": "COMPLETED_PASS",
+        "terminal": true,
+        "exit_code": 0,
+        "expected_exit_codes": [
+          0
+        ],
+        "error_markers": [],
+        "logs": {
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stdout.log": {
+            "exists": true,
+            "bytes": 19,
+            "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+          },
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stderr.log": {
+            "exists": true,
+            "bytes": 232,
+            "sha256": "019d8a0b18f325368c22ea15c120d83705d5f46219c3d04ab56cd36b854eed5b"
+          }
+        },
+        "artifacts": {},
+        "terminal_receipt": {
+          "valid": true,
+          "failure": null,
+          "claimed_sha256": "f076b230ef33e8fba2869ca5b178580eb716a6b10e99564cb44d2c73916e2bcb",
+          "actual_sha256": "f076b230ef33e8fba2869ca5b178580eb716a6b10e99564cb44d2c73916e2bcb"
+        },
+        "alert_emitted_now": true,
+        "relaunch_performed": false
+      },
+      "relaunch_performed": false
+    },
+    "evidence": {
+      "schema": "kch.commitment-evidence.v0.1.0",
+      "commitment_id": "MONITOR-008efc67-d72c-4965-8a48-f8466b37e438",
+      "label": "KCH_R21_FULL_SOURCE_RUFF_ATTEMPT_02",
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 11384,
+      "process_token": "windows-filetime:134309524207066599",
+      "created_at": "2026-08-11T20:07:01.040707Z",
+      "updated_at": "2026-08-11T20:07:01.638880Z",
+      "status": "COMPLETED_PASS",
+      "monitor_errors": 0,
+      "check_sequence": 4,
+      "latest_observation": {
+        "schema": "kch.commitment-observation.v0.2.0",
+        "commitment_id": "MONITOR-008efc67-d72c-4965-8a48-f8466b37e438",
+        "checked_at": "2026-08-11T20:07:01.636725Z",
+        "check_sequence": 4,
+        "mode": "OWNED_SUPERVISOR",
+        "worker_pid": 11384,
+        "process_running": false,
+        "expected_process_identity": "windows-filetime:134309524207066599",
+        "observed_process_identity": null,
+        "process_identity_match": false,
+        "status": "COMPLETED_PASS",
+        "terminal": true,
+        "exit_code": 0,
+        "expected_exit_codes": [
+          0
+        ],
+        "error_markers": [],
+        "logs": {
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stdout.log": {
+            "exists": true,
+            "bytes": 19,
+            "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+          },
+          "D:\\KCH_R21_GATE_EVIDENCE\\monitor_attempt_02\\MONITOR-008efc67-d72c-4965-8a48-f8466b37e438\\stderr.log": {
+            "exists": true,
+            "bytes": 232,
+            "sha256": "019d8a0b18f325368c22ea15c120d83705d5f46219c3d04ab56cd36b854eed5b"
+          }
+        },
+        "artifacts": {},
+        "terminal_receipt": {
+          "valid": true,
+          "failure": null,
+          "claimed_sha256": "f076b230ef33e8fba2869ca5b178580eb716a6b10e99564cb44d2c73916e2bcb",
+          "actual_sha256": "f076b230ef33e8fba2869ca5b178580eb716a6b10e99564cb44d2c73916e2bcb"
+        },
+        "alert_emitted_now": false,
+        "relaunch_performed": false
+      },
+      "claim_ceiling": "LOCAL_OWNED_OR_REGISTERED_PROCESS_TERMINAL_EVIDENCE_ONLY_NOT_GENERAL_EXECUTION_SUCCESS",
+      "sha256": "df825e48f9b96142e462dfa53443f2efabd92b69ed0da5fb77b0e777df253f6b"
+    },
+    "stdout": "All checks passed!\n",
+    "stderr": "warning: Encountered error: Acceso denegado. (os error 5)\nwarning: Encountered error: Acceso denegado. (os error 5)\nwarning: Encountered error: Acceso denegado. (os error 5)\nwarning: Encountered error: Acceso denegado. (os error 5)\n"
+  },
+  "source_manifest_before": {
+    "file_count": 139,
+    "total_bytes": 1314544,
+    "manifest_sha256": "5d479b728d9fe737c66f7020dd0d54a2cb7c67e4681f494514c5bccb16d985bf",
+    "files": [
+      {
+        "path": "docs/ADAPTADORES_HOST.md",
+        "bytes": 2369,
+        "sha256": "9494810e2252dee94dd4e7ef91d30f130f1b169651cfc4ea314e22686e73160f"
+      },
+      {
+        "path": "docs/ARQUITECTURA_INTEGRADA.md",
+        "bytes": 4798,
+        "sha256": "eb03775ea381fb2b92ce00ad12e04dcf7fb19b39ab25485827d7c890cf5bbaa8"
+      },
+      {
+        "path": "docs/BIND_2026_PREPILOTO.md",
+        "bytes": 4419,
+        "sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c"
+      },
+      {
+        "path": "docs/CLAIMS_Y_GATES.md",
+        "bytes": 3949,
+        "sha256": "494604e44035aedf40fa6043d3c482a48086468ed11dc035d47ab0b534c666b7"
+      },
+      {
+        "path": "docs/CODEX_PROJECT_BINDING_AGENTS.md",
+        "bytes": 4576,
+        "sha256": "9df7751241b513ccf47eb08c86188afe6327e9c12662aef154ed3e98c632989d"
+      },
+      {
+        "path": "docs/TRABAJO_APRENDIZAJE_CONTINUIDAD.md",
+        "bytes": 5085,
+        "sha256": "8e869e13503ef124369250c172b8b7971f2cf714310b5962d793e2bd5082bb27"
+      },
+      {
+        "path": "governance/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+      },
+      {
+        "path": "governance/agents/constitutional-lock-governor.md",
+        "bytes": 1453,
+        "sha256": "2933aa67e2df99758ee71d9e462c2ef5ceb4d975d71c1105b87b0c4dcd497ddb"
+      },
+      {
+        "path": "governance/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a"
+      },
+      {
+        "path": "governance/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+      },
+      {
+        "path": "governance/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc"
+      },
+      {
+        "path": "governance/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+      },
+      {
+        "path": "governance/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+      },
+      {
+        "path": "governance/AGENTS.md",
+        "bytes": 2407,
+        "sha256": "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+      },
+      {
+        "path": "governance/HARNESS.md",
+        "bytes": 6030,
+        "sha256": "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+      },
+      {
+        "path": "governance/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b"
+      },
+      {
+        "path": "governance/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+      },
+      {
+        "path": "governance/rules/constitutional-lock-keys.md",
+        "bytes": 1848,
+        "sha256": "8b1c8e3fb08771342d88ab35c057b45356b3ce360b366788379c7543bf6393c1"
+      },
+      {
+        "path": "governance/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44"
+      },
+      {
+        "path": "governance/rules/evidence-preserving-closure.md",
+        "bytes": 2016,
+        "sha256": "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad"
+      },
+      {
+        "path": "governance/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+      },
+      {
+        "path": "governance/rules/full-read-source-order.md",
+        "bytes": 2193,
+        "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+      },
+      {
+        "path": "governance/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+      },
+      {
+        "path": "governance/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+      },
+      {
+        "path": "governance/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+      },
+      {
+        "path": "governance/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+      },
+      {
+        "path": "governance/rules/response-modes-substantive.md",
+        "bytes": 1824,
+        "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52"
+      },
+      {
+        "path": "governance/rules/terminal-process-supervision.md",
+        "bytes": 2724,
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+      },
+      {
+        "path": "governance/RULES.md",
+        "bytes": 1853,
+        "sha256": "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1687,
+        "sha256": "4297e0363b97f04d5135559549a4ad9f64da415fd33ab121f830caa454eebc3e"
+      },
+      {
+        "path": "README_ES.md",
+        "bytes": 12210,
+        "sha256": "7bd12dbf2cdae998b8b91213eed416b616eb222cc46c1bff48603deb95118c3c"
+      },
+      {
+        "path": "scripts/build_portable_release.py",
+        "bytes": 11152,
+        "sha256": "a68611a3fc2e974f1b26e9d0ca918804880846fc7f7fa5c517291e7e75b9686b"
+      },
+      {
+        "path": "scripts/extract_and_install.py",
+        "bytes": 5754,
+        "sha256": "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+      },
+      {
+        "path": "scripts/portable_bootstrap.py",
+        "bytes": 8669,
+        "sha256": "b8c086527b7abff0d39120b67889b5f409c18c201d644c8e6c436efc5ca85daa"
+      },
+      {
+        "path": "scripts/post_install_gate.py",
+        "bytes": 12712,
+        "sha256": "fb3bd1d8b059d1756a54c316558b21ff721300393357a8313bd1ccef86578f03"
+      },
+      {
+        "path": "scripts/run_live_provider_gate.py",
+        "bytes": 3662,
+        "sha256": "b9caaedb3f4645d0cb1c9ae8e742fb9832d77a34c2f986a7c10dc15569faf881"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/dependency_links.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/entry_points.txt",
+        "bytes": 276,
+        "sha256": "bcebb6173ae54de23a25bdbb6af9b136687215a6ea8db5c4de4541c19ad91b87"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/PKG-INFO",
+        "bytes": 754,
+        "sha256": "be72c46b397d355c2260eb37d047286e5a937969273549e9537ffabdb11bcd3c"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/requires.txt",
+        "bytes": 356,
+        "sha256": "cbdcc6185eb40e9fe95e424a1771b558ee21106b607324e9ffcfee6af1f1c5a5"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/SOURCES.txt",
+        "bytes": 4284,
+        "sha256": "92d6d9e479e8ad11a0d253de8bffb1a01be7ac6a098cc9e08c39d14838035621"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/top_level.txt",
+        "bytes": 11,
+        "sha256": "3b65e8851c4c53aab05e3f0450b70be5de03074f542af1150ee446ee1ed16ebb"
+      },
+      {
+        "path": "src/kch_studio/__init__.py",
+        "bytes": 247,
+        "sha256": "4f4625a882f166832df8ae51f66a823df0d884653d47626dfb69de3d2550f6cb"
+      },
+      {
+        "path": "src/kch_studio/account_broker.py",
+        "bytes": 16510,
+        "sha256": "cec601abc44e58f13ed6fb389aee6eb4e448ae4630040992f155e7c8dc7de734"
+      },
+      {
+        "path": "src/kch_studio/adapters.py",
+        "bytes": 4921,
+        "sha256": "a608277da1cd485d79398daf90537bdf2b9e7fb186501c26465b5f470138d9cf"
+      },
+      {
+        "path": "src/kch_studio/advanced_runtime.py",
+        "bytes": 83752,
+        "sha256": "120073e5c258d0550c18b886c328838b3a53587f6331360c43489b8289faedaa"
+      },
+      {
+        "path": "src/kch_studio/audio_hub.py",
+        "bytes": 16741,
+        "sha256": "5b40ec570a0f6538722af81992c53fa6af19a1a84820f6c0af3bc3271c1e991f"
+      },
+      {
+        "path": "src/kch_studio/checkpoints.py",
+        "bytes": 15580,
+        "sha256": "d6645412e66031520eff4d226fb0a7431b01de11a11cc021ca60976a2a85e9fd"
+      },
+      {
+        "path": "src/kch_studio/cli.py",
+        "bytes": 2860,
+        "sha256": "ae7ad93ac96a76ba30446d3f2c33d76624ad7cba512a4539e8e003e9c97548ff"
+      },
+      {
+        "path": "src/kch_studio/clipboard_hub.py",
+        "bytes": 23731,
+        "sha256": "9b779e00fd945debfa3001f30ee143d5b1b3d8cabc06c483770d45c5e2e74f5f"
+      },
+      {
+        "path": "src/kch_studio/codex_bootstrap_mcp.py",
+        "bytes": 11661,
+        "sha256": "c986badfd0a4257aed3f4cc7c788dc3fb05c295d66687de6d8371f829576aa3a"
+      },
+      {
+        "path": "src/kch_studio/codex_preflight_mcp.py",
+        "bytes": 3856,
+        "sha256": "f5249c4b27bdf7a250e03cb629b2c5feb81ee3a7762f6cbd9bb0dadfc7593477"
+      },
+      {
+        "path": "src/kch_studio/commitment_monitor.py",
+        "bytes": 29207,
+        "sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab"
+      },
+      {
+        "path": "src/kch_studio/constitutional.py",
+        "bytes": 12220,
+        "sha256": "d63e08b2ccfaf29814e5c74f7dea490090e211d4bc50cb5d818edec2473ac76d"
+      },
+      {
+        "path": "src/kch_studio/construct_mode.py",
+        "bytes": 16986,
+        "sha256": "7f19232f78791f77b18075b3d34e76db54e117215a76a28e4fa8d4cc145ed8c6"
+      },
+      {
+        "path": "src/kch_studio/continuity_guard.py",
+        "bytes": 38291,
+        "sha256": "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785"
+      },
+      {
+        "path": "src/kch_studio/contracts.py",
+        "bytes": 6797,
+        "sha256": "31221f806a221c3d40a3932065c5481de17472a6cb983c69480be089bee21fe9"
+      },
+      {
+        "path": "src/kch_studio/data/__init__.py",
+        "bytes": 81,
+        "sha256": "b30644b2fc8cfe1c7605e8d459309ca0c6b8d5f5c1e2b1376bb91d4e76df8d54"
+      },
+      {
+        "path": "src/kch_studio/data/audio/speak_windows.ps1",
+        "bytes": 622,
+        "sha256": "7d367a36d04060c9d21e1bd4f0ac8bab21b954f77dd5876270a4c741066d66ee"
+      },
+      {
+        "path": "src/kch_studio/data/audio/transcribe_windows.ps1",
+        "bytes": 1646,
+        "sha256": "afb281f742feafc186cd99dbd4f8c99ce973e57e7c0907172fce27a77d84d5a3"
+      },
+      {
+        "path": "src/kch_studio/data/governance/.kch-csi-generated-v0.1.0",
+        "bytes": 33,
+        "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/.codex/rules/kch-generated.rules",
+        "bytes": 216,
+        "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/AGENTS.md",
+        "bytes": 26886,
+        "sha256": "90cc2c098bcafd23191404adab9e8560e3e129f12875e84f6cbf2b705eea902f"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/COMPATIBILITY_RECEIPT.json",
+        "bytes": 640,
+        "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+      },
+      {
+        "path": "src/kch_studio/data/governance/csi/governance_graph.json",
+        "bytes": 28310,
+        "sha256": "b7511cc289bc2c13476dea320a2fd499b86b7d5f93df1afa4609529a494e1975"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/AGENTS.md",
+        "bytes": 2407,
+        "sha256": "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/HARNESS.md",
+        "bytes": 6030,
+        "sha256": "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/RULES.md",
+        "bytes": 1853,
+        "sha256": "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+      },
+      {
+        "path": "src/kch_studio/data/governance/governance.lock.json",
+        "bytes": 13448,
+        "sha256": "de7f6dfe1d1138b749a1a58db2e3a64af12a53fee0c253a4ce97f2ff357174b7"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/constitutional-lock-governor.md",
+        "bytes": 1453,
+        "sha256": "2933aa67e2df99758ee71d9e462c2ef5ceb4d975d71c1105b87b0c4dcd497ddb"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/AGENTS.md",
+        "bytes": 2407,
+        "sha256": "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/HARNESS.md",
+        "bytes": 6030,
+        "sha256": "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/constitutional-lock-keys.md",
+        "bytes": 1848,
+        "sha256": "8b1c8e3fb08771342d88ab35c057b45356b3ce360b366788379c7543bf6393c1"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/evidence-preserving-closure.md",
+        "bytes": 2016,
+        "sha256": "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/full-read-source-order.md",
+        "bytes": 2193,
+        "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/response-modes-substantive.md",
+        "bytes": 1824,
+        "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/terminal-process-supervision.md",
+        "bytes": 2724,
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/RULES.md",
+        "bytes": 1853,
+        "sha256": "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+      },
+      {
+        "path": "src/kch_studio/diction_learning.py",
+        "bytes": 12480,
+        "sha256": "1ab599b58ed155383b901dac57d4ad715180fcd2165fdcde67734ef6881fdf69"
+      },
+      {
+        "path": "src/kch_studio/evidence_projection.py",
+        "bytes": 10645,
+        "sha256": "f75e82d2ddeb32b32abe8c01b75df78e2f9f677b9a1c678dd04b675d4f0a6fce"
+      },
+      {
+        "path": "src/kch_studio/extension.py",
+        "bytes": 23529,
+        "sha256": "7f83e2e9b6303eb9123093ed0a1108279421a0a6df9fc369e6da4776eaaaf19d"
+      },
+      {
+        "path": "src/kch_studio/federated_runtime.py",
+        "bytes": 22884,
+        "sha256": "3895c1b02321c2e3adc636263fce5919177bda1426aed01f738866c79a37ac5f"
+      },
+      {
+        "path": "src/kch_studio/full_read_contract.py",
+        "bytes": 19868,
+        "sha256": "6a58985ce17a92588e1e9cff642c1d5cb1eab09f35d356ebfdb39461475d6f33"
+      },
+      {
+        "path": "src/kch_studio/generators.py",
+        "bytes": 41018,
+        "sha256": "2b138aa1af28bcca57ae63c877e40eeaca79f14b97fe1a82644419751f00e7f9"
+      },
+      {
+        "path": "src/kch_studio/installation.py",
+        "bytes": 6527,
+        "sha256": "59b080708e4c91eb6cd149f70290344f6cd9c8a9aa5230489a32c26549414239"
+      },
+      {
+        "path": "src/kch_studio/kwandata.py",
+        "bytes": 22297,
+        "sha256": "c39054cb93a32ee5be6ecbc9bf96868228fec41ee86dcc94eaa917b0a20c64af"
+      },
+      {
+        "path": "src/kch_studio/launcher.py",
+        "bytes": 9902,
+        "sha256": "0369c41311e90541c645751c9a8717b56f4bc294708314c52b9244b58643a759"
+      },
+      {
+        "path": "src/kch_studio/lock_governor.py",
+        "bytes": 33073,
+        "sha256": "7f2f3fe7faeacfa4f2acb89e772b6f094c222f556d5d23f9aecc59546b186593"
+      },
+      {
+        "path": "src/kch_studio/mcp_server.py",
+        "bytes": 18127,
+        "sha256": "7fc595a8f262928e78771d60ae74a4aa16c0d1bca395d2f5ac1f7a3bc6d73cdc"
+      },
+      {
+        "path": "src/kch_studio/mis_service.py",
+        "bytes": 48280,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582"
+      },
+      {
+        "path": "src/kch_studio/monitored_process_worker.py",
+        "bytes": 6052,
+        "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0"
+      },
+      {
+        "path": "src/kch_studio/operational_surface.py",
+        "bytes": 37801,
+        "sha256": "5fbaea0f49b753af76fdf04d1decad67b1c1012b320f7acdf5f618ea1a3fb83a"
+      },
+      {
+        "path": "src/kch_studio/permissions.py",
+        "bytes": 13656,
+        "sha256": "ba8d48b7a964a4cddff62a68836f1a037297c8323e8b7a416c75f722ac301d5f"
+      },
+      {
+        "path": "src/kch_studio/persistence.py",
+        "bytes": 14588,
+        "sha256": "dfce6eac6a1f825819a4d500418e60873a9ee35608bbd514cd75da5997ce7b1a"
+      },
+      {
+        "path": "src/kch_studio/proactive.py",
+        "bytes": 14856,
+        "sha256": "3f45224de83cb0bb9b9c94fee028e9f050431cdbb3a7c8da7e3ff3f924443977"
+      },
+      {
+        "path": "src/kch_studio/recovery.py",
+        "bytes": 14268,
+        "sha256": "eb8553944ecdf7e76a96073ebdd33d6958f4ea6155c4f41e2c2d58896c13c039"
+      },
+      {
+        "path": "src/kch_studio/response_authority.py",
+        "bytes": 11275,
+        "sha256": "ec9dc1fbe9e4729d0d432c8ff3e6066cd06bf0cc54096319c8e0f393f9374813"
+      },
+      {
+        "path": "src/kch_studio/response_modes.py",
+        "bytes": 29671,
+        "sha256": "43eac86c2730210f38d50135f64ed04032f4d55ab4b517d47ee661ee09820674"
+      },
+      {
+        "path": "src/kch_studio/safeguards.py",
+        "bytes": 4513,
+        "sha256": "381414abd62ee6691d91ae07f1883ed73fb7d58a5a5c17870b724e1a78883ecd"
+      },
+      {
+        "path": "src/kch_studio/scheduler.py",
+        "bytes": 15384,
+        "sha256": "acd4ea866f331429a76b274624e639b955e0d0e5faa1ea547fc8ee34388da226"
+      },
+      {
+        "path": "src/kch_studio/store.py",
+        "bytes": 11645,
+        "sha256": "dd70fe8b4301f2a83640ac587a513f57e30e35502c39b2fc28443bc5ac446485"
+      },
+      {
+        "path": "src/kch_studio/studio.py",
+        "bytes": 12882,
+        "sha256": "edb4f7090ae5c46d24ab27217855463abeab707d0773b5f943a051934772b142"
+      },
+      {
+        "path": "src/kch_studio/super_mcp_overlay.py",
+        "bytes": 9022,
+        "sha256": "51b30a4d4c6838fea53d6885a6da7032465efc852f0ca862ebcce0c2fd34636a"
+      },
+      {
+        "path": "src/kch_studio/surface_contract.py",
+        "bytes": 19680,
+        "sha256": "536c610febe1a8d7edd956507148011262c0a30728572b19ecd6e1237f209afc"
+      },
+      {
+        "path": "src/kch_studio/ui.py",
+        "bytes": 98595,
+        "sha256": "d53fb91696d40af6cbfbdf8e7236ba53bdc5d95ab65fe53fbbba11c98c832376"
+      },
+      {
+        "path": "src/kch_studio/universal_text.py",
+        "bytes": 16467,
+        "sha256": "d0cdf6718a3772c6202de6ac48a41598b9acb2711a5413a264437aee6d5bed95"
+      },
+      {
+        "path": "src/kch_studio/workbench_suite.py",
+        "bytes": 70869,
+        "sha256": "00783cf6ab4b26b1d4158d07166e1f37af4bf904c1b9a8b81d3a4dce9c886383"
+      },
+      {
+        "path": "src/kch_studio/workbench_surface.py",
+        "bytes": 13154,
+        "sha256": "f955fcd9811117c3c94c07ea4acbabeaa341da6fc385fb7d20b949e24e603746"
+      },
+      {
+        "path": "tests/test_advanced_layers.py",
+        "bytes": 12060,
+        "sha256": "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f"
+      },
+      {
+        "path": "tests/test_codex_bootstrap_mcp.py",
+        "bytes": 4188,
+        "sha256": "c99bc00c5fe467382342cf8b44ab8ddb0841d1cca3be70911ad8c794a51c63f8"
+      },
+      {
+        "path": "tests/test_codex_preflight_mcp.py",
+        "bytes": 1399,
+        "sha256": "f83af1a2325b672a6e731a3891c348052a8707e3b464e674287738565880f7ae"
+      },
+      {
+        "path": "tests/test_commitment_monitor.py",
+        "bytes": 8278,
+        "sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a"
+      },
+      {
+        "path": "tests/test_continuity_guard.py",
+        "bytes": 7291,
+        "sha256": "acb53d3c38ae4caeb3a8d4e3d1acde9dd96e1b69a0b201025efbf2832ad13e02"
+      },
+      {
+        "path": "tests/test_evidence_projection.py",
+        "bytes": 6098,
+        "sha256": "8b91abcb3405a0ec0437cee1ab1c6c5663f552d74d186985af6d29ab41cd8e48"
+      },
+      {
+        "path": "tests/test_extension.py",
+        "bytes": 2449,
+        "sha256": "d0bd24a0ae44dc3795556dd9f48db4d0fbecc3729673c14d3c4ff39494060e3d"
+      },
+      {
+        "path": "tests/test_full_read_contract.py",
+        "bytes": 6172,
+        "sha256": "cd9713012d30b5aa086ae84e794fae34560210ce99d97da5dc4c32c7c8089ccc"
+      },
+      {
+        "path": "tests/test_lock_governor.py",
+        "bytes": 14176,
+        "sha256": "3b1e1a5bbddd700e1fedafca8a98cc9bcd114927f095b6787b580236edcd91bf"
+      },
+      {
+        "path": "tests/test_mcp_ui.py",
+        "bytes": 5750,
+        "sha256": "8d5df07eaa0df559fdca6e8dd23642fb8f6102e325dec14868230664bf185050"
+      },
+      {
+        "path": "tests/test_mis_federation.py",
+        "bytes": 5254,
+        "sha256": "4229fc16f9c2f2b44f5d5985ff5d397cdd733ddccd385ffddb4e1b2c8c179e5f"
+      },
+      {
+        "path": "tests/test_operational_surface.py",
+        "bytes": 6068,
+        "sha256": "715fcddb477f89ff8312d8149afa44be73736a509788b3214c290b6cdbaaf22a"
+      },
+      {
+        "path": "tests/test_portable_paths.py",
+        "bytes": 3646,
+        "sha256": "5c3e5027f7044f86cd0de036413932801f58afac20173c652741275fc6bc1aad"
+      },
+      {
+        "path": "tests/test_response_authority.py",
+        "bytes": 3363,
+        "sha256": "40ff065a860ad6755067b8c602581daf6962fbb3104082de02f33668f9239f5f"
+      },
+      {
+        "path": "tests/test_response_modes.py",
+        "bytes": 4786,
+        "sha256": "ee89a5586e99c3b61d9cdbf7326764cdf382fa0d1b06731f329658f1c3159ba6"
+      },
+      {
+        "path": "tests/test_studio.py",
+        "bytes": 8316,
+        "sha256": "d47ad7a5810d03d3158d168fa275c228d351dfb976e40789c3487f9e16029974"
+      },
+      {
+        "path": "tests/test_workbench_suite.py",
+        "bytes": 7262,
+        "sha256": "38eee9ef78acc623169fa743f6e63460e8c1321b6db9427c08faef4f0817cd31"
+      }
+    ]
+  },
+  "source_manifest_after": {
+    "file_count": 139,
+    "total_bytes": 1314544,
+    "manifest_sha256": "5d479b728d9fe737c66f7020dd0d54a2cb7c67e4681f494514c5bccb16d985bf",
+    "files": [
+      {
+        "path": "docs/ADAPTADORES_HOST.md",
+        "bytes": 2369,
+        "sha256": "9494810e2252dee94dd4e7ef91d30f130f1b169651cfc4ea314e22686e73160f"
+      },
+      {
+        "path": "docs/ARQUITECTURA_INTEGRADA.md",
+        "bytes": 4798,
+        "sha256": "eb03775ea381fb2b92ce00ad12e04dcf7fb19b39ab25485827d7c890cf5bbaa8"
+      },
+      {
+        "path": "docs/BIND_2026_PREPILOTO.md",
+        "bytes": 4419,
+        "sha256": "396b71e63dfe1fab06ad7a6bd9ff113abc2b0646a641651575fe904ae18fff9c"
+      },
+      {
+        "path": "docs/CLAIMS_Y_GATES.md",
+        "bytes": 3949,
+        "sha256": "494604e44035aedf40fa6043d3c482a48086468ed11dc035d47ab0b534c666b7"
+      },
+      {
+        "path": "docs/CODEX_PROJECT_BINDING_AGENTS.md",
+        "bytes": 4576,
+        "sha256": "9df7751241b513ccf47eb08c86188afe6327e9c12662aef154ed3e98c632989d"
+      },
+      {
+        "path": "docs/TRABAJO_APRENDIZAJE_CONTINUIDAD.md",
+        "bytes": 5085,
+        "sha256": "8e869e13503ef124369250c172b8b7971f2cf714310b5962d793e2bd5082bb27"
+      },
+      {
+        "path": "governance/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+      },
+      {
+        "path": "governance/agents/constitutional-lock-governor.md",
+        "bytes": 1453,
+        "sha256": "2933aa67e2df99758ee71d9e462c2ef5ceb4d975d71c1105b87b0c4dcd497ddb"
+      },
+      {
+        "path": "governance/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a"
+      },
+      {
+        "path": "governance/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+      },
+      {
+        "path": "governance/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc"
+      },
+      {
+        "path": "governance/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+      },
+      {
+        "path": "governance/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+      },
+      {
+        "path": "governance/AGENTS.md",
+        "bytes": 2407,
+        "sha256": "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+      },
+      {
+        "path": "governance/HARNESS.md",
+        "bytes": 6030,
+        "sha256": "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+      },
+      {
+        "path": "governance/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b"
+      },
+      {
+        "path": "governance/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+      },
+      {
+        "path": "governance/rules/constitutional-lock-keys.md",
+        "bytes": 1848,
+        "sha256": "8b1c8e3fb08771342d88ab35c057b45356b3ce360b366788379c7543bf6393c1"
+      },
+      {
+        "path": "governance/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44"
+      },
+      {
+        "path": "governance/rules/evidence-preserving-closure.md",
+        "bytes": 2016,
+        "sha256": "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad"
+      },
+      {
+        "path": "governance/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+      },
+      {
+        "path": "governance/rules/full-read-source-order.md",
+        "bytes": 2193,
+        "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+      },
+      {
+        "path": "governance/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+      },
+      {
+        "path": "governance/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+      },
+      {
+        "path": "governance/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+      },
+      {
+        "path": "governance/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+      },
+      {
+        "path": "governance/rules/response-modes-substantive.md",
+        "bytes": 1824,
+        "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52"
+      },
+      {
+        "path": "governance/rules/terminal-process-supervision.md",
+        "bytes": 2724,
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+      },
+      {
+        "path": "governance/RULES.md",
+        "bytes": 1853,
+        "sha256": "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1687,
+        "sha256": "4297e0363b97f04d5135559549a4ad9f64da415fd33ab121f830caa454eebc3e"
+      },
+      {
+        "path": "README_ES.md",
+        "bytes": 12210,
+        "sha256": "7bd12dbf2cdae998b8b91213eed416b616eb222cc46c1bff48603deb95118c3c"
+      },
+      {
+        "path": "scripts/build_portable_release.py",
+        "bytes": 11152,
+        "sha256": "a68611a3fc2e974f1b26e9d0ca918804880846fc7f7fa5c517291e7e75b9686b"
+      },
+      {
+        "path": "scripts/extract_and_install.py",
+        "bytes": 5754,
+        "sha256": "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+      },
+      {
+        "path": "scripts/portable_bootstrap.py",
+        "bytes": 8669,
+        "sha256": "b8c086527b7abff0d39120b67889b5f409c18c201d644c8e6c436efc5ca85daa"
+      },
+      {
+        "path": "scripts/post_install_gate.py",
+        "bytes": 12712,
+        "sha256": "fb3bd1d8b059d1756a54c316558b21ff721300393357a8313bd1ccef86578f03"
+      },
+      {
+        "path": "scripts/run_live_provider_gate.py",
+        "bytes": 3662,
+        "sha256": "b9caaedb3f4645d0cb1c9ae8e742fb9832d77a34c2f986a7c10dc15569faf881"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/dependency_links.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/entry_points.txt",
+        "bytes": 276,
+        "sha256": "bcebb6173ae54de23a25bdbb6af9b136687215a6ea8db5c4de4541c19ad91b87"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/PKG-INFO",
+        "bytes": 754,
+        "sha256": "be72c46b397d355c2260eb37d047286e5a937969273549e9537ffabdb11bcd3c"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/requires.txt",
+        "bytes": 356,
+        "sha256": "cbdcc6185eb40e9fe95e424a1771b558ee21106b607324e9ffcfee6af1f1c5a5"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/SOURCES.txt",
+        "bytes": 4284,
+        "sha256": "92d6d9e479e8ad11a0d253de8bffb1a01be7ac6a098cc9e08c39d14838035621"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/top_level.txt",
+        "bytes": 11,
+        "sha256": "3b65e8851c4c53aab05e3f0450b70be5de03074f542af1150ee446ee1ed16ebb"
+      },
+      {
+        "path": "src/kch_studio/__init__.py",
+        "bytes": 247,
+        "sha256": "4f4625a882f166832df8ae51f66a823df0d884653d47626dfb69de3d2550f6cb"
+      },
+      {
+        "path": "src/kch_studio/account_broker.py",
+        "bytes": 16510,
+        "sha256": "cec601abc44e58f13ed6fb389aee6eb4e448ae4630040992f155e7c8dc7de734"
+      },
+      {
+        "path": "src/kch_studio/adapters.py",
+        "bytes": 4921,
+        "sha256": "a608277da1cd485d79398daf90537bdf2b9e7fb186501c26465b5f470138d9cf"
+      },
+      {
+        "path": "src/kch_studio/advanced_runtime.py",
+        "bytes": 83752,
+        "sha256": "120073e5c258d0550c18b886c328838b3a53587f6331360c43489b8289faedaa"
+      },
+      {
+        "path": "src/kch_studio/audio_hub.py",
+        "bytes": 16741,
+        "sha256": "5b40ec570a0f6538722af81992c53fa6af19a1a84820f6c0af3bc3271c1e991f"
+      },
+      {
+        "path": "src/kch_studio/checkpoints.py",
+        "bytes": 15580,
+        "sha256": "d6645412e66031520eff4d226fb0a7431b01de11a11cc021ca60976a2a85e9fd"
+      },
+      {
+        "path": "src/kch_studio/cli.py",
+        "bytes": 2860,
+        "sha256": "ae7ad93ac96a76ba30446d3f2c33d76624ad7cba512a4539e8e003e9c97548ff"
+      },
+      {
+        "path": "src/kch_studio/clipboard_hub.py",
+        "bytes": 23731,
+        "sha256": "9b779e00fd945debfa3001f30ee143d5b1b3d8cabc06c483770d45c5e2e74f5f"
+      },
+      {
+        "path": "src/kch_studio/codex_bootstrap_mcp.py",
+        "bytes": 11661,
+        "sha256": "c986badfd0a4257aed3f4cc7c788dc3fb05c295d66687de6d8371f829576aa3a"
+      },
+      {
+        "path": "src/kch_studio/codex_preflight_mcp.py",
+        "bytes": 3856,
+        "sha256": "f5249c4b27bdf7a250e03cb629b2c5feb81ee3a7762f6cbd9bb0dadfc7593477"
+      },
+      {
+        "path": "src/kch_studio/commitment_monitor.py",
+        "bytes": 29207,
+        "sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab"
+      },
+      {
+        "path": "src/kch_studio/constitutional.py",
+        "bytes": 12220,
+        "sha256": "d63e08b2ccfaf29814e5c74f7dea490090e211d4bc50cb5d818edec2473ac76d"
+      },
+      {
+        "path": "src/kch_studio/construct_mode.py",
+        "bytes": 16986,
+        "sha256": "7f19232f78791f77b18075b3d34e76db54e117215a76a28e4fa8d4cc145ed8c6"
+      },
+      {
+        "path": "src/kch_studio/continuity_guard.py",
+        "bytes": 38291,
+        "sha256": "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785"
+      },
+      {
+        "path": "src/kch_studio/contracts.py",
+        "bytes": 6797,
+        "sha256": "31221f806a221c3d40a3932065c5481de17472a6cb983c69480be089bee21fe9"
+      },
+      {
+        "path": "src/kch_studio/data/__init__.py",
+        "bytes": 81,
+        "sha256": "b30644b2fc8cfe1c7605e8d459309ca0c6b8d5f5c1e2b1376bb91d4e76df8d54"
+      },
+      {
+        "path": "src/kch_studio/data/audio/speak_windows.ps1",
+        "bytes": 622,
+        "sha256": "7d367a36d04060c9d21e1bd4f0ac8bab21b954f77dd5876270a4c741066d66ee"
+      },
+      {
+        "path": "src/kch_studio/data/audio/transcribe_windows.ps1",
+        "bytes": 1646,
+        "sha256": "afb281f742feafc186cd99dbd4f8c99ce973e57e7c0907172fce27a77d84d5a3"
+      },
+      {
+        "path": "src/kch_studio/data/governance/.kch-csi-generated-v0.1.0",
+        "bytes": 33,
+        "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/.codex/rules/kch-generated.rules",
+        "bytes": 216,
+        "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/AGENTS.md",
+        "bytes": 26886,
+        "sha256": "90cc2c098bcafd23191404adab9e8560e3e129f12875e84f6cbf2b705eea902f"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/COMPATIBILITY_RECEIPT.json",
+        "bytes": 640,
+        "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+      },
+      {
+        "path": "src/kch_studio/data/governance/csi/governance_graph.json",
+        "bytes": 28310,
+        "sha256": "b7511cc289bc2c13476dea320a2fd499b86b7d5f93df1afa4609529a494e1975"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/AGENTS.md",
+        "bytes": 2407,
+        "sha256": "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/HARNESS.md",
+        "bytes": 6030,
+        "sha256": "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/RULES.md",
+        "bytes": 1853,
+        "sha256": "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+      },
+      {
+        "path": "src/kch_studio/data/governance/governance.lock.json",
+        "bytes": 13448,
+        "sha256": "de7f6dfe1d1138b749a1a58db2e3a64af12a53fee0c253a4ce97f2ff357174b7"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/constitutional-lock-governor.md",
+        "bytes": 1453,
+        "sha256": "2933aa67e2df99758ee71d9e462c2ef5ceb4d975d71c1105b87b0c4dcd497ddb"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/AGENTS.md",
+        "bytes": 2407,
+        "sha256": "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/HARNESS.md",
+        "bytes": 6030,
+        "sha256": "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/constitutional-lock-keys.md",
+        "bytes": 1848,
+        "sha256": "8b1c8e3fb08771342d88ab35c057b45356b3ce360b366788379c7543bf6393c1"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/evidence-preserving-closure.md",
+        "bytes": 2016,
+        "sha256": "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/full-read-source-order.md",
+        "bytes": 2193,
+        "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/response-modes-substantive.md",
+        "bytes": 1824,
+        "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/terminal-process-supervision.md",
+        "bytes": 2724,
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/RULES.md",
+        "bytes": 1853,
+        "sha256": "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+      },
+      {
+        "path": "src/kch_studio/diction_learning.py",
+        "bytes": 12480,
+        "sha256": "1ab599b58ed155383b901dac57d4ad715180fcd2165fdcde67734ef6881fdf69"
+      },
+      {
+        "path": "src/kch_studio/evidence_projection.py",
+        "bytes": 10645,
+        "sha256": "f75e82d2ddeb32b32abe8c01b75df78e2f9f677b9a1c678dd04b675d4f0a6fce"
+      },
+      {
+        "path": "src/kch_studio/extension.py",
+        "bytes": 23529,
+        "sha256": "7f83e2e9b6303eb9123093ed0a1108279421a0a6df9fc369e6da4776eaaaf19d"
+      },
+      {
+        "path": "src/kch_studio/federated_runtime.py",
+        "bytes": 22884,
+        "sha256": "3895c1b02321c2e3adc636263fce5919177bda1426aed01f738866c79a37ac5f"
+      },
+      {
+        "path": "src/kch_studio/full_read_contract.py",
+        "bytes": 19868,
+        "sha256": "6a58985ce17a92588e1e9cff642c1d5cb1eab09f35d356ebfdb39461475d6f33"
+      },
+      {
+        "path": "src/kch_studio/generators.py",
+        "bytes": 41018,
+        "sha256": "2b138aa1af28bcca57ae63c877e40eeaca79f14b97fe1a82644419751f00e7f9"
+      },
+      {
+        "path": "src/kch_studio/installation.py",
+        "bytes": 6527,
+        "sha256": "59b080708e4c91eb6cd149f70290344f6cd9c8a9aa5230489a32c26549414239"
+      },
+      {
+        "path": "src/kch_studio/kwandata.py",
+        "bytes": 22297,
+        "sha256": "c39054cb93a32ee5be6ecbc9bf96868228fec41ee86dcc94eaa917b0a20c64af"
+      },
+      {
+        "path": "src/kch_studio/launcher.py",
+        "bytes": 9902,
+        "sha256": "0369c41311e90541c645751c9a8717b56f4bc294708314c52b9244b58643a759"
+      },
+      {
+        "path": "src/kch_studio/lock_governor.py",
+        "bytes": 33073,
+        "sha256": "7f2f3fe7faeacfa4f2acb89e772b6f094c222f556d5d23f9aecc59546b186593"
+      },
+      {
+        "path": "src/kch_studio/mcp_server.py",
+        "bytes": 18127,
+        "sha256": "7fc595a8f262928e78771d60ae74a4aa16c0d1bca395d2f5ac1f7a3bc6d73cdc"
+      },
+      {
+        "path": "src/kch_studio/mis_service.py",
+        "bytes": 48280,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582"
+      },
+      {
+        "path": "src/kch_studio/monitored_process_worker.py",
+        "bytes": 6052,
+        "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0"
+      },
+      {
+        "path": "src/kch_studio/operational_surface.py",
+        "bytes": 37801,
+        "sha256": "5fbaea0f49b753af76fdf04d1decad67b1c1012b320f7acdf5f618ea1a3fb83a"
+      },
+      {
+        "path": "src/kch_studio/permissions.py",
+        "bytes": 13656,
+        "sha256": "ba8d48b7a964a4cddff62a68836f1a037297c8323e8b7a416c75f722ac301d5f"
+      },
+      {
+        "path": "src/kch_studio/persistence.py",
+        "bytes": 14588,
+        "sha256": "dfce6eac6a1f825819a4d500418e60873a9ee35608bbd514cd75da5997ce7b1a"
+      },
+      {
+        "path": "src/kch_studio/proactive.py",
+        "bytes": 14856,
+        "sha256": "3f45224de83cb0bb9b9c94fee028e9f050431cdbb3a7c8da7e3ff3f924443977"
+      },
+      {
+        "path": "src/kch_studio/recovery.py",
+        "bytes": 14268,
+        "sha256": "eb8553944ecdf7e76a96073ebdd33d6958f4ea6155c4f41e2c2d58896c13c039"
+      },
+      {
+        "path": "src/kch_studio/response_authority.py",
+        "bytes": 11275,
+        "sha256": "ec9dc1fbe9e4729d0d432c8ff3e6066cd06bf0cc54096319c8e0f393f9374813"
+      },
+      {
+        "path": "src/kch_studio/response_modes.py",
+        "bytes": 29671,
+        "sha256": "43eac86c2730210f38d50135f64ed04032f4d55ab4b517d47ee661ee09820674"
+      },
+      {
+        "path": "src/kch_studio/safeguards.py",
+        "bytes": 4513,
+        "sha256": "381414abd62ee6691d91ae07f1883ed73fb7d58a5a5c17870b724e1a78883ecd"
+      },
+      {
+        "path": "src/kch_studio/scheduler.py",
+        "bytes": 15384,
+        "sha256": "acd4ea866f331429a76b274624e639b955e0d0e5faa1ea547fc8ee34388da226"
+      },
+      {
+        "path": "src/kch_studio/store.py",
+        "bytes": 11645,
+        "sha256": "dd70fe8b4301f2a83640ac587a513f57e30e35502c39b2fc28443bc5ac446485"
+      },
+      {
+        "path": "src/kch_studio/studio.py",
+        "bytes": 12882,
+        "sha256": "edb4f7090ae5c46d24ab27217855463abeab707d0773b5f943a051934772b142"
+      },
+      {
+        "path": "src/kch_studio/super_mcp_overlay.py",
+        "bytes": 9022,
+        "sha256": "51b30a4d4c6838fea53d6885a6da7032465efc852f0ca862ebcce0c2fd34636a"
+      },
+      {
+        "path": "src/kch_studio/surface_contract.py",
+        "bytes": 19680,
+        "sha256": "536c610febe1a8d7edd956507148011262c0a30728572b19ecd6e1237f209afc"
+      },
+      {
+        "path": "src/kch_studio/ui.py",
+        "bytes": 98595,
+        "sha256": "d53fb91696d40af6cbfbdf8e7236ba53bdc5d95ab65fe53fbbba11c98c832376"
+      },
+      {
+        "path": "src/kch_studio/universal_text.py",
+        "bytes": 16467,
+        "sha256": "d0cdf6718a3772c6202de6ac48a41598b9acb2711a5413a264437aee6d5bed95"
+      },
+      {
+        "path": "src/kch_studio/workbench_suite.py",
+        "bytes": 70869,
+        "sha256": "00783cf6ab4b26b1d4158d07166e1f37af4bf904c1b9a8b81d3a4dce9c886383"
+      },
+      {
+        "path": "src/kch_studio/workbench_surface.py",
+        "bytes": 13154,
+        "sha256": "f955fcd9811117c3c94c07ea4acbabeaa341da6fc385fb7d20b949e24e603746"
+      },
+      {
+        "path": "tests/test_advanced_layers.py",
+        "bytes": 12060,
+        "sha256": "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f"
+      },
+      {
+        "path": "tests/test_codex_bootstrap_mcp.py",
+        "bytes": 4188,
+        "sha256": "c99bc00c5fe467382342cf8b44ab8ddb0841d1cca3be70911ad8c794a51c63f8"
+      },
+      {
+        "path": "tests/test_codex_preflight_mcp.py",
+        "bytes": 1399,
+        "sha256": "f83af1a2325b672a6e731a3891c348052a8707e3b464e674287738565880f7ae"
+      },
+      {
+        "path": "tests/test_commitment_monitor.py",
+        "bytes": 8278,
+        "sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a"
+      },
+      {
+        "path": "tests/test_continuity_guard.py",
+        "bytes": 7291,
+        "sha256": "acb53d3c38ae4caeb3a8d4e3d1acde9dd96e1b69a0b201025efbf2832ad13e02"
+      },
+      {
+        "path": "tests/test_evidence_projection.py",
+        "bytes": 6098,
+        "sha256": "8b91abcb3405a0ec0437cee1ab1c6c5663f552d74d186985af6d29ab41cd8e48"
+      },
+      {
+        "path": "tests/test_extension.py",
+        "bytes": 2449,
+        "sha256": "d0bd24a0ae44dc3795556dd9f48db4d0fbecc3729673c14d3c4ff39494060e3d"
+      },
+      {
+        "path": "tests/test_full_read_contract.py",
+        "bytes": 6172,
+        "sha256": "cd9713012d30b5aa086ae84e794fae34560210ce99d97da5dc4c32c7c8089ccc"
+      },
+      {
+        "path": "tests/test_lock_governor.py",
+        "bytes": 14176,
+        "sha256": "3b1e1a5bbddd700e1fedafca8a98cc9bcd114927f095b6787b580236edcd91bf"
+      },
+      {
+        "path": "tests/test_mcp_ui.py",
+        "bytes": 5750,
+        "sha256": "8d5df07eaa0df559fdca6e8dd23642fb8f6102e325dec14868230664bf185050"
+      },
+      {
+        "path": "tests/test_mis_federation.py",
+        "bytes": 5254,
+        "sha256": "4229fc16f9c2f2b44f5d5985ff5d397cdd733ddccd385ffddb4e1b2c8c179e5f"
+      },
+      {
+        "path": "tests/test_operational_surface.py",
+        "bytes": 6068,
+        "sha256": "715fcddb477f89ff8312d8149afa44be73736a509788b3214c290b6cdbaaf22a"
+      },
+      {
+        "path": "tests/test_portable_paths.py",
+        "bytes": 3646,
+        "sha256": "5c3e5027f7044f86cd0de036413932801f58afac20173c652741275fc6bc1aad"
+      },
+      {
+        "path": "tests/test_response_authority.py",
+        "bytes": 3363,
+        "sha256": "40ff065a860ad6755067b8c602581daf6962fbb3104082de02f33668f9239f5f"
+      },
+      {
+        "path": "tests/test_response_modes.py",
+        "bytes": 4786,
+        "sha256": "ee89a5586e99c3b61d9cdbf7326764cdf382fa0d1b06731f329658f1c3159ba6"
+      },
+      {
+        "path": "tests/test_studio.py",
+        "bytes": 8316,
+        "sha256": "d47ad7a5810d03d3158d168fa275c228d351dfb976e40789c3487f9e16029974"
+      },
+      {
+        "path": "tests/test_workbench_suite.py",
+        "bytes": 7262,
+        "sha256": "38eee9ef78acc623169fa743f6e63460e8c1321b6db9427c08faef4f0817cd31"
+      }
+    ]
+  },
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "R21_LOCAL_FULL_SOURCE_REGRESSION_ONLY",
+  "sha256": "29e5685f3d449f725d5033be6a34e31414c952e7a80dff4ac0b1c771029acc97"
+}

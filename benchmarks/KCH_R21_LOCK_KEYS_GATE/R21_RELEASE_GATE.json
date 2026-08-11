@@ -1,0 +1,71 @@
+{
+    "schema":  "kch.r21-constitutional-lock-release-gate.v0.1.0",
+    "release":  "KCH 0.11 R21",
+    "gate":  "PASS_BOUNDED",
+    "archive":  {
+                    "path":  "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\release_build\\KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip",
+                    "bytes":  22231435,
+                    "sha256":  "98ba1faa4c63302f67ec386b9ecf684762e7923febc3039cd8c201a024091b54"
+                },
+    "governance":  {
+                       "node_count":  23,
+                       "agent_count":  7,
+                       "rule_count":  13,
+                       "graph_sha256":  "fb59cb255d3d6ce3fe4ab4182a39984f3c1431df878033fedd4aa8cb82523ec1"
+                   },
+    "source_suite":  {
+                         "gate":  "PASS",
+                         "passed":  102,
+                         "ruff_status":  "COMPLETED_PASS",
+                         "sealed_sha256":  "5a751abb0c963fdede9a861064959cdef3be04244cce8651baae75cc1f979e7d",
+                         "file_sha256":  "b2fbd20b4d26fb2ca89be3656c55b3f1e17c9d86645a7d4f09bd485165752181"
+                     },
+    "installed_post_gate":  {
+                                "gate":  "PASS_BOUNDED",
+                                "checks_passed":  22,
+                                "checks_total":  22,
+                                "combined_tool_count":  294,
+                                "file_sha256":  "d1d15a4fad2a115330de23274929ac5301c3705d03b57407853000e0afc007c1"
+                            },
+    "installed_lock_gate":  {
+                                "gate":  "PASS",
+                                "checks":  {
+                                               "always_this_session_does_not_bypass_lock":  true,
+                                               "authority_methods_absent_from_mcp_handlers":  true,
+                                               "altered_arguments_rejected":  true,
+                                               "altered_attempt_did_not_consume":  true,
+                                               "exact_call_executed":  true,
+                                               "authorization_consumed_once":  true,
+                                               "reuse_rejected":  true,
+                                               "hash_chain_pass":  true,
+                                               "phl_not_executed":  true
+                                           },
+                                "sealed_sha256":  "8b5dc11fb9146a6e9eae991fab96f30af69d8c7bae4a57263e5ea016b60b601e",
+                                "file_sha256":  "f9ab5bd3432023093f2d6242eb63aeff2ea9436ad1938ca80741e3e63e664bf0"
+                            },
+    "adverse_attempts":  [
+                             {
+                                 "attempt":  "source_suite_01",
+                                 "gate":  "FAIL_SUPERVISOR_STORAGE_EXHAUSTED",
+                                 "preserved":  true
+                             },
+                             {
+                                 "attempt":  "installed_post_gate_A1",
+                                 "gate":  "FAIL_STATUS_PROJECTION_KEYPATH",
+                                 "preserved":  true
+                             }
+                         ],
+    "phl_authorized":  true,
+    "phl_training_executed":  false,
+    "phl_real_executed":  false,
+    "external_host_configuration_modified":  false,
+    "claim_ceiling":  "LOCAL_SOURCE_REGRESSION_PORTABLE_INSTALLATION_STDIO_AND_EXACT_LOCK_AUTHORITY_ONLY",
+    "not_established":  [
+                            "external unmediated write prevention",
+                            "industrial validation",
+                            "human usability validation",
+                            "longitudinal reliability",
+                            "causal benefit"
+                        ],
+    "sha256":  "27a7de9628f1c55fc1e9a53f89636caead5b6126cc258c00284b25ed88f03f9e"
+}

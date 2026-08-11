@@ -13,7 +13,26 @@ from typing import Any
 
 from .constitutional import Actor, ConstitutionalAuthorityError
 from .contracts import canonical_json, file_manifest, safe_child, sha256_bytes, sha256_json
+from .lock_governor import LockGovernor, resource_for_path
 from .recovery import RecoveryVault
+
+TRANSIENT_TREE_NAMES = frozenset(
+    {
+        ".git",
+        "__pycache__",
+        ".pytest_cache",
+        ".runtime",
+    }
+)
+
+
+def is_transient_tree_part(part: str) -> bool:
+    return part in TRANSIENT_TREE_NAMES or part.startswith("runtime_live")
+
+
+def ignore_transient_tree_entries(_directory: str, names: list[str]) -> list[str]:
+    """Apply the same transient-byte jurisdiction to every tree copy."""
+    return [name for name in names if is_transient_tree_part(name)]
 
 
 def utc_now() -> str:
@@ -21,18 +40,10 @@ def utc_now() -> str:
 
 
 def tree_hash(root: Path) -> tuple[list[dict[str, Any]], str]:
-    ignored = {
-        ".git",
-        "__pycache__",
-        ".pytest_cache",
-        ".runtime",
-        "runtime_live",
-        "runtime_live_r2",
-    }
     manifest = [
         item
         for item in file_manifest(root)
-        if not any(part in ignored for part in Path(item["path"]).parts)
+        if not any(is_transient_tree_part(part) for part in Path(item["path"]).parts)
     ]
     return manifest, sha256_json(manifest)
 
@@ -40,7 +51,12 @@ def tree_hash(root: Path) -> tuple[list[dict[str, Any]], str]:
 class ConstructMode:
     """Guided KCH self-construction through versioned successors, never blind in-place edits."""
 
-    def __init__(self, root: str | Path, stable_root: str | Path):
+    def __init__(
+        self,
+        root: str | Path,
+        stable_root: str | Path,
+        lock_governor: LockGovernor | None = None,
+    ):
         self.root = Path(root).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
         self.stable_root = Path(stable_root).resolve()
@@ -53,6 +69,7 @@ class ConstructMode:
         self.promoted = self.root / "promoted"
         self.promoted.mkdir(exist_ok=True)
         self.vault = RecoveryVault(self.root / "recovery")
+        self.lock_governor = lock_governor
         self.pointer = self.root / "NEXT_START_STABLE.json"
         if not self.pointer.is_file():
             manifest, digest = tree_hash(self.stable_root)
@@ -80,18 +97,7 @@ class ConstructMode:
     @staticmethod
     def _excluded(path: Path, base: Path) -> bool:
         parts = path.relative_to(base).parts
-        return any(
-            part
-            in {
-                ".git",
-                "__pycache__",
-                ".pytest_cache",
-                ".runtime",
-                "runtime_live",
-                "runtime_live_r2",
-            }
-            for part in parts
-        )
+        return any(is_transient_tree_part(part) for part in parts)
 
     def _backup_stable(self) -> dict[str, Any]:
         manifest, digest = tree_hash(self.stable_root)
@@ -128,9 +134,7 @@ class ConstructMode:
         shutil.copytree(
             self.stable_root,
             target,
-            ignore=shutil.ignore_patterns(
-                ".git", "__pycache__", ".pytest_cache", ".runtime", "runtime_live*"
-            ),
+            ignore=ignore_transient_tree_entries,
         )
         manifest, digest = tree_hash(target)
         state = {
@@ -160,17 +164,116 @@ class ConstructMode:
             str(self.vault.latest(f"sessions/{session_id}.json", decode=True)["content"])
         )
 
-    def write_file(
-        self, session_id: str, relative_path: str, content: bytes | str, *, actor: Actor
+    def _write_binding(
+        self, session_id: str, relative_path: str, content: bytes | str
     ) -> dict[str, Any]:
-        self._require_user(actor)
         state = self.state(session_id)
         if state["state"] not in {"CANDIDATE_COPIED", "MODIFIED", "VALIDATION_FAILED"}:
             raise ValueError("construct session is not editable")
         root = Path(state["candidate_root"])
         target = safe_child(root, relative_path)
-        target.parent.mkdir(parents=True, exist_ok=True)
         before = target.read_bytes() if target.is_file() else None
+        raw = content.encode("utf-8") if isinstance(content, str) else bytes(content)
+        operation = "CREATE" if before is None else "MODIFY"
+        payload = {
+            "session_id": session_id,
+            "relative_path": relative_path,
+            "content_sha256": sha256_bytes(raw),
+            "bytes": len(raw),
+        }
+        return {
+            "state": state,
+            "root": root,
+            "target": target,
+            "before": before,
+            "raw": raw,
+            "resource": resource_for_path(target),
+            "operation": operation,
+            "current_sha256": None if before is None else sha256_bytes(before),
+            "proposed_sha256": sha256_bytes(raw),
+            "payload_sha256": sha256_json(payload),
+            "payload": payload,
+        }
+
+    def propose_write(
+        self,
+        session_id: str,
+        relative_path: str,
+        content: bytes | str,
+        *,
+        rationale: str,
+        impact: str,
+        dependencies: list[str],
+        recovery_plan: str,
+        actor: Actor,
+    ) -> dict[str, Any]:
+        if self.lock_governor is None:
+            raise ValueError("Construct has no lock governor binding")
+        value = self._write_binding(session_id, relative_path, content)
+        proposal = self.lock_governor.propose(
+            resource=value["resource"],
+            operation=value["operation"],
+            current_sha256=value["current_sha256"],
+            proposed_sha256=value["proposed_sha256"],
+            payload_sha256=value["payload_sha256"],
+            rationale=rationale,
+            impact=impact,
+            dependencies=dependencies,
+            recovery_plan=recovery_plan,
+        )
+        return {
+            "schema": "kch.construct-locked-write-proposal.v0.1.0",
+            "session_id": session_id,
+            "relative_path": relative_path,
+            "target": str(value["target"]),
+            "operation": value["operation"],
+            "content_bytes": len(value["raw"]),
+            "proposed_by": actor.value,
+            "proposal": proposal,
+            "candidate_bytes_modified": False,
+        }
+
+    def write_file(
+        self,
+        session_id: str,
+        relative_path: str,
+        content: bytes | str,
+        *,
+        actor: Actor,
+        lock_authorization_id: str | None = None,
+    ) -> dict[str, Any]:
+        self._require_user(actor)
+        value = self._write_binding(session_id, relative_path, content)
+        state = value["state"]
+        target = value["target"]
+        before = value["before"]
+        raw = value["raw"]
+        if self.lock_governor is None:
+            lock_preflight = {
+                "gate": "ALLOW_NO_LOCK_GOVERNOR_BOUND",
+                "authorized": True,
+            }
+        else:
+            lock_preflight = self.lock_governor.preflight(
+                resource=value["resource"],
+                operation=value["operation"],
+                current_sha256=value["current_sha256"],
+                proposed_sha256=value["proposed_sha256"],
+                payload_sha256=value["payload_sha256"],
+                authorization_id=lock_authorization_id,
+            )
+        if not lock_preflight["authorized"]:
+            return {
+                "schema": "kch.construct-write-blocked.v0.1.0",
+                "state": "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED",
+                "session_id": session_id,
+                "relative_path": relative_path,
+                "target": str(target),
+                "lock_preflight": lock_preflight,
+                "candidate_bytes_modified": False,
+                "runtime_active_bytes_modified": False,
+            }
+        target.parent.mkdir(parents=True, exist_ok=True)
         if before is not None:
             self.vault.save(
                 f"sessions/{session_id}/before/{relative_path}",
@@ -180,7 +283,6 @@ class ConstructMode:
                 operation="BACKUP_BEFORE_WRITE",
                 media_type="application/octet-stream",
             )
-        raw = content.encode("utf-8") if isinstance(content, str) else bytes(content)
         target.write_bytes(raw)
         state["state"] = "MODIFIED"
         state["updated_at"] = utc_now()
@@ -203,6 +305,7 @@ class ConstructMode:
             "session_id": session_id,
             "path": str(target),
             "sha256": sha256_bytes(raw),
+            "lock_preflight": lock_preflight,
             "runtime_active_bytes_modified": False,
             "custody": custody,
         }
@@ -285,7 +388,7 @@ class ConstructMode:
         manifest, digest = tree_hash(source)
         target = safe_child(self.promoted, f"KCH_SUCCESSOR_{digest}")
         if not target.exists():
-            shutil.copytree(source, target)
+            shutil.copytree(source, target, ignore=ignore_transient_tree_entries)
         previous = json.loads(self.pointer.read_text(encoding="utf-8"))
         pointer = {
             "schema": "kch.construct-stable-pointer.v0.1.0",
@@ -351,4 +454,5 @@ class ConstructMode:
             "candidate_count": len([path for path in self.candidates.iterdir() if path.is_dir()]),
             "modes": ["PLAN", "RUN", "CONSTRUCT"],
             "in_place_self_overwrite": False,
+            "lock_governor_bound": self.lock_governor is not None,
         }

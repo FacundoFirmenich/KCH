@@ -8,7 +8,6 @@ from typing import Any, Callable
 
 from .advanced_runtime import KCHAdvancedRuntime
 from .clipboard_hub import RegionSelector
-from .constitutional import Actor
 from .contracts import ArtifactKind, ArtifactSpec
 from .extension import ExtensionFabric, RecommendationEngine, RuntimeInventory
 from .installation import ConsentDecision, IsolatedInstaller
@@ -114,6 +113,7 @@ class KCHStudioApp(ttk.Frame):
         if self.advanced is not None:
             self._build_constitution_tab()
             self._build_runtime_tab()
+            self._build_locks_tab()
             self._build_response_modes_tab()
             self._build_kwandata_tab()
             self._build_workbench_tab()
@@ -167,6 +167,54 @@ class KCHStudioApp(ttk.Frame):
                 result[name] = None
             else:
                 result[name] = ""
+        return result
+
+    def _ui_mutation(self, tool_name: str, arguments: dict[str, Any]) -> Any:
+        """Route every local UI mutation through the same lock/PHL/tool interposition."""
+        if self.advanced is None:
+            raise RuntimeError("advanced runtime is unavailable")
+        descriptor = next(
+            (item for item in self.tool_descriptors if item["name"] == tool_name), None
+        )
+        values = dict(arguments)
+        if descriptor is not None and "consent" in descriptor["inputSchema"]["properties"]:
+            values.setdefault("consent", "YES")
+        result = self.advanced.handlers[tool_name](values)
+        if isinstance(result, dict) and result.get("state") == (
+            "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED"
+        ):
+            self.show_inspector(result)
+            self.log("Mutación de UI bloqueada por una llave constitucional.", result)
+            raise PermissionError(
+                "Cambio bloqueado: prepara la propuesta exacta y autorízala en "
+                "'Llaves de bloqueo'."
+            )
+        if isinstance(result, dict) and result.get("state") == (
+            "EXECUTED_UNDER_SCOPED_USER_CONSENT"
+        ):
+            return result["result"]
+        return result
+
+    def _ui_direct_mutation(
+        self,
+        tool_name: str,
+        arguments: dict[str, Any],
+        operation: Callable[[], Any],
+    ) -> Any:
+        if self.advanced is None:
+            raise RuntimeError("advanced runtime is unavailable")
+        result = self.advanced.guard_ui_component_mutation(
+            tool_name, arguments, operation
+        )
+        if isinstance(result, dict) and result.get("state") == (
+            "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED"
+        ):
+            self.show_inspector(result)
+            self.log("Mutación directa de UI bloqueada por una llave constitucional.", result)
+            raise PermissionError(
+                "Cambio bloqueado: prepara la propuesta exacta y autorízala en "
+                "'Llaves de bloqueo'."
+            )
         return result
 
     @staticmethod
@@ -554,14 +602,17 @@ class KCHStudioApp(ttk.Frame):
         )
         if content == observed:
             return
-        receipt = self.advanced.constitution.update_box(box_id, content, actor=Actor.USER)
-        self.advanced.launcher.publish(
-            {
+        receipt = self._ui_mutation(
+            "constitution_box_update", {"box_id": box_id, "content": content}
+        )
+        self._ui_mutation(
+            "proactive_event_publish",
+            {"event": {
                 "type": "box.edited",
                 "authority": "USER",
                 "box_id": box_id,
                 "revision": receipt["state"]["revision"],
-            }
+            }},
         )
         self.constitution_tree.item(box_id, text=content.replace("\n", " ")[:54] or "[caja vacía]")
 
@@ -571,7 +622,10 @@ class KCHStudioApp(ttk.Frame):
         parent = (
             self.constitution_tree.selection()[0] if self.constitution_tree.selection() else None
         )
-        result = self.advanced.constitution.add_box(parent_box_id=parent, actor=Actor.USER)
+        result = self._ui_mutation(
+            "constitution_box_add",
+            {"plane_id": "main", "parent_box_id": parent, "content": "", "tags": []},
+        )
         self.refresh_constitution()
         self.constitution_tree.selection_set(result["box_id"])
         self.select_constitution_box()
@@ -646,13 +700,261 @@ class KCHStudioApp(ttk.Frame):
             "1.0", json.dumps(self.advanced.status(), ensure_ascii=False, sort_keys=True, indent=2)
         )
 
+    def _build_locks_tab(self) -> None:
+        tab = ttk.Frame(self.notebook, padding=8)
+        self.notebook.add(tab, text="Llaves de bloqueo")
+        ttk.Label(
+            tab,
+            text=(
+                "Modo garantista opcional. Un bloqueo activo se impone a permisos, "
+                "consentimientos, Construct y automatismos: el agente sólo puede proponer "
+                "el cambio; la autorización exacta nace aquí y se consume una sola vez."
+            ),
+            wraplength=1050,
+        ).pack(anchor="w", pady=(0, 6))
+
+        mode = ttk.Frame(tab)
+        mode.pack(fill="x")
+        self.lock_enabled_var = tk.BooleanVar(value=self.advanced.locks.enabled())
+        ttk.Checkbutton(
+            mode,
+            text="Activar gobernador de llaves en este runtime",
+            variable=self.lock_enabled_var,
+        ).pack(side="left")
+        ttk.Button(mode, text="Aplicar modo", command=self.apply_lock_mode).pack(
+            side="left", padx=6
+        )
+        ttk.Button(mode, text="Verificar deriva", command=self.verify_lock_drift).pack(
+            side="left"
+        )
+
+        form = ttk.LabelFrame(tab, text="Nueva llave constitucional", padding=6)
+        form.pack(fill="x", pady=6)
+        self.lock_resource_var = tk.StringVar(value="file://")
+        self.lock_match_var = tk.StringVar(value="EXACT")
+        self.lock_operations_var = tk.StringVar(value="MODIFY,DELETE")
+        self.lock_reason_var = tk.StringVar()
+        self.lock_baseline_var = tk.BooleanVar(value=True)
+        ttk.Label(form, text="Objeto o patrón").grid(row=0, column=0, sticky="w")
+        ttk.Entry(form, textvariable=self.lock_resource_var).grid(
+            row=0, column=1, columnspan=5, sticky="ew", padx=4
+        )
+        ttk.Label(form, text="Coincidencia").grid(row=1, column=0, sticky="w")
+        ttk.Combobox(
+            form,
+            textvariable=self.lock_match_var,
+            values=("EXACT", "PREFIX", "GLOB"),
+            state="readonly",
+            width=10,
+        ).grid(row=1, column=1, sticky="w", padx=4)
+        ttk.Label(form, text="Operaciones").grid(row=1, column=2, sticky="e")
+        ttk.Entry(form, textvariable=self.lock_operations_var, width=26).grid(
+            row=1, column=3, sticky="ew", padx=4
+        )
+        ttk.Checkbutton(
+            form, text="Capturar hash base", variable=self.lock_baseline_var
+        ).grid(row=1, column=4, sticky="w")
+        ttk.Button(form, text="Crear llave", command=self.create_lock_from_ui).grid(
+            row=1, column=5, sticky="e"
+        )
+        ttk.Label(form, text="Razón vinculante").grid(row=2, column=0, sticky="w")
+        ttk.Entry(form, textvariable=self.lock_reason_var).grid(
+            row=2, column=1, columnspan=5, sticky="ew", padx=4, pady=(4, 0)
+        )
+        form.columnconfigure(1, weight=1)
+        form.columnconfigure(3, weight=1)
+
+        panes = ttk.Panedwindow(tab, orient="horizontal")
+        panes.pack(fill="both", expand=True)
+        locks_frame = ttk.LabelFrame(panes, text="Objetos bloqueados", padding=4)
+        proposals_frame = ttk.LabelFrame(
+            panes, text="Cambios que esperan tu decisión", padding=4
+        )
+        panes.add(locks_frame, weight=1)
+        panes.add(proposals_frame, weight=1)
+        self.lock_tree = ttk.Treeview(
+            locks_frame,
+            columns=("mode", "operations", "reason"),
+            show="tree headings",
+            selectmode="browse",
+        )
+        self.lock_tree.heading("#0", text="Objeto")
+        self.lock_tree.heading("mode", text="Modo")
+        self.lock_tree.heading("operations", text="Operaciones")
+        self.lock_tree.heading("reason", text="Razón")
+        self.lock_tree.column("#0", width=270)
+        self.lock_tree.column("mode", width=70)
+        self.lock_tree.column("operations", width=120)
+        self.lock_tree.column("reason", width=250)
+        self.lock_tree.pack(fill="both", expand=True)
+        ttk.Button(
+            locks_frame,
+            text="Desactivar llave seleccionada",
+            command=self.deactivate_lock_from_ui,
+        ).pack(anchor="e", pady=(4, 0))
+
+        self.lock_proposal_tree = ttk.Treeview(
+            proposals_frame,
+            columns=("operation", "impact"),
+            show="tree headings",
+            selectmode="browse",
+        )
+        self.lock_proposal_tree.heading("#0", text="Objeto")
+        self.lock_proposal_tree.heading("operation", text="Operación")
+        self.lock_proposal_tree.heading("impact", text="Impacto")
+        self.lock_proposal_tree.column("#0", width=270)
+        self.lock_proposal_tree.column("operation", width=90)
+        self.lock_proposal_tree.column("impact", width=260)
+        self.lock_proposal_tree.pack(fill="both", expand=True)
+        self.lock_proposal_tree.bind(
+            "<<TreeviewSelect>>", lambda _event: self.inspect_lock_proposal()
+        )
+        controls = ttk.Frame(proposals_frame)
+        controls.pack(fill="x", pady=(4, 0))
+        ttk.Button(controls, text="Actualizar", command=self.refresh_locks).pack(side="left")
+        ttk.Button(
+            controls,
+            text="Autorizar exactamente una vez",
+            command=self.authorize_lock_proposal_from_ui,
+        ).pack(side="right")
+        self.refresh_locks()
+
+    def apply_lock_mode(self) -> None:
+        value = self.advanced.lock_user_enable(self.lock_enabled_var.get())
+        self.show_inspector(value)
+        self.log("Modo de llaves actualizado por gesto local del usuario.", value)
+        self.refresh_locks()
+
+    def create_lock_from_ui(self) -> None:
+        operations = [
+            item.strip().upper()
+            for item in self.lock_operations_var.get().split(",")
+            if item.strip()
+        ]
+        reason = self.lock_reason_var.get().strip()
+        if not reason:
+            messagebox.showwarning(
+                "Llave constitucional", "La razón vinculante no puede estar vacía.", parent=self
+            )
+            return
+        if not messagebox.askyesno(
+            "Crear llave constitucional",
+            "Esta llave bloqueará las operaciones indicadas hasta una autorización exacta. "
+            "¿Crear la llave ahora?",
+            parent=self,
+        ):
+            return
+        try:
+            value = self.advanced.lock_user_create(
+                {
+                    "resource_pattern": self.lock_resource_var.get(),
+                    "match_mode": self.lock_match_var.get(),
+                    "operations": operations,
+                    "reason": reason,
+                    "capture_baseline": self.lock_baseline_var.get(),
+                }
+            )
+            self.show_inspector(value)
+            self.log("Llave constitucional creada por gesto local del usuario.", value)
+            self.refresh_locks()
+        except Exception as exc:
+            messagebox.showerror("Llave constitucional", str(exc), parent=self)
+
+    def deactivate_lock_from_ui(self) -> None:
+        selected = self.lock_tree.selection()
+        if not selected:
+            return
+        lock_id = selected[0]
+        if not messagebox.askyesno(
+            "Desactivar llave",
+            "¿Desactivar esta llave? La desactivación queda trazada y no borra su historia.",
+            parent=self,
+        ):
+            return
+        value = self.advanced.lock_user_deactivate(lock_id)
+        self.show_inspector(value)
+        self.log("Llave desactivada; evidencia histórica preservada.", value)
+        self.refresh_locks()
+
+    def refresh_locks(self) -> None:
+        self.lock_tree.delete(*self.lock_tree.get_children())
+        for item in self.advanced.locks.locks():
+            self.lock_tree.insert(
+                "",
+                "end",
+                iid=item["lock_id"],
+                text=item["resource_pattern"],
+                values=(
+                    item["match_mode"],
+                    ",".join(item["operations"]),
+                    item["reason"],
+                ),
+            )
+        self.lock_proposal_tree.delete(*self.lock_proposal_tree.get_children())
+        for item in self.advanced.locks.pending_proposals():
+            self.lock_proposal_tree.insert(
+                "",
+                "end",
+                iid=item["proposal_id"],
+                text=item["resource"],
+                values=(item["operation"], item["explanation"]["impact"]),
+            )
+        self.lock_enabled_var.set(self.advanced.locks.enabled())
+
+    def inspect_lock_proposal(self) -> None:
+        selected = self.lock_proposal_tree.selection()
+        if not selected:
+            return
+        proposal = next(
+            item
+            for item in self.advanced.locks.pending_proposals()
+            if item["proposal_id"] == selected[0]
+        )
+        self.show_inspector(proposal)
+
+    def authorize_lock_proposal_from_ui(self) -> None:
+        selected = self.lock_proposal_tree.selection()
+        if not selected:
+            return
+        proposal = next(
+            item
+            for item in self.advanced.locks.pending_proposals()
+            if item["proposal_id"] == selected[0]
+        )
+        explanation = proposal["explanation"]
+        prompt = (
+            f"Objeto: {proposal['resource']}\n"
+            f"Operación: {proposal['operation']}\n\n"
+            f"Por qué: {explanation['rationale']}\n\n"
+            f"Impacto: {explanation['impact']}\n\n"
+            f"Dependencias: {', '.join(explanation['dependencies']) or 'ninguna declarada'}\n\n"
+            f"Recuperación: {explanation['recovery_plan']}\n\n"
+            "La autorización sólo sirve para estos hashes y se consume una vez. "
+            "¿Autorizar?"
+        )
+        if not messagebox.askyesno(
+            "Autorización exacta de llave", prompt, parent=self
+        ):
+            return
+        value = self.advanced.lock_user_authorize(proposal["proposal_id"])
+        self.show_inspector(value)
+        self.log("Cambio exacto autorizado una sola vez por el usuario.", value)
+        self.refresh_locks()
+
+    def verify_lock_drift(self) -> None:
+        value = self.advanced.locks.verify_drift()
+        self.show_inspector(value)
+        self.log("Verificación de deriva externa sobre objetos bloqueados.", value)
+
     def save_policy_preferences(self) -> None:
         if self.advanced is None:
             return
-        self.advanced.policy.set_preferences(
-            enabled=self.policy_enabled.get(),
-            announce_on_session_start=self.policy_announce.get(),
-            actor=Actor.USER,
+        self._ui_mutation(
+            "programmed_policy_preferences_set",
+            {
+                "enabled": self.policy_enabled.get(),
+                "announce_on_session_start": self.policy_announce.get(),
+            },
         )
         self.log("Preferencias proactivas promulgadas por el usuario y versionadas.")
 
@@ -802,10 +1104,13 @@ class KCHStudioApp(ttk.Frame):
         if self.advanced is None:
             return
         try:
-            value = self.advanced.response_modes.set_scope(
-                self.response_scope_type.get(),
-                self.response_scope_key.get(),
-                self.response_profile_id.get(),
+            value = self._ui_mutation(
+                "response_mode_scope_set",
+                {
+                    "scope_type": self.response_scope_type.get(),
+                    "scope_key": self.response_scope_key.get(),
+                    "profile_id": self.response_profile_id.get(),
+                },
             )
         except Exception as exc:
             messagebox.showerror("Modos de respuesta", str(exc), parent=self)
@@ -817,8 +1122,12 @@ class KCHStudioApp(ttk.Frame):
         if self.advanced is None:
             return
         try:
-            value = self.advanced.response_modes.clear_scope(
-                self.response_scope_type.get(), self.response_scope_key.get()
+            value = self._ui_mutation(
+                "response_mode_scope_clear",
+                {
+                    "scope_type": self.response_scope_type.get(),
+                    "scope_key": self.response_scope_key.get(),
+                },
             )
         except Exception as exc:
             messagebox.showerror("Modos de respuesta", str(exc), parent=self)
@@ -831,13 +1140,14 @@ class KCHStudioApp(ttk.Frame):
             return
         try:
             overrides = json.loads(self.response_custom_config.get("1.0", "end"))
-            value = self.advanced.response_modes.upsert_profile(
-                {
+            value = self._ui_mutation(
+                "response_mode_profile_upsert",
+                {"profile": {
                     "profile_id": self.response_custom_id.get(),
                     "name": self.response_custom_name.get(),
                     "base_profile_id": self.response_custom_base.get(),
                     "config": overrides,
-                }
+                }},
             )
         except Exception as exc:
             messagebox.showerror("Perfil custom", str(exc), parent=self)
@@ -872,7 +1182,10 @@ class KCHStudioApp(ttk.Frame):
         if self.advanced is None:
             return
         try:
-            value = self.advanced.response_modes.archive_profile(self.response_profile_id.get())
+            value = self._ui_mutation(
+                "response_mode_profile_archive",
+                {"profile_id": self.response_profile_id.get()},
+            )
         except Exception as exc:
             messagebox.showerror("Archivar perfil", str(exc), parent=self)
             return
@@ -896,7 +1209,7 @@ class KCHStudioApp(ttk.Frame):
             )
             or "checkpoint-ui"
         )
-        value = self.advanced.checkpoints.create_structured(label, actor=Actor.USER)
+        value = self._ui_mutation("checkpoint_structured_create", {"label": label})
         self.show_inspector(value)
         self.log("Checkpoint estructurado deduplicado creado.", value)
 
@@ -915,8 +1228,12 @@ class KCHStudioApp(ttk.Frame):
             "¿Confirmas expresamente su creación ahora?"
         )
         confirmed = messagebox.askyesno("Confirmación de checkpoint full", warning, parent=self)
-        value = self.advanced.checkpoints.create_full(
-            plan["plan_id"], confirm_large_checkpoint=confirmed, actor=Actor.USER
+        value = self._ui_mutation(
+            "checkpoint_full_create",
+            {
+                "plan_id": plan["plan_id"],
+                "confirm_large_checkpoint": confirmed,
+            },
         )
         self.show_inspector(value)
         self.log("Resultado del checkpoint full.", value)
@@ -929,7 +1246,7 @@ class KCHStudioApp(ttk.Frame):
         )
         if not objective:
             return
-        value = self.advanced.construct.start(objective, actor=Actor.USER)
+        value = self._ui_mutation("construct_start", {"objective": objective})
         self.construct_session_id = value["session_id"]
         self.construct_label.configure(text=self.construct_session_id[-16:])
         self.show_inspector(value)
@@ -952,6 +1269,7 @@ class KCHStudioApp(ttk.Frame):
         ttk.Entry(frame, textvariable=path_var).pack(fill="x", pady=(0, 6))
         editor = tk.Text(frame, wrap="none", undo=True, font=("Cascadia Mono", 10))
         editor.pack(fill="both", expand=True)
+        pending_proposal_id: list[str | None] = [None]
 
         def save() -> None:
             try:
@@ -961,12 +1279,61 @@ class KCHStudioApp(ttk.Frame):
                     "construct_session": self.construct_session_id,
                 }
                 advice = self.advanced.risk.assess(proposal)
-                value = self.advanced.construct.write_file(
-                    self.construct_session_id,
-                    path_var.get(),
-                    editor.get("1.0", "end-1c"),
-                    actor=Actor.USER,
-                )
+                content = editor.get("1.0", "end-1c")
+                arguments = {
+                    "session_id": self.construct_session_id,
+                    "relative_path": path_var.get(),
+                    "content": content,
+                }
+                if pending_proposal_id[0] is not None:
+                    status = self.advanced.locks.authorization_status(
+                        pending_proposal_id[0]
+                    )
+                    authorization = status["authorization"]
+                    if authorization is not None and not authorization["consumed"]:
+                        arguments["lock_authorization_id"] = authorization[
+                            "authorization_id"
+                        ]
+                value = self._ui_mutation("construct_file_write", arguments)
+                if value.get("state") == "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED":
+                    rationale = simpledialog.askstring(
+                        "Cambio bloqueado",
+                        "Explica por qué debe cambiarse este objeto bloqueado:",
+                        parent=dialog,
+                    )
+                    if not rationale:
+                        return
+                    impact = simpledialog.askstring(
+                        "Impacto del cambio",
+                        "Describe el impacto y los componentes afectados:",
+                        parent=dialog,
+                    )
+                    recovery = simpledialog.askstring(
+                        "Recuperación",
+                        "Describe cómo se recuperará el estado anterior:",
+                        parent=dialog,
+                    )
+                    if not impact or not recovery:
+                        return
+                    proposed = self._ui_mutation(
+                        "construct_file_write_propose",
+                        {
+                            **arguments,
+                            "rationale": rationale,
+                            "impact": impact,
+                            "dependencies": [],
+                            "recovery_plan": recovery,
+                        },
+                    )
+                    pending_proposal_id[0] = proposed["proposal"]["proposal_id"]
+                    self.refresh_locks()
+                    messagebox.showinfo(
+                        "Autorización pendiente",
+                        "La propuesta exacta quedó preparada. Revísala y autorízala en "
+                        "'Llaves de bloqueo'; después pulsa Guardar nuevamente.",
+                        parent=dialog,
+                    )
+                    return
                 self.log(
                     "Archivo escrito sólo en el candidato CONSTRUCT.",
                     {"risk_advice": advice, "write": value},
@@ -983,7 +1350,9 @@ class KCHStudioApp(ttk.Frame):
         if self.advanced is None or self.construct_session_id is None:
             messagebox.showinfo("CONSTRUCT", "No hay sesión CONSTRUCT activa.", parent=self)
             return
-        value = self.advanced.construct.validate(self.construct_session_id, actor=Actor.USER)
+        value = self._ui_mutation(
+            "construct_validate", {"session_id": self.construct_session_id}
+        )
         self.show_inspector(value)
         self.log("Gate del candidato CONSTRUCT ejecutado.", value)
 
@@ -997,8 +1366,8 @@ class KCHStudioApp(ttk.Frame):
             parent=self,
         ):
             return
-        value = self.advanced.construct.promote_for_next_start(
-            self.construct_session_id, actor=Actor.USER
+        value = self._ui_mutation(
+            "construct_promote_next_start", {"session_id": self.construct_session_id}
         )
         self.show_inspector(value)
         self.log("Sucesor promovido para el próximo arranque; runtime actual intacto.", value)
@@ -1006,7 +1375,7 @@ class KCHStudioApp(ttk.Frame):
     def rollback_construct(self) -> None:
         if self.advanced is None:
             return
-        value = self.advanced.construct.rollback_pointer(actor=Actor.USER)
+        value = self._ui_mutation("construct_rollback_pointer", {})
         self.show_inspector(value)
         self.log("Puntero del próximo arranque revertido.", value)
 
@@ -1044,7 +1413,12 @@ class KCHStudioApp(ttk.Frame):
         if self.advanced is None:
             return
         try:
-            value = self.advanced.kwandata.ingest(self.kwandata_source.get())
+            source = self.kwandata_source.get()
+            value = self._ui_direct_mutation(
+                "kwandata_ingest",
+                {"source": source},
+                lambda: self.advanced.kwandata.ingest(source),
+            )
             self.kwandata_text.delete("1.0", "end")
             self.kwandata_text.insert("1.0", json.dumps(value, ensure_ascii=False, indent=2))
             self.log("Fuente incorporada a KwanData con custodia exacta.", value)
@@ -1438,18 +1812,18 @@ class KCHStudioApp(ttk.Frame):
     def capture_clip_text(self) -> None:
         if self.advanced is None:
             return
-        value = self.advanced.clipboard.capture(
-            self.clipboard_editor.get("1.0", "end-1c"),
-            kind="TEXT",
-            media_type="text/plain; charset=utf-8",
+        value = self._ui_mutation(
+            "clipboard_capture_text",
+            {"text": self.clipboard_editor.get("1.0", "end-1c"), "persist": False},
         )
         self.log("Clip capturado localmente.", value)
 
     def create_postit(self) -> None:
         if self.advanced is None:
             return
-        value = self.advanced.clipboard.create_postit(
-            body=self.clipboard_editor.get("1.0", "end-1c")
+        value = self._ui_mutation(
+            "clipboard_postit_create",
+            {"title": "", "body": self.clipboard_editor.get("1.0", "end-1c")},
         )
         self.log("Post-it persistente y versionado creado.", value)
 
@@ -1461,7 +1835,10 @@ class KCHStudioApp(ttk.Frame):
             try:
                 self.log(
                     "Región capturada como imagen y clip.",
-                    self.advanced.clipboard.capture_region(bbox),
+                    self._ui_mutation(
+                        "clipboard_region_capture",
+                        {"bbox": list(bbox), "copy_to_system_clipboard": True},
+                    ),
                 )
             except Exception as exc:
                 messagebox.showerror("Captura de pantalla", str(exc), parent=self)
@@ -1583,8 +1960,16 @@ class KCHStudioApp(ttk.Frame):
         )
         if not path:
             return
-        value = self.advanced.audio.ingest_and_transcribe(
-            path, culture="es-ES", consent_basis="USER_SELECTED_AUDIO"
+        value = self._ui_direct_mutation(
+            "audio_ingest_transcribe",
+            {
+                "source": path,
+                "culture": "es-ES",
+                "consent_basis": "USER_SELECTED_AUDIO",
+            },
+            lambda: self.advanced.audio.ingest_and_transcribe(
+                path, culture="es-ES", consent_basis="USER_SELECTED_AUDIO"
+            ),
         )
         self.show_inspector(value)
         self.refresh_voice_permissions()
@@ -1598,27 +1983,43 @@ class KCHStudioApp(ttk.Frame):
             parent=self,
         ):
             return
-        value = self.advanced.audio.start_monitor(
-            mode="BRAINSTORM_USER_ONLY", consent_basis="USER_EXPLICIT_UI_ACTION", culture="es-ES"
+        value = self._ui_mutation(
+            "audio_monitor_start",
+            {
+                "mode": "BRAINSTORM_USER_ONLY",
+                "consent_basis": "USER_EXPLICIT_UI_ACTION",
+                "culture": "es-ES",
+            },
         )
         self.log("Resultado de activación del monitor de audio.", value)
         self.refresh_voice_permissions()
 
     def stop_audio_monitor(self) -> None:
         if self.advanced is not None:
-            self.advanced.audio.stop_monitor()
+            self._ui_mutation("audio_monitor_stop", {})
             self.refresh_voice_permissions()
 
     def request_account_permission(self) -> None:
         if self.advanced is None:
             return
-        request = self.advanced.account_broker.request(
-            provider=self.account_provider.get(),
-            scopes=[item.strip() for item in self.account_scopes.get().split(",") if item.strip()],
-            purpose=self.account_purpose.get(),
+        request = self._ui_mutation(
+            "account_permission_request",
+            {
+                "provider": self.account_provider.get(),
+                "scopes": [
+                    item.strip()
+                    for item in self.account_scopes.get().split(",")
+                    if item.strip()
+                ],
+                "purpose": self.account_purpose.get(),
+            },
         )
-        lease = self.advanced.account_broker.approve(
-            request["request_id"], duration_class=self.account_duration.get()
+        lease = self._ui_mutation(
+            "account_lease_approve",
+            {
+                "request_id": request["request_id"],
+                "duration_class": self.account_duration.get(),
+            },
         )
         value = {"request": request, "finite_lease": lease, "authentication_launched": False}
         self.show_inspector(value)
@@ -1628,12 +2029,18 @@ class KCHStudioApp(ttk.Frame):
     def create_schedule(self) -> None:
         if self.advanced is None:
             return
-        value = self.advanced.scheduler.create_schedule(
-            name=self.schedule_name.get(),
-            kind=self.schedule_kind.get(),
-            expression=self.schedule_expression.get(),
-            event={"type": self.schedule_event.get(), "authority": "USER_SCHEDULE"},
-            created_by="USER",
+        arguments = {
+            "name": self.schedule_name.get(),
+            "kind": self.schedule_kind.get(),
+            "expression": self.schedule_expression.get(),
+            "event": {"type": self.schedule_event.get(), "authority": "USER_SCHEDULE"},
+        }
+        value = self._ui_direct_mutation(
+            "scheduler_create",
+            arguments,
+            lambda: self.advanced.scheduler.create_schedule(
+                **arguments, created_by="USER"
+            ),
         )
         self.show_inspector(value)
         self.log("Tarea programada persistente creada.", value)
@@ -1642,14 +2049,16 @@ class KCHStudioApp(ttk.Frame):
     def grant_permission(self) -> None:
         if self.advanced is None:
             return
-        value = self.advanced.permissions.grant(
-            actor_pattern=self.permission_actor.get(),
-            resource_pattern=self.permission_resource.get(),
-            operation_pattern=self.permission_operation.get(),
-            effect=self.permission_effect.get(),
-            priority=5000,
-            rationale="Regla promulgada explícitamente desde la UI KCH",
-            enacting_actor=Actor.USER,
+        value = self._ui_mutation(
+            "permission_grant",
+            {
+                "actor_pattern": self.permission_actor.get(),
+                "resource_pattern": self.permission_resource.get(),
+                "operation_pattern": self.permission_operation.get(),
+                "effect": self.permission_effect.get(),
+                "priority": 5000,
+                "rationale": "Regla promulgada explícitamente desde la UI KCH",
+            },
         )
         self.show_inspector(value)
         self.log("Regla de permiso promulgada por el usuario.", value)
@@ -1884,7 +2293,9 @@ def launch(root: str | Path, *, smoke: bool = False) -> dict[str, Any] | None:
     tk_root.title("KCH CSI Studio · Extension Fabric")
     tk_root.geometry("1380x860")
     server = StudioMCP(root)
+    server.ensure_runtime()
     studio = server.studio
+    assert studio is not None and server.advanced is not None
     app = KCHStudioApp(
         tk_root,
         studio,

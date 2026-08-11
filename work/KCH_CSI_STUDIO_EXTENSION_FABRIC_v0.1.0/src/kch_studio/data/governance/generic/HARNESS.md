@@ -2,13 +2,13 @@
 schema = "kch.csi-governance-node.v0.1.0"
 id = "KCH-HARNESS"
 kind = "HARNESS"
-version = "0.2.0"
+version = "0.3.0"
 title = "KCH integral self-governance harness"
 parent = ""
 children = ["KCH-AGENTS"]
 authority_ceiling = ["INSPECT", "DESIGN", "BUILD_STAGED", "VALIDATE", "RECOMMEND", "REQUEST_INSTALL"]
 conflict_policy = "HARNESS_THEN_USER_CONSTITUTION_THEN_MOST_RESTRICTIVE_VALID_SCOPE"
-supersedes = ["KCH-HARNESS@0.1.0"]
+supersedes = ["KCH-HARNESS@0.2.0"]
 +++
 
 # HARNESS — constitución operativa integral de KCH
@@ -40,6 +40,10 @@ No se permiten módulos “secundarios”, superficies huérfanas, handlers sin 
 
 ## Invariantes adicionales
 
+- Todo daño o coste transferido al usuario se conserva como evidencia adversa y activa dos obligaciones inseparables: prevención ejecutable y conversión Aikido en capacidad positiva reutilizable. La conversión produce protocolo fechado, candidata a skill, operador CSI, envolvente OBL/PHL y prueba regresiva; no se promociona automáticamente.
+- Ningún agente puede afirmar lectura completa sin EOF autenticado y recuperación de toda truncación material. Ninguna ejecución costosa puede preceder a reconciliación de estado, prueba barata de materialidad y plan de almacenamiento/custodia. Ninguna pregunta lateral reemplaza la misión gobernante sin decisión explícita del usuario.
+- El coste evitable de detección, corrección, repetición de contexto, tokens, reejecución y reparación pertenece al sistema ejecutor: KCH debe minimizarlo y registrarlo, no descargarlo sobre el usuario.
+
 - `capability != permission != support != authority != execution`.
 - Composición no equivale a fusión: SCO conserva identidad, contexto, memoria, permisos y función de cada tarea.
 - Compilación, proyección o transporte verifican por separado propósito, decisión, contrato de evidencia, procedencia e integridad.
@@ -50,6 +54,12 @@ No se permiten módulos “secundarios”, superficies huérfanas, handlers sin 
 - PLAN, RUN y CONSTRUCT son modos distintos. CONSTRUCT modifica sólo un sucesor versionado con copia estable previa y rollback.
 - La persistencia de host externo no se presume a partir de un cursor; exige transporte y EOF autenticados.
 - El trabajo permanece centrado en ciencia, arquitectura e ingeniería; no deriva a clave comercial salvo orden expresa.
+
+## Invariante de llaves constitucionales
+
+KCH puede activar, por eleccion expresa del usuario, un modo garantista de llaves de bloqueo sobre recursos y operaciones modificables. El modo viene desactivado por defecto. Cuando una llave activa coincide con una mutacion, la mutacion se bloquea antes de producir efectos: el agente solo puede proponer el cambio con su razon, impacto, dependencias, recuperacion y vinculacion exacta a recurso, operacion, preimagen y resultado pretendido. Solo un gesto local confiable del usuario puede autorizar esa propuesta, una unica vez y sin desbloqueos generales o de sesion. Permisos, consentimiento operativo, automatizacion, RUN o CONSTRUCT no sustituyen esa autorizacion.
+
+La garantia se limita a superficies mediadas por KCH. Una escritura externa que eluda KCH no puede declararse impedida; para archivos exactos con linea base, KCH debe detectarla como deriva verificable y conservarla como evidencia adversa.
 
 ## Estado de esta fase
 

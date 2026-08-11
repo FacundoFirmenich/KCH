@@ -1,0 +1,823 @@
+{
+    "schema":  "kch.r21-github-custody-manifest.v0.1.0",
+    "repository":  "FacundoFirmenich/KCH",
+    "visibility":  "PRIVATE",
+    "base_commit":  "9d1ef02f309f9276787f3a8c34e449d265cc2212",
+    "capture":  "KCH 0.11 R21",
+    "file_count":  160,
+    "total_bytes":  112317779,
+    "canonical_archive":  {
+                              "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip",
+                              "bytes":  22231435,
+                              "sha256":  "98ba1faa4c63302f67ec386b9ecf684762e7923febc3039cd8c201a024091b54"
+                          },
+    "source_gate":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/SOURCE_SUITE_ATTEMPT_03.json",
+    "installed_gate":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/POST_INSTALL_GATE_A2.json",
+    "installed_lock_gate":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/INSTALLED_LOCK_GATE_ATTEMPT_01.json",
+    "adverse_evidence_preserved":  true,
+    "phl_authorized":  true,
+    "phl_training_executed":  false,
+    "phl_real_executed":  false,
+    "files":  [
+                  {
+                      "path":  ".gitattributes",
+                      "bytes":  187,
+                      "sha256":  "ef9cea7be0045a058bfae03fe3699405a2dd4cb1b4c73052f3c25a273953c94a"
+                  },
+                  {
+                      "path":  "CHECKPOINT_MATERIAL_R21_LLAVES_CONSTITUCIONALES_ES.md",
+                      "bytes":  4340,
+                      "sha256":  "c8ba616a47bc903e32cbe4c3566ca130ebe8f592257f627a9c483bb6846fc22c"
+                  },
+                  {
+                      "path":  "README.md",
+                      "bytes":  3124,
+                      "sha256":  "1ae33ab5dfdcf134b90d8b90166ae330bf399034fc33d50d4fdfa785d89c5e12"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/EXTRACT_INSTALL_RECEIPT_A2.json",
+                      "bytes":  5090,
+                      "sha256":  "52d271d620f9128b073f25c0f35741ef2d0727c52dc731b0abbb0f14fa059a72"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/INSTALLED_LOCK_GATE_ATTEMPT_01.json",
+                      "bytes":  14623,
+                      "sha256":  "f9ab5bd3432023093f2d6242eb63aeff2ea9436ad1938ca80741e3e63e664bf0"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/POST_INSTALL_GATE_A2.json",
+                      "bytes":  9920,
+                      "sha256":  "d1d15a4fad2a115330de23274929ac5301c3705d03b57407853000e0afc007c1"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/R21_RELEASE_GATE.json",
+                      "bytes":  4110,
+                      "sha256":  "e1e0d9da3a8651c0ee250614ba0f7d5f7cd162537198892790ecf762b033697e"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/SOURCE_SUITE_ATTEMPT_01_ADVERSE.json",
+                      "bytes":  3503,
+                      "sha256":  "ab20a431202a39006e30819e9a4f8f87c7111716d0d50bb9d70fb7fabba31a88"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/SOURCE_SUITE_ATTEMPT_02.json",
+                      "bytes":  66934,
+                      "sha256":  "dcab06e47cb753fbaf00a2fd6bebd8ff3cda18ab79691ccbc2fc9d3f8ff94a34"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/SOURCE_SUITE_ATTEMPT_03.json",
+                      "bytes":  66929,
+                      "sha256":  "b2fbd20b4d26fb2ca89be3656c55b3f1e17c9d86645a7d4f09bd485165752181"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/monitor_attempt_01/MONITOR-0b07d2c8-3345-48e8-81bc-7e179cd68793/request.json",
+                      "bytes":  1642,
+                      "sha256":  "851996c3be887f6662dcd484a42438906ee763ca30ebf728fecd2b3a36015c4d"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/monitor_attempt_01/MONITOR-0b07d2c8-3345-48e8-81bc-7e179cd68793/running.json",
+                      "bytes":  380,
+                      "sha256":  "e537dfe573dcf98bf237e61d4c004164db984b9fc2dd6f3e9f45f8702c970fbd"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/monitor_attempt_01/MONITOR-0b07d2c8-3345-48e8-81bc-7e179cd68793/terminal.json",
+                      "bytes":  1220,
+                      "sha256":  "498b9573e0a74431cf441e3dc31affd9019dda715e61964e92b8539392774d11"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/monitor_attempt_01/monitor.sqlite3",
+                      "bytes":  12288,
+                      "sha256":  "99cafbb5a775b230d24e03786ecd4e4b74d2077886c62d4eb456ee08c3c9a690"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/run_durable_full_gate.py",
+                      "bytes":  7574,
+                      "sha256":  "2ceb1af509a24613e6e20746a437da33d91bc312c74020b641a083068727a227"
+                  },
+                  {
+                      "path":  "benchmarks/KCH_R21_LOCK_KEYS_GATE/run_installed_lock_gate.py",
+                      "bytes":  6462,
+                      "sha256":  "672cbb3e1baefdf9d3be640fe72dc8754657b94f16a5a4c76b423a33c38795d9"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/README_ES.md",
+                      "bytes":  12210,
+                      "sha256":  "7bd12dbf2cdae998b8b91213eed416b616eb222cc46c1bff48603deb95118c3c"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/codex/AGENTS.md",
+                      "bytes":  18049,
+                      "sha256":  "7e8a47d8af4d5ffdb15403d73cf37d8f98d170497727c4a57807850b4835b4e6"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/csi/governance_graph.json",
+                      "bytes":  19569,
+                      "sha256":  "a88a25d949f75cbc411a8af2821042f9b3c1458c439dd8acd67df1a671a2da25"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/generic/AGENTS.md",
+                      "bytes":  2369,
+                      "sha256":  "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/generic/HARNESS.md",
+                      "bytes":  5075,
+                      "sha256":  "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/generic/RULES.md",
+                      "bytes":  1716,
+                      "sha256":  "0362579c08f28e5e590dd0ce3e115355690c4fed770bbbc129c5a87f0cb05b43"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v05/governance.lock.json",
+                      "bytes":  10842,
+                      "sha256":  "7aa3091935eb7519e1bf7811735d8887ce9c990fe1d472c63231edf8c6ba7f91"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/codex/AGENTS.md",
+                      "bytes":  18991,
+                      "sha256":  "12cae64c7e99231bef67e882a8d048bb425f0220edd88a8416ce1b294a87cce5"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/csi/governance_graph.json",
+                      "bytes":  21030,
+                      "sha256":  "4d86b83576e88d5fc3bd9d80dd8102517b39589631d3a39fe152e56fffd9d559"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/generic/AGENTS.md",
+                      "bytes":  2369,
+                      "sha256":  "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/generic/HARNESS.md",
+                      "bytes":  5075,
+                      "sha256":  "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/generic/RULES.md",
+                      "bytes":  1747,
+                      "sha256":  "9b309b018b2c08de7105f10bfd6463e3352388c42f20a4928aef39efa40fac13"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v06/governance.lock.json",
+                      "bytes":  11318,
+                      "sha256":  "5826d9a1252700dfd090642228d9593428dce9a5fbba1a4f6d5f1f1b93fbc8e1"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/codex/AGENTS.md",
+                      "bytes":  19347,
+                      "sha256":  "c7fd715cd21133843469342db6e832d333d43bffd41484029fbf772bc2a9c288"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/csi/governance_graph.json",
+                      "bytes":  21030,
+                      "sha256":  "04077b7bce1421b1b7bb4e547571e2f0c01e103a21f3963563683aea12e324ad"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/generic/AGENTS.md",
+                      "bytes":  2369,
+                      "sha256":  "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/generic/HARNESS.md",
+                      "bytes":  5075,
+                      "sha256":  "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/generic/RULES.md",
+                      "bytes":  1747,
+                      "sha256":  "9b309b018b2c08de7105f10bfd6463e3352388c42f20a4928aef39efa40fac13"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v07/governance.lock.json",
+                      "bytes":  11318,
+                      "sha256":  "60829cab355ffb9ee12fad6e613dd8bf60ad198902b1349f32053c6020dcb249"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/codex/AGENTS.md",
+                      "bytes":  21980,
+                      "sha256":  "df05e1010ee412e754b9831267124c740afaea5c89c2b5504146dd81e0c9c0b1"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/csi/governance_graph.json",
+                      "bytes":  22581,
+                      "sha256":  "4a4060c0b12f8495c4797e9aa856625e19041b95f9bf07e2574be5db83fb2ba0"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/generic/AGENTS.md",
+                      "bytes":  2369,
+                      "sha256":  "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/generic/HARNESS.md",
+                      "bytes":  5075,
+                      "sha256":  "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/generic/RULES.md",
+                      "bytes":  1784,
+                      "sha256":  "3b85105b95f139e18526106f6342b7149d198cc9b3ec2a2fe737522bac85b5a4"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v08/governance.lock.json",
+                      "bytes":  11843,
+                      "sha256":  "0586b4fda510749f6d606df204bf7b9516634e1eb245240bb8819f35822d616a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/codex/AGENTS.md",
+                      "bytes":  21980,
+                      "sha256":  "df05e1010ee412e754b9831267124c740afaea5c89c2b5504146dd81e0c9c0b1"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/csi/governance_graph.json",
+                      "bytes":  22581,
+                      "sha256":  "7868ae3a530d8572cedfd48fb78acff8a85fb49d718c500e32bb4621bbafa4cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/generic/AGENTS.md",
+                      "bytes":  2369,
+                      "sha256":  "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/generic/HARNESS.md",
+                      "bytes":  5075,
+                      "sha256":  "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/generic/RULES.md",
+                      "bytes":  1784,
+                      "sha256":  "3b85105b95f139e18526106f6342b7149d198cc9b3ec2a2fe737522bac85b5a4"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v09/governance.lock.json",
+                      "bytes":  11843,
+                      "sha256":  "b10893a3ddfb30430b1379694f0edfc5d6c12194d9800a5967d30e18ca296790"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/codex/AGENTS.md",
+                      "bytes":  23525,
+                      "sha256":  "d4a14ad8b28385d0c331932d2f764ac46ed6aaccd70ba1dfd69fafe72101018a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/csi/governance_graph.json",
+                      "bytes":  24114,
+                      "sha256":  "f6a48fc7eed8fa3b6a2331c26b78f3413b38af4f7bb62d520c0713b4eb2736ab"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/generic/AGENTS.md",
+                      "bytes":  2369,
+                      "sha256":  "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/generic/HARNESS.md",
+                      "bytes":  5075,
+                      "sha256":  "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/generic/RULES.md",
+                      "bytes":  1820,
+                      "sha256":  "285c96bb61c67a9394a1d889e9bb21681d58b14950dcb625ddb09f39f4446bf0"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v10/governance.lock.json",
+                      "bytes":  12357,
+                      "sha256":  "30e7d283b2cd31adcc619b8e534e8c7e38acc56e7fd838da0a01836a10ccfd59"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/.kch-csi-generated-v0.1.0",
+                      "bytes":  33,
+                      "sha256":  "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/codex/.codex/rules/kch-generated.rules",
+                      "bytes":  216,
+                      "sha256":  "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/codex/AGENTS.md",
+                      "bytes":  26886,
+                      "sha256":  "90cc2c098bcafd23191404adab9e8560e3e129f12875e84f6cbf2b705eea902f"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/codex/COMPATIBILITY_RECEIPT.json",
+                      "bytes":  640,
+                      "sha256":  "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/csi/governance_graph.json",
+                      "bytes":  28310,
+                      "sha256":  "b7511cc289bc2c13476dea320a2fd499b86b7d5f93df1afa4609529a494e1975"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/generic/AGENTS.md",
+                      "bytes":  2407,
+                      "sha256":  "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/generic/HARNESS.md",
+                      "bytes":  6030,
+                      "sha256":  "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/generic/RULES.md",
+                      "bytes":  1853,
+                      "sha256":  "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/compiled_governance_v11/governance.lock.json",
+                      "bytes":  13448,
+                      "sha256":  "de7f6dfe1d1138b749a1a58db2e3a64af12a53fee0c253a4ce97f2ff357174b7"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/docs/CODEX_PROJECT_BINDING_AGENTS.md",
+                      "bytes":  4576,
+                      "sha256":  "9df7751241b513ccf47eb08c86188afe6327e9c12662aef154ed3e98c632989d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/AGENTS.md",
+                      "bytes":  2407,
+                      "sha256":  "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/HARNESS.md",
+                      "bytes":  6030,
+                      "sha256":  "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/RULES.md",
+                      "bytes":  1853,
+                      "sha256":  "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/agents/constitutional-lock-governor.md",
+                      "bytes":  1453,
+                      "sha256":  "2933aa67e2df99758ee71d9e462c2ef5ceb4d975d71c1105b87b0c4dcd497ddb"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/rules/constitutional-lock-keys.md",
+                      "bytes":  1848,
+                      "sha256":  "8b1c8e3fb08771342d88ab35c057b45356b3ce360b366788379c7543bf6393c1"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/rules/evidence-preserving-closure.md",
+                      "bytes":  2016,
+                      "sha256":  "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/rules/full-read-source-order.md",
+                      "bytes":  2193,
+                      "sha256":  "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/governance/rules/terminal-process-supervision.md",
+                      "bytes":  2724,
+                      "sha256":  "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/plugin/kch-csi-studio/.mcp.json",
+                      "bytes":  219,
+                      "sha256":  "197a33c36c7bdcb80e040fc734410fdbf6b59bd83c92425ef911d31d9eeb2664"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/pyproject.toml",
+                      "bytes":  1687,
+                      "sha256":  "4297e0363b97f04d5135559549a4ad9f64da415fd33ab121f830caa454eebc3e"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R10.cmd",
+                      "bytes":  110,
+                      "sha256":  "96b494173a6b363d0a4d5e28e55f0b7e4eab6674c6d21dd6e1a5aa1c9bb470dd"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R17.cmd",
+                      "bytes":  110,
+                      "sha256":  "a1bdda33fa51b7de319a9ee4a40f2367a64502f952535b01af3c7c68a076eb1b"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R17.py",
+                      "bytes":  5754,
+                      "sha256":  "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R18.cmd",
+                      "bytes":  110,
+                      "sha256":  "b7186c753f4b600dc1408157cc0667a33baf3f86d9f0475d390e02b31de6ccd6"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R18.py",
+                      "bytes":  5754,
+                      "sha256":  "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R19.cmd",
+                      "bytes":  110,
+                      "sha256":  "67218ae674a3d24e30f2b4ddf0cbb2ca1ebb473c72984c323d096c410160f16e"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R19.py",
+                      "bytes":  5754,
+                      "sha256":  "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R20.cmd",
+                      "bytes":  110,
+                      "sha256":  "374926ac935d8c164c7d35822c701dc8de9502173ae4c186122ff31e320aaf28"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R20.py",
+                      "bytes":  5754,
+                      "sha256":  "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R21.cmd",
+                      "bytes":  110,
+                      "sha256":  "09f5ce12645cb7c9ac4395afe8c13739a4d4885fc711ec5242a5d6369db86c71"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R21.py",
+                      "bytes":  5754,
+                      "sha256":  "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R6.cmd",
+                      "bytes":  108,
+                      "sha256":  "f77d9cdf73270343b9e3d96ea8d506c290b6413d21215346f5aec9abc105d681"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R7.cmd",
+                      "bytes":  108,
+                      "sha256":  "1b93cba4e81ffc29e6a6a70ed7ac460946ce0ba76b6b9c581a835880428b8f18"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R8.cmd",
+                      "bytes":  108,
+                      "sha256":  "30b51dd66072f1f0a3352c906eea442aa3da711e1591b40392d1eda898fe4bff"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/EXTRACT_AND_INSTALL_KCH_R9.cmd",
+                      "bytes":  108,
+                      "sha256":  "b262b35e5339002b9226cfb7bf5cc91b0089916c9411d756832033baddef2a2d"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R17.zip",
+                      "bytes":  22140827,
+                      "sha256":  "ab5d71cd1399371f759f58a2cc92d4903d4610ba5d52f7e5abbc58114b393d40"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R18.zip",
+                      "bytes":  22165771,
+                      "sha256":  "cac2be7c52d5ce3a12a34ec32d05576538ed3705e3384e07a5d7aa39e85e1acf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R19.zip",
+                      "bytes":  22167341,
+                      "sha256":  "a8f1cf6ffa7f5aafea28a81a3c2bef06b6e6c1f9786379208576be2463da8a08"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R20.zip",
+                      "bytes":  22184521,
+                      "sha256":  "b5a53ec565c1fa84e864f60e1abb1dfbc48d83b47da44f8197747eb179daab0c"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip",
+                      "bytes":  22231435,
+                      "sha256":  "98ba1faa4c63302f67ec386b9ecf684762e7923febc3039cd8c201a024091b54"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/scripts/build_portable_release.py",
+                      "bytes":  11235,
+                      "sha256":  "95b28962080f1728d761df288c1663d0493fd19d0db4f55cc039109e99431a66"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/scripts/portable_bootstrap.py",
+                      "bytes":  8669,
+                      "sha256":  "b8c086527b7abff0d39120b67889b5f409c18c201d644c8e6c436efc5ca85daa"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/scripts/post_install_gate.py",
+                      "bytes":  12828,
+                      "sha256":  "3ddf6130af312851f91bb9487e0f76378ea9671dfd2df9639086b88074f636b4"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_csi_studio_extension_fabric.egg-info/PKG-INFO",
+                      "bytes":  754,
+                      "sha256":  "019ad13723fe55e70ddec05f218b80d6baba055f495dde8976c40d187ead58da"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_csi_studio_extension_fabric.egg-info/SOURCES.txt",
+                      "bytes":  4493,
+                      "sha256":  "b462f917e621c5de14fd1169a8b9415f3a37cb32df1563167096980bed6e69ff"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_csi_studio_extension_fabric.egg-info/entry_points.txt",
+                      "bytes":  276,
+                      "sha256":  "bcebb6173ae54de23a25bdbb6af9b136687215a6ea8db5c4de4541c19ad91b87"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/advanced_runtime.py",
+                      "bytes":  83752,
+                      "sha256":  "120073e5c258d0550c18b886c328838b3a53587f6331360c43489b8289faedaa"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/codex_bootstrap_mcp.py",
+                      "bytes":  11661,
+                      "sha256":  "c986badfd0a4257aed3f4cc7c788dc3fb05c295d66687de6d8371f829576aa3a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/codex_preflight_mcp.py",
+                      "bytes":  3856,
+                      "sha256":  "f5249c4b27bdf7a250e03cb629b2c5feb81ee3a7762f6cbd9bb0dadfc7593477"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/commitment_monitor.py",
+                      "bytes":  29207,
+                      "sha256":  "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/construct_mode.py",
+                      "bytes":  16986,
+                      "sha256":  "7f19232f78791f77b18075b3d34e76db54e117215a76a28e4fa8d4cc145ed8c6"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/continuity_guard.py",
+                      "bytes":  38291,
+                      "sha256":  "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/codex/AGENTS.md",
+                      "bytes":  26886,
+                      "sha256":  "90cc2c098bcafd23191404adab9e8560e3e129f12875e84f6cbf2b705eea902f"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/csi/governance_graph.json",
+                      "bytes":  28310,
+                      "sha256":  "b7511cc289bc2c13476dea320a2fd499b86b7d5f93df1afa4609529a494e1975"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/generic/AGENTS.md",
+                      "bytes":  2407,
+                      "sha256":  "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/generic/HARNESS.md",
+                      "bytes":  6030,
+                      "sha256":  "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/generic/RULES.md",
+                      "bytes":  1853,
+                      "sha256":  "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/governance.lock.json",
+                      "bytes":  13448,
+                      "sha256":  "de7f6dfe1d1138b749a1a58db2e3a64af12a53fee0c253a4ce97f2ff357174b7"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/AGENTS.md",
+                      "bytes":  2407,
+                      "sha256":  "96b303c883a4acdc0bf631e7331da37c608e8f52b597c40836260de4b0776a96"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/HARNESS.md",
+                      "bytes":  6030,
+                      "sha256":  "e233677dd564f57ed1029bab4710776b66ab66be712bba6404f42d999cc57645"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/RULES.md",
+                      "bytes":  1853,
+                      "sha256":  "38f1dd32bde862c0418702d698710de8e16454caff9281c4ebabeaabd7b84c77"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/agents/constitutional-lock-governor.md",
+                      "bytes":  1453,
+                      "sha256":  "2933aa67e2df99758ee71d9e462c2ef5ceb4d975d71c1105b87b0c4dcd497ddb"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/rules/constitutional-lock-keys.md",
+                      "bytes":  1848,
+                      "sha256":  "8b1c8e3fb08771342d88ab35c057b45356b3ce360b366788379c7543bf6393c1"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/rules/evidence-preserving-closure.md",
+                      "bytes":  2016,
+                      "sha256":  "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/rules/full-read-source-order.md",
+                      "bytes":  2193,
+                      "sha256":  "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/source/rules/terminal-process-supervision.md",
+                      "bytes":  2724,
+                      "sha256":  "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/evidence_projection.py",
+                      "bytes":  10645,
+                      "sha256":  "f75e82d2ddeb32b32abe8c01b75df78e2f9f677b9a1c678dd04b675d4f0a6fce"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/full_read_contract.py",
+                      "bytes":  19868,
+                      "sha256":  "6a58985ce17a92588e1e9cff642c1d5cb1eab09f35d356ebfdb39461475d6f33"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/lock_governor.py",
+                      "bytes":  33073,
+                      "sha256":  "7f2f3fe7faeacfa4f2acb89e772b6f094c222f556d5d23f9aecc59546b186593"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/mcp_server.py",
+                      "bytes":  18127,
+                      "sha256":  "7fc595a8f262928e78771d60ae74a4aa16c0d1bca395d2f5ac1f7a3bc6d73cdc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/monitored_process_worker.py",
+                      "bytes":  6052,
+                      "sha256":  "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/operational_surface.py",
+                      "bytes":  37801,
+                      "sha256":  "5fbaea0f49b753af76fdf04d1decad67b1c1012b320f7acdf5f618ea1a3fb83a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/proactive.py",
+                      "bytes":  14856,
+                      "sha256":  "3f45224de83cb0bb9b9c94fee028e9f050431cdbb3a7c8da7e3ff3f924443977"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/response_authority.py",
+                      "bytes":  11275,
+                      "sha256":  "ec9dc1fbe9e4729d0d432c8ff3e6066cd06bf0cc54096319c8e0f393f9374813"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/studio.py",
+                      "bytes":  12882,
+                      "sha256":  "edb4f7090ae5c46d24ab27217855463abeab707d0773b5f943a051934772b142"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/super_mcp_overlay.py",
+                      "bytes":  9022,
+                      "sha256":  "51b30a4d4c6838fea53d6885a6da7032465efc852f0ca862ebcce0c2fd34636a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/surface_contract.py",
+                      "bytes":  19680,
+                      "sha256":  "536c610febe1a8d7edd956507148011262c0a30728572b19ecd6e1237f209afc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/ui.py",
+                      "bytes":  98595,
+                      "sha256":  "d53fb91696d40af6cbfbdf8e7236ba53bdc5d95ab65fe53fbbba11c98c832376"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_advanced_layers.py",
+                      "bytes":  12060,
+                      "sha256":  "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_codex_bootstrap_mcp.py",
+                      "bytes":  4188,
+                      "sha256":  "c99bc00c5fe467382342cf8b44ab8ddb0841d1cca3be70911ad8c794a51c63f8"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_codex_preflight_mcp.py",
+                      "bytes":  1399,
+                      "sha256":  "f83af1a2325b672a6e731a3891c348052a8707e3b464e674287738565880f7ae"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_commitment_monitor.py",
+                      "bytes":  8278,
+                      "sha256":  "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_continuity_guard.py",
+                      "bytes":  7291,
+                      "sha256":  "acb53d3c38ae4caeb3a8d4e3d1acde9dd96e1b69a0b201025efbf2832ad13e02"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_evidence_projection.py",
+                      "bytes":  6098,
+                      "sha256":  "8b91abcb3405a0ec0437cee1ab1c6c5663f552d74d186985af6d29ab41cd8e48"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_full_read_contract.py",
+                      "bytes":  6172,
+                      "sha256":  "cd9713012d30b5aa086ae84e794fae34560210ce99d97da5dc4c32c7c8089ccc"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_lock_governor.py",
+                      "bytes":  14176,
+                      "sha256":  "3b1e1a5bbddd700e1fedafca8a98cc9bcd114927f095b6787b580236edcd91bf"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_mcp_ui.py",
+                      "bytes":  5750,
+                      "sha256":  "8d5df07eaa0df559fdca6e8dd23642fb8f6102e325dec14868230664bf185050"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_portable_paths.py",
+                      "bytes":  3646,
+                      "sha256":  "5c3e5027f7044f86cd0de036413932801f58afac20173c652741275fc6bc1aad"
+                  },
+                  {
+                      "path":  "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/tests/test_response_authority.py",
+                      "bytes":  3363,
+                      "sha256":  "40ff065a860ad6755067b8c602581daf6962fbb3104082de02f33668f9239f5f"
+                  }
+              ]
+}

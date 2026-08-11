@@ -226,8 +226,19 @@ def test_construct_creates_validated_successor_and_rolls_pointer_back(tmp_path: 
     construct.write_file(session["session_id"], "module.py", "VALUE = 2\n", actor=Actor.USER)
     validated = construct.validate(session["session_id"], actor=Actor.USER)
     assert validated["passed"] is True
+    candidate = Path(session["candidate_root"])
+    transient_cache = candidate / "__pycache__"
+    transient_cache.mkdir(exist_ok=True)
+    (transient_cache / "module.cpython-314.pyc").write_bytes(b"transient")
+    transient_runtime = candidate / "runtime_live_ephemeral"
+    transient_runtime.mkdir(exist_ok=True)
+    (transient_runtime / "state.bin").write_bytes(b"transient")
     promoted = construct.promote_for_next_start(session["session_id"], actor=Actor.USER)
     assert promoted["pointer"]["effective"] == "NEXT_START_ONLY"
+    promoted_root = Path(promoted["pointer"]["root"])
+    assert not (promoted_root / "__pycache__").exists()
+    assert not (promoted_root / "runtime_live_ephemeral").exists()
+    assert (promoted_root / "module.py").read_text(encoding="utf-8") == "VALUE = 2\n"
     rolled = construct.rollback_pointer(actor=Actor.USER)
     assert rolled["state"] == "ROLLED_BACK_NEXT_START_POINTER"
     assert (stable / "module.py").read_text(encoding="utf-8") == "VALUE = 1\n"

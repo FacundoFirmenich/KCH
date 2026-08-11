@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -29,6 +30,64 @@ def write_json(path: Path, value: object) -> None:
 def write_text(path: Path, value: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(value, encoding="utf-8")
+
+
+HOST_ADAPTER_FILENAMES = (
+    "AGENTS_KCH.md",
+    "cline_mcp_settings.json",
+    "codex-plugin-reference.json",
+    "codex.config.toml",
+    "opencode.json",
+    "vscode.mcp.json",
+)
+
+
+def collect_host_adapters(adapters: Path) -> list[str]:
+    """Return the complete, explicit host-adapter contract or fail closed."""
+    paths = [adapters / name for name in HOST_ADAPTER_FILENAMES]
+    missing = [path.name for path in paths if not path.is_file()]
+    if missing:
+        raise FileNotFoundError(f"missing generated host adapters: {missing}")
+    return [str(path) for path in paths]
+
+
+def render_codex_config(
+    *,
+    preflight_command: str,
+    bootstrap_command: str,
+    environment: dict[str, str],
+) -> str:
+    required_environment = (
+        "PYTHONUTF8",
+        "KCH_STUDIO_RUNTIME",
+        "KCH_MIS_ROOT",
+        "KCH_CONSTRUCT_STABLE_ROOT",
+    )
+    missing = [name for name in required_environment if not environment.get(name)]
+    if missing:
+        raise ValueError(f"missing canonical Codex environment bindings: {missing}")
+
+    def escaped(value: str) -> str:
+        return value.replace(chr(92), chr(92) * 2)
+
+    def environment_section(name: str) -> str:
+        bindings = "".join(
+            f'{key} = "{escaped(environment[key])}"\n' for key in required_environment
+        )
+        return f"[mcp_servers.{name}.env]\n{bindings}"
+
+    return (
+        "[mcp_servers.kch_0_11_preflight]\n"
+        f'command = "{escaped(preflight_command)}"\n'
+        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
+        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "auto"\n\n'
+        + environment_section("kch_0_11_preflight")
+        + "\n[mcp_servers.kch_0_11_bootstrap]\n"
+        f'command = "{escaped(bootstrap_command)}"\n'
+        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
+        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "prompt"\n\n'
+        + environment_section("kch_0_11_bootstrap")
+    )
 
 
 def main() -> None:
@@ -76,7 +135,10 @@ def main() -> None:
     state = runtime / "state"
     state.mkdir(exist_ok=True)
     command = str(venv / "Scripts" / "kch-super-mcp-studio.exe")
+    codex_command = str(venv / "Scripts" / "kch-codex-bootstrap-mcp.exe")
+    codex_preflight_command = str(venv / "Scripts" / "kch-codex-preflight-mcp.exe")
     environment = {
+        "PYTHONUTF8": "1",
         "KCH_STUDIO_RUNTIME": str(state),
         "KCH_MIS_ROOT": str(root / "mis"),
         "KCH_CONSTRUCT_STABLE_ROOT": str(root / "source" / "kch-studio"),
@@ -130,11 +192,22 @@ def main() -> None:
         adapters / "codex-plugin-reference.json",
         {
             "plugin_path": str(root / "plugin" / "kch-csi-studio"),
-            "mcp_command": command,
+            "mcp_command": codex_command,
+            "preflight_mcp_command": codex_preflight_command,
+            "full_super_mcp_command": command,
             "environment": environment,
             "automatic_external_configuration_write": False,
         },
     )
+    write_text(
+        adapters / "codex.config.toml",
+        render_codex_config(
+            preflight_command=codex_preflight_command,
+            bootstrap_command=codex_command,
+            environment=environment,
+        ),
+    )
+    shutil.copy2(root / "docs" / "CODEX_PROJECT_BINDING_AGENTS.md", adapters / "AGENTS_KCH.md")
     write_text(
         root / "runtime_paths.cmd",
         "@echo off\r\n"
@@ -143,7 +216,10 @@ def main() -> None:
         f'set "KCH_STUDIO_RUNTIME={state}"\r\n'
         f'set "KCH_MIS_ROOT={root / "mis"}"\r\n'
         f'set "KCH_CONSTRUCT_STABLE_ROOT={root / "source" / "kch-studio"}"\r\n'
-        f'set "KCH_SUPER_MCP_COMMAND={command}"\r\n',
+        'set "PYTHONUTF8=1"\r\n'
+        f'set "KCH_SUPER_MCP_COMMAND={command}"\r\n'
+        f'set "KCH_CODEX_BOOTSTRAP_MCP_COMMAND={codex_command}"\r\n'
+        f'set "KCH_CODEX_PREFLIGHT_MCP_COMMAND={codex_preflight_command}"\r\n',
     )
     receipt = {
         "schema": "kch.portable-bootstrap-receipt.v0.2.0",
@@ -157,7 +233,7 @@ def main() -> None:
         "windows_deep_venv_avoided": os.name == "nt" and runtime != root / ".runtime",
         "wheel_count": len(wheels),
         "steps": steps,
-        "host_adapters": [str(path) for path in sorted(adapters.glob("*.json"))],
+        "host_adapters": collect_host_adapters(adapters),
         "external_host_configuration_modified": False,
         "credentials_embedded": False,
         "microphone_activated": False,

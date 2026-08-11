@@ -127,6 +127,8 @@ class Studio:
                 "graph_hash": self.governance["graph_hash"],
                 "hierarchy": self.governance["graph"]["hierarchy"],
                 "node_count": self.governance["graph"]["node_count"],
+                "agent_count": self.governance["graph"]["agent_count"],
+                "rule_count": self.governance["graph"]["rule_count"],
                 "source_nodes_verified": self.governance["source_nodes_verified"],
                 "compiled_artifacts_verified": self.governance["compiled_artifacts_verified"],
                 "all_strategic_invariant": self.governance["all_strategic_invariant"],

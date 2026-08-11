@@ -1,0 +1,409 @@
+{
+  "artifacts": [
+    {
+      "bytes": 33,
+      "path": ".kch-csi-generated-v0.1.0",
+      "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+    },
+    {
+      "bytes": 216,
+      "path": "codex/.codex/rules/kch-generated.rules",
+      "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+    },
+    {
+      "bytes": 23525,
+      "path": "codex/AGENTS.md",
+      "sha256": "d4a14ad8b28385d0c331932d2f764ac46ed6aaccd70ba1dfd69fafe72101018a"
+    },
+    {
+      "bytes": 640,
+      "path": "codex/COMPATIBILITY_RECEIPT.json",
+      "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+    },
+    {
+      "bytes": 24114,
+      "path": "csi/governance_graph.json",
+      "sha256": "f6a48fc7eed8fa3b6a2331c26b78f3413b38af4f7bb62d520c0713b4eb2736ab"
+    },
+    {
+      "bytes": 2369,
+      "path": "generic/AGENTS.md",
+      "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+    },
+    {
+      "bytes": 5075,
+      "path": "generic/HARNESS.md",
+      "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+    },
+    {
+      "bytes": 1820,
+      "path": "generic/RULES.md",
+      "sha256": "285c96bb61c67a9394a1d889e9bb21681d58b14950dcb625ddb09f39f4446bf0"
+    }
+  ],
+  "authority_inherited": false,
+  "installation_authorized": false,
+  "schema": "kch.csi-self-governance-lock.v0.1.0",
+  "source_graph_sha256": "7af9ecbdb787fe2c58e0132d0f957a3589c6076e98a33c5fc48d49e9a520b52a",
+  "source_nodes": [
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [
+        "KCH-AGENTS"
+      ],
+      "id": "KCH-HARNESS",
+      "kind": "HARNESS",
+      "parent": "",
+      "path": "HARNESS.md",
+      "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337",
+      "title": "KCH integral self-governance harness",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [
+        "AGENT-CORAL-INTEGRATION-AUDITOR",
+        "AGENT-EVIDENCE-SKILL-CONTINUITY",
+        "AGENT-GOVERNANCE-COMPILER",
+        "AGENT-CSI-STUDIO-ORCHESTRATOR",
+        "AGENT-EXTENSION-CURATOR",
+        "KCH-RULES"
+      ],
+      "id": "KCH-AGENTS",
+      "kind": "AGENTS",
+      "parent": "KCH-HARNESS",
+      "path": "AGENTS.md",
+      "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947",
+      "title": "KCH sovereign and coral agent topology",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-CORAL-INTEGRATION-AUDITOR",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/coral-integration-auditor.md",
+      "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a",
+      "title": "Coral strategic integration auditor",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [
+        "AGENT-ARTIFACT-BUILDER"
+      ],
+      "id": "AGENT-CSI-STUDIO-ORCHESTRATOR",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/csi-studio-orchestrator.md",
+      "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b",
+      "title": "CSI Studio orchestrator",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-ARTIFACT-BUILDER",
+      "kind": "AGENT",
+      "parent": "AGENT-CSI-STUDIO-ORCHESTRATOR",
+      "path": "agents/artifact-builder.md",
+      "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358",
+      "title": "CSI artifact builder",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-EVIDENCE-SKILL-CONTINUITY",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/evidence-skill-continuity.md",
+      "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc",
+      "title": "Evidence-derived learning, skill and continuity curator",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL"
+      ],
+      "children": [],
+      "id": "AGENT-EXTENSION-CURATOR",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/extension-curator.md",
+      "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb",
+      "title": "Extension curator",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "AGENT-GOVERNANCE-COMPILER",
+      "kind": "AGENT",
+      "parent": "KCH-AGENTS",
+      "path": "agents/governance-compiler.md",
+      "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866",
+      "title": "Governance compiler",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [
+        "RULE-ALL-STRATEGIC-CORAL-INTEGRATION",
+        "RULE-AUTHORITY-NONESCALATION",
+        "RULE-EVIDENCE-DERIVED-SKILL-LIFECYCLE",
+        "RULE-FULL-READ-SOURCE-ORDER",
+        "RULE-GENERATION-STAGED",
+        "RULE-EXTENSION-ACQUISITION",
+        "RULE-RECOMMENDATION-EVIDENCE",
+        "RULE-INTERFACE-TRANSPARENCY",
+        "RULE-RESPONSE-MODES-SUBSTANTIVE",
+        "RULE-HOST-PROJECTION",
+        "RULE-TERMINAL-PROCESS-SUPERVISION",
+        "RULE-EVIDENCE-PRESERVING-CLOSURE"
+      ],
+      "id": "KCH-RULES",
+      "kind": "RULES",
+      "parent": "KCH-AGENTS",
+      "path": "RULES.md",
+      "sha256": "285c96bb61c67a9394a1d889e9bb21681d58b14950dcb625ddb09f39f4446bf0",
+      "title": "KCH semantic rules, routines and subroutines",
+      "version": "0.5.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-ALL-STRATEGIC-CORAL-INTEGRATION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/all-strategic-coral-integration.md",
+      "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b",
+      "title": "Every KCH element is strategic and must integrate chorally",
+      "version": "0.2.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-AUTHORITY-NONESCALATION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/authority-nonescalation.md",
+      "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502",
+      "title": "Authority non-escalation",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-EVIDENCE-DERIVED-SKILL-LIFECYCLE",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/evidence-derived-skill-lifecycle.md",
+      "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44",
+      "title": "Evidence-derived protocol, skill and continuity lifecycle",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-EVIDENCE-PRESERVING-CLOSURE",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/evidence-preserving-closure.md",
+      "sha256": "237a8c51e84b5481e71144cd8dd498c6b4d4c8d89cc1b59fb0804870f3386dad",
+      "title": "Evidence-preserving mechanical closure",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL"
+      ],
+      "children": [],
+      "id": "RULE-EXTENSION-ACQUISITION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/extension-acquisition.md",
+      "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
+      "title": "Governed extension acquisition",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-FULL-READ-SOURCE-ORDER",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/full-read-source-order.md",
+      "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601",
+      "title": "Complete reading and native source order",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "DESIGN",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-GENERATION-STAGED",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/generation-staged.md",
+      "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a",
+      "title": "Staged artifact generation",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-HOST-PROJECTION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/host-projection.md",
+      "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac",
+      "title": "Loss-aware host projection",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND",
+        "REQUEST_INSTALL"
+      ],
+      "children": [],
+      "id": "RULE-INTERFACE-TRANSPARENCY",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/interface-transparency.md",
+      "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46",
+      "title": "Visible and prudent interaction",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "RECOMMEND"
+      ],
+      "children": [],
+      "id": "RULE-RECOMMENDATION-EVIDENCE",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/recommendation-evidence.md",
+      "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e",
+      "title": "Evidence-bounded recommendations",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "DESIGN",
+        "INSPECT",
+        "RECOMMEND"
+      ],
+      "children": [],
+      "id": "RULE-RESPONSE-MODES-SUBSTANTIVE",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/response-modes-substantive.md",
+      "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52",
+      "title": "Substantive authored-chat response modes",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "BUILD_STAGED",
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-TERMINAL-PROCESS-SUPERVISION",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/terminal-process-supervision.md",
+      "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977",
+      "title": "Durable supervision to exact terminal evidence",
+      "version": "0.2.0"
+    }
+  ]
+}

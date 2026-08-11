@@ -1,0 +1,58 @@
+{
+    "schema":  "kch.r21-full-source-gate-adverse-attempt.v0.1.0",
+    "attempt":  1,
+    "gate":  "FAIL_SUPERVISOR_STORAGE_EXHAUSTED",
+    "pytest_observed":  "102 passed in 216.64s",
+    "pytest_terminal":  {
+                            "schema":  "kch.monitored-process-terminal.v0.1.0",
+                            "commitment_id":  "MONITOR-0b07d2c8-3345-48e8-81bc-7e179cd68793",
+                            "worker_pid":  1992,
+                            "child_pid":  1788,
+                            "request_sha256":  "6c2bcc4e1476ed84e7365afac030357b199f8382c1ca0b74e752cce3011cd6f9",
+                            "argv":  [
+                                         "C:\\Python314\\python.exe",
+                                         "-m",
+                                         "pytest",
+                                         "-q",
+                                         "-p",
+                                         "no:cacheprovider",
+                                         "--basetemp",
+                                         "D:\\K21PYT_20260811_A01"
+                                     ],
+                            "cwd":  "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+                            "environment_keys":  [
+                                                     "PYTHONDONTWRITEBYTECODE",
+                                                     "PYTHONPATH",
+                                                     "PYTHONUTF8"
+                                                 ],
+                            "started_at":  "2026-08-11T19:59:33.710903Z",
+                            "finished_at":  "2026-08-11T20:03:12.356934Z",
+                            "duration_seconds":  218.659573,
+                            "status":  "EXIT_ZERO",
+                            "exit_code":  0,
+                            "stdout":  {
+                                           "exists":  true,
+                                           "bytes":  195,
+                                           "sha256":  "5d14ba1d61e733d32e935484ca15abe9d8c29b5c7a201c710d24b3e9a1bf0dc5"
+                                       },
+                            "stderr":  {
+                                           "exists":  true,
+                                           "bytes":  0,
+                                           "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                                       },
+                            "artifacts":  {
+
+                                          },
+                            "shell_used":  false,
+                            "sha256":  "bd3c8b474b0dac541f56a292f91c80ffe47a779b418398042e96cf653069f785"
+                        },
+    "ruff_executed":  false,
+    "runner_exception":  "sqlite3.OperationalError: database or disk is full",
+    "root_c_free_bytes_at_failure":  0,
+    "source_evidence_directory":  "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\benchmarks\\KCH_R21_LOCK_KEYS_GATE\\monitor_attempt_01\\MONITOR-0b07d2c8-3345-48e8-81bc-7e179cd68793",
+    "stdout_sha256":  "5d14ba1d61e733d32e935484ca15abe9d8c29b5c7a201c710d24b3e9a1bf0dc5",
+    "phl_authorized":  true,
+    "phl_training_executed":  false,
+    "phl_real_executed":  false,
+    "claim_ceiling":  "ADVERSE_SUPERVISOR_STORAGE_EVIDENCE_ONLY"
+}

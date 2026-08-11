@@ -10,19 +10,33 @@ from .account_broker import AccountPermissionBroker
 from .audio_hub import AudioHub
 from .checkpoints import CheckpointManager
 from .clipboard_hub import ClipboardHub
-from .constitutional import ConstitutionalWorkspace
+from .commitment_monitor import CommitmentMonitor
+from .constitutional import Actor, ConstitutionalWorkspace
 from .construct_mode import ConstructMode
+from .continuity_guard import (
+    AikidoLearningForge,
+    ContinuityAndBurdenGovernor,
+    ContinuousPeriodLedgerCompiler,
+    RemoteTransportPreflight,
+    SourceFitnessGate,
+    TemporalScaleContractCompiler,
+)
+from .contracts import sha256_json
 from .diction_learning import DictionLearning
+from .evidence_projection import EvidencePreservingClosure
 from .federated_runtime import KwanPromptsRuntime, PHLRuntime, RigorRuntime, SCORuntime
+from .full_read_contract import FullReadService
 from .installation import ConsentDecision, ConsentPolicy
 from .kwandata import KwanData
 from .launcher import Capability, ProactiveLauncher
+from .lock_governor import LockGovernor
 from .mis_service import MISService
 from .operational_surface import OPERATIONAL_TOOLS, bind_operational_handlers
 from .permissions import PermissionGovernor
 from .persistence import PersistenceHub
 from .proactive import ProgrammedPolicy
 from .recovery import RecoveryVault
+from .response_authority import ResponseAuthorityGovernor
 from .response_modes import ResponseModeManager
 from .safeguards import RiskAdvisor
 from .scheduler import KCHScheduler
@@ -46,6 +60,20 @@ B = {"type": "boolean"}
 I = {"type": "integer", "minimum": 1}  # noqa: E741 - compact JSON-schema atom
 O = {"type": "object"}  # noqa: E741 - compact JSON-schema atom
 A = {"type": "array"}
+
+LOCK_CONTROL_TOOLS = frozenset(
+    {
+        "lock_governor_status",
+        "lock_list",
+        "lock_pending_proposals",
+        "lock_authorization_status",
+        "lock_drift_verify",
+        "lock_change_propose",
+        "lock_tool_call_propose",
+        "lock_authorized_execute",
+        "construct_file_write_propose",
+    }
+)
 
 
 def tool(
@@ -75,6 +103,42 @@ ADVANCED_TOOLS = [
         [],
         read_only=True,
     ),
+    tool("continuity_status", "Inspect continuity and burden governance", "Verify mission continuity, recurrent-failure controls and the append-only harm ledger.", {}, [], read_only=True),
+    tool("continuity_reading_adjudicate", "Adjudicate lossless source reading", "Forbid a complete-reading claim unless pagination reached EOF and every material truncation was recovered.", {"receipt": O}, ["receipt"], read_only=False),
+    tool("full_read_file", "Read one complete source file", "Read every byte twice, transport the complete UTF-8 text when it fits the declared bound, and return a verifiable receipt. External paths require explicit permission; fragments never satisfy the claim.", {"path": S, "max_return_bytes": {"type": "integer", "minimum": 1, "maximum": 5242880}, "expected_sha256": S}, ["path"], read_only=True),
+    tool("full_read_batch", "Read an ordered complete source batch", "Generate one machine-owned ordered inventory with two-read receipts and optional exact source-span evidence. No agent-authored hash transcription is required.", {"items": A, "requested_order": S, "max_return_bytes_per_file": {"type": "integer", "minimum": 1, "maximum": 5242880}, "max_batch_return_bytes": {"type": "integer", "minimum": 1, "maximum": 5242880}}, ["items"], read_only=True),
+    tool("full_read_verify_batch", "Verify a full-read batch against source", "Re-read every source file and reject a canonically self-consistent batch whose hashes, content, order, ordinals or exact-span evidence were corrupted after tool execution.", {"batch": O}, ["batch"], read_only=True),
+    tool("evidence_closure_materialize", "Materialize evidence-preserving task closure", "Mechanically project complete-reading and terminal-monitor evidence into a final task receipt while retaining every original sealed payload. Manual hash, line, span and exit-code transcription is forbidden.", {"envelope": O}, ["envelope"], read_only=True),
+    tool("evidence_closure_verify", "Verify evidence-preserving task closure", "Regenerate a task closure from its retained source envelope and reject any altered, compacted or manually retranscribed representation even when it was resealed.", {"closure": O}, ["closure"], read_only=True),
+    tool("lock_governor_status", "Inspect constitutional lock governor", "Inspect optional lock enforcement, exact one-shot authority, coverage boundaries and hash-chain integrity without changing policy.", {}, [], read_only=True),
+    tool("lock_list", "List constitutional locks", "List active or historical object and tool locks without granting mutation authority.", {"include_inactive": B}, [], read_only=True),
+    tool("lock_pending_proposals", "List locked change proposals", "Read every exact change request awaiting a trusted local user gesture, including rationale, impact, dependencies and recovery plan.", {}, [], read_only=True),
+    tool("lock_authorization_status", "Inspect exact lock authorization", "Inspect whether one proposal remains pending, is authorized once, or has already consumed its exact capability.", {"proposal_id": S}, ["proposal_id"], read_only=True),
+    tool("lock_drift_verify", "Verify locked file drift", "Rehash exact locked files and detect external unmediated changes without claiming that KCH prevented writes outside its control.", {}, [], read_only=True),
+    tool("lock_change_propose", "Propose exact locked resource change", "Register the exact resource, operation, hashes, rationale, impact, dependencies and recovery plan. This never authorizes or executes the change.", {"resource": S, "operation": S, "current_sha256": S, "proposed_sha256": S, "payload_sha256": S, "rationale": S, "impact": S, "dependencies": A, "recovery_plan": S}, ["resource", "operation", "payload_sha256", "rationale", "impact", "dependencies", "recovery_plan"], read_only=False),
+    tool("lock_tool_call_propose", "Propose exact locked tool call", "Mechanically bind one mutating tool name and its complete arguments to a change proposal; a model may propose but cannot authorize it.", {"tool_name": S, "arguments": O, "rationale": S, "impact": S, "dependencies": A, "recovery_plan": S}, ["tool_name", "arguments", "rationale", "impact", "dependencies", "recovery_plan"], read_only=False),
+    tool("lock_authorized_execute", "Execute one exactly authorized tool call", "Consume one trusted one-shot authorization only when the tool name and complete arguments are byte-for-byte canonically equivalent to the approved proposal.", {"authorization_id": S, "tool_name": S, "arguments": O}, ["authorization_id", "tool_name", "arguments"], read_only=False),
+    tool("continuity_mission_set", "Enact governing mission", "Freeze the user-authorized governing objective and its authority source.", {"objective": S, "authority_source": S}, ["objective", "authority_source"], read_only=False),
+    tool("continuity_harm_record", "Record exact user burden evidence", "Append exact user-reported harm without inferring a medical diagnosis or rewriting historical evidence.", {"record": O}, ["record"], read_only=False),
+    tool("continuity_action_preflight", "Gate an action against recurrent harm", "Fail closed on stale, non-material, mission-drifting, uncustodied, incompletely-read or recurrently unsafe work.", {"action": O}, ["action"], read_only=False),
+    tool("continuity_integrity_verify", "Verify continuity ledger", "Verify the complete hash chain of continuity, burden and Aikido events.", {}, [], read_only=True),
+    tool("continuity_protocol_register", "Register verified protocol", "Register a prehashed, explicitly verified historical protocol for mandatory reuse.", {"protocol": O}, ["protocol"], read_only=False),
+    tool("continuity_protocol_resolve", "Resolve verified protocols", "Find matching verified protocols before fragments or replacement designs are allowed.", {"tags": A}, ["tags"], read_only=True),
+    tool("aikido_transform", "Convert adverse evidence into KCH capability", "Synthesize a positive capability, dated protocol, skill and operator candidate, OBL/PHL envelope and regression contract from one prehashed incident; never auto-promotes it.", {"incident": O}, ["incident"], read_only=False),
+    tool("aikido_catalog", "Inspect Aikido capability packages", "List prehashed adverse-to-capability transformations and their non-promoted status.", {}, [], read_only=True),
+    tool("temporal_scale_compile", "Compile temporal learning contract", "Keep timestamp resolution, prediction horizon, event count, minimum period and update cadence distinct; enforce minimum complete period to minimum complete period.", {"specification": O}, ["specification"], read_only=True),
+    tool("continuous_period_ledger_compile", "Compile consecutive minimum-period ledger", "Require every minimum period in the target interval and type it as OBSERVED, NO_EVENT or NOT_ESTIMABLE; block compressed calendars.", {"specification": O}, ["specification"], read_only=True),
+    tool("source_fitness_adjudicate", "Adjudicate source fitness before learning", "Block training when time-window scope, continuous coverage, observed support or jurisdiction support is insufficient.", {"receipt": O}, ["receipt"], read_only=True),
+    tool("commitment_monitor_register", "Register external process monitoring", "Persist an external PID, its OS creation identity, logs, artifacts and optional terminal receipt. Artifact presence alone never proves exit success.", {"label": S, "pid": I, "logs": A, "artifacts": A, "poll_seconds": I, "terminal_receipt": S, "expected_exit_codes": A}, ["label", "pid", "logs", "artifacts"], read_only=False),
+    tool("commitment_monitor_launch", "Launch a durably supervised process", "Launch a shell-free argv through a dedicated worker that owns stdout, stderr and a canonically sealed terminal receipt. Secret-like environment overrides are rejected.", {"label": S, "argv": A, "cwd": S, "environment": O, "expected_artifacts": A, "expected_exit_codes": A, "poll_seconds": I}, ["label", "argv", "cwd"], read_only=False),
+    tool("commitment_monitor_check", "Reconcile monitoring commitment", "Reconcile process identity, logs, artifacts and terminal receipt now; terminal alerting is exactly once and never relaunches the process.", {"commitment_id": S}, ["commitment_id"], read_only=False),
+    tool("commitment_monitor_wait_terminal", "Wait boundedly for exact terminal evidence", "Follow the same registered execution until terminal evidence or a bounded wait timeout. Timeout keeps the commitment active and never kills or relaunches it.", {"commitment_id": S, "timeout_seconds": {"type": "number", "exclusiveMinimum": 0}, "poll_seconds": {"type": "number", "exclusiveMinimum": 0}}, ["commitment_id", "timeout_seconds"], read_only=False),
+    tool("commitment_monitor_evidence", "Seal current monitoring evidence", "Return a canonically sealed evidence receipt with process identity, terminal status, exit code and hashed log metadata.", {"commitment_id": S}, ["commitment_id"], read_only=False),
+    tool("commitment_monitor_status", "Inspect promised monitoring", "Inspect background monitoring, reconciliation errors and all terminal states without promoting them into general execution claims.", {}, [], read_only=True),
+    tool("response_authority_register", "Register response authority constraint", "Freeze an explicit mission, terminology, provenance, jurisdiction, experiment-boundary or rejected-frame constraint with its authority source.", {"constraint": O}, ["constraint"], read_only=False),
+    tool("response_authority_adjudicate", "Adjudicate candidate response before release", "Fail closed when structured response claims violate active semantic authority, conflate experiments, promote scope, add off-mission classifications or promise unregistered monitoring.", {"candidate": O}, ["candidate"], read_only=False),
+    tool("response_authority_status", "Inspect response authority governance", "Inspect active response constraints, hash-chain integrity and the explicit host-interposition evidence boundary.", {}, [], read_only=True),
+    tool("remote_transport_preflight", "Verify remote payload before launch", "Block empty, shell-mutated, stale-marker or hash-mismatched remote wrappers before any process starts.", {"receipt": O}, ["receipt"], read_only=True),
     tool(
         "constitution_state",
         "Read constitutional workspace",
@@ -953,12 +1017,18 @@ class KCHAdvancedRuntime:
         self.root.mkdir(parents=True, exist_ok=True)
         self.recovery = RecoveryVault(self.root / "master_recovery")
         self.constitution = ConstitutionalWorkspace(self.root / "constitution")
+        self.continuity = ContinuityAndBurdenGovernor(self.root / "continuity")
+        self.aikido = AikidoLearningForge(self.root / "aikido", self.continuity)
+        self.commitments = CommitmentMonitor(self.root / "commitments")
+        self.evidence_closure = EvidencePreservingClosure()
+        self.response_authority = ResponseAuthorityGovernor(self.root / "response_authority")
         self.policy = ProgrammedPolicy(self.root / "proactive_policy")
         self.risk = RiskAdvisor(self.root / "risk")
         self.plan_build = PlanBuildEngine(self.root / "plan_build")
         self.persistence = PersistenceHub(self.root / "persistence")
         self.kwandata = KwanData(self.root / "kwandata")
         self.permissions = PermissionGovernor(self.root / "permissions")
+        self.locks = LockGovernor(self.root / "locks")
         self.clipboard = ClipboardHub(self.root / "clipboard")
         self.diction = DictionLearning(self.root / "diction")
         self.response_modes = ResponseModeManager(self.root / "response_modes")
@@ -980,7 +1050,10 @@ class KCHAdvancedRuntime:
             stable_root
             or os.environ.get("KCH_CONSTRUCT_STABLE_ROOT", Path(__file__).resolve().parents[2])
         ).resolve()
-        self.construct = ConstructMode(self.root / "construct", source_root)
+        self.full_reader = FullReadService(source_root, self.permissions)
+        self.construct = ConstructMode(
+            self.root / "construct", source_root, lock_governor=self.locks
+        )
         self.checkpoints = CheckpointManager(
             self.root / "checkpoints",
             {"runtime": self.root, "stable": source_root},
@@ -988,6 +1061,66 @@ class KCHAdvancedRuntime:
 
         self.handlers: dict[str, Callable[[dict[str, Any]], Any]] = {
             "kch_next_status": lambda _a: self.status(),
+            "continuity_status": lambda _a: self.continuity.status(),
+            "continuity_reading_adjudicate": lambda a: self.continuity.adjudicate_reading(dict(a["receipt"])),
+            "full_read_file": lambda a: self.full_reader.read(
+                str(a["path"]),
+                max_return_bytes=int(a.get("max_return_bytes", 1_048_576)),
+                expected_sha256=a.get("expected_sha256"),
+            ),
+            "full_read_batch": lambda a: self.full_reader.read_batch(
+                list(a["items"]),
+                requested_order=str(a.get("requested_order", "SOURCE_NATIVE_ORDER")),
+                max_return_bytes_per_file=int(
+                    a.get("max_return_bytes_per_file", 1_048_576)
+                ),
+                max_batch_return_bytes=int(a.get("max_batch_return_bytes", 5_242_880)),
+            ),
+            "full_read_verify_batch": lambda a: self.full_reader.verify_batch(
+                dict(a["batch"])
+            ),
+            "evidence_closure_materialize": lambda a: self.evidence_closure.materialize(
+                dict(a["envelope"])
+            ),
+            "evidence_closure_verify": lambda a: self.evidence_closure.verify(
+                dict(a["closure"])
+            ),
+            "lock_governor_status": lambda _a: self.locks.status(),
+            "lock_list": lambda a: self.locks.locks(
+                include_inactive=bool(a.get("include_inactive", False))
+            ),
+            "lock_pending_proposals": lambda _a: {
+                "schema": "kch.lock-pending-proposals.v0.1.0",
+                "proposals": self.locks.pending_proposals(),
+            },
+            "lock_authorization_status": lambda a: self.locks.authorization_status(
+                str(a["proposal_id"])
+            ),
+            "lock_drift_verify": lambda _a: self.locks.verify_drift(),
+            "lock_change_propose": self._lock_change_propose,
+            "lock_tool_call_propose": self._lock_tool_call_propose,
+            "lock_authorized_execute": self._lock_authorized_execute,
+            "continuity_mission_set": lambda a: self.continuity.set_mission(str(a["objective"]), str(a["authority_source"])),
+            "continuity_harm_record": lambda a: self.continuity.record_harm(dict(a["record"])),
+            "continuity_action_preflight": lambda a: self.continuity.preflight(dict(a["action"])),
+            "continuity_integrity_verify": lambda _a: self.continuity.verify(),
+            "continuity_protocol_register": lambda a: self.continuity.register_protocol(dict(a["protocol"])),
+            "continuity_protocol_resolve": lambda a: self.continuity.resolve_protocols(list(a["tags"])),
+            "aikido_transform": lambda a: self.aikido.transform(dict(a["incident"])),
+            "aikido_catalog": lambda _a: self.aikido.catalog(),
+            "temporal_scale_compile": lambda a: TemporalScaleContractCompiler.compile(dict(a["specification"])),
+            "continuous_period_ledger_compile": lambda a: ContinuousPeriodLedgerCompiler.compile(dict(a["specification"])),
+            "source_fitness_adjudicate": lambda a: SourceFitnessGate.adjudicate(dict(a["receipt"])),
+            "commitment_monitor_register": lambda a: self.commitments.register(label=str(a["label"]), pid=int(a["pid"]), logs=list(a["logs"]), artifacts=list(a["artifacts"]), poll_seconds=int(a.get("poll_seconds", 10)), terminal_receipt=str(a["terminal_receipt"]) if a.get("terminal_receipt") else None, expected_exit_codes=[int(code) for code in a.get("expected_exit_codes", [0])]),
+            "commitment_monitor_launch": lambda a: self.commitments.launch(label=str(a["label"]), argv=[str(item) for item in a["argv"]], cwd=str(a["cwd"]), environment={str(key): str(value) for key, value in dict(a.get("environment", {})).items()}, expected_artifacts=[str(path) for path in a.get("expected_artifacts", [])], expected_exit_codes=[int(code) for code in a.get("expected_exit_codes", [0])], poll_seconds=int(a.get("poll_seconds", 2))),
+            "commitment_monitor_check": lambda a: self.commitments.check(str(a["commitment_id"])),
+            "commitment_monitor_wait_terminal": lambda a: self.commitments.wait_terminal(str(a["commitment_id"]), timeout_seconds=float(a["timeout_seconds"]), poll_seconds=float(a.get("poll_seconds", 0.25))),
+            "commitment_monitor_evidence": lambda a: self.commitments.evidence(str(a["commitment_id"])),
+            "commitment_monitor_status": lambda _a: self.commitments.status(),
+            "response_authority_register": lambda a: self.response_authority.register(dict(a["constraint"])),
+            "response_authority_adjudicate": lambda a: self.response_authority.adjudicate(dict(a["candidate"]), active_commitment_ids=self.commitments.active_ids()),
+            "response_authority_status": lambda _a: self.response_authority.status(),
+            "remote_transport_preflight": lambda a: RemoteTransportPreflight.adjudicate(dict(a["receipt"])),
             "constitution_state": lambda _a: self.constitution.state(),
             "constitution_effective": lambda _a: self.constitution.effective_mandates(),
             "constitution_propose": lambda a: self.constitution.propose(dict(a["proposal"])),
@@ -1182,12 +1315,26 @@ class KCHAdvancedRuntime:
         self.handlers = {
             name: (
                 handler
-                if name in self.phl.CONTROL_TOOLS
+                if name in self.phl.CONTROL_TOOLS or name in LOCK_CONTROL_TOOLS
                 else lambda arguments, tool_name=name, raw_handler=handler: self.phl.dispatch(
                     tool_name, arguments, raw_handler
                 )
             )
             for name, handler in raw_handlers.items()
+        }
+        self._lock_bypass_handlers = dict(self.handlers)
+        self._mutating_tool_names = {
+            name for name, descriptor in tool_by_name.items() if not descriptor["readOnly"]
+        }
+        self.handlers = {
+            name: (
+                handler
+                if name not in self._mutating_tool_names or name in LOCK_CONTROL_TOOLS
+                else lambda arguments, tool_name=name, raw_handler=handler: self._lock_guarded_tool_call(
+                    tool_name, dict(arguments), raw_handler
+                )
+            )
+            for name, handler in self.handlers.items()
         }
         capabilities = [
             Capability(
@@ -1197,6 +1344,11 @@ class KCHAdvancedRuntime:
                 if name
                 in {
                     "constitution_effective",
+                    "continuity_status",
+                    "continuity_action_preflight",
+                    "continuity_integrity_verify",
+                    "response_authority_adjudicate",
+                    "response_authority_status",
                     "recovery_checkpoint",
                     "risk_assess",
                     "response_mode_resolve",
@@ -1213,6 +1365,8 @@ class KCHAdvancedRuntime:
         self.launcher = ProactiveLauncher(
             self.root / "launcher", self.policy, self.handlers, capabilities
         )
+        self.commitments.set_alert_callback(self.launcher.publish)
+        self.commitments.start()
         self.scheduler = KCHScheduler(self.root / "scheduler", self.launcher.publish)
         self.workbench_schedule = self._ensure_workbench_schedule()
         self.launch_receipt = self.launcher.start()
@@ -1256,6 +1410,143 @@ class KCHAdvancedRuntime:
             },
         )
         return schedule
+
+    @staticmethod
+    def _tool_lock_binding(tool_name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        payload_sha256 = sha256_json(
+            {"tool_name": tool_name, "arguments": arguments}
+        )
+        return {
+            "resource": f"tool://internal/{tool_name}",
+            "operation": "EXECUTE",
+            "current_sha256": None,
+            "proposed_sha256": payload_sha256,
+            "payload_sha256": payload_sha256,
+        }
+
+    def _lock_guarded_tool_call(
+        self,
+        tool_name: str,
+        arguments: dict[str, Any],
+        operation: Callable[[dict[str, Any]], Any],
+    ) -> Any:
+        binding = self._tool_lock_binding(tool_name, arguments)
+        preflight = self.locks.preflight(**binding)
+        if not preflight["authorized"]:
+            return {
+                "schema": "kch.locked-tool-call.v0.1.0",
+                "state": "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED",
+                "tool_name": tool_name,
+                "arguments_sha256": binding["payload_sha256"],
+                "preflight": preflight,
+                "side_effect_executed": False,
+                "next_tool": "lock_tool_call_propose",
+            }
+        return operation(arguments)
+
+    def _lock_change_propose(self, args: dict[str, Any]) -> dict[str, Any]:
+        return self.locks.propose(
+            resource=str(args["resource"]),
+            operation=str(args["operation"]),
+            current_sha256=args.get("current_sha256") or None,
+            proposed_sha256=args.get("proposed_sha256") or None,
+            payload_sha256=str(args["payload_sha256"]),
+            rationale=str(args["rationale"]),
+            impact=str(args["impact"]),
+            dependencies=[str(item) for item in args["dependencies"]],
+            recovery_plan=str(args["recovery_plan"]),
+        )
+
+    def _lock_tool_call_propose(self, args: dict[str, Any]) -> dict[str, Any]:
+        tool_name = str(args["tool_name"])
+        if tool_name not in self._mutating_tool_names:
+            raise ValueError("only a registered mutating tool can require lock authorization")
+        if tool_name in LOCK_CONTROL_TOOLS:
+            raise ValueError("lock-control tools cannot recursively authorize themselves")
+        arguments = dict(args["arguments"])
+        binding = self._tool_lock_binding(tool_name, arguments)
+        proposal = self.locks.propose(
+            **binding,
+            rationale=str(args["rationale"]),
+            impact=str(args["impact"]),
+            dependencies=[str(item) for item in args["dependencies"]],
+            recovery_plan=str(args["recovery_plan"]),
+        )
+        return {
+            "schema": "kch.locked-tool-call-proposal.v0.1.0",
+            "tool_name": tool_name,
+            "arguments": arguments,
+            "arguments_sha256": binding["payload_sha256"],
+            "proposal": proposal,
+            "side_effect_executed": False,
+        }
+
+    def _lock_authorized_execute(self, args: dict[str, Any]) -> dict[str, Any]:
+        tool_name = str(args["tool_name"])
+        if tool_name not in self._mutating_tool_names:
+            raise ValueError("authorization target is not a registered mutating tool")
+        if tool_name in LOCK_CONTROL_TOOLS:
+            raise ValueError("lock-control tools cannot be executed through the bypass")
+        arguments = dict(args["arguments"])
+        binding = self._tool_lock_binding(tool_name, arguments)
+        preflight = self.locks.preflight(
+            **binding, authorization_id=str(args["authorization_id"])
+        )
+        if not preflight["authorized"]:
+            return {
+                "state": "NOT_EXECUTED_LOCK_AUTHORIZATION_REJECTED",
+                "preflight": preflight,
+                "side_effect_executed": False,
+            }
+        result = self._lock_bypass_handlers[tool_name](arguments)
+        return {
+            "schema": "kch.lock-authorized-tool-execution.v0.1.0",
+            "state": "EXECUTED_EXACT_ONE_SHOT_AUTHORIZATION_CONSUMED",
+            "tool_name": tool_name,
+            "preflight": preflight,
+            "result": result,
+        }
+
+    def lock_user_enable(self, enabled: bool) -> dict[str, Any]:
+        """Trusted local UI boundary; deliberately absent from the MCP tool surface."""
+        return self.locks.set_enabled(enabled, actor=Actor.USER)
+
+    def lock_user_create(self, specification: dict[str, Any]) -> dict[str, Any]:
+        """Trusted local UI boundary; deliberately absent from the MCP tool surface."""
+        return self.locks.create_lock(
+            resource_pattern=str(specification["resource_pattern"]),
+            match_mode=str(specification["match_mode"]),
+            operations=[str(item) for item in specification["operations"]],
+            reason=str(specification["reason"]),
+            expires_at=specification.get("expires_at"),
+            capture_baseline=bool(specification.get("capture_baseline", True)),
+            actor=Actor.USER,
+        )
+
+    def lock_user_deactivate(self, lock_id: str) -> dict[str, Any]:
+        """Trusted local UI boundary; deliberately absent from the MCP tool surface."""
+        return self.locks.deactivate_lock(lock_id, actor=Actor.USER)
+
+    def lock_user_authorize(self, proposal_id: str) -> dict[str, Any]:
+        """Trusted local UI boundary; deliberately absent from the MCP tool surface."""
+        return self.locks.trusted_authorize(
+            proposal_id,
+            actor=Actor.USER,
+            trusted_channel="KCH_LOCAL_UI",
+        )
+
+    def guard_ui_component_mutation(
+        self,
+        tool_name: str,
+        arguments: dict[str, Any],
+        operation: Callable[[], Any],
+    ) -> Any:
+        """Interpose locks over trusted UI mutations that need a direct component API."""
+        if tool_name not in self._mutating_tool_names:
+            raise ValueError("UI mutation must map to a registered mutating tool")
+        return self._lock_guarded_tool_call(
+            tool_name, dict(arguments), lambda _arguments: operation()
+        )
 
     def direct_consent_status(self) -> dict[str, Any]:
         return {
@@ -1534,12 +1825,17 @@ class KCHAdvancedRuntime:
     def status(self) -> dict[str, Any]:
         components = {
             "constitution": self.constitution.effective_mandates(),
+            "continuity": self.continuity.status(),
+            "aikido": self.aikido.catalog(),
+            "commitments": self.commitments.status(),
+            "response_authority": self.response_authority.status(),
             "programmed_policy": self.policy.session_announcement(),
             "launcher": self.launcher.status(),
             "recovery": self.recovery.verify(),
             "persistence": self.persistence.coverage(),
             "kwandata": self.kwandata.status(),
             "permissions": self.permissions.status(),
+            "locks": self.locks.status(),
             "scheduler": self.scheduler.status(),
             "clipboard": self.clipboard.status(),
             "accounts": self.account_broker.status(),
@@ -1575,6 +1871,7 @@ class KCHAdvancedRuntime:
         }
 
     def close(self) -> None:
+        self.commitments.stop()
         self.clipboard.stop_monitor()
         self.scheduler.stop()
         self.audio.stop_monitor()

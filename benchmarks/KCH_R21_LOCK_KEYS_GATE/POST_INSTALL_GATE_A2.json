@@ -1,0 +1,245 @@
+{
+  "schema": "kch.portable-post-install-gate.v0.3.0",
+  "gate": "PASS_BOUNDED",
+  "checks": {
+    "codex_read_only_preflight_protocol": true,
+    "codex_read_only_preflight_single_tool": true,
+    "codex_bootstrap_initialize_protocol": true,
+    "codex_bootstrap_five_tool_surface": true,
+    "codex_bootstrap_runtime_deferred": true,
+    "initialize_protocol": true,
+    "combined_tool_surface": true,
+    "advanced_tools_present": true,
+    "lock_authority_not_exposed_to_mcp": true,
+    "constitutional_locks_default_off": true,
+    "constitutional_lock_chain_pass": true,
+    "launcher_running": true,
+    "launcher_blind_spots_zero": true,
+    "strategic_surface_complete": true,
+    "canonical_preflight_pass": true,
+    "workbench_integrity_pass": true,
+    "workbench_scheduler_bound": true,
+    "phl_authorized": true,
+    "phl_training_not_executed": true,
+    "mis_480_records": true,
+    "mis_60_ledgers": true,
+    "mis_authority_false": true
+  },
+  "checks_passed": 22,
+  "checks_total": 22,
+  "combined_tool_count": 294,
+  "codex_bootstrap_tool_count": 5,
+  "codex_read_only_preflight_tool_count": 1,
+  "canonical_preflight": {
+    "schema": "kch.canonical-preflight.v0.5.0",
+    "gate": "PASS",
+    "canonical_entrypoint": "kch_studio.mcp_server:StudioMCP",
+    "internal_component_not_a_canonical_entrypoint": "kch_studio.advanced_runtime:KCHAdvancedRuntime",
+    "checks": {
+      "compiled_governance": true,
+      "governance_hierarchy": true,
+      "all_strategic_invariant": true,
+      "full_strategic_surface": true,
+      "launcher_blind_spots_absent": true,
+      "phl_authorized": true,
+      "response_modes_integrity": true,
+      "continuity_integrity": true,
+      "full_read_source_order_default": true,
+      "executable_full_read_tool": true,
+      "executable_full_read_evidence_chain": true
+    },
+    "governance": {
+      "state": "VERIFIED_COMPILED_GOVERNANCE",
+      "graph_hash": "fb59cb255d3d6ce3fe4ab4182a39984f3c1431df878033fedd4aa8cb82523ec1",
+      "hierarchy": [
+        "HARNESS",
+        "AGENTS",
+        "RULES"
+      ],
+      "node_count": 23,
+      "agent_count": 7,
+      "rule_count": 13,
+      "source_nodes_verified": 23,
+      "compiled_artifacts_verified": 8,
+      "all_strategic_invariant": true
+    },
+    "strategic_surface": {
+      "schema": "kch.strategic-surface-audit.v0.2.0",
+      "gate": "PASS",
+      "classes": 41,
+      "scope": "FULL_INTEGRATED",
+      "public_methods": 285,
+      "tool_exposed_methods": 238,
+      "composition_internal_methods": 47,
+      "missing_classifications": {},
+      "stale_classifications": {},
+      "missing_tools": {},
+      "claim_ceiling": "SURFACE_CLASSIFICATION_AND_BINDING_ONLY",
+      "production_readiness_established": false
+    },
+    "capability_blind_spots": [],
+    "phl": {
+      "authorized": true,
+      "training_executed": false,
+      "real_feedback_executed": false
+    },
+    "response_modes": {
+      "schema": "kch.response-mode-status.v0.1.0",
+      "presets": [
+        {
+          "profile_id": "builtin.conciso",
+          "name": "Conciso",
+          "viewport": {
+            "max_screens": 2,
+            "max_scrolls": 1,
+            "min_scrolls": 0,
+            "output_footprint_excluded": true,
+            "requires_host_measurement": true,
+            "target_screens": 1,
+            "unit": "USER_VISIBLE_RENDERED_VIEWPORT"
+          }
+        },
+        {
+          "profile_id": "builtin.explicativo",
+          "name": "Explicativo",
+          "viewport": {
+            "max_screens": null,
+            "max_scrolls": 5,
+            "min_scrolls": 2,
+            "output_footprint_excluded": true,
+            "requires_host_measurement": true,
+            "target_screens": null,
+            "unit": "USER_VISIBLE_RENDERED_VIEWPORT"
+          }
+        },
+        {
+          "profile_id": "builtin.extenso",
+          "name": "Extenso",
+          "viewport": {
+            "max_screens": null,
+            "max_scrolls": null,
+            "min_scrolls": null,
+            "output_footprint_excluded": true,
+            "requires_host_measurement": true,
+            "target_screens": null,
+            "unit": "USER_VISIBLE_RENDERED_VIEWPORT"
+          }
+        }
+      ],
+      "default_profile": "builtin.explicativo",
+      "scope_precedence": [
+        "GLOBAL",
+        "WORKSPACE",
+        "SCO",
+        "TASK",
+        "SESSION",
+        "MESSAGE"
+      ],
+      "normalized_transcription": {
+        "raw_variant": "modo ampliado",
+        "canonical_term": "modo explicativo",
+        "basis": "latest explicit enumeration: conciso, explicativo y extenso"
+      },
+      "constitutional_invariants": {
+        "chat_text_only": true,
+        "outputs_out_of_scope": true,
+        "outputs_do_not_consume_viewport_budget": true,
+        "informative": true,
+        "explanatory": true,
+        "holistic": true,
+        "archival_execution_log_is_not_the_main_answer": true,
+        "execution_register_is_never_offered": true,
+        "execution_register_is_saved_as_markdown": true,
+        "execution_register_notice_is_one_final_line": true,
+        "evidence_claims_and_adverse_results_cannot_be_suppressed": true,
+        "mandatory_material_checkpoints_cannot_be_suppressed": true
+      },
+      "integrity": {
+        "schema": "kch.response-mode-integrity.v0.1.0",
+        "gate": "PASS",
+        "counts": {
+          "profiles": 3,
+          "active_profiles": 3,
+          "bindings": 1,
+          "audit_events": 0
+        },
+        "errors": []
+      },
+      "industrial_validation_established": false
+    },
+    "continuity": {
+      "schema": "kch.continuity-burden-governor.v0.1.0",
+      "active_mission": null,
+      "event_count": 0,
+      "failure_classes": [],
+      "integrity": {
+        "gate": "PASS",
+        "verified_events": 0,
+        "head_hash": "GENESIS"
+      },
+      "claim_ceiling": "LOCAL_EXECUTABLE_PREVENTION_AND_AUDIT_GATES_ONLY",
+      "recurrence_impossible_established": false
+    },
+    "aikido": {
+      "schema": "kch.aikido-catalog.v0.1.0",
+      "packages": [],
+      "count": 0,
+      "automatic_promotion": false
+    },
+    "full_read_contract": {
+      "schema": "kch.full-read-contract.v0.2.0",
+      "complete_bytes_required": true,
+      "fragment_substitution_forbidden": true,
+      "default_inventory_order": "SOURCE_NATIVE_ORDER",
+      "alternate_order_requires_explicit_user_or_preregistered_contract": true,
+      "order_semantics_must_be_declared": true,
+      "independent_receipt_verification_required": true,
+      "set_equality_does_not_rescue_order_mismatch": true,
+      "executable_tool": "full_read_file",
+      "machine_generated_batch_tool": "full_read_batch",
+      "source_backed_verifier_tool": "full_read_verify_batch",
+      "exact_span_semantic_evidence_required": true,
+      "receipt_self_seal_is_not_source_truth": true,
+      "single_transport_default_max_bytes": 1048576,
+      "single_transport_hard_max_bytes": 5242880,
+      "oversize_complete_read_claim_allowed": false
+    },
+    "external_installation_performed": false,
+    "claim_ceiling": "CANONICAL_LOCAL_STARTUP_AND_BINDING_GATE_ONLY",
+    "industrial_validation_established": false
+  },
+  "workbench_integrity": {
+    "schema": "kch.workbench-integrity.v0.1.0",
+    "gate": "PASS",
+    "event_count": 0,
+    "source_count": 0,
+    "protocol_count": 0,
+    "skill_count": 0,
+    "errors": []
+  },
+  "mis_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+  "wheel_hashes": {
+    "cffi-2.1.1-cp314-cp314-win_amd64.whl": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48",
+    "kch_csi_studio_extension_fabric-0.3.11-py3-none-any.whl": "6097b4fa37d94ec33f5ac8646b17b69d21c4f4109be485befedf7cd7f7e4bb64",
+    "kch_mis_v03_integration-0.1.0-py3-none-any.whl": "81037cd2881516e537701d3b720f15bcc8694c4ccdc70514726c0348254e49ae",
+    "kch_obl_phl_learning_system-0.1.1-py3-none-any.whl": "3887df03e896d5779e8815b6a52f2213ae557e4a92045f9216dde3e61552e141",
+    "kch_phl_effective_integration-0.2.0-py3-none-any.whl": "d5c1efba9edcfaf8e2d9d361a96f8c44b0e0d3c24b108c7b202f622d05df8936",
+    "kch_rigor_gradient_governor-0.1.0-py3-none-any.whl": "1aa8702b6e85071fdff3b0ae8d4f3b69a8499e65f57f24b5e3ffd4bdf8980741",
+    "kch_superchats_orchestrators-0.1.0-py3-none-any.whl": "aaecb06da92aa2e47af4b5bc267a799342f56dd5f2bd4dd33ea3092c2a225ad2",
+    "kwancode_harness-0.11.0-py3-none-any.whl": "1895dfadba8ceea025bd1ff5090fa2f96af66304bf550fe474751186f6799930",
+    "kwanprompts-0.1.0-py3-none-any.whl": "c258bfafd891c68f72285cd10bff3dbce19057c71acf62e1d6edd3ce240d7459",
+    "mis_qualitative_bayes-0.3.1-py3-none-any.whl": "be03cb2b594e22f662da5b74d8689384de8c1bde3d466fe18772dedbf0c89157",
+    "numpy-2.5.2-cp314-cp314-win_amd64.whl": "7587f53dfbd5edc0f7b87c6217b4c6d2d1f2ef9c3da70bc1315e7db5f8d7ec9d",
+    "pillow-12.3.0-cp314-cp314-win_amd64.whl": "fdafc9cce40277e0f7a0feabce0ee50dd2fa1800f3b38015e51296b5e814048d",
+    "pycparser-3.0-py3-none-any.whl": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+    "pypdf-6.15.0-py3-none-any.whl": "14e001d6504822cb1ca9c7ed9a69bccb320f59b320730f55af804361abe4d5ee",
+    "sounddevice-0.5.5-py3-none-win_amd64.whl": "cfc6b2c49fb7f555591c78cb8ecf48d6a637fd5b6e1db5fec6ed9365d64b3519",
+    "tzdata-2025.2-py2.py3-none-any.whl": "1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8"
+  },
+  "external_host_configuration_modified": false,
+  "microphone_activated": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "LOCAL_PORTABLE_INSTALLATION_STDIO_COMPOSITION_AND_BOUNDED_MIS_REPLAY"
+}

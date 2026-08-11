@@ -1,0 +1,368 @@
+{
+  "schema": "kch.r21-installed-constitutional-lock-gate.v0.1.0",
+  "gate": "PASS",
+  "checks": {
+    "always_this_session_does_not_bypass_lock": true,
+    "authority_methods_absent_from_mcp_handlers": true,
+    "altered_arguments_rejected": true,
+    "altered_attempt_did_not_consume": true,
+    "exact_call_executed": true,
+    "authorization_consumed_once": true,
+    "reuse_rejected": true,
+    "hash_chain_pass": true,
+    "phl_not_executed": true
+  },
+  "lock": {
+    "lock_id": "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d",
+    "resource_pattern": "tool://internal/constitution_plane_add",
+    "match_mode": "EXACT",
+    "operations": [
+      "EXECUTE"
+    ],
+    "reason": "Installed R21 must require exact local user authority.",
+    "active": true,
+    "created_at": "2026-08-11T20:16:49.774913Z",
+    "expires_at": null,
+    "baseline": {
+      "captured": false,
+      "reason": "USER_DISABLED_BASELINE_CAPTURE"
+    },
+    "lock_hash": "e4b83c10872021d2913ae6cb60139c879b7d2526fc2c708a4a7ae08b2d6e93d7",
+    "event": {
+      "seq": 1,
+      "timestamp": "2026-08-11T20:16:49.777805Z",
+      "event_type": "LOCK_ENACTED",
+      "payload": {
+        "actor": "USER",
+        "lock_id": "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d",
+        "lock_hash": "e4b83c10872021d2913ae6cb60139c879b7d2526fc2c708a4a7ae08b2d6e93d7"
+      },
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "aacd23571328edbc767686925fdc61ce05326d08f002e97b80cbe4c30b423162"
+    }
+  },
+  "blocked": {
+    "schema": "kch.locked-tool-call.v0.1.0",
+    "state": "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED",
+    "tool_name": "constitution_plane_add",
+    "arguments_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+    "preflight": {
+      "schema": "kch.lock-preflight.v0.1.0",
+      "gate": "BLOCKED_EXACT_USER_AUTHORIZATION_REQUIRED",
+      "authorized": false,
+      "binding": {
+        "resource": "tool://internal/constitution_plane_add",
+        "operation": "EXECUTE",
+        "current_sha256": null,
+        "proposed_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+        "payload_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488"
+      },
+      "matched_locks": [
+        {
+          "lock_id": "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d",
+          "resource_pattern": "tool://internal/constitution_plane_add",
+          "match_mode": "EXACT",
+          "operations": [
+            "EXECUTE"
+          ],
+          "reason": "Installed R21 must require exact local user authority.",
+          "active": true,
+          "created_at": "2026-08-11T20:16:49.774913Z",
+          "expires_at": null,
+          "baseline": {
+            "captured": false,
+            "reason": "USER_DISABLED_BASELINE_CAPTURE"
+          },
+          "lock_hash": "e4b83c10872021d2913ae6cb60139c879b7d2526fc2c708a4a7ae08b2d6e93d7"
+        }
+      ],
+      "required_explanation_fields": [
+        "rationale",
+        "impact",
+        "dependencies",
+        "recovery_plan"
+      ],
+      "session_wide_consent_accepted": false,
+      "event": {
+        "seq": 3,
+        "timestamp": "2026-08-11T20:16:49.836703Z",
+        "event_type": "LOCKED_MUTATION_BLOCKED",
+        "payload": {
+          "binding": {
+            "resource": "tool://internal/constitution_plane_add",
+            "operation": "EXECUTE",
+            "current_sha256": null,
+            "proposed_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+            "payload_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488"
+          },
+          "matched_lock_ids": [
+            "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d"
+          ]
+        },
+        "previous_hash": "4435f51c88f0a697f8b774de9f5feaaf1080ff20f8fb453a3495e97715179cdb",
+        "event_hash": "dda12d857d86ea8ac1c431d7985ca0f2c6c3aaa1f719c4c59402081d547b0605"
+      }
+    },
+    "side_effect_executed": false,
+    "next_tool": "lock_tool_call_propose"
+  },
+  "proposal": {
+    "schema": "kch.locked-tool-call-proposal.v0.1.0",
+    "tool_name": "constitution_plane_add",
+    "arguments": {
+      "label": "R21 installed exact authorization fixture",
+      "orientation": "VERTICAL",
+      "rank": 901,
+      "consent": "ALWAYS_THIS_SESSION"
+    },
+    "arguments_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+    "proposal": {
+      "proposal_id": "LPROP-7b58f33f-4ed6-474a-8393-822a42f1e709",
+      "resource": "tool://internal/constitution_plane_add",
+      "operation": "EXECUTE",
+      "current_sha256": null,
+      "proposed_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+      "payload_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+      "explanation": {
+        "rationale": "Exercise one disposable installed mutation.",
+        "impact": "Adds one plane only inside the disposable gate runtime.",
+        "dependencies": [
+          "installed R21",
+          "constitutional lock governor"
+        ],
+        "recovery_plan": "Discard the isolated installed-gate runtime."
+      },
+      "matched_locks": [
+        {
+          "lock_id": "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d",
+          "lock_hash": "e4b83c10872021d2913ae6cb60139c879b7d2526fc2c708a4a7ae08b2d6e93d7"
+        }
+      ],
+      "state": "AWAITING_TRUSTED_USER_AUTHORIZATION",
+      "created_at": "2026-08-11T20:16:49.859562Z",
+      "proposal_hash": "4e528b50950dd045377157f062f9cc76aebac96dac393ce6146a66a448293992",
+      "challenge": "4e528b50950dd045377157f062f9cc76aebac96dac393ce6146a66a448293992",
+      "model_can_authorize": false,
+      "trusted_user_gesture_required": true,
+      "event": {
+        "seq": 4,
+        "timestamp": "2026-08-11T20:16:49.861514Z",
+        "event_type": "LOCK_CHANGE_PROPOSED",
+        "payload": {
+          "proposal_id": "LPROP-7b58f33f-4ed6-474a-8393-822a42f1e709",
+          "proposal_hash": "4e528b50950dd045377157f062f9cc76aebac96dac393ce6146a66a448293992"
+        },
+        "previous_hash": "dda12d857d86ea8ac1c431d7985ca0f2c6c3aaa1f719c4c59402081d547b0605",
+        "event_hash": "9ac09c0d6c9b15bba237b44ba824976958d78b11055cbf57021f7e216489cb13"
+      }
+    },
+    "side_effect_executed": false
+  },
+  "authorization": {
+    "schema": "kch.lock-exact-authorization.v0.1.0",
+    "authorization_id": "LAUTH-a09ff571-eaa9-4a23-9ad3-e8163fe3d339",
+    "proposal_id": "LPROP-7b58f33f-4ed6-474a-8393-822a42f1e709",
+    "proposal_hash": "4e528b50950dd045377157f062f9cc76aebac96dac393ce6146a66a448293992",
+    "lock_set_hash": "798385a62442a2338401a7e0db39f3cf1541ffbfd1669beafc875a4c765cd56a",
+    "trusted_channel": "KCH_LOCAL_UI",
+    "issued_at": "2026-08-11T20:16:49.901992Z",
+    "expires_at": null,
+    "scope": "EXACT_ONE_SHOT",
+    "session_wide_authority_created": false,
+    "event": {
+      "seq": 5,
+      "timestamp": "2026-08-11T20:16:49.902117Z",
+      "event_type": "LOCK_CHANGE_AUTHORIZED",
+      "payload": {
+        "proposal_id": "LPROP-7b58f33f-4ed6-474a-8393-822a42f1e709",
+        "authorization_id": "LAUTH-a09ff571-eaa9-4a23-9ad3-e8163fe3d339",
+        "trusted_channel": "KCH_LOCAL_UI",
+        "scope": "EXACT_ONE_SHOT"
+      },
+      "previous_hash": "9ac09c0d6c9b15bba237b44ba824976958d78b11055cbf57021f7e216489cb13",
+      "event_hash": "55b0bd778555306189a099c79e5204cf0008b68ebf5dfa2830c6e9c7ea1807af"
+    }
+  },
+  "altered_rejected": "mutation differs from the exact authorized proposal",
+  "executed": {
+    "schema": "kch.lock-authorized-tool-execution.v0.1.0",
+    "state": "EXECUTED_EXACT_ONE_SHOT_AUTHORIZATION_CONSUMED",
+    "tool_name": "constitution_plane_add",
+    "preflight": {
+      "schema": "kch.lock-preflight.v0.1.0",
+      "gate": "ALLOW_EXACT_ONE_SHOT_AUTHORIZATION_CONSUMED",
+      "authorized": true,
+      "binding": {
+        "resource": "tool://internal/constitution_plane_add",
+        "operation": "EXECUTE",
+        "current_sha256": null,
+        "proposed_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+        "payload_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488"
+      },
+      "matched_locks": [
+        {
+          "lock_id": "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d",
+          "resource_pattern": "tool://internal/constitution_plane_add",
+          "match_mode": "EXACT",
+          "operations": [
+            "EXECUTE"
+          ],
+          "reason": "Installed R21 must require exact local user authority.",
+          "active": true,
+          "created_at": "2026-08-11T20:16:49.774913Z",
+          "expires_at": null,
+          "baseline": {
+            "captured": false,
+            "reason": "USER_DISABLED_BASELINE_CAPTURE"
+          },
+          "lock_hash": "e4b83c10872021d2913ae6cb60139c879b7d2526fc2c708a4a7ae08b2d6e93d7"
+        }
+      ],
+      "authorization_id": "LAUTH-a09ff571-eaa9-4a23-9ad3-e8163fe3d339",
+      "consumed_at": "2026-08-11T20:16:49.942060Z",
+      "consumption_hash": "316d2edd06de6987656bf0fd99d689b6695cb016d72be188c64d01dde4eba7d2",
+      "event": {
+        "seq": 6,
+        "timestamp": "2026-08-11T20:16:49.942182Z",
+        "event_type": "LOCK_AUTHORIZATION_CONSUMED",
+        "payload": {
+          "authorization_id": "LAUTH-a09ff571-eaa9-4a23-9ad3-e8163fe3d339",
+          "proposal_id": "LPROP-7b58f33f-4ed6-474a-8393-822a42f1e709",
+          "consumption_hash": "316d2edd06de6987656bf0fd99d689b6695cb016d72be188c64d01dde4eba7d2"
+        },
+        "previous_hash": "55b0bd778555306189a099c79e5204cf0008b68ebf5dfa2830c6e9c7ea1807af",
+        "event_hash": "5ff411a18722a4362e64b1af05bfe28a6167075e7161415804339a53d00377b3"
+      }
+    },
+    "result": {
+      "state": "EXECUTED_UNDER_SCOPED_USER_CONSENT",
+      "authority": {
+        "schema": "kch.direct-action-authority-receipt.v0.2.0",
+        "action": "constitution_plane_add",
+        "choice": "ALWAYS_THIS_SESSION",
+        "authorized_this_call": true,
+        "session_policy": {
+          "always_this_session": true,
+          "never_this_session": false
+        },
+        "scope": "THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY",
+        "attestation_boundary": "CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY",
+        "created_at": "2026-08-11T20:16:49.970469Z"
+      },
+      "result": {
+        "state": {
+          "authority": {
+            "amend": [
+              "USER"
+            ],
+            "enact": [
+              "USER"
+            ],
+            "model_can_downgrade": false,
+            "model_can_mutate": false,
+            "model_can_propose": true,
+            "model_can_read": true
+          },
+          "boxes": [
+            {
+              "active": true,
+              "box_id": "BOX-b175164b-1232-4006-bf22-3076e0264558",
+              "constitutional": true,
+              "content": "",
+              "created_at": "2026-08-11T20:16:39.664076Z",
+              "parent_box_id": null,
+              "plane_id": "main",
+              "rank": 1,
+              "tags": [],
+              "updated_at": "2026-08-11T20:16:39.664081Z"
+            }
+          ],
+          "connections": [],
+          "created_at": "2026-08-11T20:16:39.664027Z",
+          "first_box_id": "BOX-b175164b-1232-4006-bf22-3076e0264558",
+          "planes": [
+            {
+              "label": "",
+              "orientation": "VERTICAL",
+              "plane_id": "main",
+              "rank": 1
+            },
+            {
+              "plane_id": "PLANE-8608beb4-737f-4a06-94ee-16b6111054f9",
+              "label": "R21 installed exact authorization fixture",
+              "orientation": "VERTICAL",
+              "rank": 901
+            }
+          ],
+          "revision": 2,
+          "schema": "kch.csi-constitutional-workspace.v0.1.0",
+          "title": "",
+          "updated_at": "2026-08-11T20:16:49.972757Z",
+          "workspace_id": "default"
+        },
+        "custody": {
+          "asset_id": "ASSET-d45c1a34-cebf-43d1-ae24-95f6dff2cddc",
+          "logical_key": "constitutional/workspaces/default.json",
+          "kind": "CSI_CONSTITUTION",
+          "seq": 2,
+          "bytes": 889,
+          "content_sha256": "f8483105295c578bd172a5045feee596e448fb5bf7c67df4c23b2b0d4ecb6e48",
+          "revision_hash": "bdfde7eacd4539ad412a83ecca30827d586de43b0c72390eff4b4b5fbc308631",
+          "previous_revision_hash": "1e4816b1e9a453c2b6f71c5a46abc3e0b2b5a921f51ca7698f865f1e295fd38d",
+          "warning_count": 0,
+          "recoverable": true
+        }
+      }
+    }
+  },
+  "reuse_rejected": "lock authorization is already consumed",
+  "final_status": {
+    "schema": "kch.lock-authorization-status.v0.1.0",
+    "proposal": {
+      "proposal_id": "LPROP-7b58f33f-4ed6-474a-8393-822a42f1e709",
+      "resource": "tool://internal/constitution_plane_add",
+      "operation": "EXECUTE",
+      "current_sha256": null,
+      "proposed_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+      "payload_sha256": "97eac66746765a451173997b27744b6a08901ee1ff98bec584770040c1ae2488",
+      "explanation": {
+        "dependencies": [
+          "installed R21",
+          "constitutional lock governor"
+        ],
+        "impact": "Adds one plane only inside the disposable gate runtime.",
+        "rationale": "Exercise one disposable installed mutation.",
+        "recovery_plan": "Discard the isolated installed-gate runtime."
+      },
+      "matched_locks": [
+        {
+          "lock_hash": "e4b83c10872021d2913ae6cb60139c879b7d2526fc2c708a4a7ae08b2d6e93d7",
+          "lock_id": "LOCK-b11ec6a7-3093-4a3e-8e75-d447d13e567d"
+        }
+      ],
+      "proposal_hash": "4e528b50950dd045377157f062f9cc76aebac96dac393ce6146a66a448293992",
+      "state": "AUTHORIZED_AND_CONSUMED",
+      "created_at": "2026-08-11T20:16:49.859562Z"
+    },
+    "authorization": {
+      "authorization_id": "LAUTH-a09ff571-eaa9-4a23-9ad3-e8163fe3d339",
+      "trusted_channel": "KCH_LOCAL_UI",
+      "issued_at": "2026-08-11T20:16:49.901992Z",
+      "expires_at": null,
+      "consumed_at": "2026-08-11T20:16:49.942060Z",
+      "consumed": true
+    }
+  },
+  "integrity": {
+    "schema": "kch.lock-governor-integrity.v0.1.0",
+    "gate": "PASS",
+    "event_count": 6,
+    "head_hash": "5ff411a18722a4362e64b1af05bfe28a6167075e7161415804339a53d00377b3",
+    "errors": []
+  },
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "LOCAL_FRESH_INSTALL_LOCK_INTERPOSITION_AND_EXACT_AUTHORITY_ONLY",
+  "sha256": "8b5dc11fb9146a6e9eae991fab96f30af69d8c7bae4a57263e5ea016b60b601e"
+}

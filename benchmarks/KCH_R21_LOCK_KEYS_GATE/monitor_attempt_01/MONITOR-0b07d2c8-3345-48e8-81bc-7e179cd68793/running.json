@@ -1,0 +1,9 @@
+{
+  "schema": "kch.monitored-process-running.v0.1.0",
+  "commitment_id": "MONITOR-0b07d2c8-3345-48e8-81bc-7e179cd68793",
+  "worker_pid": 1992,
+  "child_pid": 1788,
+  "started_at": "2026-08-11T19:59:33.710903Z",
+  "request_sha256": "6c2bcc4e1476ed84e7365afac030357b199f8382c1ca0b74e752cce3011cd6f9",
+  "sha256": "04c9d88202dfbc43bd2c6b14509fdc106863309147e26d6cf00b1eb26788514f"
+}

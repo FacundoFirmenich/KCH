@@ -1,0 +1,22 @@
+{
+  "activation_authorized": false,
+  "agent_topology_transport": "FLATTENED_IN_AGENTS_MD_GRAPH_PRESERVED_SEPARATELY",
+  "authority_inherited": false,
+  "command_rules_generated": 0,
+  "host": "CODEX",
+  "installation_authorized": false,
+  "native_support": {
+    ".rules": "COMMAND_PERMISSION_SUBSET_ONLY",
+    "AGENTS.md": true,
+    "HARNESS.md": false,
+    "RULES.md": false
+  },
+  "schema": "kch.host-projection-receipt.v0.1.0",
+  "semantic_rules_transport": "INCLUDED_IN_AGENTS_PROJECTION",
+  "source_hierarchy": [
+    "HARNESS.md",
+    "AGENTS.md",
+    "RULES.md"
+  ],
+  "state": "SHADOW_ONLY_REVIEW_REQUIRED"
+}

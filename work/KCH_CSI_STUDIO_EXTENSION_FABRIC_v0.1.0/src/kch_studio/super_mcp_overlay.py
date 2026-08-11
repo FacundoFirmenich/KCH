@@ -55,26 +55,33 @@ class IntegratedSuperMCP:
         self.base_module = base
         self.base = base.MCPServer(base.build_gateway())
         self.studio = StudioMCP(self.root / "studio_overlay")
+        self._base_capabilities_registered = False
         self.base_tool_names = {tool["name"] for tool in base.TOOLS}
         self.base_read_only_tools = {
             name
             for name in self.base_tool_names
             if name in BASE_READ_ONLY_TOOLS or name.startswith("kch.control.")
         }
-        self.studio.advanced.phl.register_capabilities(
-            [
-                {
-                    "name": tool["name"],
-                    "readOnly": tool["name"] in self.base_read_only_tools,
-                }
-                for tool in base.TOOLS
-            ]
-        )
         base_names = {tool["name"] for tool in base.TOOLS}
         overlay_names = {tool["name"] for tool in STUDIO_TOOLS}
         collisions = base_names & overlay_names
         if collisions:
             raise ValueError(f"Super-MCP tool collision: {sorted(collisions)}")
+
+    def _ensure_studio_runtime(self) -> None:
+        advanced = self.studio.ensure_runtime()
+        if self._base_capabilities_registered:
+            return
+        advanced.phl.register_capabilities(
+            [
+                {
+                    "name": tool["name"],
+                    "readOnly": tool["name"] in self.base_read_only_tools,
+                }
+                for tool in self.base_module.TOOLS
+            ]
+        )
+        self._base_capabilities_registered = True
 
     def handle(self, message: dict[str, Any]) -> dict[str, Any] | None:
         method = message.get("method")
@@ -83,7 +90,7 @@ class IntegratedSuperMCP:
             if response and "result" in response:
                 response["result"]["serverInfo"] = {
                     "name": "kwancode-harness",
-                    "version": "0.11.0+studio.0.3.0",
+                    "version": "0.11.0+studio.0.3.9",
                 }
                 response["result"]["instructions"] = (
                     "KCH 0.11 authority remains frozen beneath a versioned successor overlay. Governance is HARNESS > AGENTS > RULES; "
@@ -112,6 +119,7 @@ class IntegratedSuperMCP:
                 )
             return response
         if method == "tools/call":
+            self._ensure_studio_runtime()
             params = dict(message.get("params", {}))
             name = str(params.get("name", ""))
             if name in self.studio.handlers:
@@ -132,6 +140,8 @@ class IntegratedSuperMCP:
         return self.base.handle(message)
 
     def receipt(self) -> dict[str, Any]:
+        self._ensure_studio_runtime()
+        assert self.studio.advanced is not None
         base_tools = {tool["name"] for tool in self.base_module.TOOLS}
         overlay_tools = {tool["name"] for tool in STUDIO_TOOLS}
         return {
@@ -143,7 +153,7 @@ class IntegratedSuperMCP:
             },
             "overlay": {
                 "name": "kch-csi-studio",
-                "version": "0.1.0",
+                "version": "0.3.9",
                 "tool_count": len(overlay_tools),
             },
             "combined_tool_count": len(base_tools | overlay_tools),
@@ -157,7 +167,8 @@ class IntegratedSuperMCP:
         }
 
     def close(self) -> None:
-        self.studio.advanced.close()
+        if self.studio.advanced is not None:
+            self.studio.advanced.close()
 
 
 def prepare_runtime_environment(root: Path) -> dict[str, Any]:

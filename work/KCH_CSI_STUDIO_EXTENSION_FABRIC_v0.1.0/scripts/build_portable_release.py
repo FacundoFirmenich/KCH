@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -30,9 +31,7 @@ EXCLUDES = {
     "release_build",
     "dependency_wheels",
     ".git",
-    "compiled_governance_v02",
-    "compiled_governance_v03",
-    "compiled_governance_v04",
+    "compiled_governance_*",
     "KCH_PRE2G_INTEGRATED_MACROGATE_v0.1.0.json",
     "KCH_PORTABLE_INSTALL_RECEIPT_R3.json",
     "KCH_PORTABLE_POST_INSTALL_GATE_R3.json",
@@ -82,10 +81,12 @@ def main() -> None:
     base = workspace / "KCH_0.11_REEXTRACT_FINAL"
     mis = workspace / "KCH_MIS03_REEXTRACT_v0.1.0"
     governance = candidate / "governance"
-    final_output = candidate / "release_build"
+    final_output = Path(
+        os.environ.get("KCH_RELEASE_OUTPUT", str(candidate / "release_build"))
+    ).resolve()
     final_output.mkdir(exist_ok=True)
     output_root = Path(tempfile.mkdtemp(prefix="kch_release_"))
-    package = output_root / "KCH_0.11_PRE2G_R10"
+    package = output_root / "KCH_0.11_PRE2G_R21"
     package.mkdir(parents=True)
 
     # Build into this release jurisdiction only.  candidate/dist may contain a
@@ -154,6 +155,7 @@ def main() -> None:
     )
 
     environment = {
+        "PYTHONUTF8": "1",
         "KCH_STUDIO_RUNTIME": "<KCH_RUNTIME_ROOT>\\state",
         "KCH_MIS_ROOT": "<KCH_ROOT>\\mis",
         "KCH_CONSTRUCT_STABLE_ROOT": "<KCH_ROOT>\\source\\kch-studio",
@@ -206,9 +208,15 @@ def main() -> None:
         package / "adapters" / "codex-plugin.json",
         {
             "plugin_path": "<KCH_ROOT>\\plugin\\kch-csi-studio",
-            "mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-super-mcp-studio.exe",
+            "mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-codex-bootstrap-mcp.exe",
+            "preflight_mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-codex-preflight-mcp.exe",
+            "full_super_mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-super-mcp-studio.exe",
             "automatic_external_configuration_write": False,
         },
+    )
+    shutil.copy2(
+        candidate / "docs" / "CODEX_PROJECT_BINDING_AGENTS.md",
+        package / "adapters" / "AGENTS_KCH.md",
     )
 
     write(
@@ -262,7 +270,7 @@ def main() -> None:
         },
     )
 
-    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R10.zip"
+    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as stream:
         for path in sorted(
             (item for item in package.rglob("*") if item.is_file()),
@@ -279,11 +287,11 @@ def main() -> None:
     shutil.copy2(archive, final_archive)
     shutil.copy2(
         candidate / "scripts" / "extract_and_install.py",
-        final_output / "EXTRACT_AND_INSTALL_KCH_R10.py",
+        final_output / "EXTRACT_AND_INSTALL_KCH_R21.py",
     )
     write(
-        final_output / "EXTRACT_AND_INSTALL_KCH_R10.cmd",
-        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R10.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R10.zip"\r\n',
+        final_output / "EXTRACT_AND_INSTALL_KCH_R21.cmd",
+        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R21.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip"\r\n',
     )
     print(
         json.dumps(
@@ -294,7 +302,7 @@ def main() -> None:
                 "archive_sha256": sha256(final_archive),
                 "preseal_file_count": len(manifest),
                 "max_archive_member_characters": max_member_characters,
-                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R10.cmd"),
+                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R21.cmd"),
             },
             ensure_ascii=False,
             indent=2,
