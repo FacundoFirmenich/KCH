@@ -1,0 +1,51 @@
+{
+  "schema": "kch.r17-remote-custody-receipt.v0.1.0",
+  "date": "2026-08-11",
+  "github": {
+    "repository": "FacundoFirmenich/KCH",
+    "url": "https://github.com/FacundoFirmenich/KCH",
+    "visibility": "PRIVATE",
+    "branch": "agent/kch-r16-full-read",
+    "local_commit": "78012cb3411925cf5352057d28f3f0298fec7abd",
+    "remote_commit": "993921a8eb11d8ebf2e82af8dc448359c2d23264",
+    "parent_commit": "40042bb9621dceae79ed6fc9e664e4c85306c431",
+    "local_tree": "34d555a05109aa98fd02cd091ea5cda5f28c477e",
+    "remote_tree": "34d555a05109aa98fd02cd091ea5cda5f28c477e",
+    "tree_match": true,
+    "commit_match": false,
+    "commit_difference_cause": "The GitHub connector created a new commit object with its own authorship timestamp because the local gh credential was invalid; parent, message, complete tree, and all 34 blob object identifiers were verified before a non-forced fast-forward ref update.",
+    "files_in_release_commit": 34,
+    "ref_update": "PASS_FAST_FORWARD_FORCE_FALSE",
+    "gh_cli_authenticated": false,
+    "remote_tracking_ref_refreshed_locally": false
+  },
+  "google_drive": {
+    "parent_folder_id": "1f0vH7T7oLwOh7or5wKs4FoNgnY7quVR3",
+    "metadata_verified": true,
+    "content_checksum_exposed_by_connector": false,
+    "files": [
+      {"name": "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R17.zip", "id": "1Edpb5M5yneilLEsPSOG7L3vkMxw6SQT3", "bytes": 22140827, "local_sha256": "ab5d71cd1399371f759f58a2cc92d4903d4610ba5d52f7e5abbc58114b393d40"},
+      {"name": "CHECKPOINT_22_KCH_PREPILOT_019_ADJUDICATION_20260811.md", "id": "1_NH-JLvYjf3m9ZXuiCYVBW4HIfMTJuHr", "bytes": 3269, "local_sha256": "a8aaf98bcf5b08875304bd4c41937b52284fc593441ac9cd36bd7e5c343ecc00"},
+      {"name": "CHECKPOINT_23_KCH_R17_SOURCE_REPAIR_GATE_20260811.md", "id": "1YA0iytZD7f7-xKHKNEtZ1w9IAuRLehJT", "bytes": 3198, "local_sha256": "15a1506277286483c5042324e4f88607ab46c51062d0ca82d196d323dc0548b9"},
+      {"name": "CHECKPOINT_24_KCH_R17_PORTABLE_EVIDENCE_CHAIN_20260811.md", "id": "1CqpvlX9c4QRvs9PKk_jOeiJfiY-3EMRq", "bytes": 3629, "local_sha256": "268609ca70ac9e677d1a52acc527a86caebbd07e4c94942595981ea124f1567b"},
+      {"name": "KCH_R17_EXTRACT_INSTALL_RECEIPT.json", "id": "1eEpBI02Rlx7JQsshSigqJ-DMgkgg39s5", "bytes": 5210, "local_sha256": "ffcafde6f3e4fccc9a2e76b545c051c118c56626bd7031bb86042aaa2512063f"},
+      {"name": "KCH_R17_INSTALLED_STDIO_FULL_READ_GATE.json", "id": "1zuOZLvEchwDskz2srCbIRHLTXAzVzCKO", "bytes": 1632, "local_sha256": "57fc8895d4c60b11b03103f82075cb936e6393956b07a9be3b68c8b369dfdad4"},
+      {"name": "KCH_R17_INSTALL_RECEIPT.json", "id": "1UO5u91b7avtj0DA0sKCB3KzJ_vBcqb7i", "bytes": 6149, "local_sha256": "2935be7aedaf3d1f9ac08b0ac8cd273798f8e9165dc7325ad31fa892ad247ab6"},
+      {"name": "KCH_R17_POST_INSTALL_GATE.json", "id": "1My5Eh8Lc5nb1LNqge6uvivR3TtXMk1hx", "bytes": 9729, "local_sha256": "9a1d91462659e37042dfe4e184bcf6e81ebfe9844b8728faa9c0d1ef72b13342"},
+      {"name": "KCH_R17_PREPILOT019_REPAIR_GATE.json", "id": "10FBnNY_7DEYA7jSWvLOi_4VPOLemLUei", "bytes": 5070, "local_sha256": "4e353ce48f55a629dfe6f315e5c5d0e2380c1741310c18cf9980e80250d2b0a8"},
+      {"name": "KCH_R17_RELEASE_RECEIPT.json", "id": "1eZ-W9hZyRjfmjY2C1_L1kQSgewKorxJL", "bytes": 3688, "local_sha256": "5e70bc050e9f5041c295396638723e2ab4da63575dd1b127f64f0658abf650bb"},
+      {"name": "KCH_PREPILOT_019_PREREGISTRATION.json", "id": "1eY0BUU7UZP-DLgvzla_h1zTP7HW--9tm", "bytes": 3686, "local_sha256": "222391b716776bda3ab8c526800b099a45f86f2eb936ef18b3c2cfe01dbb615e"},
+      {"name": "KCH_PREPILOT_019_GROUND_TRUTH.json", "id": "1LLOvx0LLl_pP0wuAKBCw2KQK7YJexw4K", "bytes": 1789, "local_sha256": "4a78bb949fc5c27cb814d33426ff3700f66c41dc0eb9f3b9025af98a2c924d3f"},
+      {"name": "KCH_PREPILOT_019_ARM_A_RESULT.json", "id": "1_EgWvCQwfkCVacoRFz9Ah85PIkZ-5szR", "bytes": 6454, "local_sha256": "a130005c17b62af92037d43f2bbf435fe1c2b33d3fed31842b0f6f2143d3d780"},
+      {"name": "KCH_PREPILOT_019_ARM_B_RESULT.json", "id": "1aMivzOfEhjFd3l2wejvPIlxmm3ZazXZ-", "bytes": 9208, "local_sha256": "ddb3fb317c98664e6b27a7c9a68b1b3cc33e3ac2d9329759783700746da62172"},
+      {"name": "KCH_PREPILOT_019_EVALUATION.json", "id": "1fNDB-IJcryKqX_cbNdtOivdP0jzXXYk1", "bytes": 10100, "local_sha256": "22fb2f42e49772032b4c63e321de46b7ea838ae608a3b462310f69d36b65c0d8"}
+    ]
+  },
+  "local_deletion_performed": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "GITHUB_EXACT_TREE_EQUIVALENCE_AND_DRIVE_REMOTE_PRESENCE_SIZE_PARENT; DRIVE_REMOTE_BYTE_HASH_NOT_EXPOSED",
+  "next_critical_action": "Use the verified R17 evidence chain in a fresh prepilot that combines complete ordered reading with active long-run monitoring and exact source adjudication; keep PHL real deferred.",
+  "sha256": "8d488f6ef9f8b0f2a8d740d227275ceb2a36d3800bba0ad8f91ce20913ba6a29"
+}

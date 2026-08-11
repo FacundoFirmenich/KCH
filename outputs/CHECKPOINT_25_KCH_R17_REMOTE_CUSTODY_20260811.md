@@ -1,0 +1,11 @@
+# Checkpoint 25 — custodia remota de KCH R17
+
+KCH queda mejor posicionado que en el checkpoint anterior: R17 ya no es sólo una instalación portátil local verificada, sino un release con custodia remota independiente en el repositorio privado de GitHub y en la carpeta KCH de Drive. No se borró evidencia local y PHL real sigue sin ejecutarse.
+
+En GitHub, los 34 blobs de R17 se contrastaron contra sus identificadores Git locales, el árbol remoto resultante coincide exactamente con el árbol local `34d555a05109aa98fd02cd091ea5cda5f28c477e`, y la rama `agent/kch-r16-full-read` avanzó mediante *fast-forward* no forzado al commit remoto `993921a8eb11d8ebf2e82af8dc448359c2d23264`. El commit local `78012cb3411925cf5352057d28f3f0298fec7abd` no tiene el mismo SHA porque la credencial local de `gh` caducó y el conector generó un objeto commit nuevo; esto no se oculta ni se presenta como igualdad de commits. La equivalencia demostrada es de árbol completo y contenido versionado.
+
+En Drive se verificaron 15 objetos por ID, nombre, tamaño y carpeta padre: el ZIP canónico R17, tres checkpoints, seis recibos o gates y los cinco artefactos completos de PREPILOT 019. El conector no expone checksum remoto de contenido, por lo que el claim no alcanza equivalencia byte a byte en Drive; los SHA-256 consignados son locales y la presencia remota quedó verificada por metadatos.
+
+El valor técnico nuevo no es meramente archivístico: el defecto observado en PREPILOT 019 —recibos internamente sellados pero no necesariamente fieles a la fuente— ya tiene una cadena ejecutable que relee los archivos, preserva orden, localiza literales y rechaza corrupción incluso después de resellar recibos. Esto está probado en instalación portátil local y custodiado remotamente. Todavía no demuestra eficacia causal general, activación automática en hosts, validación industrial, producción ni aprendizaje PHL real.
+
+La próxima acción crítica es usar R17 en un prepiloto fresco que combine dos invariantes antes separados: lectura íntegra y ordenada de múltiples fuentes, y monitoreo activo de una ejecución larga hasta su terminación y adjudicación exacta. Debe mantenerse la comparación local sin ganador global y PHL real diferido.
