@@ -11,9 +11,9 @@
       "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
     },
     {
-      "bytes": 19347,
+      "bytes": 19818,
       "path": "codex/AGENTS.md",
-      "sha256": "c7fd715cd21133843469342db6e832d333d43bffd41484029fbf772bc2a9c288"
+      "sha256": "2caacccdb74d1b5ff74a53a75d811b45133b32db453d70ab286b360dce57504e"
     },
     {
       "bytes": 640,
@@ -23,7 +23,7 @@
     {
       "bytes": 21030,
       "path": "csi/governance_graph.json",
-      "sha256": "04077b7bce1421b1b7bb4e547571e2f0c01e103a21f3963563683aea12e324ad"
+      "sha256": "33aa914ece5cd99071408c2caad83c06dea2a537b26c1f0cfcdd5965f38f42b8"
     },
     {
       "bytes": 2369,
@@ -44,7 +44,7 @@
   "authority_inherited": false,
   "installation_authorized": false,
   "schema": "kch.csi-self-governance-lock.v0.1.0",
-  "source_graph_sha256": "2b2e1f862edb9d20a5ddd49a4a8bea93f40c407f76a0f34f0c3a41470af90e6d",
+  "source_graph_sha256": "7eb8d424f8865f597b6ead1a6d8cdc3c12b6d4a861425765134bd650c19adb8e",
   "source_nodes": [
     {
       "authority_ceiling": [
@@ -294,7 +294,7 @@
       "kind": "RULE",
       "parent": "KCH-RULES",
       "path": "rules/full-read-source-order.md",
-      "sha256": "6cbbca8ad3ee0ba204ac5e4a44500637ded03fb2641c795b462c5868d2aad9a5",
+      "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601",
       "title": "Complete reading and native source order",
       "version": "0.1.0"
     },

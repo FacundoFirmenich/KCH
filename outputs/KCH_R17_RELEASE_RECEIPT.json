@@ -1,0 +1,66 @@
+{
+  "schema": "kch.r17-release-receipt.v0.1.0",
+  "release": "KCH 0.11 PRE2G R17",
+  "studio_version": "0.3.7",
+  "created_date": "2026-08-11",
+  "final_archive": {
+    "path": "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R17.zip",
+    "bytes": 22140827,
+    "sha256": "ab5d71cd1399371f759f58a2cc92d4903d4610ba5d52f7e5abbc58114b393d40",
+    "preseal_files": 263,
+    "archive_files": 264,
+    "max_archive_member_characters": 177
+  },
+  "fresh_installation": {
+    "package": "D:/K17PKG_C_20260811/KCH_0.11_PRE2G_R17",
+    "runtime": "D:/K17RT_C_20260811",
+    "extraction_files_hash": "0a20aa21c044cf7bc672a1123915a20eb09a9c324431e950cc2c9bfd4cead665",
+    "install_state": "INSTALL_COMPLETED",
+    "external_host_configuration_modified": false
+  },
+  "validation": {
+    "ruff": "PASS",
+    "full_source_suite": {"gate": "PASS", "passed": 79, "duration_seconds": 130.78},
+    "portable_post_install": {"gate": "PASS_BOUNDED", "checks_passed": 19, "checks_total": 19},
+    "canonical_preflight": {"schema": "kch.canonical-preflight.v0.5.0", "gate": "PASS"},
+    "combined_tool_count": 280,
+    "governance_graph_sha256": "7eb8d424f8865f597b6ead1a6d8cdc3c12b6d4a861425765134bd650c19adb8e",
+    "mis_records": 480,
+    "mis_ledgers": 60,
+    "mis_authority_created": false,
+    "installed_stdio_utf8": "PASS",
+    "installed_full_read_batch": "PASS",
+    "installed_source_verification": "PASS_VERIFIED_AGAINST_SOURCE",
+    "installed_resealed_corruption": "FAIL_BATCH_NOT_SOURCE_TRUE"
+  },
+  "receipts": {
+    "extract_install": {"path": "outputs/KCH_R17_EXTRACT_INSTALL_RECEIPT.json", "sha256": "ffcafde6f3e4fccc9a2e76b545c051c118c56626bd7031bb86042aaa2512063f"},
+    "install": {"path": "outputs/KCH_R17_INSTALL_RECEIPT.json", "sha256": "2935be7aedaf3d1f9ac08b0ac8cd273798f8e9165dc7325ad31fa892ad247ab6"},
+    "post_install": {"path": "outputs/KCH_R17_POST_INSTALL_GATE.json", "sha256": "9a1d91462659e37042dfe4e184bcf6e81ebfe9844b8728faa9c0d1ef72b13342"},
+    "installed_stdio": {"path": "outputs/KCH_R17_INSTALLED_STDIO_FULL_READ_GATE.json", "sha256": "414bac34d289ecf656bf6f97b190fcd51a6a79e520a89149375498afd9dea23d"},
+    "source_repair": {"path": "outputs/KCH_R17_PREPILOT019_REPAIR_GATE.json", "sha256": "d28d52bb36ef3ae24c7f66cfbe5ba4d6ff1a524ad4633e24f62f8364f5d452a1"}
+  },
+  "adverse_release_attempts_preserved": [
+    {
+      "studio_version": "0.3.5",
+      "archive_sha256": "8ce8ffe6f92811d85b0acf93b507c9b2caafedaad1c20ba77bf22c6df27995db",
+      "archive_custody": "D:/KCH_R17A_FAILED_POSTINSTALL_20260811",
+      "failure": "post_install_gate could not discover the explicitly installed finite runtime when invoked directly without inherited shell environment"
+    },
+    {
+      "studio_version": "0.3.6",
+      "archive_sha256": "70991d2aaaf72e62fd20a3375cf5e9bef66a83b636d26afe9688c1f419a11d4f",
+      "archive_custody": "D:/KCH_R17B_FAILED_UTF8_STDIO_20260811",
+      "failure": "installed Super-MCP emitted Windows-locale stdio; a strict UTF-8 JSON-RPC client failed on byte 0xf3"
+    }
+  ],
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "FRESH_LOCAL_PORTABLE_INSTALLATION_STDIO_COMPOSITION_AND_SOURCE_BACKED_FULL_READ_EVIDENCE_CHAIN",
+  "industrial_validation": false,
+  "production_readiness": false,
+  "host_automatic_activation": false,
+  "next_critical_action": "Commit and push R17 plus PREPILOT 019 evidence to the private KCH repository, upload the canonical ZIP and closure receipts to Drive, verify remote custody metadata, and do not delete local evidence.",
+  "sha256": "ddbdb5b4b6e1e40dbef1dbe18ce44ceee29382e033cc52745bd939e03456409a"
+}

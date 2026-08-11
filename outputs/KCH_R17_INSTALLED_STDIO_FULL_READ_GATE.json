@@ -1,0 +1,41 @@
+{
+  "schema": "kch.r17-installed-stdio-full-read-gate.v0.2.0",
+  "adapter_source": "adapters_runtime/codex-plugin-reference.json",
+  "adapter_pythonutf8": "1",
+  "utf8_jsonrpc_decode": "PASS",
+  "server_info": {
+    "name": "kwancode-harness",
+    "version": "0.11.0+studio.0.3.7"
+  },
+  "combined_tool_count": 280,
+  "full_read_chain_listed": true,
+  "batch_gate": "PASS",
+  "batch_payload_sha256": "c5a8aae3fde4b60114bb2ff1f1883977cd3cd83d33c3b4a44b346b1947823a08",
+  "file_count": 4,
+  "semantic_batch_claim_allowed": true,
+  "verification_gate": "PASS_VERIFIED_AGAINST_SOURCE",
+  "verified_complete_claim": true,
+  "verified_semantic_claim": true,
+  "ordinals": [1, 2, 3, 4],
+  "hashes": [
+    "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785",
+    "b4c77ac6a3fbc51db22fcc4b9ae5f35af8409aa44df965d065c2065dfeeb6bb3",
+    "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f",
+    "52afe26475131e13ac6012615a6a50f00426e856a198a15dcb249e77bea1675f"
+  ],
+  "exact_span_gates": ["PASS", "PASS", "PASS", "PASS"],
+  "resealed_corruption": {
+    "outer_seal_match": true,
+    "child_seal_match": true,
+    "gate": "FAIL_BATCH_NOT_SOURCE_TRUE",
+    "mismatch_fields": ["sha256"]
+  },
+  "adapter_sha256": "0d2b0320263b41a998ea8941663287656c5fad2af56ccfd5b583b1cdfdb87aa4",
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "FRESH_LOCAL_PORTABLE_INSTALLATION_AND_INSTALLED_STDIO_EVIDENCE_CHAIN_ONLY",
+  "industrial_validation": false,
+  "production_readiness": false,
+  "sha256": "414bac34d289ecf656bf6f97b190fcd51a6a79e520a89149375498afd9dea23d"
+}

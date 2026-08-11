@@ -1,4 +1,4 @@
-# KCH 0.11 — candidato integral pre-2G, overlay v0.3.2
+# KCH 0.11 — candidato integral pre-2G, overlay v0.3.3
 
 Este árbol construye un sucesor candidato de la macrorelease canónica KCH 0.11. La base congelada no se reescribe: el Super‑MCP la compone con CSI Studio, gobernanza integral, SCO, MIS, PHL autorizado, RGG, KwanPrompts, KwanData, persistencia, permisos, recuperación y medios.
 
@@ -19,7 +19,9 @@ El bootstrap instala exclusivamente desde el `wheelhouse` incluido, genera `runt
 
 ### Puerta gobernada para Codex
 
-Codex recibe dos superficies acotadas. `kch-codex-preflight-mcp` anuncia una sola herramienta estrictamente de lectura y puede aprobarse automáticamente sin conceder despacho operativo. `kch-codex-bootstrap-mcp` anuncia cinco herramientas —estado, búsqueda del catálogo completo, preflight canónico, adjudicación de autoridad de respuesta y despacho exacto— y conserva aprobación gobernada. El Super‑MCP completo permanece detrás del despachador y se materializa sólo cuando una llamada real lo necesita. Esto evita exigir las 277 descripciones en el handshake de arranque sin amputar capacidades, fusionarlas ni degradar sus gates. VS Code, Cline y OpenCode conservan la superficie directa completa; el adaptador Codex registra además la ruta explícita del Super‑MCP para auditoría y uso manual.
+Codex recibe dos superficies acotadas. `kch-codex-preflight-mcp` anuncia una sola herramienta estrictamente de lectura y puede aprobarse automáticamente sin conceder despacho operativo. `kch-codex-bootstrap-mcp` anuncia cinco herramientas —estado, búsqueda del catálogo completo, preflight canónico, adjudicación de autoridad de respuesta y despacho exacto— y conserva aprobación gobernada. El Super‑MCP completo permanece detrás del despachador y se materializa sólo cuando una llamada real lo necesita. Esto evita exigir todo el catálogo dinámico de descripciones en el handshake de arranque sin amputar capacidades, fusionarlas ni degradar sus gates. VS Code, Cline y OpenCode conservan la superficie directa completa; el adaptador Codex registra además la ruta explícita del Super‑MCP para auditoría y uso manual.
+
+La cadena de lectura completa R17 separa tres hechos que antes podían confundirse. `full_read_file` transporta un archivo; `full_read_batch` genera por máquina el inventario ordenado, los hashes y los spans exactos preregistrados; `full_read_verify_batch` vuelve a leer la fuente y bloquea un recibo alterado incluso si el agente recalculó correctamente su autosellado. Transportar todos los bytes no autoriza por sí solo una afirmación de comprensión semántica: ésta exige que los spans exactos declarados estén presentes y queden localizados.
 
 La activación probada en Codex requiere dos enlaces complementarios: el servidor de preflight de sólo lectura y una instrucción de proyecto `AGENTS.md` que exija llamarlo una vez antes de la primera acción material. Las instrucciones MCP aisladas demostraron transporte pero no disparo automático; el enlace conjunto sí produjo una llamada nativa anterior a la tarea en el prepiloto local. Esta observación sigue siendo de una tarea y no se promociona a garantía universal del host.
 

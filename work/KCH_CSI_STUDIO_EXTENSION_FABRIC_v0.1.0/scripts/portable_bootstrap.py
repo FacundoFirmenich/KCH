@@ -51,6 +51,45 @@ def collect_host_adapters(adapters: Path) -> list[str]:
     return [str(path) for path in paths]
 
 
+def render_codex_config(
+    *,
+    preflight_command: str,
+    bootstrap_command: str,
+    environment: dict[str, str],
+) -> str:
+    required_environment = (
+        "PYTHONUTF8",
+        "KCH_STUDIO_RUNTIME",
+        "KCH_MIS_ROOT",
+        "KCH_CONSTRUCT_STABLE_ROOT",
+    )
+    missing = [name for name in required_environment if not environment.get(name)]
+    if missing:
+        raise ValueError(f"missing canonical Codex environment bindings: {missing}")
+
+    def escaped(value: str) -> str:
+        return value.replace(chr(92), chr(92) * 2)
+
+    def environment_section(name: str) -> str:
+        bindings = "".join(
+            f'{key} = "{escaped(environment[key])}"\n' for key in required_environment
+        )
+        return f"[mcp_servers.{name}.env]\n{bindings}"
+
+    return (
+        "[mcp_servers.kch_0_11_preflight]\n"
+        f'command = "{escaped(preflight_command)}"\n'
+        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
+        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "auto"\n\n'
+        + environment_section("kch_0_11_preflight")
+        + "\n[mcp_servers.kch_0_11_bootstrap]\n"
+        f'command = "{escaped(bootstrap_command)}"\n'
+        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
+        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "prompt"\n\n'
+        + environment_section("kch_0_11_bootstrap")
+    )
+
+
 def main() -> None:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]).resolve()
     wheelhouse = root / "wheelhouse"
@@ -99,6 +138,7 @@ def main() -> None:
     codex_command = str(venv / "Scripts" / "kch-codex-bootstrap-mcp.exe")
     codex_preflight_command = str(venv / "Scripts" / "kch-codex-preflight-mcp.exe")
     environment = {
+        "PYTHONUTF8": "1",
         "KCH_STUDIO_RUNTIME": str(state),
         "KCH_MIS_ROOT": str(root / "mis"),
         "KCH_CONSTRUCT_STABLE_ROOT": str(root / "source" / "kch-studio"),
@@ -161,18 +201,11 @@ def main() -> None:
     )
     write_text(
         adapters / "codex.config.toml",
-        "[mcp_servers.kch_0_11_preflight]\n"
-        f'command = "{codex_preflight_command.replace(chr(92), chr(92) * 2)}"\n'
-        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
-        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "auto"\n\n'
-        "[mcp_servers.kch_0_11_preflight.env]\n"
-        f'KCH_STUDIO_RUNTIME = "{str(state).replace(chr(92), chr(92) * 2)}"\n\n'
-        "[mcp_servers.kch_0_11_bootstrap]\n"
-        f'command = "{codex_command.replace(chr(92), chr(92) * 2)}"\n'
-        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
-        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "prompt"\n\n'
-        "[mcp_servers.kch_0_11_bootstrap.env]\n"
-        f'KCH_STUDIO_RUNTIME = "{str(state).replace(chr(92), chr(92) * 2)}"\n',
+        render_codex_config(
+            preflight_command=codex_preflight_command,
+            bootstrap_command=codex_command,
+            environment=environment,
+        ),
     )
     shutil.copy2(root / "docs" / "CODEX_PROJECT_BINDING_AGENTS.md", adapters / "AGENTS_KCH.md")
     write_text(
@@ -183,6 +216,7 @@ def main() -> None:
         f'set "KCH_STUDIO_RUNTIME={state}"\r\n'
         f'set "KCH_MIS_ROOT={root / "mis"}"\r\n'
         f'set "KCH_CONSTRUCT_STABLE_ROOT={root / "source" / "kch-studio"}"\r\n'
+        'set "PYTHONUTF8=1"\r\n'
         f'set "KCH_SUPER_MCP_COMMAND={command}"\r\n'
         f'set "KCH_CODEX_BOOTSTRAP_MCP_COMMAND={codex_command}"\r\n'
         f'set "KCH_CODEX_PREFLIGHT_MCP_COMMAND={codex_preflight_command}"\r\n',

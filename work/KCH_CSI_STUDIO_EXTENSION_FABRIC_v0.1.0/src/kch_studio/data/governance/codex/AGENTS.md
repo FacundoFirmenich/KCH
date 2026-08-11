@@ -200,6 +200,8 @@ Cuando una misión exige lectura completa, búsquedas, fragmentos, previews y re
 
 Para archivos UTF-8 de la raíz estable, `full_read_file` materializa esta rutina mediante dos lecturas independientes y sólo habilita el claim si todo el contenido se transporta. Todo límite de transporte, denegación, discordancia de hash, cambio entre lecturas o archivo no textual queda como gate adverso; nunca se presenta como lectura completa.
 
+Para inventarios de varios archivos, `full_read_batch` es la fuente del orden, los ordinals y los recibos: queda prohibida su reconstrucción manual. `full_read_verify_batch` vuelve a leer las fuentes y bloquea cualquier discordancia aun cuando el recibo alterado posea un autosellado canónico válido. Los claims semánticos específicos exigen spans literales preregistrados, localizados y verificados; el transporte completo de bytes no los autoriza por sí solo.
+
 Todo recibo debe registrar método, bytes, líneas físicas, SHA-256 y límites. Los inventarios extraídos preservan por defecto el orden nativo/de fuente. Un orden alfabético, cronológico alternativo, por ranking u otra clave sólo es válido cuando el usuario lo pide o el contrato lo predeclara; la semántica de orden debe quedar explícita.
 
 Antes del cierre se recomputa el recibo independientemente. Un conjunto completo con orden incorrecto se conserva como resultado adverso de representación: no puede rescatarse alegando equivalencia de conjuntos.

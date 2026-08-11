@@ -83,7 +83,7 @@ def main() -> None:
     final_output = candidate / "release_build"
     final_output.mkdir(exist_ok=True)
     output_root = Path(tempfile.mkdtemp(prefix="kch_release_"))
-    package = output_root / "KCH_0.11_PRE2G_R16"
+    package = output_root / "KCH_0.11_PRE2G_R17"
     package.mkdir(parents=True)
 
     # Build into this release jurisdiction only.  candidate/dist may contain a
@@ -152,6 +152,7 @@ def main() -> None:
     )
 
     environment = {
+        "PYTHONUTF8": "1",
         "KCH_STUDIO_RUNTIME": "<KCH_RUNTIME_ROOT>\\state",
         "KCH_MIS_ROOT": "<KCH_ROOT>\\mis",
         "KCH_CONSTRUCT_STABLE_ROOT": "<KCH_ROOT>\\source\\kch-studio",
@@ -266,7 +267,7 @@ def main() -> None:
         },
     )
 
-    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R16.zip"
+    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R17.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as stream:
         for path in sorted(
             (item for item in package.rglob("*") if item.is_file()),
@@ -283,11 +284,11 @@ def main() -> None:
     shutil.copy2(archive, final_archive)
     shutil.copy2(
         candidate / "scripts" / "extract_and_install.py",
-        final_output / "EXTRACT_AND_INSTALL_KCH_R16.py",
+        final_output / "EXTRACT_AND_INSTALL_KCH_R17.py",
     )
     write(
-        final_output / "EXTRACT_AND_INSTALL_KCH_R16.cmd",
-        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R16.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R16.zip"\r\n',
+        final_output / "EXTRACT_AND_INSTALL_KCH_R17.cmd",
+        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R17.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R17.zip"\r\n',
     )
     print(
         json.dumps(
@@ -298,7 +299,7 @@ def main() -> None:
                 "archive_sha256": sha256(final_archive),
                 "preseal_file_count": len(manifest),
                 "max_archive_member_characters": max_member_characters,
-                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R16.cmd"),
+                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R17.cmd"),
             },
             ensure_ascii=False,
             indent=2,

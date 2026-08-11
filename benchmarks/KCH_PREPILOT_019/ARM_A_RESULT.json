@@ -1,0 +1,98 @@
+{
+  "arm_identity": "KCH PREPILOT 019 — ARM A / BASELINE_SIN_KCH",
+  "source_root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+  "method": {
+    "reading": "For each file, in the required ordinal order, read all bytes with System.IO.File.ReadAllBytes, decoded the complete byte sequence with strict UTF-8, counted physical lines from LF delimiters, and independently computed SHA-256 over the original bytes with SHA256.Create().ComputeHash.",
+    "search_role": "Search was used only to locate semantic regions after complete reads; it was not used as evidence of complete reading.",
+    "source_mutation_policy": "Read-only audit; no source edit, KCH invocation, MCP invocation, KCH governance/preflight use, or PHL execution."
+  },
+  "inventory": [
+    {
+      "ordinal": 1,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\continuity_guard.py",
+      "bytes": 38291,
+      "physical_lines": 670,
+      "sha256": "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785",
+      "complete_reading": true,
+      "semantic_anchor_observed": "Fail-closed continuity and burden governance; source freezing and complete-reading adjudication; source-fitness gate; typed epistemic claims; remote-transport preflight; explicit prohibition of automatic authority promotion."
+    },
+    {
+      "ordinal": 2,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\advanced_runtime.py",
+      "bytes": 68691,
+      "physical_lines": 1655,
+      "sha256": "d8cb3c36a859b2d6dd0af0a495a5858bdb3a3f75568718b9d687a7c94e6452a7",
+      "complete_reading": true,
+      "semantic_anchor_observed": "Integrated runtime composition of governance, persistence, permissions, launcher, MIS, workbench, SCO and PHL layers; status exposes strategic-surface and PHL state; close stops selected services; installation is reported false."
+    },
+    {
+      "ordinal": 3,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\tests\\test_advanced_layers.py",
+      "bytes": 12060,
+      "physical_lines": 251,
+      "sha256": "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f",
+      "complete_reading": true,
+      "semantic_anchor_observed": "Pytest assertions cover user sovereignty and recoverability, exact persistence/transport ceilings, finite permissions and leases, diction correction, structured checkpoints, and explicit STAGED_USER_CONFIRMED_UNTRAINED / phl_real_executed=false behavior."
+    },
+    {
+      "ordinal": 4,
+      "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\scripts\\post_install_gate.py",
+      "bytes": 11273,
+      "physical_lines": 304,
+      "sha256": "f24afeb4c316e95ddfeea57d2a440ccd222c49055d1728cdde4ca19543402194",
+      "complete_reading": true,
+      "semantic_anchor_observed": "Installation post-gate that launches preflight, bootstrap and studio MCP executables, queries runtime/MIS/workbench state, writes POST_INSTALL_GATE.json, and evaluates bounded PASS/FAIL checks; read only and not invoked in this baseline."
+    }
+  ],
+  "reading_evidence": {
+    "ordered_complete_reads": true,
+    "ordered_ordinals": [1, 2, 3, 4],
+    "utf8_strict_decode": "PASS",
+    "evidence_boundary": "Static complete-file inspection establishes bytes, line counts, hashes and observed implementation anchors; it does not establish deployment, governed execution, customer utility, industrial validation, or PHL training."
+  },
+  "suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -p no:cacheprovider --basetemp C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-019-arm-a\\work\\pytest-basetemp-019",
+    "working_directory": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+    "cache_disabled": true,
+    "bytecode_disabled": true,
+    "basetemp_outside_source_root": true,
+    "attempt_count": 1,
+    "chronology": [
+      "Complete ordered file reads and initial independent metadata capture completed.",
+      "One complete pytest invocation started with the declared environment and external basetemp.",
+      "The execution remained non-terminal until the command-wrapper timeout at approximately 120 seconds; no retry or focused substitute was run.",
+      "No pytest process remained active when checked afterwards."
+    ],
+    "terminal_result": "ENVIRONMENT_COMMAND_TIMEOUT",
+    "wrapper_exit_code": 124,
+    "pytest_exit_code": null,
+    "counts": {
+      "passed": null,
+      "failed": null,
+      "skipped": null,
+      "xfailed": null,
+      "xpassed": null,
+      "errors": null,
+      "collection": null,
+      "reason": "The wrapper timed out before pytest emitted a terminal summary; counts are not estimable from the captured execution."
+    }
+  },
+  "no_mutation_verification": {
+    "target_files_rehashed_after_attempt": true,
+    "target_files_unchanged": true,
+    "target_file_comparisons": "All four audited files matched their pre-suite SHA-256 values.",
+    "full_source_tree_post_snapshot": "NOT_COMPLETED",
+    "limitation": "The wrapper timeout interrupted before its in-memory full-tree after-snapshot comparison was emitted; therefore no stronger whole-tree non-mutation claim is made."
+  },
+  "phl": false,
+  "kch_invoked": false,
+  "mcp_invoked": false,
+  "source_modified": "NOT_ESTIMABLE_FOR_FULL_TREE",
+  "claim_limits": [
+    "The four files were completely read and cryptographically identified.",
+    "The suite was attempted once but behavioral outcome and counts are NOT_ESTIMABLE because of the external timeout.",
+    "No claim of passing tests, governed execution, installation validity, deployment readiness, PHL training, authority creation, predictive superiority, safety, customer value, or industrial validation is authorized.",
+    "The post_install_gate.py implementation was inspected but deliberately not executed because it launches KCH MCP/preflight executables and would violate BASELINE_SIN_KCH."
+  ],
+  "sha256": "02a0f652d28768a74dfcbc9395643c5bdef3c4493dd825ae4afb425426e28628"
+}

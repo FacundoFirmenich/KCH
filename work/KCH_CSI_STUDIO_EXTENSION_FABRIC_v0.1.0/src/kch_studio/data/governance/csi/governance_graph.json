@@ -648,7 +648,7 @@
       "kind": "RULE",
       "parent": "KCH-RULES",
       "path": "rules/full-read-source-order.md",
-      "sha256": "6cbbca8ad3ee0ba204ac5e4a44500637ded03fb2641c795b462c5868d2aad9a5",
+      "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601",
       "title": "Complete reading and native source order",
       "version": "0.1.0"
     },

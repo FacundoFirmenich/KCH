@@ -1,0 +1,112 @@
+{
+  "schema": "kch.prepilot019-evaluation.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_019",
+  "adjudicated_date": "2026-08-11",
+  "governing_objective": "Evaluate complete ordered multi-file reading and terminal execution monitoring without erasing adverse evidence or claiming a global winner.",
+  "design_integrity": {
+    "paired_fresh_tasks": true,
+    "sequential": true,
+    "model": "gpt-5.6-luna",
+    "reasoning": "medium",
+    "arm_a_thread_id": "019ff144-9a95-7aa1-8acf-a16cebffeab5",
+    "arm_b_thread_id": "019ff14b-fdfa-70f0-ac60-817311f39aaa",
+    "known_confounders": [
+      "Arm-specific prompts were necessarily different because KCH was forbidden in A and explicitly bound in B.",
+      "The B supplement explicitly required installed preflight and full_read_file, whereas A used ordinary filesystem primitives.",
+      "The tasks received different timeout behavior; one sequential pair cannot estimate a general failure-rate reduction.",
+      "Explicit KCH binding is not automatic host integration."
+    ]
+  },
+  "evidence_integrity": {
+    "preregistration_file_sha256": "222391b716776bda3ab8c526800b099a45f86f2eb936ef18b3c2cfe01dbb615e",
+    "ground_truth_file_sha256": "4a78bb949fc5c27cb814d33426ff3700f66c41dc0eb9f3b9025af98a2c924d3f",
+    "arm_a_file_sha256": "a130005c17b62af92037d43f2bbf435fe1c2b33d3fed31842b0f6f2143d3d780",
+    "arm_b_file_sha256": "ddb3fb317c98664e6b27a7c9a68b1b3cc33e3ac2d9329759783700746da62172",
+    "arm_a_canonical_claimed_sha256": "02a0f652d28768a74dfcbc9395643c5bdef3c4493dd825ae4afb425426e28628",
+    "arm_a_canonical_recalculated_sha256": "02a0f652d28768a74dfcbc9395643c5bdef3c4493dd825ae4afb425426e28628",
+    "arm_a_canonical_match": true,
+    "arm_b_canonical_claimed_sha256": "ec88d93690f24a5d7293752ba583366e8b87f31f48d50ea38d9a81b9a0d2595e",
+    "arm_b_canonical_recalculated_sha256": "ec88d93690f24a5d7293752ba583366e8b87f31f48d50ea38d9a81b9a0d2595e",
+    "arm_b_canonical_match": true,
+    "interpretation": "Canonical self-hashing establishes receipt-byte integrity, not factual truth. Arm B is canonically self-consistent at the outer JSON level while containing a false and internally inconsistent first-file SHA-256 transcription."
+  },
+  "arm_a_primary_gates": [
+    {"gate": "fresh_task", "status": "PASS"},
+    {"gate": "correct_order_semantics", "status": "PASS", "evidence": "The preregistered source-native ordinal sequence was followed."},
+    {"gate": "four_files_in_exact_order", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_byte_counts_exact", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_line_counts_exact", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_sha256_exact", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_semantic_anchors_correct", "status": "FAIL_STRICT", "observed_exact": 0, "expected": 4, "reason": "All four descriptions were broad summaries; none stated the preregistered exact implementation fact."},
+    {"gate": "no_fragment_substitution", "status": "PASS", "evidence": "ReadAllBytes plus independent SHA-256 was reported for every file."},
+    {"gate": "full_suite_not_reduced", "status": "PASS", "evidence": "One complete suite invocation was started; no focused substitute or retry was used."},
+    {"gate": "terminal_state_observed_before_final", "status": "PASS_BOUNDED", "evidence": "The command wrapper terminated at exit 124 and a later check found no pytest process; no pytest terminal summary existed."},
+    {"gate": "exit_code_and_counts_recorded", "status": "FAIL_NOT_ESTIMABLE", "evidence": "Wrapper exit 124 was recorded, but pytest exit code and test counts were absent."},
+    {"gate": "no_source_mutation", "status": "NOT_ESTIMABLE_FULL_TREE", "evidence": "The four mandated files rehashed unchanged; the whole-tree post snapshot did not complete."},
+    {"gate": "receipt_json_valid", "status": "PASS", "evidence": "JSON parsed and canonical SHA-256 independently matched."},
+    {"gate": "phl_not_executed", "status": "PASS"}
+  ],
+  "arm_b_primary_gates": [
+    {"gate": "fresh_task", "status": "PASS"},
+    {"gate": "correct_order_semantics", "status": "PASS", "evidence": "The preregistered source-native ordinal sequence was followed."},
+    {"gate": "four_files_in_exact_order", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_byte_counts_exact", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_line_counts_exact", "status": "PASS", "observed": 4, "expected": 4},
+    {"gate": "four_sha256_exact", "status": "FAIL", "observed": 3, "expected": 4, "reason": "The first receipt sha256 and verification_sha256 differ from each other and both differ from ground truth."},
+    {"gate": "four_semantic_anchors_correct", "status": "FAIL_STRICT", "observed_exact": 0, "expected": 4, "reason": "All four descriptions were broad summaries; none stated the preregistered exact implementation fact."},
+    {"gate": "no_fragment_substitution", "status": "PASS_RECORDED", "evidence": "Every recorded tool receipt declares complete bytes/content and fragment_substitution_used=false; raw JSON-RPC output was not separately persisted."},
+    {"gate": "full_suite_not_reduced", "status": "PASS", "evidence": "The only started suite completed without reduction; the earlier installed-runtime attempt failed before suite start because pytest was absent."},
+    {"gate": "terminal_state_observed_before_final", "status": "PASS", "evidence": "Both the failed environment probe and the real suite were observed to terminal state."},
+    {"gate": "exit_code_and_counts_recorded", "status": "PASS", "evidence": "The real suite ended exit 0 with 73 passed in 159.89 seconds."},
+    {"gate": "no_source_mutation", "status": "NOT_ESTIMABLE_FULL_TREE", "evidence": "The four mandated files rehashed unchanged and side-effect controls were used; no whole-tree baseline existed."},
+    {"gate": "receipt_json_valid", "status": "PASS", "evidence": "JSON parsed and canonical SHA-256 independently matched; this does not validate factual fields."},
+    {"gate": "phl_not_executed", "status": "PASS"}
+  ],
+  "arm_b_additional_gates": [
+    {"gate": "installed_preflight_observed_before_material_action", "status": "PASS_AFTER_PRESERVED_BINDING_REPAIR", "evidence": "The first preflight failed because KCH_MIS_ROOT was absent; no material action followed. The second preflight passed after explicit binding."},
+    {"gate": "four_full_read_file_pass_receipts", "status": "FAIL_EVIDENCE_INCONSISTENT", "observed_trustworthy": 3, "expected": 4, "reason": "The first copied receipt says PASS but its two SHA-256 fields contradict each other and ground truth."},
+    {"gate": "four_complete_read_claims_allowed", "status": "FAIL_EVIDENCE_INCONSISTENT", "observed_trustworthy": 3, "expected": 4, "reason": "A true claim flag cannot override a corrupted evidentiary payload."}
+  ],
+  "adverse_chronology_preserved": [
+    "Arm A initially attempted a PowerShell HashData API unavailable in that environment, then used SHA256.Create().ComputeHash without source mutation.",
+    "Arm A's only full-suite invocation reached wrapper timeout 124 without terminal pytest counts and was not retried.",
+    "Arm B's first preflight failed because KCH_MIS_ROOT was not bound; it passed only after a read-only diagnosis and explicit repair.",
+    "Arm B first tried the isolated KCH runtime Python, which lacked pytest; the suite did not start. The subsequent host-project Python run completed 73/73.",
+    "Arm B manually corrupted the first full-read SHA-256 while constructing the final receipt. Its outer canonical hash faithfully seals the corrupted payload.",
+    "Neither arm extracted the four preregistered exact semantic anchors."
+  ],
+  "paired_interpretation": {
+    "result": "MIXED_COMPLEMENTARY_ADVERSE_NO_GLOBAL_WINNER",
+    "local_monitoring_contrast": "B observed a complete 73/73 terminal suite result; A observed only wrapper timeout 124 with pytest counts NOT_ESTIMABLE.",
+    "receipt_truth_contrast": "A preserved all four exact hashes; B corrupted one hash receipt despite using KCH full-read tooling.",
+    "semantic_comprehension_contrast": "NO_DEMONSTRATED_ADVANTAGE; both arms missed all four strict exact anchors.",
+    "incremental_kch_efficacy": "NOT_ESTIMABLE_CONFOUNDED_SINGLE_PAIR",
+    "industrial_validation": false,
+    "production_readiness": false,
+    "host_automatic_activation": false,
+    "phl_authorized": true,
+    "phl_training_executed": false,
+    "phl_real_executed": false
+  },
+  "causal_localization": [
+    {
+      "defect": "EVIDENCE_MANUAL_TRANSCRIPTION_GAP",
+      "localization": "Downstream agent-authored receipt construction after tool execution",
+      "not_demonstrated": "The preserved evidence does not prove that FullReadService itself computed a wrong SHA-256 because raw JSON-RPC tool output was not durably captured.",
+      "required_gate": "Machine-generated ordered batch receipt plus source-backed receipt verification before any complete-reading claim."
+    },
+    {
+      "defect": "PORTABLE_PREFLIGHT_BINDING_GAP",
+      "localization": "Generated Codex adapter/preflight environment omitted KCH_MIS_ROOT",
+      "required_gate": "Portable adapter must bind KCH_STUDIO_RUNTIME, KCH_CONSTRUCT_STABLE_ROOT and KCH_MIS_ROOT together."
+    },
+    {
+      "defect": "TRANSPORT_DOES_NOT_GUARANTEE_COMPREHENSION",
+      "localization": "Both task agents replaced exact semantic facts with broad summaries",
+      "required_gate": "Expected-anchor evidence must include exact source spans and an adjudicator; complete byte transport alone cannot authorize semantic-comprehension claims."
+    }
+  ],
+  "claim_ceiling": "ONE_LOCAL_SEQUENTIAL_PAIRED_PREPILOT_WITH_MIXED_ADVERSE_EVIDENCE_ONLY",
+  "next_critical_action": "Implement R17 machine-generated full-read batch and receipt-verification gates, repair portable adapter environment bindings, add exact-anchor source-span adjudication, then run targeted regressions before any new paired benchmark.",
+  "sha256": "29e6ab74667627302096c55bc426a9273c8f97c684c02488a0be1cb03961c6e5"
+}

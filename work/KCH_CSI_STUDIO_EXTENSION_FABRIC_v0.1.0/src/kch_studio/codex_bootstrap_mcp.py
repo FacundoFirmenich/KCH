@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 PROTOCOL_VERSION = "2025-06-18"
-SERVER_INFO = {"name": "kch-codex-bootstrap", "version": "0.3.4"}
+SERVER_INFO = {"name": "kch-codex-bootstrap", "version": "0.3.7"}
 
 
 def _object(

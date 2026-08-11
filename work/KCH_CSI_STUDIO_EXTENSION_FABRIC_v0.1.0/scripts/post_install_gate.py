@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import queue
+import re
 import subprocess
 import sys
 import threading
@@ -60,9 +61,25 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def resolve_runtime(root: Path) -> Path:
+    for variable in ("KCH_RUNTIME_ROOT", "KCH_PORTABLE_RUNTIME"):
+        explicit = os.environ.get(variable)
+        if explicit:
+            return Path(explicit).resolve()
+    runtime_paths = root / "runtime_paths.cmd"
+    if runtime_paths.is_file():
+        for line in runtime_paths.read_text(encoding="utf-8").splitlines():
+            matched = re.fullmatch(
+                r'set\s+"KCH_RUNTIME_ROOT=(.+)"', line.strip(), flags=re.IGNORECASE
+            )
+            if matched:
+                return Path(matched.group(1)).resolve()
+    return (root / ".runtime").resolve()
+
+
 def main() -> None:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]).resolve()
-    runtime = Path(os.environ.get("KCH_RUNTIME_ROOT", root / ".runtime")).resolve()
+    runtime = resolve_runtime(root)
     command = runtime / "venv" / "Scripts" / "kch-super-mcp-studio.exe"
     bootstrap_command = runtime / "venv" / "Scripts" / "kch-codex-bootstrap-mcp.exe"
     preflight_command = runtime / "venv" / "Scripts" / "kch-codex-preflight-mcp.exe"
@@ -71,6 +88,7 @@ def main() -> None:
     env = dict(os.environ)
     env.update(
         {
+            "PYTHONUTF8": "1",
             "KCH_STUDIO_RUNTIME": str(runtime / "gate-state"),
             "KCH_MIS_ROOT": str(root / "mis"),
             "KCH_CONSTRUCT_STABLE_ROOT": str(root / "source" / "kch-studio"),
@@ -82,6 +100,7 @@ def main() -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
+        encoding="utf-8",
         env=env,
     )
     try:
@@ -112,6 +131,7 @@ def main() -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
+        encoding="utf-8",
         env=env,
     )
     try:
@@ -153,6 +173,7 @@ def main() -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
+        encoding="utf-8",
         env=env,
     )
     try:

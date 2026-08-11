@@ -13,7 +13,7 @@ from .full_read_contract import full_read_contract_status
 from .installation import ConsentDecision, InstallPlan, IsolatedInstaller
 from .studio import Studio
 
-SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.4"}
+SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.7"}
 PROTOCOL_VERSION = "2025-06-18"
 
 
@@ -260,10 +260,18 @@ class StudioMCP:
                 full_read_contract["executable_tool"] == "full_read_file"
                 and any(tool["name"] == "full_read_file" for tool in TOOLS)
             ),
+            "executable_full_read_evidence_chain": (
+                full_read_contract["machine_generated_batch_tool"] == "full_read_batch"
+                and full_read_contract["source_backed_verifier_tool"]
+                == "full_read_verify_batch"
+                and {"full_read_batch", "full_read_verify_batch"}
+                <= {tool["name"] for tool in TOOLS}
+                and full_read_contract["exact_span_semantic_evidence_required"] is True
+            ),
         }
         passed = all(checks.values())
         return {
-            "schema": "kch.canonical-preflight.v0.4.0",
+            "schema": "kch.canonical-preflight.v0.5.0",
             "gate": "PASS" if passed else "FAIL",
             "canonical_entrypoint": "kch_studio.mcp_server:StudioMCP",
             "internal_component_not_a_canonical_entrypoint": (

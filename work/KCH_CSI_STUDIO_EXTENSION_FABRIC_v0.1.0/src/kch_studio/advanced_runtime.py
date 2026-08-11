@@ -89,6 +89,8 @@ ADVANCED_TOOLS = [
     tool("continuity_status", "Inspect continuity and burden governance", "Verify mission continuity, recurrent-failure controls and the append-only harm ledger.", {}, [], read_only=True),
     tool("continuity_reading_adjudicate", "Adjudicate lossless source reading", "Forbid a complete-reading claim unless pagination reached EOF and every material truncation was recovered.", {"receipt": O}, ["receipt"], read_only=False),
     tool("full_read_file", "Read one complete source file", "Read every byte twice, transport the complete UTF-8 text when it fits the declared bound, and return a verifiable receipt. External paths require explicit permission; fragments never satisfy the claim.", {"path": S, "max_return_bytes": {"type": "integer", "minimum": 1, "maximum": 5242880}, "expected_sha256": S}, ["path"], read_only=True),
+    tool("full_read_batch", "Read an ordered complete source batch", "Generate one machine-owned ordered inventory with two-read receipts and optional exact source-span evidence. No agent-authored hash transcription is required.", {"items": A, "requested_order": S, "max_return_bytes_per_file": {"type": "integer", "minimum": 1, "maximum": 5242880}, "max_batch_return_bytes": {"type": "integer", "minimum": 1, "maximum": 5242880}}, ["items"], read_only=True),
+    tool("full_read_verify_batch", "Verify a full-read batch against source", "Re-read every source file and reject a canonically self-consistent batch whose hashes, content, order, ordinals or exact-span evidence were corrupted after tool execution.", {"batch": O}, ["batch"], read_only=True),
     tool("continuity_mission_set", "Enact governing mission", "Freeze the user-authorized governing objective and its authority source.", {"objective": S, "authority_source": S}, ["objective", "authority_source"], read_only=False),
     tool("continuity_harm_record", "Record exact user burden evidence", "Append exact user-reported harm without inferring a medical diagnosis or rewriting historical evidence.", {"record": O}, ["record"], read_only=False),
     tool("continuity_action_preflight", "Gate an action against recurrent harm", "Fail closed on stale, non-material, mission-drifting, uncustodied, incompletely-read or recurrently unsafe work.", {"action": O}, ["action"], read_only=False),
@@ -1031,6 +1033,17 @@ class KCHAdvancedRuntime:
                 str(a["path"]),
                 max_return_bytes=int(a.get("max_return_bytes", 1_048_576)),
                 expected_sha256=a.get("expected_sha256"),
+            ),
+            "full_read_batch": lambda a: self.full_reader.read_batch(
+                list(a["items"]),
+                requested_order=str(a.get("requested_order", "SOURCE_NATIVE_ORDER")),
+                max_return_bytes_per_file=int(
+                    a.get("max_return_bytes_per_file", 1_048_576)
+                ),
+                max_batch_return_bytes=int(a.get("max_batch_return_bytes", 5_242_880)),
+            ),
+            "full_read_verify_batch": lambda a: self.full_reader.verify_batch(
+                dict(a["batch"])
             ),
             "continuity_mission_set": lambda a: self.continuity.set_mission(str(a["objective"]), str(a["authority_source"])),
             "continuity_harm_record": lambda a: self.continuity.record_harm(dict(a["record"])),

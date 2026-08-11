@@ -1,0 +1,109 @@
+{
+  "schema": "kch.r17-prepilot019-repair-gate.v0.1.0",
+  "created_date": "2026-08-11",
+  "governing_adverse_evidence": "benchmarks/KCH_PREPILOT_019/EVALUATION.json",
+  "governing_adverse_evidence_canonical_sha256": "29e6ab74667627302096c55bc426a9273c8f97c684c02488a0be1cb03961c6e5",
+  "implementation": {
+    "studio_version": "0.3.5",
+    "release_target": "KCH_0.11_PRE2G_R17",
+    "machine_generated_batch_tool": "full_read_batch",
+    "source_backed_verifier_tool": "full_read_verify_batch",
+    "single_file_tool_preserved": "full_read_file",
+    "portable_codex_environment_fail_closed": true,
+    "portable_codex_required_bindings": [
+      "KCH_STUDIO_RUNTIME",
+      "KCH_MIS_ROOT",
+      "KCH_CONSTRUCT_STABLE_ROOT"
+    ],
+    "governance_graph_sha256": "7eb8d424f8865f597b6ead1a6d8cdc3c12b6d4a861425765134bd650c19adb8e",
+    "governance_nodes": 19,
+    "governance_agents": 6,
+    "governance_rules": 10
+  },
+  "validation": {
+    "ruff": "PASS",
+    "targeted_tests": {"gate": "PASS", "passed": 26, "duration_seconds": 70.67},
+    "full_suite": {"gate": "PASS", "passed": 78, "duration_seconds": 129.81},
+    "phl_training_executed": false,
+    "phl_real_executed": false
+  },
+  "live_original_four_file_batch": {
+    "gate": "PASS",
+    "batch_payload_sha256": "f6ff7e792f21bc66d7f8b734a93889c117f34f3e472385fe0d379e9c4471daa8",
+    "file_count": 4,
+    "complete_read_batch_claim_allowed": true,
+    "semantic_batch_claim_allowed": true,
+    "source_verification_gate": "PASS_VERIFIED_AGAINST_SOURCE",
+    "source_verified_complete_claim": true,
+    "source_verified_semantic_claim": true,
+    "files": [
+      {
+        "ordinal": 1,
+        "path": "src/kch_studio/continuity_guard.py",
+        "byte_count": 38291,
+        "physical_lines": 670,
+        "sha256": "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785",
+        "receipt_payload_sha256": "e5566098700f9787aac4606e8817865ce75a8bc3b0829abec667fbce9fe02f2c",
+        "exact_span_gate": "PASS",
+        "span_occurrences": [1]
+      },
+      {
+        "ordinal": 2,
+        "path": "src/kch_studio/advanced_runtime.py",
+        "byte_count": 69998,
+        "physical_lines": 1668,
+        "sha256": "b4c77ac6a3fbc51db22fcc4b9ae5f35af8409aa44df965d065c2065dfeeb6bb3",
+        "receipt_payload_sha256": "1806466698960f43d995ec1eb6054fc9e01859ee17bf45d673033345f7f05421",
+        "exact_span_gate": "PASS",
+        "span_occurrences": [1, 1]
+      },
+      {
+        "ordinal": 3,
+        "path": "tests/test_advanced_layers.py",
+        "byte_count": 12060,
+        "physical_lines": 251,
+        "sha256": "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f",
+        "receipt_payload_sha256": "cdc3432fbe40a7546b426c577a39b6672faf0087a6dcd38397cd8fc7d9af70fa",
+        "exact_span_gate": "PASS",
+        "span_occurrences": [1, 1]
+      },
+      {
+        "ordinal": 4,
+        "path": "scripts/post_install_gate.py",
+        "byte_count": 11273,
+        "physical_lines": 304,
+        "sha256": "f24afeb4c316e95ddfeea57d2a440ccd222c49055d1728cdde4ca19543402194",
+        "receipt_payload_sha256": "c440de90b453b80bc8f5243e89f7764bb35b83fa1f83321fbc31ebd52de6dc69",
+        "exact_span_gate": "PASS",
+        "span_occurrences": [1, 1]
+      }
+    ]
+  },
+  "adversarial_resealed_corruption": {
+    "mutation": "first receipt sha256 replaced by sixty-four zeroes; child and outer batch seals then recalculated",
+    "outer_batch_seal_match": true,
+    "verification_gate": "FAIL_BATCH_NOT_SOURCE_TRUE",
+    "detected_mismatch_fields": ["sha256"],
+    "complete_read_batch_claim_allowed": false,
+    "meaning": "A valid self-seal cannot rescue a receipt contradicted by source-backed verification."
+  },
+  "portable_codex_binding_live_gate": {
+    "toml_parse": "PASS",
+    "preflight_and_bootstrap_receive_same_complete_environment": true,
+    "initial_019_missing_KCH_MIS_ROOT_defect_prospectively_repaired": true
+  },
+  "infrastructure_incident": {
+    "gate": "RECOVERED_WITHOUT_SOURCE_OR_EVIDENCE_LOSS",
+    "event": "C drive reached zero free bytes during a large apply_patch and temporarily truncated full_read_contract.py.",
+    "recovery": "Removed only the regenerated release_build directory after its R16 ZIP had already been verified in private GitHub/Drive custody; restored full_read_contract.py byte-exact from the R16 Git worktree and then reapplied R17 in bounded patches.",
+    "r16_restored_file_sha256": "e27fdac0e2127a11cf6b0389797b00738f596ef1cfc2cdb13437f08f05e52c05",
+    "local_evidence_deleted": false,
+    "local_source_deleted": false
+  },
+  "claim_ceiling": "LOCAL_SOURCE_IMPLEMENTATION_REGRESSION_AND_LIVE_SOURCE_BACKED_REPAIR_GATE_ONLY",
+  "industrial_validation": false,
+  "production_readiness": false,
+  "host_automatic_activation": false,
+  "next_critical_action": "Build R17 portable, install it in a fresh isolated D runtime, exercise the three full-read tools over stdio JSON-RPC, and verify the generated Codex adapter plus post-install gate.",
+  "sha256": "d28d52bb36ef3ae24c7f66cfbe5ba4d6ff1a524ad4633e24f62f8364f5d452a1"
+}

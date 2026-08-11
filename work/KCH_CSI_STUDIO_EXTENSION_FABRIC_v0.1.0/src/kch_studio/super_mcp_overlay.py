@@ -90,7 +90,7 @@ class IntegratedSuperMCP:
             if response and "result" in response:
                 response["result"]["serverInfo"] = {
                     "name": "kwancode-harness",
-                    "version": "0.11.0+studio.0.3.4",
+                    "version": "0.11.0+studio.0.3.7",
                 }
                 response["result"]["instructions"] = (
                     "KCH 0.11 authority remains frozen beneath a versioned successor overlay. Governance is HARNESS > AGENTS > RULES; "
@@ -153,7 +153,7 @@ class IntegratedSuperMCP:
             },
             "overlay": {
                 "name": "kch-csi-studio",
-                "version": "0.3.4",
+                "version": "0.3.7",
                 "tool_count": len(overlay_tools),
             },
             "combined_tool_count": len(base_tools | overlay_tools),
