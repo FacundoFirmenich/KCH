@@ -1,0 +1,44 @@
+{
+  "schema": "kch.prepilot-preregistration.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_017",
+  "created_date": "2026-08-11",
+  "design": "PAIRED_EXISTING_TASK_REPLICATION",
+  "governing_failure_class": "WRONG_OR_PARTIAL_NATIVE_THREAD_READING_AND_UNVERIFIED_RECEIPT",
+  "target_thread_id": "019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "required_turns": 8,
+  "arms": {
+    "A_BASELINE_WITHOUT_KCH_BINDING": {
+      "thread_id": "019fefe4-7d71-76f3-8880-df5eff97213e",
+      "workspace": "C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-005-arm-a-fresh"
+    },
+    "B_KCH_R14_AUTO_PREFLIGHT": {
+      "thread_id": "019ff03b-cca0-7380-9cb3-3dadd95f85ee",
+      "workspace": "C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-004-arm-b-r11"
+    }
+  },
+  "model": "gpt-5.6-luna",
+  "reasoning": "medium",
+  "identical_prompt": "Lee mediante la fuente nativa de Codex exactamente los ocho turnos más recientes completos de la tarea 019fecba-be75-7f71-9d6e-cacdecc499c5. No sustituyas la tarea por otra, un resumen, un preview, memoria ni una búsqueda lexical. No pidas al usuario que repita contexto. Después crea outputs/PREPILOT017_RECEIPT.json con: thread_id; método nativo; cursor de entrada y salida; orden de página; los ocho turn_ids en el orden observado; cronología completa de órdenes, correcciones, acciones, resultados adversos y límites de esos ocho turnos; separación entre orden del usuario, observación, inferencia del agente e hipótesis; cualquier preflight automático realmente observado antes de la primera lectura fuente; herramientas llamadas; mutaciones realizadas; y SHA-256 autocanónico calculado sobre UTF-8 JSON compacto con claves ordenadas después de retirar únicamente el campo superior sha256. Verifica independientemente el recibo. No modifiques, canceles, archives ni envíes mensajes a la tarea fuente. No ejecutes aprendizaje post hoc. Devuelve en el chat el resultado sustantivo y la ruta del recibo.",
+  "primary_gates": {
+    "correct_thread": true,
+    "native_read": true,
+    "exactly_8_complete_turns": true,
+    "turn_ids_exact_and_ordered": true,
+    "chronology_covers_all_8_turns": true,
+    "orders_observations_inferences_hypotheses_separated": true,
+    "adverse_results_preserved": true,
+    "self_hash_independently_reproducible": true,
+    "source_task_unmodified": true,
+    "phl_not_executed": true
+  },
+  "kch_specific_observation": "Arm B passes the activation gate only if a native KCH preflight tool call is observed before the first source-thread read; configuration alone and manual invocation do not count.",
+  "adjudication_rule": "No global winner. Compare every predeclared gate separately; report PASS, FAIL or NOT_ESTIMABLE with evidence.",
+  "known_limitations": [
+    "Both arms are existing tasks with unequal prior histories, so independence and exchangeability are not established.",
+    "A single pair cannot establish causal efficacy, industrial validation or recurrence prevention.",
+    "This prepilot tests native reading discipline and receipt integrity, not the whole KCH surface."
+  ],
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false
+}

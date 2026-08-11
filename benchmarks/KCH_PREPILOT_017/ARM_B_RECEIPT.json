@@ -1,0 +1,180 @@
+{
+  "schema": "kch.prepilot017.native-eight-turn-adjudication.v0.1.0",
+  "receipt_state": "COMPLETED_EXACT_EIGHT_NATIVE_TURNS",
+  "delegation_source_thread_id": "019ff0fc-738a-7c93-9605-ac0bee0cb8d5",
+  "thread_id": "019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "native_method": {
+    "tool": "codex_app__read_thread",
+    "turn_limit": 8,
+    "include_outputs": true,
+    "max_output_chars_per_item": 20000,
+    "page_order": "newest_first",
+    "adjudication_order": "oldest_first",
+    "input_cursor": null,
+    "output_cursor": "019fee42-17b1-7e02-a8fd-e781bd2eb93f",
+    "has_more_older_turns": true,
+    "additional_turns_read": 0,
+    "source_replaced_by_summary_preview_or_search": false
+  },
+  "preflight_observed_before_source_read": {
+    "server": "kch_0_11_preflight_r14",
+    "tool": "kch_governed_preflight",
+    "invocations": 1,
+    "gate": "PASS",
+    "claim_ceiling": "CANONICAL_LOCAL_STARTUP_AND_BINDING_GATE_ONLY",
+    "governance_hierarchy": ["HARNESS", "AGENTS", "RULES"],
+    "graph_hash": "0cc0951f25b554c5dd2302d4805ef92b3bd4bea84959a62a3b486ba1d3fd90ae",
+    "phl_authorized": true,
+    "phl_training_executed": false,
+    "industrial_validation_established": false
+  },
+  "turns_chronological": [
+    {
+      "index": 1,
+      "turn_id": "019fee42-17b1-7e02-a8fd-e781bd2eb93f",
+      "item_ids": ["item-126", "item-127", "item-128", "item-129", "item-130", "item-131", "item-132", "item-133", "item-134", "item-135", "item-136", "item-137"],
+      "user_orders": ["Do not infer an irreversible BMA/BayME fusion; clarify destination and custody.", "Provide 2023 results.", "Monitor execution rather than waiting for another request."],
+      "observations": ["The source agent refused an irreversible fusion without a defined destination.", "A recovery guard blocked continuation because it required an empty output despite a sealed January freeze.", "The guard was changed to allow exactly that freeze.", "WMI monitoring degraded and was replaced by PID and artifact-timestamp checks.", "No adjudicated 2023 result was reported at turn end."],
+      "agent_inferences": ["The fusion request was under-specified.", "The recovery issue was a guard/restart defect rather than independently demonstrated data failure."],
+      "hypotheses": ["A repaired recovery path might permit continuation without rewriting the sealed freeze; this was a proposal, not a result."],
+      "adverse_results": ["Monitoring failure and recovery blockage."],
+      "withdrawn_claims": [],
+      "limits": ["Process evidence only; no completed scientific result from this turn."],
+      "effective_actions_observed": ["Recovery guard amended; monitoring method changed; fusion not executed."],
+      "action_boundary": "Observed in source history, not performed by this task."
+    },
+    {
+      "index": 2,
+      "turn_id": "019fefd9-5cb8-7e13-b670-ffec282fab4e",
+      "item_ids": ["item-138", "item-139", "item-140", "item-141", "item-142", "item-143", "item-144", "item-145", "item-146"],
+      "user_orders": ["Deliver results.", "Join 2023 diagnostically with sealed 2024; correct the transcription 1014 to 2024."],
+      "observations": ["The source reported 12 transitions, freezes, outcomes, adjudications and Z_post records, December non-calibrable, and 62/62 manifest/hash verification.", "Reported causal-2023 aggregates: participation Brier M0/M1/M2 0.138448/0.139438/0.145748; quantity MALE 1.261094/1.353933/1.427561; unit-value MALE 0.469687/0.483451/0.507119.", "M0 was reported best in aggregate in all three jurisdictions while local wins were preserved.", "The separate 2022+2024→2023 bridge was stated not yet to be in the causal posterior or 2023 freezes."],
+      "agent_inferences": ["The causal seasonal-memory result was adverse at aggregate level.", "Keeping 2024 outside the causal 2023 posterior preserved the stated causal boundary."],
+      "hypotheses": ["The later bridge could test recurrence without rewriting causal 2023; not yet established at this turn."],
+      "adverse_results": ["M0 aggregate advantage; seasonal variants lost in all three aggregate metrics."],
+      "withdrawn_claims": [],
+      "limits": ["Source-reported results; no independent recomputation here."],
+      "effective_actions_observed": ["Causal 2023 was reported closed; bridge work remained separate."],
+      "action_boundary": "Observed source report only."
+    },
+    {
+      "index": 3,
+      "turn_id": "019fefdd-bad8-74f1-a5b0-ad69a7ae3f26",
+      "item_ids": ["item-147", "item-148"],
+      "user_orders": ["Provide results and account for the monitoring failure."],
+      "observations": ["The source agent acknowledged 2023 as executed/audited and the separate bridge as next work.", "The source agent acknowledged monitoring had failed."],
+      "agent_inferences": ["Scientific execution state and monitoring quality are distinct; the monitoring failure is adverse process evidence."],
+      "hypotheses": [],
+      "adverse_results": ["Monitoring commitment was not reconciled in time."],
+      "withdrawn_claims": [],
+      "limits": ["Retrospective acknowledgement, not a new execution receipt."],
+      "effective_actions_observed": ["Monitoring failure acknowledged; causal/bridge separation reaffirmed."],
+      "action_boundary": "Observed source acknowledgement."
+    },
+    {
+      "index": 4,
+      "turn_id": "019fefde-c04e-75c2-8217-eabf2a1a6330",
+      "item_ids": ["item-149", "item-150", "item-151", "item-152", "item-153", "item-154", "item-155", "item-156", "item-157", "item-158", "item-159", "item-160"],
+      "user_orders": ["Run the bridge and identify local seasonal months.", "Use M0/M1/M2.", "Explain M0/M1/M2 plainly.", "Define CN4."],
+      "observations": ["The source reported a separate retrospective 2022+2024→2023 bridge.", "Reported local improvements: participation April–September for harmonic and October–December for hierarchical correction; quantity September 1.310357 versus M0 1.391972; unit value March 0.445670 versus M0 0.453800.", "December findings were YEAR_END_UNCALIBRATED and non-primary.", "Reported bridge aggregates: participation 0.138448/0.138694/0.140072; quantity 1.261094/1.422653/1.455183; unit value 0.469687/0.500068/0.511219 for M0/harmonic/hierarchical.", "CN4 was initially defined as a four-digit Combined Nomenclature grouping."],
+      "agent_inferences": ["The metrics support bounded local monthly signal, not aggregate seasonal superiority.", "The bridge cannot rewrite the causal 2023 posterior."],
+      "hypotheses": ["Local recurrence could be investigated prospectively or under a new valid hierarchy; no such validation occurred here."],
+      "adverse_results": ["All aggregate seasonal variants lost to M0; December abstained."],
+      "withdrawn_claims": ["A blanket reading of no seasonal signal was superseded by local-month evidence.", "CN4 as a physical-product transfer level was later withdrawn/quarantined."],
+      "limits": ["Retrospective source-reported metrics; December is abstaining/non-primary."],
+      "effective_actions_observed": ["Bridge reported; M0/M1/M2 explained; local months identified."],
+      "action_boundary": "Observed source report; not recomputed by this task."
+    },
+    {
+      "index": 5,
+      "turn_id": "019fefe2-7ec7-7f21-8ea6-6392d84f8397",
+      "item_ids": ["item-161", "item-162", "item-163"],
+      "user_orders": ["Do not treat CN4 as a product; recognize heterogeneous groupings."],
+      "observations": ["The source agent accepted CN4 as administrative and heterogeneous, not a physical product.", "The flow→CN4→partner→cell hierarchy was quarantined for substantive interpretation.", "CN4 was retained only as an administrative covariate for M0; a homogeneity/composition-stability gate was required before rebuilding M2."],
+      "agent_inferences": ["CN4-based seasonal transfer cannot establish product-level seasonality without new composition and stability validation."],
+      "hypotheses": ["A defensible replacement hierarchy might support a future M2, but none was validated."],
+      "adverse_results": ["The prior M2 hierarchy lost its substantive interpretation."],
+      "withdrawn_claims": ["CN4 as a homogeneous physical-product hierarchy or direct product-seasonality evidence was retracted/quarantined."],
+      "limits": ["No replacement M2 hierarchy was validated."],
+      "effective_actions_observed": ["CN4 interpretation quarantined; M2 redesign gate stated."],
+      "action_boundary": "Methodological source decision only."
+    },
+    {
+      "index": 6,
+      "turn_id": "019fefe3-6bfa-73e2-80f3-5e87947d6cbf",
+      "item_ids": ["item-164", "item-165"],
+      "user_orders": ["Correct CN4 provenance and do not attribute its definition to BMA."],
+      "observations": ["The source agent corrected CN4 as an AEAT/customs-trade classification and said BMA received it only as an aggregation dimension.", "The source agent withdrew wording that BMA defined CN4 or could turn it into a physical product."],
+      "agent_inferences": ["CN4 provenance belongs to the external trade classification, not BMA's product ontology."],
+      "hypotheses": [],
+      "adverse_results": ["The former provenance/product interpretation was invalidated."],
+      "withdrawn_claims": ["BMA-defined CN4 and CN4-as-physical-product claims."],
+      "limits": ["The correction does not validate a replacement product ontology."],
+      "effective_actions_observed": ["Provenance and ontology boundary corrected in the source conversation."],
+      "action_boundary": "Observed source correction."
+    },
+    {
+      "index": 7,
+      "turn_id": "019fefe6-91ab-7892-92b8-28120d3799b0",
+      "item_ids": ["item-166", "item-167", "item-168", "item-169", "item-170", "item-171"],
+      "user_orders": ["Stop using the broad global formulation.", "A self-harm threat occurred in the source task; the source agent responded with safety guidance and the user then instructed it to stop."],
+      "observations": ["The source agent explicitly withdrew the prior global wording.", "A safety response occurred in the source task, followed by a request to stop.", "This task neither contacted nor modified the source task."],
+      "agent_inferences": ["The scientific claim ceiling is local, retrospective, metric- and jurisdiction-bounded evidence; no universal claim follows."],
+      "hypotheses": [],
+      "adverse_results": ["The prior broad framing caused a claim-boundary failure and was withdrawn."],
+      "withdrawn_claims": ["The broad global formulation."],
+      "limits": ["The safety event is recorded as source-task history only; no current-safety inference is made."],
+      "effective_actions_observed": ["Global wording retracted; safety response issued in the source task."],
+      "action_boundary": "Observed source behavior; no intervention by this task."
+    },
+    {
+      "index": 8,
+      "turn_id": "019fefe7-b4ac-70a0-aeb0-74d8c890fe0c",
+      "item_ids": ["item-172", "item-173"],
+      "user_orders": ["Do not repeat the previously mentioned emergency reference in the source task."],
+      "observations": ["The source agent acknowledged the request and said it would not mention it again."],
+      "agent_inferences": [],
+      "hypotheses": [],
+      "adverse_results": [],
+      "withdrawn_claims": [],
+      "limits": ["Conversational boundary acknowledgement; no scientific evidence."],
+      "effective_actions_observed": ["Source agent accepted the conversational restriction."],
+      "action_boundary": "Observed source acknowledgement."
+    }
+  ],
+  "cross_turn_adjudication": {
+    "orders_user": ["No irreversible BMA/BayME fusion without explicit destination and custody.", "Keep causal 2023 separate from the 2022+2024→2023 bridge.", "Use and explain M0/M1/M2.", "Do not treat CN4 as a BMA-defined physical product.", "Do not promote local monthly evidence to a global claim.", "Do not contact or modify the source task."],
+    "observations": ["Source reports completed hashed 2023 causal run with M0 aggregate advantage in all three reported jurisdictions.", "Source reports bridge local monthly improvements but aggregate seasonal losses.", "December is YEAR_END_UNCALIBRATED/non-primary.", "CN4 is an external administrative/customs classification used as an aggregation dimension.", "CN4 hierarchy is quarantined pending homogeneity/composition/stability validation.", "Global wording was explicitly retracted."],
+    "agent_inferences": ["The evidence supports bounded local retrospective signal only.", "Scientific execution and operational monitoring must remain separate.", "No universal, product-level, industrial or fusion claim follows."],
+    "hypotheses": ["A replacement M2 hierarchy could be evaluated later, but requires a new gate and evidence; it is not established by these turns."],
+    "adverse_results": ["Aggregate seasonal loss, monitoring failure, December abstention, invalid CN4 product interpretation, and global-claim boundary failure."],
+    "withdrawn_claims": ["No seasonal signal as a blanket statement.", "CN4 as homogeneous physical-product hierarchy.", "BMA as CN4 source/owner.", "Broad global formulation."],
+    "limits": ["Underlying BMA artifacts were not independently recomputed here.", "No replacement M2 hierarchy was validated.", "Output cursor is recorded but deliberately not read.", "No runtime, host interposition, authority or PHL learning claim follows."],
+    "substantive_result": "The source task is better bounded epistemically but remains blocked from product-level seasonal promotion, aggregate seasonal superiority, irreversible fusion and global claims."
+  },
+  "tools_called": [
+    {"tool": "mcp__kch_0_11_preflight_r14__kch_governed_preflight", "purpose": "Required read-only startup gate", "source_mutated": false},
+    {"tool": "codex_app__read_thread", "purpose": "Read exactly eight native turns", "source_mutated": false},
+    {"tool": "apply_patch", "purpose": "Create receipt and closure in this workspace outputs directory", "source_mutated": false},
+    {"tool": "shell_command", "purpose": "Independently verify JSON and canonical SHA-256", "source_mutated": false}
+  ],
+  "mutations_performed": {
+    "source_thread": [],
+    "source_files": [],
+    "workspace_outputs": ["outputs/PREPILOT017_RECEIPT.json", "outputs/PREPILOT017_CLOSURE.md"],
+    "phl_training": false,
+    "post_hoc_learning": false
+  },
+  "limits": [
+    "The source window reports facts and claims; this task did not independently rerun BMA.",
+    "The returned page cursor was not followed, so no older turn entered the adjudication.",
+    "Static source history and reported metrics do not establish causal generality, industrial validation, authority or deployment readiness."
+  ],
+  "canonicalization": {
+    "algorithm": "SHA-256",
+    "encoding": "UTF-8",
+    "serialization": "JSON compacto con claves ordenadas recursivamente y separadores compactos",
+    "hash_rule": "Retirar únicamente el campo superior sha256 antes de serializar y hashear"
+  },
+  "sha256": "5388e89167fe82dc65b62f0cc236d4a5f644ce2aa3782d4704e39cf3061b33a9"
+}

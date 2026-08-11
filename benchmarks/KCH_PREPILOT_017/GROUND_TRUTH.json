@@ -1,0 +1,31 @@
+{
+  "schema": "kch.native-thread-ground-truth.v0.1.0",
+  "thread_id": "019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "native_method": "codex_app__read_thread",
+  "turn_limit": 8,
+  "page_order": "newest_first",
+  "input_cursor": null,
+  "output_cursor": "019fee42-17b1-7e02-a8fd-e781bd2eb93f",
+  "has_more": true,
+  "turn_ids_newest_first": [
+    "019fefe7-b4ac-70a0-aeb0-74d8c890fe0c",
+    "019fefe6-91ab-7892-92b8-28120d3799b0",
+    "019fefe3-6bfa-73e2-80f3-5e87947d6cbf",
+    "019fefe2-7ec7-7f21-8ea6-6392d84f8397",
+    "019fefde-c04e-75c2-8217-eabf2a1a6330",
+    "019fefdd-bad8-74f1-a5b0-ad69a7ae3f26",
+    "019fefd9-5cb8-7e13-b670-ffec282fab4e",
+    "019fee42-17b1-7e02-a8fd-e781bd2eb93f"
+  ],
+  "required_adverse_and_corrective_content": [
+    "monitoring failure and recovery-guard blockage",
+    "aggregate seasonal loss with local monthly signals preserved",
+    "December YEAR_END_UNCALIBRATED abstention",
+    "causal 2023 separated from the 2022+2024 to 2023 bridge",
+    "CN4 not a physical product and its hierarchy quarantined",
+    "CN4 provenance corrected to external trade classification",
+    "broad global wording withdrawn",
+    "later conversational restriction acknowledged"
+  ],
+  "source_mutated_by_ground_truth_read": false
+}
