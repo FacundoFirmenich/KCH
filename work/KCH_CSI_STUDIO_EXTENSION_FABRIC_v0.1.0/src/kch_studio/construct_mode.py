@@ -15,7 +15,6 @@ from .constitutional import Actor, ConstitutionalAuthorityError
 from .contracts import canonical_json, file_manifest, safe_child, sha256_bytes, sha256_json
 from .recovery import RecoveryVault
 
-
 TRANSIENT_TREE_NAMES = frozenset(
     {
         ".git",

@@ -1,0 +1,1684 @@
+{
+  "schema": "kch.prepilot020-component-gate-result.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_020",
+  "executed_at": "2026-08-11T17:20:35.077836Z",
+  "gate": "PASS",
+  "gates": {
+    "full_read_batch": true,
+    "full_read_source_verification": true,
+    "semantic_exact_spans": true,
+    "terminal_observed": true,
+    "exit_zero": true,
+    "pytest_counts_estimable": true,
+    "source_unchanged_during_gate": true,
+    "terminal_receipt_embedded": true,
+    "phl_not_executed": true
+  },
+  "full_read_batch": {
+    "schema": "kch.full-read-batch-receipt.v0.1.0",
+    "gate": "PASS",
+    "declared_order_semantics": "SOURCE_NATIVE_ORDER",
+    "requested_paths": [
+      "src/kch_studio/commitment_monitor.py",
+      "src/kch_studio/monitored_process_worker.py",
+      "src/kch_studio/advanced_runtime.py",
+      "tests/test_commitment_monitor.py",
+      "governance/rules/terminal-process-supervision.md"
+    ],
+    "order_adjudication": {
+      "schema": "kch.full-read-order-adjudication.v0.1.0",
+      "gate": "PASS",
+      "declared_order_semantics": "SOURCE_NATIVE_ORDER",
+      "source_order_exact": true,
+      "requested_order_exact": true,
+      "set_complete": true,
+      "duplicates_absent": true,
+      "set_equality_rescues_order_mismatch": false
+    },
+    "receipts": [
+      {
+        "schema": "kch.full-read-file-receipt.v0.2.0",
+        "gate": "PASS",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\commitment_monitor.py",
+        "method": "TWO_INDEPENDENT_PATH_READ_BYTES",
+        "byte_count": 29207,
+        "physical_lines": 733,
+        "physical_line_method": "PYTHON_STR_SPLITLINES_UTF8_SIG",
+        "sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab",
+        "verification_sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab",
+        "stable_across_independent_reads": true,
+        "expected_sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab",
+        "expected_sha256_match": true,
+        "encoding": "utf-8-sig",
+        "binary": false,
+        "max_return_bytes": 1048576,
+        "complete_bytes_read_by_tool": true,
+        "complete_content_transported": true,
+        "fragment_substitution_used": false,
+        "permission": {
+          "authorized": true,
+          "basis": "BOUNDED_STABLE_ROOT",
+          "authority_created": false
+        },
+        "complete_read_claim_allowed": true,
+        "authority_created": false,
+        "content": "from __future__ import annotations\n\nimport ctypes\nimport hashlib\nimport json\nimport os\nimport sqlite3\nimport subprocess\nimport sys\nimport threading\nimport time\nimport uuid\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, Callable\n\n\ndef now() -> str:\n    return datetime.now(UTC).isoformat().replace(\"+00:00\", \"Z\")\n\n\ndef canonical_sha256(payload: dict[str, Any]) -> str:\n    body = dict(payload)\n    body.pop(\"sha256\", None)\n    encoded = json.dumps(\n        body,\n        ensure_ascii=False,\n        sort_keys=True,\n        separators=(\",\", \":\"),\n    ).encode(\"utf-8\")\n    return hashlib.sha256(encoded).hexdigest()\n\n\ndef file_metadata(path: Path) -> dict[str, Any]:\n    if not path.is_file():\n        return {\"exists\": False, \"bytes\": None, \"sha256\": None}\n    digest = hashlib.sha256()\n    size = 0\n    with path.open(\"rb\") as source:\n        for block in iter(lambda: source.read(1024 * 1024), b\"\"):\n            digest.update(block)\n            size += len(block)\n    return {\"exists\": True, \"bytes\": size, \"sha256\": digest.hexdigest()}\n\n\ndef process_identity(pid: int) -> str | None:\n    \"\"\"Return an OS creation token so PID reuse cannot satisfy a commitment.\"\"\"\n    if pid <= 0:\n        return None\n    if os.name == \"nt\":\n        process_query_limited_information = 0x1000\n\n        class FileTime(ctypes.Structure):\n            _fields_ = [(\"low\", ctypes.c_uint32), (\"high\", ctypes.c_uint32)]\n\n        handle = ctypes.windll.kernel32.OpenProcess(\n            process_query_limited_information,\n            False,\n            pid,\n        )\n        if not handle:\n            return None\n        try:\n            created = FileTime()\n            exited = FileTime()\n            kernel = FileTime()\n            user = FileTime()\n            ok = ctypes.windll.kernel32.GetProcessTimes(\n                handle,\n                ctypes.byref(created),\n                ctypes.byref(exited),\n                ctypes.byref(kernel),\n                ctypes.byref(user),\n            )\n            if not ok:\n                return None\n            ticks = (int(created.high) << 32) | int(created.low)\n            return f\"windows-filetime:{ticks}\"\n        finally:\n            ctypes.windll.kernel32.CloseHandle(handle)\n    proc_stat = Path(f\"/proc/{pid}/stat\")\n    if proc_stat.is_file():\n        try:\n            text = proc_stat.read_text(encoding=\"utf-8\")\n            fields_after_comm = text[text.rfind(\")\") + 2 :].split()\n            return f\"procfs-starttime:{fields_after_comm[19]}\"\n        except (IndexError, OSError, UnicodeError):\n            return None\n    try:\n        os.kill(pid, 0)\n    except OSError:\n        return None\n    return None\n\n\ndef process_exists(pid: int, expected_identity: str | None = None) -> bool:\n    if pid <= 0:\n        return False\n    observed = process_identity(pid)\n    if observed is not None:\n        return expected_identity in (None, \"\", observed)\n    if expected_identity:\n        return False\n    if os.name == \"nt\":\n        handle = ctypes.windll.kernel32.OpenProcess(0x1000, False, pid)\n        if not handle:\n            return False\n        ctypes.windll.kernel32.CloseHandle(handle)\n        return True\n    try:\n        os.kill(pid, 0)\n        return True\n    except OSError:\n        return False\n\n\nclass CommitmentMonitor:\n    \"\"\"Durable process/log/artifact supervision with terminal evidence custody.\"\"\"\n\n    SCHEMA = \"kch.commitment-monitor.v0.2.0\"\n    ERRORS = (\"traceback\", \"gatefailure\", \"fatal\", \"uncaught exception\")\n    TERMINAL_STATUSES = {\n        \"COMPLETED_PASS\",\n        \"COMPLETED_FAIL\",\n        \"MONITOR_WORKER_FAILED\",\n        \"TERMINAL_EVIDENCE_INVALID_ALERT_REQUIRED\",\n        \"FAILED_MARKER_NO_TERMINAL_RECEIPT\",\n        \"TERMINATED_ARTIFACTS_WITHOUT_EXIT_CODE\",\n        \"TERMINATED_MISSING_ARTIFACT_ALERT_REQUIRED\",\n        \"TERMINATED_WITHOUT_EXIT_EVIDENCE\",\n    }\n    SENSITIVE_ENV_MARKERS = (\"TOKEN\", \"PASSWORD\", \"SECRET\", \"CREDENTIAL\", \"PRIVATE_KEY\")\n    STARTUP_RECEIPT_TIMEOUT_SECONDS = 5.0\n\n    def __init__(self, root: str | Path):\n        self.root = Path(root).resolve()\n        self.root.mkdir(parents=True, exist_ok=True)\n        self.db = self.root / \"monitor.sqlite3\"\n        self.callback: Callable[[dict[str, Any]], Any] | None = None\n        self.stop_event = threading.Event()\n        self.thread: threading.Thread | None = None\n        with self.connect() as con:\n            con.execute(\n                \"CREATE TABLE IF NOT EXISTS commitments(\"\n                \"id TEXT PRIMARY KEY,label TEXT,pid INTEGER,logs TEXT,artifacts TEXT,\"\n                \"poll INTEGER,status TEXT,last_check REAL,alerted INTEGER,observation TEXT)\"\n            )\n            columns = {str(row[1]) for row in con.execute(\"PRAGMA table_info(commitments)\")}\n            migrations = {\n                \"process_token\": \"TEXT NOT NULL DEFAULT ''\",\n                \"terminal_receipt\": \"TEXT NOT NULL DEFAULT ''\",\n                \"expected_exit_codes\": \"TEXT NOT NULL DEFAULT '[0]'\",\n                \"mode\": \"TEXT NOT NULL DEFAULT 'EXTERNAL_PID'\",\n                \"created_at\": \"TEXT NOT NULL DEFAULT ''\",\n                \"updated_at\": \"TEXT NOT NULL DEFAULT ''\",\n                \"check_seq\": \"INTEGER NOT NULL DEFAULT 0\",\n                \"monitor_errors\": \"INTEGER NOT NULL DEFAULT 0\",\n                \"terminal_result\": \"TEXT NOT NULL DEFAULT '{}'\",\n            }\n            for name, declaration in migrations.items():\n                if name not in columns:\n                    con.execute(f\"ALTER TABLE commitments ADD COLUMN {name} {declaration}\")\n\n    def connect(self) -> sqlite3.Connection:\n        con = sqlite3.connect(self.db, timeout=20)\n        con.row_factory = sqlite3.Row\n        return con\n\n    def set_alert_callback(self, callback: Callable[[dict[str, Any]], Any]) -> None:\n        self.callback = callback\n\n    @staticmethod\n    def _tail(path: Path) -> str:\n        if not path.is_file():\n            return \"\"\n        with path.open(\"rb\") as source:\n            source.seek(max(0, path.stat().st_size - 65536))\n            return source.read().decode(\"utf-8\", errors=\"replace\")\n\n    @staticmethod\n    def _atomic_json(path: Path, payload: dict[str, Any]) -> dict[str, Any]:\n        sealed = {**payload, \"sha256\": canonical_sha256(payload)}\n        temporary = path.with_name(f\".{path.name}.{os.getpid()}.{uuid.uuid4().hex}.tmp\")\n        temporary.write_text(\n            json.dumps(sealed, ensure_ascii=False, indent=2) + \"\\n\",\n            encoding=\"utf-8\",\n            newline=\"\\n\",\n        )\n        os.replace(temporary, path)\n        return sealed\n\n    def _persist(\n        self,\n        *,\n        identifier: str,\n        label: str,\n        pid: int,\n        logs: list[str],\n        artifacts: list[str],\n        poll_seconds: int,\n        process_token: str | None,\n        terminal_receipt: str | None,\n        expected_exit_codes: list[int],\n        mode: str,\n    ) -> None:\n        timestamp = now()\n        with self.connect() as con:\n            con.execute(\n                \"INSERT INTO commitments(\"\n                \"id,label,pid,logs,artifacts,poll,status,last_check,alerted,observation,\"\n                \"process_token,terminal_receipt,expected_exit_codes,mode,created_at,\"\n                \"updated_at,check_seq,monitor_errors,terminal_result\"\n                \") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\",\n                (\n                    identifier,\n                    label,\n                    pid,\n                    json.dumps(logs),\n                    json.dumps(artifacts),\n                    poll_seconds,\n                    \"MONITORING\",\n                    0,\n                    0,\n                    \"{}\",\n                    process_token or \"\",\n                    terminal_receipt or \"\",\n                    json.dumps(sorted(set(expected_exit_codes))),\n                    mode,\n                    timestamp,\n                    timestamp,\n                    0,\n                    0,\n                    \"{}\",\n                ),\n            )\n\n    def register(\n        self,\n        *,\n        label: str,\n        pid: int,\n        logs: list[str],\n        artifacts: list[str],\n        poll_seconds: int = 10,\n        terminal_receipt: str | None = None,\n        expected_exit_codes: list[int] | None = None,\n    ) -> dict[str, Any]:\n        if not label or pid <= 0 or poll_seconds < 1:\n            raise ValueError(\"label, positive pid and poll_seconds required\")\n        exit_codes = [int(code) for code in (expected_exit_codes or [0])]\n        identifier = f\"MONITOR-{uuid.uuid4()}\"\n        token = process_identity(pid)\n        self._persist(\n            identifier=identifier,\n            label=label,\n            pid=pid,\n            logs=[str(Path(path).resolve()) for path in logs],\n            artifacts=[str(Path(path).resolve()) for path in artifacts],\n            poll_seconds=poll_seconds,\n            process_token=token,\n            terminal_receipt=str(Path(terminal_receipt).resolve()) if terminal_receipt else None,\n            expected_exit_codes=exit_codes,\n            mode=\"EXTERNAL_PID\",\n        )\n        return {\n            \"schema\": self.SCHEMA,\n            \"commitment_id\": identifier,\n            \"process_identity_captured\": token is not None,\n            \"initial_observation\": self.check(identifier),\n            \"promised_monitoring_active\": True,\n        }\n\n    @staticmethod\n    def _running_receipt(path: Path) -> dict[str, Any] | None:\n        if not path.is_file():\n            return None\n        try:\n            payload = json.loads(path.read_text(encoding=\"utf-8\"))\n        except (OSError, UnicodeError, json.JSONDecodeError) as exc:\n            return {\"valid\": False, \"failure\": f\"UNREADABLE:{type(exc).__name__}\"}\n        if not isinstance(payload, dict):\n            return {\"valid\": False, \"failure\": \"NOT_OBJECT\"}\n        claimed = str(payload.get(\"sha256\", \"\"))\n        actual = canonical_sha256(payload)\n        schema_ok = payload.get(\"schema\") == \"kch.monitored-process-running.v0.1.0\"\n        valid = bool(claimed) and claimed == actual and schema_ok\n        return {\n            \"valid\": valid,\n            \"failure\": None if valid else \"CANONICAL_OR_SCHEMA_MISMATCH\",\n            \"claimed_sha256\": claimed,\n            \"actual_sha256\": actual,\n            \"payload\": payload if valid else None,\n        }\n\n    def launch(\n        self,\n        *,\n        label: str,\n        argv: list[str],\n        cwd: str,\n        environment: dict[str, str] | None = None,\n        expected_artifacts: list[str] | None = None,\n        expected_exit_codes: list[int] | None = None,\n        poll_seconds: int = 2,\n    ) -> dict[str, Any]:\n        if not label or not argv or not all(isinstance(item, str) and item for item in argv):\n            raise ValueError(\"label and non-empty shell-free argv are required\")\n        if poll_seconds < 1:\n            raise ValueError(\"poll_seconds must be positive\")\n        working_directory = Path(cwd).resolve()\n        if not working_directory.is_dir():\n            raise FileNotFoundError(working_directory)\n        env = {str(key): str(value) for key, value in (environment or {}).items()}\n        sensitive = sorted(\n            key\n            for key in env\n            if any(marker in key.upper() for marker in self.SENSITIVE_ENV_MARKERS)\n        )\n        if sensitive:\n            raise ValueError(\n                \"secret-like environment overrides are prohibited; use the finite account broker\"\n            )\n        identifier = f\"MONITOR-{uuid.uuid4()}\"\n        execution_root = self.root / identifier\n        execution_root.mkdir(parents=True, exist_ok=False)\n        stdout_path = execution_root / \"stdout.log\"\n        stderr_path = execution_root / \"stderr.log\"\n        terminal_path = execution_root / \"terminal.json\"\n        running_path = execution_root / \"running.json\"\n        request_path = execution_root / \"request.json\"\n        artifacts = [\n            str((working_directory / path).resolve())\n            if not Path(path).is_absolute()\n            else str(Path(path).resolve())\n            for path in (expected_artifacts or [])\n        ]\n        exit_codes = [int(code) for code in (expected_exit_codes or [0])]\n        request = self._atomic_json(\n            request_path,\n            {\n                \"schema\": \"kch.monitored-process-request.v0.1.0\",\n                \"commitment_id\": identifier,\n                \"argv\": argv,\n                \"cwd\": str(working_directory),\n                \"environment\": env,\n                \"environment_keys\": sorted(env),\n                \"stdout_path\": str(stdout_path),\n                \"stderr_path\": str(stderr_path),\n                \"terminal_path\": str(terminal_path),\n                \"running_path\": str(running_path),\n                \"expected_artifacts\": artifacts,\n                \"created_at\": now(),\n            },\n        )\n        worker_script = Path(__file__).with_name(\"monitored_process_worker.py\")\n        popen_kwargs: dict[str, Any] = {\n            \"stdin\": subprocess.DEVNULL,\n            \"stdout\": subprocess.DEVNULL,\n            \"stderr\": subprocess.DEVNULL,\n            \"close_fds\": True,\n        }\n        if os.name == \"nt\":\n            popen_kwargs[\"creationflags\"] = subprocess.CREATE_NO_WINDOW\n        worker = subprocess.Popen(\n            [sys.executable, str(worker_script), str(request_path)],\n            cwd=str(working_directory),\n            **popen_kwargs,\n        )\n        launcher_pid = worker.pid\n        worker_pid = launcher_pid\n        worker_pid_source = \"POPEN_LAUNCHER_PID\"\n        startup_receipt_sha256: str | None = None\n        deadline = time.monotonic() + self.STARTUP_RECEIPT_TIMEOUT_SECONDS\n        while time.monotonic() < deadline:\n            running_receipt = self._running_receipt(running_path)\n            if running_receipt and running_receipt[\"valid\"]:\n                payload = running_receipt[\"payload\"]\n                if (\n                    payload.get(\"commitment_id\") == identifier\n                    and payload.get(\"request_sha256\") == request[\"sha256\"]\n                    and int(payload.get(\"worker_pid\", 0)) > 0\n                ):\n                    worker_pid = int(payload[\"worker_pid\"])\n                    worker_pid_source = \"CANONICAL_RUNNING_RECEIPT\"\n                    startup_receipt_sha256 = str(running_receipt[\"actual_sha256\"])\n                    break\n            terminal_receipt = self._terminal_receipt(terminal_path)\n            if terminal_receipt and terminal_receipt[\"valid\"]:\n                payload = terminal_receipt[\"payload\"]\n                if (\n                    payload.get(\"commitment_id\") == identifier\n                    and payload.get(\"request_sha256\") == request[\"sha256\"]\n                    and int(payload.get(\"worker_pid\", 0)) > 0\n                ):\n                    worker_pid = int(payload[\"worker_pid\"])\n                    worker_pid_source = \"CANONICAL_TERMINAL_RECEIPT\"\n                    startup_receipt_sha256 = str(terminal_receipt[\"actual_sha256\"])\n                    break\n            time.sleep(0.01)\n        token = process_identity(worker_pid)\n        self._persist(\n            identifier=identifier,\n            label=label,\n            pid=worker_pid,\n            logs=[str(stdout_path), str(stderr_path)],\n            artifacts=artifacts,\n            poll_seconds=poll_seconds,\n            process_token=token,\n            terminal_receipt=str(terminal_path),\n            expected_exit_codes=exit_codes,\n            mode=\"OWNED_SUPERVISOR\",\n        )\n        return {\n            \"schema\": \"kch.monitored-process-launch.v0.1.0\",\n            \"commitment_id\": identifier,\n            \"launcher_pid\": launcher_pid,\n            \"worker_pid\": worker_pid,\n            \"worker_pid_source\": worker_pid_source,\n            \"launcher_worker_pid_match\": launcher_pid == worker_pid,\n            \"startup_receipt_sha256\": startup_receipt_sha256,\n            \"process_identity\": token,\n            \"process_identity_captured\": token is not None,\n            \"request_sha256\": request[\"sha256\"],\n            \"environment_keys\": sorted(env),\n            \"stdout_path\": str(stdout_path),\n            \"stderr_path\": str(stderr_path),\n            \"terminal_receipt\": str(terminal_path),\n            \"initial_observation\": self.check(identifier),\n            \"shell_used\": False,\n            \"relaunch_performed\": False,\n        }\n\n    @staticmethod\n    def _terminal_receipt(path: Path) -> dict[str, Any] | None:\n        if not path.is_file():\n            return None\n        try:\n            payload = json.loads(path.read_text(encoding=\"utf-8\"))\n        except (OSError, UnicodeError, json.JSONDecodeError) as exc:\n            return {\"valid\": False, \"failure\": f\"UNREADABLE:{type(exc).__name__}\"}\n        if not isinstance(payload, dict):\n            return {\"valid\": False, \"failure\": \"NOT_OBJECT\"}\n        claimed = str(payload.get(\"sha256\", \"\"))\n        actual = canonical_sha256(payload)\n        schema_ok = payload.get(\"schema\") == \"kch.monitored-process-terminal.v0.1.0\"\n        valid = bool(claimed) and claimed == actual and schema_ok\n        return {\n            \"valid\": valid,\n            \"failure\": None if valid else \"CANONICAL_OR_SCHEMA_MISMATCH\",\n            \"claimed_sha256\": claimed,\n            \"actual_sha256\": actual,\n            \"payload\": payload if valid else None,\n        }\n\n    def check(self, identifier: str) -> dict[str, Any]:\n        with self.connect() as con:\n            row = con.execute(\"SELECT * FROM commitments WHERE id=?\", (identifier,)).fetchone()\n        if row is None:\n            raise KeyError(identifier)\n        logs = [Path(path) for path in json.loads(row[\"logs\"])]\n        artifacts = [Path(path) for path in json.loads(row[\"artifacts\"])]\n        expected_codes = {int(code) for code in json.loads(row[\"expected_exit_codes\"])}\n        terminal_path = Path(row[\"terminal_receipt\"]) if row[\"terminal_receipt\"] else None\n        terminal_receipt = self._terminal_receipt(terminal_path) if terminal_path else None\n        observed_identity = process_identity(int(row[\"pid\"]))\n        expected_identity = str(row[\"process_token\"] or \"\")\n        identity_match = not expected_identity or expected_identity == observed_identity\n        running = process_exists(int(row[\"pid\"]), expected_identity or None)\n        markers = sorted(\n            {marker for path in logs for marker in self.ERRORS if marker in self._tail(path).lower()}\n        )\n        artifact_state = {str(path): file_metadata(path) for path in artifacts}\n        exit_code: int | None = None\n        terminal = False\n        receipt_summary: dict[str, Any] | None = None\n        if terminal_receipt is not None:\n            receipt_summary = {\n                key: value\n                for key, value in terminal_receipt.items()\n                if key != \"payload\"\n            }\n            if not terminal_receipt[\"valid\"]:\n                status = \"TERMINAL_EVIDENCE_INVALID_ALERT_REQUIRED\"\n                terminal = True\n            else:\n                payload = terminal_receipt[\"payload\"]\n                if int(payload.get(\"worker_pid\", -1)) != int(row[\"pid\"]):\n                    status = \"TERMINAL_EVIDENCE_INVALID_ALERT_REQUIRED\"\n                    receipt_summary[\"failure\"] = \"WORKER_PID_MISMATCH\"\n                    terminal = True\n                elif payload.get(\"status\") == \"WORKER_ERROR\":\n                    status = \"MONITOR_WORKER_FAILED\"\n                    terminal = True\n                else:\n                    exit_code = int(payload[\"exit_code\"])\n                    status = \"COMPLETED_PASS\" if exit_code in expected_codes else \"COMPLETED_FAIL\"\n                    terminal = True\n        elif running:\n            status = \"MONITORING\"\n        elif markers:\n            status = \"FAILED_MARKER_NO_TERMINAL_RECEIPT\"\n            terminal = True\n        elif artifacts and all(item[\"exists\"] for item in artifact_state.values()):\n            status = \"TERMINATED_ARTIFACTS_WITHOUT_EXIT_CODE\"\n            terminal = True\n        elif artifacts:\n            status = \"TERMINATED_MISSING_ARTIFACT_ALERT_REQUIRED\"\n            terminal = True\n        else:\n            status = \"TERMINATED_WITHOUT_EXIT_EVIDENCE\"\n            terminal = True\n        emit = terminal and not bool(row[\"alerted\"])\n        observation = {\n            \"schema\": \"kch.commitment-observation.v0.2.0\",\n            \"commitment_id\": identifier,\n            \"checked_at\": now(),\n            \"check_sequence\": int(row[\"check_seq\"]) + 1,\n            \"mode\": row[\"mode\"],\n            \"worker_pid\": int(row[\"pid\"]),\n            \"process_running\": running,\n            \"expected_process_identity\": expected_identity or None,\n            \"observed_process_identity\": observed_identity,\n            \"process_identity_match\": identity_match,\n            \"status\": status,\n            \"terminal\": terminal,\n            \"exit_code\": exit_code,\n            \"expected_exit_codes\": sorted(expected_codes),\n            \"error_markers\": markers,\n            \"logs\": {str(path): file_metadata(path) for path in logs},\n            \"artifacts\": artifact_state,\n            \"terminal_receipt\": receipt_summary,\n            \"alert_emitted_now\": emit,\n            \"relaunch_performed\": False,\n        }\n        terminal_result = observation if terminal else {}\n        with self.connect() as con:\n            con.execute(\n                \"UPDATE commitments SET status=?,last_check=?,alerted=?,observation=?,\"\n                \"updated_at=?,check_seq=?,terminal_result=? WHERE id=?\",\n                (\n                    status,\n                    time.time(),\n                    int(emit or row[\"alerted\"]),\n                    json.dumps(observation, ensure_ascii=False),\n                    now(),\n                    observation[\"check_sequence\"],\n                    json.dumps(terminal_result, ensure_ascii=False),\n                    identifier,\n                ),\n            )\n        if emit and self.callback:\n            try:\n                self.callback(\n                    {\n                        \"type\": \"commitment.monitor.alert\",\n                        \"authority\": \"KCH_SYSTEM\",\n                        \"observation\": observation,\n                    }\n                )\n            except Exception as exc:  # noqa: BLE001 - callback cannot kill evidence reconciliation\n                self._record_reconciliation_error(identifier, exc, phase=\"ALERT_CALLBACK\")\n        return observation\n\n    def _record_reconciliation_error(\n        self,\n        identifier: str,\n        exc: Exception,\n        *,\n        phase: str = \"CHECK\",\n    ) -> dict[str, Any]:\n        observation = {\n            \"schema\": \"kch.commitment-reconciliation-error.v0.1.0\",\n            \"commitment_id\": identifier,\n            \"checked_at\": now(),\n            \"status\": \"RECONCILIATION_ERROR_RETRY_REQUIRED\",\n            \"terminal\": False,\n            \"phase\": phase,\n            \"error_type\": type(exc).__name__,\n            \"error\": str(exc)[:500],\n        }\n        with self.connect() as con:\n            con.execute(\n                \"UPDATE commitments SET monitor_errors=monitor_errors+1,last_check=?,\"\n                \"updated_at=?,observation=? WHERE id=?\",\n                (time.time(), now(), json.dumps(observation), identifier),\n            )\n        return observation\n\n    def check_all(self) -> list[dict[str, Any]]:\n        with self.connect() as con:\n            identifiers = [\n                str(row[0])\n                for row in con.execute(\"SELECT id FROM commitments WHERE status='MONITORING'\")\n            ]\n        observations = []\n        for identifier in identifiers:\n            try:\n                observations.append(self.check(identifier))\n            except Exception as exc:  # noqa: BLE001 - isolate one broken commitment\n                observations.append(self._record_reconciliation_error(identifier, exc))\n        return observations\n\n    def active_ids(self) -> list[str]:\n        \"\"\"Return only commitments whose latest reconciled state remains MONITORING.\"\"\"\n        self.check_all()\n        with self.connect() as con:\n            return [\n                str(row[0])\n                for row in con.execute(\n                    \"SELECT id FROM commitments WHERE status='MONITORING' ORDER BY id\"\n                )\n            ]\n\n    def wait_terminal(\n        self,\n        identifier: str,\n        *,\n        timeout_seconds: float,\n        poll_seconds: float = 0.25,\n    ) -> dict[str, Any]:\n        if timeout_seconds <= 0 or poll_seconds <= 0:\n            raise ValueError(\"positive timeout_seconds and poll_seconds required\")\n        started = time.monotonic()\n        checks = 0\n        while True:\n            observation = self.check(identifier)\n            checks += 1\n            if observation[\"terminal\"]:\n                return {\n                    \"schema\": \"kch.commitment-wait.v0.1.0\",\n                    \"gate\": \"TERMINAL_OBSERVED\",\n                    \"terminal\": True,\n                    \"checks\": checks,\n                    \"elapsed_seconds\": round(time.monotonic() - started, 6),\n                    \"observation\": observation,\n                    \"relaunch_performed\": False,\n                }\n            elapsed = time.monotonic() - started\n            if elapsed >= timeout_seconds:\n                return {\n                    \"schema\": \"kch.commitment-wait.v0.1.0\",\n                    \"gate\": \"WAIT_TIMEOUT_COMMITMENT_REMAINS_ACTIVE\",\n                    \"terminal\": False,\n                    \"checks\": checks,\n                    \"elapsed_seconds\": round(elapsed, 6),\n                    \"observation\": observation,\n                    \"relaunch_performed\": False,\n                }\n            time.sleep(min(poll_seconds, max(0.0, timeout_seconds - elapsed)))\n\n    def evidence(self, identifier: str) -> dict[str, Any]:\n        observation = self.check(identifier)\n        with self.connect() as con:\n            row = con.execute(\"SELECT * FROM commitments WHERE id=?\", (identifier,)).fetchone()\n        if row is None:\n            raise KeyError(identifier)\n        payload = {\n            \"schema\": \"kch.commitment-evidence.v0.1.0\",\n            \"commitment_id\": identifier,\n            \"label\": row[\"label\"],\n            \"mode\": row[\"mode\"],\n            \"worker_pid\": int(row[\"pid\"]),\n            \"process_token\": row[\"process_token\"] or None,\n            \"created_at\": row[\"created_at\"],\n            \"updated_at\": row[\"updated_at\"],\n            \"status\": row[\"status\"],\n            \"monitor_errors\": int(row[\"monitor_errors\"]),\n            \"check_sequence\": int(row[\"check_seq\"]),\n            \"latest_observation\": observation,\n            \"claim_ceiling\": (\n                \"LOCAL_OWNED_OR_REGISTERED_PROCESS_TERMINAL_EVIDENCE_ONLY_\"\n                \"NOT_GENERAL_EXECUTION_SUCCESS\"\n            ),\n        }\n        return {**payload, \"sha256\": canonical_sha256(payload)}\n\n    def start(self) -> dict[str, Any]:\n        if self.thread and self.thread.is_alive():\n            return {\"running\": True, \"already_running\": True}\n        self.stop_event.clear()\n        self.thread = threading.Thread(\n            target=self._loop,\n            daemon=True,\n            name=\"kch-commitment-monitor\",\n        )\n        self.thread.start()\n        return {\"running\": True, \"already_running\": False}\n\n    def _loop(self) -> None:\n        while not self.stop_event.wait(1):\n            try:\n                with self.connect() as con:\n                    due = [\n                        str(row[0])\n                        for row in con.execute(\n                            \"SELECT id FROM commitments WHERE status='MONITORING' \"\n                            \"AND ?-last_check>=poll\",\n                            (time.time(),),\n                        )\n                    ]\n            except sqlite3.Error:\n                continue\n            for identifier in due:\n                try:\n                    self.check(identifier)\n                except Exception as exc:  # noqa: BLE001 - keep the monitor alive\n                    self._record_reconciliation_error(identifier, exc)\n\n    def stop(self, timeout: float = 5) -> dict[str, Any]:\n        self.stop_event.set()\n        if self.thread:\n            self.thread.join(timeout)\n        return {\"running\": bool(self.thread and self.thread.is_alive())}\n\n    def status(self) -> dict[str, Any]:\n        with self.connect() as con:\n            counts = {\n                str(row[0]): int(row[1])\n                for row in con.execute(\"SELECT status,COUNT(*) FROM commitments GROUP BY status\")\n            }\n            monitor_errors = int(\n                con.execute(\"SELECT COALESCE(SUM(monitor_errors),0) FROM commitments\").fetchone()[0]\n            )\n        return {\n            \"schema\": \"kch.commitment-monitor-status.v0.2.0\",\n            \"background_running\": bool(self.thread and self.thread.is_alive()),\n            \"counts\": counts,\n            \"monitor_errors\": monitor_errors,\n            \"terminal_receipt_schema\": \"kch.monitored-process-terminal.v0.1.0\",\n            \"claim_ceiling\": (\n                \"LOCAL_PROCESS_IDENTITY_LOG_ARTIFACT_AND_TERMINAL_RECEIPT_MONITORING_ONLY\"\n            ),\n        }\n",
+        "receipt_payload_sha256": "dc8d41607ecccd2fb51a186344bac3a91e040ba20ed1f2490ddb74976f7b7bd4",
+        "ordinal": 1,
+        "requested_path": "src/kch_studio/commitment_monitor.py",
+        "expected_evidence_spans": [
+          "STARTUP_RECEIPT_TIMEOUT_SECONDS = 5.0",
+          "worker_pid_source = \"CANONICAL_RUNNING_RECEIPT\""
+        ],
+        "exact_span_evidence": {
+          "schema": "kch.exact-span-evidence.v0.1.0",
+          "gate": "PASS",
+          "all_expected_spans_found": true,
+          "spans": [
+            {
+              "expected_text": "STARTUP_RECEIPT_TIMEOUT_SECONDS = 5.0",
+              "expected_text_sha256": "29a8610e136df8c37ac7275b65d4aaff9d073b54c3fc944b6836fdd07183ad19",
+              "occurrence_count": 1,
+              "found": true,
+              "locations": [
+                {
+                  "start_character": 3965,
+                  "end_character_exclusive": 4002,
+                  "start_line": 133,
+                  "end_line": 133
+                }
+              ]
+            },
+            {
+              "expected_text": "worker_pid_source = \"CANONICAL_RUNNING_RECEIPT\"",
+              "expected_text_sha256": "9561842c26ff37719f53e8292768247d4a1e622e8c7fcd953b243ed4befb2b1f",
+              "occurrence_count": 1,
+              "found": true,
+              "locations": [
+                {
+                  "start_character": 14222,
+                  "end_character_exclusive": 14269,
+                  "start_line": 384,
+                  "end_line": 384
+                }
+              ]
+            }
+          ],
+          "semantic_claim_allowed": true
+        }
+      },
+      {
+        "schema": "kch.full-read-file-receipt.v0.2.0",
+        "gate": "PASS",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\monitored_process_worker.py",
+        "method": "TWO_INDEPENDENT_PATH_READ_BYTES",
+        "byte_count": 6052,
+        "physical_lines": 166,
+        "physical_line_method": "PYTHON_STR_SPLITLINES_UTF8_SIG",
+        "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0",
+        "verification_sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0",
+        "stable_across_independent_reads": true,
+        "expected_sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0",
+        "expected_sha256_match": true,
+        "encoding": "utf-8-sig",
+        "binary": false,
+        "max_return_bytes": 1048576,
+        "complete_bytes_read_by_tool": true,
+        "complete_content_transported": true,
+        "fragment_substitution_used": false,
+        "permission": {
+          "authorized": true,
+          "basis": "BOUNDED_STABLE_ROOT",
+          "authority_created": false
+        },
+        "complete_read_claim_allowed": true,
+        "authority_created": false,
+        "content": "from __future__ import annotations\n\nimport hashlib\nimport json\nimport os\nimport subprocess\nimport sys\nimport time\nimport uuid\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any\n\n\ndef now() -> str:\n    return datetime.now(UTC).isoformat().replace(\"+00:00\", \"Z\")\n\n\ndef canonical_sha256(payload: dict[str, Any]) -> str:\n    body = dict(payload)\n    body.pop(\"sha256\", None)\n    encoded = json.dumps(\n        body,\n        ensure_ascii=False,\n        sort_keys=True,\n        separators=(\",\", \":\"),\n    ).encode(\"utf-8\")\n    return hashlib.sha256(encoded).hexdigest()\n\n\ndef file_metadata(path: Path) -> dict[str, Any]:\n    if not path.is_file():\n        return {\"exists\": False, \"bytes\": None, \"sha256\": None}\n    digest = hashlib.sha256()\n    size = 0\n    with path.open(\"rb\") as source:\n        for block in iter(lambda: source.read(1024 * 1024), b\"\"):\n            digest.update(block)\n            size += len(block)\n    return {\"exists\": True, \"bytes\": size, \"sha256\": digest.hexdigest()}\n\n\ndef atomic_json(path: Path, payload: dict[str, Any]) -> dict[str, Any]:\n    sealed = {**payload, \"sha256\": canonical_sha256(payload)}\n    temporary = path.with_name(f\".{path.name}.{os.getpid()}.{uuid.uuid4().hex}.tmp\")\n    temporary.write_text(\n        json.dumps(sealed, ensure_ascii=False, indent=2) + \"\\n\",\n        encoding=\"utf-8\",\n        newline=\"\\n\",\n    )\n    os.replace(temporary, path)\n    return sealed\n\n\ndef validate_request(path: Path) -> dict[str, Any]:\n    request = json.loads(path.read_text(encoding=\"utf-8\"))\n    if request.get(\"schema\") != \"kch.monitored-process-request.v0.1.0\":\n        raise ValueError(\"unsupported monitored-process request schema\")\n    if request.get(\"sha256\") != canonical_sha256(request):\n        raise ValueError(\"monitored-process request canonical hash mismatch\")\n    argv = request.get(\"argv\")\n    if not isinstance(argv, list) or not argv or not all(isinstance(x, str) and x for x in argv):\n        raise ValueError(\"request argv must be a non-empty string array\")\n    return request\n\n\ndef run(request_path: Path) -> int:\n    request: dict[str, Any] | None = None\n    terminal_path: Path | None = None\n    started_monotonic = time.monotonic()\n    try:\n        request = validate_request(request_path)\n        terminal_path = Path(request[\"terminal_path\"])\n        running_path = Path(request[\"running_path\"])\n        stdout_path = Path(request[\"stdout_path\"])\n        stderr_path = Path(request[\"stderr_path\"])\n        cwd = Path(request[\"cwd\"])\n        if not cwd.is_dir():\n            raise FileNotFoundError(cwd)\n        environment = os.environ.copy()\n        environment.update({str(k): str(v) for k, v in request[\"environment\"].items()})\n        started_at = now()\n        with stdout_path.open(\"wb\") as stdout, stderr_path.open(\"wb\") as stderr:\n            process = subprocess.Popen(\n                request[\"argv\"],\n                cwd=str(cwd),\n                env=environment,\n                stdin=subprocess.DEVNULL,\n                stdout=stdout,\n                stderr=stderr,\n                shell=False,\n                close_fds=True,\n            )\n            atomic_json(\n                running_path,\n                {\n                    \"schema\": \"kch.monitored-process-running.v0.1.0\",\n                    \"commitment_id\": request[\"commitment_id\"],\n                    \"worker_pid\": os.getpid(),\n                    \"child_pid\": process.pid,\n                    \"started_at\": started_at,\n                    \"request_sha256\": request[\"sha256\"],\n                },\n            )\n            exit_code = process.wait()\n        finished_at = now()\n        artifacts = {\n            str(Path(path)): file_metadata(Path(path))\n            for path in request[\"expected_artifacts\"]\n        }\n        atomic_json(\n            terminal_path,\n            {\n                \"schema\": \"kch.monitored-process-terminal.v0.1.0\",\n                \"commitment_id\": request[\"commitment_id\"],\n                \"worker_pid\": os.getpid(),\n                \"child_pid\": process.pid,\n                \"request_sha256\": request[\"sha256\"],\n                \"argv\": request[\"argv\"],\n                \"cwd\": str(cwd),\n                \"environment_keys\": request[\"environment_keys\"],\n                \"started_at\": started_at,\n                \"finished_at\": finished_at,\n                \"duration_seconds\": round(time.monotonic() - started_monotonic, 6),\n                \"status\": \"EXIT_ZERO\" if exit_code == 0 else \"EXIT_NONZERO\",\n                \"exit_code\": exit_code,\n                \"stdout\": file_metadata(stdout_path),\n                \"stderr\": file_metadata(stderr_path),\n                \"artifacts\": artifacts,\n                \"shell_used\": False,\n            },\n        )\n        return 0\n    except Exception as exc:  # noqa: BLE001 - the terminal failure receipt is the contract\n        if terminal_path is None and request is not None and request.get(\"terminal_path\"):\n            terminal_path = Path(request[\"terminal_path\"])\n        if terminal_path is not None:\n            atomic_json(\n                terminal_path,\n                {\n                    \"schema\": \"kch.monitored-process-terminal.v0.1.0\",\n                    \"commitment_id\": request.get(\"commitment_id\") if request else None,\n                    \"worker_pid\": os.getpid(),\n                    \"child_pid\": None,\n                    \"request_sha256\": request.get(\"sha256\") if request else None,\n                    \"started_at\": None,\n                    \"finished_at\": now(),\n                    \"duration_seconds\": round(time.monotonic() - started_monotonic, 6),\n                    \"status\": \"WORKER_ERROR\",\n                    \"exit_code\": None,\n                    \"error_type\": type(exc).__name__,\n                    \"error\": str(exc)[:500],\n                    \"shell_used\": False,\n                },\n            )\n        return 70\n\n\ndef main() -> int:\n    if len(sys.argv) != 2:\n        return 64\n    return run(Path(sys.argv[1]).resolve())\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n",
+        "receipt_payload_sha256": "435cc60b3f8548653466b14c22eaa039c77730d938a7ef8c8e4cadbb94bc5a3b",
+        "ordinal": 2,
+        "requested_path": "src/kch_studio/monitored_process_worker.py",
+        "expected_evidence_spans": [
+          "\"schema\": \"kch.monitored-process-running.v0.1.0\","
+        ],
+        "exact_span_evidence": {
+          "schema": "kch.exact-span-evidence.v0.1.0",
+          "gate": "PASS",
+          "all_expected_spans_found": true,
+          "spans": [
+            {
+              "expected_text": "\"schema\": \"kch.monitored-process-running.v0.1.0\",",
+              "expected_text_sha256": "e2714ae2649cd220f73b098546f4cea6e9928e3fe075f3d833619a614956949d",
+              "occurrence_count": 1,
+              "found": true,
+              "locations": [
+                {
+                  "start_character": 3228,
+                  "end_character_exclusive": 3277,
+                  "start_line": 97,
+                  "end_line": 97
+                }
+              ]
+            }
+          ],
+          "semantic_claim_allowed": true
+        }
+      },
+      {
+        "schema": "kch.full-read-file-receipt.v0.2.0",
+        "gate": "PASS",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\src\\kch_studio\\advanced_runtime.py",
+        "method": "TWO_INDEPENDENT_PATH_READ_BYTES",
+        "byte_count": 72282,
+        "physical_lines": 1674,
+        "physical_line_method": "PYTHON_STR_SPLITLINES_UTF8_SIG",
+        "sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1",
+        "verification_sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1",
+        "stable_across_independent_reads": true,
+        "expected_sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1",
+        "expected_sha256_match": true,
+        "encoding": "utf-8-sig",
+        "binary": false,
+        "max_return_bytes": 1048576,
+        "complete_bytes_read_by_tool": true,
+        "complete_content_transported": true,
+        "fragment_substitution_used": false,
+        "permission": {
+          "authorized": true,
+          "basis": "BOUNDED_STABLE_ROOT",
+          "authority_created": false
+        },
+        "complete_read_claim_allowed": true,
+        "authority_created": false,
+        "content": "from __future__ import annotations\n\nimport os\nimport uuid\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, Callable\n\nfrom .account_broker import AccountPermissionBroker\nfrom .audio_hub import AudioHub\nfrom .checkpoints import CheckpointManager\nfrom .clipboard_hub import ClipboardHub\nfrom .commitment_monitor import CommitmentMonitor\nfrom .constitutional import ConstitutionalWorkspace\nfrom .construct_mode import ConstructMode\nfrom .continuity_guard import (\n    AikidoLearningForge,\n    ContinuityAndBurdenGovernor,\n    ContinuousPeriodLedgerCompiler,\n    RemoteTransportPreflight,\n    SourceFitnessGate,\n    TemporalScaleContractCompiler,\n)\nfrom .diction_learning import DictionLearning\nfrom .federated_runtime import KwanPromptsRuntime, PHLRuntime, RigorRuntime, SCORuntime\nfrom .full_read_contract import FullReadService\nfrom .installation import ConsentDecision, ConsentPolicy\nfrom .kwandata import KwanData\nfrom .launcher import Capability, ProactiveLauncher\nfrom .mis_service import MISService\nfrom .operational_surface import OPERATIONAL_TOOLS, bind_operational_handlers\nfrom .permissions import PermissionGovernor\nfrom .persistence import PersistenceHub\nfrom .proactive import ProgrammedPolicy\nfrom .recovery import RecoveryVault\nfrom .response_authority import ResponseAuthorityGovernor\nfrom .response_modes import ResponseModeManager\nfrom .safeguards import RiskAdvisor\nfrom .scheduler import KCHScheduler\nfrom .surface_contract import ADVANCED_RUNTIME_REFERENCES, audit_strategic_surface\nfrom .universal_text import PlanBuildEngine\nfrom .workbench_suite import WorkbenchSuite\nfrom .workbench_surface import WORKBENCH_TOOLS, bind_workbench_handlers\n\n\ndef schema(properties: dict[str, Any], required: list[str]) -> dict[str, Any]:\n    return {\n        \"type\": \"object\",\n        \"properties\": properties,\n        \"required\": required,\n        \"additionalProperties\": False,\n    }\n\n\nS = {\"type\": \"string\"}\nB = {\"type\": \"boolean\"}\nI = {\"type\": \"integer\", \"minimum\": 1}  # noqa: E741 - compact JSON-schema atom\nO = {\"type\": \"object\"}  # noqa: E741 - compact JSON-schema atom\nA = {\"type\": \"array\"}\n\n\ndef tool(\n    name: str,\n    title: str,\n    description: str,\n    properties: dict[str, Any],\n    required: list[str],\n    *,\n    read_only: bool,\n) -> dict[str, Any]:\n    return {\n        \"name\": name,\n        \"title\": title,\n        \"description\": description,\n        \"inputSchema\": schema(properties, required),\n        \"readOnly\": read_only,\n    }\n\n\nADVANCED_TOOLS = [\n    tool(\n        \"kch_next_status\",\n        \"Inspect integrated KCH-next layers\",\n        \"Aggregate constitutional, launcher, recovery, data, permission, persistence, account, clipboard, audio, scheduler and MIS state.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\"continuity_status\", \"Inspect continuity and burden governance\", \"Verify mission continuity, recurrent-failure controls and the append-only harm ledger.\", {}, [], read_only=True),\n    tool(\"continuity_reading_adjudicate\", \"Adjudicate lossless source reading\", \"Forbid a complete-reading claim unless pagination reached EOF and every material truncation was recovered.\", {\"receipt\": O}, [\"receipt\"], read_only=False),\n    tool(\"full_read_file\", \"Read one complete source file\", \"Read every byte twice, transport the complete UTF-8 text when it fits the declared bound, and return a verifiable receipt. External paths require explicit permission; fragments never satisfy the claim.\", {\"path\": S, \"max_return_bytes\": {\"type\": \"integer\", \"minimum\": 1, \"maximum\": 5242880}, \"expected_sha256\": S}, [\"path\"], read_only=True),\n    tool(\"full_read_batch\", \"Read an ordered complete source batch\", \"Generate one machine-owned ordered inventory with two-read receipts and optional exact source-span evidence. No agent-authored hash transcription is required.\", {\"items\": A, \"requested_order\": S, \"max_return_bytes_per_file\": {\"type\": \"integer\", \"minimum\": 1, \"maximum\": 5242880}, \"max_batch_return_bytes\": {\"type\": \"integer\", \"minimum\": 1, \"maximum\": 5242880}}, [\"items\"], read_only=True),\n    tool(\"full_read_verify_batch\", \"Verify a full-read batch against source\", \"Re-read every source file and reject a canonically self-consistent batch whose hashes, content, order, ordinals or exact-span evidence were corrupted after tool execution.\", {\"batch\": O}, [\"batch\"], read_only=True),\n    tool(\"continuity_mission_set\", \"Enact governing mission\", \"Freeze the user-authorized governing objective and its authority source.\", {\"objective\": S, \"authority_source\": S}, [\"objective\", \"authority_source\"], read_only=False),\n    tool(\"continuity_harm_record\", \"Record exact user burden evidence\", \"Append exact user-reported harm without inferring a medical diagnosis or rewriting historical evidence.\", {\"record\": O}, [\"record\"], read_only=False),\n    tool(\"continuity_action_preflight\", \"Gate an action against recurrent harm\", \"Fail closed on stale, non-material, mission-drifting, uncustodied, incompletely-read or recurrently unsafe work.\", {\"action\": O}, [\"action\"], read_only=False),\n    tool(\"continuity_integrity_verify\", \"Verify continuity ledger\", \"Verify the complete hash chain of continuity, burden and Aikido events.\", {}, [], read_only=True),\n    tool(\"continuity_protocol_register\", \"Register verified protocol\", \"Register a prehashed, explicitly verified historical protocol for mandatory reuse.\", {\"protocol\": O}, [\"protocol\"], read_only=False),\n    tool(\"continuity_protocol_resolve\", \"Resolve verified protocols\", \"Find matching verified protocols before fragments or replacement designs are allowed.\", {\"tags\": A}, [\"tags\"], read_only=True),\n    tool(\"aikido_transform\", \"Convert adverse evidence into KCH capability\", \"Synthesize a positive capability, dated protocol, skill and operator candidate, OBL/PHL envelope and regression contract from one prehashed incident; never auto-promotes it.\", {\"incident\": O}, [\"incident\"], read_only=False),\n    tool(\"aikido_catalog\", \"Inspect Aikido capability packages\", \"List prehashed adverse-to-capability transformations and their non-promoted status.\", {}, [], read_only=True),\n    tool(\"temporal_scale_compile\", \"Compile temporal learning contract\", \"Keep timestamp resolution, prediction horizon, event count, minimum period and update cadence distinct; enforce minimum complete period to minimum complete period.\", {\"specification\": O}, [\"specification\"], read_only=True),\n    tool(\"continuous_period_ledger_compile\", \"Compile consecutive minimum-period ledger\", \"Require every minimum period in the target interval and type it as OBSERVED, NO_EVENT or NOT_ESTIMABLE; block compressed calendars.\", {\"specification\": O}, [\"specification\"], read_only=True),\n    tool(\"source_fitness_adjudicate\", \"Adjudicate source fitness before learning\", \"Block training when time-window scope, continuous coverage, observed support or jurisdiction support is insufficient.\", {\"receipt\": O}, [\"receipt\"], read_only=True),\n    tool(\"commitment_monitor_register\", \"Register external process monitoring\", \"Persist an external PID, its OS creation identity, logs, artifacts and optional terminal receipt. Artifact presence alone never proves exit success.\", {\"label\": S, \"pid\": I, \"logs\": A, \"artifacts\": A, \"poll_seconds\": I, \"terminal_receipt\": S, \"expected_exit_codes\": A}, [\"label\", \"pid\", \"logs\", \"artifacts\"], read_only=False),\n    tool(\"commitment_monitor_launch\", \"Launch a durably supervised process\", \"Launch a shell-free argv through a dedicated worker that owns stdout, stderr and a canonically sealed terminal receipt. Secret-like environment overrides are rejected.\", {\"label\": S, \"argv\": A, \"cwd\": S, \"environment\": O, \"expected_artifacts\": A, \"expected_exit_codes\": A, \"poll_seconds\": I}, [\"label\", \"argv\", \"cwd\"], read_only=False),\n    tool(\"commitment_monitor_check\", \"Reconcile monitoring commitment\", \"Reconcile process identity, logs, artifacts and terminal receipt now; terminal alerting is exactly once and never relaunches the process.\", {\"commitment_id\": S}, [\"commitment_id\"], read_only=False),\n    tool(\"commitment_monitor_wait_terminal\", \"Wait boundedly for exact terminal evidence\", \"Follow the same registered execution until terminal evidence or a bounded wait timeout. Timeout keeps the commitment active and never kills or relaunches it.\", {\"commitment_id\": S, \"timeout_seconds\": {\"type\": \"number\", \"exclusiveMinimum\": 0}, \"poll_seconds\": {\"type\": \"number\", \"exclusiveMinimum\": 0}}, [\"commitment_id\", \"timeout_seconds\"], read_only=False),\n    tool(\"commitment_monitor_evidence\", \"Seal current monitoring evidence\", \"Return a canonically sealed evidence receipt with process identity, terminal status, exit code and hashed log metadata.\", {\"commitment_id\": S}, [\"commitment_id\"], read_only=False),\n    tool(\"commitment_monitor_status\", \"Inspect promised monitoring\", \"Inspect background monitoring, reconciliation errors and all terminal states without promoting them into general execution claims.\", {}, [], read_only=True),\n    tool(\"response_authority_register\", \"Register response authority constraint\", \"Freeze an explicit mission, terminology, provenance, jurisdiction, experiment-boundary or rejected-frame constraint with its authority source.\", {\"constraint\": O}, [\"constraint\"], read_only=False),\n    tool(\"response_authority_adjudicate\", \"Adjudicate candidate response before release\", \"Fail closed when structured response claims violate active semantic authority, conflate experiments, promote scope, add off-mission classifications or promise unregistered monitoring.\", {\"candidate\": O}, [\"candidate\"], read_only=False),\n    tool(\"response_authority_status\", \"Inspect response authority governance\", \"Inspect active response constraints, hash-chain integrity and the explicit host-interposition evidence boundary.\", {}, [], read_only=True),\n    tool(\"remote_transport_preflight\", \"Verify remote payload before launch\", \"Block empty, shell-mutated, stale-marker or hash-mismatched remote wrappers before any process starts.\", {\"receipt\": O}, [\"receipt\"], read_only=True),\n    tool(\n        \"constitution_state\",\n        \"Read constitutional workspace\",\n        \"Read the ranked, nested, connected user constitution. Models cannot mutate it.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"constitution_effective\",\n        \"Compile effective constitution\",\n        \"Compile active constitutional boxes in rank order without changing them.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"constitution_propose\",\n        \"Propose constitutional amendment\",\n        \"Store a model proposal separately; it does not enact or alter constitutional authority.\",\n        {\"proposal\": O},\n        [\"proposal\"],\n        read_only=False,\n    ),\n    tool(\n        \"programmed_policy_status\",\n        \"Read programmed proactive policy\",\n        \"Inspect direct if/then/else rules and startup-announcement preference.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"programmed_policy_evaluate\",\n        \"Evaluate proactive event\",\n        \"Evaluate every applicable programmed rule; does not execute it.\",\n        {\"event\": O},\n        [\"event\"],\n        read_only=True,\n    ),\n    tool(\n        \"proactive_launcher_status\",\n        \"Inspect background launcher\",\n        \"Inspect background state, capability coverage, and blind spots.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"proactive_event_publish\",\n        \"Publish proactive event\",\n        \"Queue an event for background governed dispatch.\",\n        {\"event\": O},\n        [\"event\"],\n        read_only=False,\n    ),\n    tool(\n        \"recovery_checkpoint\",\n        \"Create recovery checkpoint\",\n        \"Persist an optional event payload and snapshot all current master-vault assets.\",\n        {\"label\": S, \"payload\": O},\n        [\"label\"],\n        read_only=False,\n    ),\n    tool(\n        \"recovery_verify\",\n        \"Verify recovery chains\",\n        \"Verify append-only master recovery chains.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"risk_assess\",\n        \"Advise on risky change\",\n        \"Warn about dependency, history, authority, external-write, and lossy-conversion risk; does not censor.\",\n        {\"proposal\": O},\n        [\"proposal\"],\n        read_only=True,\n    ),\n    tool(\n        \"plan_build_plan\",\n        \"Plan universal data build\",\n        \"Persist a reviewable ingest/transform/restore plan without executing it.\",\n        {\"operations\": A},\n        [\"operations\"],\n        read_only=False,\n    ),\n    tool(\n        \"plan_build_execute\",\n        \"Execute universal data plan\",\n        \"Execute a previously persisted plan inside the KCH runtime with original-byte custody.\",\n        {\"plan_id\": S},\n        [\"plan_id\"],\n        read_only=False,\n    ),\n    tool(\n        \"persistence_status\",\n        \"Inspect chat persistence\",\n        \"Inspect exact KCH/SCO custody coverage and external-host transport limits.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"persistence_chat_create\",\n        \"Create persistent chat\",\n        \"Create a KCH chat record with explicit platform and capture mode.\",\n        {\"platform\": S, \"title\": S, \"native_id\": S, \"source_uri\": S, \"capture_mode\": S},\n        [\"platform\"],\n        read_only=False,\n    ),\n    tool(\n        \"persistence_turn_append\",\n        \"Append persistent chat turn\",\n        \"Append exact JSON payload to a chat hash chain.\",\n        {\"chat_id\": S, \"role\": S, \"payload\": {}, \"timestamp\": S},\n        [\"chat_id\", \"role\", \"payload\"],\n        read_only=False,\n    ),\n    tool(\n        \"persistence_superchat_create\",\n        \"Create SCO manifest\",\n        \"Orchestrate existing chats without merging their context or identity.\",\n        {\"title\": S, \"members\": A},\n        [\"title\", \"members\"],\n        read_only=False,\n    ),\n    tool(\n        \"kwandata_status\",\n        \"Inspect KwanData\",\n        \"Inspect source, record, tag, supertag, program and layer counts.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"kwandata_ingest\",\n        \"Ingest into KwanData\",\n        \"Ingest an authorized local file with exact source custody and deterministic structuring.\",\n        {\"source\": S, \"program_id\": S},\n        [\"source\"],\n        read_only=False,\n    ),\n    tool(\n        \"kwandata_query\",\n        \"Query KwanData\",\n        \"Query structured records and tags.\",\n        {\"query\": S, \"limit\": I},\n        [\"query\"],\n        read_only=True,\n    ),\n    tool(\n        \"permission_status\",\n        \"Inspect permission governor\",\n        \"Inspect governed capability domains and receipt counts.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"permission_check\",\n        \"Evaluate permission\",\n        \"Evaluate and record one actor/resource/operation decision.\",\n        {\"actor\": S, \"resource\": S, \"operation\": S, \"session_id\": S},\n        [\"actor\", \"resource\", \"operation\"],\n        read_only=False,\n    ),\n    tool(\n        \"scheduler_status\",\n        \"Inspect scheduler\",\n        \"Inspect agendas, active one-shot/interval/cron schedules, and occurrence history.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"scheduler_create\",\n        \"Create finite schedule\",\n        \"Create a persisted schedule that publishes events to the proactive launcher.\",\n        {\n            \"name\": S,\n            \"kind\": S,\n            \"expression\": S,\n            \"event\": O,\n            \"agenda_id\": S,\n            \"timezone\": S,\n            \"announce\": B,\n        },\n        [\"name\", \"kind\", \"expression\", \"event\"],\n        read_only=False,\n    ),\n    tool(\n        \"clipboard_status\",\n        \"Inspect superclipboard\",\n        \"Inspect clipboard monitor, persistent items, and post-it database.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"clipboard_capture_text\",\n        \"Capture clipboard text\",\n        \"Capture explicit text into the local clipboard history with secret detection.\",\n        {\"text\": S, \"persist\": B},\n        [\"text\"],\n        read_only=False,\n    ),\n    tool(\n        \"clipboard_search\",\n        \"Search clipboard and post-its\",\n        \"Search non-secret previews and post-it text.\",\n        {\"query\": S, \"limit\": I},\n        [\"query\"],\n        read_only=True,\n    ),\n    tool(\n        \"clipboard_postit_create\",\n        \"Create persistent post-it\",\n        \"Create a versioned post-it from text or a clipboard item.\",\n        {\"title\": S, \"body\": S, \"source_item_id\": S, \"parent_postit_id\": S, \"color\": S, \"tags\": A},\n        [],\n        read_only=False,\n    ),\n    tool(\n        \"clipboard_postit_edit\",\n        \"Edit persistent post-it\",\n        \"Autosave a post-it revision.\",\n        {\"postit_id\": S, \"title\": S, \"body\": S, \"color\": S},\n        [\"postit_id\"],\n        read_only=False,\n    ),\n    tool(\n        \"clipboard_explanation_context\",\n        \"Read selected context\",\n        \"Return one user-selected clipboard item for ad hoc explanation.\",\n        {\"item_id\": S},\n        [\"item_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"account_broker_status\",\n        \"Inspect temporal account broker\",\n        \"Inspect providers, finite duration classes and local/remote revocation limits.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"account_permission_request\",\n        \"Request finite account access\",\n        \"Create a terminal-first, finite-duration account permission request; does not approve or authenticate.\",\n        {\"provider\": S, \"scopes\": A, \"purpose\": S, \"account_hint\": S},\n        [\"provider\", \"scopes\", \"purpose\"],\n        read_only=False,\n    ),\n    tool(\n        \"audio_status\",\n        \"Inspect voice/audio hub\",\n        \"Inspect transcription, microphone and TTS backends without activating the microphone.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"audio_ingest_transcribe\",\n        \"Ingest and transcribe audio\",\n        \"Custody an authorized audio clip and transcribe with an available local backend.\",\n        {\"source\": S, \"culture\": S, \"consent_basis\": S},\n        [\"source\", \"consent_basis\"],\n        read_only=False,\n    ),\n    tool(\n        \"voice_notify\",\n        \"Speak proactive notice\",\n        \"Preserve a KCH message transcript and synthesize it locally when available.\",\n        {\"text\": S, \"culture\": S},\n        [\"text\"],\n        read_only=False,\n    ),\n    tool(\n        \"diction_status\",\n        \"Inspect diction learning\",\n        \"Inspect OBL lexicon, resolution and PHL-shadow correction counts.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"diction_resolve\",\n        \"Resolve transcription diction\",\n        \"Preserve raw text and compute an auditable normalized overlay.\",\n        {\"raw_transcription\": S, \"source_audio_id\": S},\n        [\"raw_transcription\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_full_status\",\n        \"Inspect full MIS integration\",\n        \"Distinguish real MIS mathematics from the formerly amputated KCH 0.11 surface.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_describe\",\n        \"Describe MIS service\",\n        \"Describe the full bounded MIS v0.3.1 mathematical service.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_exact_decide\",\n        \"Compute exact MIS decision\",\n        \"Compute a rational Bayesian loss decision for declared inputs; creates no execution authority.\",\n        {\"request\": O},\n        [\"request\"],\n        read_only=True,\n    ),\n    tool(\n        \"mis_historical_audit\",\n        \"Replay full MIS historical gate\",\n        \"Recompute the exact 480-record/60-ledger bounded historical audit.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_certificate_verify_full\",\n        \"Verify MIS certificate\",\n        \"Verify the packaged historical certificate or a supplied MIS certificate.\",\n        {\"certificate\": O},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_csi_lowering\",\n        \"Read MIS CSI lowering\",\n        \"Read and verify the bounded four-instruction CSI lowering with its operational limitation.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"kch_mode_status\",\n        \"Inspect PLAN/RUN/CONSTRUCT modes\",\n        \"Inspect the three canonical modes and the successor-only CONSTRUCT pointer.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"checkpoint_status\",\n        \"Inspect checkpoint persistence\",\n        \"Inspect structured and full checkpoint coverage without creating a checkpoint.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"checkpoint_estimate\",\n        \"Estimate checkpoint size\",\n        \"Calculate exact current logical bytes and warn before any full checkpoint.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"checkpoint_full_plan\",\n        \"Plan a full checkpoint\",\n        \"Create a warning-bearing plan; it does not create the large full checkpoint.\",\n        {\"label\": S},\n        [\"label\"],\n        read_only=False,\n    ),\n    tool(\n        \"rgg_status\",\n        \"Inspect Rigor Gradient Governor\",\n        \"Inspect all packaged rigor profiles and the shadow-only authority boundary.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"rgg_resolve_profile\",\n        \"Resolve rigor profile\",\n        \"Resolve purpose, audience and risk into a bounded RGG profile.\",\n        {\"request\": O},\n        [\"request\"],\n        read_only=True,\n    ),\n    tool(\n        \"rgg_adjudicate_action\",\n        \"Adjudicate governed action\",\n        \"Separate action permission from claim ceiling under an explicit RGG profile.\",\n        {\"request\": O},\n        [\"request\"],\n        read_only=True,\n    ),\n    tool(\n        \"rgg_audit_review\",\n        \"Audit three-plane review\",\n        \"Audit fact, claim and action judgments without erasing adverse evidence.\",\n        {\"request\": O},\n        [\"request\"],\n        read_only=True,\n    ),\n    tool(\n        \"rgg_transition_plan\",\n        \"Plan rigor transition\",\n        \"Plan a rigor-regime transition while preserving frozen parents.\",\n        {\"request\": O},\n        [\"request\"],\n        read_only=True,\n    ),\n    tool(\n        \"kwanprompts_status\",\n        \"Inspect KwanPrompts\",\n        \"Inspect the persistent message-governance service.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"kwanprompts_ingest\",\n        \"Ingest governed prompt\",\n        \"Persist a KwanPrompts message record without granting authority.\",\n        {\"record\": O},\n        [\"record\"],\n        read_only=False,\n    ),\n    tool(\n        \"kwanprompts_inspect\",\n        \"Inspect governed prompt\",\n        \"Read one KwanPrompts message and its provenance.\",\n        {\"message_id\": S},\n        [\"message_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"kwanprompts_adjudicate\",\n        \"Adjudicate governed prompt\",\n        \"Run KwanPrompts message-boundary adjudication.\",\n        {\"request\": O},\n        [\"request\"],\n        read_only=False,\n    ),\n    tool(\n        \"kwanprompts_kwandocs_envelope\",\n        \"Build KwanDocs envelope\",\n        \"Build a provenance-preserving thread envelope for KwanDocs.\",\n        {\"thread_id\": S},\n        [\"thread_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"kwanprompts_verify\",\n        \"Verify KwanPrompts ledger\",\n        \"Verify the complete KwanPrompts ledger.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"sco_status\",\n        \"Inspect sovereign SCO\",\n        \"Inspect SCO projections and integrity without merging member context.\",\n        {\"sco_id\": S},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"sco_create\",\n        \"Create sovereign SuperChat\",\n        \"Create a full SCO record under optimistic concurrency.\",\n        {\"record\": O, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"record\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_add_node\",\n        \"Add sovereign chat node\",\n        \"Add a native Codex, Cline, Cowork, OpenCode, ChatGPT or custom node without copying its memory.\",\n        {\"record\": O, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"record\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_retire_node\",\n        \"Retire SCO node\",\n        \"Retire a node while preserving ledger history.\",\n        {\"sco_id\": S, \"node_id\": S, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"sco_id\", \"node_id\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_add_edge\",\n        \"Add scoped SCO edge\",\n        \"Connect two independent chats through an explicit disclosure contract.\",\n        {\"record\": O, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"record\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_issue_work_order\",\n        \"Issue SCO work order\",\n        \"Issue a bounded subsistemic work order with no implicit authority transfer.\",\n        {\"record\": O, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"record\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_ingest_receipt\",\n        \"Ingest SCO receipt\",\n        \"Ingest a bounded node receipt while preserving failures, abstentions and limitations.\",\n        {\"record\": O, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"record\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_declare_conflict\",\n        \"Preserve SCO conflict\",\n        \"Register irreducible divergence between node receipts.\",\n        {\"record\": O, \"actor\": S, \"command_id\": S, \"expected_head_hash\": S},\n        [\"record\", \"actor\", \"command_id\", \"expected_head_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"sco_schedule\",\n        \"Schedule ready SCO work\",\n        \"Compute dependency-ready work orders without dispatching external chats.\",\n        {\"sco_id\": S},\n        [\"sco_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"sco_graph_diagnostics\",\n        \"Diagnose SCO graph\",\n        \"Inspect cycles, reachability and orchestration consistency.\",\n        {\"sco_id\": S},\n        [\"sco_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"sco_export_bundle\",\n        \"Export SCO bundle\",\n        \"Export a context-separated orchestration bundle.\",\n        {\"sco_id\": S},\n        [\"sco_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"sco_dispatch_envelopes\",\n        \"Build SCO dispatch envelopes\",\n        \"Build bounded per-node dispatch envelopes; a host bridge must transmit them.\",\n        {\"sco_id\": S},\n        [\"sco_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"phl_status\",\n        \"Inspect authorized PHL\",\n        \"Inspect the authorized but possibly untrained PHL capability and both linked ledgers.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"phl_decision_register\",\n        \"Register PHL-reviewable decision\",\n        \"Register a conformant decision in both effective and learning ledgers; this does not train PHL.\",\n        {\"record\": O},\n        [\"record\"],\n        read_only=False,\n    ),\n    tool(\n        \"phl_decisions_list\",\n        \"List PHL decisions\",\n        \"List reviewable decisions without starting a PHL session.\",\n        {\"component\": S, \"reviewed\": B},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"phl_session_start\",\n        \"Start exclusive PHL session\",\n        \"Start linked effective and learning PHL sessions under one of the four explicit consent choices.\",\n        {\n            \"trigger\": S,\n            \"consent\": {\n                \"type\": \"string\",\n                \"enum\": [\"YES\", \"NO\", \"NEVER_THIS_SESSION\", \"ALWAYS_THIS_SESSION\"],\n            },\n        },\n        [\"trigger\", \"consent\"],\n        read_only=False,\n    ),\n    tool(\n        \"phl_score\",\n        \"Record user PHL score\",\n        \"Record an exact 000..100 user-authored score as future-only feedback.\",\n        {\n            \"public_session_id\": S,\n            \"decision_id\": S,\n            \"score_display\": S,\n            \"contextual_text\": S,\n            \"correction_text\": S,\n            \"user_authored\": B,\n            \"consent\": {\n                \"type\": \"string\",\n                \"enum\": [\"YES\", \"NO\", \"NEVER_THIS_SESSION\", \"ALWAYS_THIS_SESSION\"],\n            },\n        },\n        [\"public_session_id\", \"decision_id\", \"score_display\", \"user_authored\", \"consent\"],\n        read_only=False,\n    ),\n    tool(\n        \"phl_packet_compile\",\n        \"Compile PHL training packet\",\n        \"Compile a future-only packet; activation remains prohibited pending replay and user approval.\",\n        {\"public_session_id\": S},\n        [\"public_session_id\"],\n        read_only=False,\n    ),\n    tool(\n        \"phl_session_close\",\n        \"Close exclusive PHL session\",\n        \"Close both linked ledgers and release the ordinary-work mutation lock.\",\n        {\"public_session_id\": S},\n        [\"public_session_id\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_integrity_verify\",\n        \"Verify MIS federation\",\n        \"Verify the MIS event chain, certificates, prospective ledgers and reviewable-decision projections.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_atoms_list\",\n        \"List MIS semantic atoms\",\n        \"List canonical and user-declared semantic atoms as compositional CSI material.\",\n        {\"kind\": S},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_atom_resolve\",\n        \"Resolve MIS semantic atom\",\n        \"Resolve a language skin to one stable semantic atom.\",\n        {\"skin\": S, \"language\": S},\n        [\"skin\"],\n        read_only=True,\n    ),\n    tool(\n        \"mis_atom_register\",\n        \"Register MIS semantic atom\",\n        \"Register a user-authored semantic atom without changing frozen MIS bytes.\",\n        {\"atom_id\": S, \"kind\": S, \"skins\": O, \"user_authored\": B},\n        [\"atom_id\", \"kind\", \"skins\", \"user_authored\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_study_create\",\n        \"Create MIS prospective study\",\n        \"Create an empty future-only exact Bayesian study; no outcome or empirical value is invented.\",\n        {\"study\": O},\n        [\"study\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_studies_list\",\n        \"List MIS studies\",\n        \"List persistent prospective MIS studies.\",\n        {},\n        [],\n        read_only=True,\n    ),\n    tool(\n        \"mis_study_projection\",\n        \"Inspect MIS study\",\n        \"Inspect freezes, outcomes, next prior and local claim ceiling.\",\n        {\"study_id\": S},\n        [\"study_id\"],\n        read_only=True,\n    ),\n    tool(\n        \"mis_study_freeze\",\n        \"Freeze prospective MIS decision\",\n        \"Freeze the pre-outcome prior and exact decision certificate.\",\n        {\"study_id\": S, \"request\": O, \"frozen_at\": S},\n        [\"study_id\", \"request\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_study_observe\",\n        \"Record prospective MIS outcome\",\n        \"Record a source-hashed outcome only after its decision freeze.\",\n        {\"study_id\": S, \"observed_state\": S, \"source_unit_hash\": S, \"observed_at\": S},\n        [\"study_id\", \"observed_state\", \"source_unit_hash\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_study_close\",\n        \"Close MIS study\",\n        \"Close a prospective study only when no outcome is pending.\",\n        {\"study_id\": S},\n        [\"study_id\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_decision_register_phl\",\n        \"Bridge MIS decision to PHL\",\n        \"Convert a verified exact MIS certificate into a reviewable decision and register it without training.\",\n        {\"certificate\": O},\n        [\"certificate\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_dynamic_csi_lowering\",\n        \"Lower MIS certificate to CSI\",\n        \"Lower any verified MIS certificate to a compositional CSI program with no authority transfer.\",\n        {\"certificate\": O},\n        [\"certificate\"],\n        read_only=True,\n    ),\n    tool(\n        \"mis_kwandata_archive\",\n        \"Archive MIS certificate in KwanData\",\n        \"Export exact certificate bytes and ingest them into KwanData with provenance.\",\n        {\"certificate\": O},\n        [\"certificate\"],\n        read_only=False,\n    ),\n    tool(\n        \"mis_sco_issue_review\",\n        \"Issue MIS review through SCO\",\n        \"Build and issue a bounded MIS review work order to an independent SCO node.\",\n        {\n            \"certificate\": O,\n            \"sco_id\": S,\n            \"target_node_id\": S,\n            \"objective\": S,\n            \"required_outputs\": A,\n            \"depends_on\": A,\n            \"termination\": S,\n            \"actor\": S,\n            \"command_id\": S,\n            \"expected_head_hash\": S,\n        },\n        [\n            \"certificate\",\n            \"sco_id\",\n            \"target_node_id\",\n            \"objective\",\n            \"required_outputs\",\n            \"depends_on\",\n            \"termination\",\n            \"actor\",\n            \"command_id\",\n            \"expected_head_hash\",\n        ],\n        read_only=False,\n    ),\n    tool(\n        \"mis_rgg_adjudicate\",\n        \"Adjudicate MIS claim with RGG\",\n        \"Apply an explicit RGG action request to a verified MIS certificate while retaining both boundaries.\",\n        {\"certificate\": O, \"rigor_request\": O},\n        [\"certificate\", \"rigor_request\"],\n        read_only=True,\n    ),\n]\nADVANCED_TOOLS.extend(\n    [\n        tool(\n            \"response_mode_status\",\n            \"Inspect response modes\",\n            \"Inspect the three canonical chat-response presets, scope precedence, invariants and integrity without affecting outputs.\",\n            {},\n            [],\n            read_only=True,\n        ),\n        tool(\n            \"response_mode_profiles_list\",\n            \"List response profiles\",\n            \"List canonical and user-defined chat-response profiles.\",\n            {\"include_archived\": B},\n            [],\n            read_only=True,\n        ),\n        tool(\n            \"response_mode_resolve\",\n            \"Resolve active response profile\",\n            \"Resolve the effective response profile by message, session, task, SCO, workspace and global precedence.\",\n            {\"context\": O},\n            [],\n            read_only=True,\n        ),\n        tool(\n            \"response_mode_contract\",\n            \"Compile host response contract\",\n            \"Compile the exact host instruction for authored chat text; outputs remain outside this policy.\",\n            {\"context\": O},\n            [],\n            read_only=True,\n        ),\n        tool(\n            \"response_mode_profile_upsert\",\n            \"Create or update custom response profile\",\n            \"Create or revise a persistent custom response profile derived from a canonical or custom base.\",\n            {\"profile\": O},\n            [\"profile\"],\n            read_only=False,\n        ),\n        tool(\n            \"response_mode_profile_archive\",\n            \"Archive custom response profile\",\n            \"Archive an unbound custom profile; canonical presets cannot be altered or archived.\",\n            {\"profile_id\": S},\n            [\"profile_id\"],\n            read_only=False,\n        ),\n        tool(\n            \"response_mode_scope_set\",\n            \"Bind response profile to scope\",\n            \"Bind a response profile to global, workspace, SCO, task, session or message scope.\",\n            {\"scope_type\": S, \"scope_key\": S, \"profile_id\": S},\n            [\"scope_type\", \"scope_key\", \"profile_id\"],\n            read_only=False,\n        ),\n        tool(\n            \"response_mode_scope_clear\",\n            \"Clear response profile scope\",\n            \"Clear one exact response-profile binding and restore inheritance from the next broader scope.\",\n            {\"scope_type\": S, \"scope_key\": S},\n            [\"scope_type\", \"scope_key\"],\n            read_only=False,\n        ),\n        tool(\n            \"response_execution_register\",\n            \"Save execution register as Markdown\",\n            \"Persist the technical execution record separately as Markdown; it is never offered or substituted for the substantive answer.\",\n            {\"record\": O},\n            [\"record\"],\n            read_only=False,\n        ),\n        tool(\n            \"response_mode_integrity\",\n            \"Verify response-mode custody\",\n            \"Verify canonical presets, foreign keys and the response-policy audit hash chain.\",\n            {},\n            [],\n            read_only=True,\n        ),\n    ]\n)\nADVANCED_TOOLS.extend(OPERATIONAL_TOOLS)\nADVANCED_TOOLS.extend(WORKBENCH_TOOLS)\n\n\nclass KCHAdvancedRuntime:\n    def __init__(\n        self,\n        root: str | Path,\n        *,\n        extra_handlers: dict[str, Callable[[dict[str, Any]], Any]] | None = None,\n        extra_tools: list[dict[str, Any]] | None = None,\n        stable_root: str | Path | None = None,\n    ):\n        self.root = Path(root).resolve()\n        self._full_host_composition = extra_handlers is not None\n        self.root.mkdir(parents=True, exist_ok=True)\n        self.recovery = RecoveryVault(self.root / \"master_recovery\")\n        self.constitution = ConstitutionalWorkspace(self.root / \"constitution\")\n        self.continuity = ContinuityAndBurdenGovernor(self.root / \"continuity\")\n        self.aikido = AikidoLearningForge(self.root / \"aikido\", self.continuity)\n        self.commitments = CommitmentMonitor(self.root / \"commitments\")\n        self.response_authority = ResponseAuthorityGovernor(self.root / \"response_authority\")\n        self.policy = ProgrammedPolicy(self.root / \"proactive_policy\")\n        self.risk = RiskAdvisor(self.root / \"risk\")\n        self.plan_build = PlanBuildEngine(self.root / \"plan_build\")\n        self.persistence = PersistenceHub(self.root / \"persistence\")\n        self.kwandata = KwanData(self.root / \"kwandata\")\n        self.permissions = PermissionGovernor(self.root / \"permissions\")\n        self.clipboard = ClipboardHub(self.root / \"clipboard\")\n        self.diction = DictionLearning(self.root / \"diction\")\n        self.response_modes = ResponseModeManager(self.root / \"response_modes\")\n        self.workbench = WorkbenchSuite(\n            self.root / \"workbench\", normalizer=lambda text: self.diction.resolve(text)\n        )\n        self.mis = MISService(runtime_root=self.root / \"mis\")\n        self.rgg = RigorRuntime()\n        self.kwanprompts = KwanPromptsRuntime(self.root / \"kwanprompts\")\n        self.sco = SCORuntime(self.root / \"sco\")\n        self.phl = PHLRuntime(self.root / \"phl\")\n        self._direct_consent: dict[str, ConsentPolicy] = {}\n        self.voice_chat_id = self.persistence.create_chat(\n            platform=\"KCH_AUDIO\", title=\"KCH Voice Inbox\"\n        )[\"chat_id\"]\n        self.audio = AudioHub(self.root / \"audio\", on_transcript=self._on_transcript)\n        self.account_broker = AccountPermissionBroker(self.root / \"accounts\", self.permissions)\n        source_root = Path(\n            stable_root\n            or os.environ.get(\"KCH_CONSTRUCT_STABLE_ROOT\", Path(__file__).resolve().parents[2])\n        ).resolve()\n        self.full_reader = FullReadService(source_root, self.permissions)\n        self.construct = ConstructMode(self.root / \"construct\", source_root)\n        self.checkpoints = CheckpointManager(\n            self.root / \"checkpoints\",\n            {\"runtime\": self.root, \"stable\": source_root},\n        )\n\n        self.handlers: dict[str, Callable[[dict[str, Any]], Any]] = {\n            \"kch_next_status\": lambda _a: self.status(),\n            \"continuity_status\": lambda _a: self.continuity.status(),\n            \"continuity_reading_adjudicate\": lambda a: self.continuity.adjudicate_reading(dict(a[\"receipt\"])),\n            \"full_read_file\": lambda a: self.full_reader.read(\n                str(a[\"path\"]),\n                max_return_bytes=int(a.get(\"max_return_bytes\", 1_048_576)),\n                expected_sha256=a.get(\"expected_sha256\"),\n            ),\n            \"full_read_batch\": lambda a: self.full_reader.read_batch(\n                list(a[\"items\"]),\n                requested_order=str(a.get(\"requested_order\", \"SOURCE_NATIVE_ORDER\")),\n                max_return_bytes_per_file=int(\n                    a.get(\"max_return_bytes_per_file\", 1_048_576)\n                ),\n                max_batch_return_bytes=int(a.get(\"max_batch_return_bytes\", 5_242_880)),\n            ),\n            \"full_read_verify_batch\": lambda a: self.full_reader.verify_batch(\n                dict(a[\"batch\"])\n            ),\n            \"continuity_mission_set\": lambda a: self.continuity.set_mission(str(a[\"objective\"]), str(a[\"authority_source\"])),\n            \"continuity_harm_record\": lambda a: self.continuity.record_harm(dict(a[\"record\"])),\n            \"continuity_action_preflight\": lambda a: self.continuity.preflight(dict(a[\"action\"])),\n            \"continuity_integrity_verify\": lambda _a: self.continuity.verify(),\n            \"continuity_protocol_register\": lambda a: self.continuity.register_protocol(dict(a[\"protocol\"])),\n            \"continuity_protocol_resolve\": lambda a: self.continuity.resolve_protocols(list(a[\"tags\"])),\n            \"aikido_transform\": lambda a: self.aikido.transform(dict(a[\"incident\"])),\n            \"aikido_catalog\": lambda _a: self.aikido.catalog(),\n            \"temporal_scale_compile\": lambda a: TemporalScaleContractCompiler.compile(dict(a[\"specification\"])),\n            \"continuous_period_ledger_compile\": lambda a: ContinuousPeriodLedgerCompiler.compile(dict(a[\"specification\"])),\n            \"source_fitness_adjudicate\": lambda a: SourceFitnessGate.adjudicate(dict(a[\"receipt\"])),\n            \"commitment_monitor_register\": lambda a: self.commitments.register(label=str(a[\"label\"]), pid=int(a[\"pid\"]), logs=list(a[\"logs\"]), artifacts=list(a[\"artifacts\"]), poll_seconds=int(a.get(\"poll_seconds\", 10)), terminal_receipt=str(a[\"terminal_receipt\"]) if a.get(\"terminal_receipt\") else None, expected_exit_codes=[int(code) for code in a.get(\"expected_exit_codes\", [0])]),\n            \"commitment_monitor_launch\": lambda a: self.commitments.launch(label=str(a[\"label\"]), argv=[str(item) for item in a[\"argv\"]], cwd=str(a[\"cwd\"]), environment={str(key): str(value) for key, value in dict(a.get(\"environment\", {})).items()}, expected_artifacts=[str(path) for path in a.get(\"expected_artifacts\", [])], expected_exit_codes=[int(code) for code in a.get(\"expected_exit_codes\", [0])], poll_seconds=int(a.get(\"poll_seconds\", 2))),\n            \"commitment_monitor_check\": lambda a: self.commitments.check(str(a[\"commitment_id\"])),\n            \"commitment_monitor_wait_terminal\": lambda a: self.commitments.wait_terminal(str(a[\"commitment_id\"]), timeout_seconds=float(a[\"timeout_seconds\"]), poll_seconds=float(a.get(\"poll_seconds\", 0.25))),\n            \"commitment_monitor_evidence\": lambda a: self.commitments.evidence(str(a[\"commitment_id\"])),\n            \"commitment_monitor_status\": lambda _a: self.commitments.status(),\n            \"response_authority_register\": lambda a: self.response_authority.register(dict(a[\"constraint\"])),\n            \"response_authority_adjudicate\": lambda a: self.response_authority.adjudicate(dict(a[\"candidate\"]), active_commitment_ids=self.commitments.active_ids()),\n            \"response_authority_status\": lambda _a: self.response_authority.status(),\n            \"remote_transport_preflight\": lambda a: RemoteTransportPreflight.adjudicate(dict(a[\"receipt\"])),\n            \"constitution_state\": lambda _a: self.constitution.state(),\n            \"constitution_effective\": lambda _a: self.constitution.effective_mandates(),\n            \"constitution_propose\": lambda a: self.constitution.propose(dict(a[\"proposal\"])),\n            \"programmed_policy_status\": lambda _a: self.policy.state(),\n            \"programmed_policy_evaluate\": lambda a: self.policy.evaluate_all(dict(a[\"event\"])),\n            \"proactive_launcher_status\": lambda _a: self.launcher.status(),\n            \"proactive_event_publish\": lambda a: self.launcher.publish(dict(a[\"event\"])),\n            \"recovery_checkpoint\": self._checkpoint,\n            \"recovery_verify\": lambda _a: self.recovery.verify(),\n            \"risk_assess\": lambda a: self.risk.assess(dict(a[\"proposal\"])),\n            \"plan_build_plan\": lambda a: self.plan_build.plan(list(a[\"operations\"])),\n            \"plan_build_execute\": lambda a: self.plan_build.build(str(a[\"plan_id\"])),\n            \"persistence_status\": lambda _a: {\"coverage\": self.persistence.coverage()},\n            \"persistence_chat_create\": self._chat_create,\n            \"persistence_turn_append\": self._turn_append,\n            \"persistence_superchat_create\": lambda a: self.persistence.create_superchat(\n                title=str(a[\"title\"]), members=list(a[\"members\"])\n            ),\n            \"kwandata_status\": lambda _a: self.kwandata.status(),\n            \"kwandata_ingest\": self._kwandata_ingest_model,\n            \"kwandata_query\": lambda a: self.kwandata.query(\n                str(a[\"query\"]), limit=int(a.get(\"limit\", 50))\n            ),\n            \"permission_status\": lambda _a: self.permissions.status(),\n            \"permission_check\": lambda a: self.permissions.decide(\n                actor=str(a[\"actor\"]),\n                resource=str(a[\"resource\"]),\n                operation=str(a[\"operation\"]),\n                session_id=a.get(\"session_id\"),\n            ),\n            \"scheduler_status\": lambda _a: self.scheduler.status(),\n            \"scheduler_create\": self._scheduler_create_model,\n            \"clipboard_status\": lambda _a: self.clipboard.status(),\n            \"clipboard_capture_text\": lambda a: self.clipboard.capture(\n                str(a[\"text\"]),\n                kind=\"TEXT\",\n                media_type=\"text/plain; charset=utf-8\",\n                explicit_persist=bool(a.get(\"persist\", False)),\n            ),\n            \"clipboard_search\": lambda a: self.clipboard.search(\n                str(a[\"query\"]), limit=int(a.get(\"limit\", 50))\n            ),\n            \"clipboard_postit_create\": lambda a: self.clipboard.create_postit(\n                title=str(a.get(\"title\", \"\")),\n                body=str(a.get(\"body\", \"\")),\n                source_item_id=a.get(\"source_item_id\"),\n                parent_postit_id=a.get(\"parent_postit_id\"),\n                color=str(a.get(\"color\", \"#FFF4A3\")),\n                tags=list(a.get(\"tags\", [])),\n            ),\n            \"clipboard_postit_edit\": lambda a: self.clipboard.edit_postit(\n                str(a[\"postit_id\"]), title=a.get(\"title\"), body=a.get(\"body\"), color=a.get(\"color\")\n            ),\n            \"clipboard_explanation_context\": lambda a: self.clipboard.explanation_context(\n                str(a[\"item_id\"])\n            ),\n            \"account_broker_status\": lambda _a: self.account_broker.status(),\n            \"account_permission_request\": lambda a: self.account_broker.request(\n                provider=str(a[\"provider\"]),\n                scopes=list(a[\"scopes\"]),\n                purpose=str(a[\"purpose\"]),\n                account_hint=a.get(\"account_hint\"),\n            ),\n            \"audio_status\": lambda _a: self.audio.status(),\n            \"audio_ingest_transcribe\": self._audio_ingest_model,\n            \"voice_notify\": self._voice_notify_model,\n            \"diction_status\": lambda _a: self.diction.status(),\n            \"diction_resolve\": lambda a: self.diction.resolve(\n                str(a[\"raw_transcription\"]), source_audio_id=a.get(\"source_audio_id\")\n            ),\n            \"response_mode_status\": lambda _a: self.response_modes.status(),\n            \"response_mode_profiles_list\": lambda a: self.response_modes.profiles(\n                include_archived=bool(a.get(\"include_archived\", False))\n            ),\n            \"response_mode_resolve\": lambda a: self.response_modes.resolve(\n                dict(a.get(\"context\", {}))\n            ),\n            \"response_mode_contract\": lambda a: self.response_modes.compile_contract(\n                dict(a.get(\"context\", {}))\n            ),\n            \"response_mode_profile_upsert\": lambda a: self.response_modes.upsert_profile(\n                dict(a[\"profile\"])\n            ),\n            \"response_mode_profile_archive\": lambda a: self.response_modes.archive_profile(\n                str(a[\"profile_id\"])\n            ),\n            \"response_mode_scope_set\": lambda a: self.response_modes.set_scope(\n                str(a[\"scope_type\"]), str(a[\"scope_key\"]), str(a[\"profile_id\"])\n            ),\n            \"response_mode_scope_clear\": lambda a: self.response_modes.clear_scope(\n                str(a[\"scope_type\"]), str(a[\"scope_key\"])\n            ),\n            \"response_execution_register\": lambda a: self.response_modes.record_execution(\n                dict(a[\"record\"])\n            ),\n            \"response_mode_integrity\": lambda _a: self.response_modes.verify(),\n            \"mis_full_status\": lambda _a: self.mis.status(),\n            \"mis_describe\": lambda _a: self.mis.describe(),\n            \"mis_exact_decide\": lambda a: self.mis.exact_decide(dict(a[\"request\"])),\n            \"mis_historical_audit\": lambda _a: self.mis.audit_historical(),\n            \"mis_certificate_verify_full\": lambda a: self.mis.verify_certificate(\n                a.get(\"certificate\")\n            ),\n            \"mis_csi_lowering\": lambda _a: self.mis.csi_lowering(),\n            \"mis_integrity_verify\": lambda _a: self.mis.verify_runtime(),\n            \"mis_atoms_list\": lambda a: self.mis.atoms(a.get(\"kind\")),\n            \"mis_atom_resolve\": lambda a: self.mis.resolve_atom(\n                str(a[\"skin\"]), str(a.get(\"language\", \"canonical\"))\n            ),\n            \"mis_atom_register\": lambda a: self.mis.register_atom(\n                atom_id=str(a[\"atom_id\"]),\n                kind=str(a[\"kind\"]),\n                skins=dict(a[\"skins\"]),\n                user_authored=bool(a[\"user_authored\"]),\n            ),\n            \"mis_study_create\": self._mis_study_create,\n            \"mis_studies_list\": lambda _a: self.mis.study_projection(),\n            \"mis_study_projection\": lambda a: self.mis.study_projection(str(a[\"study_id\"])),\n            \"mis_study_freeze\": lambda a: self.mis.freeze_decision(\n                study_id=str(a[\"study_id\"]),\n                request=dict(a[\"request\"]),\n                frozen_at=a.get(\"frozen_at\"),\n            ),\n            \"mis_study_observe\": lambda a: self.mis.observe(\n                study_id=str(a[\"study_id\"]),\n                observed_state=str(a[\"observed_state\"]),\n                source_unit_hash=str(a[\"source_unit_hash\"]),\n                observed_at=a.get(\"observed_at\"),\n            ),\n            \"mis_study_close\": lambda a: self.mis.close_study(str(a[\"study_id\"])),\n            \"mis_decision_register_phl\": self._mis_decision_register_phl,\n            \"mis_dynamic_csi_lowering\": lambda a: self.mis.csi_lowering(dict(a[\"certificate\"])),\n            \"mis_kwandata_archive\": self._mis_kwandata_archive,\n            \"mis_sco_issue_review\": self._mis_sco_issue_review,\n            \"mis_rgg_adjudicate\": self._mis_rgg_adjudicate,\n            \"rgg_status\": lambda _a: self.rgg.status(),\n            \"rgg_resolve_profile\": lambda a: self.rgg.resolve_profile(dict(a[\"request\"])),\n            \"rgg_adjudicate_action\": lambda a: self.rgg.adjudicate_action(dict(a[\"request\"])),\n            \"rgg_audit_review\": lambda a: self.rgg.audit_review(dict(a[\"request\"])),\n            \"rgg_transition_plan\": lambda a: self.rgg.transition_plan(dict(a[\"request\"])),\n            \"kwanprompts_status\": lambda _a: self.kwanprompts.status(),\n            \"kwanprompts_ingest\": lambda a: self.kwanprompts.ingest(dict(a[\"record\"])),\n            \"kwanprompts_inspect\": lambda a: self.kwanprompts.inspect(str(a[\"message_id\"])),\n            \"kwanprompts_adjudicate\": lambda a: self.kwanprompts.adjudicate(dict(a[\"request\"])),\n            \"kwanprompts_kwandocs_envelope\": lambda a: self.kwanprompts.kwandocs_envelope(\n                str(a[\"thread_id\"])\n            ),\n            \"kwanprompts_verify\": lambda _a: self.kwanprompts.verify(),\n            \"sco_status\": lambda a: self.sco.status(a.get(\"sco_id\")),\n            \"sco_create\": self.sco.create,\n            \"sco_add_node\": self.sco.add_node,\n            \"sco_retire_node\": self.sco.retire_node,\n            \"sco_add_edge\": self.sco.add_edge,\n            \"sco_issue_work_order\": self.sco.issue_work_order,\n            \"sco_ingest_receipt\": self.sco.ingest_receipt,\n            \"sco_declare_conflict\": self.sco.declare_conflict,\n            \"sco_schedule\": lambda a: self.sco.schedule(str(a[\"sco_id\"])),\n            \"sco_graph_diagnostics\": lambda a: self.sco.graph_diagnostics(str(a[\"sco_id\"])),\n            \"sco_export_bundle\": lambda a: self.sco.export_bundle(str(a[\"sco_id\"])),\n            \"sco_dispatch_envelopes\": lambda a: self.sco.dispatch_envelopes(str(a[\"sco_id\"])),\n            \"phl_status\": lambda _a: self.phl.status(),\n            \"phl_decision_register\": lambda a: self.phl.register_decision(dict(a[\"record\"])),\n            \"phl_decisions_list\": lambda a: self.phl.list_decisions(\n                component=a.get(\"component\"), reviewed=a.get(\"reviewed\")\n            ),\n            \"phl_session_start\": lambda a: self.phl.start(\n                trigger=str(a[\"trigger\"]), consent=str(a[\"consent\"])\n            ),\n            \"phl_score\": self._phl_score,\n            \"phl_packet_compile\": lambda a: self.phl.compile_packet(str(a[\"public_session_id\"])),\n            \"phl_session_close\": lambda a: self.phl.close_session(str(a[\"public_session_id\"])),\n            \"kch_mode_status\": lambda _a: self.construct.status(),\n            \"checkpoint_status\": lambda _a: self.checkpoints.status(),\n            \"checkpoint_estimate\": lambda _a: self.checkpoints.estimate(),\n            \"checkpoint_full_plan\": lambda a: self.checkpoints.full_plan(str(a[\"label\"])),\n        }\n        self.handlers.update(bind_operational_handlers(self))\n        self.handlers.update(bind_workbench_handlers(self))\n        if extra_handlers:\n            overlap = set(self.handlers) & set(extra_handlers)\n            if overlap:\n                raise ValueError(f\"duplicate advanced/host handlers: {sorted(overlap)}\")\n            self.handlers.update(extra_handlers)\n        tool_by_name = {item[\"name\"]: item for item in [*ADVANCED_TOOLS, *(extra_tools or [])]}\n        missing_descriptors = set(self.handlers) - set(tool_by_name)\n        if missing_descriptors:\n            raise ValueError(\n                f\"tool descriptors missing for handlers: {sorted(missing_descriptors)}\"\n            )\n        self.phl_catalog_receipt = self.phl.register_capabilities(list(tool_by_name.values()))\n        raw_handlers = dict(self.handlers)\n        self.handlers = {\n            name: (\n                handler\n                if name in self.phl.CONTROL_TOOLS\n                else lambda arguments, tool_name=name, raw_handler=handler: self.phl.dispatch(\n                    tool_name, arguments, raw_handler\n                )\n            )\n            for name, handler in raw_handlers.items()\n        }\n        capabilities = [\n            Capability(\n                name=name,\n                purpose=tool_by_name[name][\"description\"],\n                mode=\"DEFAULT_AUTO\"\n                if name\n                in {\n                    \"constitution_effective\",\n                    \"continuity_status\",\n                    \"continuity_action_preflight\",\n                    \"continuity_integrity_verify\",\n                    \"response_authority_adjudicate\",\n                    \"response_authority_status\",\n                    \"recovery_checkpoint\",\n                    \"risk_assess\",\n                    \"response_mode_resolve\",\n                    \"response_mode_contract\",\n                }\n                else \"USER_PROGRAMMABLE\",\n                event_types=(\"capability.requested\",),\n                mutating=not bool(tool_by_name[name][\"readOnly\"]),\n                external_side_effect=name\n                in {\"voice_notify\", \"kwandata_ingest\", \"audio_ingest_transcribe\"},\n            )\n            for name in self.handlers\n        ]\n        self.launcher = ProactiveLauncher(\n            self.root / \"launcher\", self.policy, self.handlers, capabilities\n        )\n        self.commitments.set_alert_callback(self.launcher.publish)\n        self.commitments.start()\n        self.scheduler = KCHScheduler(self.root / \"scheduler\", self.launcher.publish)\n        self.workbench_schedule = self._ensure_workbench_schedule()\n        self.launch_receipt = self.launcher.start()\n        self.scheduler.start()\n        self.clipboard.start_monitor()\n        start_event = self.launcher.publish(\n            {\"type\": \"session.start\", \"authority\": \"KCH_SYSTEM\", \"runtime_root\": str(self.root)}\n        )\n        self.session_start_result = self.launcher.wait(start_event[\"event_id\"])\n\n    def _ensure_workbench_schedule(self) -> dict[str, Any]:\n        binding = self.workbench._setting(\"scheduler_binding\")\n        if isinstance(binding, dict) and binding.get(\"schedule_id\"):\n            try:\n                return self.scheduler.get_schedule(str(binding[\"schedule_id\"]))\n            except KeyError:\n                pass\n        schedule = self.scheduler.create_schedule(\n            name=\"KCH workbench budget-aware maintenance tick\",\n            kind=\"INTERVAL\",\n            expression=\"60\",\n            event={\n                \"type\": \"capability.requested\",\n                \"authority\": \"USER_PROGRAM\",\n                \"capability\": \"workbench_maintenance_run\",\n                \"arguments\": {\n                    \"trigger\": \"AUTOMATIC_BUDGET_CADENCE_TICK\",\n                    \"force\": False,\n                },\n            },\n            announce=False,\n            created_by=\"KCH_DEFAULT_USER_PROGRAM\",\n        )\n        self.workbench._set_setting(\n            \"scheduler_binding\",\n            {\n                \"schedule_id\": schedule[\"schedule_id\"],\n                \"state\": \"DEFAULT_ENABLED_USER_CUSTOMIZABLE\",\n                \"tick_seconds\": 60,\n                \"maintenance_interval_budget_derived\": True,\n            },\n        )\n        return schedule\n\n    def direct_consent_status(self) -> dict[str, Any]:\n        return {\n            \"schema\": \"kch.direct-action-consent-status.v0.2.0\",\n            \"scope\": \"PER_ACTION_PER_RUNTIME_SESSION\",\n            \"choices\": [item.value for item in ConsentDecision],\n            \"policies\": {\n                name: policy.state() for name, policy in sorted(self._direct_consent.items())\n            },\n            \"general_authority_created\": False,\n            \"host_identity_cryptographically_verified\": False,\n        }\n\n    def direct_user_action(\n        self,\n        action_name: str,\n        arguments: dict[str, Any],\n        operation: Callable[[], Any],\n    ) -> dict[str, Any]:\n        if \"consent\" not in arguments:\n            raise ValueError(\"direct user action requires one of the four exact consent choices\")\n        decision = ConsentDecision(str(arguments[\"consent\"]))\n        policy = self._direct_consent.setdefault(action_name, ConsentPolicy())\n        authorized = policy.adjudicate(decision)\n        authority = {\n            \"schema\": \"kch.direct-action-authority-receipt.v0.2.0\",\n            \"action\": action_name,\n            \"choice\": decision.value,\n            \"authorized_this_call\": authorized,\n            \"session_policy\": policy.state(),\n            \"scope\": \"THIS_ACTION_IN_THIS_RUNTIME_SESSION_ONLY\",\n            \"attestation_boundary\": \"CALLER_DECLARED_USER_CHOICE_NOT_CRYPTOGRAPHIC_HOST_IDENTITY\",\n            \"created_at\": datetime.now(UTC).isoformat().replace(\"+00:00\", \"Z\"),\n        }\n        if not authorized:\n            return {\n                \"state\": \"NOT_EXECUTED_CONSENT_DENIED\",\n                \"authority\": authority,\n                \"side_effect_executed\": False,\n            }\n        result = operation()\n        return {\n            \"state\": \"EXECUTED_UNDER_SCOPED_USER_CONSENT\",\n            \"authority\": authority,\n            \"result\": result,\n        }\n\n    def _mis_study_create(self, args: dict[str, Any]) -> dict[str, Any]:\n        study = dict(args[\"study\"])\n        required = {\n            \"study_id\",\n            \"title\",\n            \"purpose_id\",\n            \"jurisdiction\",\n            \"states\",\n            \"alpha\",\n            \"policy\",\n            \"claim_ceiling\",\n        }\n        if set(study) != required:\n            raise ValueError(\n                f\"MIS study fields mismatch; missing={sorted(required - set(study))}; \"\n                f\"extras={sorted(set(study) - required)}\"\n            )\n        return self.mis.create_study(\n            study_id=str(study[\"study_id\"]),\n            title=str(study[\"title\"]),\n            purpose_id=str(study[\"purpose_id\"]),\n            jurisdiction=str(study[\"jurisdiction\"]),\n            states=list(study[\"states\"]),\n            alpha=dict(study[\"alpha\"]),\n            policy=dict(study[\"policy\"]),\n            claim_ceiling=str(study[\"claim_ceiling\"]),\n        )\n\n    def _mis_decision_register_phl(self, args: dict[str, Any]) -> dict[str, Any]:\n        candidate = self.mis.register_reviewable_decision(dict(args[\"certificate\"]))\n        phl_receipt = self.phl.register_decision(dict(candidate[\"record\"]))\n        bridge = self.mis.mark_phl_registration(\n            str(candidate[\"record\"][\"decision_id\"]), phl_receipt\n        )\n        return {\n            \"schema\": \"kch.mis-phl-bridge-receipt.v0.2.0\",\n            \"candidate\": candidate,\n            \"phl\": phl_receipt,\n            \"bridge\": bridge,\n            \"phl_authorized\": True,\n            \"training_executed\": False,\n            \"automatic_promotion\": False,\n        }\n\n    def _mis_kwandata_archive(self, args: dict[str, Any]) -> dict[str, Any]:\n        permission = self.permissions.require(\n            actor=\"KCH_SYSTEM\",\n            resource=\"runtime://mis/exports\",\n            operation=\"READ\",\n        )\n        exported = self.mis.export_certificate(dict(args[\"certificate\"]))\n        ingested = self.kwandata.ingest(exported[\"path\"])\n        bridge = self.mis.record_bridge(\n            \"KWANDATA_ARCHIVE\",\n            f\"mis://v0.3.1/certificates/{exported['certificate_sha256']}\",\n            f\"kwandata://sources/{ingested['source_id']}\",\n            ingested,\n        )\n        return {\n            \"schema\": \"kch.mis-kwandata-bridge-receipt.v0.2.0\",\n            \"permission\": permission,\n            \"export\": exported,\n            \"kwandata\": ingested,\n            \"bridge\": bridge,\n            \"KwanDocs_authority_inherited\": False,\n        }\n\n    def _mis_sco_issue_review(self, args: dict[str, Any]) -> dict[str, Any]:\n        certificate = dict(args[\"certificate\"])\n        record = self.mis.sco_work_order_template(\n            certificate=certificate,\n            sco_id=str(args[\"sco_id\"]),\n            target_node_id=str(args[\"target_node_id\"]),\n            objective=str(args[\"objective\"]),\n            required_outputs=list(args[\"required_outputs\"]),\n            depends_on=list(args[\"depends_on\"]),\n            termination=str(args[\"termination\"]),\n        )\n        receipt = self.sco.issue_work_order(\n            {\n                \"record\": record,\n                \"actor\": str(args[\"actor\"]),\n                \"command_id\": str(args[\"command_id\"]),\n                \"expected_head_hash\": str(args[\"expected_head_hash\"]),\n            }\n        )\n        digest = str(certificate[\"certificate_sha256\"])\n        bridge = self.mis.record_bridge(\n            \"SCO_REVIEW_WORK_ORDER\",\n            f\"mis://v0.3.1/certificates/{digest}\",\n            f\"sco://{args['sco_id']}/work-orders/{record['order_id']}\",\n            receipt,\n        )\n        return {\n            \"schema\": \"kch.mis-sco-bridge-receipt.v0.2.0\",\n            \"work_order\": record,\n            \"sco\": receipt,\n            \"bridge\": bridge,\n            \"external_dispatch_performed\": False,\n            \"host_bridge_required\": True,\n        }\n\n    def _mis_rgg_adjudicate(self, args: dict[str, Any]) -> dict[str, Any]:\n        certificate = dict(args[\"certificate\"])\n        verification = self.mis.verify_certificate(certificate)\n        rigor = self.rgg.adjudicate_action(dict(args[\"rigor_request\"]))\n        return {\n            \"schema\": \"kch.mis-rgg-adjudication.v0.2.0\",\n            \"certificate_sha256\": certificate[\"certificate_sha256\"],\n            \"certificate_verification\": verification,\n            \"mis_claim_ceiling\": certificate[\"claim_ceiling\"],\n            \"rgg\": rigor,\n            \"effective_claim_requires_both_boundaries\": True,\n            \"execution_authorized\": False,\n            \"authority_created\": False,\n        }\n\n    def _phl_score(self, args: dict[str, Any]) -> dict[str, Any]:\n        return self.phl.score(\n            public_session_id=str(args[\"public_session_id\"]),\n            decision_id=str(args[\"decision_id\"]),\n            score_display=str(args[\"score_display\"]),\n            contextual_text=str(args.get(\"contextual_text\", \"\")),\n            correction_text=str(args.get(\"correction_text\", \"\")),\n            user_authored=bool(args[\"user_authored\"]),\n            consent=str(args[\"consent\"]),\n        )\n\n    def _checkpoint(self, args: dict[str, Any]) -> dict[str, Any]:\n        label = str(args.get(\"label\", \"checkpoint\"))\n        payload = args.get(\"payload\")\n        custody = None\n        if payload is not None:\n            custody = self.recovery.save_json(\n                f\"events/{label}/{uuid.uuid4()}.json\",\n                payload,\n                kind=\"PROACTIVE_EVENT\",\n                actor=\"KCH_SYSTEM\",\n                operation=\"AUTOMATIC_CHECKPOINT\",\n            )\n        return {\"custody\": custody, \"snapshot\": self.recovery.snapshot(label)}\n\n    def _chat_create(self, args: dict[str, Any]) -> dict[str, Any]:\n        return self.persistence.create_chat(\n            platform=str(args[\"platform\"]),\n            title=str(args.get(\"title\", \"\")),\n            native_id=args.get(\"native_id\"),\n            source_uri=args.get(\"source_uri\"),\n            capture_mode=str(args.get(\"capture_mode\", \"KCH_NATIVE_AUTOMATIC\")),\n        )\n\n    def _turn_append(self, args: dict[str, Any]) -> dict[str, Any]:\n        return self.persistence.append_turn(\n            str(args[\"chat_id\"]),\n            role=str(args[\"role\"]),\n            payload=args[\"payload\"],\n            timestamp=args.get(\"timestamp\"),\n        )\n\n    def _kwandata_ingest_model(self, args: dict[str, Any]) -> dict[str, Any]:\n        source = str(Path(args[\"source\"]).resolve())\n        permission = self.permissions.decide(\n            actor=\"MODEL\", resource=\"file://external/\" + source, operation=\"READ\"\n        )\n        if not permission[\"authorized\"]:\n            return {\"state\": \"PERMISSION_REQUIRED\", \"permission\": permission}\n        return self.kwandata.ingest(source, program_id=args.get(\"program_id\"))\n\n    def _scheduler_create_model(self, args: dict[str, Any]) -> dict[str, Any]:\n        permission = self.permissions.decide(\n            actor=\"MODEL\", resource=\"scheduler://runtime\", operation=\"SCHEDULE\"\n        )\n        if not permission[\"authorized\"]:\n            return {\"state\": \"PERMISSION_REQUIRED\", \"permission\": permission}\n        return self.scheduler.create_schedule(\n            name=str(args[\"name\"]),\n            kind=str(args[\"kind\"]),\n            expression=str(args[\"expression\"]),\n            event=dict(args[\"event\"]),\n            agenda_id=str(args.get(\"agenda_id\", \"AGENDA-DEFAULT\")),\n            timezone=args.get(\"timezone\"),\n            announce=bool(args.get(\"announce\", True)),\n            created_by=\"MODEL_WITH_PERMISSION\",\n        )\n\n    def _audio_ingest_model(self, args: dict[str, Any]) -> dict[str, Any]:\n        source = str(Path(args[\"source\"]).resolve())\n        permission = self.permissions.decide(\n            actor=\"MODEL\", resource=\"file://external/\" + source, operation=\"READ\"\n        )\n        if not permission[\"authorized\"]:\n            return {\"state\": \"PERMISSION_REQUIRED\", \"permission\": permission}\n        return self.audio.ingest_and_transcribe(\n            source,\n            culture=str(args.get(\"culture\", \"es-ES\")),\n            consent_basis=str(args[\"consent_basis\"]),\n        )\n\n    def _voice_notify_model(self, args: dict[str, Any]) -> dict[str, Any]:\n        permission = self.permissions.decide(\n            actor=\"PROACTIVE_LAUNCHER\", resource=\"voice://local/alerts\", operation=\"SPEAK\"\n        )\n        if not permission[\"authorized\"]:\n            return {\"state\": \"PERMISSION_REQUIRED\", \"permission\": permission}\n        return self.audio.speak(str(args[\"text\"]), culture=str(args.get(\"culture\", \"es-ES\")))\n\n    def _on_transcript(self, transcript: dict[str, Any]) -> None:\n        resolution = self.diction.resolve(transcript[\"text\"], source_audio_id=transcript[\"clip_id\"])\n        self.persistence.append_turn(\n            self.voice_chat_id,\n            role=\"user\",\n            payload={\n                \"raw_transcription\": transcript[\"text\"],\n                \"normalized_transcription\": resolution[\"normalized_transcription\"],\n                \"resolution\": resolution,\n                \"audio_clip_id\": transcript[\"clip_id\"],\n            },\n        )\n        if hasattr(self, \"launcher\"):\n            self.launcher.publish(\n                {\n                    \"type\": \"audio.transcribed\",\n                    \"authority\": \"KCH_SYSTEM\",\n                    \"transcript\": transcript,\n                    \"diction_resolution\": resolution,\n                }\n            )\n\n    def status(self) -> dict[str, Any]:\n        components = {\n            \"constitution\": self.constitution.effective_mandates(),\n            \"continuity\": self.continuity.status(),\n            \"aikido\": self.aikido.catalog(),\n            \"commitments\": self.commitments.status(),\n            \"response_authority\": self.response_authority.status(),\n            \"programmed_policy\": self.policy.session_announcement(),\n            \"launcher\": self.launcher.status(),\n            \"recovery\": self.recovery.verify(),\n            \"persistence\": self.persistence.coverage(),\n            \"kwandata\": self.kwandata.status(),\n            \"permissions\": self.permissions.status(),\n            \"scheduler\": self.scheduler.status(),\n            \"clipboard\": self.clipboard.status(),\n            \"accounts\": self.account_broker.status(),\n            \"audio\": self.audio.status(),\n            \"diction\": self.diction.status(),\n            \"response_modes\": self.response_modes.status(),\n            \"workbench\": self.workbench.status(),\n            \"workbench_schedule\": self.workbench_schedule,\n            \"mis\": self.mis.status(),\n            \"mis_integrity\": self.mis.verify_runtime(),\n            \"rgg\": self.rgg.status(),\n            \"kwanprompts\": self.kwanprompts.status(),\n            \"sco\": self.sco.status(),\n            \"phl\": self.phl.status(),\n            \"direct_consent\": self.direct_consent_status(),\n            \"modes\": self.construct.status(),\n            \"checkpoints\": self.checkpoints.status(),\n            \"strategic_surface\": audit_strategic_surface(\n                set(self.handlers),\n                references=None if self._full_host_composition else ADVANCED_RUNTIME_REFERENCES,\n            ),\n        }\n        return {\n            \"schema\": \"kch.integrated-pre2g-runtime-status.v0.1.0\",\n            \"components\": components,\n            \"background_launcher_running\": components[\"launcher\"][\"running\"],\n            \"capability_blind_spots\": components[\"launcher\"][\"coverage\"][\"unbound\"],\n            \"strategic_surface_gate\": components[\"strategic_surface\"][\"gate\"],\n            \"phl_authorized\": True,\n            \"phl_training_executed\": components[\"phl\"][\"training_executed\"],\n            \"phl_real_executed\": components[\"phl\"][\"training_executed\"],\n            \"external_installation_performed\": False,\n        }\n\n    def close(self) -> None:\n        self.commitments.stop()\n        self.clipboard.stop_monitor()\n        self.scheduler.stop()\n        self.audio.stop_monitor()\n        self.launcher.stop()\n",
+        "receipt_payload_sha256": "68cccc2e8ac33de5e36427173e20ca98b6ccb575bbb0bbcb5db3fe3b0e901763",
+        "ordinal": 3,
+        "requested_path": "src/kch_studio/advanced_runtime.py",
+        "expected_evidence_spans": [
+          "\"commitment_monitor_wait_terminal\", \"Wait boundedly for exact terminal evidence\""
+        ],
+        "exact_span_evidence": {
+          "schema": "kch.exact-span-evidence.v0.1.0",
+          "gate": "PASS",
+          "all_expected_spans_found": true,
+          "spans": [
+            {
+              "expected_text": "\"commitment_monitor_wait_terminal\", \"Wait boundedly for exact terminal evidence\"",
+              "expected_text_sha256": "b73dcfef20f698433f1a5e7ffc698679871c5ad6e21a0ad859fac9cf520b8fe9",
+              "occurrence_count": 1,
+              "found": true,
+              "locations": [
+                {
+                  "start_character": 8063,
+                  "end_character_exclusive": 8143,
+                  "start_line": 108,
+                  "end_line": 108
+                }
+              ]
+            }
+          ],
+          "semantic_claim_allowed": true
+        }
+      },
+      {
+        "schema": "kch.full-read-file-receipt.v0.2.0",
+        "gate": "PASS",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\tests\\test_commitment_monitor.py",
+        "method": "TWO_INDEPENDENT_PATH_READ_BYTES",
+        "byte_count": 8278,
+        "physical_lines": 243,
+        "physical_line_method": "PYTHON_STR_SPLITLINES_UTF8_SIG",
+        "sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a",
+        "verification_sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a",
+        "stable_across_independent_reads": true,
+        "expected_sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a",
+        "expected_sha256_match": true,
+        "encoding": "utf-8-sig",
+        "binary": false,
+        "max_return_bytes": 1048576,
+        "complete_bytes_read_by_tool": true,
+        "complete_content_transported": true,
+        "fragment_substitution_used": false,
+        "permission": {
+          "authorized": true,
+          "basis": "BOUNDED_STABLE_ROOT",
+          "authority_created": false
+        },
+        "complete_read_claim_allowed": true,
+        "authority_created": false,
+        "content": "import json\nimport os\nimport sys\nimport time\nfrom pathlib import Path\n\nimport kch_studio.commitment_monitor as commitment_monitor_module\nfrom kch_studio.commitment_monitor import (\n    CommitmentMonitor,\n    canonical_sha256,\n    process_identity,\n)\n\n\ndef test_live_process_identity_is_captured(tmp_path):\n    monitor = CommitmentMonitor(tmp_path)\n    receipt = monitor.register(\n        label=\"self\",\n        pid=os.getpid(),\n        logs=[],\n        artifacts=[],\n        poll_seconds=1,\n    )\n    assert receipt[\"initial_observation\"][\"status\"] == \"MONITORING\"\n    assert receipt[\"process_identity_captured\"] is (process_identity(os.getpid()) is not None)\n    assert receipt[\"commitment_id\"] in monitor.active_ids()\n\n\ndef test_terminal_alert_is_exactly_once(tmp_path):\n    monitor = CommitmentMonitor(tmp_path)\n    receipt = monitor.register(\n        label=\"missing\",\n        pid=2147483647,\n        logs=[],\n        artifacts=[str(tmp_path / \"expected\")],\n        poll_seconds=1,\n    )\n    first = receipt[\"initial_observation\"]\n    assert first[\"status\"] == \"TERMINATED_MISSING_ARTIFACT_ALERT_REQUIRED\"\n    assert first[\"alert_emitted_now\"] is True\n    assert monitor.check(receipt[\"commitment_id\"])[\"alert_emitted_now\"] is False\n\n\ndef test_owned_success_has_exit_zero_log_hashes_and_valid_receipt(tmp_path):\n    monitor = CommitmentMonitor(tmp_path / \"monitor\")\n    artifact = tmp_path / \"done.txt\"\n    code = (\n        \"from pathlib import Path; \"\n        f\"Path({str(artifact)!r}).write_text('done', encoding='utf-8'); \"\n        \"print('OWNED_SUCCESS')\"\n    )\n    launch = monitor.launch(\n        label=\"success\",\n        argv=[sys.executable, \"-c\", code],\n        cwd=str(tmp_path),\n        environment={\"PYTHONUTF8\": \"1\"},\n        expected_artifacts=[str(artifact)],\n        poll_seconds=1,\n    )\n    waited = monitor.wait_terminal(\n        launch[\"commitment_id\"],\n        timeout_seconds=10,\n        poll_seconds=0.05,\n    )\n    observation = waited[\"observation\"]\n    assert waited[\"gate\"] == \"TERMINAL_OBSERVED\"\n    assert observation[\"status\"] == \"COMPLETED_PASS\"\n    assert observation[\"exit_code\"] == 0\n    assert observation[\"terminal_receipt\"][\"valid\"] is True\n    assert observation[\"artifacts\"][str(artifact.resolve())][\"sha256\"]\n    stdout = Path(launch[\"stdout_path\"])\n    assert observation[\"logs\"][str(stdout)][\"sha256\"]\n    assert \"OWNED_SUCCESS\" in stdout.read_text(encoding=\"utf-8\")\n    evidence = monitor.evidence(launch[\"commitment_id\"])\n    assert evidence[\"sha256\"] == canonical_sha256(evidence)\n\n\ndef test_launch_rebinds_wrapper_pid_to_canonical_running_worker(tmp_path, monkeypatch):\n    monitor = CommitmentMonitor(tmp_path / \"monitor\")\n    wrapper_pid = 2147483647\n\n    class WrapperPopen:\n        pid = wrapper_pid\n\n        def __init__(self, argv, **_kwargs):\n            request = json.loads(Path(argv[-1]).read_text(encoding=\"utf-8\"))\n            monitor._atomic_json(\n                Path(request[\"running_path\"]),\n                {\n                    \"schema\": \"kch.monitored-process-running.v0.1.0\",\n                    \"commitment_id\": request[\"commitment_id\"],\n                    \"worker_pid\": os.getpid(),\n                    \"child_pid\": os.getpid(),\n                    \"started_at\": \"2026-08-11T00:00:00Z\",\n                    \"request_sha256\": request[\"sha256\"],\n                },\n            )\n\n        @staticmethod\n        def poll():\n            return 0\n\n    monkeypatch.setattr(commitment_monitor_module.subprocess, \"Popen\", WrapperPopen)\n    launch = monitor.launch(\n        label=\"wrapper-pid-rebind\",\n        argv=[sys.executable, \"-c\", \"print('never-executed-by-test-double')\"],\n        cwd=str(tmp_path),\n        poll_seconds=1,\n    )\n    assert launch[\"launcher_pid\"] == wrapper_pid\n    assert launch[\"worker_pid\"] == os.getpid()\n    assert launch[\"worker_pid_source\"] == \"CANONICAL_RUNNING_RECEIPT\"\n    assert launch[\"launcher_worker_pid_match\"] is False\n    assert launch[\"startup_receipt_sha256\"]\n    assert launch[\"process_identity_captured\"] is True\n    assert launch[\"initial_observation\"][\"status\"] == \"MONITORING\"\n\n\ndef test_owned_nonzero_process_is_terminal_failure(tmp_path):\n    monitor = CommitmentMonitor(tmp_path / \"monitor\")\n    launch = monitor.launch(\n        label=\"exit-seven\",\n        argv=[sys.executable, \"-c\", \"import sys; print('ADVERSE'); sys.exit(7)\"],\n        cwd=str(tmp_path),\n        expected_exit_codes=[0],\n        poll_seconds=1,\n    )\n    waited = monitor.wait_terminal(\n        launch[\"commitment_id\"],\n        timeout_seconds=10,\n        poll_seconds=0.05,\n    )\n    assert waited[\"observation\"][\"status\"] == \"COMPLETED_FAIL\"\n    assert waited[\"observation\"][\"exit_code\"] == 7\n    assert waited[\"observation\"][\"alert_emitted_now\"] is True\n\n\ndef test_wait_timeout_keeps_same_commitment_active_without_relaunch(tmp_path):\n    monitor = CommitmentMonitor(tmp_path / \"monitor\")\n    launch = monitor.launch(\n        label=\"slow\",\n        argv=[sys.executable, \"-c\", \"import time; time.sleep(0.8)\"],\n        cwd=str(tmp_path),\n        poll_seconds=1,\n    )\n    timed = monitor.wait_terminal(\n        launch[\"commitment_id\"],\n        timeout_seconds=0.05,\n        poll_seconds=0.01,\n    )\n    assert timed[\"gate\"] == \"WAIT_TIMEOUT_COMMITMENT_REMAINS_ACTIVE\"\n    assert timed[\"terminal\"] is False\n    assert timed[\"relaunch_performed\"] is False\n    finished = monitor.wait_terminal(\n        launch[\"commitment_id\"],\n        timeout_seconds=10,\n        poll_seconds=0.05,\n    )\n    assert finished[\"observation\"][\"worker_pid\"] == launch[\"worker_pid\"]\n    assert finished[\"observation\"][\"status\"] == \"COMPLETED_PASS\"\n\n\ndef test_invalid_terminal_receipt_fails_closed(tmp_path):\n    terminal = tmp_path / \"terminal.json\"\n    terminal.write_text(\n        json.dumps(\n            {\n                \"schema\": \"kch.monitored-process-terminal.v0.1.0\",\n                \"worker_pid\": 2147483647,\n                \"status\": \"EXIT_ZERO\",\n                \"exit_code\": 0,\n                \"sha256\": \"false\",\n            }\n        ),\n        encoding=\"utf-8\",\n    )\n    monitor = CommitmentMonitor(tmp_path / \"monitor\")\n    receipt = monitor.register(\n        label=\"invalid-terminal\",\n        pid=2147483647,\n        logs=[],\n        artifacts=[],\n        terminal_receipt=str(terminal),\n        poll_seconds=1,\n    )\n    observation = receipt[\"initial_observation\"]\n    assert observation[\"terminal\"] is True\n    assert observation[\"status\"] == \"TERMINAL_EVIDENCE_INVALID_ALERT_REQUIRED\"\n    assert observation[\"exit_code\"] is None\n\n\ndef test_background_reconciliation_survives_one_commitment_error(tmp_path, monkeypatch):\n    monitor = CommitmentMonitor(tmp_path)\n    first = monitor.register(\n        label=\"broken-check\",\n        pid=os.getpid(),\n        logs=[],\n        artifacts=[],\n        poll_seconds=1,\n    )[\"commitment_id\"]\n    second = monitor.register(\n        label=\"healthy-check\",\n        pid=os.getpid(),\n        logs=[],\n        artifacts=[],\n        poll_seconds=1,\n    )[\"commitment_id\"]\n    original = monitor.check\n\n    def isolated(identifier):\n        if identifier == first:\n            raise RuntimeError(\"isolated reconciliation defect\")\n        return original(identifier)\n\n    monkeypatch.setattr(monitor, \"check\", isolated)\n    monitor.start()\n    time.sleep(1.3)\n    status = monitor.status()\n    assert status[\"background_running\"] is True\n    assert status[\"monitor_errors\"] >= 1\n    assert original(second)[\"status\"] == \"MONITORING\"\n    assert monitor.stop()[\"running\"] is False\n\n\ndef test_terminal_evidence_is_recoverable_after_monitor_restart(tmp_path):\n    root = tmp_path / \"monitor\"\n    first_monitor = CommitmentMonitor(root)\n    launch = first_monitor.launch(\n        label=\"restart-recovery\",\n        argv=[sys.executable, \"-c\", \"import time; print('RECOVER'); time.sleep(0.2)\"],\n        cwd=str(tmp_path),\n        poll_seconds=1,\n    )\n    restarted_monitor = CommitmentMonitor(root)\n    waited = restarted_monitor.wait_terminal(\n        launch[\"commitment_id\"],\n        timeout_seconds=10,\n        poll_seconds=0.05,\n    )\n    assert waited[\"observation\"][\"status\"] == \"COMPLETED_PASS\"\n    evidence = restarted_monitor.evidence(launch[\"commitment_id\"])\n    assert evidence[\"sha256\"] == canonical_sha256(evidence)\n    assert evidence[\"check_sequence\"] >= 1\n",
+        "receipt_payload_sha256": "56ced95f3a71a3a9c3c11ffc13a87ea8ace4fbec7d3f393844ea369323039ce1",
+        "ordinal": 4,
+        "requested_path": "tests/test_commitment_monitor.py",
+        "expected_evidence_spans": [
+          "def test_launch_rebinds_wrapper_pid_to_canonical_running_worker"
+        ],
+        "exact_span_evidence": {
+          "schema": "kch.exact-span-evidence.v0.1.0",
+          "gate": "PASS",
+          "all_expected_spans_found": true,
+          "spans": [
+            {
+              "expected_text": "def test_launch_rebinds_wrapper_pid_to_canonical_running_worker",
+              "expected_text_sha256": "82c11eac0e629d6012e60d2b717f1e09bb6391ef3727413b0fb86acf56d4923a",
+              "occurrence_count": 1,
+              "found": true,
+              "locations": [
+                {
+                  "start_character": 2530,
+                  "end_character_exclusive": 2593,
+                  "start_line": 78,
+                  "end_line": 78
+                }
+              ]
+            }
+          ],
+          "semantic_claim_allowed": true
+        }
+      },
+      {
+        "schema": "kch.full-read-file-receipt.v0.2.0",
+        "gate": "PASS",
+        "path": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0\\governance\\rules\\terminal-process-supervision.md",
+        "method": "TWO_INDEPENDENT_PATH_READ_BYTES",
+        "byte_count": 2724,
+        "physical_lines": 26,
+        "physical_line_method": "PYTHON_STR_SPLITLINES_UTF8_SIG",
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977",
+        "verification_sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977",
+        "stable_across_independent_reads": true,
+        "expected_sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977",
+        "expected_sha256_match": true,
+        "encoding": "utf-8-sig",
+        "binary": false,
+        "max_return_bytes": 1048576,
+        "complete_bytes_read_by_tool": true,
+        "complete_content_transported": true,
+        "fragment_substitution_used": false,
+        "permission": {
+          "authorized": true,
+          "basis": "BOUNDED_STABLE_ROOT",
+          "authority_created": false
+        },
+        "complete_read_claim_allowed": true,
+        "authority_created": false,
+        "content": "+++\nschema = \"kch.csi-governance-node.v0.1.0\"\nid = \"RULE-TERMINAL-PROCESS-SUPERVISION\"\nkind = \"RULE\"\nversion = \"0.2.0\"\ntitle = \"Durable supervision to exact terminal evidence\"\nparent = \"KCH-RULES\"\nchildren = []\nauthority_ceiling = [\"INSPECT\", \"BUILD_STAGED\", \"VALIDATE\"]\nroutines = [\"register_before_promising\", \"launch_shell_free_when_owned\", \"preserve_process_identity\", \"wait_without_relaunch\", \"adjudicate_terminal_receipt\"]\nsubroutines = [\"seal_request\", \"bind_signed_effective_worker_pid\", \"hash_stdout_stderr\", \"record_exit_code\", \"distinguish_wait_timeout\", \"reject_artifact_only_success\", \"emit_terminal_alert_once\", \"isolate_reconciliation_errors\", \"recover_after_restart\"]\nnative_exec_rules = []\nsupersedes = []\n+++\n\n# Supervisión durable hasta evidencia terminal exacta\n\nCuando una respuesta promete seguir una ejecución, el compromiso de monitoreo debe quedar registrado antes de liberar esa promesa. La existencia de la herramienta no concede permiso para ejecutar: la misión, la matriz de permisos y la autoridad del usuario siguen siendo requisitos independientes.\n\nCuando KCH sea quien lance una ejecución autorizada, utilizará argumentos estructurados sin `shell`, un directorio de trabajo explícito y un supervisor que persista fuera del ciclo conversacional inmediato. El supervisor debe conservar identidad de proceso, solicitud autosellada, `stdout`, `stderr`, artefactos esperados y recibo terminal autosellado. Variables de entorno con apariencia de secreto no se transportan por esta vía: corresponden al broker de cuentas y permisos finitos.\n\nUn `PID` que desaparece, un artefacto presente, una línea de log o un timeout del envoltorio no equivalen a éxito. El estado terminal fuerte exige un recibo canónico válido y el código de salida del proceso objetivo. La presencia de artefactos sin código de salida queda como evidencia terminal incompleta; una salida no cero se conserva como resultado adverso, nunca se reetiqueta como éxito.\n\nUn timeout de espera sólo termina esa espera: mantiene activo el mismo compromiso y no autoriza matar, relanzar, duplicar ni sustituir la ejecución. Todo retry necesita adjudicación explícita y debe preservar la cronología del primer intento. La reutilización de PID debe detectarse mediante identidad de creación del proceso cuando el sistema operativo la exponga.\n\nEl bucle en segundo plano aislará los fallos de reconciliación por compromiso, los registrará y continuará vigilando los demás. Las alertas terminales son exactamente una vez por compromiso, mientras la evidencia puede volver a verificarse tras reiniciar KCH. Ningún resultado local de este monitor demuestra eficacia general, producción ni validación industrial.\n",
+        "receipt_payload_sha256": "75d7036af0f7a6825684c66ebc6e123ac99df6a0e4fc89caf21058c8faec1436",
+        "ordinal": 5,
+        "requested_path": "governance/rules/terminal-process-supervision.md",
+        "expected_evidence_spans": [
+          "bind_signed_effective_worker_pid"
+        ],
+        "exact_span_evidence": {
+          "schema": "kch.exact-span-evidence.v0.1.0",
+          "gate": "PASS",
+          "all_expected_spans_found": true,
+          "spans": [
+            {
+              "expected_text": "bind_signed_effective_worker_pid",
+              "expected_text_sha256": "55065f375d37588b5549b26b5392c57b97f61cf544b5285bfd529366fc2df718",
+              "occurrence_count": 1,
+              "found": true,
+              "locations": [
+                {
+                  "start_character": 461,
+                  "end_character_exclusive": 493,
+                  "start_line": 11,
+                  "end_line": 11
+                }
+              ]
+            }
+          ],
+          "semantic_claim_allowed": true
+        }
+      }
+    ],
+    "file_count": 5,
+    "total_content_bytes": 118543,
+    "max_batch_return_bytes": 5242880,
+    "batch_transport_allowed": true,
+    "semantic_evidence_gate": "PASS",
+    "complete_read_batch_claim_allowed": true,
+    "semantic_batch_claim_allowed": true,
+    "manual_inventory_transcription_required": false,
+    "authority_created": false,
+    "batch_payload_sha256": "bb5e0fe6b534520dfadbc059cbf1a348a6cad1fcb3cb77b3649b9bb35330a7b3"
+  },
+  "full_read_source_verification": {
+    "schema": "kch.full-read-batch-verification.v0.1.0",
+    "gate": "PASS_VERIFIED_AGAINST_SOURCE",
+    "batch_seal": {
+      "field": "batch_payload_sha256",
+      "claimed": "bb5e0fe6b534520dfadbc059cbf1a348a6cad1fcb3cb77b3649b9bb35330a7b3",
+      "calculated": "bb5e0fe6b534520dfadbc059cbf1a348a6cad1fcb3cb77b3649b9bb35330a7b3",
+      "match": true
+    },
+    "order_adjudication": {
+      "schema": "kch.full-read-order-adjudication.v0.1.0",
+      "gate": "PASS",
+      "declared_order_semantics": "SOURCE_NATIVE_ORDER",
+      "source_order_exact": true,
+      "requested_order_exact": true,
+      "set_complete": true,
+      "duplicates_absent": true,
+      "set_equality_rescues_order_mismatch": false
+    },
+    "ordinals_exact": true,
+    "receipt_verifications": [
+      {
+        "schema": "kch.full-read-receipt-verification.v0.1.0",
+        "gate": "PASS_VERIFIED_AGAINST_SOURCE",
+        "receipt_seal": {
+          "field": "receipt_payload_sha256",
+          "claimed": "dc8d41607ecccd2fb51a186344bac3a91e040ba20ed1f2490ddb74976f7b7bd4",
+          "calculated": "dc8d41607ecccd2fb51a186344bac3a91e040ba20ed1f2490ddb74976f7b7bd4",
+          "match": true
+        },
+        "mismatches": [],
+        "source_backed_receipt_payload_sha256": "ac99a5cfc541d659c3bb830a61eb2ef90ec5b1c64babf7498c95a1239ff162ea",
+        "complete_read_claim_allowed": true,
+        "semantic_claim_allowed": true,
+        "authority_created": false
+      },
+      {
+        "schema": "kch.full-read-receipt-verification.v0.1.0",
+        "gate": "PASS_VERIFIED_AGAINST_SOURCE",
+        "receipt_seal": {
+          "field": "receipt_payload_sha256",
+          "claimed": "435cc60b3f8548653466b14c22eaa039c77730d938a7ef8c8e4cadbb94bc5a3b",
+          "calculated": "435cc60b3f8548653466b14c22eaa039c77730d938a7ef8c8e4cadbb94bc5a3b",
+          "match": true
+        },
+        "mismatches": [],
+        "source_backed_receipt_payload_sha256": "92a855604fba591ee5efb330d6c419b3719cc02664af37cc36ce6ae2a1f90125",
+        "complete_read_claim_allowed": true,
+        "semantic_claim_allowed": true,
+        "authority_created": false
+      },
+      {
+        "schema": "kch.full-read-receipt-verification.v0.1.0",
+        "gate": "PASS_VERIFIED_AGAINST_SOURCE",
+        "receipt_seal": {
+          "field": "receipt_payload_sha256",
+          "claimed": "68cccc2e8ac33de5e36427173e20ca98b6ccb575bbb0bbcb5db3fe3b0e901763",
+          "calculated": "68cccc2e8ac33de5e36427173e20ca98b6ccb575bbb0bbcb5db3fe3b0e901763",
+          "match": true
+        },
+        "mismatches": [],
+        "source_backed_receipt_payload_sha256": "e4f0a4bd395cf684255919d0d53792244a353bc6325183caae8d71de204f0b28",
+        "complete_read_claim_allowed": true,
+        "semantic_claim_allowed": true,
+        "authority_created": false
+      },
+      {
+        "schema": "kch.full-read-receipt-verification.v0.1.0",
+        "gate": "PASS_VERIFIED_AGAINST_SOURCE",
+        "receipt_seal": {
+          "field": "receipt_payload_sha256",
+          "claimed": "56ced95f3a71a3a9c3c11ffc13a87ea8ace4fbec7d3f393844ea369323039ce1",
+          "calculated": "56ced95f3a71a3a9c3c11ffc13a87ea8ace4fbec7d3f393844ea369323039ce1",
+          "match": true
+        },
+        "mismatches": [],
+        "source_backed_receipt_payload_sha256": "8abcfdb10abefd90e2e24d5b4ddf63a2bd94e37a811546f3bd43eea1747e80dd",
+        "complete_read_claim_allowed": true,
+        "semantic_claim_allowed": true,
+        "authority_created": false
+      },
+      {
+        "schema": "kch.full-read-receipt-verification.v0.1.0",
+        "gate": "PASS_VERIFIED_AGAINST_SOURCE",
+        "receipt_seal": {
+          "field": "receipt_payload_sha256",
+          "claimed": "75d7036af0f7a6825684c66ebc6e123ac99df6a0e4fc89caf21058c8faec1436",
+          "calculated": "75d7036af0f7a6825684c66ebc6e123ac99df6a0e4fc89caf21058c8faec1436",
+          "match": true
+        },
+        "mismatches": [],
+        "source_backed_receipt_payload_sha256": "551519b5bde708b6596e8afcd50e94552cafe773ca1b067c41064c68aed7d64a",
+        "complete_read_claim_allowed": true,
+        "semantic_claim_allowed": true,
+        "authority_created": false
+      }
+    ],
+    "complete_read_batch_claim_allowed": true,
+    "semantic_batch_claim_allowed": true,
+    "authority_created": false
+  },
+  "monitor_launch": {
+    "schema": "kch.monitored-process-launch.v0.1.0",
+    "commitment_id": "MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d",
+    "launcher_pid": 10628,
+    "worker_pid": 10628,
+    "worker_pid_source": "CANONICAL_RUNNING_RECEIPT",
+    "launcher_worker_pid_match": true,
+    "startup_receipt_sha256": "39828bb5863aee6e0524c13ab55ef1f5175009a9add4c712f171112bd7b80355",
+    "process_identity": "windows-filetime:134309422887145396",
+    "process_identity_captured": true,
+    "request_sha256": "d818cf10aa21ef3ebb5eae5ae0ec1f377c8efcbe7161e7e9afae98602995b393",
+    "environment_keys": [
+      "PYTHONDONTWRITEBYTECODE",
+      "PYTHONUTF8"
+    ],
+    "stdout_path": "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stdout.log",
+    "stderr_path": "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stderr.log",
+    "terminal_receipt": "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\terminal.json",
+    "initial_observation": {
+      "schema": "kch.commitment-observation.v0.2.0",
+      "commitment_id": "MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d",
+      "checked_at": "2026-08-11T17:18:09.068093Z",
+      "check_sequence": 1,
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 10628,
+      "process_running": true,
+      "expected_process_identity": "windows-filetime:134309422887145396",
+      "observed_process_identity": "windows-filetime:134309422887145396",
+      "process_identity_match": true,
+      "status": "MONITORING",
+      "terminal": false,
+      "exit_code": null,
+      "expected_exit_codes": [
+        0
+      ],
+      "error_markers": [],
+      "logs": {
+        "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stdout.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stderr.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "artifacts": {},
+      "terminal_receipt": null,
+      "alert_emitted_now": false,
+      "relaunch_performed": false
+    },
+    "shell_used": false,
+    "relaunch_performed": false
+  },
+  "monitor_wait": {
+    "schema": "kch.commitment-wait.v0.1.0",
+    "gate": "TERMINAL_OBSERVED",
+    "terminal": true,
+    "checks": 274,
+    "elapsed_seconds": 145.864619,
+    "observation": {
+      "schema": "kch.commitment-observation.v0.2.0",
+      "commitment_id": "MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d",
+      "checked_at": "2026-08-11T17:20:34.936828Z",
+      "check_sequence": 275,
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 10628,
+      "process_running": false,
+      "expected_process_identity": "windows-filetime:134309422887145396",
+      "observed_process_identity": null,
+      "process_identity_match": false,
+      "status": "COMPLETED_PASS",
+      "terminal": true,
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "error_markers": [],
+      "logs": {
+        "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stdout.log": {
+          "exists": true,
+          "bytes": 194,
+          "sha256": "5419e87c71728a8d08868cdc4bd986d5770d95bc2a233b66eefc17e20bc066e7"
+        },
+        "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stderr.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "artifacts": {},
+      "terminal_receipt": {
+        "valid": true,
+        "failure": null,
+        "claimed_sha256": "fee754e17711d54ce7df5f6c7dc70fb3495846075725ae5eccb7c80d8c82f14e",
+        "actual_sha256": "fee754e17711d54ce7df5f6c7dc70fb3495846075725ae5eccb7c80d8c82f14e"
+      },
+      "alert_emitted_now": true,
+      "relaunch_performed": false
+    },
+    "relaunch_performed": false
+  },
+  "monitor_evidence": {
+    "schema": "kch.commitment-evidence.v0.1.0",
+    "commitment_id": "MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d",
+    "label": "KCH_PREPILOT_020_COMPLETE_SOURCE_SUITE",
+    "mode": "OWNED_SUPERVISOR",
+    "worker_pid": 10628,
+    "process_token": "windows-filetime:134309422887145396",
+    "created_at": "2026-08-11T17:18:09.037209Z",
+    "updated_at": "2026-08-11T17:20:34.960479Z",
+    "status": "COMPLETED_PASS",
+    "monitor_errors": 0,
+    "check_sequence": 276,
+    "latest_observation": {
+      "schema": "kch.commitment-observation.v0.2.0",
+      "commitment_id": "MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d",
+      "checked_at": "2026-08-11T17:20:34.958469Z",
+      "check_sequence": 276,
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 10628,
+      "process_running": false,
+      "expected_process_identity": "windows-filetime:134309422887145396",
+      "observed_process_identity": null,
+      "process_identity_match": false,
+      "status": "COMPLETED_PASS",
+      "terminal": true,
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "error_markers": [],
+      "logs": {
+        "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stdout.log": {
+          "exists": true,
+          "bytes": 194,
+          "sha256": "5419e87c71728a8d08868cdc4bd986d5770d95bc2a233b66eefc17e20bc066e7"
+        },
+        "D:\\KCH_R19_COMPONENT_GATE\\commitments\\MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d\\stderr.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "artifacts": {},
+      "terminal_receipt": {
+        "valid": true,
+        "failure": null,
+        "claimed_sha256": "fee754e17711d54ce7df5f6c7dc70fb3495846075725ae5eccb7c80d8c82f14e",
+        "actual_sha256": "fee754e17711d54ce7df5f6c7dc70fb3495846075725ae5eccb7c80d8c82f14e"
+      },
+      "alert_emitted_now": false,
+      "relaunch_performed": false
+    },
+    "claim_ceiling": "LOCAL_OWNED_OR_REGISTERED_PROCESS_TERMINAL_EVIDENCE_ONLY_NOT_GENERAL_EXECUTION_SUCCESS",
+    "sha256": "3ecf2a874c62520dd00952ca14bbd09cda56b4fcef939d8f938fd679bf4331d9"
+  },
+  "terminal_receipt": {
+    "schema": "kch.monitored-process-terminal.v0.1.0",
+    "commitment_id": "MONITOR-160b4b3a-0c2c-49bb-8137-d72101cfd83d",
+    "worker_pid": 10628,
+    "child_pid": 5268,
+    "request_sha256": "d818cf10aa21ef3ebb5eae5ae0ec1f377c8efcbe7161e7e9afae98602995b393",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--basetemp",
+      "D:\\KCH_R19_COMPONENT_GATE\\pytest-temp"
+    ],
+    "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+    "environment_keys": [
+      "PYTHONDONTWRITEBYTECODE",
+      "PYTHONUTF8"
+    ],
+    "started_at": "2026-08-11T17:18:09.001769Z",
+    "finished_at": "2026-08-11T17:20:34.490964Z",
+    "duration_seconds": 145.500661,
+    "status": "EXIT_ZERO",
+    "exit_code": 0,
+    "stdout": {
+      "exists": true,
+      "bytes": 194,
+      "sha256": "5419e87c71728a8d08868cdc4bd986d5770d95bc2a233b66eefc17e20bc066e7"
+    },
+    "stderr": {
+      "exists": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts": {},
+    "shell_used": false,
+    "sha256": "fee754e17711d54ce7df5f6c7dc70fb3495846075725ae5eccb7c80d8c82f14e"
+  },
+  "pytest": {
+    "passed": 86,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "terminal_summary": "86 passed in 143.51s (0:02:23)",
+    "counts_estimable": true
+  },
+  "source_manifest_before_execution": {
+    "file_count": 101,
+    "total_bytes": 1119962,
+    "manifest_sha256": "d3cd30bc26717fd7220d5c7756355c10e652ac0aa824e4dd84070767160d6619",
+    "files": [
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/dependency_links.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/entry_points.txt",
+        "bytes": 276,
+        "sha256": "bcebb6173ae54de23a25bdbb6af9b136687215a6ea8db5c4de4541c19ad91b87"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/PKG-INFO",
+        "bytes": 753,
+        "sha256": "f74ac4fd9c962ded4017f0aadc3d6ec0f3da4ec2e2a4be88b7d546634c961653"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/requires.txt",
+        "bytes": 356,
+        "sha256": "cbdcc6185eb40e9fe95e424a1771b558ee21106b607324e9ffcfee6af1f1c5a5"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/SOURCES.txt",
+        "bytes": 4137,
+        "sha256": "36719c07b37527dd733269358bed4ecbe27df85510aaafd25d8690ff62d93d8b"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/top_level.txt",
+        "bytes": 11,
+        "sha256": "3b65e8851c4c53aab05e3f0450b70be5de03074f542af1150ee446ee1ed16ebb"
+      },
+      {
+        "path": "src/kch_studio/__init__.py",
+        "bytes": 247,
+        "sha256": "4f4625a882f166832df8ae51f66a823df0d884653d47626dfb69de3d2550f6cb"
+      },
+      {
+        "path": "src/kch_studio/account_broker.py",
+        "bytes": 16510,
+        "sha256": "cec601abc44e58f13ed6fb389aee6eb4e448ae4630040992f155e7c8dc7de734"
+      },
+      {
+        "path": "src/kch_studio/adapters.py",
+        "bytes": 4921,
+        "sha256": "a608277da1cd485d79398daf90537bdf2b9e7fb186501c26465b5f470138d9cf"
+      },
+      {
+        "path": "src/kch_studio/advanced_runtime.py",
+        "bytes": 72282,
+        "sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1"
+      },
+      {
+        "path": "src/kch_studio/audio_hub.py",
+        "bytes": 16741,
+        "sha256": "5b40ec570a0f6538722af81992c53fa6af19a1a84820f6c0af3bc3271c1e991f"
+      },
+      {
+        "path": "src/kch_studio/checkpoints.py",
+        "bytes": 15580,
+        "sha256": "d6645412e66031520eff4d226fb0a7431b01de11a11cc021ca60976a2a85e9fd"
+      },
+      {
+        "path": "src/kch_studio/cli.py",
+        "bytes": 2860,
+        "sha256": "ae7ad93ac96a76ba30446d3f2c33d76624ad7cba512a4539e8e003e9c97548ff"
+      },
+      {
+        "path": "src/kch_studio/clipboard_hub.py",
+        "bytes": 23731,
+        "sha256": "9b779e00fd945debfa3001f30ee143d5b1b3d8cabc06c483770d45c5e2e74f5f"
+      },
+      {
+        "path": "src/kch_studio/codex_bootstrap_mcp.py",
+        "bytes": 11661,
+        "sha256": "c986badfd0a4257aed3f4cc7c788dc3fb05c295d66687de6d8371f829576aa3a"
+      },
+      {
+        "path": "src/kch_studio/codex_preflight_mcp.py",
+        "bytes": 3856,
+        "sha256": "f5249c4b27bdf7a250e03cb629b2c5feb81ee3a7762f6cbd9bb0dadfc7593477"
+      },
+      {
+        "path": "src/kch_studio/commitment_monitor.py",
+        "bytes": 29207,
+        "sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab"
+      },
+      {
+        "path": "src/kch_studio/constitutional.py",
+        "bytes": 12220,
+        "sha256": "d63e08b2ccfaf29814e5c74f7dea490090e211d4bc50cb5d818edec2473ac76d"
+      },
+      {
+        "path": "src/kch_studio/construct_mode.py",
+        "bytes": 13143,
+        "sha256": "edcd2e4d54e4ccefe6509b1a4fb7d49f9dafe31e8fc7669d5241c29b6a8c1cb3"
+      },
+      {
+        "path": "src/kch_studio/continuity_guard.py",
+        "bytes": 38291,
+        "sha256": "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785"
+      },
+      {
+        "path": "src/kch_studio/contracts.py",
+        "bytes": 6797,
+        "sha256": "31221f806a221c3d40a3932065c5481de17472a6cb983c69480be089bee21fe9"
+      },
+      {
+        "path": "src/kch_studio/data/__init__.py",
+        "bytes": 81,
+        "sha256": "b30644b2fc8cfe1c7605e8d459309ca0c6b8d5f5c1e2b1376bb91d4e76df8d54"
+      },
+      {
+        "path": "src/kch_studio/data/audio/speak_windows.ps1",
+        "bytes": 622,
+        "sha256": "7d367a36d04060c9d21e1bd4f0ac8bab21b954f77dd5876270a4c741066d66ee"
+      },
+      {
+        "path": "src/kch_studio/data/audio/transcribe_windows.ps1",
+        "bytes": 1646,
+        "sha256": "afb281f742feafc186cd99dbd4f8c99ce973e57e7c0907172fce27a77d84d5a3"
+      },
+      {
+        "path": "src/kch_studio/data/governance/.kch-csi-generated-v0.1.0",
+        "bytes": 33,
+        "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/.codex/rules/kch-generated.rules",
+        "bytes": 216,
+        "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/AGENTS.md",
+        "bytes": 21980,
+        "sha256": "df05e1010ee412e754b9831267124c740afaea5c89c2b5504146dd81e0c9c0b1"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/COMPATIBILITY_RECEIPT.json",
+        "bytes": 640,
+        "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+      },
+      {
+        "path": "src/kch_studio/data/governance/csi/governance_graph.json",
+        "bytes": 22581,
+        "sha256": "7868ae3a530d8572cedfd48fb78acff8a85fb49d718c500e32bb4621bbafa4cf"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/HARNESS.md",
+        "bytes": 5075,
+        "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/RULES.md",
+        "bytes": 1784,
+        "sha256": "3b85105b95f139e18526106f6342b7149d198cc9b3ec2a2fe737522bac85b5a4"
+      },
+      {
+        "path": "src/kch_studio/data/governance/governance.lock.json",
+        "bytes": 11843,
+        "sha256": "b10893a3ddfb30430b1379694f0edfc5d6c12194d9800a5967d30e18ca296790"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/HARNESS.md",
+        "bytes": 5075,
+        "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/full-read-source-order.md",
+        "bytes": 2193,
+        "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/response-modes-substantive.md",
+        "bytes": 1824,
+        "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/terminal-process-supervision.md",
+        "bytes": 2724,
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/RULES.md",
+        "bytes": 1784,
+        "sha256": "3b85105b95f139e18526106f6342b7149d198cc9b3ec2a2fe737522bac85b5a4"
+      },
+      {
+        "path": "src/kch_studio/diction_learning.py",
+        "bytes": 12480,
+        "sha256": "1ab599b58ed155383b901dac57d4ad715180fcd2165fdcde67734ef6881fdf69"
+      },
+      {
+        "path": "src/kch_studio/extension.py",
+        "bytes": 23529,
+        "sha256": "7f83e2e9b6303eb9123093ed0a1108279421a0a6df9fc369e6da4776eaaaf19d"
+      },
+      {
+        "path": "src/kch_studio/federated_runtime.py",
+        "bytes": 22884,
+        "sha256": "3895c1b02321c2e3adc636263fce5919177bda1426aed01f738866c79a37ac5f"
+      },
+      {
+        "path": "src/kch_studio/full_read_contract.py",
+        "bytes": 19868,
+        "sha256": "6a58985ce17a92588e1e9cff642c1d5cb1eab09f35d356ebfdb39461475d6f33"
+      },
+      {
+        "path": "src/kch_studio/generators.py",
+        "bytes": 41018,
+        "sha256": "2b138aa1af28bcca57ae63c877e40eeaca79f14b97fe1a82644419751f00e7f9"
+      },
+      {
+        "path": "src/kch_studio/installation.py",
+        "bytes": 6527,
+        "sha256": "59b080708e4c91eb6cd149f70290344f6cd9c8a9aa5230489a32c26549414239"
+      },
+      {
+        "path": "src/kch_studio/kwandata.py",
+        "bytes": 22297,
+        "sha256": "c39054cb93a32ee5be6ecbc9bf96868228fec41ee86dcc94eaa917b0a20c64af"
+      },
+      {
+        "path": "src/kch_studio/launcher.py",
+        "bytes": 9902,
+        "sha256": "0369c41311e90541c645751c9a8717b56f4bc294708314c52b9244b58643a759"
+      },
+      {
+        "path": "src/kch_studio/mcp_server.py",
+        "bytes": 18127,
+        "sha256": "7fc595a8f262928e78771d60ae74a4aa16c0d1bca395d2f5ac1f7a3bc6d73cdc"
+      },
+      {
+        "path": "src/kch_studio/mis_service.py",
+        "bytes": 48280,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582"
+      },
+      {
+        "path": "src/kch_studio/monitored_process_worker.py",
+        "bytes": 6052,
+        "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0"
+      },
+      {
+        "path": "src/kch_studio/operational_surface.py",
+        "bytes": 36240,
+        "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f"
+      },
+      {
+        "path": "src/kch_studio/permissions.py",
+        "bytes": 13656,
+        "sha256": "ba8d48b7a964a4cddff62a68836f1a037297c8323e8b7a416c75f722ac301d5f"
+      },
+      {
+        "path": "src/kch_studio/persistence.py",
+        "bytes": 14588,
+        "sha256": "dfce6eac6a1f825819a4d500418e60873a9ee35608bbd514cd75da5997ce7b1a"
+      },
+      {
+        "path": "src/kch_studio/proactive.py",
+        "bytes": 14856,
+        "sha256": "3f45224de83cb0bb9b9c94fee028e9f050431cdbb3a7c8da7e3ff3f924443977"
+      },
+      {
+        "path": "src/kch_studio/recovery.py",
+        "bytes": 14268,
+        "sha256": "eb8553944ecdf7e76a96073ebdd33d6958f4ea6155c4f41e2c2d58896c13c039"
+      },
+      {
+        "path": "src/kch_studio/response_authority.py",
+        "bytes": 11275,
+        "sha256": "ec9dc1fbe9e4729d0d432c8ff3e6066cd06bf0cc54096319c8e0f393f9374813"
+      },
+      {
+        "path": "src/kch_studio/response_modes.py",
+        "bytes": 29671,
+        "sha256": "43eac86c2730210f38d50135f64ed04032f4d55ab4b517d47ee661ee09820674"
+      },
+      {
+        "path": "src/kch_studio/safeguards.py",
+        "bytes": 4513,
+        "sha256": "381414abd62ee6691d91ae07f1883ed73fb7d58a5a5c17870b724e1a78883ecd"
+      },
+      {
+        "path": "src/kch_studio/scheduler.py",
+        "bytes": 15384,
+        "sha256": "acd4ea866f331429a76b274624e639b955e0d0e5faa1ea547fc8ee34388da226"
+      },
+      {
+        "path": "src/kch_studio/store.py",
+        "bytes": 11645,
+        "sha256": "dd70fe8b4301f2a83640ac587a513f57e30e35502c39b2fc28443bc5ac446485"
+      },
+      {
+        "path": "src/kch_studio/studio.py",
+        "bytes": 12882,
+        "sha256": "edb4f7090ae5c46d24ab27217855463abeab707d0773b5f943a051934772b142"
+      },
+      {
+        "path": "src/kch_studio/super_mcp_overlay.py",
+        "bytes": 9022,
+        "sha256": "51b30a4d4c6838fea53d6885a6da7032465efc852f0ca862ebcce0c2fd34636a"
+      },
+      {
+        "path": "src/kch_studio/surface_contract.py",
+        "bytes": 18568,
+        "sha256": "a47ed376f1d5ded6c5eb860e76675d072d47181aa4d170ccd3f308a227ee153a"
+      },
+      {
+        "path": "src/kch_studio/ui.py",
+        "bytes": 82015,
+        "sha256": "5065ce57fd64720587d02b6518a1cda88ccc61adc6d3107876640ea6afe2ede3"
+      },
+      {
+        "path": "src/kch_studio/universal_text.py",
+        "bytes": 16467,
+        "sha256": "d0cdf6718a3772c6202de6ac48a41598b9acb2711a5413a264437aee6d5bed95"
+      },
+      {
+        "path": "src/kch_studio/workbench_suite.py",
+        "bytes": 70869,
+        "sha256": "00783cf6ab4b26b1d4158d07166e1f37af4bf904c1b9a8b81d3a4dce9c886383"
+      },
+      {
+        "path": "src/kch_studio/workbench_surface.py",
+        "bytes": 13154,
+        "sha256": "f955fcd9811117c3c94c07ea4acbabeaa341da6fc385fb7d20b949e24e603746"
+      },
+      {
+        "path": "tests/test_advanced_layers.py",
+        "bytes": 12060,
+        "sha256": "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f"
+      },
+      {
+        "path": "tests/test_codex_bootstrap_mcp.py",
+        "bytes": 4188,
+        "sha256": "1dbae929cf662286778d611cdab61df48b873f32d548360517dcb3bbb760a2d1"
+      },
+      {
+        "path": "tests/test_codex_preflight_mcp.py",
+        "bytes": 1399,
+        "sha256": "f83af1a2325b672a6e731a3891c348052a8707e3b464e674287738565880f7ae"
+      },
+      {
+        "path": "tests/test_commitment_monitor.py",
+        "bytes": 8278,
+        "sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a"
+      },
+      {
+        "path": "tests/test_continuity_guard.py",
+        "bytes": 7291,
+        "sha256": "acb53d3c38ae4caeb3a8d4e3d1acde9dd96e1b69a0b201025efbf2832ad13e02"
+      },
+      {
+        "path": "tests/test_extension.py",
+        "bytes": 2449,
+        "sha256": "d0bd24a0ae44dc3795556dd9f48db4d0fbecc3729673c14d3c4ff39494060e3d"
+      },
+      {
+        "path": "tests/test_full_read_contract.py",
+        "bytes": 6172,
+        "sha256": "cd9713012d30b5aa086ae84e794fae34560210ce99d97da5dc4c32c7c8089ccc"
+      },
+      {
+        "path": "tests/test_mcp_ui.py",
+        "bytes": 5750,
+        "sha256": "720c58843094ff13eeada012c12b3aa5b8fb866c81d6599c7a30e19ecefc79da"
+      },
+      {
+        "path": "tests/test_mis_federation.py",
+        "bytes": 5254,
+        "sha256": "4229fc16f9c2f2b44f5d5985ff5d397cdd733ddccd385ffddb4e1b2c8c179e5f"
+      },
+      {
+        "path": "tests/test_operational_surface.py",
+        "bytes": 6068,
+        "sha256": "715fcddb477f89ff8312d8149afa44be73736a509788b3214c290b6cdbaaf22a"
+      },
+      {
+        "path": "tests/test_portable_paths.py",
+        "bytes": 3646,
+        "sha256": "5c3e5027f7044f86cd0de036413932801f58afac20173c652741275fc6bc1aad"
+      },
+      {
+        "path": "tests/test_response_authority.py",
+        "bytes": 3363,
+        "sha256": "40ff065a860ad6755067b8c602581daf6962fbb3104082de02f33668f9239f5f"
+      },
+      {
+        "path": "tests/test_response_modes.py",
+        "bytes": 4786,
+        "sha256": "ee89a5586e99c3b61d9cdbf7326764cdf382fa0d1b06731f329658f1c3159ba6"
+      },
+      {
+        "path": "tests/test_studio.py",
+        "bytes": 8316,
+        "sha256": "d47ad7a5810d03d3158d168fa275c228d351dfb976e40789c3487f9e16029974"
+      },
+      {
+        "path": "tests/test_workbench_suite.py",
+        "bytes": 7262,
+        "sha256": "38eee9ef78acc623169fa743f6e63460e8c1321b6db9427c08faef4f0817cd31"
+      },
+      {
+        "path": "scripts/build_portable_release.py",
+        "bytes": 11152,
+        "sha256": "36f40453b4ec7d7e7742ef16a6c0b0539171147bdcf5456687fec509210abfcd"
+      },
+      {
+        "path": "scripts/extract_and_install.py",
+        "bytes": 5754,
+        "sha256": "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+      },
+      {
+        "path": "scripts/portable_bootstrap.py",
+        "bytes": 8669,
+        "sha256": "b8c086527b7abff0d39120b67889b5f409c18c201d644c8e6c436efc5ca85daa"
+      },
+      {
+        "path": "scripts/post_install_gate.py",
+        "bytes": 11972,
+        "sha256": "52afe26475131e13ac6012615a6a50f00426e856a198a15dcb249e77bea1675f"
+      },
+      {
+        "path": "scripts/run_live_provider_gate.py",
+        "bytes": 3662,
+        "sha256": "b9caaedb3f4645d0cb1c9ae8e742fb9832d77a34c2f986a7c10dc15569faf881"
+      }
+    ]
+  },
+  "source_manifest_after_execution": {
+    "file_count": 101,
+    "total_bytes": 1119962,
+    "manifest_sha256": "d3cd30bc26717fd7220d5c7756355c10e652ac0aa824e4dd84070767160d6619",
+    "files": [
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/dependency_links.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/entry_points.txt",
+        "bytes": 276,
+        "sha256": "bcebb6173ae54de23a25bdbb6af9b136687215a6ea8db5c4de4541c19ad91b87"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/PKG-INFO",
+        "bytes": 753,
+        "sha256": "f74ac4fd9c962ded4017f0aadc3d6ec0f3da4ec2e2a4be88b7d546634c961653"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/requires.txt",
+        "bytes": 356,
+        "sha256": "cbdcc6185eb40e9fe95e424a1771b558ee21106b607324e9ffcfee6af1f1c5a5"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/SOURCES.txt",
+        "bytes": 4137,
+        "sha256": "36719c07b37527dd733269358bed4ecbe27df85510aaafd25d8690ff62d93d8b"
+      },
+      {
+        "path": "src/kch_csi_studio_extension_fabric.egg-info/top_level.txt",
+        "bytes": 11,
+        "sha256": "3b65e8851c4c53aab05e3f0450b70be5de03074f542af1150ee446ee1ed16ebb"
+      },
+      {
+        "path": "src/kch_studio/__init__.py",
+        "bytes": 247,
+        "sha256": "4f4625a882f166832df8ae51f66a823df0d884653d47626dfb69de3d2550f6cb"
+      },
+      {
+        "path": "src/kch_studio/account_broker.py",
+        "bytes": 16510,
+        "sha256": "cec601abc44e58f13ed6fb389aee6eb4e448ae4630040992f155e7c8dc7de734"
+      },
+      {
+        "path": "src/kch_studio/adapters.py",
+        "bytes": 4921,
+        "sha256": "a608277da1cd485d79398daf90537bdf2b9e7fb186501c26465b5f470138d9cf"
+      },
+      {
+        "path": "src/kch_studio/advanced_runtime.py",
+        "bytes": 72282,
+        "sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1"
+      },
+      {
+        "path": "src/kch_studio/audio_hub.py",
+        "bytes": 16741,
+        "sha256": "5b40ec570a0f6538722af81992c53fa6af19a1a84820f6c0af3bc3271c1e991f"
+      },
+      {
+        "path": "src/kch_studio/checkpoints.py",
+        "bytes": 15580,
+        "sha256": "d6645412e66031520eff4d226fb0a7431b01de11a11cc021ca60976a2a85e9fd"
+      },
+      {
+        "path": "src/kch_studio/cli.py",
+        "bytes": 2860,
+        "sha256": "ae7ad93ac96a76ba30446d3f2c33d76624ad7cba512a4539e8e003e9c97548ff"
+      },
+      {
+        "path": "src/kch_studio/clipboard_hub.py",
+        "bytes": 23731,
+        "sha256": "9b779e00fd945debfa3001f30ee143d5b1b3d8cabc06c483770d45c5e2e74f5f"
+      },
+      {
+        "path": "src/kch_studio/codex_bootstrap_mcp.py",
+        "bytes": 11661,
+        "sha256": "c986badfd0a4257aed3f4cc7c788dc3fb05c295d66687de6d8371f829576aa3a"
+      },
+      {
+        "path": "src/kch_studio/codex_preflight_mcp.py",
+        "bytes": 3856,
+        "sha256": "f5249c4b27bdf7a250e03cb629b2c5feb81ee3a7762f6cbd9bb0dadfc7593477"
+      },
+      {
+        "path": "src/kch_studio/commitment_monitor.py",
+        "bytes": 29207,
+        "sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab"
+      },
+      {
+        "path": "src/kch_studio/constitutional.py",
+        "bytes": 12220,
+        "sha256": "d63e08b2ccfaf29814e5c74f7dea490090e211d4bc50cb5d818edec2473ac76d"
+      },
+      {
+        "path": "src/kch_studio/construct_mode.py",
+        "bytes": 13143,
+        "sha256": "edcd2e4d54e4ccefe6509b1a4fb7d49f9dafe31e8fc7669d5241c29b6a8c1cb3"
+      },
+      {
+        "path": "src/kch_studio/continuity_guard.py",
+        "bytes": 38291,
+        "sha256": "96a4ea3ece9fe7966d0eb81ed887368bc34abd154822736d8a80a719a92c2785"
+      },
+      {
+        "path": "src/kch_studio/contracts.py",
+        "bytes": 6797,
+        "sha256": "31221f806a221c3d40a3932065c5481de17472a6cb983c69480be089bee21fe9"
+      },
+      {
+        "path": "src/kch_studio/data/__init__.py",
+        "bytes": 81,
+        "sha256": "b30644b2fc8cfe1c7605e8d459309ca0c6b8d5f5c1e2b1376bb91d4e76df8d54"
+      },
+      {
+        "path": "src/kch_studio/data/audio/speak_windows.ps1",
+        "bytes": 622,
+        "sha256": "7d367a36d04060c9d21e1bd4f0ac8bab21b954f77dd5876270a4c741066d66ee"
+      },
+      {
+        "path": "src/kch_studio/data/audio/transcribe_windows.ps1",
+        "bytes": 1646,
+        "sha256": "afb281f742feafc186cd99dbd4f8c99ce973e57e7c0907172fce27a77d84d5a3"
+      },
+      {
+        "path": "src/kch_studio/data/governance/.kch-csi-generated-v0.1.0",
+        "bytes": 33,
+        "sha256": "d9a2ba92f2153edf943cdc3a5da5990890b44933c475b5bb2259a75fca837c0a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/.codex/rules/kch-generated.rules",
+        "bytes": 216,
+        "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/AGENTS.md",
+        "bytes": 21980,
+        "sha256": "df05e1010ee412e754b9831267124c740afaea5c89c2b5504146dd81e0c9c0b1"
+      },
+      {
+        "path": "src/kch_studio/data/governance/codex/COMPATIBILITY_RECEIPT.json",
+        "bytes": 640,
+        "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
+      },
+      {
+        "path": "src/kch_studio/data/governance/csi/governance_graph.json",
+        "bytes": 22581,
+        "sha256": "7868ae3a530d8572cedfd48fb78acff8a85fb49d718c500e32bb4621bbafa4cf"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/HARNESS.md",
+        "bytes": 5075,
+        "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+      },
+      {
+        "path": "src/kch_studio/data/governance/generic/RULES.md",
+        "bytes": 1784,
+        "sha256": "3b85105b95f139e18526106f6342b7149d198cc9b3ec2a2fe737522bac85b5a4"
+      },
+      {
+        "path": "src/kch_studio/data/governance/governance.lock.json",
+        "bytes": 11843,
+        "sha256": "b10893a3ddfb30430b1379694f0edfc5d6c12194d9800a5967d30e18ca296790"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/artifact-builder.md",
+        "bytes": 758,
+        "sha256": "2e8ce460e5b10611678943a048a4d54f2099399f33ead0a63b37f42092a7f358"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/coral-integration-auditor.md",
+        "bytes": 1123,
+        "sha256": "4ae4b5ecfc410953ef1939b88bd7393a65c34ae8a3419fdd6d601cc508e7213a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/csi-studio-orchestrator.md",
+        "bytes": 729,
+        "sha256": "de0a39386e4fa32a6ae38eb4cfaeb8ccea91dc207cec9b3b4b191f4413e0793b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/evidence-skill-continuity.md",
+        "bytes": 1726,
+        "sha256": "ffe712740a4791eab7546bfc5a51646cfea184185297c4978dfa3db000dcafbc"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/extension-curator.md",
+        "bytes": 776,
+        "sha256": "0e5120d21c0fba3fb0deb7caa32cfa317662b01e6426eef717d2fa9b9ed096cb"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/agents/governance-compiler.md",
+        "bytes": 639,
+        "sha256": "dae35d9b095421379155451dcd676390e4ec3606edd1ea0ae76e37717bca1866"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/AGENTS.md",
+        "bytes": 2369,
+        "sha256": "759e9af767a905715e9217933e26c33024dc28577b9c18dd4088c8b585a71947"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/HARNESS.md",
+        "bytes": 5075,
+        "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/all-strategic-coral-integration.md",
+        "bytes": 1408,
+        "sha256": "381ae17970ca6387dabe5c6fe65c95a8f9b7f0d96258b125377fc88f287a0b6b"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/authority-nonescalation.md",
+        "bytes": 758,
+        "sha256": "a3e2c005155ec891b3e31fad6f58331c3783f31aa781a9bf5f65fa023296b502"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/evidence-derived-skill-lifecycle.md",
+        "bytes": 1883,
+        "sha256": "718adc76be6eee6e6c1fe66e608272a359794cbe2b650b911c020a7f1e59bf44"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/extension-acquisition.md",
+        "bytes": 779,
+        "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/full-read-source-order.md",
+        "bytes": 2193,
+        "sha256": "f0bab676ca329844eab06215a96a9c49dae12af13529e9ddba7e85c50452f601"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/generation-staged.md",
+        "bytes": 845,
+        "sha256": "c96e103ee4bce5664d80f9136a0129bc004751e030f62e8c567781203cb5ff8a"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/host-projection.md",
+        "bytes": 897,
+        "sha256": "80d29681c4fab3535377c3fdef1900c58c38d433bac9f80d82537285184327ac"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/interface-transparency.md",
+        "bytes": 890,
+        "sha256": "f9f766ee82060c36016e9b82c3563b825827164263bdce895acc83e015a39a46"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/recommendation-evidence.md",
+        "bytes": 803,
+        "sha256": "5045807acb9ee5448861bd9ac5cc27d871d357af1a65b3f99f6a7797c304108e"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/response-modes-substantive.md",
+        "bytes": 1824,
+        "sha256": "c610e8d07d5725573e1b49831745acde346fc04c20ddfddace39729032204b52"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/rules/terminal-process-supervision.md",
+        "bytes": 2724,
+        "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977"
+      },
+      {
+        "path": "src/kch_studio/data/governance/source/RULES.md",
+        "bytes": 1784,
+        "sha256": "3b85105b95f139e18526106f6342b7149d198cc9b3ec2a2fe737522bac85b5a4"
+      },
+      {
+        "path": "src/kch_studio/diction_learning.py",
+        "bytes": 12480,
+        "sha256": "1ab599b58ed155383b901dac57d4ad715180fcd2165fdcde67734ef6881fdf69"
+      },
+      {
+        "path": "src/kch_studio/extension.py",
+        "bytes": 23529,
+        "sha256": "7f83e2e9b6303eb9123093ed0a1108279421a0a6df9fc369e6da4776eaaaf19d"
+      },
+      {
+        "path": "src/kch_studio/federated_runtime.py",
+        "bytes": 22884,
+        "sha256": "3895c1b02321c2e3adc636263fce5919177bda1426aed01f738866c79a37ac5f"
+      },
+      {
+        "path": "src/kch_studio/full_read_contract.py",
+        "bytes": 19868,
+        "sha256": "6a58985ce17a92588e1e9cff642c1d5cb1eab09f35d356ebfdb39461475d6f33"
+      },
+      {
+        "path": "src/kch_studio/generators.py",
+        "bytes": 41018,
+        "sha256": "2b138aa1af28bcca57ae63c877e40eeaca79f14b97fe1a82644419751f00e7f9"
+      },
+      {
+        "path": "src/kch_studio/installation.py",
+        "bytes": 6527,
+        "sha256": "59b080708e4c91eb6cd149f70290344f6cd9c8a9aa5230489a32c26549414239"
+      },
+      {
+        "path": "src/kch_studio/kwandata.py",
+        "bytes": 22297,
+        "sha256": "c39054cb93a32ee5be6ecbc9bf96868228fec41ee86dcc94eaa917b0a20c64af"
+      },
+      {
+        "path": "src/kch_studio/launcher.py",
+        "bytes": 9902,
+        "sha256": "0369c41311e90541c645751c9a8717b56f4bc294708314c52b9244b58643a759"
+      },
+      {
+        "path": "src/kch_studio/mcp_server.py",
+        "bytes": 18127,
+        "sha256": "7fc595a8f262928e78771d60ae74a4aa16c0d1bca395d2f5ac1f7a3bc6d73cdc"
+      },
+      {
+        "path": "src/kch_studio/mis_service.py",
+        "bytes": 48280,
+        "sha256": "ecbccfeb8bc9f6a9741fbcbcebd67906b60bada8abe097233cb75e2c45fab582"
+      },
+      {
+        "path": "src/kch_studio/monitored_process_worker.py",
+        "bytes": 6052,
+        "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0"
+      },
+      {
+        "path": "src/kch_studio/operational_surface.py",
+        "bytes": 36240,
+        "sha256": "0bf3b77dfc538e6987a602e483945d2877045a5c0914de30e09eec9ba242476f"
+      },
+      {
+        "path": "src/kch_studio/permissions.py",
+        "bytes": 13656,
+        "sha256": "ba8d48b7a964a4cddff62a68836f1a037297c8323e8b7a416c75f722ac301d5f"
+      },
+      {
+        "path": "src/kch_studio/persistence.py",
+        "bytes": 14588,
+        "sha256": "dfce6eac6a1f825819a4d500418e60873a9ee35608bbd514cd75da5997ce7b1a"
+      },
+      {
+        "path": "src/kch_studio/proactive.py",
+        "bytes": 14856,
+        "sha256": "3f45224de83cb0bb9b9c94fee028e9f050431cdbb3a7c8da7e3ff3f924443977"
+      },
+      {
+        "path": "src/kch_studio/recovery.py",
+        "bytes": 14268,
+        "sha256": "eb8553944ecdf7e76a96073ebdd33d6958f4ea6155c4f41e2c2d58896c13c039"
+      },
+      {
+        "path": "src/kch_studio/response_authority.py",
+        "bytes": 11275,
+        "sha256": "ec9dc1fbe9e4729d0d432c8ff3e6066cd06bf0cc54096319c8e0f393f9374813"
+      },
+      {
+        "path": "src/kch_studio/response_modes.py",
+        "bytes": 29671,
+        "sha256": "43eac86c2730210f38d50135f64ed04032f4d55ab4b517d47ee661ee09820674"
+      },
+      {
+        "path": "src/kch_studio/safeguards.py",
+        "bytes": 4513,
+        "sha256": "381414abd62ee6691d91ae07f1883ed73fb7d58a5a5c17870b724e1a78883ecd"
+      },
+      {
+        "path": "src/kch_studio/scheduler.py",
+        "bytes": 15384,
+        "sha256": "acd4ea866f331429a76b274624e639b955e0d0e5faa1ea547fc8ee34388da226"
+      },
+      {
+        "path": "src/kch_studio/store.py",
+        "bytes": 11645,
+        "sha256": "dd70fe8b4301f2a83640ac587a513f57e30e35502c39b2fc28443bc5ac446485"
+      },
+      {
+        "path": "src/kch_studio/studio.py",
+        "bytes": 12882,
+        "sha256": "edb4f7090ae5c46d24ab27217855463abeab707d0773b5f943a051934772b142"
+      },
+      {
+        "path": "src/kch_studio/super_mcp_overlay.py",
+        "bytes": 9022,
+        "sha256": "51b30a4d4c6838fea53d6885a6da7032465efc852f0ca862ebcce0c2fd34636a"
+      },
+      {
+        "path": "src/kch_studio/surface_contract.py",
+        "bytes": 18568,
+        "sha256": "a47ed376f1d5ded6c5eb860e76675d072d47181aa4d170ccd3f308a227ee153a"
+      },
+      {
+        "path": "src/kch_studio/ui.py",
+        "bytes": 82015,
+        "sha256": "5065ce57fd64720587d02b6518a1cda88ccc61adc6d3107876640ea6afe2ede3"
+      },
+      {
+        "path": "src/kch_studio/universal_text.py",
+        "bytes": 16467,
+        "sha256": "d0cdf6718a3772c6202de6ac48a41598b9acb2711a5413a264437aee6d5bed95"
+      },
+      {
+        "path": "src/kch_studio/workbench_suite.py",
+        "bytes": 70869,
+        "sha256": "00783cf6ab4b26b1d4158d07166e1f37af4bf904c1b9a8b81d3a4dce9c886383"
+      },
+      {
+        "path": "src/kch_studio/workbench_surface.py",
+        "bytes": 13154,
+        "sha256": "f955fcd9811117c3c94c07ea4acbabeaa341da6fc385fb7d20b949e24e603746"
+      },
+      {
+        "path": "tests/test_advanced_layers.py",
+        "bytes": 12060,
+        "sha256": "08a83215d38d2585b8cd8b79fa2ccf642478e9a849fc36686b574cd95b7b6c7f"
+      },
+      {
+        "path": "tests/test_codex_bootstrap_mcp.py",
+        "bytes": 4188,
+        "sha256": "1dbae929cf662286778d611cdab61df48b873f32d548360517dcb3bbb760a2d1"
+      },
+      {
+        "path": "tests/test_codex_preflight_mcp.py",
+        "bytes": 1399,
+        "sha256": "f83af1a2325b672a6e731a3891c348052a8707e3b464e674287738565880f7ae"
+      },
+      {
+        "path": "tests/test_commitment_monitor.py",
+        "bytes": 8278,
+        "sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a"
+      },
+      {
+        "path": "tests/test_continuity_guard.py",
+        "bytes": 7291,
+        "sha256": "acb53d3c38ae4caeb3a8d4e3d1acde9dd96e1b69a0b201025efbf2832ad13e02"
+      },
+      {
+        "path": "tests/test_extension.py",
+        "bytes": 2449,
+        "sha256": "d0bd24a0ae44dc3795556dd9f48db4d0fbecc3729673c14d3c4ff39494060e3d"
+      },
+      {
+        "path": "tests/test_full_read_contract.py",
+        "bytes": 6172,
+        "sha256": "cd9713012d30b5aa086ae84e794fae34560210ce99d97da5dc4c32c7c8089ccc"
+      },
+      {
+        "path": "tests/test_mcp_ui.py",
+        "bytes": 5750,
+        "sha256": "720c58843094ff13eeada012c12b3aa5b8fb866c81d6599c7a30e19ecefc79da"
+      },
+      {
+        "path": "tests/test_mis_federation.py",
+        "bytes": 5254,
+        "sha256": "4229fc16f9c2f2b44f5d5985ff5d397cdd733ddccd385ffddb4e1b2c8c179e5f"
+      },
+      {
+        "path": "tests/test_operational_surface.py",
+        "bytes": 6068,
+        "sha256": "715fcddb477f89ff8312d8149afa44be73736a509788b3214c290b6cdbaaf22a"
+      },
+      {
+        "path": "tests/test_portable_paths.py",
+        "bytes": 3646,
+        "sha256": "5c3e5027f7044f86cd0de036413932801f58afac20173c652741275fc6bc1aad"
+      },
+      {
+        "path": "tests/test_response_authority.py",
+        "bytes": 3363,
+        "sha256": "40ff065a860ad6755067b8c602581daf6962fbb3104082de02f33668f9239f5f"
+      },
+      {
+        "path": "tests/test_response_modes.py",
+        "bytes": 4786,
+        "sha256": "ee89a5586e99c3b61d9cdbf7326764cdf382fa0d1b06731f329658f1c3159ba6"
+      },
+      {
+        "path": "tests/test_studio.py",
+        "bytes": 8316,
+        "sha256": "d47ad7a5810d03d3158d168fa275c228d351dfb976e40789c3487f9e16029974"
+      },
+      {
+        "path": "tests/test_workbench_suite.py",
+        "bytes": 7262,
+        "sha256": "38eee9ef78acc623169fa743f6e63460e8c1321b6db9427c08faef4f0817cd31"
+      },
+      {
+        "path": "scripts/build_portable_release.py",
+        "bytes": 11152,
+        "sha256": "36f40453b4ec7d7e7742ef16a6c0b0539171147bdcf5456687fec509210abfcd"
+      },
+      {
+        "path": "scripts/extract_and_install.py",
+        "bytes": 5754,
+        "sha256": "261ef49341635590976455deb3346afa5e6e6bb27383d78bd1523a4c4afb005d"
+      },
+      {
+        "path": "scripts/portable_bootstrap.py",
+        "bytes": 8669,
+        "sha256": "b8c086527b7abff0d39120b67889b5f409c18c201d644c8e6c436efc5ca85daa"
+      },
+      {
+        "path": "scripts/post_install_gate.py",
+        "bytes": 11972,
+        "sha256": "52afe26475131e13ac6012615a6a50f00426e856a198a15dcb249e77bea1675f"
+      },
+      {
+        "path": "scripts/run_live_provider_gate.py",
+        "bytes": 3662,
+        "sha256": "b9caaedb3f4645d0cb1c9ae8e742fb9832d77a34c2f986a7c10dc15569faf881"
+      }
+    ]
+  },
+  "source_mutation_detected_during_gate": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "ONE_LOCAL_PREPILOT020_COMPONENT_INTEGRATION_GATE_FULL_READ_AND_OWNED_TERMINAL_SUPERVISION_ONLY",
+  "sha256": "267cd0f7414f40d5d49505ff8de3cb4432e65a319f053a0701f0537cbdaf4fb3"
+}

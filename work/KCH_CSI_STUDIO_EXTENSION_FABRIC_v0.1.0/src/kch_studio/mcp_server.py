@@ -13,7 +13,7 @@ from .full_read_contract import full_read_contract_status
 from .installation import ConsentDecision, InstallPlan, IsolatedInstaller
 from .studio import Studio
 
-SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.7"}
+SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.9"}
 PROTOCOL_VERSION = "2025-06-18"
 
 

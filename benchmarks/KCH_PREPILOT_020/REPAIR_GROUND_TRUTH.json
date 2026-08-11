@@ -1,0 +1,65 @@
+{
+  "schema": "kch.prepilot020-repair-ground-truth.v0.1.0",
+  "created_date": "2026-08-11",
+  "source_root": "C:/Users/User/Documents/Codex/2026-08-09/kch-pre2g-continuacion-integral/work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+  "jurisdiction": "POST_ADVERSE_R19_PID_REBIND_REPAIR",
+  "order_semantics": "SOURCE_NATIVE_ORDER_EXPLICIT_LIST",
+  "files": [
+    {
+      "ordinal": 1,
+      "path": "src/kch_studio/commitment_monitor.py",
+      "bytes": 29207,
+      "physical_lines": 733,
+      "sha256": "a50fc550c17c4f9ff817c940f989c806a00ffcb9b8da2aa7aa491f0612bde8ab",
+      "expected_evidence_spans": [
+        "STARTUP_RECEIPT_TIMEOUT_SECONDS = 5.0",
+        "worker_pid_source = \"CANONICAL_RUNNING_RECEIPT\""
+      ]
+    },
+    {
+      "ordinal": 2,
+      "path": "src/kch_studio/monitored_process_worker.py",
+      "bytes": 6052,
+      "physical_lines": 166,
+      "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0",
+      "expected_evidence_spans": [
+        "\"schema\": \"kch.monitored-process-running.v0.1.0\","
+      ]
+    },
+    {
+      "ordinal": 3,
+      "path": "src/kch_studio/advanced_runtime.py",
+      "bytes": 72282,
+      "physical_lines": 1674,
+      "sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1",
+      "expected_evidence_spans": [
+        "\"commitment_monitor_wait_terminal\", \"Wait boundedly for exact terminal evidence\""
+      ]
+    },
+    {
+      "ordinal": 4,
+      "path": "tests/test_commitment_monitor.py",
+      "bytes": 8278,
+      "physical_lines": 243,
+      "sha256": "4ef9e6ab352bde02a636290cea6fff951e69e044d0124de4666e1e8c461ffd7a",
+      "expected_evidence_spans": [
+        "def test_launch_rebinds_wrapper_pid_to_canonical_running_worker"
+      ]
+    },
+    {
+      "ordinal": 5,
+      "path": "governance/rules/terminal-process-supervision.md",
+      "bytes": 2724,
+      "physical_lines": 26,
+      "sha256": "bea7a9b6d3bd32afe459387f913a9cdb6f4aab7ea459e7d0202bd76814f17977",
+      "expected_evidence_spans": [
+        "bind_signed_effective_worker_pid"
+      ]
+    }
+  ],
+  "semantic_claim_rule": "Exact source spans prove only source presence and byte identity. Runtime behavior requires the independently monitored suite and the fresh installed stdio gate.",
+  "historical_r18_ground_truth_superseded": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false
+}

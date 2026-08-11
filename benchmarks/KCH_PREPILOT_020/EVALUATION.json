@@ -1,0 +1,109 @@
+{
+  "schema": "kch.prepilot020-evaluation.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_020",
+  "evaluated_date": "2026-08-11",
+  "governing_objective": "Integrate durable terminal process supervision into KCH and prove the exact component in source and in a fresh portable installation before any new real-session campaign.",
+  "chronology": [
+    {
+      "ordinal": 1,
+      "event": "PREREGISTRATION_AND_PRECHANGE_FREEZE",
+      "artifact": "PREREGISTRATION.json",
+      "raw_sha256": "8a2f05994b8157d7145c0f1e1d07c214a61764a3e721ed4b0d114d2592b5d36d"
+    },
+    {
+      "ordinal": 2,
+      "event": "R18_COMPONENT_GATE_ADVERSE",
+      "result": "FAIL_83_PASS_2_FAIL",
+      "cause": "Two stale governance-count assertions expected 19 nodes after the new constitutional rule made the correct count 20.",
+      "canonical_sha256": "b1ac717cb9b588a509deb7b1c1e96f47b2b54d1ebd87435d7762ed9f639812f7",
+      "raw_sha256": "5484e009777e0a33ec299b20354fb900b80ced0e55249201a721ccd2a564e233"
+    },
+    {
+      "ordinal": 3,
+      "event": "R18_COMPONENT_CAUSAL_REPAIR_AND_REPETITION",
+      "result": "PASS_85_OF_85_TWICE",
+      "canonical_sha256_attempt_02": "e179db5490161248839e66e9dc63eacffc9058376a06c3f5f3355ec1f8cf9700",
+      "canonical_sha256_attempt_03": "64ef4ca94c3a5303661ab75700c0614e26cee6ea611210ab15acc82550739923"
+    },
+    {
+      "ordinal": 4,
+      "event": "R18_FRESH_INSTALLED_STDIO_GATE_ADVERSE",
+      "result": "FAIL_26_OF_28",
+      "observed_target_exit_code": 0,
+      "cause": "The Windows virtual-environment launcher PID differed from the effective supervisor PID sealed in the terminal receipt. KCH correctly failed closed instead of calling physical success governed success.",
+      "canonical_sha256": "22662827af1badf5e62ba598bfa5e4dd4f7d0a60a3de03a51e583595123262db",
+      "raw_sha256": "283469dec5c7a16442645584f24db433fd0c7196f5a198100f3ae377eebed6f9"
+    },
+    {
+      "ordinal": 5,
+      "event": "R19_CAUSAL_REPAIR",
+      "result": "BIND_EFFECTIVE_WORKER_PID_FROM_CANONICAL_RUNNING_OR_TERMINAL_RECEIPT",
+      "regression_result": "9_OF_9_PASS_INCLUDING_FORCED_LAUNCHER_WORKER_PID_DIVERGENCE",
+      "full_source_suite": "86_OF_86_PASS",
+      "governance": "20_NODES_6_AGENTS_11_RULES"
+    },
+    {
+      "ordinal": 6,
+      "event": "R19_REPRODUCIBLE_SOURCE_GATE",
+      "result": "PASS_86_OF_86",
+      "full_read_source_verification": true,
+      "semantic_exact_spans": true,
+      "source_unchanged_during_gate": true,
+      "canonical_sha256": "267cd0f7414f40d5d49505ff8de3cb4432e65a319f053a0701f0537cbdaf4fb3",
+      "raw_sha256": "b638781eca7923d9384ab7067f8984e5b86e5b922c80f98f0db8e40b0f9393a6"
+    },
+    {
+      "ordinal": 7,
+      "event": "R19_FRESH_PORTABLE_INSTALL",
+      "result": "PASS_BOUNDED_19_OF_19",
+      "installed_tool_count": 283,
+      "package_version": "0.3.9",
+      "post_install_raw_sha256": "34bdb0ee68216e97e316e96a648115c06151b77229bd1f7cac8f676beb803174"
+    },
+    {
+      "ordinal": 8,
+      "event": "R19_INSTALLED_STDIO_TERMINAL_GATE",
+      "result": "PASS_BOUNDED_29_OF_29",
+      "launcher_pid": 6460,
+      "effective_worker_pid": 8164,
+      "worker_pid_source": "CANONICAL_RUNNING_RECEIPT",
+      "exit_code": 0,
+      "relaunch_performed": false,
+      "canonical_sha256": "9413dd9875449c92ed733d3ee62c12440b7729d42a4aba0abe8c3d1927280846",
+      "raw_sha256": "c984de7f85506f13edfaddb78ad11b64a570590323b03426a5ded8db58a55356"
+    }
+  ],
+  "adjudication": {
+    "gate": "PASS_BOUNDED_COMPONENT_INTEGRATION",
+    "established": [
+      "The R19 source implementation passes its complete local suite under owned terminal supervision.",
+      "The packaged wheel installs offline in a fresh short-path Windows runtime.",
+      "The installed Super-MCP exposes 283 tools including launch, bounded wait and evidence operations.",
+      "Launcher indirection is resolved through a canonical receipt bound to the same commitment and request hash.",
+      "Exit code, stdout, stderr and expected artifact hashes agree between monitor, terminal receipt and independent reads.",
+      "Wait timeouts and terminal checks do not relaunch the process.",
+      "PHL remains authorized but untrained and was not executed."
+    ],
+    "not_established": [
+      "Host-wide automatic interposition across Codex, Cline, Cowork, OpenCode or other clients.",
+      "Long-duration reliability, crash recovery across operating-system reboot, or heterogeneous-platform equivalence.",
+      "Industrial, production, safety or universal efficacy.",
+      "Prevention of every recurrent agent failure outside the tested terminal-supervision class."
+    ],
+    "global_winner": null,
+    "comparison_note": "This is a chronological defect-repair adjudication, not a competing-arm superiority experiment."
+  },
+  "release": {
+    "name": "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R19.zip",
+    "bytes": 22167341,
+    "sha256": "a8f1cf6ffa7f5aafea28a81a3c2bef06b6e6c1f9786379208576be2463da8a08",
+    "wheel_sha256": "e4238d65c3aae91bcc112c632a6bd0f931f9f4aafa6943fdea8f883b801a42e1"
+  },
+  "historical_adverse_artifacts_preserved": true,
+  "local_deletion_performed": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "next_critical_action_after_remote_custody": "Run PREPILOT_021 as a fresh paired-task benchmark on a historically recurrent monitoring-and-recovery failure class, keeping BASELINE_SIN_KCH strictly free of KCH invocation and using R19 only in the assisted arm.",
+  "sha256": "393e9ed0499938868bbdee92d50968895c578f62b966b22f8dae981fb17e4fb3"
+}

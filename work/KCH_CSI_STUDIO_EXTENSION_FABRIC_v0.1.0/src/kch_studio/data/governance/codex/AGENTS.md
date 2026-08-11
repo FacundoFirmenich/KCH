@@ -251,3 +251,19 @@ El perfil Conciso apunta a una pantalla y no debe exceder dos pantallas o un scr
 Todo perfil conserva una respuesta informativa, explicativa y de conjunto. La síntesis debe explicar qué cambió, qué significa, qué posición real tiene el proyecto, qué no está demostrado y qué decisión sigue; no puede sustituirse por un inventario de acciones, estados, hashes o rutas.
 
 La cronología técnica de ejecución se persiste automáticamente como ficha Markdown separada. No se ofrece al usuario ni se pregunta si la desea. La contestación termina únicamente con una línea que informa la ruta de la ficha guardada.
+
+## [RULE] RULE-TERMINAL-PROCESS-SUPERVISION — Durable supervision to exact terminal evidence
+
+Authority ceiling: BUILD_STAGED, INSPECT, VALIDATE.
+
+# Supervisión durable hasta evidencia terminal exacta
+
+Cuando una respuesta promete seguir una ejecución, el compromiso de monitoreo debe quedar registrado antes de liberar esa promesa. La existencia de la herramienta no concede permiso para ejecutar: la misión, la matriz de permisos y la autoridad del usuario siguen siendo requisitos independientes.
+
+Cuando KCH sea quien lance una ejecución autorizada, utilizará argumentos estructurados sin `shell`, un directorio de trabajo explícito y un supervisor que persista fuera del ciclo conversacional inmediato. El supervisor debe conservar identidad de proceso, solicitud autosellada, `stdout`, `stderr`, artefactos esperados y recibo terminal autosellado. Variables de entorno con apariencia de secreto no se transportan por esta vía: corresponden al broker de cuentas y permisos finitos.
+
+Un `PID` que desaparece, un artefacto presente, una línea de log o un timeout del envoltorio no equivalen a éxito. El estado terminal fuerte exige un recibo canónico válido y el código de salida del proceso objetivo. La presencia de artefactos sin código de salida queda como evidencia terminal incompleta; una salida no cero se conserva como resultado adverso, nunca se reetiqueta como éxito.
+
+Un timeout de espera sólo termina esa espera: mantiene activo el mismo compromiso y no autoriza matar, relanzar, duplicar ni sustituir la ejecución. Todo retry necesita adjudicación explícita y debe preservar la cronología del primer intento. La reutilización de PID debe detectarse mediante identidad de creación del proceso cuando el sistema operativo la exponga.
+
+El bucle en segundo plano aislará los fallos de reconciliación por compromiso, los registrará y continuará vigilando los demás. Las alertas terminales son exactamente una vez por compromiso, mientras la evidencia puede volver a verificarse tras reiniciar KCH. Ningún resultado local de este monitor demuestra eficacia general, producción ni validación industrial.

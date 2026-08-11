@@ -1,0 +1,60 @@
+{
+  "schema": "kch.prepilot020-preregistration.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_020",
+  "created_date": "2026-08-11",
+  "design": "PROSPECTIVE_LOCAL_COMPONENT_INTEGRATION_GATE_BEFORE_NEW_PAIRED_AGENT_TASKS",
+  "governing_objective": "Integrate R17 source-backed complete reading with durable terminal process supervision so KCH can prove that it read the mandated sources and followed one owned execution to an exact terminal result without PHL.",
+  "reason_for_component_gate_first": "The existing commitment monitor only observes PID existence, error substrings and artifact presence. It does not own a process, preserve process identity against PID reuse, capture exit code, emit a canonically sealed terminal receipt, wait without abandoning the commitment, or isolate background-loop failures. A new paired agent benchmark before repairing these defects would test an incomplete mechanism.",
+  "frozen_prechange_source_surface": {
+    "included": ["src", "tests", "scripts"],
+    "excluded": ["__pycache__", ".pytest_cache", ".pytest-tmp"],
+    "file_count": 99,
+    "total_bytes": 1073418,
+    "manifest_sha256": "ed59fed530009b81ef60a312755c19e42a8da5720f0e299d7e89e2f86b4d910e"
+  },
+  "predeclared_defects": [
+    "PID_EXISTENCE_WITHOUT_PROCESS_IDENTITY",
+    "NO_MONITOR_OWNED_LAUNCH_PATH",
+    "NO_TERMINAL_EXIT_CODE_OR_CANONICAL_RECEIPT",
+    "ARTIFACT_PRESENCE_CONFUSED_WITH_SUCCESS",
+    "WAIT_TIMEOUT_CAN_BE_CONFUSED_WITH_PROCESS_TERMINATION",
+    "BACKGROUND_RECONCILIATION_EXCEPTION_CAN_KILL_MONITOR_LOOP",
+    "NO_RESTART_RECOVERY_FROM_DURABLE_TERMINAL_RECEIPT"
+  ],
+  "implementation_contract": [
+    "Keep the existing external-PID registration path backward compatible.",
+    "Add a shell-free argv launch path through a dedicated worker that persists stdout, stderr and a canonical terminal receipt independently of the KCH runtime lifecycle.",
+    "Persist an OS-derived process creation token and reject PID reuse as process identity loss.",
+    "Distinguish monitoring, successful terminal completion, nonzero terminal completion, invalid terminal evidence, and terminated-without-evidence.",
+    "Expose bounded wait-to-terminal behavior that never kills or relaunches the process on timeout.",
+    "Make the background loop isolate and persist per-commitment reconciliation errors instead of dying silently.",
+    "Expose launch, wait and evidence through Super-MCP and keep authority, execution and outcome distinct.",
+    "Do not execute PHL, access credentials, modify external hosts or claim production readiness."
+  ],
+  "focused_primary_gates": [
+    "LIVE_PROCESS_IDENTITY_IS_CAPTURED",
+    "TERMINAL_ALERT_IS_EXACTLY_ONCE",
+    "OWNED_SUCCESSFUL_PROCESS_HAS_EXIT_ZERO_LOG_HASHES_AND_VALID_RECEIPT",
+    "OWNED_NONZERO_PROCESS_IS_PRESERVED_AS_TERMINAL_FAILURE",
+    "WAIT_TIMEOUT_REMAINS_NONTERMINAL_AND_DOES_NOT_RELAUNCH",
+    "INVALID_TERMINAL_RECEIPT_FAILS_CLOSED",
+    "BACKGROUND_RECONCILIATION_SURVIVES_ONE_COMMITMENT_ERROR",
+    "TERMINAL_EVIDENCE_IS_RECOVERABLE_AFTER_MONITOR_RESTART"
+  ],
+  "integration_gates": [
+    "ADVANCED_RUNTIME_EXPOSES_LAUNCH_WAIT_AND_EVIDENCE_TOOLS",
+    "SURFACE_CONTRACT_HAS_NO_UNBOUND_MONITOR_METHODS",
+    "R17_FULL_READ_BATCH_AND_SOURCE_VERIFIER_REMAIN_GREEN",
+    "COMPLETE_SOURCE_SUITE_PASSES_WITH_CACHE_AND_BYTECODE_DISABLED",
+    "RUFF_PASSES",
+    "FRESH_PORTABLE_RELEASE_INSTALLS_AND_PASSES_POST_INSTALL_GATE",
+    "INSTALLED_STDIO_CAN_LAUNCH_AND_OBSERVE_A_TERMINAL_PROBE",
+    "SOURCE_MANIFEST_POSTCHANGE_IS_RECORDED_WITHOUT_REWRITING_PRECHANGE_FREEZE"
+  ],
+  "adjudication_rule": "Every gate is PASS, FAIL or NOT_ESTIMABLE. An exit-zero probe does not validate general monitoring efficacy; a timeout is not a terminal process result; artifact presence never substitutes exit code; self-hash integrity never substitutes factual source verification; no global winner is defined in this component gate.",
+  "next_gate_if_pass": "Run a fresh paired Luna task benchmark using sparse prompts, with KCH forbidden in baseline and automatically bound in the KCH arm, combining ordered multi-file reading and owned terminal supervision.",
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "PROSPECTIVE_LOCAL_COMPONENT_INTEGRATION_ONLY"
+}

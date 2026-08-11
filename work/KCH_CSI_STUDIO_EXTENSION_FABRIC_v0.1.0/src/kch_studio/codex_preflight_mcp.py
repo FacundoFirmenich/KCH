@@ -40,7 +40,7 @@ class CodexPreflightMCP:
                 result: Any = {
                     "protocolVersion": PROTOCOL_VERSION,
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "kch-codex-preflight", "version": "0.3.7"},
+                    "serverInfo": {"name": "kch-codex-preflight", "version": "0.3.9"},
                     "instructions": (
                         "Mandatory startup binding: call kch_governed_preflight exactly once "
                         "before the first material action in every new task. It is read-only and "

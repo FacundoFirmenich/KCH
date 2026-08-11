@@ -1,4 +1,11 @@
-from kch_studio.continuity_guard import ContinuousPeriodLedgerCompiler, ContinuityAndBurdenGovernor, EpistemicClaimTypeChecker, RemoteTransportPreflight, SourceFitnessGate, TemporalScaleContractCompiler
+from kch_studio.continuity_guard import (
+    ContinuityAndBurdenGovernor,
+    ContinuousPeriodLedgerCompiler,
+    EpistemicClaimTypeChecker,
+    RemoteTransportPreflight,
+    SourceFitnessGate,
+    TemporalScaleContractCompiler,
+)
 
 
 def test_reading_gate_refuses_unrecovered_truncation(tmp_path):

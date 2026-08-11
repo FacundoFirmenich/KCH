@@ -30,6 +30,7 @@ src/kch_studio/kwandata.py
 src/kch_studio/launcher.py
 src/kch_studio/mcp_server.py
 src/kch_studio/mis_service.py
+src/kch_studio/monitored_process_worker.py
 src/kch_studio/operational_surface.py
 src/kch_studio/permissions.py
 src/kch_studio/persistence.py
@@ -78,6 +79,7 @@ src/kch_studio/data/governance/source/rules/host-projection.md
 src/kch_studio/data/governance/source/rules/interface-transparency.md
 src/kch_studio/data/governance/source/rules/recommendation-evidence.md
 src/kch_studio/data/governance/source/rules/response-modes-substantive.md
+src/kch_studio/data/governance/source/rules/terminal-process-supervision.md
 tests/test_advanced_layers.py
 tests/test_codex_bootstrap_mcp.py
 tests/test_codex_preflight_mcp.py

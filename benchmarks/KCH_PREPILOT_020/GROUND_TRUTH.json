@@ -1,0 +1,43 @@
+{
+  "schema": "kch.prepilot020-ground-truth.v0.1.0",
+  "created_date": "2026-08-11",
+  "source_root": "C:/Users/User/Documents/Codex/2026-08-09/kch-pre2g-continuacion-integral/work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+  "order_semantics": "SOURCE_NATIVE_ORDER_EXPLICIT_LIST",
+  "files": [
+    {
+      "ordinal": 1,
+      "path": "src/kch_studio/commitment_monitor.py",
+      "bytes": 26334,
+      "physical_lines": 675,
+      "sha256": "356770983d2f46fdc17be34b5e26fe6235782223db3b0e962c0a292804d6fdc6",
+      "expected_evidence_spans": ["SCHEMA = \"kch.commitment-monitor.v0.2.0\""]
+    },
+    {
+      "ordinal": 2,
+      "path": "src/kch_studio/monitored_process_worker.py",
+      "bytes": 6052,
+      "physical_lines": 166,
+      "sha256": "8a4586e183e65e4d342a5ce03b0fa416feea02657e11acb2e184d3b76d47e2f0",
+      "expected_evidence_spans": ["\"schema\": \"kch.monitored-process-terminal.v0.1.0\","]
+    },
+    {
+      "ordinal": 3,
+      "path": "src/kch_studio/advanced_runtime.py",
+      "bytes": 72282,
+      "physical_lines": 1674,
+      "sha256": "2a71cf3acfaed3032ec1d5c5ad221f5fa9d2a8d56617d3716a3e50e6b15b0eb1",
+      "expected_evidence_spans": ["\"commitment_monitor_wait_terminal\", \"Wait boundedly for exact terminal evidence\""]
+    },
+    {
+      "ordinal": 4,
+      "path": "governance/rules/terminal-process-supervision.md",
+      "bytes": 2688,
+      "physical_lines": 26,
+      "sha256": "e12cffb38f75a80c42c12324ee71b6ccf0cac5e3c91ab168647fdd491f2b96a1",
+      "expected_evidence_spans": ["Un timeout de espera sólo termina esa espera"]
+    }
+  ],
+  "semantic_claim_rule": "Exact source spans are evidence anchors only; their presence does not by itself prove the implementation behaves correctly.",
+  "phl_training_executed": false,
+  "phl_real_executed": false
+}

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from kch_studio.codex_bootstrap_mcp import CodexBootstrapMCP, TOOLS
+from kch_studio.codex_bootstrap_mcp import TOOLS, CodexBootstrapMCP
 
 
 def test_bootstrap_lists_five_tools_without_materializing_runtime(tmp_path: Path) -> None:
@@ -97,7 +97,8 @@ def test_governed_preflight_dispatches_into_full_runtime(tmp_path: Path, monkeyp
         assert value["phl"]["training_executed"] is False
         assert value["checks"]["full_read_source_order_default"] is True
         assert value["full_read_contract"]["default_inventory_order"] == "SOURCE_NATIVE_ORDER"
-        assert value["governance"]["node_count"] == 19
+        assert value["governance"]["node_count"] == 20
+        assert value["governance"]["rule_count"] == 11
         assert server.super_materialized is True
     finally:
         server.close()

@@ -1,0 +1,388 @@
+{
+  "schema": "kch.prepilot020-installed-stdio-gate.v0.2.0",
+  "gate": "PASS_BOUNDED",
+  "started_at": "2026-08-11T17:15:11.419678Z",
+  "finished_at": "2026-08-11T17:15:15.074032Z",
+  "package_root": "D:\\K19PKG_20260811\\KCH_0.11_PRE2G_R19",
+  "runtime_root": "D:\\K19RT_20260811",
+  "work_root": "D:\\K19_INSTALLED_PROBE_WORK_02",
+  "adapter": {
+    "path": "D:\\K19PKG_20260811\\KCH_0.11_PRE2G_R19\\adapters_runtime\\codex-plugin-reference.json",
+    "sha256": "5cc83c6c73a037aadc31886686f43d7f44892797cd95793e861e1dda08dbadf0",
+    "automatic_external_configuration_write": false
+  },
+  "checks": {
+    "initialize_protocol_present": true,
+    "installed_tool_count_exact_283": true,
+    "monitor_tools_present": true,
+    "launch_shell_false": true,
+    "launch_relaunch_false": true,
+    "process_identity_captured": true,
+    "worker_pid_bound_from_canonical_receipt": true,
+    "wait_terminal_observed": true,
+    "same_worker_identity": true,
+    "terminal_completed_pass": true,
+    "exit_code_exact_zero": true,
+    "wait_relaunch_false": true,
+    "terminal_receipt_valid_in_monitor": true,
+    "terminal_receipt_canonical_hash": true,
+    "terminal_receipt_same_commitment": true,
+    "terminal_receipt_shell_false": true,
+    "request_hash_chain_exact": true,
+    "stdout_hash_exact": true,
+    "stdout_semantic_nonce_exact": true,
+    "stderr_hash_exact": true,
+    "artifact_hash_exact": true,
+    "artifact_content_exact": true,
+    "evidence_canonical_hash": true,
+    "evidence_no_monitor_errors": true,
+    "mcp_process_exit_zero": true,
+    "external_host_configuration_unmodified": true,
+    "microphone_not_activated": true,
+    "phl_training_not_executed": true,
+    "phl_real_not_executed": true
+  },
+  "checks_passed": 29,
+  "checks_total": 29,
+  "tool_count": 283,
+  "tool_surface_sha256": "82e3145a57742ce1c224a308d4a614a5ee9aa1a0f583e2c63bb6b219091651fc",
+  "monitor_tool_contracts": {
+    "commitment_monitor_launch": {
+      "name": "commitment_monitor_launch",
+      "title": "Launch a durably supervised process",
+      "description": "Launch a shell-free argv through a dedicated worker that owns stdout, stderr and a canonically sealed terminal receipt. Secret-like environment overrides are rejected.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "argv": {
+            "type": "array"
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "object"
+          },
+          "expected_artifacts": {
+            "type": "array"
+          },
+          "expected_exit_codes": {
+            "type": "array"
+          },
+          "poll_seconds": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "label",
+          "argv",
+          "cwd"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false
+      }
+    },
+    "commitment_monitor_wait_terminal": {
+      "name": "commitment_monitor_wait_terminal",
+      "title": "Wait boundedly for exact terminal evidence",
+      "description": "Follow the same registered execution until terminal evidence or a bounded wait timeout. Timeout keeps the commitment active and never kills or relaunches it.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "commitment_id": {
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "poll_seconds": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "required": [
+          "commitment_id",
+          "timeout_seconds"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false
+      }
+    },
+    "commitment_monitor_evidence": {
+      "name": "commitment_monitor_evidence",
+      "title": "Seal current monitoring evidence",
+      "description": "Return a canonically sealed evidence receipt with process identity, terminal status, exit code and hashed log metadata.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "commitment_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "commitment_id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false
+      }
+    }
+  },
+  "launch": {
+    "schema": "kch.monitored-process-launch.v0.1.0",
+    "commitment_id": "MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350",
+    "launcher_pid": 6460,
+    "worker_pid": 8164,
+    "worker_pid_source": "CANONICAL_RUNNING_RECEIPT",
+    "launcher_worker_pid_match": false,
+    "startup_receipt_sha256": "4e5a0cf549e6c88a97dfdd5188ecede6e80cda2db8585b990d57cc171838efd5",
+    "process_identity": "windows-filetime:134309421140619145",
+    "process_identity_captured": true,
+    "request_sha256": "a41b7e8f2fbad1fbaa2119065026a5d4ffa595d1b99cac7d76e9bea1bebed88d",
+    "environment_keys": [
+      "KCH_PROBE_NONCE",
+      "PYTHONUTF8"
+    ],
+    "stdout_path": "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stdout.log",
+    "stderr_path": "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stderr.log",
+    "terminal_receipt": "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\terminal.json",
+    "initial_observation": {
+      "schema": "kch.commitment-observation.v0.2.0",
+      "commitment_id": "MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350",
+      "checked_at": "2026-08-11T17:15:14.324136Z",
+      "check_sequence": 1,
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 8164,
+      "process_running": true,
+      "expected_process_identity": "windows-filetime:134309421140619145",
+      "observed_process_identity": "windows-filetime:134309421140619145",
+      "process_identity_match": true,
+      "status": "MONITORING",
+      "terminal": false,
+      "exit_code": null,
+      "expected_exit_codes": [
+        0
+      ],
+      "error_markers": [],
+      "logs": {
+        "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stdout.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stderr.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "artifacts": {
+        "D:\\K19_INSTALLED_PROBE_WORK_02\\installed-monitor-artifact.txt": {
+          "exists": false,
+          "bytes": null,
+          "sha256": null
+        }
+      },
+      "terminal_receipt": null,
+      "alert_emitted_now": false,
+      "relaunch_performed": false
+    },
+    "shell_used": false,
+    "relaunch_performed": false
+  },
+  "wait": {
+    "schema": "kch.commitment-wait.v0.1.0",
+    "gate": "TERMINAL_OBSERVED",
+    "terminal": true,
+    "checks": 6,
+    "elapsed_seconds": 0.427727,
+    "observation": {
+      "schema": "kch.commitment-observation.v0.2.0",
+      "commitment_id": "MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350",
+      "checked_at": "2026-08-11T17:15:14.754292Z",
+      "check_sequence": 7,
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 8164,
+      "process_running": true,
+      "expected_process_identity": "windows-filetime:134309421140619145",
+      "observed_process_identity": "windows-filetime:134309421140619145",
+      "process_identity_match": true,
+      "status": "COMPLETED_PASS",
+      "terminal": true,
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "error_markers": [],
+      "logs": {
+        "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stdout.log": {
+          "exists": true,
+          "bytes": 61,
+          "sha256": "904e3f331f7ddb6aa57e95c53f606fc10918010bf049074284b70fb68398e786"
+        },
+        "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stderr.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "artifacts": {
+        "D:\\K19_INSTALLED_PROBE_WORK_02\\installed-monitor-artifact.txt": {
+          "exists": true,
+          "bytes": 33,
+          "sha256": "783fbf0f78c9394d06f95c9375d3e3ba4bb19738b9adca421c4cc75487ad3143"
+        }
+      },
+      "terminal_receipt": {
+        "valid": true,
+        "failure": null,
+        "claimed_sha256": "0cf579ef926d63f29933efdc968b5503e22459152847bc0b7160d00d1b6bc7ab",
+        "actual_sha256": "0cf579ef926d63f29933efdc968b5503e22459152847bc0b7160d00d1b6bc7ab"
+      },
+      "alert_emitted_now": true,
+      "relaunch_performed": false
+    },
+    "relaunch_performed": false
+  },
+  "evidence": {
+    "schema": "kch.commitment-evidence.v0.1.0",
+    "commitment_id": "MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350",
+    "label": "KCH_PREPILOT020_INSTALLED_STDIO_GATE",
+    "mode": "OWNED_SUPERVISOR",
+    "worker_pid": 8164,
+    "process_token": "windows-filetime:134309421140619145",
+    "created_at": "2026-08-11T17:15:14.292778Z",
+    "updated_at": "2026-08-11T17:15:14.858366Z",
+    "status": "COMPLETED_PASS",
+    "monitor_errors": 0,
+    "check_sequence": 8,
+    "latest_observation": {
+      "schema": "kch.commitment-observation.v0.2.0",
+      "commitment_id": "MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350",
+      "checked_at": "2026-08-11T17:15:14.856441Z",
+      "check_sequence": 8,
+      "mode": "OWNED_SUPERVISOR",
+      "worker_pid": 8164,
+      "process_running": false,
+      "expected_process_identity": "windows-filetime:134309421140619145",
+      "observed_process_identity": null,
+      "process_identity_match": false,
+      "status": "COMPLETED_PASS",
+      "terminal": true,
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "error_markers": [],
+      "logs": {
+        "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stdout.log": {
+          "exists": true,
+          "bytes": 61,
+          "sha256": "904e3f331f7ddb6aa57e95c53f606fc10918010bf049074284b70fb68398e786"
+        },
+        "D:\\K19RT_20260811\\state\\studio_overlay\\advanced\\commitments\\MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350\\stderr.log": {
+          "exists": true,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "artifacts": {
+        "D:\\K19_INSTALLED_PROBE_WORK_02\\installed-monitor-artifact.txt": {
+          "exists": true,
+          "bytes": 33,
+          "sha256": "783fbf0f78c9394d06f95c9375d3e3ba4bb19738b9adca421c4cc75487ad3143"
+        }
+      },
+      "terminal_receipt": {
+        "valid": true,
+        "failure": null,
+        "claimed_sha256": "0cf579ef926d63f29933efdc968b5503e22459152847bc0b7160d00d1b6bc7ab",
+        "actual_sha256": "0cf579ef926d63f29933efdc968b5503e22459152847bc0b7160d00d1b6bc7ab"
+      },
+      "alert_emitted_now": false,
+      "relaunch_performed": false
+    },
+    "claim_ceiling": "LOCAL_OWNED_OR_REGISTERED_PROCESS_TERMINAL_EVIDENCE_ONLY_NOT_GENERAL_EXECUTION_SUCCESS",
+    "sha256": "c1c00e3a041b11bd32d1d46103be743a7a4ceeb7dffa5daf8a9fd7c20eb9eea1"
+  },
+  "terminal_receipt": {
+    "schema": "kch.monitored-process-terminal.v0.1.0",
+    "commitment_id": "MONITOR-5fbb9ed1-f789-4a11-b765-174e24b02350",
+    "worker_pid": 8164,
+    "child_pid": 8072,
+    "request_sha256": "a41b7e8f2fbad1fbaa2119065026a5d4ffa595d1b99cac7d76e9bea1bebed88d",
+    "argv": [
+      "D:\\K19RT_20260811\\venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-c",
+      "import os,time; from pathlib import Path; time.sleep(0.25); v=os.environ['KCH_PROBE_NONCE']; Path('D:\\\\K19_INSTALLED_PROBE_WORK_02\\\\installed-monitor-artifact.txt').write_text(v+'\\n', encoding='utf-8', newline='\\n'); print('KCH_INSTALLED_MONITOR_PASS:'+v)"
+    ],
+    "cwd": "D:\\K19_INSTALLED_PROBE_WORK_02",
+    "environment_keys": [
+      "KCH_PROBE_NONCE",
+      "PYTHONUTF8"
+    ],
+    "started_at": "2026-08-11T17:15:14.260464Z",
+    "finished_at": "2026-08-11T17:15:14.688249Z",
+    "duration_seconds": 0.446113,
+    "status": "EXIT_ZERO",
+    "exit_code": 0,
+    "stdout": {
+      "exists": true,
+      "bytes": 61,
+      "sha256": "904e3f331f7ddb6aa57e95c53f606fc10918010bf049074284b70fb68398e786"
+    },
+    "stderr": {
+      "exists": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts": {
+      "D:\\K19_INSTALLED_PROBE_WORK_02\\installed-monitor-artifact.txt": {
+        "exists": true,
+        "bytes": 33,
+        "sha256": "783fbf0f78c9394d06f95c9375d3e3ba4bb19738b9adca421c4cc75487ad3143"
+      }
+    },
+    "shell_used": false,
+    "sha256": "0cf579ef926d63f29933efdc968b5503e22459152847bc0b7160d00d1b6bc7ab"
+  },
+  "independent_file_metadata": {
+    "stdout": {
+      "exists": true,
+      "bytes": 61,
+      "sha256": "904e3f331f7ddb6aa57e95c53f606fc10918010bf049074284b70fb68398e786"
+    },
+    "stderr": {
+      "exists": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifact": {
+      "exists": true,
+      "bytes": 33,
+      "sha256": "783fbf0f78c9394d06f95c9375d3e3ba4bb19738b9adca421c4cc75487ad3143"
+    }
+  },
+  "mcp_process": {
+    "pid": 7480,
+    "exit_code": 0,
+    "stderr_tail": ""
+  },
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "LOCAL_FRESH_PORTABLE_INSTALL_STDIO_PROCESS_SUPERVISION_GATE_ONLY_NOT_HOST_WIDE_OR_INDUSTRIAL_VALIDATION",
+  "sha256": "9413dd9875449c92ed733d3ee62c12440b7729d42a4aba0abe8c3d1927280846"
+}

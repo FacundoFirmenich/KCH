@@ -1,0 +1,62 @@
+{
+  "schema": "kch.r19-release-receipt.v0.1.0",
+  "release_date": "2026-08-11",
+  "macrorelease": "KCH 0.11",
+  "internal_revision": "R19",
+  "overlay_version": "0.3.9",
+  "archive": {
+    "path": "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R19.zip",
+    "bytes": 22167341,
+    "sha256": "a8f1cf6ffa7f5aafea28a81a3c2bef06b6e6c1f9786379208576be2463da8a08",
+    "preseal_file_count": 267,
+    "archive_file_count": 268,
+    "max_archive_member_characters": 177,
+    "crc_gate": "PASS"
+  },
+  "wheel": {
+    "name": "kch_csi_studio_extension_fabric-0.3.9-py3-none-any.whl",
+    "bytes": 271651,
+    "sha256": "e4238d65c3aae91bcc112c632a6bd0f931f9f4aafa6943fdea8f883b801a42e1"
+  },
+  "source_gate": {
+    "gate": "PASS",
+    "tests": "86_OF_86",
+    "canonical_receipt_sha256": "267cd0f7414f40d5d49505ff8de3cb4432e65a319f053a0701f0537cbdaf4fb3",
+    "raw_receipt_sha256": "b638781eca7923d9384ab7067f8984e5b86e5b922c80f98f0db8e40b0f9393a6"
+  },
+  "fresh_install_gate": {
+    "gate": "PASS_BOUNDED",
+    "checks": "19_OF_19",
+    "combined_tool_count": 283,
+    "raw_receipt_sha256": "34bdb0ee68216e97e316e96a648115c06151b77229bd1f7cac8f676beb803174"
+  },
+  "installed_terminal_gate": {
+    "gate": "PASS_BOUNDED",
+    "checks": "29_OF_29",
+    "canonical_receipt_sha256": "9413dd9875449c92ed733d3ee62c12440b7729d42a4aba0abe8c3d1927280846",
+    "raw_receipt_sha256": "c984de7f85506f13edfaddb78ad11b64a570590323b03426a5ded8db58a55356",
+    "launcher_worker_pid_match": false,
+    "worker_pid_source": "CANONICAL_RUNNING_RECEIPT",
+    "exit_code": 0,
+    "relaunch_performed": false
+  },
+  "governance": {
+    "hierarchy": ["HARNESS", "AGENTS", "RULES"],
+    "node_count": 20,
+    "agent_count": 6,
+    "rule_count": 11,
+    "canonical_graph_sha256": "34db0160ebe82c093afd23c2c376b58e2084465e3a5e65b1b5579487cc3feefa",
+    "raw_graph_sha256": "7868ae3a530d8572cedfd48fb78acff8a85fb49d718c500e32bb4621bbafa4cf"
+  },
+  "historical_r18_release_preserved": {
+    "sha256": "cac2be7c52d5ce3a12a34ec32d05576538ed3705e3384e07a5d7aa39e85e1acf",
+    "installed_gate": "FAIL_26_OF_28"
+  },
+  "external_host_configuration_modified": false,
+  "local_deletion_performed": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "LOCAL_SOURCE_FRESH_PORTABLE_INSTALL_AND_STDIO_TERMINAL_SUPERVISION_INTEGRATION_ONLY",
+  "sha256": "9f75752bed50d73947c4755a318650df57c17a9a3ffc341ebfe6ded8adf81a2a"
+}
