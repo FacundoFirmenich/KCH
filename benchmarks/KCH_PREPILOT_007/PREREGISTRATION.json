@@ -1,0 +1,31 @@
+{
+  "schema": "kch.prepilot-preregistration.v0.7.0",
+  "case_id": "KCH-PREPILOT-007",
+  "registered_at": "2026-08-11",
+  "title": "Codex same-directory fork with lazy-start KCH R13",
+  "governing_objective": "Test whether Codex creates a same-directory child with required R13 MCP initialization and whether KCH preflight evidence precedes the common source-reading task.",
+  "source_thread": "019fefdc-7595-7fa3-9b83-dd10cad98a54",
+  "workspace": "C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-004-arm-b-r11",
+  "release": {
+    "name": "KCH_0.11_PRE2G_R13",
+    "archive_sha256": "6e4229ab8b1c592175dbb7789f4433f54157674e2f60d30e6dc8e3e07960677d",
+    "installed_tools_list_seconds": 1.1675843999983044,
+    "full_regression": "59_PASS"
+  },
+  "common_task_prompt_sha256": "33eb753417ad63172a1d442341015b62b34780dfb7d5423a1255edf38d66218f",
+  "gates": [
+    "child task is created in the same configured directory",
+    "required R13 MCP reaches tools/list before the 30-second host deadline",
+    "UserPromptSubmit evidence, if emitted, originates in the child session",
+    "static parent history and files do not count as child activation",
+    "the common prompt contains no KCH instruction",
+    "PHL real remains false"
+  ],
+  "stop_rules": [
+    "Preserve any trust or approval request and do not self-approve.",
+    "If initialization fails, do not execute the common task.",
+    "If the task runs without child-session KCH evidence, transport may pass but automatic governed execution fails.",
+    "Do not infer causal efficacy or industrial validation from one lifecycle case."
+  ],
+  "claim_ceiling": "LOCAL_CODEX_HOST_LIFECYCLE_AND_TRANSPORT_ONLY_NOT_CAUSAL_NOT_INDUSTRIAL_VALIDATION"
+}

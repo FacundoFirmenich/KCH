@@ -1,0 +1,39 @@
+{
+  "schema": "kch.aikido-learning-package.v0.1.0",
+  "package_id": "AIKIDO-0f59f327-2357-44b7-9c2a-148ae0faa71e",
+  "created_at": "2026-08-11T08:42:12.714490Z",
+  "failure_class": "REJECTED_FRAME_REINTRODUCED",
+  "source_ref": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "source_prehash": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "user_impact": [
+    "MISSION_DISRUPTION",
+    "SCIENTIFIC_INTEGRITY_RISK",
+    "REWORK"
+  ],
+  "root_cause": "MISSING_PRE_RELEASE_AUTHORITY_AND_COMMITMENT_INTERPOSITION",
+  "positive_capability": "Rejected Frame Exclusion Register",
+  "dated_protocol": {
+    "date": "2026-08-11",
+    "steps": [
+      "record the exact rejected framing and source turn",
+      "resolve later corrections before drafting",
+      "scan candidate assertions and prose",
+      "block recurrence until explicitly superseded"
+    ]
+  },
+  "skill_candidate": {
+    "name": "rejected-frame-exclusion-register",
+    "status": "DRAFT_REQUIRES_USER_REVIEW"
+  },
+  "operator_candidate": "csi::rejected-frame-exclusion-register::preflight",
+  "regression_contract": "a framing explicitly rejected in the active jurisdiction cannot reappear in candidate prose",
+  "kwandata_tags": [
+    "ADVERSE_EVIDENCE",
+    "REJECTED_FRAME_REINTRODUCED",
+    "AIKIDO_CONVERSION"
+  ],
+  "obl_candidate": true,
+  "phl_candidate": true,
+  "automatic_promotion": false,
+  "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+}

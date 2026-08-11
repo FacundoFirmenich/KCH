@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -76,6 +77,8 @@ def main() -> None:
     state = runtime / "state"
     state.mkdir(exist_ok=True)
     command = str(venv / "Scripts" / "kch-super-mcp-studio.exe")
+    codex_command = str(venv / "Scripts" / "kch-codex-bootstrap-mcp.exe")
+    codex_preflight_command = str(venv / "Scripts" / "kch-codex-preflight-mcp.exe")
     environment = {
         "KCH_STUDIO_RUNTIME": str(state),
         "KCH_MIS_ROOT": str(root / "mis"),
@@ -130,11 +133,29 @@ def main() -> None:
         adapters / "codex-plugin-reference.json",
         {
             "plugin_path": str(root / "plugin" / "kch-csi-studio"),
-            "mcp_command": command,
+            "mcp_command": codex_command,
+            "preflight_mcp_command": codex_preflight_command,
+            "full_super_mcp_command": command,
             "environment": environment,
             "automatic_external_configuration_write": False,
         },
     )
+    write_text(
+        adapters / "codex.config.toml",
+        "[mcp_servers.kch_0_11_preflight]\n"
+        f'command = "{codex_preflight_command.replace(chr(92), chr(92) * 2)}"\n'
+        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
+        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "auto"\n\n'
+        "[mcp_servers.kch_0_11_preflight.env]\n"
+        f'KCH_STUDIO_RUNTIME = "{str(state).replace(chr(92), chr(92) * 2)}"\n\n'
+        "[mcp_servers.kch_0_11_bootstrap]\n"
+        f'command = "{codex_command.replace(chr(92), chr(92) * 2)}"\n'
+        "args = []\nstartup_timeout_sec = 30\ntool_timeout_sec = 180\n"
+        'enabled = true\nrequired = true\ndefault_tools_approval_mode = "prompt"\n\n'
+        "[mcp_servers.kch_0_11_bootstrap.env]\n"
+        f'KCH_STUDIO_RUNTIME = "{str(state).replace(chr(92), chr(92) * 2)}"\n',
+    )
+    shutil.copy2(root / "docs" / "CODEX_PROJECT_BINDING_AGENTS.md", adapters / "AGENTS_KCH.md")
     write_text(
         root / "runtime_paths.cmd",
         "@echo off\r\n"
@@ -143,7 +164,9 @@ def main() -> None:
         f'set "KCH_STUDIO_RUNTIME={state}"\r\n'
         f'set "KCH_MIS_ROOT={root / "mis"}"\r\n'
         f'set "KCH_CONSTRUCT_STABLE_ROOT={root / "source" / "kch-studio"}"\r\n'
-        f'set "KCH_SUPER_MCP_COMMAND={command}"\r\n',
+        f'set "KCH_SUPER_MCP_COMMAND={command}"\r\n'
+        f'set "KCH_CODEX_BOOTSTRAP_MCP_COMMAND={codex_command}"\r\n'
+        f'set "KCH_CODEX_PREFLIGHT_MCP_COMMAND={codex_preflight_command}"\r\n',
     )
     receipt = {
         "schema": "kch.portable-bootstrap-receipt.v0.2.0",

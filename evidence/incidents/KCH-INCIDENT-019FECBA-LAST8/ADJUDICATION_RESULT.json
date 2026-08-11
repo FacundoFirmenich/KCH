@@ -1,0 +1,79 @@
+{
+  "schema": "kch.incident-adjudication.v0.1.0",
+  "incident_id": "KCH-INCIDENT-019FECBA-LAST8",
+  "source_sha256": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "source_bytes": 24585,
+  "bad_replay_gate": "BLOCK",
+  "bad_replay_failures": [
+    "CLAIM_PROVENANCE_UNDECLARED",
+    "CONSTRAINT_FAILED:INCIDENT-CN4-DEFINITION",
+    "CONSTRAINT_FAILED:INCIDENT-CN4-PROVENANCE",
+    "CONSTRAINT_FAILED:INCIDENT-EXPERIMENT-SEPARATION",
+    "CONSTRAINT_FAILED:INCIDENT-LOCAL-MONTHLY-SCOPE",
+    "CONSTRAINT_FAILED:INCIDENT-MISSION-BOUND-CONDUCT",
+    "CONSTRAINT_FAILED:INCIDENT-REJECT-GLOBAL-FRAME",
+    "EXPERIMENT_BOUNDARIES_CONFLATED",
+    "JURISDICTION_PROMOTED_WITHOUT_AUTHORITY",
+    "MONITORING_PROMISE_WITHOUT_ACTIVE_COMMITMENT",
+    "OFF_MISSION_CLASSIFICATION_DERAILMENT"
+  ],
+  "corrected_replay_gate": "PASS",
+  "authority_integrity": {
+    "gate": "PASS",
+    "verified_events": 8,
+    "head_hash": "f1866e0fae1e332be261ad3cafb346f7f4e307fbaafb83a08d25ab2337667780"
+  },
+  "continuity_integrity": {
+    "gate": "PASS",
+    "verified_events": 8,
+    "head_hash": "d9d374e76d8f798796d37cdb3087d5220b4b99cc79e3f9906dcaa7a76a399eb6"
+  },
+  "aikido_package_count": 7,
+  "aikido_packages": [
+    {
+      "failure_class": "UNAUTHORIZED_ARCHITECTURE",
+      "capability": "Canonical Terminology and Authority Resolver",
+      "sha256": "6f45964c986b72df177a28e3c50913e349e42c6508c39d0a632f892192474110",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    },
+    {
+      "failure_class": "GLOBAL_AVERAGE_SUBSTITUTED_FOR_LOCAL_MAP",
+      "capability": "Local Jurisdiction Cartographer",
+      "sha256": "b9b4c9422df0d6dde785b573fe0c42be1f3c5e667ab11e4a41f1356c76469b8a",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    },
+    {
+      "failure_class": "EXPERIMENT_JURISDICTIONS_CONFLATED",
+      "capability": "Experiment Boundary and Lineage Governor",
+      "sha256": "78409164d701f4714b9e67a948345720f5b014e14ef82ed9d75f05739738bcfc",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    },
+    {
+      "failure_class": "PROMISED_MONITORING_ABANDONED",
+      "capability": "Commitment Heartbeat Supervisor",
+      "sha256": "561352de1efe0ae8fb1b1215ebf09e381f554e2fec226d8e32eaf15ace030b40",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    },
+    {
+      "failure_class": "REJECTED_FRAME_REINTRODUCED",
+      "capability": "Rejected Frame Exclusion Register",
+      "sha256": "cbe23e78efcf5a43838e5b6bd2485f2d341a6b0f22f60946e92a9e023a881df0",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    },
+    {
+      "failure_class": "OFF_MISSION_CLASSIFICATION_DERAILMENT",
+      "capability": "Mission-Bound Response Conduct Gate",
+      "sha256": "0612c0d35e21862fe1fe989c4225c86e7bca18809c5f06de151897278c354cf9",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    },
+    {
+      "failure_class": "ERROR_ACKNOWLEDGED_WITHOUT_REPAIR",
+      "capability": "Admission-to-Repair Compiler",
+      "sha256": "6f67ef73235ea7feaa4cb55a354d52de02b0aa916ae7ea413e8d380c5403c233",
+      "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+    }
+  ],
+  "phl_real_executed": false,
+  "automatic_host_interposition_established": false,
+  "claim_ceiling": "LOCAL_EXECUTABLE_ADVERSE_REPLAY_AND_CAPABILITY_SYNTHESIS_ONLY"
+}

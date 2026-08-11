@@ -86,7 +86,7 @@ def main() -> None:
     final_output = candidate / "release_build"
     final_output.mkdir(exist_ok=True)
     output_root = Path(tempfile.mkdtemp(prefix="kch_release_"))
-    package = output_root / "KCH_0.11_PRE2G_R11"
+    package = output_root / "KCH_0.11_PRE2G_R14"
     package.mkdir(parents=True)
 
     # Build into this release jurisdiction only.  candidate/dist may contain a
@@ -207,9 +207,15 @@ def main() -> None:
         package / "adapters" / "codex-plugin.json",
         {
             "plugin_path": "<KCH_ROOT>\\plugin\\kch-csi-studio",
-            "mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-super-mcp-studio.exe",
+            "mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-codex-bootstrap-mcp.exe",
+            "preflight_mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-codex-preflight-mcp.exe",
+            "full_super_mcp_command": "<KCH_RUNTIME_ROOT>\\venv\\Scripts\\kch-super-mcp-studio.exe",
             "automatic_external_configuration_write": False,
         },
+    )
+    shutil.copy2(
+        candidate / "docs" / "CODEX_PROJECT_BINDING_AGENTS.md",
+        package / "adapters" / "AGENTS_KCH.md",
     )
 
     write(
@@ -263,7 +269,7 @@ def main() -> None:
         },
     )
 
-    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R11.zip"
+    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R14.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as stream:
         for path in sorted(
             (item for item in package.rglob("*") if item.is_file()),
@@ -280,11 +286,11 @@ def main() -> None:
     shutil.copy2(archive, final_archive)
     shutil.copy2(
         candidate / "scripts" / "extract_and_install.py",
-        final_output / "EXTRACT_AND_INSTALL_KCH_R11.py",
+        final_output / "EXTRACT_AND_INSTALL_KCH_R14.py",
     )
     write(
-        final_output / "EXTRACT_AND_INSTALL_KCH_R11.cmd",
-        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R11.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R11.zip"\r\n',
+        final_output / "EXTRACT_AND_INSTALL_KCH_R14.cmd",
+        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R14.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R14.zip"\r\n',
     )
     print(
         json.dumps(
@@ -295,7 +301,7 @@ def main() -> None:
                 "archive_sha256": sha256(final_archive),
                 "preseal_file_count": len(manifest),
                 "max_archive_member_characters": max_member_characters,
-                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R11.cmd"),
+                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R14.cmd"),
             },
             ensure_ascii=False,
             indent=2,

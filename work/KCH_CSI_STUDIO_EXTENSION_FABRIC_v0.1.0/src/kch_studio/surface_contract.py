@@ -239,9 +239,18 @@ STRATEGIC_SURFACE_CONTRACT: dict[str, dict[str, str]] = {
         "register": "commitment_monitor_register",
         "check": "commitment_monitor_check",
         "check_all": "INTERNAL:BACKGROUND_RECONCILIATION_TICK",
+        "active_ids": "INTERNAL:RESPONSE_PROMISE_AUTHORITY_BINDING",
         "start": "INTERNAL:CANONICAL_RUNTIME_STARTUP",
         "stop": "INTERNAL:CANONICAL_RUNTIME_SHUTDOWN",
         "status": "commitment_monitor_status",
+    },
+    "kch_studio.response_authority:ResponseAuthorityGovernor": {
+        "connect": "INTERNAL:SQLITE_CONNECTION_FACTORY",
+        "register": "response_authority_register",
+        "active_constraints": "INTERNAL:ACTIVE_SEMANTIC_AUTHORITY_RESOLUTION",
+        "adjudicate": "response_authority_adjudicate",
+        "verify": "INTERNAL:RESPONSE_AUTHORITY_HASH_CHAIN_VERIFY",
+        "status": "response_authority_status",
     },
     "kch_studio.continuity_guard:RemoteTransportPreflight": {
         "adjudicate": "remote_transport_preflight",

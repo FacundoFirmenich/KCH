@@ -12,7 +12,7 @@ from .extension import ExtensionFabric, RecommendationEngine, RuntimeInventory
 from .installation import ConsentDecision, InstallPlan, IsolatedInstaller
 from .studio import Studio
 
-SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.0"}
+SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.2"}
 PROTOCOL_VERSION = "2025-06-18"
 
 
@@ -160,23 +160,44 @@ TOOLS = [*BASE_TOOLS, *ADVANCED_TOOLS]
 class StudioMCP:
     def __init__(self, root: str | Path):
         self.root = Path(root).resolve()
+        self.studio: Studio | None = None
+        self.fabric: ExtensionFabric | None = None
+        self.installer: IsolatedInstaller | None = None
+        self.advanced: KCHAdvancedRuntime | None = None
+        self.handlers: dict[str, Callable[[dict[str, Any]], Any]] = {
+            descriptor["name"]: (
+                lambda arguments, tool_name=descriptor["name"]: self.call(
+                    tool_name, arguments
+                )["structuredContent"]
+            )
+            for descriptor in TOOLS
+        }
+
+    def ensure_runtime(self) -> KCHAdvancedRuntime:
+        """Materialize heavy components only for a real tool call.
+
+        MCP initialize and tools/list are static contract operations and must
+        remain available inside strict host startup deadlines.
+        """
+        if self.advanced is not None:
+            return self.advanced
         self.studio = Studio(self.root / "studio")
         self.fabric = ExtensionFabric(self.root / "extension_fabric")
         self.installer = IsolatedInstaller(self.root / "isolated_installs")
-        self.handlers: dict[str, Callable[[dict[str, Any]], Any]] = {
+        raw_handlers: dict[str, Callable[[dict[str, Any]], Any]] = {
             "kch_preflight": lambda _args: self.preflight(),
-            "studio_status": lambda _args: self.studio.status(),
-            "studio_create_session": lambda args: self.studio.create_session(
+            "studio_status": lambda _args: self.studio.status(),  # type: ignore[union-attr]
+            "studio_create_session": lambda args: self.studio.create_session(  # type: ignore[union-attr]
                 ArtifactSpec.from_dict(dict(args["spec"]))
             ),
-            "studio_generate": lambda args: self.studio.generate(str(args["session_id"])),
-            "studio_validate": lambda args: self.studio.validate(str(args["session_id"])),
-            "studio_seal": lambda args: self.studio.seal(str(args["session_id"])),
-            "studio_build_and_seal": lambda args: self.studio.build_and_seal(
+            "studio_generate": lambda args: self.studio.generate(str(args["session_id"])),  # type: ignore[union-attr]
+            "studio_validate": lambda args: self.studio.validate(str(args["session_id"])),  # type: ignore[union-attr]
+            "studio_seal": lambda args: self.studio.seal(str(args["session_id"])),  # type: ignore[union-attr]
+            "studio_build_and_seal": lambda args: self.studio.build_and_seal(  # type: ignore[union-attr]
                 ArtifactSpec.from_dict(dict(args["spec"]))
             ),
             "extension_inventory": lambda _args: RuntimeInventory().collect(),
-            "extension_search": lambda args: self.fabric.search(
+            "extension_search": lambda args: self.fabric.search(  # type: ignore[union-attr]
                 str(args["provider"]), str(args["query"]), int(args.get("limit", 10))
             ),
             "extension_recommend": lambda args: RecommendationEngine().evaluate(
@@ -184,31 +205,34 @@ class StudioMCP:
                 objective=str(args["objective"]),
                 available_runtimes=args["available_runtimes"],
             ),
-            "extension_resolve": lambda args: self.fabric.resolve(
+            "extension_resolve": lambda args: self.fabric.resolve(  # type: ignore[union-attr]
                 str(args["provider"]), str(args["identifier"])
             ),
-            "isolated_install_plan": lambda args: self.installer.plan(
+            "isolated_install_plan": lambda args: self.installer.plan(  # type: ignore[union-attr]
                 args["source"],
                 artifact_kind=str(args["artifact_kind"]),
                 target_name=str(args["target_name"]),
             ).to_dict(),
             "isolated_install_execute": self._install,
-            "isolated_install_rollback": lambda args: self.installer.rollback(
+            "isolated_install_rollback": lambda args: self.installer.rollback(  # type: ignore[union-attr]
                 dict(args["receipt"])
             ),
-            "isolated_install_verify": lambda args: self.installer.verify(dict(args["receipt"])),
+            "isolated_install_verify": lambda args: self.installer.verify(dict(args["receipt"])),  # type: ignore[union-attr]
         }
         self.advanced = KCHAdvancedRuntime(
             self.root / "advanced",
-            extra_handlers=self.handlers,
+            extra_handlers=raw_handlers,
             extra_tools=BASE_TOOLS,
         )
         # The advanced runtime returns one uniformly governed handler map,
         # including the base Studio tools passed above.  Retaining the earlier
         # raw handlers here would bypass the PHL exclusive mutation gate.
         self.handlers = dict(self.advanced.handlers)
+        return self.advanced
 
     def preflight(self) -> dict[str, Any]:
+        self.ensure_runtime()
+        assert self.studio is not None and self.advanced is not None
         studio = self.studio.status()
         runtime = self.advanced.status()
         governance = studio["governance"]
@@ -253,6 +277,8 @@ class StudioMCP:
         }
 
     def _install(self, args: dict[str, Any]) -> dict[str, Any]:
+        self.ensure_runtime()
+        assert self.installer is not None
         plan_value = dict(args["plan"])
         plan_value["preconditions"] = tuple(plan_value["preconditions"])
         plan_value["rollback"] = tuple(plan_value["rollback"])
@@ -260,6 +286,7 @@ class StudioMCP:
         return self.installer.execute(plan, ConsentDecision(str(args["consent"])))
 
     def call(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        self.ensure_runtime()
         if name not in self.handlers:
             raise ValueError(f"unknown tool: {name}")
         value = self.handlers[name](arguments)

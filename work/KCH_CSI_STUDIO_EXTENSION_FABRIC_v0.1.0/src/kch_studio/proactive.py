@@ -25,6 +25,19 @@ DEFAULT_RULES = [
         "purpose": "Load the effective user constitution before ordinary orchestration.",
     },
     {
+        "rule_id": "KCH-DEFAULT-RESPONSE-AUTHORITY-PREFLIGHT",
+        "priority": 950,
+        "enabled": True,
+        "condition": {"path": "event.type", "operator": "EQ", "value": "response.candidate"},
+        "then": {
+            "mode": "DIRECT",
+            "tool": "response_authority_adjudicate",
+            "arguments": {"candidate": {"$path": "event.candidate"}},
+        },
+        "else": None,
+        "purpose": "Adjudicate semantic authority and active monitoring commitments before a host releases candidate prose.",
+    },
+    {
         "rule_id": "KCH-DEFAULT-EDIT-CHECKPOINT",
         "priority": 900,
         "enabled": True,

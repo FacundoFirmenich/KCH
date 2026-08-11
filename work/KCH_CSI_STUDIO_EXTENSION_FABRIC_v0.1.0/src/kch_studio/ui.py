@@ -1884,7 +1884,9 @@ def launch(root: str | Path, *, smoke: bool = False) -> dict[str, Any] | None:
     tk_root.title("KCH CSI Studio · Extension Fabric")
     tk_root.geometry("1380x860")
     server = StudioMCP(root)
+    server.ensure_runtime()
     studio = server.studio
+    assert studio is not None and server.advanced is not None
     app = KCHStudioApp(
         tk_root,
         studio,

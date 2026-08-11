@@ -1,4 +1,4 @@
-# KCH 0.11 — candidato integral pre-2G, overlay v0.3.0
+# KCH 0.11 — candidato integral pre-2G, overlay v0.3.2
 
 Este árbol construye un sucesor candidato de la macrorelease canónica KCH 0.11. La base congelada no se reescribe: el Super‑MCP la compone con CSI Studio, gobernanza integral, SCO, MIS, PHL autorizado, RGG, KwanPrompts, KwanData, persistencia, permisos, recuperación y medios.
 
@@ -16,6 +16,14 @@ La ruta profunda fue identificada como un fallo real de la primera campaña de d
 2. `INSTALL_KCH.cmd` crea el entorno virtual persistente bajo `%LOCALAPPDATA%\KCH\runtimes\<hash>`, no dentro de una ruta de paquete potencialmente profunda.
 
 El bootstrap instala exclusivamente desde el `wheelhouse` incluido, genera `runtime_paths.cmd` y produce adaptadores con rutas absolutas. No modifica automáticamente VS Code, Cline, OpenCode ni Codex.
+
+### Puerta gobernada para Codex
+
+Codex recibe dos superficies acotadas. `kch-codex-preflight-mcp` anuncia una sola herramienta estrictamente de lectura y puede aprobarse automáticamente sin conceder despacho operativo. `kch-codex-bootstrap-mcp` anuncia cinco herramientas —estado, búsqueda del catálogo completo, preflight canónico, adjudicación de autoridad de respuesta y despacho exacto— y conserva aprobación gobernada. El Super‑MCP completo permanece detrás del despachador y se materializa sólo cuando una llamada real lo necesita. Esto evita exigir las 277 descripciones en el handshake de arranque sin amputar capacidades, fusionarlas ni degradar sus gates. VS Code, Cline y OpenCode conservan la superficie directa completa; el adaptador Codex registra además la ruta explícita del Super‑MCP para auditoría y uso manual.
+
+La activación probada en Codex requiere dos enlaces complementarios: el servidor de preflight de sólo lectura y una instrucción de proyecto `AGENTS.md` que exija llamarlo una vez antes de la primera acción material. Las instrucciones MCP aisladas demostraron transporte pero no disparo automático; el enlace conjunto sí produjo una llamada nativa anterior a la tarea en el prepiloto local. Esta observación sigue siendo de una tarea y no se promociona a garantía universal del host.
+
+La existencia de esta puerta demuestra únicamente transporte MCP acotado cuando el host la admite. No demuestra que Codex invoque automáticamente el preflight, que intercepte todas sus respuestas ni que KCH tenga eficacia causal o validación industrial; esos gates se adjudican por separado.
 
 Después de instalar:
 
@@ -51,6 +59,10 @@ La pestaña **Modos de respuesta** contiene tres perfiles canónicos y perfiles 
 La jerarquía de resolución es `GLOBAL < WORKSPACE < SCO < TASK < SESSION < MESSAGE`. Sólo se gobierna la prosa redactada del chat: outputs, código, archivos, tablas de resultados y artefactos no consumen ese presupuesto visual ni se recortan. Toda contestación debe explicar el resultado, su significado, la posición real, los límites y la próxima decisión; un registro archivístico no puede sustituirla.
 
 La ficha técnica de ejecución se guarda automáticamente como Markdown separado, con redacción de campos sensibles. No se ofrece ni se pregunta si el usuario desea verla: una única línea final informa su ruta. La medición estricta de pantallas/scrolls necesita métricas del renderer del host; sin ellas KCH entrega el contrato, pero no afirma una garantía física de viewport.
+
+### Autoridad semántica antes de responder
+
+`ResponseAuthorityGovernor` conserva restricciones explícitas de misión, terminología, procedencia, jurisdicción, linaje experimental, marcos rechazados y conducta de respuesta. El evento programado `response.candidate` ejecuta por defecto su preflight directo. El gate bloquea una respuesta estructurada que contradiga esas restricciones, agregue una jurisdicción local sin autoridad, mezcle experimentos, introduzca clasificaciones ajenas a la misión o prometa vigilancia sin un compromiso activo del monitor. Esta capacidad está verificada dentro del runtime; la interposición física sobre cada respuesta depende del adaptador del host y no se presume.
 
 ## Preflight único y trabajo/aprendizaje
 

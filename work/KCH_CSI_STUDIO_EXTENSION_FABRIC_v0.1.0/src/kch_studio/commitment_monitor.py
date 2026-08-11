@@ -95,6 +95,17 @@ class CommitmentMonitor:
             ids = [str(x[0]) for x in con.execute("SELECT id FROM commitments WHERE status='MONITORING'")]
         return [self.check(x) for x in ids]
 
+    def active_ids(self) -> list[str]:
+        """Return only commitments whose latest reconciled state is MONITORING."""
+        self.check_all()
+        with self.connect() as con:
+            return [
+                str(row[0])
+                for row in con.execute(
+                    "SELECT id FROM commitments WHERE status='MONITORING' ORDER BY id"
+                )
+            ]
+
     def start(self) -> dict[str, Any]:
         if self.thread and self.thread.is_alive():
             return {"running":True,"already_running":True}

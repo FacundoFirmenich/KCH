@@ -413,6 +413,24 @@ class AikidoLearningForge:
             "skill": "local-jurisdiction-cartographer",
             "regression": "a global average cannot adjudicate a local structural question",
         },
+        "EXPERIMENT_JURISDICTIONS_CONFLATED": {
+            "capability": "Experiment Boundary and Lineage Governor",
+            "protocol": ["name every experiment and temporal direction", "bind each claim to one evidence lineage", "separate causal and retrospective jurisdictions", "block result transfer across lineages without explicit bridge authority"],
+            "skill": "experiment-boundary-lineage-governor",
+            "regression": "causal and retrospective bridge results cannot be merged into one evidential claim",
+        },
+        "REJECTED_FRAME_REINTRODUCED": {
+            "capability": "Rejected Frame Exclusion Register",
+            "protocol": ["record the exact rejected framing and source turn", "resolve later corrections before drafting", "scan candidate assertions and prose", "block recurrence until explicitly superseded"],
+            "skill": "rejected-frame-exclusion-register",
+            "regression": "a framing explicitly rejected in the active jurisdiction cannot reappear in candidate prose",
+        },
+        "OFF_MISSION_CLASSIFICATION_DERAILMENT": {
+            "capability": "Mission-Bound Response Conduct Gate",
+            "protocol": ["preserve the executable mission", "separate host-mandated notices from project analysis", "forbid unsolicited personal classification", "return immediately to the authorized technical action"],
+            "skill": "mission-bound-response-conduct-gate",
+            "regression": "an off-mission classification cannot replace or terminate authorized engineering work",
+        },
         "IRRELEVANT_INTERROGATION_DERAILMENT": {
             "capability": "Mission-Relevance Question Gate",
             "protocol": ["execute the governing mission", "ask only when missing information materially changes the result", "never repeat a rejected question", "resume directly from the last valid checkpoint"],

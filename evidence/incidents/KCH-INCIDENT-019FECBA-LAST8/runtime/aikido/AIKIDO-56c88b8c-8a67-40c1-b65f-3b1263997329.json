@@ -1,0 +1,39 @@
+{
+  "schema": "kch.aikido-learning-package.v0.1.0",
+  "package_id": "AIKIDO-56c88b8c-8a67-40c1-b65f-3b1263997329",
+  "created_at": "2026-08-11T08:42:12.547605Z",
+  "failure_class": "UNAUTHORIZED_ARCHITECTURE",
+  "source_ref": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "source_prehash": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "user_impact": [
+    "MISSION_DISRUPTION",
+    "SCIENTIFIC_INTEGRITY_RISK",
+    "REWORK"
+  ],
+  "root_cause": "MISSING_PRE_RELEASE_AUTHORITY_AND_COMMITMENT_INTERPOSITION",
+  "positive_capability": "Canonical Terminology and Authority Resolver",
+  "dated_protocol": {
+    "date": "2026-08-11",
+    "steps": [
+      "extract exact user terms",
+      "preserve chronology",
+      "separate binding decisions from hypotheses",
+      "prevent agent inference promotion"
+    ]
+  },
+  "skill_candidate": {
+    "name": "canonical-authority-resolver",
+    "status": "DRAFT_REQUIRES_USER_REVIEW"
+  },
+  "operator_candidate": "csi::canonical-authority-resolver::preflight",
+  "regression_contract": "agent terminology cannot supersede a later user correction",
+  "kwandata_tags": [
+    "ADVERSE_EVIDENCE",
+    "UNAUTHORIZED_ARCHITECTURE",
+    "AIKIDO_CONVERSION"
+  ],
+  "obl_candidate": true,
+  "phl_candidate": true,
+  "automatic_promotion": false,
+  "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+}

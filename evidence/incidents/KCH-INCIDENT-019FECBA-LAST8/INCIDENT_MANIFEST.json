@@ -1,0 +1,22 @@
+{
+  "schema": "kch.adverse-incident-manifest.v0.1.0",
+  "incident_id": "KCH-INCIDENT-019FECBA-LAST8",
+  "registered_at": "2026-08-11",
+  "source_uri": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "native_receipt_file": "native_read_thread_last8.json",
+  "native_receipt_bytes": 24585,
+  "native_receipt_sha256": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "native_turn_limit": 8,
+  "chronology_preserved": true,
+  "failure_classes": [
+    "UNAUTHORIZED_ARCHITECTURE",
+    "GLOBAL_AVERAGE_SUBSTITUTED_FOR_LOCAL_MAP",
+    "EXPERIMENT_JURISDICTIONS_CONFLATED",
+    "PROMISED_MONITORING_ABANDONED",
+    "REJECTED_FRAME_REINTRODUCED",
+    "OFF_MISSION_CLASSIFICATION_DERAILMENT",
+    "ERROR_ACKNOWLEDGED_WITHOUT_REPAIR"
+  ],
+  "claim_ceiling": "EIGHT_NATIVE_TURNS_ONLY_NOT_COMPLETE_PROJECT_HISTORY_NOT_CAUSAL_FREQUENCY_ESTIMATE",
+  "phl_real_executed": false
+}

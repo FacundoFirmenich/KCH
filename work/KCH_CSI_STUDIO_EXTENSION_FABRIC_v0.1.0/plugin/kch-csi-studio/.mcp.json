@@ -1,7 +1,11 @@
 {
   "mcpServers": {
-    "kch-csi-studio": {
-      "command": "kch-super-mcp-studio",
+    "kch-codex-preflight": {
+      "command": "kch-codex-preflight-mcp",
+      "args": []
+    },
+    "kch-codex-bootstrap": {
+      "command": "kch-codex-bootstrap-mcp",
       "args": []
     }
   }

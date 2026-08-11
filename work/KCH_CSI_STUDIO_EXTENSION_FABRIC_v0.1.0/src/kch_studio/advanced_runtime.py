@@ -25,6 +25,7 @@ from .permissions import PermissionGovernor
 from .persistence import PersistenceHub
 from .proactive import ProgrammedPolicy
 from .recovery import RecoveryVault
+from .response_authority import ResponseAuthorityGovernor
 from .response_modes import ResponseModeManager
 from .safeguards import RiskAdvisor
 from .scheduler import KCHScheduler
@@ -93,6 +94,9 @@ ADVANCED_TOOLS = [
     tool("commitment_monitor_register", "Register promised monitoring", "Persist process, log and artifact monitoring and start with an immediate observation.", {"label": S, "pid": I, "logs": A, "artifacts": A, "poll_seconds": I}, ["label", "pid", "logs", "artifacts"], read_only=False),
     tool("commitment_monitor_check", "Reconcile monitoring commitment", "Check process, logs and expected artifacts now; a terminal alert is emitted exactly once.", {"commitment_id": S}, ["commitment_id"], read_only=False),
     tool("commitment_monitor_status", "Inspect promised monitoring", "Inspect background monitoring and all reconciled terminal states.", {}, [], read_only=True),
+    tool("response_authority_register", "Register response authority constraint", "Freeze an explicit mission, terminology, provenance, jurisdiction, experiment-boundary or rejected-frame constraint with its authority source.", {"constraint": O}, ["constraint"], read_only=False),
+    tool("response_authority_adjudicate", "Adjudicate candidate response before release", "Fail closed when structured response claims violate active semantic authority, conflate experiments, promote scope, add off-mission classifications or promise unregistered monitoring.", {"candidate": O}, ["candidate"], read_only=False),
+    tool("response_authority_status", "Inspect response authority governance", "Inspect active response constraints, hash-chain integrity and the explicit host-interposition evidence boundary.", {}, [], read_only=True),
     tool("remote_transport_preflight", "Verify remote payload before launch", "Block empty, shell-mutated, stale-marker or hash-mismatched remote wrappers before any process starts.", {"receipt": O}, ["receipt"], read_only=True),
     tool(
         "constitution_state",
@@ -975,6 +979,7 @@ class KCHAdvancedRuntime:
         self.continuity = ContinuityAndBurdenGovernor(self.root / "continuity")
         self.aikido = AikidoLearningForge(self.root / "aikido", self.continuity)
         self.commitments = CommitmentMonitor(self.root / "commitments")
+        self.response_authority = ResponseAuthorityGovernor(self.root / "response_authority")
         self.policy = ProgrammedPolicy(self.root / "proactive_policy")
         self.risk = RiskAdvisor(self.root / "risk")
         self.plan_build = PlanBuildEngine(self.root / "plan_build")
@@ -1026,6 +1031,9 @@ class KCHAdvancedRuntime:
             "commitment_monitor_register": lambda a: self.commitments.register(label=str(a["label"]), pid=int(a["pid"]), logs=list(a["logs"]), artifacts=list(a["artifacts"]), poll_seconds=int(a.get("poll_seconds", 10))),
             "commitment_monitor_check": lambda a: self.commitments.check(str(a["commitment_id"])),
             "commitment_monitor_status": lambda _a: self.commitments.status(),
+            "response_authority_register": lambda a: self.response_authority.register(dict(a["constraint"])),
+            "response_authority_adjudicate": lambda a: self.response_authority.adjudicate(dict(a["candidate"]), active_commitment_ids=self.commitments.active_ids()),
+            "response_authority_status": lambda _a: self.response_authority.status(),
             "remote_transport_preflight": lambda a: RemoteTransportPreflight.adjudicate(dict(a["receipt"])),
             "constitution_state": lambda _a: self.constitution.state(),
             "constitution_effective": lambda _a: self.constitution.effective_mandates(),
@@ -1239,6 +1247,8 @@ class KCHAdvancedRuntime:
                     "continuity_status",
                     "continuity_action_preflight",
                     "continuity_integrity_verify",
+                    "response_authority_adjudicate",
+                    "response_authority_status",
                     "recovery_checkpoint",
                     "risk_assess",
                     "response_mode_resolve",
@@ -1581,6 +1591,7 @@ class KCHAdvancedRuntime:
             "continuity": self.continuity.status(),
             "aikido": self.aikido.catalog(),
             "commitments": self.commitments.status(),
+            "response_authority": self.response_authority.status(),
             "programmed_policy": self.policy.session_announcement(),
             "launcher": self.launcher.status(),
             "recovery": self.recovery.verify(),

@@ -1,0 +1,39 @@
+{
+  "schema": "kch.aikido-learning-package.v0.1.0",
+  "package_id": "AIKIDO-01b483e3-9d28-4aeb-a2e4-904174e5c21d",
+  "created_at": "2026-08-11T08:42:12.628393Z",
+  "failure_class": "EXPERIMENT_JURISDICTIONS_CONFLATED",
+  "source_ref": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "source_prehash": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "user_impact": [
+    "MISSION_DISRUPTION",
+    "SCIENTIFIC_INTEGRITY_RISK",
+    "REWORK"
+  ],
+  "root_cause": "MISSING_PRE_RELEASE_AUTHORITY_AND_COMMITMENT_INTERPOSITION",
+  "positive_capability": "Experiment Boundary and Lineage Governor",
+  "dated_protocol": {
+    "date": "2026-08-11",
+    "steps": [
+      "name every experiment and temporal direction",
+      "bind each claim to one evidence lineage",
+      "separate causal and retrospective jurisdictions",
+      "block result transfer across lineages without explicit bridge authority"
+    ]
+  },
+  "skill_candidate": {
+    "name": "experiment-boundary-lineage-governor",
+    "status": "DRAFT_REQUIRES_USER_REVIEW"
+  },
+  "operator_candidate": "csi::experiment-boundary-lineage-governor::preflight",
+  "regression_contract": "causal and retrospective bridge results cannot be merged into one evidential claim",
+  "kwandata_tags": [
+    "ADVERSE_EVIDENCE",
+    "EXPERIMENT_JURISDICTIONS_CONFLATED",
+    "AIKIDO_CONVERSION"
+  ],
+  "obl_candidate": true,
+  "phl_candidate": true,
+  "automatic_promotion": false,
+  "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+}

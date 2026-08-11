@@ -1,0 +1,44 @@
+{
+  "schema": "kch.r14-codex-gate-result.v0.1.0",
+  "release": "KCH 0.11 PRE2G integrated candidate R14",
+  "overlay_version": "0.3.2",
+  "archive": "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R14.zip",
+  "archive_bytes": 22114374,
+  "archive_sha256": "84d0e94de2c25f62b3b3d512239ca0b57f9bb2eeaed073911e9707648de28185",
+  "preseal_files": 258,
+  "max_archive_member_characters": 177,
+  "source_regression": {
+    "gate": "PASS",
+    "tests": 66,
+    "failures": 0,
+    "duration_seconds": 131.51
+  },
+  "clean_install": {
+    "gate": "PASS",
+    "extracted_files": 259,
+    "runtime": "D:\\KCH_R14_RUNTIME_FINAL_20260811",
+    "global_installation": false,
+    "external_host_configuration_modified": false
+  },
+  "post_install_gate": {
+    "gate": "PASS_BOUNDED",
+    "checks_passed": 19,
+    "checks_total": 19,
+    "full_super_mcp_tools": 277,
+    "codex_bootstrap_tools": 5,
+    "codex_read_only_preflight_tools": 1,
+    "mis_records": 480,
+    "mis_ledgers": 60
+  },
+  "prepilot_011": {
+    "automatic_preflight": "PASS",
+    "native_call_before_material_action": true,
+    "phl_training_executed": false
+  },
+  "known_nonblocking_defect": "The portable bootstrap receipt host_adapters array enumerates only JSON files and omits the generated codex.config.toml and AGENTS_KCH.md; both files are present.",
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "industrial_validation_established": false,
+  "claim_ceiling": "LOCAL_PORTABLE_INSTALLATION_PLUS_ONE_CODEX_PROJECT_BINDING_OBSERVATION"
+}
