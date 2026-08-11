@@ -1,0 +1,110 @@
+{
+  "schema": "kch.remote-custody-receipt.v0.1.0",
+  "release": "KCH 0.11 R21",
+  "created_at_utc": "2026-08-11T20:30:29.503Z",
+  "status": "PASS_BOUNDED",
+  "destructive_cleanup_performed": false,
+  "phl_real_execution_performed": false,
+  "canonical_package": {
+    "name": "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip",
+    "bytes": 22231435,
+    "local_sha256": "98ba1faa4c63302f67ec386b9ecf684762e7923febc3039cd8c201a024091b54"
+  },
+  "github": {
+    "repository": "https://github.com/FacundoFirmenich/KCH",
+    "visibility_verified": "PRIVATE",
+    "default_branch": "main",
+    "local_head": "7d95a38017cf64a3a272f0a032da5936284cac65",
+    "remote_main": "7d95a38017cf64a3a272f0a032da5936284cac65",
+    "worktree_clean_after_push": true,
+    "custody_manifest": {
+      "name": "KCH_R21_CUSTODY_MANIFEST_20260811.json",
+      "entries": 160,
+      "bytes_covered": 112317779,
+      "sha256": "4aac676283d7d846c997cc34a09360077b75da3d72331f6853d1e38961efd2c9"
+    }
+  },
+  "google_drive": {
+    "folder_id": "1f0vH7T7oLwOh7or5wKs4FoNgnY7quVR3",
+    "folder_url": "https://drive.google.com/drive/folders/1f0vH7T7oLwOh7or5wKs4FoNgnY7quVR3",
+    "verification_boundary": "Drive metadata independently confirms file identity, MIME type, downloadability and exact byte size. A full raw-file reference was obtained for the canonical ZIP. The connector did not expose a remote cryptographic digest, so local_sha256 identifies the exact uploaded source stream but is not claimed as an independently recomputed Drive digest.",
+    "files": [
+      {
+        "name": "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R21.zip",
+        "id": "1hKehLjms2NoQEQq765LsQx_BMKBmGNZI",
+        "bytes": 22231435,
+        "local_sha256": "98ba1faa4c63302f67ec386b9ecf684762e7923febc3039cd8c201a024091b54",
+        "url": "https://drive.google.com/file/d/1hKehLjms2NoQEQq765LsQx_BMKBmGNZI/view?usp=drivesdk"
+      },
+      {
+        "name": "CHECKPOINT_MATERIAL_R21_LLAVES_CONSTITUCIONALES_ES.md",
+        "id": "1jzrAgCUJ2A4xs_CmTIbFQiiXLab5cqDw",
+        "bytes": 4340,
+        "local_sha256": "c8ba616a47bc903e32cbe4c3566ca130ebe8f592257f627a9c483bb6846fc22c",
+        "url": "https://drive.google.com/file/d/1jzrAgCUJ2A4xs_CmTIbFQiiXLab5cqDw/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_RELEASE_GATE.json",
+        "id": "1wrg2ljmv3pJHFoiLpgXCsETJjd_O41LX",
+        "bytes": 4110,
+        "local_sha256": "e1e0d9da3a8651c0ee250614ba0f7d5f7cd162537198892790ecf762b033697e",
+        "url": "https://drive.google.com/file/d/1wrg2ljmv3pJHFoiLpgXCsETJjd_O41LX/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_SOURCE_SUITE_ATTEMPT_03_PASS.json",
+        "id": "1Fw--w6tZOMuQtcSdPTcNoBKyP5WhW8HF",
+        "bytes": 66929,
+        "local_sha256": "b2fbd20b4d26fb2ca89be3656c55b3f1e17c9d86645a7d4f09bd485165752181",
+        "url": "https://drive.google.com/file/d/1Fw--w6tZOMuQtcSdPTcNoBKyP5WhW8HF/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_SOURCE_SUITE_ATTEMPT_01_ADVERSE.json",
+        "id": "1JnJbezRJGaUL0fq2Kh9IlfnFzFPimRGL",
+        "bytes": 3503,
+        "local_sha256": "ab20a431202a39006e30819e9a4f8f87c7111716d0d50bb9d70fb7fabba31a88",
+        "url": "https://drive.google.com/file/d/1JnJbezRJGaUL0fq2Kh9IlfnFzFPimRGL/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_POST_INSTALL_GATE_A2.json",
+        "id": "1ps0cvz6tm0DS-Dw7mKyBVICZaOCvBYB5",
+        "bytes": 9920,
+        "local_sha256": "d1d15a4fad2a115330de23274929ac5301c3705d03b57407853000e0afc007c1",
+        "url": "https://drive.google.com/file/d/1ps0cvz6tm0DS-Dw7mKyBVICZaOCvBYB5/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_INSTALLED_LOCK_GATE_ATTEMPT_01.json",
+        "id": "1fMa_3TbobkAsgtqDDCI8SmoeH1LOL8_9",
+        "bytes": 14623,
+        "local_sha256": "f9ab5bd3432023093f2d6242eb63aeff2ea9436ad1938ca80741e3e63e664bf0",
+        "url": "https://drive.google.com/file/d/1fMa_3TbobkAsgtqDDCI8SmoeH1LOL8_9/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_EXTRACT_INSTALL_RECEIPT_A2.json",
+        "id": "1YR-1Kma-6YIN2Ro-1dTAzo6-7W71VUce",
+        "bytes": 5090,
+        "local_sha256": "52d271d620f9128b073f25c0f35741ef2d0727c52dc731b0abbb0f14fa059a72",
+        "url": "https://drive.google.com/file/d/1YR-1Kma-6YIN2Ro-1dTAzo6-7W71VUce/view?usp=drivesdk"
+      },
+      {
+        "name": "KCH_R21_GITHUB_CUSTODY_MANIFEST_20260811.json",
+        "id": "1tEYiEJeXKVZ7yMq8VG2uVdMW_Y7PEOWS",
+        "bytes": 49823,
+        "local_sha256": "4aac676283d7d846c997cc34a09360077b75da3d72331f6853d1e38961efd2c9",
+        "url": "https://drive.google.com/file/d/1tEYiEJeXKVZ7yMq8VG2uVdMW_Y7PEOWS/view?usp=drivesdk"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "established": [
+      "R21 source, package, fresh bounded install and installed lock semantics passed their declared gates.",
+      "GitHub private remote main equals the pushed local commit.",
+      "Drive contains the nine declared R21 artifacts with independently observed exact byte sizes."
+    ],
+    "not_established": [
+      "Independent Drive-side SHA-256 recomputation.",
+      "Real VS Code or Cline host integration.",
+      "Universal prevention of writes performed outside KCH interception.",
+      "Real PHL training or effectiveness."
+    ]
+  }
+}
