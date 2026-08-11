@@ -36,6 +36,10 @@ No se permiten módulos “secundarios”, superficies huérfanas, handlers sin 
 
 ## Invariantes adicionales
 
+- Todo daño o coste transferido al usuario se conserva como evidencia adversa y activa dos obligaciones inseparables: prevención ejecutable y conversión Aikido en capacidad positiva reutilizable. La conversión produce protocolo fechado, candidata a skill, operador CSI, envolvente OBL/PHL y prueba regresiva; no se promociona automáticamente.
+- Ningún agente puede afirmar lectura completa sin EOF autenticado y recuperación de toda truncación material. Ninguna ejecución costosa puede preceder a reconciliación de estado, prueba barata de materialidad y plan de almacenamiento/custodia. Ninguna pregunta lateral reemplaza la misión gobernante sin decisión explícita del usuario.
+- El coste evitable de detección, corrección, repetición de contexto, tokens, reejecución y reparación pertenece al sistema ejecutor: KCH debe minimizarlo y registrarlo, no descargarlo sobre el usuario.
+
 - `capability != permission != support != authority != execution`.
 - Composición no equivale a fusión: SCO conserva identidad, contexto, memoria, permisos y función de cada tarea.
 - Compilación, proyección o transporte verifican por separado propósito, decisión, contrato de evidencia, procedencia e integridad.

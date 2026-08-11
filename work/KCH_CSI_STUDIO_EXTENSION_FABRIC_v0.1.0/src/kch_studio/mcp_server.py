@@ -214,6 +214,7 @@ class StudioMCP:
         governance = studio["governance"]
         surface = runtime["components"]["strategic_surface"]
         response_modes = runtime["components"]["response_modes"]
+        continuity = runtime["components"]["continuity"]
         blind_spots = runtime["capability_blind_spots"]
         checks = {
             "compiled_governance": governance["state"] == "VERIFIED_COMPILED_GOVERNANCE",
@@ -224,6 +225,7 @@ class StudioMCP:
             "launcher_blind_spots_absent": not blind_spots,
             "phl_authorized": runtime["phl_authorized"] is True,
             "response_modes_integrity": response_modes["integrity"]["gate"] == "PASS",
+            "continuity_integrity": continuity["integrity"]["gate"] == "PASS",
         }
         passed = all(checks.values())
         return {
@@ -243,6 +245,8 @@ class StudioMCP:
                 "real_feedback_executed": runtime["phl_real_executed"],
             },
             "response_modes": response_modes,
+            "continuity": continuity,
+            "aikido": runtime["components"]["aikido"],
             "external_installation_performed": runtime["external_installation_performed"],
             "claim_ceiling": "CANONICAL_LOCAL_STARTUP_AND_BINDING_GATE_ONLY",
             "industrial_validation_established": False,
@@ -277,7 +281,7 @@ class StudioMCP:
                     "protocolVersion": PROTOCOL_VERSION,
                     "capabilities": {"tools": {}},
                     "serverInfo": SERVER_INFO,
-                    "instructions": "KCH governance is HARNESS > AGENTS > RULES. Every component is strategically material and must pass both local-completeness and systemic-synergy gates. The user constitution and programmed DIRECT rules govern orchestration. Before each authored chat response, resolve response_mode_contract: CONCISO, EXPLICATIVO and EXTENSO affect only chat prose, never outputs. Every response remains informative, explanatory and holistic. Execution chronology is saved separately as Markdown, never offered, and represented in chat only by one final path line. PLAN, RUN and CONSTRUCT are distinct; CONSTRUCT changes only a versioned successor. Search is not install. Installation requires four-way consent and remains isolated. Full checkpoints require a size warning and explicit confirmation. PHL is authorized and operationally available; it remains untrained until genuine user-authored feedback exists, and an active PHL session exclusively blocks ordinary KCH mutations.",
+                    "instructions": "KCH governance is HARNESS > AGENTS > RULES. Every component is strategically material and must pass both local-completeness and systemic-synergy gates. The user constitution and programmed DIRECT rules govern orchestration. Before material action, continuity_action_preflight must preserve the governing mission, require complete source reading, reconcile current state, prefer a cheap materiality probe, protect custody and block known recurrent failures. Adverse evidence is converted through Aikido into capability, dated protocol, skill/operator candidates, OBL/PHL envelopes and regression contracts without automatic promotion. Before each authored chat response, resolve response_mode_contract: CONCISO, EXPLICATIVO and EXTENSO affect only chat prose, never outputs. Every response remains informative, explanatory and holistic. Execution chronology is saved separately as Markdown, never offered, and represented in chat only by one final path line. PLAN, RUN and CONSTRUCT are distinct; CONSTRUCT changes only a versioned successor. Search is not install. Installation requires four-way consent and remains isolated. Full checkpoints require a size warning and explicit confirmation. PHL is authorized and operationally available; it remains untrained until genuine user-authored feedback exists, and an active PHL session exclusively blocks ordinary KCH mutations.",
                 }
             elif method == "tools/list":
                 result = {

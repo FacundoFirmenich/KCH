@@ -381,7 +381,7 @@
       "kind": "HARNESS",
       "parent": "",
       "path": "HARNESS.md",
-      "sha256": "12a49aa1c148038674b4d99d8005dc6650b416a68ed5389c654af01643bc8ad3",
+      "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337",
       "title": "KCH integral self-governance harness",
       "version": "0.2.0"
     },

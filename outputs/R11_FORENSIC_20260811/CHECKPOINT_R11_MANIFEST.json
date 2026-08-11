@@ -1,0 +1,21 @@
+{
+  "schema": "kch.pre2g-r11-forensic-checkpoint.v0.1.0",
+  "created_at": "2026-08-11",
+  "governing_scope": "KCH universal product engineering and adverse-evidence conversion; no PHL real",
+  "gates": {
+    "full_regression": "PASS_54_OF_54",
+    "compiled_governance": "VERIFIED_COMPILED_GOVERNANCE",
+    "aikido_hash_chain": "PASS_49_EVENTS",
+    "portable_zip_integrity": "PASS"
+  },
+  "artifacts": [
+    {"path": "AUDITORIA_FORENSE_Y_CONVERSION_AIKIDO_KCH_20260811.md", "bytes": 11038, "sha256": "c8fabbe82aabda96d96a12e5b6b2c5c8a850818eaccd52dd423ffa2bb690d258"},
+    {"path": "CLAIMS_LEDGER.json", "bytes": 1245, "sha256": "0b8ba2888b2e819c24e2cec3507f8cc0fc20ca861bd6e30d22427419523bcb92"},
+    {"path": "05_AIKIDO_RUNTIME/SEED_RECEIPT.json", "bytes": 15922, "sha256": "b033726e30f402b0273e5ab47e505854f6ab3815e32cf337c82b3b24fc6d2d04"},
+    {"path": "../KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R11.zip", "bytes": 22083825, "sha256": "91c69434b1315bd2afd7f3da057a4649095bba64a4d5482fe6bbe00513cebde7"},
+    {"path": "../KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/src/kch_studio/data/governance/governance.lock.json", "bytes": 10842, "sha256": "7aa3091935eb7519e1bf7811735d8887ce9c990fe1d472c63231edf8c6ba7f91"}
+  ],
+  "claim_ceiling": "LOCAL_EXECUTABLE_INTEGRATION_AND_PACKAGING_ONLY_NOT_INDUSTRIAL_VALIDATION_OR_HOST_AUTOMATICITY",
+  "phl_real_executed": false,
+  "local_deletion_authorized": false
+}
