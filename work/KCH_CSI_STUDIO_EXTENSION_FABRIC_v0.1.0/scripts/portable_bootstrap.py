@@ -32,6 +32,25 @@ def write_text(path: Path, value: str) -> None:
     path.write_text(value, encoding="utf-8")
 
 
+HOST_ADAPTER_FILENAMES = (
+    "AGENTS_KCH.md",
+    "cline_mcp_settings.json",
+    "codex-plugin-reference.json",
+    "codex.config.toml",
+    "opencode.json",
+    "vscode.mcp.json",
+)
+
+
+def collect_host_adapters(adapters: Path) -> list[str]:
+    """Return the complete, explicit host-adapter contract or fail closed."""
+    paths = [adapters / name for name in HOST_ADAPTER_FILENAMES]
+    missing = [path.name for path in paths if not path.is_file()]
+    if missing:
+        raise FileNotFoundError(f"missing generated host adapters: {missing}")
+    return [str(path) for path in paths]
+
+
 def main() -> None:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]).resolve()
     wheelhouse = root / "wheelhouse"
@@ -180,7 +199,7 @@ def main() -> None:
         "windows_deep_venv_avoided": os.name == "nt" and runtime != root / ".runtime",
         "wheel_count": len(wheels),
         "steps": steps,
-        "host_adapters": [str(path) for path in sorted(adapters.glob("*.json"))],
+        "host_adapters": collect_host_adapters(adapters),
         "external_host_configuration_modified": False,
         "credentials_embedded": False,
         "microphone_activated": False,
