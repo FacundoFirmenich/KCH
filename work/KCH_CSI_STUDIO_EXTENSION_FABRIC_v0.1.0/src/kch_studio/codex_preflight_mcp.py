@@ -6,8 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from .codex_bootstrap_mcp import CodexBootstrapMCP, PROTOCOL_VERSION
-
+from .codex_bootstrap_mcp import PROTOCOL_VERSION, CodexBootstrapMCP
 
 TOOL = {
     "name": "kch_governed_preflight",
@@ -41,7 +40,7 @@ class CodexPreflightMCP:
                 result: Any = {
                     "protocolVersion": PROTOCOL_VERSION,
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "kch-codex-preflight", "version": "0.3.2"},
+                    "serverInfo": {"name": "kch-codex-preflight", "version": "0.3.4"},
                     "instructions": (
                         "Mandatory startup binding: call kch_governed_preflight exactly once "
                         "before the first material action in every new task. It is read-only and "

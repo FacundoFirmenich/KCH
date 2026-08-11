@@ -190,6 +190,20 @@ Authority ceiling: INSPECT, RECOMMEND, REQUEST_INSTALL.
 
 Buscar y leer metadatos es distinto de descargar, instalar, habilitar, autenticar y ejecutar. Cada transición requiere un recibo explícito. La fase actual termina en `REQUEST_INSTALL`; no instala globalmente ni modifica un host externo.
 
+## [RULE] RULE-FULL-READ-SOURCE-ORDER — Complete reading and native source order
+
+Authority ceiling: INSPECT, VALIDATE.
+
+# Lectura completa y orden nativo
+
+Cuando una misión exige lectura completa, búsquedas, fragmentos, previews y resúmenes sólo pueden localizar o auxiliar: nunca sustituyen `read_all_bytes` ni la evidencia equivalente de lectura íntegra.
+
+Para archivos UTF-8 de la raíz estable, `full_read_file` materializa esta rutina mediante dos lecturas independientes y sólo habilita el claim si todo el contenido se transporta. Todo límite de transporte, denegación, discordancia de hash, cambio entre lecturas o archivo no textual queda como gate adverso; nunca se presenta como lectura completa.
+
+Todo recibo debe registrar método, bytes, líneas físicas, SHA-256 y límites. Los inventarios extraídos preservan por defecto el orden nativo/de fuente. Un orden alfabético, cronológico alternativo, por ranking u otra clave sólo es válido cuando el usuario lo pide o el contrato lo predeclara; la semántica de orden debe quedar explícita.
+
+Antes del cierre se recomputa el recibo independientemente. Un conjunto completo con orden incorrecto se conserva como resultado adverso de representación: no puede rescatarse alegando equivalencia de conjuntos.
+
 ## [RULE] RULE-GENERATION-STAGED — Staged artifact generation
 
 Authority ceiling: BUILD_STAGED, DESIGN, VALIDATE.

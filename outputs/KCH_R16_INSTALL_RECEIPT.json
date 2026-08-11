@@ -1,0 +1,70 @@
+{
+  "schema": "kch.portable-bootstrap-receipt.v0.2.0",
+  "state": "INSTALLED_ISOLATED_LOCAL_RUNTIME",
+  "root": "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16",
+  "python": "D:\\K16RT_20260811\\venv\\Scripts\\python.exe",
+  "runtime": "D:\\K16RT_20260811",
+  "runtime_path_strategy": "USER_EXPLICIT_FINITE_PATH",
+  "package_root_characters": 37,
+  "runtime_root_characters": 17,
+  "windows_deep_venv_avoided": true,
+  "wheel_count": 16,
+  "steps": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "venv",
+        "D:\\K16RT_20260811\\venv"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "D:\\K16RT_20260811\\venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "install",
+        "--disable-pip-version-check",
+        "--no-index",
+        "--find-links",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\cffi-2.1.1-cp314-cp314-win_amd64.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kch_csi_studio_extension_fabric-0.3.4-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kch_mis_v03_integration-0.1.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kch_obl_phl_learning_system-0.1.1-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kch_phl_effective_integration-0.2.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kch_rigor_gradient_governor-0.1.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kch_superchats_orchestrators-0.1.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kwancode_harness-0.11.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\kwanprompts-0.1.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\mis_qualitative_bayes-0.3.1-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\numpy-2.5.2-cp314-cp314-win_amd64.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\pillow-12.3.0-cp314-cp314-win_amd64.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\pycparser-3.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\pypdf-6.15.0-py3-none-any.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\sounddevice-0.5.5-py3-none-win_amd64.whl",
+        "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\\tzdata-2025.2-py2.py3-none-any.whl"
+      ],
+      "returncode": 0,
+      "stdout_tail": "Looking in links: d:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\wheelhouse\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\cffi-2.1.1-cp314-cp314-win_amd64.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kch_csi_studio_extension_fabric-0.3.4-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kch_mis_v03_integration-0.1.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kch_obl_phl_learning_system-0.1.1-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kch_phl_effective_integration-0.2.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kch_rigor_gradient_governor-0.1.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kch_superchats_orchestrators-0.1.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kwancode_harness-0.11.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\kwanprompts-0.1.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\mis_qualitative_bayes-0.3.1-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\numpy-2.5.2-cp314-cp314-win_amd64.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\pillow-12.3.0-cp314-cp314-win_amd64.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\pycparser-3.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\pypdf-6.15.0-py3-none-any.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\sounddevice-0.5.5-py3-none-win_amd64.whl\nProcessing d:\\k16pkg_20260811\\kch_0.11_pre2g_r16\\wheelhouse\\tzdata-2025.2-py2.py3-none-any.whl\nInstalling collected packages: tzdata, pypdf, pycparser, pillow, numpy, mis-qualitative-bayes, kwanprompts, kwancode-harness, kch-superchats-orchestrators, kch-rigor-gradient-governor, kch-phl-effective-integration, kch-obl-phl-learning-system, kch-mis-v03-integration, cffi, sounddevice, kch-csi-studio-extension-fabric\n\nSuccessfully installed cffi-2.1.1 kch-csi-studio-extension-fabric-0.3.4 kch-mis-v03-integration-0.1.0 kch-obl-phl-learning-system-0.1.1 kch-phl-effective-integration-0.2.0 kch-rigor-gradient-governor-0.1.0 kch-superchats-orchestrators-0.1.0 kwancode-harness-0.11.0 kwanprompts-0.1.0 mis-qualitative-bayes-0.3.1 numpy-2.5.2 pillow-12.3.0 pycparser-3.0 pypdf-6.15.0 sounddevice-0.5.5 tzdata-2025.2\n",
+      "stderr_tail": ""
+    }
+  ],
+  "host_adapters": [
+    "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\adapters_runtime\\AGENTS_KCH.md",
+    "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\adapters_runtime\\cline_mcp_settings.json",
+    "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\adapters_runtime\\codex-plugin-reference.json",
+    "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\adapters_runtime\\codex.config.toml",
+    "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\adapters_runtime\\opencode.json",
+    "D:\\K16PKG_20260811\\KCH_0.11_PRE2G_R16\\adapters_runtime\\vscode.mcp.json"
+  ],
+  "external_host_configuration_modified": false,
+  "credentials_embedded": false,
+  "microphone_activated": false,
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false
+}

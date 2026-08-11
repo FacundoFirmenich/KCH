@@ -23,6 +23,7 @@ src/kch_studio/contracts.py
 src/kch_studio/diction_learning.py
 src/kch_studio/extension.py
 src/kch_studio/federated_runtime.py
+src/kch_studio/full_read_contract.py
 src/kch_studio/generators.py
 src/kch_studio/installation.py
 src/kch_studio/kwandata.py
@@ -71,6 +72,7 @@ src/kch_studio/data/governance/source/rules/all-strategic-coral-integration.md
 src/kch_studio/data/governance/source/rules/authority-nonescalation.md
 src/kch_studio/data/governance/source/rules/evidence-derived-skill-lifecycle.md
 src/kch_studio/data/governance/source/rules/extension-acquisition.md
+src/kch_studio/data/governance/source/rules/full-read-source-order.md
 src/kch_studio/data/governance/source/rules/generation-staged.md
 src/kch_studio/data/governance/source/rules/host-projection.md
 src/kch_studio/data/governance/source/rules/interface-transparency.md
@@ -82,6 +84,7 @@ tests/test_codex_preflight_mcp.py
 tests/test_commitment_monitor.py
 tests/test_continuity_guard.py
 tests/test_extension.py
+tests/test_full_read_contract.py
 tests/test_mcp_ui.py
 tests/test_mis_federation.py
 tests/test_operational_surface.py

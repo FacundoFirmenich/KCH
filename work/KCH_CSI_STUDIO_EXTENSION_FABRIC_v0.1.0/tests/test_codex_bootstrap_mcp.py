@@ -95,6 +95,9 @@ def test_governed_preflight_dispatches_into_full_runtime(tmp_path: Path, monkeyp
         assert value["gate"] == "PASS"
         assert value["phl"]["authorized"] is True
         assert value["phl"]["training_executed"] is False
+        assert value["checks"]["full_read_source_order_default"] is True
+        assert value["full_read_contract"]["default_inventory_order"] == "SOURCE_NATIVE_ORDER"
+        assert value["governance"]["node_count"] == 19
         assert server.super_materialized is True
     finally:
         server.close()

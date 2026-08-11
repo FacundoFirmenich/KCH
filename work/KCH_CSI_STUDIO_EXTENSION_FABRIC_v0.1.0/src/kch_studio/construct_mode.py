@@ -16,23 +16,34 @@ from .contracts import canonical_json, file_manifest, safe_child, sha256_bytes, 
 from .recovery import RecoveryVault
 
 
+TRANSIENT_TREE_NAMES = frozenset(
+    {
+        ".git",
+        "__pycache__",
+        ".pytest_cache",
+        ".runtime",
+    }
+)
+
+
+def is_transient_tree_part(part: str) -> bool:
+    return part in TRANSIENT_TREE_NAMES or part.startswith("runtime_live")
+
+
+def ignore_transient_tree_entries(_directory: str, names: list[str]) -> list[str]:
+    """Apply the same transient-byte jurisdiction to every tree copy."""
+    return [name for name in names if is_transient_tree_part(name)]
+
+
 def utc_now() -> str:
     return datetime.now(UTC).isoformat().replace("+00:00", "Z")
 
 
 def tree_hash(root: Path) -> tuple[list[dict[str, Any]], str]:
-    ignored = {
-        ".git",
-        "__pycache__",
-        ".pytest_cache",
-        ".runtime",
-        "runtime_live",
-        "runtime_live_r2",
-    }
     manifest = [
         item
         for item in file_manifest(root)
-        if not any(part in ignored for part in Path(item["path"]).parts)
+        if not any(is_transient_tree_part(part) for part in Path(item["path"]).parts)
     ]
     return manifest, sha256_json(manifest)
 
@@ -80,18 +91,7 @@ class ConstructMode:
     @staticmethod
     def _excluded(path: Path, base: Path) -> bool:
         parts = path.relative_to(base).parts
-        return any(
-            part
-            in {
-                ".git",
-                "__pycache__",
-                ".pytest_cache",
-                ".runtime",
-                "runtime_live",
-                "runtime_live_r2",
-            }
-            for part in parts
-        )
+        return any(is_transient_tree_part(part) for part in parts)
 
     def _backup_stable(self) -> dict[str, Any]:
         manifest, digest = tree_hash(self.stable_root)
@@ -128,9 +128,7 @@ class ConstructMode:
         shutil.copytree(
             self.stable_root,
             target,
-            ignore=shutil.ignore_patterns(
-                ".git", "__pycache__", ".pytest_cache", ".runtime", "runtime_live*"
-            ),
+            ignore=ignore_transient_tree_entries,
         )
         manifest, digest = tree_hash(target)
         state = {
@@ -285,7 +283,7 @@ class ConstructMode:
         manifest, digest = tree_hash(source)
         target = safe_child(self.promoted, f"KCH_SUCCESSOR_{digest}")
         if not target.exists():
-            shutil.copytree(source, target)
+            shutil.copytree(source, target, ignore=ignore_transient_tree_entries)
         previous = json.loads(self.pointer.read_text(encoding="utf-8"))
         pointer = {
             "schema": "kch.construct-stable-pointer.v0.1.0",

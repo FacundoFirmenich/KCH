@@ -12,10 +12,18 @@ from .checkpoints import CheckpointManager
 from .clipboard_hub import ClipboardHub
 from .commitment_monitor import CommitmentMonitor
 from .constitutional import ConstitutionalWorkspace
-from .continuity_guard import AikidoLearningForge, ContinuityAndBurdenGovernor, ContinuousPeriodLedgerCompiler, RemoteTransportPreflight, SourceFitnessGate, TemporalScaleContractCompiler
 from .construct_mode import ConstructMode
+from .continuity_guard import (
+    AikidoLearningForge,
+    ContinuityAndBurdenGovernor,
+    ContinuousPeriodLedgerCompiler,
+    RemoteTransportPreflight,
+    SourceFitnessGate,
+    TemporalScaleContractCompiler,
+)
 from .diction_learning import DictionLearning
 from .federated_runtime import KwanPromptsRuntime, PHLRuntime, RigorRuntime, SCORuntime
+from .full_read_contract import FullReadService
 from .installation import ConsentDecision, ConsentPolicy
 from .kwandata import KwanData
 from .launcher import Capability, ProactiveLauncher
@@ -80,6 +88,7 @@ ADVANCED_TOOLS = [
     ),
     tool("continuity_status", "Inspect continuity and burden governance", "Verify mission continuity, recurrent-failure controls and the append-only harm ledger.", {}, [], read_only=True),
     tool("continuity_reading_adjudicate", "Adjudicate lossless source reading", "Forbid a complete-reading claim unless pagination reached EOF and every material truncation was recovered.", {"receipt": O}, ["receipt"], read_only=False),
+    tool("full_read_file", "Read one complete source file", "Read every byte twice, transport the complete UTF-8 text when it fits the declared bound, and return a verifiable receipt. External paths require explicit permission; fragments never satisfy the claim.", {"path": S, "max_return_bytes": {"type": "integer", "minimum": 1, "maximum": 5242880}, "expected_sha256": S}, ["path"], read_only=True),
     tool("continuity_mission_set", "Enact governing mission", "Freeze the user-authorized governing objective and its authority source.", {"objective": S, "authority_source": S}, ["objective", "authority_source"], read_only=False),
     tool("continuity_harm_record", "Record exact user burden evidence", "Append exact user-reported harm without inferring a medical diagnosis or rewriting historical evidence.", {"record": O}, ["record"], read_only=False),
     tool("continuity_action_preflight", "Gate an action against recurrent harm", "Fail closed on stale, non-material, mission-drifting, uncustodied, incompletely-read or recurrently unsafe work.", {"action": O}, ["action"], read_only=False),
@@ -1007,6 +1016,7 @@ class KCHAdvancedRuntime:
             stable_root
             or os.environ.get("KCH_CONSTRUCT_STABLE_ROOT", Path(__file__).resolve().parents[2])
         ).resolve()
+        self.full_reader = FullReadService(source_root, self.permissions)
         self.construct = ConstructMode(self.root / "construct", source_root)
         self.checkpoints = CheckpointManager(
             self.root / "checkpoints",
@@ -1017,6 +1027,11 @@ class KCHAdvancedRuntime:
             "kch_next_status": lambda _a: self.status(),
             "continuity_status": lambda _a: self.continuity.status(),
             "continuity_reading_adjudicate": lambda a: self.continuity.adjudicate_reading(dict(a["receipt"])),
+            "full_read_file": lambda a: self.full_reader.read(
+                str(a["path"]),
+                max_return_bytes=int(a.get("max_return_bytes", 1_048_576)),
+                expected_sha256=a.get("expected_sha256"),
+            ),
             "continuity_mission_set": lambda a: self.continuity.set_mission(str(a["objective"]), str(a["authority_source"])),
             "continuity_harm_record": lambda a: self.continuity.record_harm(dict(a["record"])),
             "continuity_action_preflight": lambda a: self.continuity.preflight(dict(a["action"])),

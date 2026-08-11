@@ -30,10 +30,7 @@ EXCLUDES = {
     "release_build",
     "dependency_wheels",
     ".git",
-    "compiled_governance_v02",
-    "compiled_governance_v03",
-    "compiled_governance_v04",
-    "compiled_governance_v05",
+    "compiled_governance_*",
     "KCH_PRE2G_INTEGRATED_MACROGATE_v0.1.0.json",
     "KCH_PORTABLE_INSTALL_RECEIPT_R3.json",
     "KCH_PORTABLE_POST_INSTALL_GATE_R3.json",
@@ -86,7 +83,7 @@ def main() -> None:
     final_output = candidate / "release_build"
     final_output.mkdir(exist_ok=True)
     output_root = Path(tempfile.mkdtemp(prefix="kch_release_"))
-    package = output_root / "KCH_0.11_PRE2G_R15"
+    package = output_root / "KCH_0.11_PRE2G_R16"
     package.mkdir(parents=True)
 
     # Build into this release jurisdiction only.  candidate/dist may contain a
@@ -269,7 +266,7 @@ def main() -> None:
         },
     )
 
-    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R15.zip"
+    archive = output_root / "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R16.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as stream:
         for path in sorted(
             (item for item in package.rglob("*") if item.is_file()),
@@ -286,11 +283,11 @@ def main() -> None:
     shutil.copy2(archive, final_archive)
     shutil.copy2(
         candidate / "scripts" / "extract_and_install.py",
-        final_output / "EXTRACT_AND_INSTALL_KCH_R15.py",
+        final_output / "EXTRACT_AND_INSTALL_KCH_R16.py",
     )
     write(
-        final_output / "EXTRACT_AND_INSTALL_KCH_R15.cmd",
-        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R15.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R15.zip"\r\n',
+        final_output / "EXTRACT_AND_INSTALL_KCH_R16.cmd",
+        '@echo off\r\npython "%~dp0EXTRACT_AND_INSTALL_KCH_R16.py" "%~dp0KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R16.zip"\r\n',
     )
     print(
         json.dumps(
@@ -301,7 +298,7 @@ def main() -> None:
                 "archive_sha256": sha256(final_archive),
                 "preseal_file_count": len(manifest),
                 "max_archive_member_characters": max_member_characters,
-                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R15.cmd"),
+                "safe_short_extractor": str(final_output / "EXTRACT_AND_INSTALL_KCH_R16.cmd"),
             },
             ensure_ascii=False,
             indent=2,

@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: kch-csi-studio-extension-fabric
-Version: 0.3.2
+Version: 0.3.4
 Summary: Transactional CSI Studio and governed extension fabric for KwanCode Harness
 Requires-Python: >=3.11
 Requires-Dist: Pillow<13,>=12

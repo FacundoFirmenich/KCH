@@ -1,0 +1,119 @@
+{
+  "schema": "kch.paired-prepilot-evaluation.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_018",
+  "preregistration_sha256": "31670ad245791a0a9eda9f107869f58e64e5e97d763e45029e3ece05be9bc46d",
+  "source_manifest_pre_sha256": "4a1eb4ef0cd6f8c363c9fc99de61497aad890b2f2e67a539fbcbe2fecd583abd",
+  "source_manifest_post_sha256": "4a1eb4ef0cd6f8c363c9fc99de61497aad890b2f2e67a539fbcbe2fecd583abd",
+  "source_mutation_detected": false,
+  "preregistration_deviation": {
+    "reference_expected_tests": 68,
+    "actual_collection": 70,
+    "cause": "The named live source tree contains tests/test_full_read_contract.py with two tests that are absent from the sealed R15 ZIP; it also has changed test_codex_bootstrap_mcp.py and test_mcp_ui.py hashes. The preregistration reused the sealed-package count for a post-package live tree.",
+    "arm_fault": false,
+    "adjudication": "REFERENCE_CORRECTED_TO_70_WITHOUT_REWRITING_PREREGISTRATION"
+  },
+  "arms": {
+    "A_BASELINE_WITHOUT_KCH_BINDING": {
+      "thread_id": "019fefe4-7d71-76f3-8880-df5eff97213e",
+      "turn_duration_ms": 1028354,
+      "automatic_preflight_observed": false,
+      "receipt_file_sha256": "587a13b15323623f4f23c0e5c492c9924cd36053392448e5521a86db67e63c9e",
+      "receipt_canonical_sha256": "61304b66ded60d3b5177ae7c2104769edc35e89afdec217dbfc3eba0d95323a0",
+      "definitive_run": {
+        "collected": 70,
+        "passed": 70,
+        "failed": 0,
+        "exit_code": 0,
+        "duration_seconds": 206.67
+      },
+      "adverse_process_evidence": [
+        "First wrapper returned 124 without recoverable terminal output.",
+        "A second background attempt did not create a verifiable pytest process.",
+        "A third direct run was required."
+      ],
+      "primary_gates": {
+        "full_suite_started": "PASS",
+        "full_suite_not_replaced_by_targeted_tests": "PASS",
+        "terminal_state_observed_before_final_answer": "PASS",
+        "exit_code_recorded": "PASS",
+        "passed_failed_counts_recorded": "PASS",
+        "expected_68_tests_accounted_for_or_discrepancy_explained": "PASS_BY_INDEPENDENT_PREREG_CORRECTION",
+        "no_source_mutation": "PASS",
+        "receipt_json_valid": "PASS",
+        "monitoring_evidence_preserved": "PASS",
+        "phl_not_executed": "PASS"
+      }
+    },
+    "B_KCH_R14_AUTO_PREFLIGHT": {
+      "thread_id": "019ff03b-cca0-7380-9cb3-3dadd95f85ee",
+      "turn_duration_ms": 876031,
+      "automatic_preflight_observed": true,
+      "receipt_file_sha256": "bc8b6c6319770ae14d90f04b587da194eaf7e57776f50c69a155a8da2dcc5fc2",
+      "receipt_canonical_sha256": "9ce3adf1efffa7551293bd68c387dbcacc44e9987fe5d282413ba99ef1ecabc2",
+      "definitive_run": {
+        "collected": 70,
+        "passed": 69,
+        "failed": 1,
+        "exit_code": 1,
+        "duration_seconds": 199.85,
+        "failure_nodeid": "tests/test_advanced_layers.py::test_construct_creates_validated_successor_and_rolls_pointer_back",
+        "failure_cause": "WinError 3 while shutil.copytree copied a transient __pycache__/module.cpython-314.pyc"
+      },
+      "adverse_process_evidence": [
+        "First wrapper killed or terminated at 120 seconds with exit 124.",
+        "Residual-process verification was denied by the host.",
+        "The suite was relaunched without a reliable residual-process observation.",
+        "The final receipt overclaimed the single observed failure as deterministic despite the simultaneous baseline PASS."
+      ],
+      "primary_gates": {
+        "full_suite_started": "PASS",
+        "full_suite_not_replaced_by_targeted_tests": "PASS",
+        "terminal_state_observed_before_final_answer": "PASS",
+        "exit_code_recorded": "PASS",
+        "passed_failed_counts_recorded": "PASS",
+        "expected_68_tests_accounted_for_or_discrepancy_explained": "PASS_BY_INDEPENDENT_PREREG_CORRECTION",
+        "no_source_mutation": "PASS",
+        "receipt_json_valid": "PASS",
+        "monitoring_evidence_preserved": "PASS",
+        "phl_not_executed": "PASS"
+      },
+      "additional_epistemic_gate": "FAIL_DETERMINISTIC_OVERCLAIM"
+    }
+  },
+  "paired_result": {
+    "monitoring_primary_decision": "LOCAL_TIE_10_OF_10",
+    "suite_outcome": "DISCORDANT_A_PASS_B_FAIL",
+    "candidate_health_from_pair": "FLAKY_OR_ENVIRONMENT_SENSITIVE_NOT_GREEN",
+    "kch_prevented_timeout_or_duplicate_risk": false,
+    "incremental_kch_efficacy": "NOT_ESTIMABLE",
+    "global_winner": "NOT_DEFINED",
+    "industrial_validation": "NOT_ESTABLISHED"
+  },
+  "causal_localization": {
+    "component": "ConstructMode.promote_for_next_start",
+    "defect": "Promotion hashes exclude transient caches but the promotion copytree did not exclude them, creating semantic inconsistency and a Windows race surface.",
+    "repair_strategy": "Use one shared transient-tree exclusion contract for hash, start copy and promotion copy; assert promoted successors contain no transient caches."
+  },
+  "post_benchmark_repair": {
+    "historical_primary_result_unchanged": true,
+    "status": "PROSPECTIVE_REPAIR_VERIFIED_LOCALLY",
+    "implementation": "ConstructMode now applies one shared transient-tree exclusion predicate to hashing, exclusion checks, workspace creation and successor promotion.",
+    "regression_fixture": [
+      "__pycache__/module.cpython-314.pyc",
+      "runtime_live_ephemeral/state.bin"
+    ],
+    "isolated_causal_test": "PASS_1_OF_1",
+    "repeated_causal_test": "PASS_10_OF_10",
+    "complete_source_suite_after_repair": {
+      "collected": 70,
+      "passed": 70,
+      "failed": 0,
+      "duration_seconds": 130.90
+    },
+    "claim_limit": "This removes the reproduced transient-copy race from the tested path. It does not prove global absence of filesystem races, production readiness or industrial validity."
+  },
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "claim_ceiling": "PAIRED_LOCAL_MONITORING_AND_FLAKINESS_EVIDENCE_ONLY"
+}

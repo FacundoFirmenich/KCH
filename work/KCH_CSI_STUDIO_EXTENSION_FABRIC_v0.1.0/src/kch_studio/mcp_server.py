@@ -9,10 +9,11 @@ from typing import Any, Callable
 from .advanced_runtime import ADVANCED_TOOLS, KCHAdvancedRuntime
 from .contracts import ArtifactSpec
 from .extension import ExtensionFabric, RecommendationEngine, RuntimeInventory
+from .full_read_contract import full_read_contract_status
 from .installation import ConsentDecision, InstallPlan, IsolatedInstaller
 from .studio import Studio
 
-SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.2"}
+SERVER_INFO = {"name": "kch-csi-studio", "version": "0.3.4"}
 PROTOCOL_VERSION = "2025-06-18"
 
 
@@ -240,6 +241,7 @@ class StudioMCP:
         response_modes = runtime["components"]["response_modes"]
         continuity = runtime["components"]["continuity"]
         blind_spots = runtime["capability_blind_spots"]
+        full_read_contract = full_read_contract_status()
         checks = {
             "compiled_governance": governance["state"] == "VERIFIED_COMPILED_GOVERNANCE",
             "governance_hierarchy": governance["hierarchy"] == ["HARNESS", "AGENTS", "RULES"],
@@ -250,10 +252,18 @@ class StudioMCP:
             "phl_authorized": runtime["phl_authorized"] is True,
             "response_modes_integrity": response_modes["integrity"]["gate"] == "PASS",
             "continuity_integrity": continuity["integrity"]["gate"] == "PASS",
+            "full_read_source_order_default": (
+                full_read_contract["default_inventory_order"] == "SOURCE_NATIVE_ORDER"
+                and full_read_contract["set_equality_does_not_rescue_order_mismatch"] is True
+            ),
+            "executable_full_read_tool": (
+                full_read_contract["executable_tool"] == "full_read_file"
+                and any(tool["name"] == "full_read_file" for tool in TOOLS)
+            ),
         }
         passed = all(checks.values())
         return {
-            "schema": "kch.canonical-preflight.v0.2.0",
+            "schema": "kch.canonical-preflight.v0.4.0",
             "gate": "PASS" if passed else "FAIL",
             "canonical_entrypoint": "kch_studio.mcp_server:StudioMCP",
             "internal_component_not_a_canonical_entrypoint": (
@@ -271,6 +281,7 @@ class StudioMCP:
             "response_modes": response_modes,
             "continuity": continuity,
             "aikido": runtime["components"]["aikido"],
+            "full_read_contract": full_read_contract,
             "external_installation_performed": runtime["external_installation_performed"],
             "claim_ceiling": "CANONICAL_LOCAL_STARTUP_AND_BINDING_GATE_ONLY",
             "industrial_validation_established": False,

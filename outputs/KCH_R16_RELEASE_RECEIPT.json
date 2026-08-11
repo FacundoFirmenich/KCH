@@ -1,0 +1,59 @@
+{
+  "schema": "kch.0.11.pre2g-r16-release-receipt.v0.1.0",
+  "release": "KCH 0.11 PRE2G R16",
+  "studio_version": "0.3.4",
+  "archive": "work/KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0/release_build/KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R16.zip",
+  "archive_bytes": 22130380,
+  "archive_sha256": "5868c311ca4be975100cc5fbc45a206aa1c3cfb17a11f9261aab4e614cf6143c",
+  "source_suite": {
+    "collected": 73,
+    "passed": 73,
+    "failed": 0,
+    "duration_seconds": 151.51
+  },
+  "portable_install": {
+    "package_root": "D:/K16PKG_20260811/KCH_0.11_PRE2G_R16",
+    "runtime_root": "D:/K16RT_20260811",
+    "offline_wheel_install": "PASS",
+    "post_install_gate": "PASS_BOUNDED",
+    "checks_passed": 19,
+    "checks_total": 19,
+    "combined_tool_count": 278,
+    "bootstrap_tool_count": 5,
+    "read_only_preflight_tool_count": 1
+  },
+  "construct_mode_repair": {
+    "historical_prepilot_018_unchanged": true,
+    "repeated_causal_test": "PASS_10_OF_10",
+    "complete_suite_after_repair": "PASS_73_OF_73"
+  },
+  "executable_full_read": {
+    "tool": "full_read_file",
+    "installed_live_gate": "PASS",
+    "live_file": "src/kch_studio/advanced_runtime.py",
+    "live_byte_count": 68691,
+    "live_physical_lines": 1655,
+    "live_sha256": "d8cb3c36a859b2d6dd0af0a495a5858bdb3a3f75568718b9d687a7c94e6452a7",
+    "verification_sha256": "d8cb3c36a859b2d6dd0af0a495a5858bdb3a3f75568718b9d687a7c94e6452a7",
+    "complete_content_transported": true,
+    "complete_read_claim_allowed": true,
+    "external_path_gate": "PERMISSION_REQUIRED",
+    "external_complete_read_claim_allowed": false,
+    "single_transport_default_max_bytes": 1048576,
+    "single_transport_hard_max_bytes": 5242880,
+    "utf8_text_only_for_complete_transport_claim": true
+  },
+  "governance": {
+    "hierarchy": ["HARNESS", "AGENTS", "RULES"],
+    "graph_sha256": "2b2e1f862edb9d20a5ddd49a4a8bea93f40c407f76a0f34f0c3a41470af90e6d",
+    "compiled_nodes": 19,
+    "canonical_preflight_schema": "kch.canonical-preflight.v0.4.0",
+    "canonical_preflight_gate": "PASS"
+  },
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false,
+  "external_host_configuration_modified": false,
+  "industrial_validation_established": false,
+  "claim_ceiling": "LOCAL_PORTABLE_INSTALLATION_EXECUTABLE_FULL_READ_AND_REGRESSION_GATES_ONLY"
+}

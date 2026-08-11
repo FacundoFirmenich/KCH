@@ -64,6 +64,11 @@
     {
       "relation": "DEFINES_RULE",
       "source": "KCH-RULES",
+      "target": "RULE-FULL-READ-SOURCE-ORDER"
+    },
+    {
+      "relation": "DEFINES_RULE",
+      "source": "KCH-RULES",
       "target": "RULE-GENERATION-STAGED"
     },
     {
@@ -204,6 +209,36 @@
     {
       "relation": "CONSTRAINS",
       "source": "RULE-EXTENSION-ACQUISITION",
+      "target": "AGENT-GOVERNANCE-COMPILER"
+    },
+    {
+      "relation": "CONSTRAINS",
+      "source": "RULE-FULL-READ-SOURCE-ORDER",
+      "target": "AGENT-ARTIFACT-BUILDER"
+    },
+    {
+      "relation": "CONSTRAINS",
+      "source": "RULE-FULL-READ-SOURCE-ORDER",
+      "target": "AGENT-CORAL-INTEGRATION-AUDITOR"
+    },
+    {
+      "relation": "CONSTRAINS",
+      "source": "RULE-FULL-READ-SOURCE-ORDER",
+      "target": "AGENT-CSI-STUDIO-ORCHESTRATOR"
+    },
+    {
+      "relation": "CONSTRAINS",
+      "source": "RULE-FULL-READ-SOURCE-ORDER",
+      "target": "AGENT-EVIDENCE-SKILL-CONTINUITY"
+    },
+    {
+      "relation": "CONSTRAINS",
+      "source": "RULE-FULL-READ-SOURCE-ORDER",
+      "target": "AGENT-EXTENSION-CURATOR"
+    },
+    {
+      "relation": "CONSTRAINS",
+      "source": "RULE-FULL-READ-SOURCE-ORDER",
       "target": "AGENT-GOVERNANCE-COMPILER"
     },
     {
@@ -363,7 +398,7 @@
     "RULES"
   ],
   "install_authority": false,
-  "node_count": 18,
+  "node_count": 19,
   "nodes": [
     {
       "authority_ceiling": [
@@ -520,6 +555,7 @@
         "RULE-ALL-STRATEGIC-CORAL-INTEGRATION",
         "RULE-AUTHORITY-NONESCALATION",
         "RULE-EVIDENCE-DERIVED-SKILL-LIFECYCLE",
+        "RULE-FULL-READ-SOURCE-ORDER",
         "RULE-GENERATION-STAGED",
         "RULE-EXTENSION-ACQUISITION",
         "RULE-RECOMMENDATION-EVIDENCE",
@@ -531,9 +567,9 @@
       "kind": "RULES",
       "parent": "KCH-AGENTS",
       "path": "RULES.md",
-      "sha256": "0362579c08f28e5e590dd0ce3e115355690c4fed770bbbc129c5a87f0cb05b43",
+      "sha256": "9b309b018b2c08de7105f10bfd6463e3352388c42f20a4928aef39efa40fac13",
       "title": "KCH semantic rules, routines and subroutines",
-      "version": "0.2.0"
+      "version": "0.3.0"
     },
     {
       "authority_ceiling": [
@@ -600,6 +636,20 @@
       "path": "rules/extension-acquisition.md",
       "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
       "title": "Governed extension acquisition",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-FULL-READ-SOURCE-ORDER",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/full-read-source-order.md",
+      "sha256": "6cbbca8ad3ee0ba204ac5e4a44500637ded03fb2641c795b462c5868d2aad9a5",
+      "title": "Complete reading and native source order",
       "version": "0.1.0"
     },
     {
@@ -680,6 +730,6 @@
   ],
   "resolution": "MOST_RESTRICTIVE_AUTHORITY_THEN_NARROWEST_VALID_SCOPE",
   "root": "KCH-HARNESS",
-  "rule_count": 9,
+  "rule_count": 10,
   "schema": "kch.csi-self-governance-graph.v0.1.0"
 }

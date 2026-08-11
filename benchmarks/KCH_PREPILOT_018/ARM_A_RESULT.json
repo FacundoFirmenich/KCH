@@ -1,0 +1,68 @@
+{
+  "candidate": "R15",
+  "command": "$env:PYTHONDONTWRITEBYTECODE='1'; $env:PYTHONPATH='src'; python -m pytest -vv -p no:cacheprovider --basetemp C:\\tmp\\kch_r15_full_suite_prepilot018_run3",
+  "cwd": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+  "execution": {
+    "definitive_run": "run3",
+    "exit_code": 0,
+    "framework": "pytest 9.0.2",
+    "python": "Python 3.14.0",
+    "platform": "win32",
+    "pytest_config": "pyproject.toml",
+    "testpaths": ["tests"],
+    "collected": 70,
+    "passed": 70,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "duration_seconds": 206.67,
+    "duration_display": "0:03:26",
+    "terminal_summary": "======================= 70 passed in 206.67s (0:03:26) ========================",
+    "terminal_result": "PASS"
+  },
+  "prior_attempts": [
+    {
+      "attempt": "run1",
+      "command_mode": "pytest -q",
+      "wrapper_timeout_seconds": 600,
+      "wrapper_exit_code": 124,
+      "interpretation": "No se consideró resultado de suite; el wrapper agotó el límite y no se infirió PASS."
+    },
+    {
+      "attempt": "run2",
+      "command_mode": "Start-Process con redirección de stdout/stderr",
+      "interpretation": "No llegó a crear un proceso pytest verificable y sus logs quedaron vacíos; no se contó como ejecución."
+    }
+  ],
+  "source_integrity_boundary": {
+    "source_code_modified_by_this_task": false,
+    "pytest_cache_disabled": true,
+    "bytecode_disabled": true,
+    "basetemp_outside_source": "C:\\tmp\\kch_r15_full_suite_prepilot018_run3",
+    "post_hoc_learning_executed": false,
+    "phl_training_executed": false,
+    "source_project": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0"
+  },
+  "what_result_establishes": "R15 pasa la suite completa de tests de fuente definida por pyproject.toml: las 70 pruebas recolectadas terminaron correctamente. Esto establece una validación automatizada integral del conjunto tests/ en este entorno y bajo este checkout; no establece por sí solo entrenamiento PHL, validación industrial, autoridad operacional, seguridad de producción, rendimiento fuera de la suite ni ausencia de defectos no cubiertos por las 70 pruebas.",
+  "tools_called": [
+    "shell_command: inspección de archivos y pyproject.toml",
+    "shell_command: primera ejecución pytest -q",
+    "functions.wait: seguimiento del primer proceso",
+    "shell_command: comprobación de PID y proceso",
+    "shell_command: intento de lanzamiento redirigido",
+    "shell_command + functions.wait: ejecución definitiva pytest -vv",
+    "apply_patch: creación de este recibo",
+    "shell_command: verificación independiente del JSON y hash"
+  ],
+  "mutations": [
+    "Creado únicamente outputs/PREPILOT018_RESULT.json.",
+    "No se modificó código fuente del candidato.",
+    "Se usaron sólo temporales de pytest bajo C:\\tmp."
+  ],
+  "verification": {
+    "json_parse": "PASS",
+    "canonicalization": "UTF-8 JSON compacto con claves ordenadas después de retirar únicamente el campo sha256",
+    "sha256_recomputed_independently": true
+  },
+  "sha256": "61304b66ded60d3b5177ae7c2104769edc35e89afdec217dbfc3eba0d95323a0"
+}

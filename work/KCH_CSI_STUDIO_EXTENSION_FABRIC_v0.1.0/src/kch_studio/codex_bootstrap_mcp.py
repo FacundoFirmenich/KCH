@@ -6,9 +6,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
-
 PROTOCOL_VERSION = "2025-06-18"
-SERVER_INFO = {"name": "kch-codex-bootstrap", "version": "0.3.2"}
+SERVER_INFO = {"name": "kch-codex-bootstrap", "version": "0.3.4"}
 
 
 def _object(
@@ -236,7 +235,7 @@ class CodexBootstrapMCP:
                         "KCH is the governing harness. In every new task call "
                         "kch_governed_preflight before material action, preserve HARNESS > AGENTS "
                         "> RULES, and use kch_catalog_search plus kch_dispatch instead of requiring "
-                        "the 277-tool catalog in the startup handshake. Never infer user consent. "
+                        "the full tool catalog in the startup handshake. Never infer user consent. "
                         "PHL is authorized but must not be trained without genuine feedback. "
                         "Capability, permission, authority, execution and training remain distinct. "
                         "Adverse gates and NOT_ESTIMABLE results must be preserved."

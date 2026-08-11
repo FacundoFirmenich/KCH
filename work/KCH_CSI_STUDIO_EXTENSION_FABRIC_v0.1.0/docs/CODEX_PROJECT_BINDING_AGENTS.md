@@ -13,3 +13,11 @@ Antes de la primera acción material de cada tarea nueva, llama exactamente una 
 El servidor bootstrap expone catálogo y despacho. Sus herramientas potencialmente operativas mantienen aprobación y gobierno propios; el preflight automático no concede permiso, autoridad ni ejecución a ninguna de ellas.
 
 PHL está autorizado pero no entrenado. No inicies aprendizaje PHL real salvo feedback genuino del usuario y el protocolo explícito correspondiente.
+
+## Lectura completa y semántica de orden
+
+Cuando el usuario exija lectura completa, lee todos los bytes antes de afirmar comprensión. Las búsquedas y fragmentos no sustituyen esa lectura. Conserva bytes, líneas físicas, SHA-256 y método.
+
+Usa `full_read_file` para archivos UTF-8 dentro de la raíz estable. El gate sólo permite afirmar lectura completa cuando dos lecturas independientes coinciden y todo el contenido fue transportado. Una denegación de permisos, un cambio entre lecturas, un hash esperado discordante, un archivo binario o el límite de transporte conservan un resultado adverso y bloquean ese claim. Los archivos externos requieren permiso explícito.
+
+En inventarios derivados preserva por defecto el orden nativo/de fuente. No lo sustituyas por orden alfabético, ranking u otra clave salvo petición expresa o contrato predeclarado, y declara siempre la semántica de orden. Verifica el recibo de forma independiente antes del cierre y conserva cualquier diferencia adversa.

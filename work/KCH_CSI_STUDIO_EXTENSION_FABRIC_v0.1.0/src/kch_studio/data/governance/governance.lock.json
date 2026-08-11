@@ -11,9 +11,9 @@
       "sha256": "4a9286050c43b5fbfbc381d1efff2679757142633be7f685f27cf75b0111c9cc"
     },
     {
-      "bytes": 18049,
+      "bytes": 19347,
       "path": "codex/AGENTS.md",
-      "sha256": "7e8a47d8af4d5ffdb15403d73cf37d8f98d170497727c4a57807850b4835b4e6"
+      "sha256": "c7fd715cd21133843469342db6e832d333d43bffd41484029fbf772bc2a9c288"
     },
     {
       "bytes": 640,
@@ -21,9 +21,9 @@
       "sha256": "bc1e267b80e8c5ef06c92a0919e6328c99ed8e6ae4e07898af415a87905844cf"
     },
     {
-      "bytes": 19569,
+      "bytes": 21030,
       "path": "csi/governance_graph.json",
-      "sha256": "a88a25d949f75cbc411a8af2821042f9b3c1458c439dd8acd67df1a671a2da25"
+      "sha256": "04077b7bce1421b1b7bb4e547571e2f0c01e103a21f3963563683aea12e324ad"
     },
     {
       "bytes": 2369,
@@ -36,15 +36,15 @@
       "sha256": "26c571c32071dce97bb451e0aaf6e11cf711756e84f0e1f3ef43115acc103337"
     },
     {
-      "bytes": 1716,
+      "bytes": 1747,
       "path": "generic/RULES.md",
-      "sha256": "0362579c08f28e5e590dd0ce3e115355690c4fed770bbbc129c5a87f0cb05b43"
+      "sha256": "9b309b018b2c08de7105f10bfd6463e3352388c42f20a4928aef39efa40fac13"
     }
   ],
   "authority_inherited": false,
   "installation_authorized": false,
   "schema": "kch.csi-self-governance-lock.v0.1.0",
-  "source_graph_sha256": "0cc0951f25b554c5dd2302d4805ef92b3bd4bea84959a62a3b486ba1d3fd90ae",
+  "source_graph_sha256": "2b2e1f862edb9d20a5ddd49a4a8bea93f40c407f76a0f34f0c3a41470af90e6d",
   "source_nodes": [
     {
       "authority_ceiling": [
@@ -201,6 +201,7 @@
         "RULE-ALL-STRATEGIC-CORAL-INTEGRATION",
         "RULE-AUTHORITY-NONESCALATION",
         "RULE-EVIDENCE-DERIVED-SKILL-LIFECYCLE",
+        "RULE-FULL-READ-SOURCE-ORDER",
         "RULE-GENERATION-STAGED",
         "RULE-EXTENSION-ACQUISITION",
         "RULE-RECOMMENDATION-EVIDENCE",
@@ -212,9 +213,9 @@
       "kind": "RULES",
       "parent": "KCH-AGENTS",
       "path": "RULES.md",
-      "sha256": "0362579c08f28e5e590dd0ce3e115355690c4fed770bbbc129c5a87f0cb05b43",
+      "sha256": "9b309b018b2c08de7105f10bfd6463e3352388c42f20a4928aef39efa40fac13",
       "title": "KCH semantic rules, routines and subroutines",
-      "version": "0.2.0"
+      "version": "0.3.0"
     },
     {
       "authority_ceiling": [
@@ -281,6 +282,20 @@
       "path": "rules/extension-acquisition.md",
       "sha256": "ef86a782a51e568ebfdbd705f83f7dfb2a1d0f7c3090cbf42253c346e6734af2",
       "title": "Governed extension acquisition",
+      "version": "0.1.0"
+    },
+    {
+      "authority_ceiling": [
+        "INSPECT",
+        "VALIDATE"
+      ],
+      "children": [],
+      "id": "RULE-FULL-READ-SOURCE-ORDER",
+      "kind": "RULE",
+      "parent": "KCH-RULES",
+      "path": "rules/full-read-source-order.md",
+      "sha256": "6cbbca8ad3ee0ba204ac5e4a44500637ded03fb2641c795b462c5868d2aad9a5",
+      "title": "Complete reading and native source order",
       "version": "0.1.0"
     },
     {

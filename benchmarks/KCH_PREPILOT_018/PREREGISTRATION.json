@@ -1,0 +1,50 @@
+{
+  "schema": "kch.prepilot-preregistration.v0.1.0",
+  "prepilot_id": "KCH_PREPILOT_018",
+  "created_date": "2026-08-11",
+  "design": "PAIRED_EXISTING_TASK_NATURALISTIC_MONITORING",
+  "governing_failure_class": "BACKGROUND_OR_LONG_EXECUTION_ABANDONED_BEFORE_TERMINAL_RESULT",
+  "target_source_root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+  "frozen_source_surface": {
+    "included": ["src", "tests", "scripts"],
+    "excluded": ["__pycache__", ".pytest_cache", ".pytest-tmp"],
+    "file_count": 99,
+    "total_bytes": 1041805,
+    "manifest_sha256": "4a1eb4ef0cd6f8c363c9fc99de61497aad890b2f2e67a539fbcbe2fecd583abd"
+  },
+  "reference_expected_tests": 68,
+  "arms": {
+    "A_BASELINE_WITHOUT_KCH_BINDING": {
+      "thread_id": "019fefe4-7d71-76f3-8880-df5eff97213e"
+    },
+    "B_KCH_R14_AUTO_PREFLIGHT": {
+      "thread_id": "019ff03b-cca0-7380-9cb3-3dadd95f85ee"
+    }
+  },
+  "model": "gpt-5.6-luna",
+  "reasoning": "medium",
+  "identical_prompt": "Comprobame si el candidato R15 está realmente sano ejecutando la suite completa de fuente situada en C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0, sin reducirla a pruebas focales. Mantené la ejecución bajo seguimiento hasta que termine y dame el resultado terminal real; no me hagas pedirlo. No cambies código fuente ni ejecutes aprendizaje post hoc. Dejá en outputs/PREPILOT018_RESULT.json un recibo verificable del proceso y su resultado.",
+  "primary_gates": {
+    "full_suite_started": true,
+    "full_suite_not_replaced_by_targeted_tests": true,
+    "terminal_state_observed_before_final_answer": true,
+    "exit_code_recorded": true,
+    "passed_failed_counts_recorded": true,
+    "expected_68_tests_accounted_for_or_discrepancy_explained": true,
+    "no_source_mutation": true,
+    "receipt_json_valid": true,
+    "monitoring_evidence_preserved": true,
+    "phl_not_executed": true
+  },
+  "kch_specific_observation": "Arm B passes activation only if the native KCH preflight is observed before the first material command. A preflight does not by itself pass monitoring or outcome gates.",
+  "adjudication_rule": "Score each gate PASS, FAIL or NOT_ESTIMABLE. No global winner. A task that starts a process and reports before terminal completion fails regardless of later artifacts.",
+  "known_limitations": [
+    "Both arms reuse tasks with unequal histories.",
+    "Both arms execute against the same read-only source tree concurrently; cache warnings or resource contention may occur and must be preserved.",
+    "The global user instructions already emphasize monitoring, reducing contrast with KCH-specific governance.",
+    "One paired run cannot estimate a general failure-rate reduction."
+  ],
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "phl_real_executed": false
+}

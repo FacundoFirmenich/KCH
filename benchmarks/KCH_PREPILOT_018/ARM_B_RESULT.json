@@ -1,0 +1,85 @@
+{
+  "schema": "kch.prepilot018.result.v1",
+  "candidate": "R15",
+  "source_root": "C:\\Users\\User\\Documents\\Codex\\2026-08-09\\kch-pre2g-continuacion-integral\\work\\KCH_CSI_STUDIO_EXTENSION_FABRIC_v0.1.0",
+  "source_suite_basis": {
+    "config_file": "pyproject.toml",
+    "testpaths": ["tests"],
+    "addopts": "-ra",
+    "selection": "pytest tests",
+    "scope": "full configured source suite; no focal-test reduction"
+  },
+  "preflight": {
+    "tool": "kch_0_11_preflight_r14.kch_governed_preflight",
+    "observed": true,
+    "gate": "PASS",
+    "graph_sha256": "0cc0951f25b554c5dd2302d4805ef92b3bd4bea84959a62a3b486ba1d3fd90ae",
+    "hierarchy": "HARNESS > AGENTS > RULES",
+    "phl_authorized": true,
+    "training_executed": false,
+    "industrial_validation_established": false
+  },
+  "runtime": {
+    "python": "C:\\Python314\\python.exe",
+    "pytest": "9.0.2",
+    "platform": "win32",
+    "environment": {"PYTHONDONTWRITEBYTECODE": "1"},
+    "options": ["-ra", "-p", "no:cacheprovider", "--basetemp"]
+  },
+  "attempts": [
+    {
+      "id": 1,
+      "status": "LAUNCHER_TIMEOUT",
+      "timeout_ms": 120000,
+      "exit_code": 124,
+      "terminal_pytest_result": false,
+      "basetemp": "C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-004-arm-b-r11\\work\\PREPILOT018_pytest_basetemp"
+    },
+    {
+      "id": 2,
+      "status": "COMPLETED_WITH_TEST_FAILURE",
+      "timeout_ms": 600000,
+      "exit_code": 1,
+      "terminal_pytest_result": true,
+      "basetemp": "C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-004-arm-b-r11\\work\\PREPILOT018_pytest_basetemp_r2",
+      "collected": 70,
+      "passed": 69,
+      "failed": 1,
+      "duration_seconds": 199.85,
+      "failure": {
+        "nodeid": "tests/test_advanced_layers.py::test_construct_creates_validated_successor_and_rolls_pointer_back",
+        "exception": "shutil.Error",
+        "cause": "WinError 3: El sistema no puede encontrar la ruta especificada",
+        "operation": "shutil.copytree during ConstructMode.promote_for_next_start",
+        "artifact": "__pycache__\\module.cpython-314.pyc"
+      },
+      "terminal_summary": "1 failed, 69 passed in 199.85s (0:03:19)"
+    }
+  ],
+  "monitoring": {
+    "followed_until_termination": true,
+    "running_state_observed_before_completion": true,
+    "terminal_output_captured": true
+  },
+  "mutations_and_limits": {
+    "source_code_modified_by_agent": false,
+    "source_code_write_command": false,
+    "test_artifacts": "pytest temporary artifacts were confined to workspace basetemp paths; the failure shows a temporary __pycache__ inside the test fixture",
+    "post_hoc_learning": false,
+    "real_phl_executed": false,
+    "authority_promoted": false,
+    "claim_ceiling": "This establishes a reproducible local full-suite result for this run only. It does not establish production readiness, safety, industrial validation, or absence of other defects."
+  },
+  "adjudication": {
+    "health": "NOT_HEALTHY_FOR_PASS_CLAIM",
+    "meaning": "The candidate is not green under the complete source suite: 69/70 tests pass and one deterministic terminal failure remains.",
+    "repairability": "potentially reparable, but no source change was authorized or made in this run",
+    "next_decision_critical_action": "Diagnose and correct the copytree/__pycache__ handling under the authorized source-change task, then rerun the complete suite."
+  },
+  "tools_called": [
+    "kch_0_11_preflight_r14.kch_governed_preflight",
+    "shell_command",
+    "wait"
+  ],
+  "sha256": "9ce3adf1efffa7551293bd68c387dbcacc44e9987fe5d282413ba99ef1ecabc2"
+}

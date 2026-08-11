@@ -29,8 +29,8 @@ def test_integrated_mcp_initialize_list_and_status(tmp_path: Path) -> None:
     )
     assert status["result"]["structuredContent"]["installation_authorized"] is False
     governance = status["result"]["structuredContent"]["governance"]
-    assert governance["node_count"] == 18
-    assert governance["source_nodes_verified"] == 18
+    assert governance["node_count"] == 19
+    assert governance["source_nodes_verified"] == 19
     assert governance["all_strategic_invariant"] is True
     advanced = server.handle(
         {
