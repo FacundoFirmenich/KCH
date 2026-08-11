@@ -1,0 +1,59 @@
+{
+  "schema": "kch.r16-remote-custody-receipt.v0.1.0",
+  "date": "2026-08-11",
+  "github": {
+    "repository": "FacundoFirmenich/KCH",
+    "url": "https://github.com/FacundoFirmenich/KCH",
+    "visibility": "PRIVATE",
+    "branch": "agent/kch-r16-full-read",
+    "local_commit": "203b428b7051518b3cf9c065eb5113addbc05f82",
+    "remote_commit": "203b428b7051518b3cf9c065eb5113addbc05f82",
+    "commit_match": true
+  },
+  "google_drive": {
+    "parent_folder_id": "1f0vH7T7oLwOh7or5wKs4FoNgnY7quVR3",
+    "metadata_verified": true,
+    "content_checksum_exposed_by_connector": false,
+    "files": [
+      {
+        "name": "KCH_0.11_PRE2G_INTEGRATED_CANDIDATE_R16.zip",
+        "id": "11c1Rxdak1jQtErZSGJt3KEjcO3EDy-Jb",
+        "size": 22130380,
+        "local_sha256": "5868c311ca4be975100cc5fbc45a206aa1c3cfb17a11f9261aab4e614cf6143c"
+      },
+      {
+        "name": "CHECKPOINT_20_KCH_R16_PORTABLE_FULL_READ_20260811.md",
+        "id": "1qF7zXQEs7zsCPAQSSzgkPBg7BwwpdCoc",
+        "size": 3012,
+        "local_sha256": "7f3216aa5a7c840a487744f3e1a888e42e812fab704bd2bb88ec0f1995166db5"
+      },
+      {
+        "name": "KCH_R16_RELEASE_RECEIPT.json",
+        "id": "1Dd7GyZY0-UYTKEi112mpT0xbRn2XIpbG",
+        "size": 2320,
+        "local_sha256": "9a23bb4b4d6cac433cf21c88db0cad353fde7a3709511a940ba41d51c80a5a91"
+      },
+      {
+        "name": "KCH_R16_POST_INSTALL_GATE.json",
+        "id": "1-4cuSgpfoChPcmtJhstH0QYAWH2cM5Pr",
+        "size": 9447,
+        "local_sha256": "0370f0dae3edef8fe11c73e63910ecf7932d2e33cf204db6f301adf25882a73f"
+      },
+      {
+        "name": "KCH_PREPILOT_018_EVIDENCE.zip",
+        "id": "1tdErMSC4ViIkCnb2SNL6p8lto8U1mP0Q",
+        "size": 7659,
+        "local_sha256": "10abacfc39b24ac54381442822bbcf196cfcdf5d1f040ebb5ff8139a459d7547"
+      },
+      {
+        "name": "CHECKPOINT_19_KCH_CONSTRUCT_MODE_TRANSIENT_FIX_20260811.md",
+        "id": "1xzJTEibqGqTS0vE8tyzs-D0iK2GK7kOp",
+        "size": 1838,
+        "local_sha256": "1b71648accd68d4db34294cbe65f634407791db9daeb64b9692b468131e6118a"
+      }
+    ]
+  },
+  "local_deletion_performed": false,
+  "phl_training_executed": false,
+  "claim_ceiling": "REMOTE_PRESENCE_SIZE_PARENT_AND_GIT_COMMIT_EQUIVALENCE; DRIVE_BYTE_HASH_NOT_EXPOSED"
+}
