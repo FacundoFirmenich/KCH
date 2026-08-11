@@ -1,0 +1,11 @@
+# Checkpoint 27 — custodia remota de KCH R19
+
+KCH queda mejor posicionado que en el checkpoint 26: R19 ya no es sólo un componente y portable local verificado, sino una revisión con custodia remota independiente y cronología adversa completa. No se borró ningún artefacto local y PHL real continúa sin ejecutarse.
+
+En el repositorio privado `FacundoFirmenich/KCH`, 41 blobs únicos correspondientes a 45 rutas cambiadas fueron reconstruidos desde el índice Git local y contrastados por identificador de objeto. El árbol remoto `db201eb9b654790159a38eb08a5f23df71962f4a` coincide exactamente con el árbol local. La rama `agent/kch-r16-full-read` avanzó por fast-forward no forzado al commit remoto `a969e97b855c3c04027d610b03f334461d292df2`. El commit local `6693e4b872a6e6875cde6e7608feb904fe6fca47` difiere como objeto porque la credencial local de `gh` sigue inválida y el conector creó el commit remoto; no hay diferencia de árbol ni de contenido versionado.
+
+En Drive se cargaron y verificaron 20 objetos: los ZIPs R18 y R19, el checkpoint técnico, los cuatro recibos de release/instalación, la preregistración, ambos ground truths, todos los gates adversos y verdes, la evaluación y los dos ejecutores reproducibles. Cada ID, nombre, tamaño y carpeta padre coincide con el registro local. El conector no expone checksum remoto del contenido; por ello Drive demuestra presencia remota con tamaño y ubicación, no igualdad byte a byte. Los SHA-256 consignados son locales. GitHub sí aporta equivalencia exacta del árbol.
+
+El significado operativo no es sólo archivístico: la clase de fallo «prometer monitoreo y descubrir tarde la terminación» tiene ahora una primitiva ejecutable, una adversidad instalada preservada, una reparación causal, una regresión que fuerza la divergencia de PID, validación fuente e instalada y custodia reproducible. Aún no se ha demostrado interposición automática universal, duración prolongada, recuperación tras reinicio del sistema operativo ni validación industrial.
+
+La próxima acción crítica es PREPILOT_021: una tarea fresca pareada sobre seguimiento y recuperación de un proceso, con baseline estrictamente sin KCH y brazo asistido con R19. Debe medirse detección autónoma, fidelidad de misión, exactitud terminal, ausencia de relanzamiento y carga para el usuario. PHL real sigue reservado para el final.
