@@ -1,0 +1,31 @@
+{
+  "schema": "kch.forensic-aikido-claims-ledger.v0.1.0",
+  "established": {
+    "local_session_inventory": 1152,
+    "active_sessions": 804,
+    "archived_sessions": 348,
+    "candidate_session_files": 541,
+    "selected_sessions_with_user_severe_grievance": 461,
+    "selected_adverse_episodes": 2544,
+    "selected_sessions_prehash_complete": true,
+    "selected_logical_bytes": 14493266343,
+    "aikido_packages": 22,
+    "verified_protocols": 4,
+    "aikido_ledger_verified_events": 49,
+    "aikido_ledger_gate": "PASS",
+    "full_regression_tests_passed": 54,
+    "compiled_governance_state": "VERIFIED_COMPILED_GOVERNANCE",
+    "portable_r11_zip_sha256": "91c69434b1315bd2afd7f3da057a4649095bba64a4d5482fe6bbe00513cebde7"
+  },
+  "not_established": [
+    "one common causal defect for all 2544 episodes",
+    "more than 80 percent empirical prevalence among minimum-substance sessions",
+    "future recurrence impossible",
+    "automatic host invocation",
+    "industrial validation",
+    "global or SOTA superiority",
+    "PHL real training"
+  ],
+  "selection_jurisdiction": "USER_DIRECTED_ANY_SEVERE_GRIEVANCE_EPISODE_VALIDATED_AS_USER_ROLE",
+  "causal_status": "DETAILED_FOR_MANDATORY_CASES_AND_PENDING_GOVERNED_REVIEW_FOR_REMAINDER"
+}
