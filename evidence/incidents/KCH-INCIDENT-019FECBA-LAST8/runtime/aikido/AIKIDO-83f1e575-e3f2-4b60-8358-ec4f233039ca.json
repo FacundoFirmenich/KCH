@@ -1,0 +1,39 @@
+{
+  "schema": "kch.aikido-learning-package.v0.1.0",
+  "package_id": "AIKIDO-83f1e575-e3f2-4b60-8358-ec4f233039ca",
+  "created_at": "2026-08-11T08:42:12.788784Z",
+  "failure_class": "ERROR_ACKNOWLEDGED_WITHOUT_REPAIR",
+  "source_ref": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "source_prehash": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "user_impact": [
+    "MISSION_DISRUPTION",
+    "SCIENTIFIC_INTEGRITY_RISK",
+    "REWORK"
+  ],
+  "root_cause": "MISSING_PRE_RELEASE_AUTHORITY_AND_COMMITMENT_INTERPOSITION",
+  "positive_capability": "Admission-to-Repair Compiler",
+  "dated_protocol": {
+    "date": "2026-08-11",
+    "steps": [
+      "bind each admitted error to affected artifacts",
+      "derive the shortest corrective action",
+      "execute or declare a real blocker",
+      "verify and return the corrected substantive result"
+    ]
+  },
+  "skill_candidate": {
+    "name": "admission-to-repair-compiler",
+    "status": "DRAFT_REQUIRES_USER_REVIEW"
+  },
+  "operator_candidate": "csi::admission-to-repair-compiler::preflight",
+  "regression_contract": "an apology or admission cannot close an unresolved repair obligation",
+  "kwandata_tags": [
+    "ADVERSE_EVIDENCE",
+    "ERROR_ACKNOWLEDGED_WITHOUT_REPAIR",
+    "AIKIDO_CONVERSION"
+  ],
+  "obl_candidate": true,
+  "phl_candidate": true,
+  "automatic_promotion": false,
+  "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "kch.aikido-learning-package.v0.1.0",
+  "package_id": "AIKIDO-d15d62c4-1059-4eb1-ba7d-51ddf1d09ef8",
+  "created_at": "2026-08-11T08:42:12.589166Z",
+  "failure_class": "GLOBAL_AVERAGE_SUBSTITUTED_FOR_LOCAL_MAP",
+  "source_ref": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "source_prehash": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "user_impact": [
+    "MISSION_DISRUPTION",
+    "SCIENTIFIC_INTEGRITY_RISK",
+    "REWORK"
+  ],
+  "root_cause": "MISSING_PRE_RELEASE_AUTHORITY_AND_COMMITMENT_INTERPOSITION",
+  "positive_capability": "Local Jurisdiction Cartographer",
+  "dated_protocol": {
+    "date": "2026-08-11",
+    "steps": [
+      "identify semantic jurisdictions",
+      "treat seeds as replicas",
+      "preserve local adverse and favorable states",
+      "forbid global winner substitution",
+      "map cross-vertex and block relations"
+    ]
+  },
+  "skill_candidate": {
+    "name": "local-jurisdiction-cartographer",
+    "status": "DRAFT_REQUIRES_USER_REVIEW"
+  },
+  "operator_candidate": "csi::local-jurisdiction-cartographer::preflight",
+  "regression_contract": "a global average cannot adjudicate a local structural question",
+  "kwandata_tags": [
+    "ADVERSE_EVIDENCE",
+    "GLOBAL_AVERAGE_SUBSTITUTED_FOR_LOCAL_MAP",
+    "AIKIDO_CONVERSION"
+  ],
+  "obl_candidate": true,
+  "phl_candidate": true,
+  "automatic_promotion": false,
+  "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+}

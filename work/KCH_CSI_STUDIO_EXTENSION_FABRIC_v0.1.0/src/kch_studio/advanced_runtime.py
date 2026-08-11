@@ -10,7 +10,9 @@ from .account_broker import AccountPermissionBroker
 from .audio_hub import AudioHub
 from .checkpoints import CheckpointManager
 from .clipboard_hub import ClipboardHub
+from .commitment_monitor import CommitmentMonitor
 from .constitutional import ConstitutionalWorkspace
+from .continuity_guard import AikidoLearningForge, ContinuityAndBurdenGovernor, ContinuousPeriodLedgerCompiler, RemoteTransportPreflight, SourceFitnessGate, TemporalScaleContractCompiler
 from .construct_mode import ConstructMode
 from .diction_learning import DictionLearning
 from .federated_runtime import KwanPromptsRuntime, PHLRuntime, RigorRuntime, SCORuntime
@@ -23,6 +25,7 @@ from .permissions import PermissionGovernor
 from .persistence import PersistenceHub
 from .proactive import ProgrammedPolicy
 from .recovery import RecoveryVault
+from .response_authority import ResponseAuthorityGovernor
 from .response_modes import ResponseModeManager
 from .safeguards import RiskAdvisor
 from .scheduler import KCHScheduler
@@ -75,6 +78,26 @@ ADVANCED_TOOLS = [
         [],
         read_only=True,
     ),
+    tool("continuity_status", "Inspect continuity and burden governance", "Verify mission continuity, recurrent-failure controls and the append-only harm ledger.", {}, [], read_only=True),
+    tool("continuity_reading_adjudicate", "Adjudicate lossless source reading", "Forbid a complete-reading claim unless pagination reached EOF and every material truncation was recovered.", {"receipt": O}, ["receipt"], read_only=False),
+    tool("continuity_mission_set", "Enact governing mission", "Freeze the user-authorized governing objective and its authority source.", {"objective": S, "authority_source": S}, ["objective", "authority_source"], read_only=False),
+    tool("continuity_harm_record", "Record exact user burden evidence", "Append exact user-reported harm without inferring a medical diagnosis or rewriting historical evidence.", {"record": O}, ["record"], read_only=False),
+    tool("continuity_action_preflight", "Gate an action against recurrent harm", "Fail closed on stale, non-material, mission-drifting, uncustodied, incompletely-read or recurrently unsafe work.", {"action": O}, ["action"], read_only=False),
+    tool("continuity_integrity_verify", "Verify continuity ledger", "Verify the complete hash chain of continuity, burden and Aikido events.", {}, [], read_only=True),
+    tool("continuity_protocol_register", "Register verified protocol", "Register a prehashed, explicitly verified historical protocol for mandatory reuse.", {"protocol": O}, ["protocol"], read_only=False),
+    tool("continuity_protocol_resolve", "Resolve verified protocols", "Find matching verified protocols before fragments or replacement designs are allowed.", {"tags": A}, ["tags"], read_only=True),
+    tool("aikido_transform", "Convert adverse evidence into KCH capability", "Synthesize a positive capability, dated protocol, skill and operator candidate, OBL/PHL envelope and regression contract from one prehashed incident; never auto-promotes it.", {"incident": O}, ["incident"], read_only=False),
+    tool("aikido_catalog", "Inspect Aikido capability packages", "List prehashed adverse-to-capability transformations and their non-promoted status.", {}, [], read_only=True),
+    tool("temporal_scale_compile", "Compile temporal learning contract", "Keep timestamp resolution, prediction horizon, event count, minimum period and update cadence distinct; enforce minimum complete period to minimum complete period.", {"specification": O}, ["specification"], read_only=True),
+    tool("continuous_period_ledger_compile", "Compile consecutive minimum-period ledger", "Require every minimum period in the target interval and type it as OBSERVED, NO_EVENT or NOT_ESTIMABLE; block compressed calendars.", {"specification": O}, ["specification"], read_only=True),
+    tool("source_fitness_adjudicate", "Adjudicate source fitness before learning", "Block training when time-window scope, continuous coverage, observed support or jurisdiction support is insufficient.", {"receipt": O}, ["receipt"], read_only=True),
+    tool("commitment_monitor_register", "Register promised monitoring", "Persist process, log and artifact monitoring and start with an immediate observation.", {"label": S, "pid": I, "logs": A, "artifacts": A, "poll_seconds": I}, ["label", "pid", "logs", "artifacts"], read_only=False),
+    tool("commitment_monitor_check", "Reconcile monitoring commitment", "Check process, logs and expected artifacts now; a terminal alert is emitted exactly once.", {"commitment_id": S}, ["commitment_id"], read_only=False),
+    tool("commitment_monitor_status", "Inspect promised monitoring", "Inspect background monitoring and all reconciled terminal states.", {}, [], read_only=True),
+    tool("response_authority_register", "Register response authority constraint", "Freeze an explicit mission, terminology, provenance, jurisdiction, experiment-boundary or rejected-frame constraint with its authority source.", {"constraint": O}, ["constraint"], read_only=False),
+    tool("response_authority_adjudicate", "Adjudicate candidate response before release", "Fail closed when structured response claims violate active semantic authority, conflate experiments, promote scope, add off-mission classifications or promise unregistered monitoring.", {"candidate": O}, ["candidate"], read_only=False),
+    tool("response_authority_status", "Inspect response authority governance", "Inspect active response constraints, hash-chain integrity and the explicit host-interposition evidence boundary.", {}, [], read_only=True),
+    tool("remote_transport_preflight", "Verify remote payload before launch", "Block empty, shell-mutated, stale-marker or hash-mismatched remote wrappers before any process starts.", {"receipt": O}, ["receipt"], read_only=True),
     tool(
         "constitution_state",
         "Read constitutional workspace",
@@ -953,6 +976,10 @@ class KCHAdvancedRuntime:
         self.root.mkdir(parents=True, exist_ok=True)
         self.recovery = RecoveryVault(self.root / "master_recovery")
         self.constitution = ConstitutionalWorkspace(self.root / "constitution")
+        self.continuity = ContinuityAndBurdenGovernor(self.root / "continuity")
+        self.aikido = AikidoLearningForge(self.root / "aikido", self.continuity)
+        self.commitments = CommitmentMonitor(self.root / "commitments")
+        self.response_authority = ResponseAuthorityGovernor(self.root / "response_authority")
         self.policy = ProgrammedPolicy(self.root / "proactive_policy")
         self.risk = RiskAdvisor(self.root / "risk")
         self.plan_build = PlanBuildEngine(self.root / "plan_build")
@@ -988,6 +1015,26 @@ class KCHAdvancedRuntime:
 
         self.handlers: dict[str, Callable[[dict[str, Any]], Any]] = {
             "kch_next_status": lambda _a: self.status(),
+            "continuity_status": lambda _a: self.continuity.status(),
+            "continuity_reading_adjudicate": lambda a: self.continuity.adjudicate_reading(dict(a["receipt"])),
+            "continuity_mission_set": lambda a: self.continuity.set_mission(str(a["objective"]), str(a["authority_source"])),
+            "continuity_harm_record": lambda a: self.continuity.record_harm(dict(a["record"])),
+            "continuity_action_preflight": lambda a: self.continuity.preflight(dict(a["action"])),
+            "continuity_integrity_verify": lambda _a: self.continuity.verify(),
+            "continuity_protocol_register": lambda a: self.continuity.register_protocol(dict(a["protocol"])),
+            "continuity_protocol_resolve": lambda a: self.continuity.resolve_protocols(list(a["tags"])),
+            "aikido_transform": lambda a: self.aikido.transform(dict(a["incident"])),
+            "aikido_catalog": lambda _a: self.aikido.catalog(),
+            "temporal_scale_compile": lambda a: TemporalScaleContractCompiler.compile(dict(a["specification"])),
+            "continuous_period_ledger_compile": lambda a: ContinuousPeriodLedgerCompiler.compile(dict(a["specification"])),
+            "source_fitness_adjudicate": lambda a: SourceFitnessGate.adjudicate(dict(a["receipt"])),
+            "commitment_monitor_register": lambda a: self.commitments.register(label=str(a["label"]), pid=int(a["pid"]), logs=list(a["logs"]), artifacts=list(a["artifacts"]), poll_seconds=int(a.get("poll_seconds", 10))),
+            "commitment_monitor_check": lambda a: self.commitments.check(str(a["commitment_id"])),
+            "commitment_monitor_status": lambda _a: self.commitments.status(),
+            "response_authority_register": lambda a: self.response_authority.register(dict(a["constraint"])),
+            "response_authority_adjudicate": lambda a: self.response_authority.adjudicate(dict(a["candidate"]), active_commitment_ids=self.commitments.active_ids()),
+            "response_authority_status": lambda _a: self.response_authority.status(),
+            "remote_transport_preflight": lambda a: RemoteTransportPreflight.adjudicate(dict(a["receipt"])),
             "constitution_state": lambda _a: self.constitution.state(),
             "constitution_effective": lambda _a: self.constitution.effective_mandates(),
             "constitution_propose": lambda a: self.constitution.propose(dict(a["proposal"])),
@@ -1197,6 +1244,11 @@ class KCHAdvancedRuntime:
                 if name
                 in {
                     "constitution_effective",
+                    "continuity_status",
+                    "continuity_action_preflight",
+                    "continuity_integrity_verify",
+                    "response_authority_adjudicate",
+                    "response_authority_status",
                     "recovery_checkpoint",
                     "risk_assess",
                     "response_mode_resolve",
@@ -1213,6 +1265,8 @@ class KCHAdvancedRuntime:
         self.launcher = ProactiveLauncher(
             self.root / "launcher", self.policy, self.handlers, capabilities
         )
+        self.commitments.set_alert_callback(self.launcher.publish)
+        self.commitments.start()
         self.scheduler = KCHScheduler(self.root / "scheduler", self.launcher.publish)
         self.workbench_schedule = self._ensure_workbench_schedule()
         self.launch_receipt = self.launcher.start()
@@ -1534,6 +1588,10 @@ class KCHAdvancedRuntime:
     def status(self) -> dict[str, Any]:
         components = {
             "constitution": self.constitution.effective_mandates(),
+            "continuity": self.continuity.status(),
+            "aikido": self.aikido.catalog(),
+            "commitments": self.commitments.status(),
+            "response_authority": self.response_authority.status(),
             "programmed_policy": self.policy.session_announcement(),
             "launcher": self.launcher.status(),
             "recovery": self.recovery.verify(),
@@ -1575,6 +1633,7 @@ class KCHAdvancedRuntime:
         }
 
     def close(self) -> None:
+        self.commitments.stop()
         self.clipboard.stop_monitor()
         self.scheduler.stop()
         self.audio.stop_monitor()

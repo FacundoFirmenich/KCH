@@ -1,0 +1,384 @@
+{
+  "mission": {
+    "mission_id": "MISSION-54c6d18d-103c-489e-a97b-5cc3310e7916",
+    "objective": "Convertir el daño recurrente documentado en el KCH agentic harness más capaz, acumulativo y respetuoso de la soberanía del usuario que permita la evidencia.",
+    "authority_source": "current-user-order",
+    "active": 1,
+    "created_at": "2026-08-11T01:00:35.519119Z"
+  },
+  "continuity": {
+    "schema": "kch.continuity-burden-governor.v0.1.0",
+    "active_mission": {
+      "mission_id": "MISSION-54c6d18d-103c-489e-a97b-5cc3310e7916",
+      "objective": "Convertir el daño recurrente documentado en el KCH agentic harness más capaz, acumulativo y respetuoso de la soberanía del usuario que permita la evidencia.",
+      "authority_source": "current-user-order",
+      "active": 1,
+      "created_at": "2026-08-11T01:00:35.519119Z"
+    },
+    "event_count": 49,
+    "failure_classes": [
+      {
+        "failure_class": "ARCHIVISTIC_NON_EXPLANATION",
+        "occurrences": 1,
+        "last_event_id": "CBG-f56d0691-f1ae-4fc2-8ac2-741cc5a2753a",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "AVOIDABLE_CLARIFICATION_BURDEN",
+        "occurrences": 1,
+        "last_event_id": "CBG-fd416620-4054-4d78-a930-9690cf4e3ef7",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "DERIVATIVE_SCOPE_MISLABELED",
+        "occurrences": 1,
+        "last_event_id": "CBG-3076db13-46b4-4bdd-9acb-7572d5b3e829",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "DISCONTINUOUS_CALENDAR_MASQUERADING_AS_DAILY_LEARNING",
+        "occurrences": 1,
+        "last_event_id": "CBG-66936f94-c145-4a96-ba51-7ebb66e16d0c",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "EPISTEMIC_NORM_OBSERVATION_COLLAPSE",
+        "occurrences": 1,
+        "last_event_id": "CBG-c8c41c8d-e817-4a74-b075-4a8fb14eb5ea",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "ERROR_ACKNOWLEDGED_WITHOUT_REPAIR",
+        "occurrences": 1,
+        "last_event_id": "CBG-10030a5c-30a4-4e2e-a003-7ea1d379b5fd",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "FALSE_COMPLETE_READING",
+        "occurrences": 1,
+        "last_event_id": "CBG-68d1b389-b51f-4f9d-9581-b17b986b3237",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "GLOBAL_AVERAGE_SUBSTITUTED_FOR_LOCAL_MAP",
+        "occurrences": 1,
+        "last_event_id": "CBG-d64182ad-a1bc-4669-8455-cac0ddbea1f2",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "IRRELEVANT_INTERROGATION_DERAILMENT",
+        "occurrences": 1,
+        "last_event_id": "CBG-9c34a000-225e-44a1-be96-abe6affc3dfc",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "MISSION_DRIFT",
+        "occurrences": 1,
+        "last_event_id": "CBG-63f4dcb0-a5ef-4239-ae92-45788273d70a",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "PROMISED_MONITORING_ABANDONED",
+        "occurrences": 1,
+        "last_event_id": "CBG-b1305365-be8b-4bbc-8d95-a1be1c9651dd",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "REMOTE_TRANSPORT_NOT_PREFLIGHTED",
+        "occurrences": 1,
+        "last_event_id": "CBG-676edb87-0750-4e49-941a-b1b0d2b3a856",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "SOURCE_FITNESS_NOT_PREFLIGHTED",
+        "occurrences": 1,
+        "last_event_id": "CBG-f63358df-7229-4149-87b6-ab898b0a10c5",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "STALE_EXPENSIVE_RERUN",
+        "occurrences": 1,
+        "last_event_id": "CBG-7cc7f91f-7fcb-46b2-b685-3a2c021289f6",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "STORAGE_CUSTODY_FAILURE",
+        "occurrences": 1,
+        "last_event_id": "CBG-9e0dc92d-52ed-47c6-b042-0902b54ada00",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "TEMPORAL_SCALE_COLLAPSE",
+        "occurrences": 1,
+        "last_event_id": "CBG-680c0865-ea26-442c-bd4f-964f4edf9f35",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "TOKEN_ECONOMY_USED_TO_ABANDON_MISSION",
+        "occurrences": 1,
+        "last_event_id": "CBG-92f1ad92-6570-4ce7-b411-6a534f856110",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "UNAUTHORIZED_ARCHITECTURE",
+        "occurrences": 1,
+        "last_event_id": "CBG-7b8b7332-b0e5-4a19-9e87-d6589b917c03",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "UNAUTHORIZED_MISSION_STOPPAGE",
+        "occurrences": 1,
+        "last_event_id": "CBG-cf76a715-d318-4a7e-8894-a170c28d8adb",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "USER_COST_TRANSFER",
+        "occurrences": 1,
+        "last_event_id": "CBG-9b35b248-e753-40b2-89ac-12051602b7c3",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "VERIFIED_PROTOCOL_IGNORED",
+        "occurrences": 1,
+        "last_event_id": "CBG-7cbc7875-8c24-4ad5-9217-613b3916fe4c",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      },
+      {
+        "failure_class": "WRONG_LEARNING_OBJECT",
+        "occurrences": 1,
+        "last_event_id": "CBG-ee9c39e3-95ed-4c0c-be84-4e4dc82d16b0",
+        "severity": "HIGH_PREVENTION_REQUIRED"
+      }
+    ],
+    "integrity": {
+      "gate": "PASS",
+      "verified_events": 49,
+      "head_hash": "fabf0f617f2e8886373c19fb1a436bc942388a4f5ec7468215768f5280928718"
+    },
+    "claim_ceiling": "LOCAL_EXECUTABLE_PREVENTION_AND_AUDIT_GATES_ONLY",
+    "recurrence_impossible_established": false
+  },
+  "aikido": {
+    "schema": "kch.aikido-catalog.v0.1.0",
+    "packages": [
+      {
+        "package_id": "AIKIDO-03c04199-8209-4c07-9e7a-0676da7fb263",
+        "failure_class": "WRONG_LEARNING_OBJECT",
+        "capability": "Prospective Learning Object Compiler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "97ac66054bd513111078a637209c0a027287a572353de50b6761527089b98ac1"
+      },
+      {
+        "package_id": "AIKIDO-055c809f-cadf-4271-8f06-010372801fc8",
+        "failure_class": "TEMPORAL_SCALE_COLLAPSE",
+        "capability": "Temporal Scale Contract Compiler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "8e156a9d6bc38f96175be362f0188b5159147ff120e6c71b556bda3e50bbea9c"
+      },
+      {
+        "package_id": "AIKIDO-07808e3a-683b-4237-b341-e5bb3c2cabcd",
+        "failure_class": "ARCHIVISTIC_NON_EXPLANATION",
+        "capability": "Substantive Meaning Compiler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "2f2673a7d87444437cf3503d23bbcb91c218488beca119111d382c83fb248de6"
+      },
+      {
+        "package_id": "AIKIDO-0ee5e053-6ff6-42e5-aada-f2fc31ac3955",
+        "failure_class": "STALE_EXPENSIVE_RERUN",
+        "capability": "Freshness and Materiality Reconciler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "c1075572d88b4f6b0c8a7f7707d57159b4a14f5187f53774e3231d81ec67191a"
+      },
+      {
+        "package_id": "AIKIDO-1bc67f61-fc51-4653-824c-bc9a6ef868a3",
+        "failure_class": "AVOIDABLE_CLARIFICATION_BURDEN",
+        "capability": "Historical Intent Resolver",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "fd7c5971280f4ec547fedbda6a1293954ab33b6bd53c007363f467fb24aefdb9"
+      },
+      {
+        "package_id": "AIKIDO-1c866178-3302-468f-954b-e4e4a67f4ef2",
+        "failure_class": "VERIFIED_PROTOCOL_IGNORED",
+        "capability": "Verified Protocol Recovery Engine",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "170447fa10563257e4e3cbc6971ef301ecea5b89c2ebf1ef4918bbd03345b50e"
+      },
+      {
+        "package_id": "AIKIDO-213bbc49-844a-4bdb-8cd3-0f99ffacc3d7",
+        "failure_class": "ERROR_ACKNOWLEDGED_WITHOUT_REPAIR",
+        "capability": "Admission-to-Repair Compiler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "efacd50f0e10c0c942ae3147b2950405dd42d5b5871126b1ea03e03990802f46"
+      },
+      {
+        "package_id": "AIKIDO-2bc2e93d-2ce9-43d7-87ac-2dfa971dcc81",
+        "failure_class": "SOURCE_FITNESS_NOT_PREFLIGHTED",
+        "capability": "Source Fitness Gate",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "39f076d90b399e651cb3e3e2ff88a4b8a2fa9df2b5d6a1b6b335d2ba1050281e"
+      },
+      {
+        "package_id": "AIKIDO-3d6894ad-7e90-4fab-a327-67627a792e72",
+        "failure_class": "DISCONTINUOUS_CALENDAR_MASQUERADING_AS_DAILY_LEARNING",
+        "capability": "Continuous Period Ledger Compiler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "e11d51da9e1df834a27520201c44ac2466e76765884c445182a87d2cf716ad68"
+      },
+      {
+        "package_id": "AIKIDO-490c95c7-c813-431c-b744-f16172605e9a",
+        "failure_class": "FALSE_COMPLETE_READING",
+        "capability": "Lossless Native Corpus Reader",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "43cfb6886dd0cd5952784ff79e6af1f18bf6372e580518ba5d9e25d77a922a2d"
+      },
+      {
+        "package_id": "AIKIDO-52c53a1c-f5fe-4e91-8530-a379abe6d63a",
+        "failure_class": "STORAGE_CUSTODY_FAILURE",
+        "capability": "Custody-Aware Storage Router",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "032295a8095769386d62b36f44288310df6af644c38bba003f43d2122796267a"
+      },
+      {
+        "package_id": "AIKIDO-54d9cabf-9d36-4bc0-bcd0-6f4761ec852b",
+        "failure_class": "TOKEN_ECONOMY_USED_TO_ABANDON_MISSION",
+        "capability": "Budget-Aware Completion Router",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "c9a82a19d626f47dbe54c145ba327bd0d4fb40cd359139368149df2b9124e31c"
+      },
+      {
+        "package_id": "AIKIDO-6edb321b-3863-4f36-b919-e281c530c7da",
+        "failure_class": "UNAUTHORIZED_ARCHITECTURE",
+        "capability": "Canonical Terminology and Authority Resolver",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "43be3bc071c4c95c9e74fd1c0cd0ba9121dda2421cf12333ea5ddcc74980d26f"
+      },
+      {
+        "package_id": "AIKIDO-822704e6-3478-43e8-b76e-62c3ec196ad5",
+        "failure_class": "MISSION_DRIFT",
+        "capability": "Objective Fidelity Governor",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "f6f4f153f0c31a8c82da2ff6793d5c44de38d3f93e52e83d865c9b7f96a43ce9"
+      },
+      {
+        "package_id": "AIKIDO-93149d6a-eaba-4e1a-9d69-34a458bc4a32",
+        "failure_class": "EPISTEMIC_NORM_OBSERVATION_COLLAPSE",
+        "capability": "Epistemic Claim Type Checker",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "375b1784c7594a3b207a84ffdfaa3de6f589fc7423106dad71c66d92dfe3845f"
+      },
+      {
+        "package_id": "AIKIDO-9f79afa5-4783-46dc-94d8-382c65fb22ed",
+        "failure_class": "GLOBAL_AVERAGE_SUBSTITUTED_FOR_LOCAL_MAP",
+        "capability": "Local Jurisdiction Cartographer",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "501e7b3e201cab9b06b9212230261ad4f83b7a8b6edeba64a64f72ac61570723"
+      },
+      {
+        "package_id": "AIKIDO-a14545ce-87e2-4ece-b4cb-9fe391d2658c",
+        "failure_class": "UNAUTHORIZED_MISSION_STOPPAGE",
+        "capability": "Persistent Mission Executor",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "5402bc3dcd5acb1a005043e2f935a580f5987b70da28ae4036e87a8d2c94af9a"
+      },
+      {
+        "package_id": "AIKIDO-b99a31ba-de93-4bc1-a52b-a7653ef78989",
+        "failure_class": "REMOTE_TRANSPORT_NOT_PREFLIGHTED",
+        "capability": "Remote Payload Transport Compiler",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "5645b0949bd556f1f0fba620436698a091a41d4d4d5163f5432e7dcebccf5ef5"
+      },
+      {
+        "package_id": "AIKIDO-bab1d207-9ce0-402c-86f8-77002d512115",
+        "failure_class": "IRRELEVANT_INTERROGATION_DERAILMENT",
+        "capability": "Mission-Relevance Question Gate",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "1261e1c8c4d153578be83467c5e500dfe8f6df7323a6a9c3a7dd2b7211640c09"
+      },
+      {
+        "package_id": "AIKIDO-ce5fe108-a004-41ff-b845-e073c5add7bf",
+        "failure_class": "PROMISED_MONITORING_ABANDONED",
+        "capability": "Commitment Heartbeat Supervisor",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "2411b689830eb684cd0c2610d010659536f5963fe742ca11dee3f32ce1d2330a"
+      },
+      {
+        "package_id": "AIKIDO-f1bdfc88-637e-48d5-befb-2f09c1d7e1bc",
+        "failure_class": "USER_COST_TRANSFER",
+        "capability": "User Burden Minimizer",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "c081ed67b435d94a74fe83a5fa40066f250a8eeb2d44450e4eb177ba664769d8"
+      },
+      {
+        "package_id": "AIKIDO-fed54578-81bf-4d96-b0f9-49d12c13818e",
+        "failure_class": "DERIVATIVE_SCOPE_MISLABELED",
+        "capability": "Derivative Scope Custodian",
+        "status": "REVIEW_REQUIRED_NOT_ACTIVE",
+        "sha256": "32116f2463cf27e4fc63e5d037586b27af63f70b95fa1e3a318bf86090247881"
+      }
+    ],
+    "count": 22,
+    "automatic_promotion": false
+  },
+  "protocols": {
+    "schema": "kch.verified-protocol-resolution.v0.1.0",
+    "requested_tags": [
+      "AUTOMATION",
+      "LOCAL_JURISDICTION",
+      "NATIVE_READING",
+      "TEMPORAL_LEARNING"
+    ],
+    "matches": [
+      {
+        "protocol_id": "PROTOCOL-e0b60ed2-df0c-4706-8bb4-d1cb3ed0be0d",
+        "name": "cartografia-local-sin-promedio-global",
+        "version": "2026-08-11",
+        "source_ref": "00_RAW_FROZEN/pasted-text-averages-token-burden-recurrence.txt",
+        "content_hash": "368e1ea01b22e681f4fdf88a9b8d88f914d4286585436a638ace6ebaab8250e1",
+        "verified": 1,
+        "tags": [
+          "LOCAL_JURISDICTION",
+          "NO_GLOBAL_AVERAGE"
+        ]
+      },
+      {
+        "protocol_id": "PROTOCOL-8aa1e2f8-fe24-46bf-bcaa-7f444b3c8473",
+        "name": "lectura-nativa-integral",
+        "version": "2026-08-11",
+        "source_ref": "00_RAW_FROZEN/rollout-2026-08-07T00-36-26-019fd938-8000-7121-9078-d196bdd15ae4.jsonl",
+        "content_hash": "633039311760d88409fe96634e7ec76edbd1fca289aaaca6c83751c42fffd612",
+        "verified": 1,
+        "tags": [
+          "CONTEXT_RECOVERY",
+          "NATIVE_READING"
+        ]
+      },
+      {
+        "protocol_id": "PROTOCOL-3a38c48d-f986-4add-8d27-48c6a56492ac",
+        "name": "periodo-minimo-a-periodo-minimo",
+        "version": "2026-08-11",
+        "source_ref": "00_RAW_FROZEN/pasted-text-temporal-scale-recurrence.txt",
+        "content_hash": "a6679fbc1a5eb8dc02eea970c71a1ba257e62b138ec2ca96cd0058258fc9d55c",
+        "verified": 1,
+        "tags": [
+          "TEMPORAL_LEARNING",
+          "Z_POST"
+        ]
+      },
+      {
+        "protocol_id": "PROTOCOL-18956e59-3a91-4cde-ac1a-cf0c0b5e117b",
+        "name": "preflight-materialidad-y-custodia",
+        "version": "2026-08-11",
+        "source_ref": "00_RAW_FROZEN/pasted-text.txt",
+        "content_hash": "bb1dda222f5cf2fdeb0b96f2146e054f46dc4f732f8c7bcb87dc4227e891407c",
+        "verified": 1,
+        "tags": [
+          "AUTOMATION",
+          "MATERIALITY",
+          "STORAGE_CUSTODY"
+        ]
+      }
+    ],
+    "count": 4,
+    "must_reuse_before_new_design": true
+  }
+}

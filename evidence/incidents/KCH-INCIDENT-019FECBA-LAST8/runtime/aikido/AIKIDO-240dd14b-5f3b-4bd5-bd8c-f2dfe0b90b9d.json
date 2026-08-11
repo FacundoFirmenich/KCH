@@ -1,0 +1,39 @@
+{
+  "schema": "kch.aikido-learning-package.v0.1.0",
+  "package_id": "AIKIDO-240dd14b-5f3b-4bd5-bd8c-f2dfe0b90b9d",
+  "created_at": "2026-08-11T08:42:12.670965Z",
+  "failure_class": "PROMISED_MONITORING_ABANDONED",
+  "source_ref": "codex://threads/019fecba-be75-7f71-9d6e-cacdecc499c5",
+  "source_prehash": "e82c8ce0e889808c85e1827ad08bcfc4dde639e36364ae1d737b2283018fb3cf",
+  "user_impact": [
+    "MISSION_DISRUPTION",
+    "SCIENTIFIC_INTEGRITY_RISK",
+    "REWORK"
+  ],
+  "root_cause": "MISSING_PRE_RELEASE_AUTHORITY_AND_COMMITMENT_INTERPOSITION",
+  "positive_capability": "Commitment Heartbeat Supervisor",
+  "dated_protocol": {
+    "date": "2026-08-11",
+    "steps": [
+      "register every monitoring promise",
+      "reconcile process, log and artifacts",
+      "emit terminal alert without waiting for user",
+      "preserve failure and recovery evidence"
+    ]
+  },
+  "skill_candidate": {
+    "name": "commitment-heartbeat-supervisor",
+    "status": "DRAFT_REQUIRES_USER_REVIEW"
+  },
+  "operator_candidate": "csi::commitment-heartbeat-supervisor::preflight",
+  "regression_contract": "a promised monitored process cannot terminate silently",
+  "kwandata_tags": [
+    "ADVERSE_EVIDENCE",
+    "PROMISED_MONITORING_ABANDONED",
+    "AIKIDO_CONVERSION"
+  ],
+  "obl_candidate": true,
+  "phl_candidate": true,
+  "automatic_promotion": false,
+  "activation_status": "REVIEW_REQUIRED_NOT_ACTIVE"
+}

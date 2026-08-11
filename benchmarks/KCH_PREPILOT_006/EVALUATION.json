@@ -1,0 +1,27 @@
+{
+  "schema": "kch.prepilot-evaluation.v0.6.0",
+  "case_id": "KCH-PREPILOT-006",
+  "source_thread": "019fefdc-7595-7fa3-9b83-dd10cad98a54",
+  "fork_result": "FAILED_BEFORE_CHILD_CREATION",
+  "condition_integrity": {
+    "same_directory_configuration_discovered_by_host": "PASS",
+    "required_mcp_initialization_attempted": "PASS",
+    "tools_list_before_host_deadline": "FAIL",
+    "child_task_created": "FAIL"
+  },
+  "native_error": "required MCP servers failed to initialize: kch_0_11_pre2g_r11: timed out awaiting tools/list after 30s",
+  "automatic_transport": "CONNECTED_BUT_STARTUP_TIMEOUT",
+  "task_execution": false,
+  "causal_effect": "NOT_ESTIMABLE",
+  "industrial_validation": false,
+  "substantive_result": "A same-directory Codex fork automatically discovered the workspace MCP configuration and attempted the required KCH server, proving the configuration transport path exists. The fork failed because R11 materialized the full runtime before tools/list and exceeded the 30-second host deadline.",
+  "repair": {
+    "revision": "KCH_0.11_PRE2G_R13",
+    "strategy": "LAZY_MCP_INITIALIZE_AND_TOOLS_LIST_BEFORE_HEAVY_RUNTIME",
+    "installed_cold_start_seconds": 1.1675843999983044,
+    "codex_deadline_seconds": 30,
+    "full_regression": "59_PASS"
+  },
+  "historical_result_immutable": true,
+  "next_gate": "KCH-PREPILOT-007 repeat same-directory fork with R13"
+}

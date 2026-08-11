@@ -1,0 +1,17 @@
+{
+  "schema": "kch.prepilot-010-evaluation.v1",
+  "task_id": "019ff035-1664-7cf0-9661-335d55134e46",
+  "condition": "Fresh fork from installation-only task with R14 five-tool bootstrap",
+  "transport_gate": "PASS",
+  "automatic_preflight_gate": "FAIL",
+  "native_preflight_call_observed": false,
+  "native_read_completed": true,
+  "turns_read": 20,
+  "receipt_claimed_sha256": "1692f9d0f8bf5c9f07333b3a9bca1e3371ed3cea39ebba2009494d4af422567d",
+  "receipt_independent_sha256_valid": true,
+  "receipt_path": "C:\\Users\\User\\Documents\\Codex\\2026-08-11\\kch-prepilot-004-arm-b-r11\\outputs\\PREPILOT010_RECEIPT.json",
+  "adjudication": "TRANSPORT_PASS_TASK_OUTPUT_PASS_AUTOMATIC_ACTIVATION_FAIL",
+  "causal_interpretation": "The failure persisted after controlling inherited benchmark history, localizing the missing behavior to automatic host/model binding rather than MCP transport.",
+  "phl_real_executed": false,
+  "claim_ceiling": "SINGLE_FRESH_FORK_OBSERVATION_ONLY"
+}
