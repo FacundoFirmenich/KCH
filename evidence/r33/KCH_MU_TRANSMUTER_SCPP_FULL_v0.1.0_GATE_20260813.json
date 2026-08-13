@@ -1,0 +1,78 @@
+{
+  "schema": "kch.mu-transmuter-scpp-full.gate.v0.1.0",
+  "gate": "PASS_LOCAL_FULL_IMPLEMENTATION_AND_HISTORICAL_ONBOARDING",
+  "version": "0.1.0",
+  "test_count": 14,
+  "test_failures_final": 0,
+  "review_passes": [
+    "CANONICAL_SOURCE_AND_LINEAGE_HASH_RECONCILIATION",
+    "STATIC_COMPILE_AND_INVARIANT_TESTS",
+    "REAL_HISTORICAL_ONBOARDING",
+    "CONSTRUCT_TRANSACTIONAL_INTEGRATION",
+    "TWO_PHASE_INTERRUPTION_RECOVERY",
+    "WHEEL_BUILD_AND_ISOLATED_INSTALL_SMOKE"
+  ],
+  "canonical_lineages": {
+    "mu_eq_normalized_sha256": "1e1bb22798fda63827ca051f09cbe8a08ce16be4cf5983edaca707048e435eba",
+    "mu_qe_normalized_sha256": "bb48f8104703a2ffaf87cf8c75101238af1146d3329d5251f1c6a8bbab58581d",
+    "transmuter_v02_numpy_normalized_sha256": "ad3b590e801b7b39174b91dbc5f275eda8b0008a8b0d62e7e4fef66cb9fb2b8b",
+    "transmuter_v02_torch_normalized_sha256": "d020f37f49385d690da1a868f8331d9a98006a3b58cf25db19938543c9414f54",
+    "transmuter_v03_normalized_sha256": "25cd1011537228b00ee7ee9bffd8222d9a2bd8d36f240ab75feb9c290418790d",
+    "transmuter_v032_normalized_sha256": "baaf193467fa4ee0cb4708af3b84c691944b575feaaea7f940962c9b99cc2714",
+    "scpp_p0_normalized_sha256": "484ee9d3b4a7ba00e6fc5d846275928ff1079096db99174e30c310f59adb23a5"
+  },
+  "capabilities_implemented": [
+    "TEMPORAL_EPISTEMIC_MEMORY",
+    "FUTURE_ONLY_AUTHORIZED_READMISSION",
+    "SEMANTIC_JURISDICTIONS_SEEDS_REPLICA_ONLY",
+    "MU_EQ_AND_MU_QE_SOVEREIGN_LINEAGES",
+    "TRANSFORMER_AND_TRANSMUTER_SOVEREIGN_TRACKS",
+    "SCPP_PENTAXIAL_NON_COMPENSABLE_PREACTION",
+    "THREE_EXACT_LAYERS_PER_BLOCK",
+    "ORDERED_COSIGNIFICANT_OCTET",
+    "LAYER1_COMPLETE_DIRECTED_16X16",
+    "HAAR_PRIMARY_DCTII_AND_CONDITIONAL_DFT",
+    "GAUSSIAN_MULTIVARIATE_INFORMATION",
+    "MDL_AND_LINEAR_HOLDOUT_UTILITY",
+    "ANTISYMMETRY_A0_A1_A2_A3_CALIBRATION_TO_HOLDOUT",
+    "DUAL_QUANTITATIVE_ARCHITECTURAL_LEDGER",
+    "LOCAL_ABSTAINING_ROUTER",
+    "MIS_0.3.1_EXACT_CERTIFICATE",
+    "RGG_RELATIONAL_GRAPH_WITHOUT_AUTHORITY",
+    "CONSTRUCT_NEXT_START_PROMOTION_AND_ROLLBACK"
+  ],
+  "evidence": {
+    "historical_source_sha256": "9248f97ccbe0f45804e372ce51f2a36be61fc39e60d3b354bf2a7525a91338c9",
+    "historical_onboarding_file_sha256": "f403de430e00e8e5fe67d9b6f52314f9767d55fce53acb9c4a21c5d1ffa994db",
+    "construct_gate_file_sha256": "6337ad2c02b370ec02057e31cc68c4d45fd71d1a52db1b8d134571214d213ecf",
+    "interruption_gate_file_sha256": "275b49d050c90073ab21ba348e9d2af5bb00c2c82f54d28fa7eeade16f7b6cd9",
+    "wheel_sha256": "d36f96a28a6571ffa07a672a418569b4494f4369141ed6ef77998b516ca60966",
+    "construct_transaction_id": "CTX-9d92ebe33e6a",
+    "candidate_manifest_sha256": "6e95547c969c93f6d1d870a79716c02faf605926e532025716217adf7cfa1c69",
+    "private_export_sha256": "1e265e0538e5897eafbf0528dec7415de4efd786bf4184c5b3356932a9399d1b"
+  },
+  "authority_and_execution": {
+    "component_default_authority": "NONE",
+    "mu_qe": "SHADOW_ONLY",
+    "transmuter_v032": "LOCAL_ONLY_HISTORICALLY_FROZEN_JURISDICTIONS",
+    "scpp": "LOCAL_EXPLORATORY",
+    "global_winner": null,
+    "native_host_activation": false,
+    "promotion_effective": "NEXT_START_ONLY",
+    "torch_available_in_current_host_python": false,
+    "numpy_transmuter_v02_executed": true,
+    "phl_authorized": true,
+    "phl_training_executed": false
+  },
+  "historical_adverse_evidence_preserved": [
+    "TRANSMUTER_V02_Q4_NO_MATERIAL_CONTRIBUTION_AND_TRANSFORMER_LOCAL_ADVANTAGE",
+    "TRANSMUTER_V032_TRANSFORMER_BETTER_LOGLOSS_IN_SEVEN_CELLS",
+    "MU_QE_EIGHT_OF_EIGHT_LOSSES_VERSUS_GRU",
+    "ENDOCRINE_COMPLETE_MAPPING_NOT_VALIDATED",
+    "BILATERAL_CONSTRUCT_INVALID_PREMATURE_AND_REAL_HYPOTHESIS_NOT_ESTIMABLE",
+    "NO_GLOBAL_WINNER"
+  ],
+  "scientific_claim_update": "NONE_NEW_SOFTWARE_AND_ONBOARDING_GATE_ONLY",
+  "claim_boundary": "The complete local software composition and its governed historical onboarding are verified. This is not a new prospective causal replication, not proof of universal antisymmetry or end-to-end superpowers, not native mandatory Codex interposition, not Torch execution on this host, not endocrine or bilateral authority, and not PHL training."
+}
+
