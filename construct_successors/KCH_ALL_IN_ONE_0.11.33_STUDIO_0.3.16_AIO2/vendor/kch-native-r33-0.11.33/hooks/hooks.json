@@ -1,0 +1,106 @@
+{
+    "description":  "KCH 0.11.33 native lifecycle, constitutional interposition and runtime projection",
+    "hooks":  {
+                  "SessionStart":  [
+                                       {
+                                           "matcher":  "startup|resume|clear|compact",
+                                           "hooks":  [
+                                                         {
+                                                             "type":  "command",
+                                                             "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_native_hook.py\"",
+                                                             "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_native_hook.py\"",
+                                                             "timeout":  10,
+                                                             "statusMessage":  "KCH carga su constitucion nativa",
+                                                             "additionalContextLimit":  1800
+                                                         },
+                                                         {
+                                                             "type":  "command",
+                                                             "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_r33_runtime.py\"",
+                                                             "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_r33_runtime.py\"",
+                                                             "timeout":  10,
+                                                             "statusMessage":  "KCH verifica runtimes R33",
+                                                             "additionalContextLimit":  1000
+                                                         }
+                                                     ]
+                                       }
+                                   ],
+                  "UserPromptSubmit":  [
+                                           {
+                                               "hooks":  [
+                                                             {
+                                                                 "type":  "command",
+                                                                 "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_native_hook.py\"",
+                                                                 "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_native_hook.py\"",
+                                                                 "timeout":  10,
+                                                                 "statusMessage":  "KCH preserva objetivo y jurisdiccion",
+                                                                 "additionalContextLimit":  1200
+                                                             }
+                                                         ]
+                                           }
+                                       ],
+                  "PreToolUse":  [
+                                     {
+                                         "matcher":  "*",
+                                         "hooks":  [
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_native_hook.py\"",
+                                                           "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_native_hook.py\"",
+                                                           "timeout":  10,
+                                                           "statusMessage":  "KCH verifica llaves constitucionales",
+                                                           "additionalContextLimit":  1000
+                                                       }
+                                                   ]
+                                     }
+                                 ],
+                  "PostToolUse":  [
+                                      {
+                                          "matcher":  "*",
+                                          "hooks":  [
+                                                        {
+                                                            "type":  "command",
+                                                            "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_native_hook.py\"",
+                                                            "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_native_hook.py\"",
+                                                            "timeout":  10,
+                                                            "statusMessage":  "KCH registra evidencia de ejecucion"
+                                                        }
+                                                    ]
+                                      }
+                                  ],
+                  "PreCompact":  [
+                                     {
+                                         "matcher":  "manual|auto",
+                                         "hooks":  [
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_native_hook.py\"",
+                                                           "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_native_hook.py\"",
+                                                           "timeout":  10,
+                                                           "statusMessage":  "KCH sella continuidad antes de compactar"
+                                                       },
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_r33_runtime.py\"",
+                                                           "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_r33_runtime.py\"",
+                                                           "timeout":  10,
+                                                           "statusMessage":  "KCH prepara continuidad verificable",
+                                                           "additionalContextLimit":  1200
+                                                       }
+                                                   ]
+                                     }
+                                 ],
+                  "SessionEnd":  [
+                                     {
+                                         "hooks":  [
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 \"$PLUGIN_ROOT/scripts/kch_native_hook.py\"",
+                                                           "commandWindows":  "\u0026 \"C:\\Python314\\python.exe\" -X utf8 \"$env:PLUGIN_ROOT\\scripts\\kch_native_hook.py\"",
+                                                           "timeout":  3,
+                                                           "statusMessage":  "KCH cierra el ledger de sesion"
+                                                       }
+                                                   ]
+                                     }
+                                 ]
+              }
+}

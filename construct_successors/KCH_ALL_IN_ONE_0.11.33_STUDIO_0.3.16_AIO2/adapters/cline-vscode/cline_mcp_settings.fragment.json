@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "kch-all-in-one-super-mcp": {
+      "command": "__KCH_RUNTIME_EXECUTABLE__",
+      "args": [],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

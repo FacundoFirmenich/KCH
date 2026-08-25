@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Constitutional Locks"
+  short_description: "Require exact user keys for protected changes"
+  default_prompt: "Use $kch-constitutional-locks to protect this resource with exact one-use authorization."

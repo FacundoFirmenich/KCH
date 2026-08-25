@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Data Persistence"
+  short_description: "Structure and preserve multimodal working information"
+  default_prompt: "Use $kch-data-persistence to structure and preserve these materials with traceability."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH CSI Construct"
+  short_description: "Build versioned KCH successors and CSI artifacts"
+  default_prompt: "Use $kch-csi-construct to create a governed versioned CSI successor."

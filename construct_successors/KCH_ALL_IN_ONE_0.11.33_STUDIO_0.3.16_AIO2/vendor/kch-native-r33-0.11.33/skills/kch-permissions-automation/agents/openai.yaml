@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Permissions Automation"
+  short_description: "Govern proactive actions and finite permission leases"
+  default_prompt: "Use $kch-permissions-automation to configure this proactive action with finite authority."

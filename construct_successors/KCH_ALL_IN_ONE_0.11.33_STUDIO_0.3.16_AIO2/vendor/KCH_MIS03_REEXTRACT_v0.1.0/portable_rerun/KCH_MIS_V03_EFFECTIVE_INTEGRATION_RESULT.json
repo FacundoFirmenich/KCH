@@ -1,0 +1,125 @@
+{
+  "schema": "kch.mis.v03.effective-integration-gate-result.v0.1.0",
+  "gate": "PASS_BOUNDED",
+  "checks": {
+    "sealed_mis_custody_hashes_exact": true,
+    "source_kch_state_unchanged": true,
+    "kch_routed_description_read_only": true,
+    "kch_routed_all_480_real_records": true,
+    "sixty_persisted_future_only_ledgers_verified": true,
+    "live_results_exact_match_frozen_v031": true,
+    "historical_certificate_replay_deterministic": true,
+    "historical_certificate_tamper_rejected": true,
+    "exact_decision_interface_matches_frozen_formal_example": true,
+    "certificate_verification_routed": true,
+    "unclassified_authority_method_failed_closed": true,
+    "mis_methods_registered_read_only": true,
+    "mis_registered_as_decision_emitter": true,
+    "two_kch_decisions_conformant": true,
+    "two_kch_decisions_registered": true,
+    "zero_authority_and_zero_automatic_promotion": true,
+    "no_phl_session_started": true,
+    "zero_user_feedback_preserved": true,
+    "kch_integration_ledger_integrity_pass": true,
+    "bounded_kch_gate_preserved": true,
+    "registry_successor_adds_exactly_one_mis_row": true
+  },
+  "checks_passed": 21,
+  "checks_total": 21,
+  "initial_projection": {
+    "head_hash": "007fc3ed97e14c59798828e0d567a506a2bf4e1143d071fd996d6719ce88410c",
+    "events": 51,
+    "decisions": 9,
+    "feedback": 0,
+    "requests": 44,
+    "mutability_methods": 25,
+    "emitters": 17,
+    "emitter_states": {
+      "DECISION_EMITTER": 3,
+      "NON_DECISION_SERVICE": 2,
+      "UNAVAILABLE_CONTRACT": 12
+    },
+    "active_phl_session_id": null
+  },
+  "final_projection": {
+    "head_hash": "78991101bbbf81d390c08972e78599fde7af27c6fb9994de682dd75fc03af9c2",
+    "events": 63,
+    "decisions": 11,
+    "feedback": 0,
+    "requests": 56,
+    "mutability_methods": 29,
+    "emitters": 18,
+    "emitter_states": {
+      "DECISION_EMITTER": 4,
+      "NON_DECISION_SERVICE": 2,
+      "UNAVAILABLE_CONTRACT": 12
+    },
+    "active_phl_session_id": null
+  },
+  "integrity": {
+    "gate": "PASS",
+    "defects": [],
+    "head_hash": "78991101bbbf81d390c08972e78599fde7af27c6fb9994de682dd75fc03af9c2",
+    "event_count": 63,
+    "decision_count": 11,
+    "feedback_count": 0,
+    "request_count": 56,
+    "mutability_count": 29,
+    "emitter_count": 18
+  },
+  "gate_state": {
+    "state": "PASS_EFFECTIVE_KCH_PHL_INTEGRATION_BOUNDED",
+    "expected_admitted_rows": 18,
+    "head_hash": "78991101bbbf81d390c08972e78599fde7af27c6fb9994de682dd75fc03af9c2",
+    "events": 63,
+    "decisions": 11,
+    "feedback": 0,
+    "requests": 56,
+    "mutability_methods": 29,
+    "emitters": 18,
+    "emitter_states": {
+      "DECISION_EMITTER": 4,
+      "NON_DECISION_SERVICE": 2,
+      "UNAVAILABLE_CONTRACT": 12
+    },
+    "active_phl_session_id": null
+  },
+  "historical_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+  "exact_decision_certificate_sha256": "a77a49e0cf287d572d53d2d14ddf819a29ae0c3df10f249eba43b08f5f1fab09",
+  "decision_ids": [
+    "mis-v03:structural-certificate:admit:66d400e747fa35bc",
+    "mis-v03:causal-global-promotion:abstain:66d400e747fa35bc"
+  ],
+  "decision_hashes": [
+    "4ce37d21f4c3a69a475db1318c5aff6a00fd41d4f74786ed58908bb9c1992c0c",
+    "0e6c30b23aaf2819eec0999f1e40362bb7ad57c2a0220517e71c05f18b61322e"
+  ],
+  "source_state_sha256_before": "1027fa8da1a583b107521bb5298a3f5774e1abbeb887a3772cea70c4e1c969a8",
+  "source_state_sha256_after": "1027fa8da1a583b107521bb5298a3f5774e1abbeb887a3772cea70c4e1c969a8",
+  "replica_sha256": "68276c3c75dd7c61ddc3b2fe286297973ebfb42e13a389c678d200c724272d05",
+  "registry_sha256": "02e1d576e85557e5893f1b624732a0df30bad9d22e5519918cade9714ed660e8",
+  "evidence_boundary": {
+    "demonstrated": [
+      "SEALED_MIS_V0_3_1_RUNTIME_INVOCATION_THROUGH_KCH_CONTROL_PLANE",
+      "480_REAL_KHC_RECORD_STRUCTURAL_ROUNDTRIP",
+      "60_PERSISTED_FUTURE_ONLY_LEDGER_VERIFICATION",
+      "EXACT_RATIONAL_DECISION_INTERFACE",
+      "KCH_REVIEWABLE_DECISION_ADAPTATION",
+      "FAIL_CLOSED_UNCLASSIFIED_AUTHORITY_METHOD"
+    ],
+    "not_demonstrated": [
+      "CAUSAL_KCH_IMPROVEMENT",
+      "PROSPECTIVE_PREDICTIVE_SUPERIORITY",
+      "HUMAN_UTILITY",
+      "OPEN_DOMAIN_SCALABILITY",
+      "GLOBAL_WINNER"
+    ]
+  },
+  "limitations": [
+    "The gate is local and replica-bounded; it does not mutate the personal KCH state.",
+    "The 480-record corpus is historical; its actions are observations, not adjudicated causal outcomes.",
+    "The exact-decision interface conformance call reuses the frozen formal example, whose parameters are not empirical estimates.",
+    "Twelve older registry rows remain UNAVAILABLE_CONTRACT, so the complete pre-2G KCH integration gate remains bounded.",
+    "No PHL session, user feedback, policy activation, external deployment or global promotion occurred."
+  ]
+}

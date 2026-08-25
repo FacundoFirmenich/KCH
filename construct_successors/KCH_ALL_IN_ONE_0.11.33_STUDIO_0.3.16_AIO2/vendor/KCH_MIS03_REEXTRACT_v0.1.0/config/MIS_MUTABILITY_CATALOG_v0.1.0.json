@@ -1,0 +1,27 @@
+[
+  {
+    "service_id": "MIS.v0.3.1",
+    "method": "describe",
+    "classification": "READ_ONLY",
+    "evidence_ref": "kch_mis_v03_integration.adapter.MISV03Adapter.describe"
+  },
+  {
+    "service_id": "MIS.v0.3.1",
+    "method": "audit_historical_khc",
+    "classification": "READ_ONLY",
+    "evidence_ref": "kch_mis_v03_integration.adapter.MISV03Adapter.audit_historical_khc"
+  },
+  {
+    "service_id": "MIS.v0.3.1",
+    "method": "exact_decide",
+    "classification": "READ_ONLY",
+    "evidence_ref": "kch_mis_v03_integration.adapter.MISV03Adapter.exact_decide"
+  },
+  {
+    "service_id": "MIS.v0.3.1",
+    "method": "verify_certificate",
+    "classification": "READ_ONLY",
+    "evidence_ref": "kch_mis_v03_integration.adapter.MISV03Adapter.verify_certificate"
+  }
+]
+

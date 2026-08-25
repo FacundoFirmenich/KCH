@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Extension Curation"
+  short_description: "Choose native integrations before MCP fallbacks"
+  default_prompt: "Use $kch-extension-curation to select and validate the most native available integration."

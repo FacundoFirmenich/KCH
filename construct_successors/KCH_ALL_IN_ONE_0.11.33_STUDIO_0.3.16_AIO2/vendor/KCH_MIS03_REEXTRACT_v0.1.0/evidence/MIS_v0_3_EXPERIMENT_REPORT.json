@@ -1,0 +1,149 @@
+{
+  "global_claim_boundary": "Executable structural validation and historical replay only. Human utility, causal KHC improvement, open-domain scalability and prospective predictive superiority remain pending.",
+  "khc_future_only_replay": {
+    "claim_boundary": "This is a hindsight-limited replay of the already observed KHC action stream. It proves exact freeze/outcome separation and future-only state transition. It does not prove that MIS improves KHC decisions, because model actions are observations here, not adjudicated ground-truth outcomes, and the replay is not a new prospective holdout.",
+    "freeze_hash_unchanged_checks": 480,
+    "freezes": 480,
+    "ledgers_verified": 60,
+    "mean_brier": "2666051699009/6233247820800",
+    "outcomes": 480,
+    "policy": {
+      "alpha": {
+        "mis.action.abstain.v1": "1/1",
+        "mis.action.apply.v1": "1/1",
+        "mis.action.escalate.v1": "1/1",
+        "mis.action.query.v1": "1/1",
+        "mis.action.top_2.v1": "1/1",
+        "mis.action.withhold.v1": "1/1"
+      },
+      "jurisdiction": "one KHC model/task stream; next observed action only",
+      "mode": "historical future-only replay; not prospective causal validation",
+      "schema": "MIS_KHC_PREQUENTIAL_POLICY_v0.3",
+      "score": "categorical Brier, exact rational",
+      "states": [
+        "mis.action.abstain.v1",
+        "mis.action.apply.v1",
+        "mis.action.escalate.v1",
+        "mis.action.query.v1",
+        "mis.action.top_2.v1",
+        "mis.action.withhold.v1"
+      ],
+      "update_rule": "Dirichlet categorical posterior predictive"
+    },
+    "policy_hash": "e2029857038607feed6d002cc0a0f9d0da71f86b3151bc7e614d55f8554d9020",
+    "rehydrated_ledgers_verified": 60,
+    "round_mean_brier": {
+      "1": "5/6",
+      "2": "949/1470",
+      "3": "997/1920",
+      "4": "97/243",
+      "5": "97/300",
+      "6": "97/363",
+      "7": "97/432",
+      "8": "1061/5070"
+    },
+    "schema": "MIS_KHC_FUTURE_ONLY_REPLAY_v0.3",
+    "source_schema": "KHC_TWO_BATTERY_COMPARATIVE_8x8_v2.0.7",
+    "source_sha256": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+    "streams": 60,
+    "total_brier": "2666051699009/12985932960"
+  },
+  "khc_integration": {
+    "action_counts": {
+      "ABSTAIN": 76,
+      "APPLY": 168,
+      "ESCALATE": 48,
+      "QUERY": 91,
+      "TOP_2": 24,
+      "WITHHOLD": 73
+    },
+    "atom_ids": [
+      "mis.action.abstain.v1",
+      "mis.action.apply.v1",
+      "mis.action.escalate.v1",
+      "mis.action.query.v1",
+      "mis.action.top_2.v1",
+      "mis.action.withhold.v1"
+    ],
+    "claim_boundary": "Structural, lossless MIS representation and replay only; this audit does not establish causal performance improvement over KHC.",
+    "coordinates_unique": 480,
+    "key_roundtrips_exact": 20,
+    "records": 480,
+    "roundtrips_exact": 480,
+    "schema": "MIS_KHC_INTEGRATION_AUDIT_v0.3",
+    "source_schema": "KHC_TWO_BATTERY_COMPARATIVE_8x8_v2.0.7",
+    "source_sha256": "e25563e37e40ed6e2b8d2a80f415f1e641786894708bbdafb4634511fe6fb12c",
+    "units_unique": 480
+  },
+  "loss_decision_example": {
+    "decision": {
+      "minimizers": [
+        "mis.action.withhold.v1"
+      ],
+      "minimum_risk": "1/4",
+      "resolved_action": "mis.action.withhold.v1",
+      "risks": {
+        "mis.action.apply.v1": "15/2",
+        "mis.action.withhold.v1": "1/4"
+      },
+      "schema": "MIS_BAYES_DECISION_v0.3.1",
+      "tie_resolution": "UNIQUE_MINIMUM"
+    },
+    "likelihood": {
+      "mis.state.risk.v1": "3/4",
+      "mis.state.safe.v1": "1/4"
+    },
+    "loss": {
+      "actions": [
+        "mis.action.apply.v1",
+        "mis.action.withhold.v1"
+      ],
+      "losses": {
+        "mis.action.apply.v1": {
+          "mis.state.risk.v1": "10/1",
+          "mis.state.safe.v1": "0/1"
+        },
+        "mis.action.withhold.v1": {
+          "mis.state.risk.v1": "0/1",
+          "mis.state.safe.v1": "1/1"
+        }
+      },
+      "schema": "MIS_LOSS_TABLE_v0.3.1",
+      "states": [
+        "mis.state.risk.v1",
+        "mis.state.safe.v1"
+      ]
+    },
+    "posterior": {
+      "masses": {
+        "mis.state.risk.v1": "3/4",
+        "mis.state.safe.v1": "1/4"
+      },
+      "schema": "MIS_EXACT_DISTRIBUTION_v0.3.1"
+    },
+    "prior": {
+      "masses": {
+        "mis.state.risk.v1": "1/2",
+        "mis.state.safe.v1": "1/2"
+      },
+      "schema": "MIS_EXACT_DISTRIBUTION_v0.3.1"
+    },
+    "role": "formal validation example; parameters are not empirical estimates",
+    "schema": "MIS_EXACT_LOSS_EXAMPLE_v0.3"
+  },
+  "schema": "MIS_v0.3.1_EXPERIMENT_REPORT",
+  "structural_exhaustion": {
+    "admissible_updates": 348,
+    "attempted_updates": 405,
+    "claim_boundary": "Exhaustive only over the explicitly declared finite rational lattice; it is not an exhaustion of all Bayesian models or all loss functions.",
+    "failures": 0,
+    "likelihood_lattice": "{0, 1/2, 1}^3",
+    "prior_lattice": "three-state simplex on denominator 4, including boundary points",
+    "priors": 15,
+    "schema": "MIS_EXACT_STRUCTURAL_EXHAUSTION_v0.3",
+    "tie_preserving_decisions": 39,
+    "unique_bayes_decisions": 309,
+    "zero_evidence_rejections": 57
+  },
+  "version": "0.3.1"
+}

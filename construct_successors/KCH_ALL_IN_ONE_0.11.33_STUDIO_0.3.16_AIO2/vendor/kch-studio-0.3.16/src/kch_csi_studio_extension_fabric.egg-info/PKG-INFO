@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: kch-csi-studio-extension-fabric
+Version: 0.3.16
+Summary: Transactional CSI Studio and governed extension fabric for KwanCode Harness
+Requires-Python: >=3.11
+Requires-Dist: Pillow<13,>=12
+Requires-Dist: pypdf<7,>=6
+Requires-Dist: numpy<3,>=2
+Requires-Dist: scipy<2,>=1.11
+Requires-Dist: sounddevice<1,>=0.5
+Requires-Dist: tzdata<2026,>=2025.2
+Requires-Dist: kwancode-harness<0.12,>=0.11
+Requires-Dist: kch-obl-phl-learning-system<0.2,>=0.1.1
+Requires-Dist: kch-phl-effective-integration<0.3,>=0.2
+Requires-Dist: kch-superchats-orchestrators<0.2,>=0.1
+Requires-Dist: kch-rigor-gradient-governor<0.2,>=0.1
+Requires-Dist: kwanprompts<0.2,>=0.1
+Requires-Dist: kch-mis-v03-integration<0.2,>=0.1
+Requires-Dist: mis-qualitative-bayes<0.4,>=0.3.1

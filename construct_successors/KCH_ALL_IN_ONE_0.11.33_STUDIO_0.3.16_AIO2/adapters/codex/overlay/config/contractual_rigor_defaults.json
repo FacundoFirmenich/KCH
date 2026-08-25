@@ -1,0 +1,19 @@
+{
+  "schema": "kch.contractual-rigor-defaults.v1",
+  "mode": "adaptive",
+  "default_intensity": 65,
+  "scale": {
+    "0": "maximally exploratory within hard floors",
+    "35": "exploratory",
+    "65": "balanced",
+    "85": "strict",
+    "100": "constitutional"
+  },
+  "non_relaxable": [
+    "external_platform",
+    "evidence_truth",
+    "authority_permission",
+    "constitutional_locks"
+  ],
+  "authority_created": false
+}

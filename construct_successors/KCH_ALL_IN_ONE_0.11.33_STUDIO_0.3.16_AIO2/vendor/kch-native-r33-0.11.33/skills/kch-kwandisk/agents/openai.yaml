@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH KwanDisk"
+  short_description: "Govern storage inventory custody and safe recovery"
+  default_prompt: "Use -kwandisk to inspect and optimize storage without unverified deletion."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Virtuous Handoff"
+  short_description: "Transfer complete project context into fresh sessions"
+  default_prompt: "Use -virtuous-handoff to perform a verified complete multi-chat handoff before continuing the project."

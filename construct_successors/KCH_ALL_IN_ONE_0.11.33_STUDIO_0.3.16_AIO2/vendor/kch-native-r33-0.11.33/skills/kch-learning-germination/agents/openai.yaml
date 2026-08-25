@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Learning Germination"
+  short_description: "Turn evidence into dated skills and protocols"
+  default_prompt: "Use $kch-learning-germination to derive a gated skill candidate from observed evidence."

@@ -1,0 +1,14 @@
+Pillow<13,>=12
+pypdf<7,>=6
+numpy<3,>=2
+scipy<2,>=1.11
+sounddevice<1,>=0.5
+tzdata<2026,>=2025.2
+kwancode-harness<0.12,>=0.11
+kch-obl-phl-learning-system<0.2,>=0.1.1
+kch-phl-effective-integration<0.3,>=0.2
+kch-superchats-orchestrators<0.2,>=0.1
+kch-rigor-gradient-governor<0.2,>=0.1
+kwanprompts<0.2,>=0.1
+kch-mis-v03-integration<0.2,>=0.1
+mis-qualitative-bayes<0.4,>=0.3.1

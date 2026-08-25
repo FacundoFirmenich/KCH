@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH SCO Orchestration"
+  short_description: "Coordinate sovereign chats without merging them"
+  default_prompt: "Use $kch-sco-orchestration to compose these sessions without fusing their contexts."

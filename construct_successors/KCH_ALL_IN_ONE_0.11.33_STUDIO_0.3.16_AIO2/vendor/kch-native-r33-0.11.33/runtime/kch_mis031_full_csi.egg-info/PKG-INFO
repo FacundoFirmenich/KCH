@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: kch-mis031-full-csi
+Version: 0.2.0
+Summary: Exhaustive CSI bridge over the sealed MIS 0.3.1 public surface
+Requires-Python: >=3.11

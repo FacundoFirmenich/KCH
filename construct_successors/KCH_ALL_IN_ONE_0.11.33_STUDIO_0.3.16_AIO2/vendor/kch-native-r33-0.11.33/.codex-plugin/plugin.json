@@ -1,0 +1,18 @@
+{
+  "name": "kch-native-r33",
+  "version": "0.11.33",
+  "description": "KwanCode Harness 0.11.33 native superharness with governed continuity, storage, token, MIS and temporal-structural runtimes",
+  "author": {
+    "name": "KwanCode"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "KwanCode Harness 0.11.33",
+    "shortDescription": "Native KCH superharness for governed, recoverable work",
+    "longDescription": "KCH 0.11.33 projects HARNESS > AGENTS > RULES, constitutional locks, complete multi-chat handoff, KwanDisk, TokenMaster, MIS and the mu/Transmuter/SCPP stack into supported Codex and ChatGPT surfaces without conflating code, activation, authority or training.",
+    "developerName": "KwanCode",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use the most precise KCH skill to continue this task under its governing mission, evidence boundaries and recovery contract."
+  }
+}
