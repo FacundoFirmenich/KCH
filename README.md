@@ -50,6 +50,7 @@ Los resultados adversos y gates fallidos se conservan como evidencia histórica 
 
 ## Navegación AIO2
 
+- [Cierre sustantivo AIO2](docs/CIERRE_SUSTANTIVO_AIO2_2026-08-25.md)
 - [Arquitectura funcional completa y defectos que corrige](docs/KCH_AIO2_ARQUITECTURA_FUNCIONAL_COMPLETA_ES.md)
 - [Catálogo completo de las 294 herramientas observadas](docs/KCH_AIO2_CATALOGO_COMPLETO_294_HERRAMIENTAS_ES.md)
 - [Metrología byte a byte y límites probatorios](docs/KCH_AIO2_METROLOGIA_BYTE_A_BYTE_ES.md)

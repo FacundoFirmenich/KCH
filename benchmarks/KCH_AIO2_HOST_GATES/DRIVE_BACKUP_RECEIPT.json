@@ -1,0 +1,13 @@
+{
+  "schema": "kch.aio2.drive-backup-receipt.v1",
+  "folder_id": "1M-Ws39DYWPFmXomDVkuAjqKEHBjFidpu",
+  "folder_url": "https://drive.google.com/drive/folders/1M-Ws39DYWPFmXomDVkuAjqKEHBjFidpu",
+  "files": [
+    {"name":"KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2.zip","id":"1cqrGeJ8sldbsEb80nueZoYiE__xDBQA2","bytes":61444573,"size_match":true},
+    {"name":"KCH_AIO2_CODEX_COMPLETE.zip","id":"1pS1Y5ORoZDy2LYaUXsAbaD8BK80N05eB","bytes":61444971,"size_match":true},
+    {"name":"KCH_AIO2_CLINE_COMPLETE.zip","id":"1jzpIW_tf6jOmBy3sNV0yIH3t0SVagA3x","bytes":61444978,"size_match":true}
+  ],
+  "all_remote_sizes_match": true,
+  "r34_touched": false,
+  "phl_training_executed": false
+}
