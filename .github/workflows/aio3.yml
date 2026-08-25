@@ -14,7 +14,10 @@ on:
 
 jobs:
   source-and-real-base:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
     permissions:
       contents: read
     steps:
