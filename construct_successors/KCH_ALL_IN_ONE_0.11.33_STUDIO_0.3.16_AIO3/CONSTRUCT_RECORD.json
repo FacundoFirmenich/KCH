@@ -1,7 +1,7 @@
 {
   "schema": "kch.construct-record.v1",
   "candidate": "KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3",
-  "state": "CONSTRUCT_SOURCE_COMPLETE_PENDING_GATES",
+  "state": "ELIGIBLE_FOR_GOVERNED_PROMOTION",
   "predecessor": {
     "release": "v0.11.33-aio.2",
     "asset": "KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2.zip",
@@ -28,10 +28,15 @@
   ],
   "automatic_promotion": false,
   "live_installation_performed": false,
+  "host_activation_observed": false,
   "phl_training_executed": false,
+  "official_upstream_write_enabled_for_generic_installations": false,
   "policy": "CLOUD_FIRST_LOCAL_MINIMAL",
-  "validation_gate": "PENDING",
-  "compatibility_gate": "PENDING",
-  "idempotency_gate": "PENDING",
-  "rollback_gate": "PENDING"
+  "validation_gate": "PASS",
+  "compatibility_gate": "PASS_WINDOWS_ISOLATED_CODEX_CLINE",
+  "idempotency_gate": "PASS_TWO_INSTALLATIONS",
+  "rollback_gate": "PASS_RECEIPT_BOUND",
+  "source_tests": "PASS_7_OF_7",
+  "cloud_validation_run": "https://github.com/FacundoFirmenich/KCH/actions/runs/32858962998",
+  "claim_ceiling": "No live human-session activation, longitudinal utility, complete cross-platform compatibility, scientific authority, or automatic upstream authority is established."
 }
