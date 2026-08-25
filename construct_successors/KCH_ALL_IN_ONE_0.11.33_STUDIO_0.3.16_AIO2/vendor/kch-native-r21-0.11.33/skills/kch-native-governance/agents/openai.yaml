@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Native Governance"
+  short_description: "Apply KCH constitutional governance natively"
+  default_prompt: "Use $kch-native-governance to govern this material task under KCH 0.11.33."

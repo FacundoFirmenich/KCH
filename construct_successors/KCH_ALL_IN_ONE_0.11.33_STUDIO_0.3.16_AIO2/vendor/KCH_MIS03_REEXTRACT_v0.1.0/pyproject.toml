@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kch-mis-v03-integration"
+version = "0.1.0"
+description = "Authority-separating MIS v0.3.1 integration adapter for KwanCode Harness"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+kch-mis-v03-gate = "kch_mis_v03_integration.gate:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

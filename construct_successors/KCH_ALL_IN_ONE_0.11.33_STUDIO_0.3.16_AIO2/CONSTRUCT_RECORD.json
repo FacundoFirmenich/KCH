@@ -1,0 +1,34 @@
+{
+  "schema": "kch.construct-record.v1",
+  "candidate": "KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2",
+  "state": "CONSTRUCT_IN_PROGRESS",
+  "predecessors": [
+    "KCH All-in-One 0.11.33-aio.1",
+    "KCH Native 0.11.33 / kch-native-r21",
+    "KwanCode Harness 0.11.33 / kch-native-r33",
+    "KCH Studio 0.3.16"
+  ],
+  "active_projection_basis": "kch-native-r33 0.11.33",
+  "preserved_lineages": [
+    "r21",
+    "r33"
+  ],
+  "excluded_lineages": [
+    "r34 and every newer parallel branch"
+  ],
+  "hosts": [
+    "Codex",
+    "Cline in Visual Studio Code"
+  ],
+  "policy": "CLOUD_FIRST_LOCAL_MINIMAL",
+  "phl_authorized": true,
+  "phl_training_executed": false,
+  "automatic_promotion": false,
+  "marketplace_projection_fix": "RELATIVE_TO_MARKETPLACE_JSON",
+  "contractual_rigor_fader": "NATIVE_ADAPTIVE_FIELD_LEVEL_WITH_HARD_FLOORS",
+  "live_installation_performed": false,
+  "validation_gate": "PENDING_AIO2",
+  "package_runtime_checks": "PENDING_AIO2",
+  "idempotency": "PENDING_AIO2",
+  "rollback": "PENDING_AIO2"
+}

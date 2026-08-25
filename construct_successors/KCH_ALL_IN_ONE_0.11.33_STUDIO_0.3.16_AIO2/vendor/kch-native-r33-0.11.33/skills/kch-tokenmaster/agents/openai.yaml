@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH TokenMaster"
+  short_description: "Plan token model and agent use by task layer"
+  default_prompt: "Use -tokenmaster to right-size tokens models and agent orchestration for this task."

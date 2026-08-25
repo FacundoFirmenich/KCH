@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Objective Continuity"
+  short_description: "Prevent mission drift and abandoned execution"
+  default_prompt: "Use $kch-objective-continuity to preserve the governing mission through completion."

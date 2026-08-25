@@ -1,0 +1,33 @@
+name: AIO2 source checks
+
+on:
+  push:
+    paths:
+      - "construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2/**"
+      - ".github/workflows/aio2-source.yml"
+  pull_request:
+    paths:
+      - "construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2/**"
+      - ".github/workflows/aio2-source.yml"
+
+jobs:
+  source:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Compile Python sources
+        shell: pwsh
+        run: |
+          $root = "construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2"
+          Get-ChildItem $root -Recurse -Filter *.py |
+            Where-Object { $_.FullName -notmatch "\\build\\|\\release\\" } |
+            ForEach-Object { python -m py_compile $_.FullName }
+      - name: Validate JSON sources
+        shell: pwsh
+        run: |
+          $root = "construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2"
+          Get-ChildItem $root -Recurse -Filter *.json |
+            ForEach-Object { Get-Content -Raw $_.FullName | ConvertFrom-Json | Out-Null }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH LIBRESOURCE and CSI Flush"
+  short_description: "Govern sovereign replacement without reckless rewrites"
+  default_prompt: "Use $kch-libresource-flush to govern this dependency or adapter through a proportional CSI Flush."

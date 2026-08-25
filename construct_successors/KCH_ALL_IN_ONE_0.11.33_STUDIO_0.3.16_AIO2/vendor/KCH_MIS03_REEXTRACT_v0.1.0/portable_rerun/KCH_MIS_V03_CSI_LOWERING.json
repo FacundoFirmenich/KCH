@@ -1,0 +1,103 @@
+{
+  "schema": "kch.mis.v03.csi-lowering.v0.1.0",
+  "preset_id": "kch.preset.mis.v03.exact-decision-support",
+  "topological_address": [
+    "KCH",
+    "FEDERATED_MATHEMATICAL_SERVICES",
+    "MIS",
+    "v0.3.1"
+  ],
+  "source_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+  "gate_result_sha256": "1b1b6545fd265d0bec06eda5052ca75cc3837338593657740a48c6a86d0db9ad",
+  "raw_csi_program": [
+    {
+      "kind": "OPEN_SESSION",
+      "session_id": "csi:mis-v03:66d400e747fa35bc8f3eba5e",
+      "params": {
+        "label": "kch.preset.mis.v03.exact-decision-support",
+        "epoch": 0
+      }
+    },
+    {
+      "kind": "SEAL_IDENTITAS",
+      "session_id": "csi:mis-v03:66d400e747fa35bc8f3eba5e",
+      "params": {
+        "statements": [
+          "MIS supplies exact semantic state, posterior, loss, decision and certificate calculations",
+          "KCH alone governs authority, routing, commit and promotion",
+          "Preserve evidence provenance, purpose, jurisdiction and future-only chronology",
+          "Historical replay cannot establish causal improvement, prospective superiority or a global winner",
+          "A MIS decision certificate never authorizes execution by itself"
+        ],
+        "strata": [
+          [
+            "MIS_V0_3_1",
+            "EXACT_QUALITATIVE_BAYES"
+          ],
+          [
+            "KCH",
+            "AUTHORITY_AND_COMMIT"
+          ],
+          [
+            "CSI",
+            "COMPOSITIONAL_LOWERING"
+          ]
+        ],
+        "explicitly_extensible": true
+      }
+    },
+    {
+      "kind": "ADD_DATUM",
+      "session_id": "csi:mis-v03:66d400e747fa35bc8f3eba5e",
+      "params": {
+        "datum": {
+          "datum_id": "mis-v03-custody-and-boundary",
+          "role": "CONSTRAINT",
+          "payload": {
+            "mis_version": "0.3.1",
+            "adapter_version": "0.1.0",
+            "historical_certificate_sha256": "66d400e747fa35bc8f3eba5e521d23b538b98c1cffb9405c30fa20cc86f4deed",
+            "gate_result_sha256": "1b1b6545fd265d0bec06eda5052ca75cc3837338593657740a48c6a86d0db9ad",
+            "records": 480,
+            "streams": 60,
+            "authority_created": false,
+            "execution_authorized": false,
+            "automatic_promotion": false,
+            "claim_ceiling": "STRUCTURAL_LOSSLESS_REPRESENTATION_EXACT_REPLAY_AND_FUTURE_ONLY_INTEGRITY_ONLY",
+            "not_demonstrated": [
+              "CAUSAL_KCH_IMPROVEMENT",
+              "PROSPECTIVE_PREDICTIVE_SUPERIORITY",
+              "HUMAN_UTILITY",
+              "OPEN_DOMAIN_SCALABILITY",
+              "GLOBAL_WINNER"
+            ]
+          },
+          "priority": 2,
+          "source": "kch-mis-v03-integration/0.1.0"
+        }
+      }
+    },
+    {
+      "kind": "MODE_ON",
+      "session_id": "csi:mis-v03:66d400e747fa35bc8f3eba5e",
+      "params": {
+        "modus": {
+          "modus_id": "EXACT_QUALITATIVE_DECISION_SUPPORT",
+          "description": "Exact MIS calculation with KCH authority separation",
+          "preserves_identitas": true,
+          "parameters": {
+            "calculation": "EXACT_RATIONAL",
+            "ties": "PRESERVED_UNLESS_RULE_DECLARED",
+            "chronology": "FUTURE_ONLY",
+            "authority": "KCH_ONLY",
+            "promotion": "EXPLICIT_GATE_REQUIRED"
+          }
+        }
+      }
+    }
+  ],
+  "raw_csi_program_sha256": "f62cd0952019fafcd52897510874edd87d8359b9dde97b6b44280697b63cacc6",
+  "authority_created": false,
+  "execution_authorized": false,
+  "automatic_promotion": false
+}

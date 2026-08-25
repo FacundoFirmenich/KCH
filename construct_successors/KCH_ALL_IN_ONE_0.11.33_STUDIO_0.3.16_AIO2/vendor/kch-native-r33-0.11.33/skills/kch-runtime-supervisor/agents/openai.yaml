@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Runtime Supervisor"
+  short_description: "Monitor live processes logs and terminal outcomes"
+  default_prompt: "Use -runtime-supervisor to supervise this execution until a verified terminal result."

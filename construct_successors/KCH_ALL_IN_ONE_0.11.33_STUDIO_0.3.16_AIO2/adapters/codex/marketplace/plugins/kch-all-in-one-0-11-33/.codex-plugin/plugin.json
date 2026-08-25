@@ -1,0 +1,19 @@
+{
+  "name": "kch-all-in-one-0-11-33",
+  "version": "0.1.0",
+  "description": "Kch All In One 0 11 33 plugin",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Kch All In One 0 11 33",
+    "shortDescription": "Use Kch All In One 0 11 33 in Codex.",
+    "longDescription": "Kch All In One 0 11 33 adds a local Codex plugin scaffold.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Help me use Kch All In One 0 11 33."
+  },
+  "mcpServers": "./.mcp.json"
+}

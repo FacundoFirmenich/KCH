@@ -1,0 +1,6 @@
+[console_scripts]
+kch-codex-bootstrap-mcp = kch_studio.codex_bootstrap_mcp:main
+kch-codex-preflight-mcp = kch_studio.codex_preflight_mcp:main
+kch-studio = kch_studio.cli:main
+kch-studio-mcp = kch_studio.mcp_server:main
+kch-super-mcp-studio = kch_studio.super_mcp_overlay:main

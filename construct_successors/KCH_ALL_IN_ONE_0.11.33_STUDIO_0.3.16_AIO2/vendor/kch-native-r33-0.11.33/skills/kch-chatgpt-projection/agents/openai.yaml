@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH ChatGPT Projection"
+  short_description: "Project KCH onto supported ChatGPT surfaces"
+  default_prompt: "Use -chatgpt-projection to deploy KCH through the most native supported ChatGPT layer and report gaps."

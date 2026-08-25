@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Instruction Governance"
+  short_description: "Resolve ambiguous instructions under KCH authority"
+  default_prompt: "Use $kch-instruction-governance to resolve this instruction conflict without probabilizing authority."

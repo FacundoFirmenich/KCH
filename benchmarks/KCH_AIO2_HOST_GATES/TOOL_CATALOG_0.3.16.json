@@ -1,0 +1,7592 @@
+[
+  {
+    "name": "kch.super.status",
+    "description": "Return KCH 0.11 runtime, profile, ledger, component and claim-boundary status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.super.registry",
+    "description": "Return the canonical KCH 0.11 federated registry without merging service authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.super.controls",
+    "description": "Return the exact catalog of 28 reflexive controls and evidence ceiling.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.super.session.open",
+    "description": "Open a governed session and issue one-use objective-bound capabilities.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "USER",
+            "SYSTEM_AUTHORITY"
+          ]
+        },
+        "objective_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_contract_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "jurisdiction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_granted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "stop_condition_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "expected_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        }
+      },
+      "required": [
+        "session_id",
+        "actor",
+        "objective_id",
+        "objective_contract_sha256",
+        "project_id",
+        "jurisdiction",
+        "authority_granted",
+        "stop_condition_ids",
+        "expected_evidence_ids"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.evidence.admit",
+    "description": "Admit one preregistered evidence record with explicit role, provenance and jurisdiction.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "enum": [
+            "DIRECT",
+            "DERIVED",
+            "TRANSPORT",
+            "EXECUTION",
+            "OUTCOME"
+          ]
+        },
+        "provenance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "session_id",
+        "evidence_id",
+        "source_sha256",
+        "jurisdiction",
+        "role",
+        "provenance_ids",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.context.compile",
+    "description": "Evaluate an explicit subset of R01-R28 and compose their receipts without creating authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "controls": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "controls"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.super.action.propose",
+    "description": "Record a governed action proposal; proposal is not authorization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "route": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_class": {
+          "enum": [
+            "READ_ONLY",
+            "MUTATING"
+          ]
+        },
+        "requested_authority": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "arguments": {
+          "type": "object"
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        }
+      },
+      "required": [
+        "session_id",
+        "route",
+        "action_class",
+        "requested_authority",
+        "evidence_ids",
+        "arguments",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.action.authorize",
+    "description": "Authorize only evidence-complete read-only proposals; mutating execution remains unavailable.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposal_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "control_receipts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object"
+          }
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        }
+      },
+      "required": [
+        "session_id",
+        "proposal_id",
+        "control_receipts",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.action.execute",
+    "description": "Execute a one-use authorized read-only federated route. Mutating routes are prohibited in KCH 0.11.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposal_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "session_id",
+        "proposal_id",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.precommit.verify",
+    "description": "Verify objective, jurisdiction, evidence, artifact identity and external observer before shadow precommit.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective_contract_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "candidate_artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "observed_artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "external_observer_verdict": {
+          "enum": [
+            "PASS",
+            "BLOCK",
+            "UNAVAILABLE"
+          ]
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "session_id",
+        "objective_contract_sha256",
+        "jurisdiction",
+        "evidence_ids",
+        "candidate_artifact_sha256",
+        "observed_artifact_sha256",
+        "external_observer_verdict",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.rollback",
+    "description": "Append an immutable compensating rollback record; it never rewrites history or silently mutates files.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_event_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "human_authorized": {
+          "type": "boolean"
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "session_id",
+        "target_event_hash",
+        "reason",
+        "human_authorized",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.outcome.register",
+    "description": "Register an outcome, including adverse results, without rewriting historical evidence.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "adverse": {
+          "type": "boolean"
+        },
+        "interpretation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capability": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "session_id",
+        "outcome_id",
+        "state",
+        "evidence_ids",
+        "adverse",
+        "interpretation",
+        "capability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kch.super.audit.export",
+    "description": "Export the append-only KCH 0.11 event chain and content hash.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.super.registry.evidence.audit",
+    "description": "Rehash the portable evidence copies referenced by the registry.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.component.status",
+    "description": "Probe installed sovereign component distributions without invoking mutations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.phl.projection",
+    "description": "Read and verify the effectively integrated PHL/KCH state projection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.sco.projection",
+    "description": "Read and verify an SCO graph projection while preserving chat sovereignty.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.mis.certificate.verify",
+    "description": "Verify the sealed MIS v0.3.1 historical integration certificate; creates no KCH authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.kwanprompts.probe",
+    "description": "Probe KwanPrompts package availability only.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.rgg.probe",
+    "description": "Probe Rigor Gradient Governor package availability only.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.obl_phl.probe",
+    "description": "Probe OBL/PHL learning package availability only.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R01",
+    "description": "Bloqueo del objetivo gobernante. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "governing_objective_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_objective_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "governing_objective_id",
+        "candidate_objective_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R02",
+    "description": "Firewall entre proyectos. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_contract_verified": {
+          "type": "boolean"
+        },
+        "authority_inherited": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "source_project_id",
+        "target_project_id",
+        "transfer_contract_verified",
+        "authority_inherited"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R03",
+    "description": "Compilador de autorizaci�n. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "requested_authority": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "granted_authority": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "action_classified": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "requested_authority",
+        "granted_authority",
+        "action_classified"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R04",
+    "description": "KCH aplicado al propio agente. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "external_observer": {
+          "type": "boolean"
+        },
+        "observer_independence_verified": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "external_observer",
+        "observer_independence_verified"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R05",
+    "description": "Recibo previo de coste y alcance. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deliverables": {
+          "type": "array"
+        },
+        "cost_receipt": {
+          "type": "object"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "scope",
+        "deliverables",
+        "cost_receipt"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R06",
+    "description": "Presupuesto de tokens y fan-out. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "token_budget": {
+          "type": "integer"
+        },
+        "fanout_budget": {
+          "type": "integer"
+        },
+        "projected_tokens": {
+          "type": "integer"
+        },
+        "projected_fanout": {
+          "type": "integer"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "token_budget",
+        "fanout_budget",
+        "projected_tokens",
+        "projected_fanout"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R07",
+    "description": "Probe barato obligatorio. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "probe_applicable": {
+          "type": "boolean"
+        },
+        "probe_executed": {
+          "type": "boolean"
+        },
+        "probe_result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "probe_applicable",
+        "probe_executed",
+        "probe_result"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R08",
+    "description": "Parada por irrelevancia. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "relevance_state": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "relevance_state"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R09",
+    "description": "Firewall ciencia-producto. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "governing_mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "boundary_explicit": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "governing_mode",
+        "claim_mode",
+        "boundary_explicit"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R10",
+    "description": "Mapa directo-transferible-no aplicable. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "applicability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "applicability"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R11",
+    "description": "Auditor del significado de avance. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "position_change": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_delta": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "position_change",
+        "evidence_delta"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R12",
+    "description": "Ledger de coste de oportunidad. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "options": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R13",
+    "description": "Control de comunicaci�n completa. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "observed_result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "meaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 1
+        },
+        "next_critical_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "observed_result",
+        "meaning",
+        "limitations",
+        "next_critical_action"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R14",
+    "description": "Firewall de readiness comercial. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "commercial_readiness_claimed": {
+          "type": "boolean"
+        },
+        "readiness_evidence": {
+          "type": "object"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "commercial_readiness_claimed",
+        "readiness_evidence"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R15",
+    "description": "Enlace claim-fuente-ejecuci�n-jurisdicci�n. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "claims": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "claims"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R16",
+    "description": "Registro can�nico de nombre y genealog�a. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "canonical_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "genealogy": {
+          "type": "array"
+        },
+        "collision_free": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "canonical_name",
+        "genealogy",
+        "collision_free"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R17",
+    "description": "Ledger de �ltimas correcciones del usuario. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "corrections": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "corrections"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R18",
+    "description": "Detector de contaminaci�n entre tareas. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "contamination_hits": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "contamination_hits"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R19",
+    "description": "Validador de handoff m�nimo y suficiente. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "handoff": {
+          "type": "object"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "handoff"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R20",
+    "description": "Limitador de proliferaci�n documental. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "planned_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "necessary_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "planned_artifacts",
+        "necessary_artifacts"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R21",
+    "description": "Extractor de valor de resultados adversos. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "adverse_results": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "adverse_results"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R22",
+    "description": "Ledger de reparaci�n. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repairs": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "repairs"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R23",
+    "description": "Interrupci�n humana prioritaria. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "human_interrupt_pending": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "human_interrupt_pending"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R24",
+    "description": "Auditor de divergencia decisi�n-evidencia. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "decision_equivalent": {
+          "type": "boolean"
+        },
+        "evidence_contract_equivalent": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "decision_equivalent",
+        "evidence_contract_equivalent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R25",
+    "description": "Canonicalizador de roles de evidencia. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "evidence_roles": {
+          "type": "object"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "evidence_roles"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R26",
+    "description": "Veto de m�tricas degeneradas. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sample_count": {
+          "type": "integer"
+        },
+        "unique_values": {
+          "type": "integer"
+        },
+        "metric_discriminates": {
+          "type": "boolean"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sample_count",
+        "unique_values",
+        "metric_discriminates"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R27",
+    "description": "Control de completitud de transporte y fallos unitarios. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "transport_complete": {
+          "type": "boolean"
+        },
+        "unit_failures": {
+          "type": "array"
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "transport_complete",
+        "unit_failures"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch.control.R28",
+    "description": "Degradaci�n autom�tica de autoridad cuando se pierde evidencia. Returns a signed-by-content governance receipt; never creates authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "evidence_available": {
+          "type": "boolean"
+        },
+        "authority_after_loss": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_conditions": {
+          "type": "array"
+        },
+        "redundancy_justification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "evidence_available",
+        "authority_after_loss"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch_preflight",
+    "title": "Verify canonical KCH startup",
+    "description": "Return one canonical gate over compiled governance, full strategic surface, launcher coverage, and PHL state. Use this instead of probing internal runtime classes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "studio_status",
+    "title": "Inspect CSI Studio",
+    "description": "Inspect Studio, governance, providers, and sessions without changing state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "studio_create_session",
+    "title": "Create CSI build session",
+    "description": "Validate and persist a governed artifact specification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "studio_generate",
+    "title": "Generate staged artifact",
+    "description": "Generate only inside KCH staging; does not install or enable.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "studio_validate",
+    "title": "Validate staged artifact",
+    "description": "Run provider, custody, and ledger validation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "studio_seal",
+    "title": "Seal candidate",
+    "description": "Seal a validated candidate without installation authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "studio_build_and_seal",
+    "title": "Build and seal CSI artifact",
+    "description": "Run the complete create, generate, validate and seal pipeline; no installation or enablement authority is created.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "extension_inventory",
+    "title": "Inventory local runtimes",
+    "description": "Read runtime and host availability without reading secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "extension_search",
+    "title": "Search extension source",
+    "description": "Search a declared provider; search does not download or install.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "provider",
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "extension_recommend",
+    "title": "Adjudicate extension candidates",
+    "description": "Evaluate independent recommendation lanes without a global winner score.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "objective": {
+          "type": "string"
+        },
+        "available_runtimes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "records",
+        "objective",
+        "available_runtimes"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "extension_resolve",
+    "title": "Resolve extension candidate",
+    "description": "Resolve one exact provider identifier to current metadata; this does not download or install it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "identifier"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "isolated_install_plan",
+    "title": "Plan isolated install",
+    "description": "Create a reviewable install and rollback plan; does not execute it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "artifact_kind": {
+          "type": "string"
+        },
+        "target_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "artifact_kind",
+        "target_name"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "isolated_install_execute",
+    "title": "Execute isolated install",
+    "description": "Execute only within the disposable KCH sandbox and only with one of the four explicit consent choices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "plan": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "plan",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "isolated_install_rollback",
+    "title": "Rollback isolated install",
+    "description": "Remove the exact disposable target described by a receipt.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "receipt"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "isolated_install_verify",
+    "title": "Verify isolated install",
+    "description": "Verify the isolated target against its receipt without changing it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "receipt"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch_next_status",
+    "title": "Inspect integrated KCH-next layers",
+    "description": "Aggregate constitutional, launcher, recovery, data, permission, persistence, account, clipboard, audio, scheduler and MIS state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "continuity_status",
+    "title": "Inspect continuity and burden governance",
+    "description": "Verify mission continuity, recurrent-failure controls and the append-only harm ledger.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "continuity_reading_adjudicate",
+    "title": "Adjudicate lossless source reading",
+    "description": "Forbid a complete-reading claim unless pagination reached EOF and every material truncation was recovered.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "receipt"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "full_read_file",
+    "title": "Read one complete source file",
+    "description": "Read every byte twice, transport the complete UTF-8 text when it fits the declared bound, and return a verifiable receipt. External paths require explicit permission; fragments never satisfy the claim.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "max_return_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5242880
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "full_read_batch",
+    "title": "Read an ordered complete source batch",
+    "description": "Generate one machine-owned ordered inventory with two-read receipts and optional exact source-span evidence. No agent-authored hash transcription is required.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array"
+        },
+        "requested_order": {
+          "type": "string"
+        },
+        "max_return_bytes_per_file": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5242880
+        },
+        "max_batch_return_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5242880
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "full_read_verify_batch",
+    "title": "Verify a full-read batch against source",
+    "description": "Re-read every source file and reject a canonically self-consistent batch whose hashes, content, order, ordinals or exact-span evidence were corrupted after tool execution.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "batch": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "batch"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "evidence_closure_materialize",
+    "title": "Materialize evidence-preserving task closure",
+    "description": "Mechanically project complete-reading and terminal-monitor evidence into a final task receipt while retaining every original sealed payload. Manual hash, line, span and exit-code transcription is forbidden.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "envelope": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "envelope"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "evidence_closure_verify",
+    "title": "Verify evidence-preserving task closure",
+    "description": "Regenerate a task closure from its retained source envelope and reject any altered, compacted or manually retranscribed representation even when it was resealed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "closure": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "closure"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "lock_governor_status",
+    "title": "Inspect constitutional lock governor",
+    "description": "Inspect optional lock enforcement, exact one-shot authority, coverage boundaries and hash-chain integrity without changing policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "lock_list",
+    "title": "List constitutional locks",
+    "description": "List active or historical object and tool locks without granting mutation authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "include_inactive": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "lock_pending_proposals",
+    "title": "List locked change proposals",
+    "description": "Read every exact change request awaiting a trusted local user gesture, including rationale, impact, dependencies and recovery plan.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "lock_authorization_status",
+    "title": "Inspect exact lock authorization",
+    "description": "Inspect whether one proposal remains pending, is authorized once, or has already consumed its exact capability.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "proposal_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "proposal_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "lock_drift_verify",
+    "title": "Verify locked file drift",
+    "description": "Rehash exact locked files and detect external unmediated changes without claiming that KCH prevented writes outside its control.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "lock_change_propose",
+    "title": "Propose exact locked resource change",
+    "description": "Register the exact resource, operation, hashes, rationale, impact, dependencies and recovery plan. This never authorizes or executes the change.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "current_sha256": {
+          "type": "string"
+        },
+        "proposed_sha256": {
+          "type": "string"
+        },
+        "payload_sha256": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string"
+        },
+        "dependencies": {
+          "type": "array"
+        },
+        "recovery_plan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource",
+        "operation",
+        "payload_sha256",
+        "rationale",
+        "impact",
+        "dependencies",
+        "recovery_plan"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "lock_tool_call_propose",
+    "title": "Propose exact locked tool call",
+    "description": "Mechanically bind one mutating tool name and its complete arguments to a change proposal; a model may propose but cannot authorize it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tool_name": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "object"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string"
+        },
+        "dependencies": {
+          "type": "array"
+        },
+        "recovery_plan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tool_name",
+        "arguments",
+        "rationale",
+        "impact",
+        "dependencies",
+        "recovery_plan"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "lock_authorized_execute",
+    "title": "Execute one exactly authorized tool call",
+    "description": "Consume one trusted one-shot authorization only when the tool name and complete arguments are byte-for-byte canonically equivalent to the approved proposal.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "authorization_id": {
+          "type": "string"
+        },
+        "tool_name": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "authorization_id",
+        "tool_name",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "continuity_mission_set",
+    "title": "Enact governing mission",
+    "description": "Freeze the user-authorized governing objective and its authority source.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objective": {
+          "type": "string"
+        },
+        "authority_source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "objective",
+        "authority_source"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "continuity_harm_record",
+    "title": "Record exact user burden evidence",
+    "description": "Append exact user-reported harm without inferring a medical diagnosis or rewriting historical evidence.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "record"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "continuity_action_preflight",
+    "title": "Gate an action against recurrent harm",
+    "description": "Fail closed on stale, non-material, mission-drifting, uncustodied, incompletely-read or recurrently unsafe work.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "continuity_integrity_verify",
+    "title": "Verify continuity ledger",
+    "description": "Verify the complete hash chain of continuity, burden and Aikido events.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "continuity_protocol_register",
+    "title": "Register verified protocol",
+    "description": "Register a prehashed, explicitly verified historical protocol for mandatory reuse.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "protocol"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "continuity_protocol_resolve",
+    "title": "Resolve verified protocols",
+    "description": "Find matching verified protocols before fragments or replacement designs are allowed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "tags"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "aikido_transform",
+    "title": "Convert adverse evidence into KCH capability",
+    "description": "Synthesize a positive capability, dated protocol, skill and operator candidate, OBL/PHL envelope and regression contract from one prehashed incident; never auto-promotes it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "incident": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "incident"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "aikido_catalog",
+    "title": "Inspect Aikido capability packages",
+    "description": "List prehashed adverse-to-capability transformations and their non-promoted status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "temporal_scale_compile",
+    "title": "Compile temporal learning contract",
+    "description": "Keep timestamp resolution, prediction horizon, event count, minimum period and update cadence distinct; enforce minimum complete period to minimum complete period.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specification": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "specification"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "continuous_period_ledger_compile",
+    "title": "Compile consecutive minimum-period ledger",
+    "description": "Require every minimum period in the target interval and type it as OBSERVED, NO_EVENT or NOT_ESTIMABLE; block compressed calendars.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "specification": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "specification"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "source_fitness_adjudicate",
+    "title": "Adjudicate source fitness before learning",
+    "description": "Block training when time-window scope, continuous coverage, observed support or jurisdiction support is insufficient.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "receipt"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "commitment_monitor_register",
+    "title": "Register external process monitoring",
+    "description": "Persist an external PID, its OS creation identity, logs, artifacts and optional terminal receipt. Artifact presence alone never proves exit success.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "pid": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "logs": {
+          "type": "array"
+        },
+        "artifacts": {
+          "type": "array"
+        },
+        "poll_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "terminal_receipt": {
+          "type": "string"
+        },
+        "expected_exit_codes": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "label",
+        "pid",
+        "logs",
+        "artifacts"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "commitment_monitor_launch",
+    "title": "Launch a durably supervised process",
+    "description": "Launch a shell-free argv through a dedicated worker that owns stdout, stderr and a canonically sealed terminal receipt. Secret-like environment overrides are rejected.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "argv": {
+          "type": "array"
+        },
+        "cwd": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object"
+        },
+        "expected_artifacts": {
+          "type": "array"
+        },
+        "expected_exit_codes": {
+          "type": "array"
+        },
+        "poll_seconds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "label",
+        "argv",
+        "cwd"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "commitment_monitor_check",
+    "title": "Reconcile monitoring commitment",
+    "description": "Reconcile process identity, logs, artifacts and terminal receipt now; terminal alerting is exactly once and never relaunches the process.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "commitment_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "commitment_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "commitment_monitor_wait_terminal",
+    "title": "Wait boundedly for exact terminal evidence",
+    "description": "Follow the same registered execution until terminal evidence or a bounded wait timeout. Timeout keeps the commitment active and never kills or relaunches it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "commitment_id": {
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "poll_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "commitment_id",
+        "timeout_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "commitment_monitor_evidence",
+    "title": "Seal current monitoring evidence",
+    "description": "Return a canonically sealed evidence receipt with process identity, terminal status, exit code and hashed log metadata.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "commitment_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "commitment_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "commitment_monitor_status",
+    "title": "Inspect promised monitoring",
+    "description": "Inspect background monitoring, reconciliation errors and all terminal states without promoting them into general execution claims.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "response_authority_register",
+    "title": "Register response authority constraint",
+    "description": "Freeze an explicit mission, terminology, provenance, jurisdiction, experiment-boundary or rejected-frame constraint with its authority source.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "constraint": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "constraint"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_authority_adjudicate",
+    "title": "Adjudicate candidate response before release",
+    "description": "Fail closed when structured response claims violate active semantic authority, conflate experiments, promote scope, add off-mission classifications or promise unregistered monitoring.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "candidate": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "candidate"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_authority_status",
+    "title": "Inspect response authority governance",
+    "description": "Inspect active response constraints, hash-chain integrity and the explicit host-interposition evidence boundary.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "remote_transport_preflight",
+    "title": "Verify remote payload before launch",
+    "description": "Block empty, shell-mutated, stale-marker or hash-mismatched remote wrappers before any process starts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "receipt"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "constitution_state",
+    "title": "Read constitutional workspace",
+    "description": "Read the ranked, nested, connected user constitution. Models cannot mutate it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "constitution_effective",
+    "title": "Compile effective constitution",
+    "description": "Compile active constitutional boxes in rank order without changing them.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "constitution_propose",
+    "title": "Propose constitutional amendment",
+    "description": "Store a model proposal separately; it does not enact or alter constitutional authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "proposal": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "proposal"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "programmed_policy_status",
+    "title": "Read programmed proactive policy",
+    "description": "Inspect direct if/then/else rules and startup-announcement preference.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "programmed_policy_evaluate",
+    "title": "Evaluate proactive event",
+    "description": "Evaluate every applicable programmed rule; does not execute it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "event"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "proactive_launcher_status",
+    "title": "Inspect background launcher",
+    "description": "Inspect background state, capability coverage, and blind spots.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "proactive_event_publish",
+    "title": "Publish proactive event",
+    "description": "Queue an event for background governed dispatch.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "event"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "recovery_checkpoint",
+    "title": "Create recovery checkpoint",
+    "description": "Persist an optional event payload and snapshot all current master-vault assets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "recovery_verify",
+    "title": "Verify recovery chains",
+    "description": "Verify append-only master recovery chains.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "risk_assess",
+    "title": "Advise on risky change",
+    "description": "Warn about dependency, history, authority, external-write, and lossy-conversion risk; does not censor.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "proposal": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "proposal"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "plan_build_plan",
+    "title": "Plan universal data build",
+    "description": "Persist a reviewable ingest/transform/restore plan without executing it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operations": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "operations"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "plan_build_execute",
+    "title": "Execute universal data plan",
+    "description": "Execute a previously persisted plan inside the KCH runtime with original-byte custody.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "plan_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "persistence_status",
+    "title": "Inspect chat persistence",
+    "description": "Inspect exact KCH/SCO custody coverage and external-host transport limits.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "persistence_chat_create",
+    "title": "Create persistent chat",
+    "description": "Create a KCH chat record with explicit platform and capture mode.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "native_id": {
+          "type": "string"
+        },
+        "source_uri": {
+          "type": "string"
+        },
+        "capture_mode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platform"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "persistence_turn_append",
+    "title": "Append persistent chat turn",
+    "description": "Append exact JSON payload to a chat hash chain.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "chat_id": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "payload": {},
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chat_id",
+        "role",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "persistence_superchat_create",
+    "title": "Create SCO manifest",
+    "description": "Orchestrate existing chats without merging their context or identity.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "members"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwandata_status",
+    "title": "Inspect KwanData",
+    "description": "Inspect source, record, tag, supertag, program and layer counts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kwandata_ingest",
+    "title": "Ingest into KwanData",
+    "description": "Ingest an authorized local file with exact source custody and deterministic structuring.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "program_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwandata_query",
+    "title": "Query KwanData",
+    "description": "Query structured records and tags.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "permission_status",
+    "title": "Inspect permission governor",
+    "description": "Inspect governed capability domains and receipt counts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "permission_check",
+    "title": "Evaluate permission",
+    "description": "Evaluate and record one actor/resource/operation decision.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "actor": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "resource",
+        "operation"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "scheduler_status",
+    "title": "Inspect scheduler",
+    "description": "Inspect agendas, active one-shot/interval/cron schedules, and occurrence history.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "scheduler_create",
+    "title": "Create finite schedule",
+    "description": "Create a persisted schedule that publishes events to the proactive launcher.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "expression": {
+          "type": "string"
+        },
+        "event": {
+          "type": "object"
+        },
+        "agenda_id": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "announce": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "expression",
+        "event"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_status",
+    "title": "Inspect superclipboard",
+    "description": "Inspect clipboard monitor, persistent items, and post-it database.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "clipboard_capture_text",
+    "title": "Capture clipboard text",
+    "description": "Capture explicit text into the local clipboard history with secret detection.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "persist": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_search",
+    "title": "Search clipboard and post-its",
+    "description": "Search non-secret previews and post-it text.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "clipboard_postit_create",
+    "title": "Create persistent post-it",
+    "description": "Create a versioned post-it from text or a clipboard item.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "source_item_id": {
+          "type": "string"
+        },
+        "parent_postit_id": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_postit_edit",
+    "title": "Edit persistent post-it",
+    "description": "Autosave a post-it revision.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "postit_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "postit_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_explanation_context",
+    "title": "Read selected context",
+    "description": "Return one user-selected clipboard item for ad hoc explanation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "account_broker_status",
+    "title": "Inspect temporal account broker",
+    "description": "Inspect providers, finite duration classes and local/remote revocation limits.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "account_permission_request",
+    "title": "Request finite account access",
+    "description": "Create a terminal-first, finite-duration account permission request; does not approve or authenticate.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "account_hint": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "scopes",
+        "purpose"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "audio_status",
+    "title": "Inspect voice/audio hub",
+    "description": "Inspect transcription, microphone and TTS backends without activating the microphone.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "audio_ingest_transcribe",
+    "title": "Ingest and transcribe audio",
+    "description": "Custody an authorized audio clip and transcribe with an available local backend.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "consent_basis": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "consent_basis"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "voice_notify",
+    "title": "Speak proactive notice",
+    "description": "Preserve a KCH message transcript and synthesize it locally when available.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "diction_status",
+    "title": "Inspect diction learning",
+    "description": "Inspect OBL lexicon, resolution and PHL-shadow correction counts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "diction_resolve",
+    "title": "Resolve transcription diction",
+    "description": "Preserve raw text and compute an auditable normalized overlay.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "raw_transcription": {
+          "type": "string"
+        },
+        "source_audio_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "raw_transcription"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_full_status",
+    "title": "Inspect full MIS integration",
+    "description": "Distinguish real MIS mathematics from the formerly amputated KCH 0.11 surface.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_describe",
+    "title": "Describe MIS service",
+    "description": "Describe the full bounded MIS v0.3.1 mathematical service.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_exact_decide",
+    "title": "Compute exact MIS decision",
+    "description": "Compute a rational Bayesian loss decision for declared inputs; creates no execution authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_historical_audit",
+    "title": "Replay full MIS historical gate",
+    "description": "Recompute the exact 480-record/60-ledger bounded historical audit.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_certificate_verify_full",
+    "title": "Verify MIS certificate",
+    "description": "Verify the packaged historical certificate or a supplied MIS certificate.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_csi_lowering",
+    "title": "Read MIS CSI lowering",
+    "description": "Read and verify the bounded four-instruction CSI lowering with its operational limitation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kch_mode_status",
+    "title": "Inspect PLAN/RUN/CONSTRUCT modes",
+    "description": "Inspect the three canonical modes and the successor-only CONSTRUCT pointer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "checkpoint_status",
+    "title": "Inspect checkpoint persistence",
+    "description": "Inspect structured and full checkpoint coverage without creating a checkpoint.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "checkpoint_estimate",
+    "title": "Estimate checkpoint size",
+    "description": "Calculate exact current logical bytes and warn before any full checkpoint.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "checkpoint_full_plan",
+    "title": "Plan a full checkpoint",
+    "description": "Create a warning-bearing plan; it does not create the large full checkpoint.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "rgg_status",
+    "title": "Inspect Rigor Gradient Governor",
+    "description": "Inspect all packaged rigor profiles and the shadow-only authority boundary.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "rgg_resolve_profile",
+    "title": "Resolve rigor profile",
+    "description": "Resolve purpose, audience and risk into a bounded RGG profile.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "rgg_adjudicate_action",
+    "title": "Adjudicate governed action",
+    "description": "Separate action permission from claim ceiling under an explicit RGG profile.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "rgg_audit_review",
+    "title": "Audit three-plane review",
+    "description": "Audit fact, claim and action judgments without erasing adverse evidence.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "rgg_transition_plan",
+    "title": "Plan rigor transition",
+    "description": "Plan a rigor-regime transition while preserving frozen parents.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kwanprompts_status",
+    "title": "Inspect KwanPrompts",
+    "description": "Inspect the persistent message-governance service.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kwanprompts_ingest",
+    "title": "Ingest governed prompt",
+    "description": "Persist a KwanPrompts message record without granting authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "record"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwanprompts_inspect",
+    "title": "Inspect governed prompt",
+    "description": "Read one KwanPrompts message and its provenance.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "message_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kwanprompts_adjudicate",
+    "title": "Adjudicate governed prompt",
+    "description": "Run KwanPrompts message-boundary adjudication.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwanprompts_kwandocs_envelope",
+    "title": "Build KwanDocs envelope",
+    "description": "Build a provenance-preserving thread envelope for KwanDocs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "thread_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "thread_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kwanprompts_verify",
+    "title": "Verify KwanPrompts ledger",
+    "description": "Verify the complete KwanPrompts ledger.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "sco_status",
+    "title": "Inspect sovereign SCO",
+    "description": "Inspect SCO projections and integrity without merging member context.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "sco_create",
+    "title": "Create sovereign SuperChat",
+    "description": "Create a full SCO record under optimistic concurrency.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_add_node",
+    "title": "Add sovereign chat node",
+    "description": "Add a native Codex, Cline, Cowork, OpenCode, ChatGPT or custom node without copying its memory.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_retire_node",
+    "title": "Retire SCO node",
+    "description": "Retire a node while preserving ledger history.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string"
+        },
+        "node_id": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sco_id",
+        "node_id",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_add_edge",
+    "title": "Add scoped SCO edge",
+    "description": "Connect two independent chats through an explicit disclosure contract.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_issue_work_order",
+    "title": "Issue SCO work order",
+    "description": "Issue a bounded subsistemic work order with no implicit authority transfer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_ingest_receipt",
+    "title": "Ingest SCO receipt",
+    "description": "Ingest a bounded node receipt while preserving failures, abstentions and limitations.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_declare_conflict",
+    "title": "Preserve SCO conflict",
+    "description": "Register irreducible divergence between node receipts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "sco_schedule",
+    "title": "Schedule ready SCO work",
+    "description": "Compute dependency-ready work orders without dispatching external chats.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sco_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "sco_graph_diagnostics",
+    "title": "Diagnose SCO graph",
+    "description": "Inspect cycles, reachability and orchestration consistency.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sco_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "sco_export_bundle",
+    "title": "Export SCO bundle",
+    "description": "Export a context-separated orchestration bundle.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sco_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "sco_dispatch_envelopes",
+    "title": "Build SCO dispatch envelopes",
+    "description": "Build bounded per-node dispatch envelopes; a host bridge must transmit them.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sco_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sco_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "phl_status",
+    "title": "Inspect authorized PHL",
+    "description": "Inspect the authorized but possibly untrained PHL capability and both linked ledgers.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "phl_decision_register",
+    "title": "Register PHL-reviewable decision",
+    "description": "Register a conformant decision in both effective and learning ledgers; this does not train PHL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "record"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "phl_decisions_list",
+    "title": "List PHL decisions",
+    "description": "List reviewable decisions without starting a PHL session.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string"
+        },
+        "reviewed": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "phl_session_start",
+    "title": "Start exclusive PHL session",
+    "description": "Start linked effective and learning PHL sessions under one of the four explicit consent choices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "trigger": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "trigger",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "phl_score",
+    "title": "Record user PHL score",
+    "description": "Record an exact 000..100 user-authored score as future-only feedback.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "public_session_id": {
+          "type": "string"
+        },
+        "decision_id": {
+          "type": "string"
+        },
+        "score_display": {
+          "type": "string"
+        },
+        "contextual_text": {
+          "type": "string"
+        },
+        "correction_text": {
+          "type": "string"
+        },
+        "user_authored": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "public_session_id",
+        "decision_id",
+        "score_display",
+        "user_authored",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "phl_packet_compile",
+    "title": "Compile PHL training packet",
+    "description": "Compile a future-only packet; activation remains prohibited pending replay and user approval.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "public_session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "public_session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "phl_session_close",
+    "title": "Close exclusive PHL session",
+    "description": "Close both linked ledgers and release the ordinary-work mutation lock.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "public_session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "public_session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_integrity_verify",
+    "title": "Verify MIS federation",
+    "description": "Verify the MIS event chain, certificates, prospective ledgers and reviewable-decision projections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_atoms_list",
+    "title": "List MIS semantic atoms",
+    "description": "List canonical and user-declared semantic atoms as compositional CSI material.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_atom_resolve",
+    "title": "Resolve MIS semantic atom",
+    "description": "Resolve a language skin to one stable semantic atom.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "skin": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skin"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_atom_register",
+    "title": "Register MIS semantic atom",
+    "description": "Register a user-authored semantic atom without changing frozen MIS bytes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "atom_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "skins": {
+          "type": "object"
+        },
+        "user_authored": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "atom_id",
+        "kind",
+        "skins",
+        "user_authored"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_study_create",
+    "title": "Create MIS prospective study",
+    "description": "Create an empty future-only exact Bayesian study; no outcome or empirical value is invented.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "study": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "study"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_studies_list",
+    "title": "List MIS studies",
+    "description": "List persistent prospective MIS studies.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_study_projection",
+    "title": "Inspect MIS study",
+    "description": "Inspect freezes, outcomes, next prior and local claim ceiling.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "study_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_study_freeze",
+    "title": "Freeze prospective MIS decision",
+    "description": "Freeze the pre-outcome prior and exact decision certificate.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "study_id": {
+          "type": "string"
+        },
+        "request": {
+          "type": "object"
+        },
+        "frozen_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_id",
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_study_observe",
+    "title": "Record prospective MIS outcome",
+    "description": "Record a source-hashed outcome only after its decision freeze.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "study_id": {
+          "type": "string"
+        },
+        "observed_state": {
+          "type": "string"
+        },
+        "source_unit_hash": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_id",
+        "observed_state",
+        "source_unit_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_study_close",
+    "title": "Close MIS study",
+    "description": "Close a prospective study only when no outcome is pending.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "study_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_decision_register_phl",
+    "title": "Bridge MIS decision to PHL",
+    "description": "Convert a verified exact MIS certificate into a reviewable decision and register it without training.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "certificate"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_dynamic_csi_lowering",
+    "title": "Lower MIS certificate to CSI",
+    "description": "Lower any verified MIS certificate to a compositional CSI program with no authority transfer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "certificate"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_kwandata_archive",
+    "title": "Archive MIS certificate in KwanData",
+    "description": "Export exact certificate bytes and ingest them into KwanData with provenance.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "certificate"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_sco_issue_review",
+    "title": "Issue MIS review through SCO",
+    "description": "Build and issue a bounded MIS review work order to an independent SCO node.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        },
+        "sco_id": {
+          "type": "string"
+        },
+        "target_node_id": {
+          "type": "string"
+        },
+        "objective": {
+          "type": "string"
+        },
+        "required_outputs": {
+          "type": "array"
+        },
+        "depends_on": {
+          "type": "array"
+        },
+        "termination": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "expected_head_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "certificate",
+        "sco_id",
+        "target_node_id",
+        "objective",
+        "required_outputs",
+        "depends_on",
+        "termination",
+        "actor",
+        "command_id",
+        "expected_head_hash"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_rgg_adjudicate",
+    "title": "Adjudicate MIS claim with RGG",
+    "description": "Apply an explicit RGG action request to a verified MIS certificate while retaining both boundaries.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        },
+        "rigor_request": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "certificate",
+        "rigor_request"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "response_mode_status",
+    "title": "Inspect response modes",
+    "description": "Inspect the three canonical chat-response presets, scope precedence, invariants and integrity without affecting outputs.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "response_mode_profiles_list",
+    "title": "List response profiles",
+    "description": "List canonical and user-defined chat-response profiles.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "include_archived": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "response_mode_resolve",
+    "title": "Resolve active response profile",
+    "description": "Resolve the effective response profile by message, session, task, SCO, workspace and global precedence.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "object"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "response_mode_contract",
+    "title": "Compile host response contract",
+    "description": "Compile the exact host instruction for authored chat text; outputs remain outside this policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "object"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "response_mode_profile_upsert",
+    "title": "Create or update custom response profile",
+    "description": "Create or revise a persistent custom response profile derived from a canonical or custom base.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "profile"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_mode_profile_archive",
+    "title": "Archive custom response profile",
+    "description": "Archive an unbound custom profile; canonical presets cannot be altered or archived.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_mode_scope_set",
+    "title": "Bind response profile to scope",
+    "description": "Bind a response profile to global, workspace, SCO, task, session or message scope.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scope_type": {
+          "type": "string"
+        },
+        "scope_key": {
+          "type": "string"
+        },
+        "profile_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope_type",
+        "scope_key",
+        "profile_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_mode_scope_clear",
+    "title": "Clear response profile scope",
+    "description": "Clear one exact response-profile binding and restore inheritance from the next broader scope.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scope_type": {
+          "type": "string"
+        },
+        "scope_key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope_type",
+        "scope_key"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_execution_register",
+    "title": "Save execution register as Markdown",
+    "description": "Persist the technical execution record separately as Markdown; it is never offered or substituted for the substantive answer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "record"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "response_mode_integrity",
+    "title": "Verify response-mode custody",
+    "description": "Verify canonical presets, foreign keys and the response-policy audit hash chain.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "direct_consent_status",
+    "title": "Inspect direct-action consent",
+    "description": "Inspect per-action session consent without granting authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "mis_certificate_export",
+    "title": "Export MIS certificate",
+    "description": "Write one verified exact MIS certificate to the governed local export area without promoting its claim ceiling.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "certificate",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "mis_sco_work_order_template",
+    "title": "Build MIS SCO template",
+    "description": "Build a bounded no-dispatch SCO review work order for one verified MIS certificate.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "type": "object"
+        },
+        "sco_id": {
+          "type": "string"
+        },
+        "target_node_id": {
+          "type": "string"
+        },
+        "objective": {
+          "type": "string"
+        },
+        "required_outputs": {
+          "type": "array"
+        },
+        "depends_on": {
+          "type": "array"
+        },
+        "termination": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "certificate",
+        "sco_id",
+        "target_node_id",
+        "objective",
+        "required_outputs",
+        "depends_on",
+        "termination"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "constitution_plane_add",
+    "title": "Add constitutional plane",
+    "description": "User-enact a ranked horizontal, vertical, diagonal or freeform constitutional plane.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "orientation": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "orientation",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "constitution_box_add",
+    "title": "Add constitutional box",
+    "description": "User-enact a ranked and optionally nested constitutional box.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "plane_id": {
+          "type": "string"
+        },
+        "parent_box_id": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array"
+        },
+        "constitutional": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "content",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "constitution_box_update",
+    "title": "Update constitutional box",
+    "description": "User-update the exact content of an existing constitutional box.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "box_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "box_id",
+        "content",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "constitution_box_set_active",
+    "title": "Activate constitutional box",
+    "description": "User-activate or deactivate one constitutional box without deleting its history.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "box_id": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "box_id",
+        "active",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "constitution_boxes_connect",
+    "title": "Connect constitutional boxes",
+    "description": "User-enact a typed, optionally directed relation between constitutional boxes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_box_id": {
+          "type": "string"
+        },
+        "target_box_id": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "directed": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "source_box_id",
+        "target_box_id",
+        "relation",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "programmed_policy_replace",
+    "title": "Replace programmed policy",
+    "description": "User-replace the complete versioned proactive if/then/else policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "state",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "programmed_policy_rule_add",
+    "title": "Add programmed rule",
+    "description": "User-add one validated proactive rule to the current policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "rule": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "rule",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "programmed_policy_preferences_set",
+    "title": "Set proactive preferences",
+    "description": "User-enable or disable the proactive program and its startup announcement.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "announce_on_session_start": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "proactive_launcher_manifest",
+    "title": "Read launcher manifest",
+    "description": "Read every registered capability and its declared side-effect class.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "proactive_launcher_start",
+    "title": "Start proactive launcher",
+    "description": "Start the governed background dispatcher for this runtime.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "proactive_launcher_stop",
+    "title": "Stop proactive launcher",
+    "description": "Stop the governed background dispatcher for this runtime.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "timeout_seconds": {
+          "type": "number"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "proactive_launcher_run_once",
+    "title": "Run one launcher event",
+    "description": "Claim and dispatch at most one queued event through governed handlers.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "proactive_launcher_wait",
+    "title": "Wait for launcher event",
+    "description": "Read the bounded result of one event without creating another event.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "event_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "risk_override_record",
+    "title": "Record risk override",
+    "description": "Record warnings and a recovery snapshot for an explicitly user-authorized proposal; this tool does not execute the proposal itself.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "proposal": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "proposal",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "recovery_latest",
+    "title": "Read latest recovery revision",
+    "description": "Read one exact recovery asset revision with binary content encoded as base64.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "logical_key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "logical_key"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "recovery_revision",
+    "title": "Read recovery revision",
+    "description": "Read one numbered recovery revision with binary content encoded as base64.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "logical_key": {
+          "type": "string"
+        },
+        "seq": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "logical_key",
+        "seq"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "recovery_restore_revision",
+    "title": "Restore recovery revision",
+    "description": "Append a selected historic revision as the new current revision; history is retained.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "logical_key": {
+          "type": "string"
+        },
+        "seq": {
+          "type": "integer"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "logical_key",
+        "seq",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "recovery_alert_record",
+    "title": "Record recovery alert",
+    "description": "Persist a warning or overridden-warning receipt for later diagnosis and rescue.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "severity": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "proposed_operation": {
+          "type": "string"
+        },
+        "overridden": {
+          "type": "boolean"
+        },
+        "recovery_snapshot": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "message",
+        "target",
+        "proposed_operation",
+        "overridden",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "recovery_export_latest",
+    "title": "Export latest recovery asset",
+    "description": "Export exact current bytes under an explicitly selected safe root and relative path.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "logical_key": {
+          "type": "string"
+        },
+        "export_root": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "logical_key",
+        "export_root",
+        "relative_path",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "persistence_chat_get",
+    "title": "Read persistent chat",
+    "description": "Read chat identity, capture mode, completeness ceiling and turn count.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "chat_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chat_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "persistence_page_mark",
+    "title": "Record pagination receipt",
+    "description": "Record a hash-bearing page receipt; caller EOF remains unverified until an authenticated connector exists.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "chat_id": {
+          "type": "string"
+        },
+        "next_cursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_receipt": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "chat_id",
+        "next_cursor",
+        "source_receipt",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "persistence_chat_verify",
+    "title": "Verify persistent chat",
+    "description": "Verify the complete local turn hash chain without asserting external transport completeness.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "chat_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chat_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "persistence_superchat_get",
+    "title": "Read SCO persistence manifest",
+    "description": "Read one no-merge superchat membership manifest.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "superchat_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "superchat_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "kwandata_program_create",
+    "title": "Create KwanData program",
+    "description": "Create a deterministic user-programmable structuring and tagging program.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "program": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "program",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwandata_supertag_create",
+    "title": "Create KwanData supertag",
+    "description": "Create a ranked semantic relation from one supertag to declared child tags.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "children",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwandata_watch_add",
+    "title": "Add KwanData watch root",
+    "description": "Register an authorized finite local root for proactive deterministic ingestion.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "recursive": {
+          "type": "boolean"
+        },
+        "program_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "path",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "kwandata_watch_scan",
+    "title": "Scan KwanData watch root",
+    "description": "Scan one registered root and ingest observed files with exact byte custody.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "watch_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "watch_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "permission_grant",
+    "title": "Grant governed permission",
+    "description": "User-enact one scoped, ranked and optionally expiring permission rule.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "actor_pattern": {
+          "type": "string"
+        },
+        "resource_pattern": {
+          "type": "string"
+        },
+        "operation_pattern": {
+          "type": "string"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "expires_at": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "actor_pattern",
+        "resource_pattern",
+        "operation_pattern",
+        "effect",
+        "priority",
+        "rationale",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "permission_revoke",
+    "title": "Revoke governed permission",
+    "description": "User-disable one permission rule while retaining its history and receipt.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "rule_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "rule_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "scheduler_agenda_create",
+    "title": "Create scheduler agenda",
+    "description": "Create an independently named agenda with an IANA timezone.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "timezone",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "scheduler_get",
+    "title": "Read schedule",
+    "description": "Read one schedule, its event payload and current enabled state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schedule_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schedule_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "scheduler_set_enabled",
+    "title": "Enable or disable schedule",
+    "description": "User-enable or disable one persisted schedule without deleting it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "schedule_id": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "schedule_id",
+        "enabled",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "scheduler_run_due",
+    "title": "Run due schedules",
+    "description": "Publish all currently due occurrences exactly once through the proactive launcher.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "scheduler_start",
+    "title": "Start scheduler",
+    "description": "Start the governed background schedule loop.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "scheduler_stop",
+    "title": "Stop scheduler",
+    "description": "Stop the governed background schedule loop.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "timeout_seconds": {
+          "type": "number"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_pin",
+    "title": "Pin clipboard item",
+    "description": "Persist exact bytes for one previously captured clipboard item.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "item_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_postit_get",
+    "title": "Read post-it",
+    "description": "Read one persistent post-it, tags, links and revision.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "postit_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "postit_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "clipboard_postit_link",
+    "title": "Link post-it",
+    "description": "Connect a post-it to any declared KCH entity by a user-defined relation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "postit_id": {
+          "type": "string"
+        },
+        "target_type": {
+          "type": "string"
+        },
+        "target_id": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "postit_id",
+        "target_type",
+        "target_id",
+        "relation",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_region_capture",
+    "title": "Capture screen region",
+    "description": "Capture a user-declared rectangle as persistent PNG and optionally copy it to the system clipboard.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bbox": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "copy_to_system_clipboard": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "bbox",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_monitor_start",
+    "title": "Start clipboard monitor",
+    "description": "Start bounded polling of system clipboard text under the current persistence policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "interval_seconds": {
+          "type": "number"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_poll_once",
+    "title": "Poll clipboard once",
+    "description": "Read and adjudicate the current system clipboard text once under the persistence policy.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "clipboard_monitor_stop",
+    "title": "Stop clipboard monitor",
+    "description": "Stop system clipboard polling without deleting captured history.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "audio_backends",
+    "title": "Inspect audio backends",
+    "description": "Inspect local transcription, monitoring and speech backends without recording.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "audio_monitor_start",
+    "title": "Start microphone monitor",
+    "description": "Start visible microphone monitoring under an explicit consent basis and third-party notice contract.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "consent_basis": {
+          "type": "string"
+        },
+        "participant_notice": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": "number"
+        },
+        "silence_seconds": {
+          "type": "number"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent_basis",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "audio_monitor_stop",
+    "title": "Stop microphone monitor",
+    "description": "Stop microphone monitoring and seal the local monitor session.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "account_lease_approve",
+    "title": "Approve finite account lease",
+    "description": "User-approve one pending request for a punctual, daily, weekly, monthly, quarterly or custom finite interval.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "duration_class": {
+          "type": "string"
+        },
+        "custom_expires_at": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "request_id",
+        "duration_class",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "account_lease_get",
+    "title": "Read account lease",
+    "description": "Read one finite lease without exposing secrets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "lease_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lease_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "account_auth_launch",
+    "title": "Launch account authentication",
+    "description": "Launch a terminal-first interactive authentication flow, with browser fallback only when required.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "lease_id": {
+          "type": "string"
+        },
+        "ssh_key": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "lease_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "account_use_authorize",
+    "title": "Authorize leased account use",
+    "description": "Consume one authorized finite lease use and return its bounded receipt.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "lease_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "lease_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "account_expire_due",
+    "title": "Expire due account leases",
+    "description": "Remove validated disposable local profiles for leases whose finite interval has ended.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "diction_obl_add",
+    "title": "Add OBL diction entry",
+    "description": "User-add canonical diction variants to onboarding learning.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "canonical": {
+          "type": "string"
+        },
+        "variants": {
+          "type": "array"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "pronunciation_note": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "canonical",
+        "variants",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "diction_correction_record",
+    "title": "Stage diction correction",
+    "description": "Record a transcription correction as PHL-authorized but untrained future-only feedback.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "raw_token": {
+          "type": "string"
+        },
+        "corrected_term": {
+          "type": "string"
+        },
+        "confirmed_by_user": {
+          "type": "boolean"
+        },
+        "resolution_id": {
+          "type": "string"
+        },
+        "context": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "raw_token",
+        "corrected_term",
+        "confirmed_by_user",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "checkpoint_structured_create",
+    "title": "Create structured checkpoint",
+    "description": "Create an exact content-addressed incremental checkpoint with bidirectional traceability.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "checkpoint_full_create",
+    "title": "Create full checkpoint",
+    "description": "Create the warned large ZIP checkpoint only after a prior plan and explicit size confirmation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "type": "string"
+        },
+        "confirm_large_checkpoint": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "plan_id",
+        "confirm_large_checkpoint",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "checkpoint_manifest_get",
+    "title": "Read checkpoint manifest",
+    "description": "Read and verify one structured checkpoint manifest.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checkpoint_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkpoint_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "checkpoint_diff_current",
+    "title": "Diff checkpoint against current",
+    "description": "Compute missing, extra and changed files without restoring anything.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checkpoint_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkpoint_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "checkpoint_restore_new_root",
+    "title": "Restore checkpoint to new root",
+    "description": "Reconstruct exact bytes only into a new or empty destination and verify every hash.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "checkpoint_id": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "checkpoint_id",
+        "destination",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "checkpoint_trace_file",
+    "title": "Trace file across checkpoints",
+    "description": "Read the presence and exact hash of one path across structured checkpoints.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "root_name": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "root_name",
+        "relative_path"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "construct_start",
+    "title": "Start CONSTRUCT session",
+    "description": "Copy the stable KCH into a versioned candidate after creating an exact stable backup.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "objective": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "objective",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "construct_session_get",
+    "title": "Read CONSTRUCT session",
+    "description": "Read candidate state, changes, validation and stable-backup reference.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "construct_file_write_propose",
+    "title": "Propose an exact locked CONSTRUCT write",
+    "description": "Compute the exact candidate preimage, proposed hash and recovery-bound change request without modifying candidate bytes. Only a trusted local user gesture may authorize it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string"
+        },
+        "dependencies": {
+          "type": "array"
+        },
+        "recovery_plan": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "session_id",
+        "relative_path",
+        "content",
+        "rationale",
+        "impact",
+        "dependencies",
+        "recovery_plan",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "construct_file_write",
+    "title": "Write CONSTRUCT candidate file",
+    "description": "Write only inside a versioned candidate while preserving any preimage. A matching constitutional lock requires an exact one-shot authorization id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "lock_authorization_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "session_id",
+        "relative_path",
+        "content",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "construct_validate",
+    "title": "Validate CONSTRUCT candidate",
+    "description": "Compile and test a candidate without modifying active runtime bytes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "type": "integer"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "session_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "construct_promote_next_start",
+    "title": "Promote CONSTRUCT candidate",
+    "description": "Promote only a validated candidate through the next-start pointer.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "session_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "construct_rollback_pointer",
+    "title": "Rollback CONSTRUCT pointer",
+    "description": "Restore the previous stable pointer for the next start; current runtime bytes remain untouched.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "universal_asset_ingest",
+    "title": "Ingest universal asset",
+    "description": "Custody exact original bytes and create a readable TXT projection when deterministically supported.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "universal_asset_restore",
+    "title": "Restore universal asset",
+    "description": "Restore exact original bytes of one universal asset to a safe relative runtime target.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "relative_target": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "asset_id",
+        "relative_target",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "universal_asset_transform",
+    "title": "Transform universal asset",
+    "description": "Create a declared derivative while retaining exact original-byte recovery.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "target_format": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "asset_id",
+        "target_format",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_status",
+    "title": "Inspect learning and continuity workbench",
+    "description": "Inspect automatic learning, protocols, staged skills, archives, graph, weekly budget and integrity.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_ingest",
+    "title": "Ingest exact work evidence",
+    "description": "Preserve raw and normalized layers, redact secrets, detect evidence candidates, and run governed maintenance.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_kind": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "raw_text": {
+          "type": "string"
+        },
+        "source_path": {
+          "type": "string"
+        },
+        "source_uri": {
+          "type": "string"
+        },
+        "workspace_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "source_kind",
+        "title",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_lessons_list",
+    "title": "List detected learning candidates",
+    "description": "List evidence-linked candidates by scope or domain; lexical detection is not promoted to truth.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scope_key": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_protocols_list",
+    "title": "List dated protocols",
+    "description": "List evidence-derived, pre-hashed protocols without installing anything.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scope_key": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_skills_list",
+    "title": "List staged skills",
+    "description": "List generated skill candidates and their unevaluated, uninstalled and inactive lifecycle state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_maintenance_run",
+    "title": "Run automatic workbench maintenance",
+    "description": "Apply the configured evidence and weekly-budget cadence; may stage local protocols, skills, checkpoints requests and handoff packets.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "trigger": {
+          "type": "string"
+        },
+        "force": {
+          "type": "boolean"
+        },
+        "scope_key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "trigger"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_archive_group_create",
+    "title": "Create nested archive group",
+    "description": "Create one ranked group or subgroup without deleting or merging its members.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "group_kind": {
+          "type": "string"
+        },
+        "parent_group_id": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "group_kind",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_archive_group_set_archived",
+    "title": "Archive or restore group",
+    "description": "Change only the archive visibility state; no member or artifact is deleted.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string"
+        },
+        "archived": {
+          "type": "boolean"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "group_id",
+        "archived",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_archive_attach",
+    "title": "Attach item to archive group",
+    "description": "Attach a source, protocol, skill, handoff or external reference to a ranked group.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string"
+        },
+        "item_type": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "group_id",
+        "item_type",
+        "item_id",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_archive_tree",
+    "title": "Inspect nested archive tree",
+    "description": "Return all groups and ranked members with no deletion or merge.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_graph_connect",
+    "title": "Connect work graph nodes",
+    "description": "Add an explicit typed, multidimensional relationship without conflating node authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_type": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "target_type": {
+          "type": "string"
+        },
+        "target_id": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "dimensions": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "source_type",
+        "source_id",
+        "target_type",
+        "target_id",
+        "relation",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_graph",
+    "title": "Inspect multidimensional work graph",
+    "description": "Return clickable nodes and provenance, archive, workspace, session, domain and artifact edges.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_graph_resolve_node",
+    "title": "Resolve graph node",
+    "description": "Resolve one clicked node to its exact local record or declared dimension.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_budget_account_configure",
+    "title": "Configure weekly account budget",
+    "description": "Declare a token, currency or percentage budget and its telemetry source without inferring limits or prices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "weekly_limit": {},
+        "currency": {
+          "type": "string"
+        },
+        "week_anchor": {
+          "type": "string"
+        },
+        "telemetry_source": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "account_id",
+        "provider",
+        "unit",
+        "week_anchor",
+        "telemetry_source",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_budget_policy_set",
+    "title": "Replace budget cadence policy",
+    "description": "Replace the complete user-controlled cadence policy after exact schema validation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "type": "object"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "policy",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_budget_sample_record",
+    "title": "Record verified budget sample",
+    "description": "Record explicit use or availability with a source receipt; never infer account prices.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "used_value": {},
+        "available_percent": {},
+        "source_receipt": {
+          "type": "object"
+        },
+        "observed_at": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "NEVER_THIS_SESSION",
+            "ALWAYS_THIS_SESSION"
+          ]
+        }
+      },
+      "required": [
+        "account_id",
+        "source_receipt",
+        "consent"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": false
+    }
+  },
+  {
+    "name": "workbench_budget_status",
+    "title": "Inspect weekly budget and cadence",
+    "description": "Return exact source-derived availability or NOT_ESTIMABLE when live evidence is absent.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_handoffs_list",
+    "title": "List prepared handoff packets",
+    "description": "List local continuity packets; task creation and predecessor archival remain host-connector actions.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_kwandata_envelope",
+    "title": "Prepare KwanData bridge envelope",
+    "description": "Describe a structured-data bridge without executing ingestion or transferring authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_type": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_type",
+        "item_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_kwandocs_envelope",
+    "title": "Prepare KwanDocs bridge envelope",
+    "description": "Describe a canonical-evidence bridge without executing ingestion or transferring authority.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "item_type": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_type",
+        "item_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  },
+  {
+    "name": "workbench_integrity_verify",
+    "title": "Verify workbench custody",
+    "description": "Verify raw and normalized bytes, protocols, staged skill manifests and the event hash chain.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true
+    }
+  }
+]

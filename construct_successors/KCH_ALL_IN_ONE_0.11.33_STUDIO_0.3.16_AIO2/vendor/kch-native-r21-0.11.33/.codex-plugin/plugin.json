@@ -1,0 +1,22 @@
+{
+  "name": "kch-native-r21",
+  "version": "0.11.33",
+  "description": "Native-first projection of KwanCode Harness 0.11.33 as the reflexive superharness^[+2] for ChatGPT and Codex, with credal instruction governance and proportional LIBRESOURCE CSI Flushes subordinated to hard constitutional authority.",
+  "author": {
+    "name": "KwanCode Harness"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "KCH Native 0.11.33",
+    "shortDescription": "Govern ChatGPT and Codex natively with KCH.",
+    "longDescription": "KCH is a reflexive harness-of-harnesses: native HARNESS > AGENTS > RULES governance, objective continuity, credal instruction governance without probabilizing authority, constitutional locks, LIBRESOURCE and CSI Flush governance, evidence custody, CSI construction, SCO, KwanData, learning germination, permissions, automation and MIS. MCP is deliberately absent and remains a last-resort adapter.",
+    "developerName": "KwanCode Harness",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Govern this material task natively with KCH 0.11.33.",
+      "Preserve the mission and close it with evidence.",
+      "Construct a versioned CSI successor."
+    ]
+  }
+}

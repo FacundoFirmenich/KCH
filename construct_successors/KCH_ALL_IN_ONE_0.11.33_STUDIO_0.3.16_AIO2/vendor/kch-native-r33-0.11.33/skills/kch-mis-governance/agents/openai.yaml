@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH MIS Governance"
+  short_description: "Integrate MIS without inflating authority claims"
+  default_prompt: "Use $kch-mis-governance to evaluate this MIS composition within its evidence limits."

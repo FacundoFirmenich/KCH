@@ -1,0 +1,50 @@
+{
+  "schema": "kch.aio2.public-validation-summary.v1",
+  "version": "0.11.33-aio.2",
+  "source_suite": {
+    "status": "PASS",
+    "checks": 156,
+    "total": 156,
+    "elapsed_seconds": 254.52
+  },
+  "package_gate": {
+    "status": "PASS",
+    "checks": 1382,
+    "total": 1382,
+    "manifest_files": 446,
+    "manifest_bytes": 65625584,
+    "exact_file_set": true,
+    "python_cache_residue": false
+  },
+  "transport": {
+    "universal": {"bytes": 61444573, "entries": 447, "zip_crc": "PASS"},
+    "codex": {"bytes": 61444971, "entries": 448, "zip_crc": "PASS"},
+    "cline": {"bytes": 61444978, "entries": 448, "zip_crc": "PASS"}
+  },
+  "marketplace_mis_gate": {
+    "status": "PASS",
+    "checks": 11,
+    "total": 11
+  },
+  "cline_e2e": {
+    "status": "PASS",
+    "clean_install": true,
+    "hooks": 8,
+    "skills": 20,
+    "contractual_rigor_fader": true,
+    "mcp_tools_observed": 294,
+    "idempotent_reinstall": true,
+    "rollback_restored_preexisting_configuration": true,
+    "python_cache_residue": false
+  },
+  "codex_deployment": {
+    "source_plugin_version": "0.11.33-aio.2",
+    "mis_root_available": true,
+    "preflight_server_version": "0.3.16",
+    "preflight_tool_call": "PASS",
+    "application_cache_reload_observed": false
+  },
+  "r34_touched": false,
+  "phl_training_executed": false,
+  "authority_created_by_validation": false
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "KCH Evidence Custody"
+  short_description: "Read fully and preserve auditable evidence"
+  default_prompt: "Use $kch-evidence-custody to read, verify, hash, and close this evidence chain."

@@ -1,0 +1,12 @@
+$ErrorActionPreference = 'Stop'
+[Console]::InputEncoding = [System.Text.UTF8Encoding]::new($false)
+[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+$payload = [Console]::In.ReadToEnd()
+if ([string]::IsNullOrWhiteSpace($payload)) {
+    throw 'KCH Cline hook requires one JSON object on standard input'
+}
+$output = $payload | & '__KCH_RUNTIME_PYTHON__' -B -X utf8 '__KCH_CLINE_BRIDGE__'
+if ($LASTEXITCODE -ne 0) {
+    throw "KCH Cline bridge exited with code $LASTEXITCODE"
+}
+[Console]::Out.Write(($output -join [Environment]::NewLine))
