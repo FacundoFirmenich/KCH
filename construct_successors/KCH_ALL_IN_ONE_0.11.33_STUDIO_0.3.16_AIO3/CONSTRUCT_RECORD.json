@@ -1,0 +1,37 @@
+{
+  "schema": "kch.construct-record.v1",
+  "candidate": "KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3",
+  "state": "CONSTRUCT_SOURCE_COMPLETE_PENDING_GATES",
+  "predecessor": {
+    "release": "v0.11.33-aio.2",
+    "asset": "KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2.zip",
+    "sha256": "be9ce17553ac534fbe66c5764abcc9e30b630ff5a04f16a73570b7264fdae78b"
+  },
+  "invariant": "Every material KCH checkpoint and response closure is substantively explanatory; archivistic mechanics remain supporting evidence.",
+  "failure_class": "ARCHIVISTIC_OR_CRYPTIC_OUTPUT_INTERFACE_FAILURE",
+  "affected_csi_nodes": [
+    "native_governance",
+    "codex_lifecycle",
+    "chatgpt_skill_projection",
+    "cline_workspace_rule",
+    "package_validation"
+  ],
+  "preserved_lineages": [
+    "r21",
+    "r33",
+    "aio2"
+  ],
+  "hosts": [
+    "Codex",
+    "ChatGPT skill surfaces",
+    "Cline in Visual Studio Code"
+  ],
+  "automatic_promotion": false,
+  "live_installation_performed": false,
+  "phl_training_executed": false,
+  "policy": "CLOUD_FIRST_LOCAL_MINIMAL",
+  "validation_gate": "PENDING",
+  "compatibility_gate": "PENDING",
+  "idempotency_gate": "PENDING",
+  "rollback_gate": "PENDING"
+}
