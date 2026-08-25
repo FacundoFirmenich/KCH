@@ -1,0 +1,51 @@
+{
+  "schema": "kch.csi.construct-persistence-contract.v1",
+  "id": "KCH_CONSTRUCT_PERSISTENCE_V1",
+  "version": "1.0.0",
+  "canonical_upstream": "FacundoFirmenich/KCH",
+  "default_scope": "LOCAL_CURRENT_INSTALLATION",
+  "scopes": {
+    "LOCAL_CURRENT_INSTALLATION": {
+      "writes": "one explicitly selected KCH installation",
+      "remote_effects": false
+    },
+    "LOCAL_ALL_REGISTERED_INSTALLATIONS": {
+      "writes": "all explicitly registered KCH installations owned by the user",
+      "remote_effects": false,
+      "disk_discovery": "registry_only_no_broad_scan"
+    },
+    "PUBLIC_FORK_BRANCH": {
+      "writes": "a non-default branch in the authenticated user's GitHub fork of FacundoFirmenich/KCH",
+      "remote_effects": true,
+      "requires": [
+        "authenticated_github_user",
+        "verified_fork_parent",
+        "non_default_branch",
+        "finite_explicit_authority"
+      ]
+    }
+  },
+  "consultative_decisions": [
+    "Sí",
+    "No",
+    "Nunca en esta sesión",
+    "Siempre en esta sesión"
+  ],
+  "hard_denials": [
+    "generic_installed_package_write_to_FacundoFirmenich/KCH",
+    "generic_installed_package_write_to_upstream_default_branch",
+    "public_persistence_without_verified_fork",
+    "public_persistence_from_detached_head",
+    "authority_transfer_across_sessions"
+  ],
+  "official_promotion": {
+    "surface": "maintainer_source_repository_workflow_only",
+    "available_to_generic_installations": false,
+    "automatic": false
+  },
+  "credentials": {
+    "capture": false,
+    "persist": false,
+    "github_cli_or_host_native_auth_only": true
+  }
+}

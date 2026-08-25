@@ -1,0 +1,117 @@
+name: AIO3 substantive closure and CONSTRUCT persistence
+
+on:
+  push:
+    paths:
+      - "construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3/**"
+      - ".github/workflows/aio3.yml"
+    tags:
+      - "v0.11.33-aio.3"
+  pull_request:
+    paths:
+      - "construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3/**"
+      - ".github/workflows/aio3.yml"
+
+jobs:
+  source-and-real-base:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Compile AIO3 Python sources
+        run: |
+          find construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3 -name '*.py' -print0 | xargs -0 -n1 python -m py_compile
+      - name: Validate AIO3 JSON contracts
+        shell: pwsh
+        run: |
+          Get-ChildItem construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3 -Recurse -Filter *.json |
+            ForEach-Object { Get-Content -Raw $_.FullName | ConvertFrom-Json | Out-Null }
+      - name: Run source, adverse and idempotency tests
+        run: python -m unittest discover -s construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3/tests -v
+      - name: Download immutable AIO2 predecessor asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/aio2"
+          gh release download v0.11.33-aio.2 --repo FacundoFirmenich/KCH --pattern KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2.zip --dir "$RUNNER_TEMP/aio2"
+      - name: Build complete AIO3 packages cloud-first
+        run: |
+          python construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3/scripts/build_aio3.py \
+            --base-zip "$RUNNER_TEMP/aio2/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2.zip" \
+            --output "$RUNNER_TEMP/aio3"
+      - name: Verify complete AIO3 package and ZIP
+        run: |
+          python construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3/scripts/verify_aio3.py \
+            --package-root "$RUNNER_TEMP/aio3/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3" \
+            --zip "$RUNNER_TEMP/aio3/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3.zip" \
+            --output "$RUNNER_TEMP/aio3/AIO3_VALIDATION.json"
+      - name: Install twice into isolated Codex and Cline hosts
+        run: |
+          package="$RUNNER_TEMP/aio3/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3"
+          for pass in 1 2; do
+            python "$package/install_all_in_one.py" \
+              --package-root "$package" \
+              --runtime-root "$RUNNER_TEMP/runtime" \
+              --hosts codex cline \
+              --codex-marketplace "$RUNNER_TEMP/hosts/.agents/plugins/marketplace.json" \
+              --cline-settings "$RUNNER_TEMP/hosts/cline_mcp_settings.json" \
+              --cline-workspace "$RUNNER_TEMP/hosts/cline-workspace" \
+              --receipt-root "$RUNNER_TEMP/receipts"
+          done
+      - name: Verify installed marketplace projection
+        run: |
+          package="$RUNNER_TEMP/aio3/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3"
+          python "$package/validation/verify_marketplace_projection.py" \
+            --package-root "$package" \
+            --runtime-root "$RUNNER_TEMP/runtime" \
+            --output "$RUNNER_TEMP/aio3/AIO3_MARKETPLACE_GATE.json"
+      - name: Execute receipt-bound rollback
+        run: |
+          package="$RUNNER_TEMP/aio3/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3"
+          python "$package/rollback_all_in_one.py" \
+            --receipt "$RUNNER_TEMP/receipts/INSTALLATION_RECEIPT.json" \
+            --apply \
+            --ack KCH-AIO3-ROLLBACK \
+            --output "$RUNNER_TEMP/aio3/AIO3_ROLLBACK.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kch-aio3-complete
+          path: |
+            ${{ runner.temp }}/aio3/*.zip
+            ${{ runner.temp }}/aio3/*.json
+          retention-days: 3
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v0.11.33-aio.3')
+    needs: source-and-real-base
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: kch-aio3-complete
+          path: release-assets
+      - name: Publish or repair governed AIO3 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${GITHUB_REF_NAME}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" release-assets/* --clobber --repo "${GITHUB_REPOSITORY}"
+          else
+            gh release create "${GITHUB_REF_NAME}" release-assets/* \
+              --verify-tag \
+              --latest \
+              --repo "${GITHUB_REPOSITORY}" \
+              --title "KCH All-in-One 0.11.33-aio.3" \
+              --notes-file construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO3/docs/CIERRE_SUSTANTIVO_AIO3_ES.md
+          fi

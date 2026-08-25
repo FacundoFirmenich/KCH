@@ -1,0 +1,65 @@
+{
+  "schema": "kch.csi.output-contract.v1",
+  "id": "KCH_SUBSTANTIVE_CLOSURE_V1",
+  "version": "1.0.0",
+  "title": "Contrato universal KCH de cierre sustantivo",
+  "jurisdiction": {
+    "scope": "all_supported_kch_host_projections",
+    "applies_to": [
+      "material_checkpoint",
+      "material_response_closure",
+      "major_project_closure"
+    ],
+    "host_limitation": "A projection can enforce only the native surfaces that its host actually exposes."
+  },
+  "closure": {
+    "language": "es",
+    "default_paragraphs": {
+      "minimum": 1,
+      "maximum": 2
+    },
+    "required_dimensions": [
+      "governing_objective",
+      "position_vs_previous_checkpoint",
+      "observed_result",
+      "substantive_meaning",
+      "evidence_boundary",
+      "remaining_uncertainty",
+      "reparability_of_adverse_findings",
+      "consequence_for_the_objective",
+      "next_decision_critical_action"
+    ],
+    "compact_table": "optional_only_when_it_materially_clarifies_scoring_or_comparison_and_always_interpreted_in_prose"
+  },
+  "archivistics": {
+    "supporting_only": true,
+    "consolidate_in_one_artifact": true,
+    "artifact_formats": [
+      "md",
+      "txt"
+    ],
+    "chat_reference_lines_maximum": 1,
+    "hash_claim_ceiling": "A hash can support governed byte identity and local tamper detection; it cannot by itself establish scientific validity, semantic correctness, completeness, utility, or authority."
+  },
+  "preserve": [
+    "adverse_results",
+    "failed_gates",
+    "abstentions",
+    "NOT_ESTIMABLE"
+  ],
+  "forbidden": [
+    "archivistic_only_closure",
+    "cryptic_label_only_closure",
+    "hash_led_claim_of_validity",
+    "signature_or_ceremonial_footer",
+    "repeated_summary",
+    "uninterpreted_inventory"
+  ],
+  "failure_condition": "A technically correct execution with an archivistic, cryptic, label-only or hash-led material closure is an output-interface failure and must be repaired before closing.",
+  "authority": {
+    "source": "explicit_user_correction_2026-08-25",
+    "automatic_scientific_authority": false,
+    "automatic_operational_authority": false,
+    "automatic_promotion": false
+  }
+}
