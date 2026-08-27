@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import os
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -10,6 +11,7 @@ MODULE = Path(__file__).resolve().parents[1] / "overlay" / "codex" / "runtime" /
 SPEC = importlib.util.spec_from_file_location("kwandisk_general_cleanup", MODULE)
 assert SPEC and SPEC.loader
 MOD = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = MOD
 SPEC.loader.exec_module(MOD)
 GeneralCleanup = MOD.GeneralCleanup
 GeneralCleanupError = MOD.GeneralCleanupError
