@@ -125,7 +125,8 @@ def configure_plugin(package: Path) -> Path:
     block = (
         "\n## AIO3 governance contracts\n\n"
         "Every material closure is explanatory; archivistic mechanics are supporting evidence. "
-        "Installed CONSTRUCT can persist only within a user-selected local scope or a verified fork branch and never into the official upstream. "\n        "KwanDisk can discover and plan cleanup across ad hoc, Codex, agent and temp roots, but execution requires exact user authority.\n"
+        "Installed CONSTRUCT can persist only within a user-selected local scope or a verified fork branch and never into the official upstream. "
+        "KwanDisk can discover and plan cleanup across ad hoc, Codex, agent and temp roots, but execution requires exact user authority.\n"
     )
     if "## AIO3 governance contracts" not in text:
         text += block
