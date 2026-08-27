@@ -5,6 +5,7 @@ import os
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 MODULE = Path(__file__).resolve().parents[1] / "overlay" / "codex" / "runtime" / "kwandisk" / "general_cleanup.py"
@@ -74,6 +75,18 @@ class GeneralCleanupTests(unittest.TestCase):
             plan = GeneralCleanup.plan(discovery, older_than_hours=0, active_paths=[cache])
             self.assertEqual([], plan["candidates"])
             self.assertTrue(any(item["reason"] == "PROTECTED_OR_ACTIVE" for item in plan["blocked"]))
+
+    def test_disappearing_candidate_abstains_and_scan_continues(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            cache = root / "__pycache__"
+            cache.mkdir()
+            (cache / "x.pyc").write_bytes(b"x")
+            discovery = {"roots": [{"kind": "ADHOC", "path": str(root), "exists": True}], "storage_priority": []}
+            with mock.patch.object(MOD, "_path_fingerprint", side_effect=FileNotFoundError("vanished")):
+                plan = GeneralCleanup.plan(discovery, older_than_hours=0)
+            self.assertEqual([], plan["candidates"])
+            self.assertTrue(any(item["reason"] == "TARGET_CHANGED_OR_UNREADABLE" for item in plan["blocked"]))
 
     def test_execute_requires_exact_identity_and_is_idempotent(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
