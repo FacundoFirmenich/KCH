@@ -210,7 +210,11 @@ class GeneralCleanup:
                     if reason is None:
                         kept.append(name)
                         continue
-                    fingerprint = _path_fingerprint(path)
+                    try:
+                        fingerprint = _path_fingerprint(path)
+                    except (FileNotFoundError, OSError):
+                        blocked.append({"root": str(root), "path": relative.as_posix(), "reason": "TARGET_CHANGED_OR_UNREADABLE"})
+                        continue
                     age_ns = now_ns - fingerprint["latest_mtime_ns"]
                     if age_ns < threshold_ns:
                         blocked.append({"root": str(root), "path": relative.as_posix(), "reason": "TOO_RECENT"})
@@ -228,7 +232,11 @@ class GeneralCleanup:
                     reason = _transient_reason(path)
                     if reason is None:
                         continue
-                    fingerprint = _path_fingerprint(path)
+                    try:
+                        fingerprint = _path_fingerprint(path)
+                    except (FileNotFoundError, OSError):
+                        blocked.append({"root": str(root), "path": relative.as_posix(), "reason": "TARGET_CHANGED_OR_UNREADABLE"})
+                        continue
                     if now_ns - fingerprint["latest_mtime_ns"] < threshold_ns:
                         continue
                     candidates.append({
@@ -255,7 +263,11 @@ class GeneralCleanup:
                 ):
                     blocked.append({"root": str(root), "path": relative, "reason": "BACKUP_CHAIN_INCOMPLETE"})
                     continue
-                fingerprint = _path_fingerprint(path)
+                try:
+                    fingerprint = _path_fingerprint(path)
+                except (FileNotFoundError, OSError):
+                    blocked.append({"root": str(root), "path": relative, "reason": "TARGET_CHANGED_OR_UNREADABLE"})
+                    continue
                 if fingerprint["signature"] != item.get("local_signature"):
                     blocked.append({"root": str(root), "path": relative, "reason": "LOCAL_CHANGED_AFTER_RECEIPT"})
                     continue
@@ -305,7 +317,11 @@ class GeneralCleanup:
             if not target.exists():
                 already_absent.append({"root": str(root), "path": item["path"]})
                 continue
-            observed = _path_fingerprint(target)
+            try:
+                observed = _path_fingerprint(target)
+            except FileNotFoundError:
+                already_absent.append({"root": str(root), "path": item["path"]})
+                continue
             if observed["signature"] != item.get("signature"):
                 raise GeneralCleanupError(f"target changed after plan: {item['path']}")
             if target.is_dir():
