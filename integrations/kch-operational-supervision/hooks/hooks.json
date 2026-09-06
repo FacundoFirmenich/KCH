@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "PreToolUse": [{"matcher":"*","hooks":[{"type":"command","command":"python3 -B \"$PLUGIN_ROOT/scripts/agent_hook.py\"","commandWindows":"python -B \"$env:PLUGIN_ROOT\\scripts\\agent_hook.py\"","timeout":10}]}],
+    "PostToolUse": [{"matcher":"*","hooks":[{"type":"command","command":"python3 -B \"$PLUGIN_ROOT/scripts/agent_hook.py\"","commandWindows":"python -B \"$env:PLUGIN_ROOT\\scripts\\agent_hook.py\"","timeout":10}]}],
+    "UserPromptSubmit": [{"hooks":[{"type":"command","command":"python3 -B \"$PLUGIN_ROOT/scripts/agent_hook.py\"","commandWindows":"python -B \"$env:PLUGIN_ROOT\\scripts\\agent_hook.py\"","timeout":10}]}]
+  }
+}

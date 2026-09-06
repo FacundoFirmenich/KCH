@@ -1,0 +1,16 @@
+{
+  "name": "kch-operational-supervision",
+  "version": "0.1.0",
+  "description": "KCH VPS resource diagnostics and evidence-bound agent supervision with Construct preregistration.",
+  "author": {"name": "Facundo Firmenich"},
+  "repository": "https://github.com/FacundoFirmenich/KCH",
+  "interface": {
+    "displayName": "KCH Operational Supervision",
+    "shortDescription": "VPS diagnostics and agent supervision",
+    "defaultPrompt": ["Inspect authorized VPS health and native agent evidence."],
+    "longDescription": "Read-only VPS measurements, native agent-event observation, Luna/Terra worker guards and evidence-bound Construct preregistration. Installation and host coverage require separate verification.",
+    "developerName": "Facundo Firmenich",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"]
+  }
+}

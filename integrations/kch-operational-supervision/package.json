@@ -1,0 +1,8 @@
+{
+  "name":"kch-operational-supervision",
+  "version":"0.1.0",
+  "private":true,
+  "type":"module",
+  "description":"KCH operational diagnostics and evidence-bound agent supervision",
+  "cline":{"plugins":[{"paths":["./plugin/index.js"],"capabilities":["tools"]}]}
+}
