@@ -99,23 +99,24 @@ def configure_plugin(package: Path) -> Path:
     copy_tree(ROOT / "overlay" / "codex", plugin)
     config = plugin / "config"
     config.mkdir(exist_ok=True)
-    for name in ("substantive_closure.v1.json", "construct_persistence.v1.json"):
+    for name in ("substantive_closure.v1.json", "construct_persistence.v1.json", "kwandisk_general_cleanup.v1.json"):
         shutil.copy2(ROOT / "contracts" / name, config / name)
     configure_hooks(plugin)
     manifest_path = plugin / ".codex-plugin" / "plugin.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["version"] = PLUGIN_VERSION
-    manifest["description"] = "KCH All-in-One with universal substantive closure and governed CONSTRUCT persistence."
+    manifest["description"] = "KCH All-in-One with universal substantive closure, governed CONSTRUCT persistence and safe general KwanDisk cleanup."
     interface = manifest.setdefault("interface", {})
     interface["longDescription"] = (
-        "KCH nativo con cierre sustantivo universal y CONSTRUCT persistente sólo en la instalación seleccionada, "
-        "las instalaciones registradas o una rama no predeterminada de un fork verificado."
+        "KCH nativo con cierre sustantivo universal, CONSTRUCT persistente bajo ámbito seleccionado y KwanDisk general. "
+        "La custodia prioriza Drive, luego GitHub dentro de sus límites; local o VPS sólo si es explícito o indispensable."
     )
     interface["defaultPrompt"] = (
-        "Gobierna la tarea con KCH; cierra checkpoints materiales de forma sustantiva y consulta el ámbito antes de persistir CONSTRUCT."
+        "Gobierna la tarea con KCH; cierra checkpoints materiales, consulta el ámbito antes de persistir CONSTRUCT "
+        "y usa KwanDisk sin borrado automático."
     )
     capabilities = interface.setdefault("capabilities", [])
-    for capability in ("substantive-closure", "governed-construct-persistence"):
+    for capability in ("substantive-closure", "governed-construct-persistence", "kwandisk-general-cleanup"):
         if capability not in capabilities:
             capabilities.append(capability)
     write_json(manifest_path, manifest)
@@ -124,7 +125,8 @@ def configure_plugin(package: Path) -> Path:
     block = (
         "\n## AIO3 governance contracts\n\n"
         "Every material closure is explanatory; archivistic mechanics are supporting evidence. "
-        "Installed CONSTRUCT can persist only within a user-selected local scope or a verified fork branch and never into the official upstream.\n"
+        "Installed CONSTRUCT can persist only within a user-selected local scope or a verified fork branch and never into the official upstream. "
+        "KwanDisk can discover and plan cleanup across ad hoc, Codex, agent and temp roots, but execution requires exact user authority.\n"
     )
     if "## AIO3 governance contracts" not in text:
         text += block
@@ -253,6 +255,7 @@ def build(base_zip: Path, output: Path) -> dict[str, Any]:
     configure_installer(package)
     copy_tree(ROOT / "contracts", package / "contracts")
     shutil.copy2(ROOT / "docs" / "CIERRE_SUSTANTIVO_AIO3_ES.md", package / "docs" / "CIERRE_SUSTANTIVO_AIO3_ES.md")
+    shutil.copy2(ROOT / "docs" / "KWANDISK_GENERAL_CLEANUP_V0_2_ES.md", package / "docs" / "KWANDISK_GENERAL_CLEANUP_V0_2_ES.md")
     shutil.copy2(ROOT / "CONSTRUCT_RECORD.json", package / "CONSTRUCT_RECORD.json")
     shutil.copy2(ROOT / "README_ES.md", package / "README_ES_AIO3.md")
     shutil.copy2(ROOT / "scripts" / "verify_aio3.py", package / "verify_all_in_one.py")
@@ -266,7 +269,7 @@ def build(base_zip: Path, output: Path) -> dict[str, Any]:
         "predecessor_sha256": observed,
         "lineage_before": base_lineage,
         "lineage_after": after_lineage,
-        "lowered_contracts": ["KCH_SUBSTANTIVE_CLOSURE_V1", "KCH_CONSTRUCT_PERSISTENCE_V1"],
+        "lowered_contracts": ["KCH_SUBSTANTIVE_CLOSURE_V1", "KCH_CONSTRUCT_PERSISTENCE_V1", "KCH_KWANDISK_GENERAL_CLEANUP_V1"],
         "official_upstream_write_enabled": False,
         "automatic_promotion": False,
     }

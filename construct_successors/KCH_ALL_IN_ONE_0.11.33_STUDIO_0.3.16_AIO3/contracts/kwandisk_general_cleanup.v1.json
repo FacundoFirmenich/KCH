@@ -1,0 +1,43 @@
+{
+  "schema": "kch.kwandisk.general-cleanup-contract.v1",
+  "version": "0.2.0",
+  "storage_priority": [
+    "GOOGLE_DRIVE",
+    "GITHUB_WITHIN_PROVIDER_LIMITS",
+    "LOCAL_OR_VPS_ONLY_EXPLICIT_OR_INDISPENSABLE"
+  ],
+  "jurisdictions": [
+    "ADHOC",
+    "CODEX_PROJECTS",
+    "AGENT_STATE",
+    "TEMP"
+  ],
+  "commands": [
+    "discover-general",
+    "plan-general",
+    "execute-general"
+  ],
+  "cleanup_classes": [
+    "REGENERABLE",
+    "TRANSIENT",
+    "REPLICATED_CUSTODY"
+  ],
+  "required_execution_gates": [
+    "actor=USER",
+    "exact_authorization_id",
+    "expected_plan_sha256",
+    "target_revalidation"
+  ],
+  "protected_classes": [
+    "UNKNOWN",
+    "ACTIVE",
+    "DIRTY_WORKTREE",
+    "SENSITIVE",
+    "INACCESSIBLE",
+    "SOLE_COPY",
+    "PROTECTED_AGENT_STATE"
+  ],
+  "automatic_deletion": false,
+  "vps_automatic_backup": false,
+  "phl_training_executed": false
+}
