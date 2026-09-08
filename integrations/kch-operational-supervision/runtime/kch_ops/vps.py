@@ -6,6 +6,7 @@ without installing a daemon or package on the observed VPS.
 from __future__ import annotations
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -80,9 +81,34 @@ def snapshot(proc='/proc', *, allowed_uids=None, max_processes=5000):
             'process_scope':'UID_ALLOWLIST' if allowed_uids is not None else 'NOT_REQUESTED'}
 
 
+def pressure_window(before, after, elapsed):
+    """Pressure-counter deltas for the same sampling window; unavailable is not zero."""
+    if type(elapsed) not in (int, float) or not math.isfinite(elapsed) or elapsed <= 0:
+        raise ValueError('INVALID_PRESSURE_INTERVAL')
+    result = {}
+    for resource in ('cpu', 'memory', 'io'):
+        result[resource] = {}
+        for metric in (('some',) if resource == 'cpu' else ('some', 'full')):
+            try:
+                left = before['pressure'][resource][metric]['total']
+                right = after['pressure'][resource][metric]['total']
+                if any(type(v) not in (int, float) or not math.isfinite(v) for v in (left, right)):
+                    raise ValueError('INVALID_COUNTER')
+                delta = right - left
+                if delta < 0:
+                    result[resource][metric] = {'state':'COUNTER_RESET', 'percent_of_wall_interval':None}
+                else:
+                    result[resource][metric] = {
+                        'state':'OBSERVED', 'counter_delta_microseconds':delta,
+                        'percent_of_wall_interval':100 * delta / (elapsed * 1_000_000)}
+            except (KeyError, TypeError, ValueError):
+                result[resource][metric] = {'state':'UNAVAILABLE', 'percent_of_wall_interval':None}
+    return result
+
+
 def compare(before, after, *, ticks_per_second, page_size, cpu_count):
     elapsed = after['monotonic'] - before['monotonic']
-    if elapsed <= 0 or min(ticks_per_second, page_size, cpu_count) <= 0:
+    if not math.isfinite(elapsed) or elapsed <= 0 or min(ticks_per_second, page_size, cpu_count) <= 0:
         raise ValueError('INVALID_MEASUREMENT_INTERVAL')
     delta = [b-a for a,b in zip(before['cpu'], after['cpu'])]
     if len(delta) != 8 or any(x < 0 for x in delta) or sum(delta) <= 0:
@@ -114,9 +140,10 @@ def compare(before, after, *, ticks_per_second, page_size, cpu_count):
             'cpu_count':cpu_count, 'load_average':after['load_average'],
             'memory_total_bytes':memory.get('MemTotal'), 'memory_available_bytes':available,
             'swap_used_bytes':memory.get('SwapTotal',0)-memory.get('SwapFree',0),
-            'pressure':after['pressure'], 'process_count_observed':len(rows),
-            'zombie_count':sum(x['state']=='Z' for x in rows),
-            'uninterruptible_count':sum(x['state']=='D' for x in rows),
+            'pressure':after['pressure'], 'pressure_sample_window':pressure_window(before,after,elapsed),
+            'process_count_observed':len(rows) if after['process_scope']!='NOT_REQUESTED' else None,
+            'zombie_count':sum(x['state']=='Z' for x in rows) if after['process_scope']!='NOT_REQUESTED' else None,
+            'uninterruptible_count':sum(x['state']=='D' for x in rows) if after['process_scope']!='NOT_REQUESTED' else None,
             'processes':rows, 'process_scope':after['process_scope'],
             'errors':before['errors']+after['errors']}
 
@@ -138,10 +165,10 @@ def collect(request):
                      page_size=os.sysconf('SC_PAGE_SIZE'),cpu_count=os.cpu_count() or 1)
     disk = shutil.disk_usage('/')
     inode = os.statvfs('/')
-    report.update(schema='kch.vps-observation.v0.1.0', timestamp_utc=datetime.now(timezone.utc).isoformat(),
+    report.update(schema='kch.vps-observation.v0.1.0', collector_version='0.1.1', timestamp_utc=datetime.now(timezone.utc).isoformat(),
                   hostname=socket.gethostname(), disk_root={'total_bytes':disk.total,'free_bytes':disk.free,
                   'inodes_total':inode.f_files,'inodes_free':inode.f_favail},
-                  services=[], process_rows_omitted=max(0,len(report['processes'])-100))
+                  services=[], process_rows_omitted=max(0,len(report['processes'])-100) if report['process_scope']!='NOT_REQUESTED' else None)
     report['processes'] = report['processes'][:100]
     for name in services:
         try:
