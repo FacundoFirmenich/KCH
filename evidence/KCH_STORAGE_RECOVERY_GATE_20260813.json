@@ -1,0 +1,51 @@
+{
+  "schema": "kch.storage-recovery-gate.v0.1.0",
+  "date": "2026-08-13",
+  "trigger": "C_DRIVE_EXHAUSTED_DURING_MIS031_INTEGRATION",
+  "initial_c_free_bytes_observed": 0,
+  "policy": {
+    "delete_only_after_remote_copy_and_local_reconstruction_gate": true,
+    "preserve_nonregenerable_evidence": true,
+    "phl_real_execution": false
+  },
+  "r11_forensic_archive": {
+    "full_zip_bytes": 125273899,
+    "full_zip_sha256": "47e4e6fe1203257d5bb6a2f5b67746d255118c57b6ef798b486cafb1e94b0990",
+    "zip_members": 68,
+    "zip_integrity": "PASS",
+    "parts_reconstruct_full_zip": true,
+    "drive_parts": [
+      {
+        "id": "15JOX2MENNZiPQ-33gJquRvT6aDCK9iAa",
+        "bytes": 95000000,
+        "sha256_local_source": "ac341915057685f6d82671eabb58205c30dac97aaa00e34c8ef4a364c341cd99"
+      },
+      {
+        "id": "1EepDTqFFvpATcew7-wBFeAuPnFuttt_N",
+        "bytes": 30273899,
+        "sha256_local_source": "f96c4a0ec1105a00f7269c887f498e616bdb71b4391a3fae38f7fe41b3c496f4"
+      }
+    ],
+    "remote_digest_boundary": "Drive metadata confirms exact sizes but does not expose an independent cryptographic digest."
+  },
+  "r12_superdocument_archive": {
+    "bytes": 81420598,
+    "sha256": "4b149ace4f3ccc2fe26650edabc8a7854e4fe532bd01dc8c2ee14989f230ee1e",
+    "members": 21,
+    "expanded_bytes": 217762735,
+    "source_coverage": "21_OF_21_EXACT_FILE_SIZES",
+    "zip_integrity": "PASS",
+    "drive_file_id": "1MpvgHEZNqzFBZvFO8C3QuMF_UudqFWTZ",
+    "drive_bytes_observed": 81420598,
+    "drive_receipt_id": "1f2SmuOtn9V89gAn8SurxUuL1ux81bTMo",
+    "drive_receipt_bytes_observed": 1063,
+    "remote_digest_boundary": "Drive metadata confirms exact size but does not expose an independent cryptographic digest."
+  },
+  "safe_local_cleanup_scope": [
+    "work/KCH_INFAMIA_FORENSIC_AUDIT_20260811",
+    "work/KCH_INFAMIA_FORENSIC_AUDIT_20260811_R11.zip",
+    "work/KCH_INFAMIA_FORENSIC_AUDIT_20260811_R11.zip.part001",
+    "work/KCH_INFAMIA_FORENSIC_AUDIT_20260811_R11.zip.part002"
+  ],
+  "claim_boundary": "This receipt proves local archive integrity, exact part reconstruction and Drive-side identity/size readback; it does not claim an independently recomputed Drive SHA-256."
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "kch.storage-transport-parts-manifest.v0.1.0",
+  "date": "2026-08-13",
+  "archive": {
+    "name": "KCH_PRE2G_TASK_COMPLETE_MIGRATION_20260813.zip",
+    "bytes": 342806371,
+    "sha256": "52ad1c01e93f099199ea0ac2156f5792aa68b2a4700ed0d48a1860a36484cc13",
+    "members": 2341,
+    "expanded_bytes": 464360713,
+    "integrity_gate": "PASS"
+  },
+  "parts": [
+    {
+      "name": "KCH_PRE2G_TASK_COMPLETE_MIGRATION_20260813.zip.part001",
+      "index": 1,
+      "offset": 0,
+      "bytes": 95000000,
+      "sha256": "898fd82ce6cb7f6c69aabd4cf9f65d4ecd128915b3ee6d8b9265553a94528818",
+      "drive_id": "186PWfMVxmw80NYfh9L_JOPnSvFfLHTk1",
+      "drive_size_gate": "PASS"
+    },
+    {
+      "name": "KCH_PRE2G_TASK_COMPLETE_MIGRATION_20260813.zip.part002",
+      "index": 2,
+      "offset": 95000000,
+      "bytes": 95000000,
+      "sha256": "e54553e5031cb3b180276887d3390cc0bc0de4df8f4b7e66b663ce24c4e5c0ce",
+      "drive_id": "19krzBkqhwnBYmLh7ml0Pq_X95_FfX-Pz",
+      "drive_size_gate": "PASS"
+    },
+    {
+      "name": "KCH_PRE2G_TASK_COMPLETE_MIGRATION_20260813.zip.part003",
+      "index": 3,
+      "offset": 190000000,
+      "bytes": 95000000,
+      "sha256": "151d2ccb30f08cd6b2c27221208e7ec51bb540a4bca610b0c75762e654e2974b",
+      "drive_id": "1s8qcg7nlZLqpp6ryRFZ93tvF_IOxd6eu",
+      "drive_size_gate": "PASS"
+    },
+    {
+      "name": "KCH_PRE2G_TASK_COMPLETE_MIGRATION_20260813.zip.part004",
+      "index": 4,
+      "offset": 285000000,
+      "bytes": 57806371,
+      "sha256": "635845ed96f73fe618b76fb67291f108a5c866ad68686017719e2007cecda555",
+      "drive_id": "1T0TeQGSSQX3qYWRffJR7aXZt4-XAONs5",
+      "drive_size_gate": "PASS"
+    }
+  ],
+  "reconstruction": {
+    "order": ["part001", "part002", "part003", "part004"],
+    "method": "binary concatenation in index order",
+    "required_final_sha256": "52ad1c01e93f099199ea0ac2156f5792aa68b2a4700ed0d48a1860a36484cc13"
+  },
+  "drive_folder_id": "19USDhwjQdeRZCjQl9TxRyjoz8L4720qM",
+  "remote_digest_boundary": "Drive exposed and read back exact byte sizes for every part but did not expose an independently computed cryptographic digest. The part digests are those computed before upload and persisted remotely in this manifest."
+}

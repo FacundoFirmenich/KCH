@@ -1,0 +1,650 @@
+# Propuesta superadora de integración KCH R33 × μ × Transmuter × SCPP × octeto
+
+Fecha: 2026-08-13  
+Estado: diseño arquitectónico y experimental propuesto; no ejecución ni claim empírico.  
+Objetivo rector: convertir lo desarrollado en este hilo en el primer sucesor científico
+integral de KCH, sin fusionar autoridades, linajes, métricas ni resultados.
+
+## 0. Decisión arquitectónica
+
+La integración ganadora no es una megafusión ni un ensemble que promedie todo. Es una
+**composición causal de sistemas soberanos**:
+
+1. **SCPP** determina si una transición es siquiera admisible antes de deliberar.
+2. **Transformer y Transmuter** producen rutas distintas: transformación y transmutación.
+3. **μ_EQ y μ_QE** operan simultáneamente como dos orientaciones glandulares distintas.
+4. **Las tres capas** conservan los residuos y las relaciones que un ganador único borraría.
+5. **El octeto** convierte ocho bloques cosignificantes en un objeto conjunto contrastable.
+6. **KCH** gobierna instrucciones, procedencia, recursos, ejecución, aislamiento,
+   recuperación y promoción; no decide qué resultado científico es verdadero.
+7. **KwanTau** observa y explica estados ya atestiguados; no anticipa resultados ni autoridad.
+
+La unidad superior no necesita resultar evidente en la primera ejecución. Se predeclaran
+la composición, el orden y las pruebas; la propiedad emergente sólo puede aceptarse ex post,
+en holdout, contra modelos factorados y nulos de permutación.
+
+## 0.1 Continuidad funcional: las capacidades diferenciales que gobiernan la integración
+
+La arquitectura no se construye para demostrar capas, octetos o gates como fines en sí
+mismos. Esas piezas deben materializar una tesis funcional anterior y más concreta:
+**la combinación KCH × μ × Transmuter × SCPP puede producir capacidades que ninguno de
+sus componentes posee por separado**.
+
+La óptica funcional precedente y la óptica experimental actual son dos escalas de una
+misma arquitectura:
+
+- la primera pregunta **para qué sirve diferencialmente el sistema**;
+- la segunda pregunta **qué mecanismo lo causa y cómo se falsifica**.
+
+Las áreas prioritarias son:
+
+| Prioridad | Capacidad diferencial | Composición que la hace posible | Aplicaciones concretas | Estado actual |
+|---:|---|---|---|---|
+| S | memoria temporal epistemológicamente gobernada | μ_EQ persistente + μ_QE conjugada + jurisdicción KCH + estado shadow | distinguir conocimiento vigente, obsoleto, recurrente y todavía no readmitido; RAG temporal; historiales longitudinales | señal causal fuerte de frontera informacional; sistema completo pendiente |
+| S | aprendizaje continuo sin borrado retrospectivo | memoria lenta μ + learner rápido + PHL future-only + sucesores CONSTRUCT | concept drift, reaparición de conceptos, delayed labels, actualización de agentes, modelos de dos velocidades | nicho respaldado por el patrón E1; beneficio sistémico por confirmar |
+| S | routing local trazable entre sesgos inductivos | Transformer/GRU + Transmuter/μ + QAS/CAS + MIS/RGG + doble libro | seleccionar experto por régimen sin winner global; abstención; reranking; pre-softmax governance | SCPP ya dio una primera prueba local; generalización pendiente |
+| S | prevención primitiva constitucional | SCPP pentaxial + hooks/locks + sensing local + rollback | ciberseguridad, control crítico, acciones irreversibles, defensa ante alienación autodestructiva | evidencia causal local positiva; transferencia abierta pendiente |
+| A+ | detección de ruptura de coherencia entre representaciones | μ_EQ↔μ_QE + capa 2/3 + octeto + transformadas | anomalías, corrupción, cambio de calibración, tampering, códigos redundantes, error correction | estructura sugerente; prueba específica pendiente |
+| A+ | auditoría contrafáctica y memoria de residuos | ejecución paralela + shadow + KwanDocs/KwanData + ledger | reconstrucción de decisiones, versiones previas, estados descartados, investigación forense, delayed outcomes | KCH posee gran parte de la infraestructura; integración científica pendiente |
+| A | procesamiento estructural no reducible a atención estándar | Transmuter + rama residual/MoE + RGG | transformaciones geométricas, topológicas, configuracionales, sensores y secuencias científicas | especialista local plausible; no ventaja universal |
+| A | evolución germinativa recuperable | CONSTRUCT + RCL + KwanFork + PHL + SCPP | construir sucesores, fallar de forma segura, comparar y promover sin destruir el estable | arquitectura formalizada; motor transaccional integral pendiente |
+| A | soberanía doméstica/edge | operadores pequeños + sidecars/pre-softmax + LIBRESOURCE | despliegue local, sensores, edge, GPU alquilada o gratuita, proveedor sustituible | viable por escala de ingeniería; utilidad real por validar |
+
+### La superpotencia no pertenece a una pieza aislada
+
+- μ sola puede exhibir persistencia o conjugación, pero no sabe qué memoria tiene
+  autoridad en cada jurisdicción.
+- Transmuter solo puede ofrecer otra transformación, pero no sabe cuándo debe prevalecer.
+- SCPP solo puede impedir transiciones inadmisibles, pero no aporta por sí mismo memoria
+  temporal ni representación alternativa.
+- KCH solo puede gobernar capacidades existentes, pero no genera por sí mismo el sesgo
+  temporal, glandular o transmutativo.
+
+La integración produce algo nuevo:
+
+> un sistema que conserva simultáneamente presente, pasado y residuo; identifica el
+> régimen local; escoge o se abstiene de forma trazable; impide acciones constitutivamente
+> imposibles; aprende sólo hacia sucesores futuros; y puede recuperar o reemplazar sus
+> recursos sin perder identidad ni evidencia.
+
+Ésa es la tesis diferencial principal. Las tres capas y el octeto son su máquina de
+memoria/coherencia; el nanorouter es su máquina de autoridad local; SCPP es su reflejo;
+IGE su gramática de mandato; MIS/RGG su lectura relacional; CONSTRUCT/PHL su evolución.
+
+### Formas de integración por coste
+
+La misma tesis admite una escalera doméstica y modular:
+
+1. **pre-softmax sin entrenamiento**: autoridad local, abstención, reranking y sesgo
+   trazable de logits;
+2. **sidecar recurrente**: μ lee hidden states/logits, conserva historia propia y devuelve
+   una señal sin modificar el backbone;
+3. **router pequeño**: selecciona Transformer/Transmuter/μ por observables permitidos;
+4. **adaptadores internos selectivos**: una unidad μ o Transmuter cada varias capas;
+5. **especialista autónomo**: series, sensores, control o memoria estrecha.
+
+Por tanto, el primer producto científico no debe presentarse como «un octeto dentro de
+KCH». Debe presentarse como una **memoria temporal gobernada y preventiva**, cuya primera
+prueba causal interna utiliza octeto, capas, operadores paralelos y sucesión recuperable.
+
+## 1. Contraste entre KCH R33 y lo construido en este hilo
+
+| Elemento del hilo | Estado científico actual | Capacidad R33 que encaja | Integración correcta | Integración prohibida |
+|---|---|---|---|---|
+| Jurisdicción local | tarea × operación × horizonte/retardo × interferencia × fase | IGE + contratos CSI | autoridad predeclarada por celda | promedio global con autoridad |
+| Semillas | réplicas/bloques aleatorios | SCO + KwanData | incertidumbre anidada dentro de jurisdicción | tratar semillas como jurisdicciones |
+| μ_EQ | señal local favorable en memoria obsoleta; adversa en vigente; puente causal separado 16/16 | CSI + MIS/RGG | operador soberano y trazado | declararlo ganador global |
+| μ_QE | polaridad direccional; 2/4 celdas vigentes confirmadas; 8/8 pérdidas frente a GRU | CSI en `SHADOW_ONLY` | medir, conservar y contrastar | darle autoridad de router |
+| Transmuter v0.2 | implementación validada; Q4 sin contribución material; pérdida en celda difícil | linaje KwanDocs/KwanData | control histórico reproducible | reescribirlo como éxito |
+| Transmuter v0.3.2 | envolvente local arquitectónica 7–1; log-loss de Transformer mejor en siete celdas | KwanFork + router local | dos libros de resultados separados | condensarlo en un único score |
+| Regla del empate | dentro de incertidumbre, la trazabilidad puede decidir a favor del candidato; margen posterior contextual | IGE + adjudicador CSI | política formal dual | alterar cifras o rescatar pérdida clara |
+| Tres capas μ | pares funcionales distintos y residuo preservado | MIS/RGG + recibos compuestos | tensor de capas sin promediar | reducirlo a una salida |
+| Octeto | ocho partes de un mismo conjunto cosignificante | KwanData + MIS/RGG | byte ordenado, irreducibilidad contrastada | ocho experimentos inconexos |
+| Antisimetría | hipótesis fuerte, quizá local; universalidad sería extraordinaria | modelos de operador + holdout | jerarquía escalar→diagonal→permutacional→ortogonal | ajustar y validar sobre lo mismo |
+| SCPP | prevención primitiva pentaxial, anterior a deliberación | locks + hooks + RCL + CONSTRUCT | veto de transición y recibo causal | confundirlo con LIBRESOURCE |
+| Campo endocrino | función glandular propuesta; bilateralidad operativa prematura | telemetría CSI futura | modulación en shadow | autoridad global o bilateralidad fingida |
+
+La complementariedad es precisa:
+
+- KCH aporta **gobernabilidad y continuidad** donde la investigación tenía ejecuciones
+  fragmentadas, errores de implementación y lecturas globales impropias.
+- μ/Transmuter aporta a KCH su primer objeto científico donde la autoridad es realmente
+  local, multicapas, temporal y no reducible a una métrica única.
+- SCPP aporta la prueba de que gobernar no es sólo escoger: también es impedir una
+  transición autodestructiva o conformacionalmente imposible antes de ejecutarla.
+- El octeto aporta un caso no trivial para MIS/RGG: detectar sentido conjunto sin inventarlo.
+
+## 2. Arquitectura funcional propuesta
+
+### 2.1 Plano A — precontrato pentaxial SCPP
+
+Cada sucesor experimental nace y muere bajo el mismo precontrato. Puede calibrarse o
+ecualizarse dentro de rangos predeclarados; cambiar una de sus cinco categorías exige
+crear otro sucesor, nunca mutar silenciosamente el existente.
+
+Las cinco categorías indivisibles son:
+
+1. preservación sistémica y ciberseguridad estática/dinámica, local/global/local;
+2. coherencia jerárquico-fundacional endógena;
+3. coherencia secuencial interescalar nano→micro→macro→nano;
+4. preservación irreversible de invariantes conformacionales;
+5. transparencia, trazabilidad y caja blanca lógico-deductivamente inviolables.
+
+Formalmente, para una transición propuesta `a` en estado `s`:
+
+\[
+G_{SCPP}(s,a)=\bigwedge_{k=1}^{5} g_k(s,a).
+\]
+
+Si cualquier `g_k=0`, `a` no es una alternativa con menor utilidad: es una jugada
+inadmisible. El recibo debe identificar categoría, evidencia y efecto bloqueado. La
+regencia SCPP no selecciona al ganador científico.
+
+### 2.2 Plano B — gobierno instruccional IGE
+
+IGE separa y versiona cinco clases que antes podían mezclarse en contexto blando:
+
+- decisión constituyente del usuario;
+- instrucción experimental local;
+- hipótesis científica;
+- preferencia reversible;
+- claim y límite de evidencia.
+
+La autoridad entre capas es determinista. La inferencia credal sólo interviene dentro
+de una misma capa entre instrucciones admisibles. Sus salidas permitidas incluyen
+`RESOLVE`, `ASK_USER`, `ABSTAIN`, `NOT_ESTIMABLE` y conflicto explícito.
+
+### 2.3 Plano C — recursos y ejecución LIBRESOURCE/CSI
+
+Python, PyTorch, SciPy, GPU, notebook, VPS, proveedor, modelo o formato son recursos,
+no raíces de autoridad. Cada dependencia registra:
+
+- contrato de entrada/salida;
+- semántica y estado;
+- versión y hash;
+- ruta de exportación, reemplazo, rollback y recuperación;
+- clasificación `readOnly / mutating / authority-bearing`.
+
+Los experimentos pesados se ejecutan en VPS/GPU cuando corresponda. KCH conserva
+control, recibos y recuperación sin fingir independencia inmediata del recurso.
+
+### 2.4 Plano D — dos carriles científicos soberanos
+
+#### Carril T: Transformer ↔ Transmuter
+
+Ambos candidatos se calculan cuando el presupuesto lo permite. Un nanorouter local
+puede seleccionar la salida operativa sólo después de tener evidencia de la jurisdicción.
+
+- Transmuter v0.2 permanece como linaje histórico/control.
+- Transmuter v0.3.2 es un candidato separado.
+- Transformer conserva su propio resultado y sus ventajas cuantitativas.
+- No existe ganador global de familia.
+
+El nanorouter pertenece al plano reflejo-operativo: automatiza decisiones locales ya
+respaldadas; no crea autoridad a partir de correlaciones exploratorias.
+
+#### Carril M: GRU ↔ μ_EQ ↔ μ_QE
+
+GRU continúa como control recurrente. μ_EQ y μ_QE se calculan simultáneamente, pero no
+se promedian ni se tratan como sustitutos simétricos:
+
+- μ_EQ conserva la orientación electroquímica;
+- μ_QE conserva la orientación químico-eléctrica;
+- `router_authorized(μ_QE)=false` hasta confirmación independiente;
+- una pérdida clara frente a GRU permanece pérdida.
+
+Los carriles T y M comparten objetos experimentales y temporalidad, pero no comparten
+una tabla de ganadores. Su integración es conformacional, no escalar.
+
+### 2.5 Plano E — las tres capas por bloque
+
+Para cada bloque ordenado `b∈{1,…,8}` se conservan exactamente estas parejas:
+
+\[
+L_{1,b}=(\mu_{EQ,b}^{obsolete},\;GRU_b^{current}),
+\]
+
+\[
+L_{2,b}=(GRU_b^{obsolete},\;\mu_{QE,b}^{current}),
+\]
+
+\[
+L_{3,b}=(\mu_{QE,b}^{obsolete},\;\mu_{EQ,b}^{current}).
+\]
+
+Lectura funcional:
+
+- `L1`: unidad superficial/básica, sin negar su contexto;
+- `L2`: unidad jerárquica compuesta y portadora del byte;
+- `L3`: residuo categorial dependiente y traza para lectura posterior.
+
+Esas etiquetas son hipótesis arquitectónicas; los valores continúan siendo resultados
+empíricos y pueden no exhibir la estructura esperada.
+
+### 2.6 Plano F — byte ideocríptico de octeto
+
+Un octeto es una única entidad experimental con ocho bloques cosignificantes. No son
+ocho seeds ni ocho tareas elegidas arbitrariamente. Todos los bloques pertenecen a la
+misma trayectoria, objeto o proceso, y su orden queda congelado antes de observar
+resultados.
+
+El byte se representa como:
+
+\[
+\mathcal B=(B_1,\ldots,B_8),\qquad
+B_b=(L_{1,b},L_{2,b},L_{3,b},T_b),
+\]
+
+donde `T_b` conserva por separado Transformer y Transmuter. La unidad completa es un
+objeto tensorial; no se reduce a una media de 8, 16 o 48 valores.
+
+### 2.7 Plano G — campo endocrino en shadow
+
+En esta generación el campo endocrino sólo puede modular parámetros admitidos y
+registrar telemetría:
+
+\[
+\theta_m(t)=\theta_m^0+B_m e(t),
+\]
+
+donde `e(t)` es el estado endocrino acotado y `m` identifica cada operador. `e(t��-�G����ƭy�
+- dos libros de evaluación;
+- tres capas por bloque;
+- octeto y transforms;
+- veto SCPP y causalidad del bloqueo;
+- dependencia/estado LIBRESOURCE;
+- linaje y promoción CONSTRUCT.
+
+La interfaz nunca convierte color, ranking o agregación visual en autoridad.
+
+## 3. Regla dual de adjudicación: cifra intacta, elección arquitectónica explícita
+
+Para candidato propio `c` y competidor `q` en jurisdicción `j`, sea `d_j` la ventaja
+del competidor en una métrica orientada de forma homogénea y `u_j` la incertidumbre
+predeclarada de esa diferencia. Sea `κ_j>0` un margen de preservación arquitectónica,
+calibrado sólo con controles históricos o piloto independiente.
+
+Se mantienen dos libros:
+
+### 3.1 Libro cuantitativo estricto
+
+- intervalo completamente favorable a `c`: `WIN_c`;
+- intervalo que contiene equivalencia/cero: `TIE_OR_UNCERTAIN`;
+- intervalo completamente favorable al competidor: `WIN_q`.
+
+### 3.2 Libro de elección arquitectónica
+
+\[
+D_j=
+\begin{cases}
+c, & d_j\le u_j,\\
+CONTEXTUAL, & u_j<d_j\le u_j+\kappa_j,\\
+q, & d_j>u_j+\kappa_j.
+\end{cases}
+\]
+
+- Si el competidor no supera la incertidumbre, gana el candidato trazable en el libro
+  arquitectónico; el libro cuantitativo sigue diciendo empate/incertidumbre.
+- En la franja posterior se realiza adjudicación local personalizada con criterios
+  congelados: trazabilidad, coste, preservación de mecanismo y compatibilidad sistémica.
+- Si la diferencia es clara, gana el competidor y punto.
+
+No se cambia un número, no se borra una pérdida y no se llama superioridad cuantitativa
+a una elección arquitectónica.
+
+## 4. Macroexperimento integrado del octeto
+
+### 4.1 Unidad experimental
+
+Una corrida es una **macrojugada de ocho bloques** de un mismo proceso. Cada bloque usa
+la misma familia de operaciones, métricas y candidatos. La cosignificación debe provenir
+del dato: por ejemplo, ocho ventanas contiguas de una trayectoria real o determinista,
+no ocho direcciones semánticas asignadas para provocar el resultado.
+
+Para conservar comparabilidad con la línea previa:
+
+- suite congelada de 20–30 prompts/tareas equivalentes;
+- ocho bloques cosignificantes por instancia;
+- múltiples seeds como réplicas anidadas;
+- jurisdicciones semánticas predeclaradas;
+- outputs de todos los candidatos, no sólo del elegido;
+- métricas de exactitud, BCE/log-loss, calibración, coste y trazabilidad separadas.
+
+### 4.2 Congelación ex ante
+
+Antes de ejecutar se congelan:
+
+1. generador o fuente real de los octetos;
+2. orden de los ocho bloques y regla de extracción;
+3. prompts, operaciones y horizontes;
+4. competidores y versiones;
+5. seeds como réplicas;
+6. métricas, incertidumbre y `κ_j`;
+7. familia de transformadas y corrección por multiplicidad;
+8. splits de descubrimiento, calibración y confirmación;
+9. condiciones de abstención y no promoción;
+10. hashes, dependencias y presupuesto máximo.
+
+### 4.3 Capa 1: entrecruzamiento completo sin colapso
+
+Se construye un vector de 16 componentes:
+
+\[
+X_1=(\mu_{EQ,1}^{obs},\ldots,\mu_{EQ,8}^{obs},
+GRU_1^{cur},\ldots,GRU_8^{cur}).
+\]
+
+Cada componente se contrasta con las otras quince, manteniendo por separado las ocho
+perspectivas μ_EQ y las ocho perspectivas GRU. Productos:
+
+- matriz dirigida 16×16 de efectos, incertidumbres y heterogeneidad;
+- grafo de similitud/contraste con roles preservados;
+- estabilidad bajo réplicas;
+- comunidades o ejes sólo si superan nulos de permutación.
+
+### 4.4 Capa 2: byte conjunto y μ_QE aislada
+
+Se analizan simultáneamente:
+
+1. los ocho pares `(GRU_obsolete, μ_QE_current)`;
+2. el vector completo de ocho `μ_QE_current`;
+3. el octeto como unidad mayor que sus componentes.
+
+La irreducibilidad se contrasta mediante tres familias complementarias:
+
+- **MDL**: ganancia de longitud descriptiva del modelo conjunto frente al mejor modelo
+  independiente o meramente pareado;
+- **información multivariada**: total correlation, dual total correlation y O-information;
+- **utilidad holdout**: capacidad del octeto completo para anticipar un estado posterior
+  del mismo proceso frente a cualquier bloque, suma aditiva o permutación.
+
+Sólo se acepta “sentido ideocríptico conjunto” si la ventaja aparece fuera de muestra,
+es estable entre instancias/jurisdicciones y vence al nulo que conserva marginales pero
+rompe la organización del octeto.
+
+### 4.5 Capa 3: sentido lineal directo e inverso
+
+Se estudia la secuencia:
+
+\[
+X_3=(L_{3,1},\ldots,L_{3,8})
+\]
+
+en sentidos `1→8` y `8→1`. Una distancia simétrica no basta, porque produciría el mismo
+valor en ambas direcciones. Se usan:
+
+- predicción forward/backward con modelos de igual capacidad;
+- error de reconstrucción causal en ambos sentidos;
+- estadística de irreversibilidad temporal basada en incrementos y patrones ordinales;
+- transferencia de información condicionada cuando el tamaño muestral real lo permita.
+
+La unidad de inferencia son múltiples octetos/prompts/jurisdicciones, no los ocho puntos
+de un único octeto.
+
+### 4.6 Mini-transformadas del octeto
+
+La longitud ocho permite una descomposición exacta y auditable:
+
+- **Haar**: contraste global y diferencias a escalas 4, 2 y 1;
+- **DCT-II**: estructura suave lineal sin suponer circularidad;
+- **DFT** exploratoria: potencia y fase, sólo si se justifica cierre/ciclicidad;
+- inversión `J`, permutaciones restringidas y signed permutations;
+- espectro singular del tensor de capas.
+
+Haar debe ser la transformada primaria: respeta la estructura diádica de ocho y permite
+localizar en qué escala emerge la relación. La DFT no puede introducir artificialmente
+una periodicidad inexistente.
+
+### 4.7 Búsqueda formal del operador antisimétrico
+
+No se busca primero una constante universal. Se ensaya una jerarquía de complejidad:
+
+\[
+\mathcal A_0(x)=-c x,
+\]
+
+\[
+\mathcal A_1(x)=-D x,
+\]
+
+\[
+\mathcal A_2(x)=SPx,
+\]
+
+\[
+\mathcal A_3(x)=Qx+b,
+\]
+
+donde `D` es diagonal, `P` una permutación, `S` signos y `Q` un operador ortogonal o
+de bajo rango. Cada nivel sólo avanza si mejora fuera de muestra respecto del anterior.
+
+Protocolo:
+
+1. descubrir `𝒜` en jurisdicciones de entrenamiento completas;
+2. calibrar hiperparámetros en jurisdicciones distintas;
+3. congelar operador y tolerancias;
+4. probar en nuevos prompts, modelos, horizontes y octetos;
+5. comparar contra sign-flip, escala, permutación y operador aleatorio;
+6. reportar dominio de validez, fallos y abstenciones.
+
+Una invariante universal exigiría transporte entre familias y modelos no usados en el
+ajuste. Una ley local estable ya sería un resultado científico relevante.
+
+### 4.8 Sinergia entre las tres capas
+
+Se ensayan cuatro objetos, nunca un solo score:
+
+- `L1` por sí sola;
+- `L2` por sí sola;
+- `L2⊕L3`;
+- `L1⊕L2⊕L3`.
+
+La pregunta es si la tercera capa añade información condicional y si la segunda adquiere
+sentido funcional al combinarse con ella. Se estiman:
+
+- información incremental holdout;
+- interacción triádica/PID cuando el estimador esté soportado;
+- mejora MDL;
+- estabilidad de topología relacional;
+- resistencia a permutar capas, bloques u horizontes.
+
+## 5. Contratos operativos mínimos
+
+### 5.1 `JurisdictionContract`
+
+```json
+{
+  "task": "...",
+  "operation": "...",
+  "horizon_delay": "...",
+  "interference": "...",
+  "phase": "...",
+  "block_id": 1,
+  "seed_role": "REPLICA_ONLY"
+}
+```
+
+### 5.2 `CandidateReceipt`
+
+```json
+{
+  "operator": "mu_eq|mu_qe|gru|transformer|transmuter_v02|transmuter_v032",
+  "lineage": "...",
+  "jurisdiction": "...",
+  "metrics": {},
+  "uncertainty": {},
+  "trace": "...",
+  "dependencies": [],
+  "authority": "NONE|SHADOW|LOCAL_OPERATIONAL",
+  "claim_boundary": "..."
+}
+```
+
+### 5.3 `LayerByteReceipt`
+
+```json
+{
+  "ordered_blocks": [1, 2, 3, 4, 5, 6, 7, 8],
+  "layer_1": [],
+  "layer_2": [],
+  "layer_3": [],
+  "transforms": {},
+  "irreducibility": {},
+  "forward_reverse": {},
+  "status": "ESTIMABLE|NOT_ESTIMABLE"
+}
+```
+
+### 5.4 `DualDecisionReceipt`
+
+```json
+{
+  "quantitative_verdict": "...",
+  "architectural_verdict": "...",
+  "competitor_advantage": "...",
+  "uncertainty": "...",
+  "post_uncertainty_margin": "...",
+  "selected_action": "...",
+  "scientific_winner": null,
+  "authority_scope": "LOCAL_ONLY"
+}
+```
+
+## 6. KCH: reparto de funciones
+
+| Componente KCH | Función exacta en el sucesor |
+|---|---|
+| IGE | compilar instrucciones y separar autoridad, hipótesis y preferencia |
+| KwanDocs | preservar fuentes, linajes, fallos y resultados crudos |
+| KwanData | schemas, octetos, capas, métricas y procedencia |
+| SCO | ejecutar trabajadores independientes sin fusionar contextos |
+| QAS/CAS | calificar soporte y frontera causal de cada claim |
+| MIS | cálculo exacto y certificados; sin autoridad científica |
+| RGG | grafo relacional de capas, bloques y jurisdicciones |
+| LIBRESOURCE | gobernar dependencias y rutas de reemplazo/rollback |
+| SCPP/locks | impedir transiciones pentaxialmente inadmisibles |
+| KwanFork | aislar el sucesor científico del estable |
+| CONSTRUCT | journal, staging, fallos inducidos, promoción o rollback |
+| PHL | aprendizaje future-only después de outcomes reales |
+| KwanTau | observatorio local y explicativo, nunca adjudicador |
+
+## 7. Gates de ejecución y promoción
+
+### Gate 0 — activación KCH R33
+
+Recibos nativos 0.11.33, bridge estructurado y prueba adversa de hooks/locks. Sin esto,
+la campaña puede prepararse, pero no demostrar integración nativa R33.
+
+### Gate 1 — integridad experimental
+
+- suite y octetos congelados;
+- seeds verificadas como réplicas;
+- linajes/versiones exactos;
+- cero caché contaminante;
+- resultados adversos preservados;
+- reproducción de controles históricos dentro de tolerancia.
+
+### Gate 2 — ejecución científica completa
+
+Todos los operadores producen salida o abstención explícita. Un fallo técnico no se
+convierte en derrota científica; queda `TECHNICAL_FAILURE / NOT_ESTIMABLE`.
+
+### Gate 3 — jurisdicciones y doble libro
+
+Se emiten efectos pareados e incertidumbre por jurisdicción, libro cuantitativo y libro
+arquitectónico. No se autoriza resumen global como router.
+
+### Gate 4 — octeto y capas
+
+Se ejecutan Capa 1 completa, Capa 2 byte/μ_QE, Capa 3 forward/reverse, `L2⊕L3` y las
+tres capas. La emergencia sólo pasa con holdout y nulos apropiados.
+
+### Gate 5 — antisimetría
+
+El operador debe generalizar a jurisdicciones y octetos no utilizados. Si sólo ajusta
+la muestra de descubrimiento, queda `DESCRIPTIVE_ONLY`.
+
+### Gate 6 — SCPP causal
+
+Fallos inducidos intentan romper cada uno de los cinco ejes. Debe observarse bloqueo
+antes del efecto, recibo causal y ausencia de ruta alternativa equivalente.
+
+### Gate 7 — CONSTRUCT
+
+Freeze estable → staging aislado → RCL independiente → validación → fallo inducido →
+recuperación idempotente → promoción atómica o rollback físico.
+
+### Gate 8 — promoción granular
+
+No se promociona “el sistema entero” por un gate favorable. Se adjudican por separado:
+
+- SCPP;
+- selector Transformer/Transmuter;
+- μ_EQ;
+- μ_QE;
+- operador antisimétrico;
+- byte de octeto;
+- bridge endocrino.
+
+Cada componente puede ser `PROMOTE_LOCAL`, `SHADOW_ONLY`, `REVISE`, `NO_PROMOTION` o
+`NOT_ESTIMABLE`.
+
+## 8. Secuencia de implementación
+
+1. Activar y certificar R33 en un host nuevo.
+2. Crear un KwanFork sucesor; no tocar el estable.
+3. Congelar el precontrato SCPP y sus cinco calibraciones.
+4. Implementar los cuatro contratos anteriores en CSI/KwanData.
+5. Adaptar sin reescribir GRU, μ_EQ, μ_QE, Transformer y ambos Transmuter.
+6. Construir el generador/importador de octetos cosignificantes.
+7. Reproducir primero resultados históricos y fallos conocidos.
+8. Ejecutar macroexperimento piloto en shadow.
+9. Cerrar análisis de capas, byte y antisimetría sin routing automático.
+10. Confirmar en holdout y nuevos modelos/jurisdicciones.
+11. Activar nanorouter sólo donde exista autoridad local confirmada.
+12. Ejecutar gate causal SCPP y gate transaccional CONSTRUCT.
+13. Mantener μ_QE y campo endocrino en shadow hasta sus gates propios.
+14. Promover componentes individualmente y publicar el mapa en KwanTau.
+
+## 9. Por qué esta integración es realmente superadora
+
+No gana porque prometa mejores promedios. Gana estratégicamente porque transforma los
+problemas encontrados en funcionalidades arquitectónicas:
+
+- la confusión seed/jurisdicción se convierte en contrato imposible de violar;
+- el cero global por cancelación se reemplaza por cartografía local;
+- las pérdidas ya no se tiran: alimentan capas y estados shadow sin volverse victorias;
+- el empate deja de ocultar el valor de trazabilidad, pero no altera la estadística;
+- Transmuter y Transformer dejan de competir por una corona global y reciben gobierno local;
+- μ_EQ y μ_QE dejan de forzarse como sustitutos y forman una dualidad temporal medible;
+- el octeto deja de ser ocho outputs sueltos y adquiere una prueba formal de irreducibilidad;
+- la antisimetría deja de ser intuición o ajuste visual y se vuelve una familia falsable
+  de operadores con transporte fuera de muestra;
+- SCPP convierte la preservación primitiva en causalidad ejecutable;
+- KCH obtiene un caso real para CONSTRUCT, recovery, MIS, IGE y LIBRESOURCE;
+- la futura función endocrina nace como modulación registrada, no como metáfora ni autoridad.
+
+## 10. Claim máximo si la campaña completa pasara
+
+Incluso con todos los gates favorables, el claim no sería «μ/Transmuter supera
+universalmente a las arquitecturas clásicas». Sería:
+
+> Existe una composición reproducible y gobernada de operadores transformativos,
+> transmutativos y glandulares que asigna autoridad por jurisdicciones locales,
+> conserva residuos multicapas, exhibe estructura conjunta del octeto y permite
+> prevención pentaxial previa a la acción, con recuperación y promoción versionadas.
+
+La universalidad del operador antisimétrico, la bilateralidad glandular, el campo
+endocrino completo y la arquitectura bihemisférica seguirían siendo gates posteriores.
+
+## 11. Decisión crítica inmediata
+
+El primer corte implementable debe ser pequeño en superficie, no toy en causalidad:
+
+**un sucesor KwanFork que implemente contratos CSI, SCPP pentaxial, los dos carriles,
+las tres capas y un octeto real; ejecute todo en shadow; emita doble libro; y sobreviva
+a un fallo CONSTRUCT con rollback verificable.**
+
+Ésa es la pieza mínima que prueba simultáneamente la ciencia y la arquitectura. Todo lo
+demás —nanorouter con autoridad, endocrinología operativa, bilateralidad y KwanTau
+completo— debe crecer sobre ese recibo, no sustituirlo.
