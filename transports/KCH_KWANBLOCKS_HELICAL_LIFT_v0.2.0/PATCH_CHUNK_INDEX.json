@@ -1,0 +1,75 @@
+{
+  "authority_ceiling": "NONE",
+  "base64_concatenation_exact": true,
+  "canonicalization": "BLOCKED",
+  "chunks": [
+    {
+      "characters": 70000,
+      "chunk": 1,
+      "of": 7,
+      "path": "patch_b64/CHUNK_01_OF_07.b64",
+      "sha256": "65bc6d0a09f9e5b1bff2d440b221646a15565709bfa3b516be8ac83c0cad139e"
+    },
+    {
+      "characters": 70000,
+      "chunk": 2,
+      "of": 7,
+      "path": "patch_b64/CHUNK_02_OF_07.b64",
+      "sha256": "5f2da1aa073986ec1522675943e0f17481e5d3b4a80846edbfa2681a1053b3d3"
+    },
+    {
+      "characters": 70000,
+      "chunk": 3,
+      "of": 7,
+      "path": "patch_b64/CHUNK_03_OF_07.b64",
+      "sha256": "767d776f03743e59d6de730098d0156a46bcc92fe269481ba3064b1004d3f533"
+    },
+    {
+      "characters": 70000,
+      "chunk": 4,
+      "of": 7,
+      "path": "patch_b64/CHUNK_04_OF_07.b64",
+      "sha256": "4278b228e9fcba27f7bdd9de9d5f09729e73876f6b84d85db4dac8ad661db1dd"
+    },
+    {
+      "characters": 70000,
+      "chunk": 5,
+      "of": 7,
+      "path": "patch_b64/CHUNK_05_OF_07.b64",
+      "sha256": "89cdde6a7d536938a638564fe2ffffb8ebf52c9d87d164fbfa6e96f529a1dbd4"
+    },
+    {
+      "characters": 70000,
+      "chunk": 6,
+      "of": 7,
+      "path": "patch_b64/CHUNK_06_OF_07.b64",
+      "sha256": "a840b18783cb68349a5f1af56561a4a538230a4611c228d3839c9740bdcaf8ee"
+    },
+    {
+      "characters": 29920,
+      "chunk": 7,
+      "of": 7,
+      "path": "patch_b64/CHUNK_07_OF_07.b64",
+      "sha256": "7a090b0169353c1f0a59eae7e1563418f9d7ccf40dd7cd64cd38bcdc11a12339"
+    }
+  ],
+  "encoding_chain": [
+    "base64",
+    "gzip",
+    "git-binary-patch"
+  ],
+  "format": "KCH_HELICAL_REMOTE_PATCH_TRANSPORT_V2",
+  "graph_id": "kbg:7860d46374def72694cd85d659dfd61b19d3f0c813cfcb493e23d7379e458625",
+  "gzip_bytes": 337438,
+  "gzip_sha256": "92492a2b08ab8b323c60fd6c8b83c0a340bc40123effcb9c58833aac4f58de31",
+  "package_zip_sha256": "09527f5d7dd8f459b8a59d1de96818b9e840323abc10de69c2752a5dec5ccb06",
+  "patch_bytes": 1450662,
+  "patch_sha256": "9c975dacd9bcd13bf637776ee4ce4d36d4f8c2c5b8fbd2783867c9b02aab77bd",
+  "promotion": "BLOCKED",
+  "scientific_validation": "NOT_DEMONSTRATED",
+  "target_base_commit": "ccf494b4097a073ad5fa416fa40b60895dc11818",
+  "target_path": "work/KCH_KWANBLOCKS_HELICAL_LIFT_v0.2.0/",
+  "target_repository": "FacundoFirmenich/KCH",
+  "tests": "116/116 PASS",
+  "version": "0.2.0"
+}
