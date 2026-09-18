@@ -1,0 +1,76 @@
+{
+  "format": "KCH_REMOTE_ARTIFACT_INDEX_V1",
+  "repository": "FacundoFirmenich/KCH",
+  "base_commit": "ccf494b4097a073ad5fa416fa40b60895dc11818",
+  "branch": "kwanblocks/helical-lift-v0.2.0",
+  "target_path": "work/KCH_KWANBLOCKS_HELICAL_LIFT_v0.2.0/",
+  "custody": {
+    "provider": "google_drive",
+    "folder_id": "1xvfaRf25iOZjzBRy9LFyZZBojQ0wveiZ",
+    "folder_url": "https://drive.google.com/drive/folders/1xvfaRf25iOZjzBRy9LFyZZBojQ0wveiZ",
+    "path": "/Google Drive/KCH/KWANBLOCKS_HELICAL_LIFT_v0.2.0_20260918"
+  },
+  "artifacts": [
+    {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_2_0.patch",
+      "drive_file_id": "15bO3Ep0I8vba0YrQvAqup8IHkjxbA41y",
+      "url": "https://drive.google.com/file/d/15bO3Ep0I8vba0YrQvAqup8IHkjxbA41y/view?usp=drivesdk",
+      "bytes": 1450662,
+      "sha256": "9c975dacd9bcd13bf637776ee4ce4d36d4f8c2c5b8fbd2783867c9b02aab77bd"
+    },
+    {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_2_0.patch.gz",
+      "drive_file_id": "1-RW5-APlF7lWGZjG1ENTJJ8YCfbkpFlr",
+      "url": "https://drive.google.com/file/d/1-RW5-APlF7lWGZjG1ENTJJ8YCfbkpFlr/view?usp=drivesdk",
+      "bytes": 337438,
+      "sha256": "92492a2b08ab8b323c60fd6c8b83c0a340bc40123effcb9c58833aac4f58de31"
+    },
+    {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_2_0.zip",
+      "drive_file_id": "15Auw1ZfRrzS3BbmSLyDqg45897pY5_mW",
+      "url": "https://drive.google.com/file/d/15Auw1ZfRrzS3BbmSLyDqg45897pY5_mW/view?usp=drivesdk",
+      "bytes": 390717,
+      "sha256": "09527f5d7dd8f459b8a59d1de96818b9e840323abc10de69c2752a5dec5ccb06"
+    },
+    {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_2_0_EXECUTED.ipynb",
+      "drive_file_id": "1NwVdlkyqyRFXXJHMVpTBqtowFgu37JY_",
+      "url": "https://drive.google.com/file/d/1NwVdlkyqyRFXXJHMVpTBqtowFgu37JY_/view?usp=drivesdk",
+      "bytes": 15137,
+      "sha256": "3c02d98601048b2dda11462136b466c4d70e1a9a50d453bf74c78aef1500df4c"
+    },
+    {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_2_0_DELIVERY_MANIFEST.json",
+      "drive_file_id": "1rdc3_I3C-xN0WoBTDh5NPOMc5jeFQG8g",
+      "url": "https://drive.google.com/file/d/1rdc3_I3C-xN0WoBTDh5NPOMc5jeFQG8g/view?usp=drivesdk",
+      "bytes": 2612,
+      "sha256": "8b56ebb5a57ec2f70c1a7b02b34444f2f73bb01be7a8ded14e492c89e3f18a2b"
+    },
+    {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_2_0_SHA256SUMS.txt",
+      "drive_file_id": "1m54log0XtG3dfh2L7ZrfgA0atAqvQPzH",
+      "url": "https://drive.google.com/file/d/1m54log0XtG3dfh2L7ZrfgA0atAqvQPzH/view?usp=drivesdk",
+      "bytes": 452,
+      "sha256": "71b55530e5e20f886dea525393d554f6c2e724a0cac8793f66d17d10fd8ededa"
+    }
+  ],
+  "sealed_state": {
+    "blocks": 84,
+    "typed_edges": 203,
+    "ledger_events": 288,
+    "tests": "116/116 PASS",
+    "base_blocks_preserved": "51/51",
+    "base_edges_preserved": "94/94",
+    "graph_id": "kbg:7860d46374def72694cd85d659dfd61b19d3f0c813cfcb493e23d7379e458625",
+    "ledger_head": "fdfcb4add0fdde63377d297965c7b76368e3226a3404ff3f6006605adf941645",
+    "plan_id": "hlp:d36c958f0d1d8f1bda984029cdff117e00bd9b5c9b327975d34cd6037dd98f51",
+    "run_id": "hlr:02559d7d7bbf65c612c3ff63d8175ff541a441cc43c56e3d928666b63602cb01"
+  },
+  "gates": {
+    "authority": "NONE",
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "scientific_validation": "NOT_DEMONSTRATED",
+    "external_effects": "DENIED"
+  }
+}
