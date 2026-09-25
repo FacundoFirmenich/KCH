@@ -1,0 +1,301 @@
+{
+  "acquisition": {
+    "download_must_follow_protocol_lock": true,
+    "hash": "SHA256",
+    "line_endings": "PRESERVE_PROVIDER_BYTES",
+    "mode": "EXACT_PROVIDER_BYTES",
+    "provider_page": "https://scedc.caltech.edu/data/alt-SCSN-dd.html",
+    "redirects_allowed": true
+  },
+  "claim_ceiling": {
+    "authority": "NONE",
+    "canonicalization": "BLOCKED",
+    "causal_mechanism": "NOT_DEMONSTRATED",
+    "confirmatory_external_preregistration": "ABSENT",
+    "deployment": "NOT_PERFORMED",
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "promotion": "BLOCKED"
+  },
+  "confirmatory_claim_eligible": false,
+  "dataset_outcomes": [
+    "HELICAL_SIGNAL_CANDIDATE",
+    "NONHELICAL_RIVAL_SUFFICIENT",
+    "PERIODIC_NONCANONICAL_RIVAL_SUFFICIENT",
+    "UPPER_BOUND",
+    "NOT_IDENTIFIABLE_SAMPLE",
+    "NOT_IDENTIFIABLE_AXIS",
+    "NOT_IDENTIFIABLE_TURNS",
+    "NOT_IDENTIFIABLE_UNCERTAINTY",
+    "FRAME_DEPENDENT",
+    "MODEL_MISMATCH"
+  ],
+  "datasets": [
+    {
+      "local_path": "data/raw_v0_4/Indio_hypodd_cat",
+      "name": "INDIO",
+      "provider_expected_lines": 863,
+      "role": "FULL_CATALOG_REPLAY_PRIOR_EXPOSED",
+      "source_url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Indio_hypodd_cat"
+    },
+    {
+      "local_path": "data/raw_v0_4/Brawley_hypodd_cat",
+      "name": "BRAWLEY",
+      "provider_expected_lines": 635,
+      "role": "PRIMARY_PROSPECTIVE_REPLICATION",
+      "source_url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Brawley_hypodd_cat"
+    },
+    {
+      "local_path": "data/raw_v0_4/Johannesburg_hypodd_cat",
+      "name": "JOHANNESBURG",
+      "provider_expected_lines": 724,
+      "role": "SECONDARY_PROSPECTIVE_REPLICATION",
+      "source_url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Johannesburg_hypodd_cat"
+    },
+    {
+      "local_path": "data/raw_v0_4/Coso_junction_hypodd_cat",
+      "name": "COSO_JUNCTION",
+      "provider_expected_lines": 249,
+      "role": "SMALL_SAMPLE_PROSPECTIVE_STRESS_TEST",
+      "source_url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Coso_junction_hypodd_cat"
+    }
+  ],
+  "format": "KCH_SEISMIC_HELICAL_PANEL_GATE_PLAN_V1",
+  "frames": {
+    "frame_concordance_rule": "PCA_GLOBAL_AND_AT_LEAST_ONE_CURVILINEAR_FRAME_MUST_PASS_CANDIDATE_GATES",
+    "methods": [
+      {
+        "axis_sign_rule": "LARGEST_ABSOLUTE_COMPONENT_POSITIVE",
+        "basis": "RIGHT_HANDED",
+        "fit": "TRAIN_ONLY_COVARIANCE",
+        "name": "PCA_GLOBAL"
+      },
+      {
+        "axial_bins": 9,
+        "centerline": "AXIAL_BIN_COMPONENTWISE_MEDIANS",
+        "name": "SKELETON_LOCAL_PCA",
+        "neighbor_bins": 1,
+        "transverse_frame": "LOCAL_WEIGHTED_PCA"
+      },
+      {
+        "axial_bins": 9,
+        "centerline": "NATURAL_CUBIC_SPLINE_THROUGH_AXIAL_BIN_MEDIANS",
+        "frame": "PARALLEL_TRANSPORT_BISHOP",
+        "name": "BISHOP_SPLINE",
+        "samples": 512,
+        "smoothing_candidates": [
+          0.0,
+          0.05,
+          0.2,
+          1.0
+        ],
+        "smoothing_selection": "CALIBRATION_CENTERLINE_DISTANCE_ONLY"
+      }
+    ],
+    "minimum_pca_axis_ratio": 1.25,
+    "primary": "PCA_GLOBAL"
+  },
+  "frequency_grid": {
+    "candidate_count": 80,
+    "maximum_turns_over_train_span": 6.0,
+    "minimum_turns_over_train_span": 1.5,
+    "spacing": "LOG_WAVELENGTH"
+  },
+  "frozen_thresholds": {
+    "maximum_pitch_coefficient_of_variation": 0.35,
+    "maximum_two_harmonic_advantage_over_single_helix": 0.02,
+    "minimum_block_robustness_positive_fraction": 0.8,
+    "minimum_chirality_stability": 0.8,
+    "minimum_frame_candidate_count": 2,
+    "minimum_relative_test_rmse_improvement_over_best_nonperiodic": 0.1,
+    "minimum_selected_turns_over_fit_span": 1.5,
+    "minimum_selected_turns_over_test_span": 0.5,
+    "surrogate_alpha": 0.05
+  },
+  "lock_time_utc": "2026-09-25T18:05:09Z",
+  "minimums": {
+    "events": 200,
+    "events_per_skeleton_bin": 10,
+    "spatial_test_events": 45,
+    "temporal_test_events": 45
+  },
+  "models": [
+    {
+      "basis": [
+        "1"
+      ],
+      "family": "NONPERIODIC",
+      "name": "STRAIGHT_TUBE",
+      "parameter_count": 2
+    },
+    {
+      "basis": [
+        "1",
+        "s"
+      ],
+      "family": "NONPERIODIC",
+      "name": "LINEAR_RIBBON",
+      "parameter_count": 4
+    },
+    {
+      "basis": [
+        "1",
+        "s",
+        "s^2"
+      ],
+      "family": "NONPERIODIC",
+      "name": "QUADRATIC_CURVE",
+      "parameter_count": 6
+    },
+    {
+      "basis": [
+        "1",
+        "s",
+        "s^2",
+        "s^3"
+      ],
+      "family": "NONPERIODIC",
+      "name": "CUBIC_CURVE",
+      "parameter_count": 8
+    },
+    {
+      "degrees_of_freedom_candidates": [
+        4,
+        6,
+        8
+      ],
+      "family": "NONPERIODIC",
+      "name": "NATURAL_SPLINE",
+      "selection": "CALIBRATION_RMSE"
+    },
+    {
+      "basis": [
+        "1",
+        "cos(k*s)",
+        "sin(k*s)"
+      ],
+      "family": "CANONICAL_HELIX",
+      "name": "HELICAL_SINGLE_HARMONIC",
+      "parameter_count_excluding_frequency": 6
+    },
+    {
+      "basis": [
+        "1",
+        "cos(k*s)",
+        "sin(k*s)",
+        "cos(2*k*s)",
+        "sin(2*k*s)"
+      ],
+      "family": "PERIODIC_NONCANONICAL",
+      "name": "PERIODIC_TWO_HARMONIC",
+      "parameter_count_excluding_frequency": 10
+    }
+  ],
+  "multiplicity": {
+    "family_alpha": 0.05,
+    "method": "HOLM_BONFERRONI",
+    "prospective_datasets": [
+      "BRAWLEY",
+      "JOHANNESBURG",
+      "COSO_JUNCTION"
+    ]
+  },
+  "null_tests": {
+    "iterations": 199,
+    "methods": [
+      "CYCLIC_SHIFT_TRANSVERSE_PAIRS_IN_AXIAL_ORDER",
+      "PHASE_RANDOMIZATION_WITH_AMPLITUDE_PRESERVATION"
+    ],
+    "p_value_correction": "PLUS_ONE",
+    "seed": 101
+  },
+  "ordering": {
+    "primary": "ORIGIN_TIME_ASCENDING",
+    "provider_order_preserved_in_raw": true,
+    "tie_breakers": [
+      "event_id",
+      "provider_line_number"
+    ]
+  },
+  "panel_outcomes": [
+    "REPLICATED_HELICAL_SIGNAL_CANDIDATE",
+    "UNREPLICATED_OR_MIXED",
+    "NONHELICAL_RIVALS_SUFFICIENT",
+    "NOT_IDENTIFIABLE_PANEL"
+  ],
+  "panel_rule": {
+    "nonhelical_sufficient": "NO_PROSPECTIVE_DATASET_PASSES_AND_AT_LEAST_TWO_HAVE_NONHELICAL_OR_PERIODIC_NONCANONICAL_RIVAL_SUFFICIENT",
+    "otherwise": "UNREPLICATED_OR_MIXED",
+    "replicated_candidate": "BRAWLEY_PASSES_AFTER_HOLM_AND_AT_LEAST_ONE_OF_JOHANNESBURG_OR_COSO_JUNCTION_PASSES_AFTER_HOLM"
+  },
+  "plan_id": "shp4:9d449846dc2397c412a7bf52e920321c76786b996396fe4854c388ae1644ee9f",
+  "prior_exposure": {
+    "brawley": "PROVIDER_NAME_AND_LINE_COUNT_ONLY_BEFORE_LOCK",
+    "coso_junction": "PROVIDER_NAME_AND_LINE_COUNT_ONLY_BEFORE_LOCK",
+    "indio": "V0_3_CONTIGUOUS_SAMPLE_AND_RESULTS_SEEN",
+    "johannesburg": "PROVIDER_NAME_AND_LINE_COUNT_ONLY_BEFORE_LOCK"
+  },
+  "program": "SEISMIC_HELICAL_SUPPORT_FULL_CATALOG_REPLICATION_PANEL",
+  "prospective_relative_to_local_full_catalog_acquisition": true,
+  "protocol_status": "LOCKED_BEFORE_LOCAL_FULL_CATALOG_ACQUISITION_AFTER_V0_3_PILOT",
+  "quality_sensitivity": {
+    "enabled": true,
+    "primary_outcome_unchanged_by_filter": true,
+    "rule": "PHASE_COUNT_AT_OR_ABOVE_MEDIAN_AND_3D_SIGMA_AT_OR_BELOW_P75"
+  },
+  "scope": {
+    "causal_claim": false,
+    "cross_sequence_law_claim": false,
+    "dynamic_trajectory_claim": false,
+    "estimand": "OUT_OF_SAMPLE_GEOMETRIC_SUPPORT_WINDING_AROUND_STRAIGHT_OR_CURVILINEAR_CENTERLINES",
+    "physical_helicity_claim": false,
+    "sequence_wide_claim": "ALLOWED_ONLY_AT_DATASET_LEVEL_IF_ALL_FULL_CATALOG_GATES_PASS"
+  },
+  "splits": {
+    "leave_one_axial_block_out": {
+      "block_count": 5,
+      "enabled": true,
+      "use": "ROBUSTNESS_ONLY_NOT_PRIMARY_ADJUDICATION"
+    },
+    "spatial": {
+      "block_count": 10,
+      "calibration_blocks": [
+        1,
+        5
+      ],
+      "frame_refit_scope": "SPATIAL_TRAIN_ONLY",
+      "method": "PROVISIONAL_TEMPORAL_TRAIN_PCA_AXIAL_DECILES",
+      "test_blocks": [
+        3,
+        7,
+        9
+      ],
+      "train_blocks": [
+        0,
+        2,
+        4,
+        6,
+        8
+      ]
+    },
+    "temporal": {
+      "calibration_fraction": 0.25,
+      "final_fit_scope": "TRAIN_PLUS_CALIBRATION",
+      "frame_fit_scope": "TRAIN_ONLY",
+      "hyperparameter_selection_scope": "TRAIN_TO_CALIBRATION",
+      "test_fraction": 0.25,
+      "test_scope": "SEALED_FUTURE_BLOCK",
+      "train_fraction": 0.5
+    }
+  },
+  "uncertainty": {
+    "iterations": 128,
+    "method": "INDEPENDENT_GAUSSIAN_LOCATION_PERTURBATION",
+    "seed": 100101,
+    "sigmas": [
+      "ex_m",
+      "ey_m",
+      "ez_m"
+    ]
+  },
+  "version": "0.4.0"
+}
