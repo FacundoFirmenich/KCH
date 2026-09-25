@@ -1,0 +1,20 @@
+{
+  "authority": "NONE",
+  "confirmatory_claim_eligible": false,
+  "corrected_v0_4_3_real_data_replay_after_lock_required": true,
+  "format": "KCH_SEISMIC_HELICAL_PANEL_GATE_LOCK_RECEIPT_V0_4_3",
+  "lock_time_utc": "2026-09-25T18:44:49Z",
+  "plan_id": "shp43:8ecd17d9714dd7180551900a787e38877fb66b8bf5b88f8865efc874210baa62",
+  "prior_real_data_exposure_declared": true,
+  "protocol_sha256": "16c027708a0de1bfcc3204c9b7410ef2d2642e2ca4abc6ef9f10e78fe6d9d93a",
+  "protocol_status": "POST_EXPOSURE_METHOD_REPAIR_V3_INFERENTIAL_AGGREGATION_LOCKED_BEFORE_CORRECTED_REAL_DATA_REPLAY",
+  "repairs_bound": [
+    "LINEAR_ENDPOINT_TANGENT_EXTRAPOLATION",
+    "SAME_K_TWO_HARMONIC_RIVAL",
+    "ONE_STANDARD_ERROR_LOWPASS_POLYNOMIAL_BISHOP",
+    "ONE_STANDARD_ERROR_LOWPASS_SPLINE_BISHOP",
+    "TWO_OF_THREE_FRAME_CONCORDANCE_WITH_CURVILINEAR_REQUIREMENT",
+    "PER_FRAME_INFERENCE_WITH_BONFERRONI_ADMISSIBLE_PAIR_CONJUNCTION"
+  ],
+  "version": "0.4.3"
+}
