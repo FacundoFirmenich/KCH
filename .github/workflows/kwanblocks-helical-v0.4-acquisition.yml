@@ -1,0 +1,58 @@
+name: KwanBlocks Helical v0.4 exact-byte acquisition
+
+on:
+  push:
+    branches:
+      - kwanblocks/helical-lift-v0.4-acquisition
+    paths:
+      - '.github/workflows/kwanblocks-helical-v0.4-acquisition.yml'
+      - 'transports/KCH_KWANBLOCKS_HELICAL_LIFT_v0.4.0/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kwanblocks-helical-v0.4-acquisition-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  acquire:
+    name: Acquire, validate and seal provider bytes
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated branch
+        uses: actions/checkout@v4
+
+      - name: Execute zero-authority acquisition gate
+        run: |
+          set -euo pipefail
+          python transports/KCH_KWANBLOCKS_HELICAL_LIFT_v0.4.0/acquire_full_catalogs.py | tee acquisition-run.json
+
+      - name: Inspect acquisition receipt
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f transports/KCH_KWANBLOCKS_HELICAL_LIFT_v0.4.0/out/ACQUISITION_RECEIPT.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('transports/KCH_KWANBLOCKS_HELICAL_LIFT_v0.4.0/out/ACQUISITION_RECEIPT.json')
+          r = json.loads(p.read_text(encoding='utf-8'))
+          print('SCEDC_GATE_STATUS=' + r['scedc_gate_status'])
+          print('SUPPLEMENTAL_PASS=' + str(r['supplemental_controls_status']['pass_count']))
+          print('PLAN_ID=' + r['plan_id'])
+          PY
+
+      - name: Upload sealed acquisition artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: KCH_KWANBLOCKS_HELICAL_LIFT_v0_4_0_ACQUISITION
+          path: |
+            acquisition-run.json
+            transports/KCH_KWANBLOCKS_HELICAL_LIFT_v0.4.0/out/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
