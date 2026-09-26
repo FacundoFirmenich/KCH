@@ -5,13 +5,17 @@
   "confirmatory_eligibility_preserved": true,
   "format": "KCH_PARSER_FORMAT_CONFORMANCE_REPAIR_RECEIPT_V0_6_V1",
   "original_runtime_sha256": "c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a",
-  "parser_repair_receipt_id": "prr:bae127c4e8f4688d19a9888d6443be9b851da0f6b59744c1683c4073a09bb889",
-  "patch_sha256": "1c071c12823384b4332979e824983d61923e238425d0266c3c97dfa2845e5bc6",
+  "parser_repair_receipt_id": "prr:f3f4b7190bf21f6226b4a17e65beda319d6dfb2f32f7e40d50f37fda2a983e3d",
+  "patch_sha256": "7e0e42482bc6bdfc0244316d6ad99ac0a4a30efaeb6a28ae41d503065dc3ee06",
   "plan_id": "shp:1134ead0015b161ed0aa3008e7355c240f037b426f684c7b1415f640cd29912e",
   "promotion": "BLOCKED",
   "protocol_sha256": "a673fadc478e2c732330025b330dd375cdbed633312a7d9ba95b2cfe9a1e9d3e",
-  "recorded_at_utc": "2026-09-26T14:42:35.087864Z",
+  "recorded_at_utc": "2026-09-26T14:45:03.495557Z",
   "repair": {
+    "accepted_nonconfirmatory_legacy_event_codes": [
+      "e"
+    ],
+    "confirmatory_event_type_remains": "le",
     "gc_behavior": "REQUIRE_EXACTLY_29_WHITESPACE_TOKENS_AND_PARSE_ERROR_FIELDS_AT_ZERO_BASED_INDICES_19_20_21",
     "non_gc_behavior": "VALIDATE_INVARIANT_FIRST_11_FIELDS_COUNT_BY_SOLUTION_AND_SKIP_FROM_CONFIRMATORY_MATERIALIZATION",
     "provider_documented_schemas": {
@@ -20,15 +24,20 @@
     },
     "unknown_or_malformed_behavior": "FAIL_CLOSED"
   },
-  "repaired_runtime_sha256": "ae722c5335c1b9bf953fa669b29d1b6a061239009f843a2129624f458c93f274",
+  "repaired_runtime_sha256": "4aad36b7ba2b3dad60df279b6a6021587c618109da26a6fc9bff7f39ac9d3d62",
   "triggering_failure": {
     "confirmatory_gc_rows_inspected_for_scientific_outcome": false,
     "failure": "NON_GROWCLUST_1D_3D_ROWS_USE_SPARSE_VARIABLE_TAILS_AND_CANNOT_BE_PARSED_AS_29_FIELD_GROWCLUST_ROWS",
     "first_observed_row_solution": "3d",
     "model_execution_performed": false,
+    "second_failure": "22_LEGACY_NON_GROWCLUST_ROWS_USE_EVENT_CODE_e;_ALL_REMAIN_EXCLUDED_FROM_CONFIRMATORY_WINDOWS",
     "stage": "SOURCE_AUDIT_BEFORE_WINDOW_MATERIALIZATION",
     "window_event_counts_materialized": false,
-    "workflow_run_id": 36249302137
+    "workflow_run_id": 36249302137,
+    "workflow_run_ids": [
+      36249302137,
+      36249520787
+    ]
   },
   "unchanged": {
     "aggregate_positive_rule": true,
@@ -40,5 +49,5 @@
     "thresholds": true,
     "uncertainty_iterations_and_seeds": true
   },
-  "version": "0.6.0-parser-repair-1"
+  "version": "0.6.0-parser-repair-2"
 }
