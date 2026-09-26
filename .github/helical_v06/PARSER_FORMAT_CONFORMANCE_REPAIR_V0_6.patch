@@ -1,0 +1,96 @@
+--- acquire_historical_v06.py
++++ acquire_historical_v06.py
+@@ -184,6 +184,9 @@
+     malformed: list[dict[str, Any]] = []
+     parsed: list[dict[str, Any]] = []
+ 
++    total_event_lines_validated = 0
++    non_gc_event_lines_skipped = 0
++
+     for line_no, raw in enumerate(raw_lines, start=1):
+         if not raw.strip() or raw.lstrip().startswith("#"):
+             continue
+@@ -192,37 +195,56 @@
+         if len(tokens) >= 4:
+             tail4_hist[" ".join(tokens[-4:])] += 1
+         try:
+-            if len(tokens) < 19:
+-                raise ValueError("fewer than 19 fields")
++            # Every catalog representation preserves the first eleven physical fields.
++            # The provider documents two distinct schemas after those fields:
++            # variable/sparse 1d–3d rows, and fixed 25-column GrowClust rows plus
++            # four SCEDC provenance labels. Only the latter are confirmatory data.
++            if len(tokens) < 11:
++                raise ValueError("fewer than 11 invariant leading fields")
+             origin = parse_origin(tokens)
+             event_id = tokens[6]
+             lat = float(tokens[7])
+             lon = float(tokens[8])
+             depth = float(tokens[9])
+             magnitude = float(tokens[10])
++            total_event_lines_validated += 1
++
++            non_gc_solution = None
++            non_gc_event_type = None
++            if len(tokens) >= 2 and tokens[-1] in {"1d", "3d"}:
++                non_gc_solution = tokens[-1]
++                non_gc_event_type = tokens[-2]
++            elif len(tokens) >= 4 and tokens[-2] in {"1d", "3d"}:
++                non_gc_solution = tokens[-2]
++                non_gc_event_type = tokens[-4]
++            if non_gc_solution is not None:
++                if non_gc_event_type not in {"le", "re", "qb"}:
++                    raise ValueError(f"unrecognized non-GrowClust event type {non_gc_event_type!r}")
++                event_type_hist[non_gc_event_type] += 1
++                magnitude_type_hist["__UNAVAILABLE_OR_NONCONFIRMATORY__"] += 1
++                solution_hist[non_gc_solution] += 1
++                non_gc_event_lines_skipped += 1
++                continue
++
++            if len(tokens) < 4 or tokens[-2] != "gc":
++                raise ValueError(f"unrecognized catalog tail {tokens[-4:]!r}")
++            if len(tokens) != 29:
++                raise ValueError(f"gc row has {len(tokens)} fields; expected exactly 29")
++
+             event_type = tokens[-4]
+             magnitude_type = tokens[-3]
+             solution = tokens[-2]
+             relocation_box = tokens[-1]
+             if event_type not in {"le", "re", "qb"}:
+-                raise ValueError(f"unrecognized event type {event_type!r}")
+-            if solution not in {"1d", "3d", "gc"}:
+-                raise ValueError(f"unrecognized solution {solution!r}")
++                raise ValueError(f"unrecognized GrowClust event type {event_type!r}")
+             event_type_hist[event_type] += 1
+             magnitude_type_hist[magnitude_type] += 1
+             solution_hist[solution] += 1
+ 
+-            horizontal_error = None
+-            vertical_error = None
+-            origin_time_error = None
+-            nbranch = None
+-            if solution == "gc":
+-                if len(tokens) < 29:
+-                    raise ValueError(f"gc row has {len(tokens)} fields; expected at least 29")
+-                nbranch = int(tokens[13])
+-                horizontal_error = float(tokens[19])
+-                vertical_error = float(tokens[20])
+-                origin_time_error = float(tokens[21])
++            nbranch = int(tokens[13])
++            horizontal_error = float(tokens[19])
++            vertical_error = float(tokens[20])
++            origin_time_error = float(tokens[21])
+ 
+             parsed.append(
+                 {
+@@ -378,7 +400,9 @@
+         "source_bytes": len(payload),
+         "source_sha256": sha256_bytes(payload),
+         "physical_lines": len(raw_lines),
+-        "parsed_event_lines": len(parsed),
++        "total_event_lines_validated": total_event_lines_validated,
++        "parsed_gc_event_lines": len(parsed),
++        "non_gc_event_lines_skipped": non_gc_event_lines_skipped,
+         "field_count_histogram": dict(sorted(field_hist.items())),
+         "solution_histogram": dict(sorted(solution_hist.items())),
+         "event_type_histogram": dict(sorted(event_type_hist.items())),
