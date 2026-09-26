@@ -1,0 +1,86 @@
+name: Helical v0.5 frozen confirmatory gate
+
+on:
+  push:
+    branches:
+      - gate/helical-v05-exact-byte-acquisition-20260926
+    paths:
+      - .github/workflows/helical-v05-confirmatory-gate.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  frozen-v04-confirmatory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SOURCE_RUN_ID: "36245338724"
+      SOURCE_ARTIFACT: scedc-hypodd-exact-bytes-v04
+      RUNTIME_B64_SHA256: 4e69398aca088286f1e3080ebc24bb6e83b0d99b37608b9f1ce6cf191d9b9771
+      RUNTIME_ZIP_SHA256: 1848c26d93f843ac46d4895477634dce8cfced644cec5e61921498ef2997978c
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Recover exact-byte acquisition artifact from successful transport gate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          gh run download "$SOURCE_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name "$SOURCE_ARTIFACT" \
+            --dir "$OUT"
+          (
+            cd "$OUT"
+            sha256sum -c SHA256SUMS.txt
+          )
+
+      - name: Reconstruct and verify frozen runtime
+        shell: bash
+        env:
+          RUNTIME: ${{ runner.temp }}/helical_v05_runtime
+        run: |
+          set -euo pipefail
+          b64="$RUNNER_TEMP/KCH_HELICAL_V05_RUNTIME.zip.b64"
+          zip="$RUNNER_TEMP/KCH_HELICAL_V05_RUNTIME.zip"
+          cat .github/helical_v05_runtime/chunk_* > "$b64"
+          echo "$RUNTIME_B64_SHA256  $b64" | sha256sum -c -
+          base64 --decode "$b64" > "$zip"
+          echo "$RUNTIME_ZIP_SHA256  $zip" | sha256sum -c -
+          mkdir -p "$RUNTIME"
+          unzip -q "$zip" -d "$RUNTIME"
+          python -m compileall -q "$RUNTIME"
+
+      - name: Execute unchanged v0.4 sequence algorithm and thresholds
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+          RUNTIME: ${{ runner.temp }}/helical_v05_runtime
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python "$RUNTIME/driver.py" "$OUT" | tee "$OUT/CONFIRMATORY_EXECUTION_STDOUT.log"
+
+      - name: Seal confirmatory outputs
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          cd "$OUT"
+          sha256sum results/* CONFIRMATORY_EXECUTION_STDOUT.log > CONFIRMATORY_SHA256SUMS.txt
+          find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FINAL_FILE_SIZES.txt
+
+      - name: Upload short-lived confirmatory gate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scedc-hypodd-v05-frozen-confirmatory-gate
+          path: ${{ runner.temp }}/scedc_exact_bytes
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
