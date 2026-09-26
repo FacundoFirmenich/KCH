@@ -10,7 +10,7 @@
      for line_no, raw in enumerate(raw_lines, start=1):
          if not raw.strip() or raw.lstrip().startswith("#"):
              continue
-@@ -192,37 +195,56 @@
+@@ -192,37 +195,64 @@
          if len(tokens) >= 4:
              tail4_hist[" ".join(tokens[-4:])] += 1
          try:
@@ -39,8 +39,12 @@
 +                non_gc_solution = tokens[-2]
 +                non_gc_event_type = tokens[-4]
 +            if non_gc_solution is not None:
-+                if non_gc_event_type not in {"le", "re", "qb", "e"}:
-+                    raise ValueError(f"unrecognized non-GrowClust event type {non_gc_event_type!r}")
++                if (
++                    not non_gc_event_type
++                    or len(non_gc_event_type) > 8
++                    or not all(ch.isalnum() or ch in "_-" for ch in non_gc_event_type)
++                ):
++                    raise ValueError(f"malformed non-GrowClust event type {non_gc_event_type!r}")
 +                event_type_hist[non_gc_event_type] += 1
 +                magnitude_type_hist["__UNAVAILABLE_OR_NONCONFIRMATORY__"] += 1
 +                solution_hist[non_gc_solution] += 1
@@ -60,8 +64,12 @@
 -                raise ValueError(f"unrecognized event type {event_type!r}")
 -            if solution not in {"1d", "3d", "gc"}:
 -                raise ValueError(f"unrecognized solution {solution!r}")
-+            if event_type not in {"le", "re", "qb", "e"}:
-+                raise ValueError(f"unrecognized GrowClust event type {event_type!r}")
++            if (
++                not event_type
++                or len(event_type) > 8
++                or not all(ch.isalnum() or ch in "_-" for ch in event_type)
++            ):
++                raise ValueError(f"malformed GrowClust event type {event_type!r}")
              event_type_hist[event_type] += 1
              magnitude_type_hist[magnitude_type] += 1
              solution_hist[solution] += 1
@@ -84,7 +92,7 @@
  
              parsed.append(
                  {
-@@ -378,7 +400,9 @@
+@@ -378,7 +408,9 @@
          "source_bytes": len(payload),
          "source_sha256": sha256_bytes(payload),
          "physical_lines": len(raw_lines),
