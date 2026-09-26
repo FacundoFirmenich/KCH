@@ -1,0 +1,148 @@
+name: Helical v0.5 frozen confirmatory gate v3
+
+on:
+  push:
+    branches:
+      - gate/helical-v05-exact-byte-acquisition-20260926
+    paths:
+      - .github/workflows/helical-v05-confirmatory-gate-v3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  frozen-v04-confirmatory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SOURCE_RUN_ID: "36245338724"
+      SOURCE_ARTIFACT: scedc-hypodd-exact-bytes-v04
+      RUNTIME_B64_SHA256: 4e69398aca088286f1e3080ebc24bb6e83b0d99b37608b9f1ce6cf191d9b9771
+      RUNTIME_ZIP_SHA256: 1848c26d93f843ac46d4895477634dce8cfced644cec5e61921498ef2997978c
+      ORIGINAL_DRIVER_SHA256: fe3915bd8ad3697674ead54f4e1604e927eeda95a8bff267d00441ba436cb874
+      PATCHED_DRIVER_SHA256: fa2558a58d4d5be94e0d3607fba96f4fc668575541d3359aa1e61b9ef0c19236
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Recover exact-byte acquisition artifact from successful transport gate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          gh run download "$SOURCE_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name "$SOURCE_ARTIFACT" \
+            --dir "$OUT"
+          (
+            cd "$OUT"
+            sha256sum -c SHA256SUMS.txt
+          )
+
+      - name: Reconstruct and verify frozen runtime from explicit immutable chunks
+        shell: bash
+        env:
+          RUNTIME: ${{ runner.temp }}/helical_v05_runtime
+        run: |
+          set -euo pipefail
+          b64="$RUNNER_TEMP/KCH_HELICAL_V05_RUNTIME.zip.b64"
+          zip="$RUNNER_TEMP/KCH_HELICAL_V05_RUNTIME.zip"
+          cat \
+            .github/helical_v05_runtime/chunk_00 \
+            .github/helical_v05_runtime/chunk_01 \
+            .github/helical_v05_runtime/chunk_02 \
+            .github/helical_v05_runtime/chunk_03a \
+            .github/helical_v05_runtime/chunk_03b \
+            .github/helical_v05_runtime/chunk_04 \
+            .github/helical_v05_runtime/chunk_05 \
+            > "$b64"
+          echo "$RUNTIME_B64_SHA256  $b64" | sha256sum -c -
+          base64 --decode "$b64" > "$zip"
+          echo "$RUNTIME_ZIP_SHA256  $zip" | sha256sum -c -
+          mkdir -p "$RUNTIME"
+          unzip -q "$zip" -d "$RUNTIME"
+          python -m compileall -q "$RUNTIME"
+
+      - name: Apply non-semantic summary serializer repair with pre/post hashes
+        shell: bash
+        env:
+          RUNTIME: ${{ runner.temp }}/helical_v05_runtime
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, os
+
+          path = Path(os.environ['RUNTIME']) / 'driver.py'
+          original = path.read_bytes()
+          original_sha = hashlib.sha256(original).hexdigest()
+          if original_sha != os.environ['ORIGINAL_DRIVER_SHA256']:
+              raise SystemExit(f'original driver hash mismatch: {original_sha}')
+
+          text = original.decode('utf-8')
+          replacements = {
+              "            'selected_wavelength': r['evaluation']['selected_wavelength'],":
+              "            'selected_wavelength_km': r['evaluation']['selected_wavelength_km'],",
+              "            'pitch': r['evaluation']['pitch'],":
+              "            'pitch_km_per_turn': r['evaluation']['selected_wavelength_km'],",
+          }
+          for old, new in replacements.items():
+              if text.count(old) != 1:
+                  raise SystemExit(f'expected exactly one serializer token: {old!r}')
+              text = text.replace(old, new)
+          patched = text.encode('utf-8')
+          patched_sha = hashlib.sha256(patched).hexdigest()
+          if patched_sha != os.environ['PATCHED_DRIVER_SHA256']:
+              raise SystemExit(f'patched driver hash mismatch: {patched_sha}')
+          path.write_bytes(patched)
+
+          receipt = {
+              'format': 'KCH_NON_SEMANTIC_SERIALIZER_REPAIR_RECEIPT_V1',
+              'original_driver_sha256': original_sha,
+              'patched_driver_sha256': patched_sha,
+              'replacements': replacements,
+              'model_algorithm_changed': False,
+              'thresholds_changed': False,
+              'iteration_budgets_changed': False,
+              'affected_scope': 'GATE_SUMMARY_V0_5_FIELD_NAMES_ONLY',
+          }
+          out = Path(os.environ['OUT']) / 'SERIALIZER_REPAIR_RECEIPT.json'
+          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+          python -m compileall -q "$RUNTIME"
+
+      - name: Execute unchanged v0.4 sequence algorithm and thresholds
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+          RUNTIME: ${{ runner.temp }}/helical_v05_runtime
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python "$RUNTIME/driver.py" "$OUT" | tee "$OUT/CONFIRMATORY_EXECUTION_STDOUT.log"
+
+      - name: Seal confirmatory outputs
+        if: always()
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          cd "$OUT"
+          find results -type f -print0 2>/dev/null | sort -z | xargs -0 -r sha256sum > CONFIRMATORY_RESULT_SHA256SUMS.txt
+          sha256sum CONFIRMATORY_EXECUTION_STDOUT.log SERIALIZER_REPAIR_RECEIPT.json > CONFIRMATORY_AUX_SHA256SUMS.txt
+          find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FINAL_FILE_SIZES.txt
+
+      - name: Upload short-lived confirmatory gate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scedc-hypodd-v05-frozen-confirmatory-gate-v3
+          path: ${{ runner.temp }}/scedc_exact_bytes
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
