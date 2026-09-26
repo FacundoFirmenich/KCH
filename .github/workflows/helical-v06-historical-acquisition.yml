@@ -20,14 +20,17 @@ jobs:
       EXPECTED_PROTOCOL_SHA256: a673fadc478e2c732330025b330dd375cdbed633312a7d9ba95b2cfe9a1e9d3e
       EXPECTED_LOCK_SHA256: f4f8a3611e508f120429c4c917096542836d3d6d80ffe2d4a03b089956557f07
       EXPECTED_RUNTIME_B64_SHA256: 27a88ffb3f5e7bc3e6373cee9d0a71ac7e813140a9832ed3df46ddd3250b6452
-      EXPECTED_RUNTIME_SHA256: c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a
+      EXPECTED_ORIGINAL_RUNTIME_SHA256: c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a
+      EXPECTED_PATCH_SHA256: 1c071c12823384b4332979e824983d61923e238425d0266c3c97dfa2845e5bc6
+      EXPECTED_REPAIR_RECEIPT_SHA256: d62e28033b25e325dca725f8bc0db009b19007fed6ebcfcf830af386ecd7cb6b
+      EXPECTED_REPAIRED_RUNTIME_SHA256: ae722c5335c1b9bf953fa669b29d1b6a061239009f843a2129624f458c93f274
       OUT: /tmp/helical_v06_acquisition
       RUNTIME: /tmp/acquire_historical_v06.py
       RUNTIME_B64: /tmp/acquire_historical_v06.py.b64
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify preregistration and reconstruct exact runtime before acquisition
+      - name: Verify preregistration and reconstruct exact original runtime
         shell: bash
         run: |
           set -euo pipefail
@@ -52,7 +55,20 @@ jobs:
             > "$RUNTIME_B64"
           echo "$EXPECTED_RUNTIME_B64_SHA256  $RUNTIME_B64" | sha256sum -c -
           base64 --decode "$RUNTIME_B64" > "$RUNTIME"
-          echo "$EXPECTED_RUNTIME_SHA256  $RUNTIME" | sha256sum -c -
+          echo "$EXPECTED_ORIGINAL_RUNTIME_SHA256  $RUNTIME" | sha256sum -c -
+          python -m py_compile "$RUNTIME"
+
+      - name: Apply audited source-format conformance repair before acquisition
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "$EXPECTED_PATCH_SHA256  .github/helical_v06/PARSER_FORMAT_CONFORMANCE_REPAIR_V0_6.patch" | sha256sum -c -
+          echo "$EXPECTED_REPAIR_RECEIPT_SHA256  .github/helical_v06/PARSER_FORMAT_CONFORMANCE_REPAIR_RECEIPT_V0_6.json" | sha256sum -c -
+          (
+            cd /tmp
+            patch --batch --fuzz=0 acquire_historical_v06.py < "$GITHUB_WORKSPACE/.github/helical_v06/PARSER_FORMAT_CONFORMANCE_REPAIR_V0_6.patch"
+          )
+          echo "$EXPECTED_REPAIRED_RUNTIME_SHA256  $RUNTIME" | sha256sum -c -
           python -m py_compile "$RUNTIME"
 
       - name: Acquire official catalog without content decoding
@@ -97,6 +113,8 @@ jobs:
           set -euo pipefail
           cp .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json "$OUT/"
           cp .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json "$OUT/"
+          cp .github/helical_v06/PARSER_FORMAT_CONFORMANCE_REPAIR_V0_6.patch "$OUT/"
+          cp .github/helical_v06/PARSER_FORMAT_CONFORMANCE_REPAIR_RECEIPT_V0_6.json "$OUT/"
           cp "$RUNTIME" "$OUT/acquire_historical_v06.py"
           cd "$OUT"
           find . -type f ! -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
