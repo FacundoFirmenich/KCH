@@ -12,7 +12,7 @@ permissions:
 jobs:
   execute-g1-1:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - name: Checkout frozen branch
         uses: actions/checkout@v4
@@ -26,13 +26,15 @@ jobs:
 
       - name: Install pinned environment
         run: |
+          set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install -r experiments/cfl_g1_1_cheese_bftc_20260926/requirements.txt
 
       - name: Materialize and verify runner
         run: |
+          set -euo pipefail
           gzip -dc experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py.gz > experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py
-          echo "f5e403edacc43ffff1f1c41b226037c704dcacd81f3ceabfa171e2c14418794b  experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py" | sha256sum -c -
+          echo "66fae440282c3ecaedbd8a004d621ea14c04768243043b40526a571988087bea  experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py" | sha256sum -c -
           python -m py_compile experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py
           python -m json.tool experiments/cfl_g1_1_cheese_bftc_20260926/EXECUTION_PROTOCOL.json >/dev/null
 
@@ -41,7 +43,17 @@ jobs:
           PYTHONHASHSEED: '0'
           G11_WORKDIR: ${{ github.workspace }}/g11_work
         run: |
-          python experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py | tee g11_stdout.log
+          set -euo pipefail
+          python experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py 2>&1 | tee g11_stdout.log
+          test -s g11_work/results/DATA_AUDIT.json
+          test -s g11_work/results/RESULTS.json
+          test -s g11_work/results/FISHER_COMPLEMENTARITY.json
+          test -s g11_work/results/RUN_MANIFEST.json
+          test -s g11_work/results/REPORT.md
+          python -m json.tool g11_work/results/DATA_AUDIT.json >/dev/null
+          python -m json.tool g11_work/results/RESULTS.json >/dev/null
+          python -m json.tool g11_work/results/FISHER_COMPLEMENTARITY.json >/dev/null
+          python -m json.tool g11_work/results/RUN_MANIFEST.json >/dev/null
           python -m pip freeze > g11_work/results/PIP_FREEZE.txt
           cp g11_stdout.log g11_work/results/STDOUT.log
           cp experiments/cfl_g1_1_cheese_bftc_20260926/EXECUTION_PROTOCOL.json g11_work/results/EXECUTION_PROTOCOL.json
