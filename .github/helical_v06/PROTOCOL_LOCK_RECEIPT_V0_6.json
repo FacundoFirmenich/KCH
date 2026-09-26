@@ -1,0 +1,15 @@
+{
+  "authority_ceiling": "NONE",
+  "format": "KCH_PROTOCOL_LOCK_RECEIPT_V0_6",
+  "lock_receipt_id": "plr:debaf138b7d7b771617299554d53fd9c40c5f442129c7db9dee7e2345fe7bf5f",
+  "locked_at_utc": "2026-09-26T14:23:23.801431Z",
+  "new_confirmatory_catalog_bytes_present_at_lock": false,
+  "plan_id": "shp:1134ead0015b161ed0aa3008e7355c240f037b426f684c7b1415f640cd29912e",
+  "power_report_sha256": "72a21131ef9d4631ba2ad428761ba1e3b07d1998f16a0306bae7f98885394944",
+  "protocol_sha256": "a673fadc478e2c732330025b330dd375cdbed633312a7d9ba95b2cfe9a1e9d3e",
+  "runtime": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5"
+  },
+  "version": "0.6.0"
+}
