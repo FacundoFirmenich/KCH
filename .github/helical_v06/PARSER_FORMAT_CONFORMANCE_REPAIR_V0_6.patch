@@ -39,7 +39,7 @@
 +                non_gc_solution = tokens[-2]
 +                non_gc_event_type = tokens[-4]
 +            if non_gc_solution is not None:
-+                if non_gc_event_type not in {"le", "re", "qb"}:
++                if non_gc_event_type not in {"le", "re", "qb", "e"}:
 +                    raise ValueError(f"unrecognized non-GrowClust event type {non_gc_event_type!r}")
 +                event_type_hist[non_gc_event_type] += 1
 +                magnitude_type_hist["__UNAVAILABLE_OR_NONCONFIRMATORY__"] += 1
@@ -56,10 +56,11 @@
              magnitude_type = tokens[-3]
              solution = tokens[-2]
              relocation_box = tokens[-1]
-             if event_type not in {"le", "re", "qb"}:
+-            if event_type not in {"le", "re", "qb"}:
 -                raise ValueError(f"unrecognized event type {event_type!r}")
 -            if solution not in {"1d", "3d", "gc"}:
 -                raise ValueError(f"unrecognized solution {solution!r}")
++            if event_type not in {"le", "re", "qb", "e"}:
 +                raise ValueError(f"unrecognized GrowClust event type {event_type!r}")
              event_type_hist[event_type] += 1
              magnitude_type_hist[magnitude_type] += 1
