@@ -1,0 +1,90 @@
+name: Helical v0.6 historical exact-byte acquisition v2
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-dynamic-confirmatory-20260926
+    paths:
+      - .github/workflows/helical-v06-historical-acquisition-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire-audit-filter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      SOURCE_URL: https://service.scedc.caltech.edu/ftp/catalogs/hauksson/Socal_DD/sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc
+      EXPECTED_PROTOCOL_SHA256: a673fadc478e2c732330025b330dd375cdbed633312a7d9ba95b2cfe9a1e9d3e
+      EXPECTED_LOCK_SHA256: f4f8a3611e508f120429c4c917096542836d3d6d80ffe2d4a03b089956557f07
+      EXPECTED_RUNTIME_SHA256: c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a
+      OUT: /tmp/helical_v06_acquisition
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify preregistration and runtime before acquisition
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "$EXPECTED_PROTOCOL_SHA256  .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json" | sha256sum -c -
+          echo "$EXPECTED_LOCK_SHA256  .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json" | sha256sum -c -
+          echo "$EXPECTED_RUNTIME_SHA256  .github/helical_v06/acquire_historical_v06.py" | sha256sum -c -
+          python -m py_compile .github/helical_v06/acquire_historical_v06.py
+
+      - name: Acquire official catalog without content decoding
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$OUT"
+          mkdir -p "$OUT/source" "$OUT/headers" "$OUT/curl" "$OUT/windows" "$OUT/audit"
+          curl \
+            --proto '=https' \
+            --tlsv1.2 \
+            --fail-with-body \
+            --location \
+            --retry 5 \
+            --retry-all-errors \
+            --retry-delay 3 \
+            --connect-timeout 30 \
+            --max-time 1500 \
+            --header 'Accept-Encoding: identity' \
+            --header 'Accept: text/plain,application/octet-stream;q=0.9,*/*;q=0.1' \
+            --user-agent 'KCH-KwanBlocks-Helical-Lift/0.6 exact-byte historical gate via GitHub Actions' \
+            --dump-header "$OUT/headers/source.headers" \
+            --output "$OUT/source/sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc" \
+            --write-out '%{json}\n' \
+            "$SOURCE_URL" > "$OUT/curl/source.json"
+
+      - name: Audit source and materialize frozen windows
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .github/helical_v06/acquire_historical_v06.py \
+            --out "$OUT" \
+            --source "$OUT/source/sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc" \
+            --source-url "$SOURCE_URL" \
+            --protocol .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json \
+            --lock .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json \
+            --curl-json "$OUT/curl/source.json"
+
+      - name: Seal acquisition artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json "$OUT/"
+          cp .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json "$OUT/"
+          cp .github/helical_v06/acquire_historical_v06.py "$OUT/"
+          cd "$OUT"
+          find . -type f ! -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FILE_SIZES.txt
+
+      - name: Upload short-lived exact-byte acquisition artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scedc-historical-v06-exact-byte-windows-v2
+          path: /tmp/helical_v06_acquisition
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
