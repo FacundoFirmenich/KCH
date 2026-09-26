@@ -34,6 +34,7 @@ jobs:
           gzip -dc experiments/cfl_g1_tomography_20260926/run_g1.py.gz > experiments/cfl_g1_tomography_20260926/run_g1.py
           echo "5137ede77a073f62a99795cdb0952990da87719cf3bbd4582da924bcb9e9b3f8  experiments/cfl_g1_tomography_20260926/run_g1.py" | sha256sum -c -
           python -m py_compile experiments/cfl_g1_tomography_20260926/run_g1.py
+          python -m py_compile experiments/cfl_g1_tomography_20260926/run_g1_adversarial_audit.py
 
       - name: Execute measured-data G1 discovery run
         env:
@@ -45,11 +46,21 @@ jobs:
           cp g1_stdout.log g1_work/results/STDOUT.log
           cp experiments/cfl_g1_tomography_20260926/EXECUTION_PROTOCOL.json g1_work/results/EXECUTION_PROTOCOL.json
 
+      - name: Execute post-hoc adversarial baselines
+        env:
+          PYTHONHASHSEED: '0'
+        run: |
+          python experiments/cfl_g1_tomography_20260926/run_g1_adversarial_audit.py \
+            g1_work g1_work/adversarial | tee g1_adversarial_stdout.log
+          cp g1_adversarial_stdout.log g1_work/adversarial/STDOUT.log
+          cp experiments/cfl_g1_tomography_20260926/run_g1_adversarial_audit.py \
+            g1_work/adversarial/SOURCE_run_g1_adversarial_audit.py
+
       - name: Upload complete evidence bundle
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: CFL_G1_REAL_TOMOGRAPHY_${{ github.sha }}
+          name: CFL_G1_REAL_TOMOGRAPHY_AUDITED_${{ github.sha }}
           path: g1_work
           if-no-files-found: warn
           compression-level: 6
