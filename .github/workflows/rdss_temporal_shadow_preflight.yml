@@ -1,0 +1,103 @@
+name: RDSS temporal SHADOW preflight
+
+on:
+  push:
+    paths:
+      - "experiments/rdss_temporal_shadow/v0_1/**"
+      - ".github/workflows/rdss_temporal_shadow_preflight.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate frozen notebook and authority contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          import ast
+          import base64
+          import hashlib
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("experiments/rdss_temporal_shadow/v0_1/RDSS_TEMPORAL_SHADOW_GATE_V0_1.ipynb")
+          raw = path.read_bytes()
+          notebook = json.loads(raw)
+          assert notebook["nbformat"] == 4
+          assert len(notebook["cells"]) == 5
+
+          variables = "".join(notebook["cells"][1]["source"])
+          assert "SEED = 14" in variables
+          assert "LIMIT = 10" in variables
+          assert "RUN_DEVELOPMENT_COUNTERFACTUALS = False" in variables
+
+          materializer = "".join(notebook["cells"][2]["source"])
+          tree = ast.parse(materializer)
+          embedded_json = None
+          for node in tree.body:
+              if not isinstance(node, ast.Assign):
+                  continue
+              if not any(isinstance(t, ast.Name) and t.id == "EMBEDDED" for t in node.targets):
+                  continue
+              call = node.value
+              assert isinstance(call, ast.Call)
+              embedded_json = ast.literal_eval(call.args[0])
+          assert embedded_json is not None
+          embedded = json.loads(embedded_json)
+
+          config = json.loads(base64.b64decode(
+              embedded["config/gate_v0_1.json"]
+          ).decode("utf-8"))
+          campaign = base64.b64decode(
+              embedded["src/shadow_campaign.py"]
+          ).decode("utf-8")
+
+          assert config["mode"] == "shadow_only"
+          assert config["authority"]["default_action"] == "talon_mass_right"
+          assert config["authority"]["rescue_ladder"] == [
+              "talon_mass_left",
+              "talm_mass_right_soft",
+              "baseline",
+          ]
+          assert config["promotion_rule"]["historical_archive_can_promote"] is False
+          assert config["promotion_rule"]["requires_protected_reserve"] is True
+          assert "fixed[\"generated_token_ids_json\"] == shadow[\"generated_token_ids_json\"]" in campaign
+          assert "if spec.id not in development_ids:" in campaign
+          assert "SHADOW_ONLY" in campaign
+
+          receipt = {
+              "gate": "RDSS Temporal Common-State SHADOW Gate",
+              "version": "0.1.0",
+              "status": "PREFLIGHT_PASS",
+              "scientific_state": "PROSPECTIVE_GPU_PENDING",
+              "notebook_sha256": hashlib.sha256(raw).hexdigest(),
+              "cells": len(notebook["cells"]),
+              "seed": 14,
+              "limit": 10,
+              "counterfactuals_enabled": False,
+              "default_action": config["authority"]["default_action"],
+              "rescue_ladder": config["authority"]["rescue_ladder"],
+              "protected_reserve_touched": False,
+              "validated_at_utc": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("RDSS_TEMPORAL_SHADOW_PREFLIGHT_RECEIPT.json").write_text(
+              json.dumps(receipt, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(receipt, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload preflight receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: rdss-temporal-shadow-preflight-receipt
+          path: RDSS_TEMPORAL_SHADOW_PREFLIGHT_RECEIPT.json
+          if-no-files-found: error
