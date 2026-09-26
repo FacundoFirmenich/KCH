@@ -1,0 +1,114 @@
+{
+  "aggregate_positive_rule": "AT_LEAST_TWO_SEQUENCES_PASS_ALL_GATES_AFTER_HOLM",
+  "allowed_sequence_outcomes": [
+    "PIECEWISE_HELICAL_SUPPORT_CANDIDATE",
+    "GLOBAL_HELIX_ONLY_NOT_V0_6_TARGET",
+    "NONHELICAL_RIVAL_SUFFICIENT",
+    "NOT_IDENTIFIABLE_UNDERPOWERED",
+    "NOT_IDENTIFIABLE_SUPPORT_SHIFT",
+    "NOT_IDENTIFIABLE_UNCERTAINTY",
+    "MODEL_MISMATCH"
+  ],
+  "authority_ceiling": "NONE",
+  "canonicalization": "BLOCKED",
+  "claim_ceiling": {
+    "causal_mechanism": "NOT_DEMONSTRATED",
+    "dynamic_trajectory": "NOT_DEMONSTRATED",
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "positive_claim": "GEOMETRIC_SUPPORT_SIGNAL_CANDIDATE_ONLY",
+    "universal_no_helicity": "NOT_ESTABLISHED"
+  },
+  "created_at_utc": "2026-09-26T14:23:23.801215Z",
+  "development_power_report_sha256": "72a21131ef9d4631ba2ad428761ba1e3b07d1998f16a0306bae7f98885394944",
+  "format": "KCH_HELICAL_V0_6_LOCKED_PREREGISTRATION_V1",
+  "frozen_thresholds": {
+    "holm_familywise_alpha": 0.05,
+    "minimum_chirality_sign_stability": 0.75,
+    "minimum_frequency_ratio_max_over_min": 1.25,
+    "minimum_relative_test_rmse_improvement": 0.08,
+    "minimum_selected_piecewise_segments": 2,
+    "minimum_spatial_positive_blocks": 3,
+    "minimum_temporal_positive_folds": 2,
+    "minimum_test_support_overlap": 0.9,
+    "minimum_uncertainty_positive_fraction": 0.75,
+    "raw_null_alpha": 0.05,
+    "spatial_blocks": 4,
+    "temporal_folds": 3
+  },
+  "geometry": {
+    "centerline": "QUADRATIC_IN_FIRST_PCA_AXIS",
+    "coordinates": "SPHERICAL_ECEF_TO_LOCAL_ENU_USING_TRAIN_CENTROID_AND_EARTH_RADIUS_6371_0088_KM",
+    "fit_scope": "TRAIN_ONLY",
+    "moving_frame": "BISHOP_PARALLEL_TRANSPORT",
+    "test_support_overlap_minimum": 0.9
+  },
+  "model_families": {
+    "H0": "NONPERIODIC_CUBIC_BSPLINE_RIBBON_WITH_COMPLEXITY_MATCHED_TO_HELIX",
+    "H1_REFERENCE": "GLOBAL_STATIONARY_HELIX_K1",
+    "H2_PRIMARY": "CONTINUOUS_PIECEWISE_PHASE_HELIX_WITH_K_IN_2_3_AND_PIECEWISE_CONSTANT_PITCH",
+    "candidate_k": [1, 2, 3],
+    "complexity_penalty": "P_EQUALS_8_PLUS_K_FOR_HELIX; SPLINE_TOTAL_BASIS_COEFFICIENTS_EQUAL_OR_GREATER",
+    "linear_coefficients_per_transverse_coordinate": ["INTERCEPT", "LINEAR_ARC_LENGTH", "COS_PHASE", "SIN_PHASE"],
+    "phase_definition": "CONTINUOUS_INTEGRAL_OF_PIECEWISE_CONSTANT_WAVENUMBER_ALONG_BISHOP_ARC_LENGTH",
+    "segment_boundaries": "EQUAL_MASS_QUANTILES_OF_TRAIN_ARC_LENGTH_ONLY",
+    "selection": "FULL_GRID_ON_TRAIN_COEFFICIENT_FIT_THEN_CALIBRATION_PENALIZED_SCORE",
+    "turns_per_segment_grid": [1.25, 1.75, 2.5, 3.5, 5.0]
+  },
+  "multiplicity": "HOLM_BONFERRONI_ACROSS_FIVE_SEQUENCES",
+  "new_data_firewall": {
+    "confirmatory_data": "SCEDC_HAUKSSON_1981_2025_RELOCATED_CATALOG_WINDOWS_LISTED_BELOW",
+    "current_four_2026_catalogs": "DEVELOPMENT_AND_POWER_ONLY",
+    "lock_precedes_exact_byte_acquisition": true,
+    "no_sequence_substitution": true,
+    "no_threshold_relaxation": true,
+    "no_window_changes_after_acquisition": true
+  },
+  "null_test": {
+    "full_model_selection_repeated": true,
+    "iterations": 199,
+    "seed": 6060601,
+    "type": "CYCLIC_SHIFT_OF_TRANSVERSE_PAIRS_RELATIVE_TO_ARC_LENGTH"
+  },
+  "parser_contract": {
+    "confirmatory_solution_filter": "gc",
+    "deterministic_thinning": "EQUAL_TIME_QUANTILE_STRATIFIED_RETAIN_EXTREMES_AND_SHA256_EVENT_ID_RANK_WITHIN_STRATUM",
+    "duplicate_policy": "COLLAPSE_IDENTICAL_TIMESTAMP_LAT_LON_DEPTH_RETAIN_HIGHEST_MAGNITUDE_THEN_LOWEST_EVENT_ID",
+    "encoding": "UTF-8_STRICT_OR_ASCII_SUBSET",
+    "event_type_filter": "LOCAL_EARTHQUAKE_ONLY_EXCLUDE_QB_AND_RE",
+    "fields_required_by_position": ["year", "month", "day", "hour", "minute", "second", "event_id", "latitude", "longitude", "depth_km", "magnitude"],
+    "maximum_events_per_sequence": 6000,
+    "minimum_events_after_filter": 800,
+    "trailing_solution_labels_recognized": ["1d", "3d", "gc"]
+  },
+  "plan_id": "shp:1134ead0015b161ed0aa3008e7355c240f037b426f684c7b1415f640cd29912e",
+  "predecessor_v0_5_outcome": "NONHELICAL_RIVALS_GENERALIZE_FOR_GLOBAL_SINGLE_FREQUENCY_CLASS",
+  "primary_score": "RELATIVE_TEST_COORDINATE_RMSE_IMPROVEMENT_OVER_SELECTED_BSPLINE_RIVAL",
+  "promotion": "BLOCKED",
+  "purpose": "TEST_CONTINUOUS_PIECEWISE_PITCH_HELICAL_SUPPORT_AGAINST_EQUAL_OR_MORE_FLEXIBLE_NONPERIODIC_RIBBONS_ON_NEW_UNTOUCHED_HISTORICAL_SEQUENCES",
+  "robustness": {
+    "orientation": "AXIS_REVERSAL_AND_MIRROR_REFLECTION_CONTRACT",
+    "spatial": "FOUR_HELDOUT_ARC_LENGTH_BLOCKS",
+    "temporal": "THREE_ROLLING_ORIGIN_TESTS"
+  },
+  "sequence_windows": [
+    {"depth_max_km": 30.0, "depth_min_km": -3.0, "end_utc": "1992-12-31T23:59:59Z", "lat_max": 35.1, "lat_min": 33.4, "lon_max": -115.2, "lon_min": -117.2, "role": "PRIMARY_CONFIRMATORY", "sequence_id": "LANDERS_1992", "start_utc": "1992-06-28T11:50:00Z"},
+    {"depth_max_km": 35.0, "depth_min_km": -3.0, "end_utc": "1994-07-31T23:59:59Z", "lat_max": 34.8, "lat_min": 33.6, "lon_max": -117.5, "lon_min": -119.2, "role": "TECTONIC_GEOMETRY_REPLICATION", "sequence_id": "NORTHRIDGE_1994", "start_utc": "1994-01-17T12:20:00Z"},
+    {"depth_max_km": 30.0, "depth_min_km": -3.0, "end_utc": "2000-04-30T23:59:59Z", "lat_max": 35.3, "lat_min": 34.0, "lon_max": -115.3, "lon_min": -117.0, "role": "PRIMARY_CONFIRMATORY", "sequence_id": "HECTOR_MINE_1999", "start_utc": "1999-10-16T09:40:00Z"},
+    {"depth_max_km": 35.0, "depth_min_km": -3.0, "end_utc": "2010-10-31T23:59:59Z", "lat_max": 33.7, "lat_min": 31.5, "lon_max": -114.3, "lon_min": -116.8, "role": "CROSS_BORDER_GEOMETRY_REPLICATION", "sequence_id": "EL_MAYOR_CUCAPAH_2010", "start_utc": "2010-04-04T22:35:00Z"},
+    {"depth_max_km": 35.0, "depth_min_km": -3.0, "end_utc": "2020-01-31T23:59:59Z", "lat_max": 36.6, "lat_min": 35.0, "lon_max": -116.5, "lon_min": -118.5, "role": "HIGH_EVENT_COUNT_REPLICATION", "sequence_id": "RIDGECREST_2019", "start_utc": "2019-07-04T17:25:00Z"}
+  ],
+  "sources": [
+    {"accept_encoding": "identity", "exact_entity_body_required": true, "source_id": "SCEDC_HAUKSSON_RELOCATED_1981_2025", "url": "https://service.scedc.caltech.edu/ftp/catalogs/hauksson/Socal_DD/sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc"},
+    {"role": "FORMAT_AND_KNOWN_LIMITATIONS", "source_id": "SCEDC_RELOCATED_FORMAT_NOTES", "url": "https://scedc.caltech.edu/ftp/catalogs/hauksson/Socal_DD/NOTES_hys_1981_2022_rev_A.pdf"}
+  ],
+  "split": {"calibration_fraction": 0.25, "test_fraction": 0.25, "train_fraction": 0.5, "type": "CHRONOLOGICAL_FUTURE_ONLY"},
+  "status": "LOCKED_BEFORE_NEW_CONFIRMATORY_CATALOG_ACQUISITION",
+  "uncertainty": {
+    "fallback": "NOT_IDENTIFIABLE_UNCERTAINTY_IF_ERRORS_UNAVAILABLE",
+    "iterations": 64,
+    "location_error_source": "DOCUMENTED_HORIZONTAL_AND_VERTICAL_ERRORS_WHEN_AVAILABLE",
+    "seed": 6060602,
+    "selected_hyperparameters_frozen_during_PERTURBATION": true
+  },
+  "version": "0.6.0"
+}
