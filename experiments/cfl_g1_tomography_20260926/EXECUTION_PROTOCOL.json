@@ -1,0 +1,82 @@
+{
+  "program_id": "CFL-UEP-G1-REAL-TOMO-DISCOVERY-20260926",
+  "parent_protocol": "EXP-OBS-TOMO-001",
+  "parent_program": "CFL-UEP-0.1.0",
+  "frozen_date": "2026-09-26",
+  "status": "DISCOVERY_EXECUTION",
+  "authority": "NONE",
+  "dataset": {
+    "canonical_name": "FIPS walnut Data82.mat",
+    "upstream_doi": "10.5281/zenodo.1254206",
+    "published_md5": "5698942708300bc34b87931c6d91f6b6",
+    "expected_size_bytes": 8083003,
+    "acquisition_mirror": "https://raw.githubusercontent.com/UBCMath/MATH307/e50e49baf8915a2fa4991b490101ee04222b732f/notebooks/data/ct.mat",
+    "mirror_commit": "e50e49baf8915a2fa4991b490101ee04222b732f",
+    "mirror_blob_sha": "36588d2036873452f2b833f199d7af4036f1ea57",
+    "raw_measurements_required": true,
+    "silent_imputation": false
+  },
+  "claims": [
+    "H1_TOS_NONREDUCIBLE_CLOSURE",
+    "H4_FISHER_COMPLEMENTARITY",
+    "H6_EUCLIDEANIZATION_CONTAMINATION"
+  ],
+  "folds": {
+    "count": 3,
+    "test": "one of six deterministic angular lattices, 20 angles",
+    "validation": "antipodal-offset angular lattice, 20 angles",
+    "training": "remaining 80 angles",
+    "O1_O2": "two complementary 40-angle sublattices inside training"
+  },
+  "methods": [
+    "O1_TIKHONOV",
+    "O2_TIKHONOV",
+    "MATCHED_JOINT_TIKHONOV",
+    "MATCHED_FIXED_LAPLACIAN",
+    "PROTO_TOS_PHI12_O3",
+    "ORACLE_TEST_LEAK_FORBIDDEN"
+  ],
+  "matched_budget_rule": "Joint baselines and proto-TOS receive exactly the same O1+O2 measurement rows. Test rows are excluded until hyperparameters are selected.",
+  "hyperparameters": {
+    "alpha_grid": [0.1, 1.0, 10.0, 100.0],
+    "beta_grid": [0.1, 1.0, 10.0, 100.0],
+    "gamma_disagreement": 1.0,
+    "selection_metric": "validation projection NRMSE",
+    "cg_rtol": 0.00002,
+    "cg_maxiter": 400
+  },
+  "primary_metrics": [
+    "withheld_projection_nrmse",
+    "false_closure_rate",
+    "task_relative_reduced_fisher_nullity"
+  ],
+  "secondary_metrics": [
+    "withheld_projection_correlation",
+    "training_data_consistency",
+    "perturbation_persistence",
+    "epsilon_linear",
+    "runtime_and_iterations"
+  ],
+  "fisher_scope": {
+    "basis": "fixed 2D DCT 16x16",
+    "dimension": 256,
+    "interpretation": "task-relative reduced Fisher/observability diagnostic; not exact full-space rank",
+    "full_space_nullity": "row-count lower bound only"
+  },
+  "adjudication": {
+    "support_margin_relative": 0.02,
+    "H1_local_support": "proto-TOS improves over strongest matched baseline by at least 2% in at least two of three folds and produces no false closure",
+    "H1_refuted": "proto-TOS is worse by at least 2% in at least two folds",
+    "H1_otherwise": "BASELINE_EQUIVALENT",
+    "H4_local_support": "joint reduced-Fisher nullity is smaller than both O1 and O2 in every fold and combined observations improve held-out score in every fold",
+    "H6": "PROTOFORM_ONLY in this run because one Euclideanized measurement matrix cannot establish intrinsic geometry"
+  },
+  "forbidden": [
+    "silent_imputation",
+    "test_based_hyperparameter_selection",
+    "oracle_as_evidence",
+    "universal_CFL_claim",
+    "canonicalization_of_proto_TOS",
+    "non_euclidean_ontology_claim"
+  ]
+}
