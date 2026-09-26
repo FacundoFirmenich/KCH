@@ -19,21 +19,47 @@ jobs:
       SOURCE_URL: https://service.scedc.caltech.edu/ftp/catalogs/hauksson/Socal_DD/sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc
       EXPECTED_PROTOCOL_SHA256: a673fadc478e2c732330025b330dd375cdbed633312a7d9ba95b2cfe9a1e9d3e
       EXPECTED_LOCK_SHA256: f4f8a3611e508f120429c4c917096542836d3d6d80ffe2d4a03b089956557f07
-      OUT: ${{ runner.temp }}/helical_v06_acquisition
+      EXPECTED_RUNTIME_B64_SHA256: 27a88ffb3f5e7bc3e6373cee9d0a71ac7e813140a9832ed3df46ddd3250b6452
+      EXPECTED_RUNTIME_SHA256: c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a
+      OUT: /tmp/helical_v06_acquisition
+      RUNTIME: /tmp/acquire_historical_v06.py
+      RUNTIME_B64: /tmp/acquire_historical_v06.py.b64
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify locked protocol and receipt before acquisition
+      - name: Verify preregistration and reconstruct exact runtime before acquisition
         shell: bash
         run: |
           set -euo pipefail
           echo "$EXPECTED_PROTOCOL_SHA256  .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json" | sha256sum -c -
           echo "$EXPECTED_LOCK_SHA256  .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json" | sha256sum -c -
+          cat \
+            .github/helical_v06/runtime_b64/chunk_00 \
+            .github/helical_v06/runtime_b64/chunk_01_00 \
+            .github/helical_v06/runtime_b64/chunk_01_01 \
+            .github/helical_v06/runtime_b64/chunk_01_02 \
+            .github/helical_v06/runtime_b64/chunk_01_03 \
+            .github/helical_v06/runtime_b64/chunk_01_04 \
+            .github/helical_v06/runtime_b64/chunk_01_05 \
+            .github/helical_v06/runtime_b64/chunk_01_06 \
+            .github/helical_v06/runtime_b64/chunk_01_07 \
+            .github/helical_v06/runtime_b64/chunk_01_08 \
+            .github/helical_v06/runtime_b64/chunk_01_09 \
+            .github/helical_v06/runtime_b64/chunk_02 \
+            .github/helical_v06/runtime_b64/chunk_03 \
+            .github/helical_v06/runtime_b64/chunk_04 \
+            .github/helical_v06/runtime_b64/chunk_05 \
+            > "$RUNTIME_B64"
+          echo "$EXPECTED_RUNTIME_B64_SHA256  $RUNTIME_B64" | sha256sum -c -
+          base64 --decode "$RUNTIME_B64" > "$RUNTIME"
+          echo "$EXPECTED_RUNTIME_SHA256  $RUNTIME" | sha256sum -c -
+          python -m py_compile "$RUNTIME"
 
       - name: Acquire official catalog without content decoding
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf "$OUT"
           mkdir -p "$OUT/source" "$OUT/headers" "$OUT/curl" "$OUT/windows" "$OUT/audit"
           curl \
             --proto '=https' \
@@ -53,387 +79,17 @@ jobs:
             --write-out '%{json}\n' \
             "$SOURCE_URL" > "$OUT/curl/source.json"
 
-      - name: Audit source and materialize preregistered windows
+      - name: Audit source and materialize frozen windows
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from __future__ import annotations
-
-          import csv
-          import hashlib
-          import json
-          import math
-          import os
-          import platform
-          from collections import Counter
-          from dataclasses import dataclass
-          from datetime import datetime, timedelta, timezone
-          from decimal import Decimal, InvalidOperation
-          from pathlib import Path
-          from typing import Any
-
-          out = Path(os.environ['OUT'])
-          source = out / 'source' / 'sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc'
-          protocol_path = Path('.github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json')
-          lock_path = Path('.github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json')
-          protocol = json.loads(protocol_path.read_text(encoding='utf-8'))
-          lock = json.loads(lock_path.read_text(encoding='utf-8'))
-
-          def sha256_bytes(data: bytes) -> str:
-              return hashlib.sha256(data).hexdigest()
-
-          def canonical_sha(obj: Any) -> str:
-              return sha256_bytes(json.dumps(obj, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode('utf-8'))
-
-          def iso(dt: datetime) -> str:
-              return dt.astimezone(timezone.utc).isoformat(timespec='microseconds').replace('+00:00', 'Z')
-
-          def parse_iso(value: str) -> datetime:
-              return datetime.fromisoformat(value.replace('Z', '+00:00')).astimezone(timezone.utc)
-
-          def parse_origin(tokens: list[str]) -> datetime:
-              year, month, day, hour, minute = map(int, tokens[:5])
-              sec = Decimal(tokens[5])
-              whole = int(sec)
-              micros = int((sec - Decimal(whole)) * Decimal(1_000_000))
-              return datetime(year, month, day, hour, minute, tzinfo=timezone.utc) + timedelta(seconds=whole, microseconds=micros)
-
-          payload = source.read_bytes()
-          if not payload:
-              raise SystemExit('empty source payload')
-          prefix = payload[:4096].lstrip().lower()
-          if prefix.startswith(b'<!doctype html') or prefix.startswith(b'<html') or b'<body' in prefix:
-              raise SystemExit('HTML received instead of catalog')
-          if b'\x00' in payload:
-              raise SystemExit('NUL byte found in provider payload')
-          text = payload.decode('utf-8', errors='strict')
-          raw_lines = text.splitlines()
-
-          curl_meta = json.loads((out / 'curl/source.json').read_text(encoding='utf-8'))
-          response_code = int(curl_meta.get('response_code', 0))
-          size_download = int(float(curl_meta.get('size_download', -1)))
-          if response_code != 200:
-              raise SystemExit(f'HTTP response {response_code}')
-          if size_download != len(payload):
-              raise SystemExit(f'curl size_download {size_download} != local size {len(payload)}')
-
-          field_hist = Counter()
-          tail4_hist = Counter()
-          solution_hist = Counter()
-          event_type_hist = Counter()
-          magnitude_type_hist = Counter()
-          malformed: list[dict[str, Any]] = []
-          parsed: list[dict[str, Any]] = []
-
-          for line_no, raw in enumerate(raw_lines, start=1):
-              if not raw.strip() or raw.lstrip().startswith('#'):
-                  continue
-              tokens = raw.split()
-              field_hist[len(tokens)] += 1
-              if len(tokens) >= 4:
-                  tail4_hist[' '.join(tokens[-4:])] += 1
-              try:
-                  if len(tokens) < 19:
-                      raise ValueError('fewer than 19 fields')
-                  origin = parse_origin(tokens)
-                  event_id = tokens[6]
-                  lat = float(tokens[7])
-                  lon = float(tokens[8])
-                  depth = float(tokens[9])
-                  magnitude = float(tokens[10])
-                  event_type = tokens[-4]
-                  magnitude_type = tokens[-3]
-                  solution = tokens[-2]
-                  relocation_box = tokens[-1]
-                  if event_type not in {'le', 're', 'qb'}:
-                      raise ValueError(f'unrecognized event type {event_type!r}')
-                  if solution not in {'1d', '3d', 'gc'}:
-                      raise ValueError(f'unrecognized solution {solution!r}')
-                  event_type_hist[event_type] += 1
-                  magnitude_type_hist[magnitude_type] += 1
-                  solution_hist[solution] += 1
-
-                  horizontal_error = None
-                  vertical_error = None
-                  origin_time_error = None
-                  nbranch = None
-                  if solution == 'gc':
-                      if len(tokens) < 29:
-                          raise ValueError(f'gc row has {len(tokens)} fields; expected at least 29')
-                      nbranch = int(tokens[13])
-                      horizontal_error = float(tokens[19])
-                      vertical_error = float(tokens[20])
-                      origin_time_error = float(tokens[21])
-
-                  parsed.append({
-                      'line_no': line_no,
-                      'raw': raw,
-                      'tokens': tokens,
-                      'origin': origin,
-                      'event_id': event_id,
-                      'lat': lat,
-                      'lon': lon,
-                      'depth_km': depth,
-                      'magnitude': magnitude,
-                      'event_type': event_type,
-                      'magnitude_type': magnitude_type,
-                      'solution': solution,
-                      'relocation_box': relocation_box,
-                      'horizontal_error_km': horizontal_error,
-                      'vertical_error_km': vertical_error,
-                      'origin_time_error_s': origin_time_error,
-                      'nbranch': nbranch,
-                  })
-              except (ValueError, InvalidOperation, OverflowError) as exc:
-                  if len(malformed) < 1000:
-                      malformed.append({'line_no': line_no, 'error': str(exc), 'raw': raw})
-
-          if malformed:
-              raise SystemExit(f'{len(malformed)} malformed rows detected; first={malformed[0]}')
-
-          # Parser implementation choices were committed before bytes were acquired.
-          thinning_contract = {
-              'strata': 100,
-              'stratum_definition': 'EQUAL_COUNT_CHRONOLOGICAL_RANK_QUANTILES',
-              'global_extremes_forced': True,
-              'within_stratum_rank': 'SHA256_UTF8_EVENT_ID_ASCENDING_THEN_ORIGIN_THEN_LINE_NUMBER',
-              'allocation': 'PROPORTIONAL_LARGEST_REMAINDER_WITH_ONE_PER_NONEMPTY_STRATUM',
-          }
-
-          def collapse_duplicates(rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
-              buckets: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
-              for row in rows:
-                  key = (
-                      iso(row['origin']),
-                      Decimal(row['tokens'][7]),
-                      Decimal(row['tokens'][8]),
-                      Decimal(row['tokens'][9]),
-                  )
-                  buckets.setdefault(key, []).append(row)
-              kept = []
-              removed = 0
-              for key in sorted(buckets):
-                  group = buckets[key]
-                  group.sort(key=lambda r: (-r['magnitude'], int(r['event_id']) if r['event_id'].isdigit() else math.inf, r['event_id']))
-                  kept.append(group[0])
-                  removed += len(group) - 1
-              kept.sort(key=lambda r: (r['origin'], r['event_id'], r['line_no']))
-              return kept, removed
-
-          def deterministic_thin(rows: list[dict[str, Any]], limit: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-              n = len(rows)
-              if n <= limit:
-                  return rows, {'applied': False, 'input_events': n, 'output_events': n, **thinning_contract}
-              strata_count = min(thinning_contract['strata'], n)
-              strata: list[list[dict[str, Any]]] = [[] for _ in range(strata_count)]
-              for rank, row in enumerate(rows):
-                  idx = min(strata_count - 1, (rank * strata_count) // n)
-                  strata[idx].append(row)
-
-              base = [1 if s else 0 for s in strata]
-              remaining = limit - sum(base)
-              eligible = [max(0, len(s) - base[i]) for i, s in enumerate(strata)]
-              total_eligible = sum(eligible)
-              quotas = [0.0 if total_eligible == 0 else remaining * e / total_eligible for e in eligible]
-              extra = [min(eligible[i], int(math.floor(quotas[i]))) for i in range(strata_count)]
-              left = remaining - sum(extra)
-              order = sorted(range(strata_count), key=lambda i: (-(quotas[i] - math.floor(quotas[i])), i))
-              for i in order:
-                  if left <= 0:
-                      break
-                  if extra[i] < eligible[i]:
-                      extra[i] += 1
-                      left -= 1
-              allocation = [base[i] + extra[i] for i in range(strata_count)]
-
-              forced_ids = {rows[0]['event_id'], rows[-1]['event_id']}
-              selected: list[dict[str, Any]] = []
-              for i, stratum in enumerate(strata):
-                  ranked = sorted(
-                      stratum,
-                      key=lambda r: (
-                          0 if r['event_id'] in forced_ids else 1,
-                          hashlib.sha256(r['event_id'].encode('utf-8')).hexdigest(),
-                          r['origin'],
-                          r['line_no'],
-                      ),
-                  )
-                  selected.extend(ranked[:allocation[i]])
-              selected = sorted({r['line_no']: r for r in selected}.values(), key=lambda r: (r['origin'], r['event_id'], r['line_no']))
-              if len(selected) != limit:
-                  raise RuntimeError(f'thinning produced {len(selected)} rows, expected {limit}')
-              return selected, {
-                  'applied': True,
-                  'input_events': n,
-                  'output_events': len(selected),
-                  'allocation': allocation,
-                  **thinning_contract,
-              }
-
-          windows_receipt = []
-          min_events = int(protocol['parser_contract']['minimum_events_after_filter'])
-          max_events = int(protocol['parser_contract']['maximum_events_per_sequence'])
-          csv_fields = [
-              'origin_time_utc', 'event_id', 'latitude', 'longitude', 'depth_km', 'magnitude',
-              'horizontal_error_km', 'vertical_error_km', 'origin_time_error_s', 'relocation_box',
-              'source_line_number', 'source_line_sha256'
-          ]
-
-          for spec in protocol['sequence_windows']:
-              start = parse_iso(spec['start_utc'])
-              end = parse_iso(spec['end_utc'])
-              candidate = [
-                  r for r in parsed
-                  if r['solution'] == protocol['parser_contract']['confirmatory_solution_filter']
-                  and r['event_type'] == 'le'
-                  and start <= r['origin'] <= end
-                  and spec['lat_min'] <= r['lat'] <= spec['lat_max']
-                  and spec['lon_min'] <= r['lon'] <= spec['lon_max']
-                  and spec['depth_min_km'] <= r['depth_km'] <= spec['depth_max_km']
-              ]
-              candidate.sort(key=lambda r: (r['origin'], r['event_id'], r['line_no']))
-              deduped, duplicate_count = collapse_duplicates(candidate)
-              final_rows, thinning = deterministic_thin(deduped, max_events)
-
-              seq = spec['sequence_id']
-              raw_path = out / 'windows' / f'{seq}.exact_lines.txt'
-              csv_path = out / 'windows' / f'{seq}.parsed.csv'
-              jsonl_path = out / 'windows' / f'{seq}.parsed.jsonl'
-              raw_path.write_text(''.join(r['raw'] + '\n' for r in final_rows), encoding='utf-8')
-              with csv_path.open('w', encoding='utf-8', newline='') as handle:
-                  writer = csv.DictWriter(handle, fieldnames=csv_fields)
-                  writer.writeheader()
-                  for r in final_rows:
-                      writer.writerow({
-                          'origin_time_utc': iso(r['origin']),
-                          'event_id': r['event_id'],
-                          'latitude': format(r['lat'], '.8f'),
-                          'longitude': format(r['lon'], '.8f'),
-                          'depth_km': format(r['depth_km'], '.6f'),
-                          'magnitude': format(r['magnitude'], '.3f'),
-                          'horizontal_error_km': '' if r['horizontal_error_km'] is None else format(r['horizontal_error_km'], '.6f'),
-                          'vertical_error_km': '' if r['vertical_error_km'] is None else format(r['vertical_error_km'], '.6f'),
-                          'origin_time_error_s': '' if r['origin_time_error_s'] is None else format(r['origin_time_error_s'], '.6f'),
-                          'relocation_box': r['relocation_box'],
-                          'source_line_number': r['line_no'],
-                          'source_line_sha256': sha256_bytes(r['raw'].encode('utf-8')),
-                      })
-              with jsonl_path.open('w', encoding='utf-8') as handle:
-                  for r in final_rows:
-                      item = {
-                          'origin_time_utc': iso(r['origin']),
-                          'event_id': r['event_id'],
-                          'latitude': r['lat'],
-                          'longitude': r['lon'],
-                          'depth_km': r['depth_km'],
-                          'magnitude': r['magnitude'],
-                          'horizontal_error_km': r['horizontal_error_km'],
-                          'vertical_error_km': r['vertical_error_km'],
-                          'origin_time_error_s': r['origin_time_error_s'],
-                          'relocation_box': r['relocation_box'],
-                          'source_line_number': r['line_no'],
-                          'source_line_sha256': sha256_bytes(r['raw'].encode('utf-8')),
-                      }
-                      handle.write(json.dumps(item, sort_keys=True, separators=(',', ':')) + '\n')
-
-              error_available = sum(
-                  r['horizontal_error_km'] is not None and r['vertical_error_km'] is not None
-                  and r['horizontal_error_km'] >= 0 and r['vertical_error_km'] >= 0
-                  for r in final_rows
-              )
-              windows_receipt.append({
-                  **spec,
-                  'candidate_events_before_duplicate_policy': len(candidate),
-                  'exact_duplicate_groups_removed': duplicate_count,
-                  'events_after_duplicate_policy': len(deduped),
-                  'events_after_deterministic_thinning': len(final_rows),
-                  'minimum_events_required': min_events,
-                  'maximum_events_allowed': max_events,
-                  'status': 'ACQUIRED_AND_ELIGIBLE' if len(final_rows) >= min_events else 'NOT_IDENTIFIABLE_UNDERPOWERED',
-                  'events_with_nonnegative_horizontal_and_vertical_errors': error_available,
-                  'uncertainty_coverage_fraction': 0.0 if not final_rows else error_available / len(final_rows),
-                  'first_origin_time_utc': None if not final_rows else iso(final_rows[0]['origin']),
-                  'last_origin_time_utc': None if not final_rows else iso(final_rows[-1]['origin']),
-                  'exact_lines_sha256': sha256_bytes(raw_path.read_bytes()),
-                  'parsed_csv_sha256': sha256_bytes(csv_path.read_bytes()),
-                  'parsed_jsonl_sha256': sha256_bytes(jsonl_path.read_bytes()),
-                  'thinning': thinning,
-              })
-
-          audit = {
-              'format': 'KCH_HELICAL_V0_6_SOURCE_AUDIT_V1',
-              'source_bytes': len(payload),
-              'source_sha256': sha256_bytes(payload),
-              'physical_lines': len(raw_lines),
-              'parsed_event_lines': len(parsed),
-              'field_count_histogram': dict(sorted(field_hist.items())),
-              'solution_histogram': dict(sorted(solution_hist.items())),
-              'event_type_histogram': dict(sorted(event_type_hist.items())),
-              'magnitude_type_histogram': dict(sorted(magnitude_type_hist.items())),
-              'top_tail4_patterns': tail4_hist.most_common(100),
-              'malformed_rows': malformed,
-              'provider_url': os.environ['SOURCE_URL'],
-              'curl': {
-                  'response_code': response_code,
-                  'size_download': size_download,
-                  'url_effective': curl_meta.get('url_effective'),
-                  'remote_ip': curl_meta.get('remote_ip'),
-                  'content_type': curl_meta.get('content_type'),
-                  'num_redirects': curl_meta.get('num_redirects'),
-                  'ssl_verify_result': curl_meta.get('ssl_verify_result'),
-              },
-          }
-          (out / 'audit/SOURCE_AUDIT_V0_6.json').write_text(json.dumps(audit, indent=2, sort_keys=True) + '\n', encoding='utf-8')
-
-          receipt_body = {
-              'format': 'KCH_HELICAL_V0_6_EXACT_BYTE_ACQUISITION_RECEIPT_V1',
-              'version': '0.6.0',
-              'acquired_at_utc': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
-              'plan_id': protocol['plan_id'],
-              'protocol_sha256': sha256_bytes(protocol_path.read_bytes()),
-              'lock_receipt_id': lock['lock_receipt_id'],
-              'lock_sha256': sha256_bytes(lock_path.read_bytes()),
-              'source': {
-                  'url': os.environ['SOURCE_URL'],
-                  'bytes': len(payload),
-                  'sha256': sha256_bytes(payload),
-                  'exact_entity_body_preserved': True,
-                  'accept_encoding': 'identity',
-                  'content_decoding_requested': False,
-                  'utf8_strict': True,
-              },
-              'parser_implementation': {
-                  'growclust_core_fields': 25,
-                  'trailing_fields': ['event_type', 'magnitude_type', 'solution_label', 'relocation_box'],
-                  'gc_total_fields_expected': 29,
-                  'gc_error_indices_zero_based': {'horizontal': 19, 'vertical': 20, 'origin_time': 21},
-                  'thinning_contract': thinning_contract,
-              },
-              'windows': windows_receipt,
-              'all_five_windows_materialized': len(windows_receipt) == 5,
-              'all_five_windows_meet_minimum_event_count': all(w['status'] == 'ACQUIRED_AND_ELIGIBLE' for w in windows_receipt),
-              'model_execution_authorized_per_sequence': {
-                  w['sequence_id']: w['status'] == 'ACQUIRED_AND_ELIGIBLE' for w in windows_receipt
-              },
-              'runner': {
-                  'github_repository': os.environ.get('GITHUB_REPOSITORY'),
-                  'github_run_id': os.environ.get('GITHUB_RUN_ID'),
-                  'github_run_attempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
-                  'github_sha': os.environ.get('GITHUB_SHA'),
-                  'github_ref': os.environ.get('GITHUB_REF'),
-                  'runner_os': os.environ.get('RUNNER_OS'),
-                  'python': platform.python_version(),
-              },
-              'authority_ceiling': 'NONE',
-              'promotion': 'BLOCKED',
-              'canonicalization': 'BLOCKED',
-          }
-          canonical = json.dumps(receipt_body, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
-          receipt = {'acquisition_receipt_id': 'ar6:' + sha256_bytes(canonical), **receipt_body}
-          (out / 'ACQUISITION_RECEIPT_V0_6.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
-          print(json.dumps(receipt, indent=2, sort_keys=True))
-          PY
+          python "$RUNTIME" \
+            --out "$OUT" \
+            --source "$OUT/source/sc_1981_2025_1d_3d_gc_soda_noqb_10_1_SCSN.gc" \
+            --source-url "$SOURCE_URL" \
+            --protocol .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json \
+            --lock .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json \
+            --curl-json "$OUT/curl/source.json"
 
       - name: Seal acquisition artifact
         shell: bash
@@ -441,6 +97,7 @@ jobs:
           set -euo pipefail
           cp .github/helical_v06/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json "$OUT/"
           cp .github/helical_v06/PROTOCOL_LOCK_RECEIPT_V0_6.json "$OUT/"
+          cp "$RUNTIME" "$OUT/acquire_historical_v06.py"
           cd "$OUT"
           find . -type f ! -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
           find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FILE_SIZES.txt
@@ -449,7 +106,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: scedc-historical-v06-exact-byte-windows
-          path: ${{ runner.temp }}/helical_v06_acquisition
+          path: /tmp/helical_v06_acquisition
           retention-days: 3
           compression-level: 0
           if-no-files-found: error
