@@ -5,38 +5,41 @@
   "confirmatory_eligibility_preserved": true,
   "format": "KCH_PARSER_FORMAT_CONFORMANCE_REPAIR_RECEIPT_V0_6_V1",
   "original_runtime_sha256": "c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a",
-  "parser_repair_receipt_id": "prr:f3f4b7190bf21f6226b4a17e65beda319d6dfb2f32f7e40d50f37fda2a983e3d",
-  "patch_sha256": "7e0e42482bc6bdfc0244316d6ad99ac0a4a30efaeb6a28ae41d503065dc3ee06",
+  "parser_repair_receipt_id": "prr:b43ed32e8760d8be2aca5a57662458d7e57c567a8ecc0ea4f32b2fa28ccd8fc6",
+  "patch_sha256": "0356c78db5c5fecbdc1627b361cdf9ede4a252f9d3fa88561c514adb1dd659fe",
   "plan_id": "shp:1134ead0015b161ed0aa3008e7355c240f037b426f684c7b1415f640cd29912e",
   "promotion": "BLOCKED",
   "protocol_sha256": "a673fadc478e2c732330025b330dd375cdbed633312a7d9ba95b2cfe9a1e9d3e",
-  "recorded_at_utc": "2026-09-26T14:45:03.495557Z",
+  "recorded_at_utc": "2026-09-26T14:47:32.902228Z",
   "repair": {
-    "accepted_nonconfirmatory_legacy_event_codes": [
-      "e"
-    ],
+    "all_non_le_event_types_excluded_from_confirmatory_windows": true,
     "confirmatory_event_type_remains": "le",
+    "event_type_parser_contract": "NONEMPTY_ASCII_ALPHANUMERIC_OR_UNDERSCORE_OR_HYPHEN_TOKEN_MAX_8_CHARS",
     "gc_behavior": "REQUIRE_EXACTLY_29_WHITESPACE_TOKENS_AND_PARSE_ERROR_FIELDS_AT_ZERO_BASED_INDICES_19_20_21",
     "non_gc_behavior": "VALIDATE_INVARIANT_FIRST_11_FIELDS_COUNT_BY_SOLUTION_AND_SKIP_FROM_CONFIRMATORY_MATERIALIZATION",
+    "observed_nonconfirmatory_codes_during_schema_audit": [
+      "e",
+      "ex"
+    ],
     "provider_documented_schemas": {
       "1d_3d": "INVARIANT_FIRST_11_FIELDS_PLUS_SPARSE_HYPOINVERSE_OR_SIMULPS_TAIL_AND_EVENT_TYPE_SOLUTION_LABELS",
       "gc": "25_FIXED_GROWCLUST_FIELDS_PLUS_EVENT_TYPE_MAGNITUDE_TYPE_SOLUTION_RELOCATION_BOX"
     },
-    "unknown_or_malformed_behavior": "FAIL_CLOSED"
+    "unknown_structural_or_malformed_behavior": "FAIL_CLOSED"
   },
-  "repaired_runtime_sha256": "4aad36b7ba2b3dad60df279b6a6021587c618109da26a6fc9bff7f39ac9d3d62",
+  "repaired_runtime_sha256": "b1492b979b6127b7d6d86e8643b697bd62752f010880141524bf9221cf66d9ee",
   "triggering_failure": {
     "confirmatory_gc_rows_inspected_for_scientific_outcome": false,
-    "failure": "NON_GROWCLUST_1D_3D_ROWS_USE_SPARSE_VARIABLE_TAILS_AND_CANNOT_BE_PARSED_AS_29_FIELD_GROWCLUST_ROWS",
-    "first_observed_row_solution": "3d",
+    "failure_1": "NON_GROWCLUST_1D_3D_ROWS_USE_SPARSE_VARIABLE_TAILS_AND_CANNOT_BE_PARSED_AS_29_FIELD_GROWCLUST_ROWS",
+    "failure_2": "22_LEGACY_NON_GROWCLUST_ROWS_USE_EVENT_CODE_e;_ALL_REMAIN_EXCLUDED_FROM_CONFIRMATORY_WINDOWS",
+    "failure_3": "8_GROWCLUST_ROWS_USE_NONCONFIRMATORY_EVENT_CODE_ex;_ALL_REMAIN_EXCLUDED_FROM_CONFIRMATORY_WINDOWS",
     "model_execution_performed": false,
-    "second_failure": "22_LEGACY_NON_GROWCLUST_ROWS_USE_EVENT_CODE_e;_ALL_REMAIN_EXCLUDED_FROM_CONFIRMATORY_WINDOWS",
     "stage": "SOURCE_AUDIT_BEFORE_WINDOW_MATERIALIZATION",
     "window_event_counts_materialized": false,
-    "workflow_run_id": 36249302137,
     "workflow_run_ids": [
       36249302137,
-      36249520787
+      36249520787,
+      36249615533
     ]
   },
   "unchanged": {
@@ -49,5 +52,5 @@
     "thresholds": true,
     "uncertainty_iterations_and_seeds": true
   },
-  "version": "0.6.0-parser-repair-2"
+  "version": "0.6.0-parser-repair-3"
 }
