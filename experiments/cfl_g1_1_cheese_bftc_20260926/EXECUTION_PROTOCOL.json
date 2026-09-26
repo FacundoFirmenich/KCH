@@ -1,0 +1,98 @@
+{
+  "program_id": "CFL-UEP-G1.1-CHEESE-BFTC-20260926",
+  "parent_program": "CFL-UEP-0.1.0",
+  "predecessor_gate": "CFL-UEP-G1-REAL-TOMO-DISCOVERY-20260926",
+  "frozen_date": "2026-09-26",
+  "status": "PREREGISTERED_MATERIAL_EXECUTION",
+  "authority": "NONE",
+  "dataset": {
+    "canonical_name": "FIPS carved cheese DataFull_128x45.mat",
+    "upstream_doi": "10.5281/zenodo.1254210",
+    "download_url": "https://zenodo.org/records/1254210/files/DataFull_128x45.mat?download=1",
+    "published_md5": "ab615bdafdf93d0c14df89c0e0dd5257",
+    "physical_measurements": true,
+    "independent_object_from_G1": true,
+    "silent_imputation": false
+  },
+  "sealed_test": {
+    "angles": [4, 9, 14, 19, 24, 29, 34, 39, 44],
+    "touched_after_configuration_freeze": true,
+    "selection_use": "FORBIDDEN"
+  },
+  "internal_selection": {
+    "remaining_angles": 36,
+    "cv_folds": 3,
+    "validation_angles_per_fold": 12,
+    "training_angles_per_fold": 24,
+    "O1_O2_split": "alternating twelve-angle sublattices"
+  },
+  "mandatory_methods": [
+    "JOINT_TIKHONOV",
+    "FIXED_LAPLACIAN",
+    "SELF_ADAPTIVE_ONCE",
+    "IRLS2",
+    "OLD_PHI12_LAPLACIAN",
+    "BFTC_NO_PRESERVATION",
+    "BFTC_PRESERVING"
+  ],
+  "new_O3": {
+    "name": "Bidirectional Fiber Transport Closure",
+    "abbreviation": "BFTC",
+    "operation": "transport O2 information through directions penalized for disturbing the O1 fiber; repeat in reverse order; fuse the two transported states; measure holonomy",
+    "is_regularizer_only": false,
+    "may_abstain": true,
+    "canonical_TOS_claim": false
+  },
+  "hyperparameters": {
+    "alpha_grid": [0.1, 1.0, 10.0],
+    "beta_grid": [1.0, 10.0],
+    "mu_preservation_grid": [1.0, 10.0, 100.0],
+    "lambda_transport_grid": [0.1, 1.0, 10.0],
+    "cg_rtol": 0.0001,
+    "cg_maxiter": 220
+  },
+  "closure_gate": {
+    "minimum_cross_view_gain": 0.05,
+    "maximum_original_view_nrmse_increase": 0.015,
+    "maximum_normalized_holonomy": 0.35,
+    "maximum_ratio_to_strong_validation_envelope": 1.05,
+    "minimum_cv_folds_passed": 2
+  },
+  "primary_comparisons": [
+    "BFTC versus baseline selected without test",
+    "BFTC versus strongest preregistered baseline test envelope",
+    "old G1 surrogate versus self-adaptive baseline on independent object"
+  ],
+  "fisher_diagnostic": {
+    "full_object_space": true,
+    "structural_nullity_lower_bounds": true,
+    "randomized_rowspace_novelty": true,
+    "saturated_low_dimensional_DCT_basis": false
+  },
+  "adjudication": {
+    "support_margin_relative": 0.02,
+    "false_closure_margin_relative": 0.05,
+    "maximum_compute_cost_ratio_for_support": 2.0,
+    "allowed_H1": [
+      "LOCAL_SUPPORT_IN_INDEPENDENT_OBJECT",
+      "REFUTED_IN_INDEPENDENT_OBJECT",
+      "BASELINE_EQUIVALENT",
+      "ABSTAIN_CLOSURE_GATE_NOT_MET"
+    ],
+    "allowed_quaternary_state": [
+      "+0_PROTOFORM",
+      "+0_PROTOFORM_UNRESOLVED",
+      "0_NO_CLOSURE",
+      "PSEUDOFORM_FALSE_OR_INFERIOR_CLOSURE"
+    ]
+  },
+  "forbidden": [
+    "test_based_hyperparameter_selection",
+    "silent_imputation",
+    "posthoc_closure_threshold_change",
+    "canonical_TOS_promotion",
+    "CFL_generalization",
+    "non_euclidean_ontology_claim",
+    "merging_to_main"
+  ]
+}
