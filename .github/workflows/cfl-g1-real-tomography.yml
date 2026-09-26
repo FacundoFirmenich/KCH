@@ -1,0 +1,56 @@
+name: CFL G1 real tomography
+
+on:
+  push:
+    branches:
+      - cfl-uep/g1-real-tomography-20260926
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout frozen branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: experiments/cfl_g1_tomography_20260926/requirements.txt
+
+      - name: Install pinned numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g1_tomography_20260926/requirements.txt
+
+      - name: Materialize deterministic execution source
+        run: |
+          gzip -dc experiments/cfl_g1_tomography_20260926/run_g1.py.gz > experiments/cfl_g1_tomography_20260926/run_g1.py
+          echo "5137ede77a073f62a99795cdb0952990da87719cf3bbd4582da924bcb9e9b3f8  experiments/cfl_g1_tomography_20260926/run_g1.py" | sha256sum -c -
+          python -m py_compile experiments/cfl_g1_tomography_20260926/run_g1.py
+
+      - name: Execute measured-data G1 discovery run
+        env:
+          PYTHONHASHSEED: '0'
+          G1_WORKDIR: ${{ github.workspace }}/g1_work
+        run: |
+          python experiments/cfl_g1_tomography_20260926/run_g1.py | tee g1_stdout.log
+          python -m pip freeze > g1_work/results/PIP_FREEZE.txt
+          cp g1_stdout.log g1_work/results/STDOUT.log
+          cp experiments/cfl_g1_tomography_20260926/EXECUTION_PROTOCOL.json g1_work/results/EXECUTION_PROTOCOL.json
+
+      - name: Upload complete evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFL_G1_REAL_TOMOGRAPHY_${{ github.sha }}
+          path: g1_work
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
