@@ -1,0 +1,259 @@
+name: Helical v0.5 exact-byte acquisition gate
+
+on:
+  push:
+    branches:
+      - gate/helical-v05-exact-byte-acquisition-20260926
+    paths:
+      - .github/workflows/helical-v05-exact-byte-acquisition.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Acquire official SCEDC entity bodies without content decoding
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT/data" "$OUT/headers" "$OUT/curl"
+
+          declare -A URLS
+          URLS[Indio_hypodd_cat]='https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Indio_hypodd_cat'
+          URLS[Brawley_hypodd_cat]='https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Brawley_hypodd_cat'
+          URLS[Johannesburg_hypodd_cat]='https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Johannesburg_hypodd_cat'
+          URLS[Coso_junction_hypodd_cat]='https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Coso_junction_hypodd_cat'
+
+          for name in Indio_hypodd_cat Brawley_hypodd_cat Johannesburg_hypodd_cat Coso_junction_hypodd_cat; do
+            curl \
+              --proto '=https' \
+              --tlsv1.2 \
+              --fail-with-body \
+              --location \
+              --retry 5 \
+              --retry-all-errors \
+              --retry-delay 2 \
+              --connect-timeout 20 \
+              --max-time 180 \
+              --header 'Accept-Encoding: identity' \
+              --header 'Accept: text/plain,application/octet-stream;q=0.9,*/*;q=0.1' \
+              --user-agent 'KCH-KwanBlocks-Helical-Lift/0.5 exact-byte-acquisition via GitHub Actions' \
+              --dump-header "$OUT/headers/${name}.headers" \
+              --output "$OUT/data/${name}" \
+              --write-out '%{json}\n' \
+              "${URLS[$name]}" > "$OUT/curl/${name}.json"
+          done
+
+      - name: Validate frozen HypoDD byte contract and write receipt
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          import platform
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+
+          out = Path(os.environ["OUT"])
+          specs = [
+              {
+                  "sequence_id": "INDIO_2026_M4_9",
+                  "role": "FULL_CATALOG_REPLAY_OF_PILOT_SEQUENCE",
+                  "file": "Indio_hypodd_cat",
+                  "minimum_events": 200,
+                  "url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Indio_hypodd_cat",
+              },
+              {
+                  "sequence_id": "BRAWLEY_2026_M3_6",
+                  "role": "PRIMARY_EXTERNAL_REPLICATION",
+                  "file": "Brawley_hypodd_cat",
+                  "minimum_events": 200,
+                  "url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Brawley_hypodd_cat",
+              },
+              {
+                  "sequence_id": "JOHANNESBURG_2026_M4_3",
+                  "role": "PRIMARY_EXTERNAL_REPLICATION",
+                  "file": "Johannesburg_hypodd_cat",
+                  "minimum_events": 200,
+                  "url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Johannesburg_hypodd_cat",
+              },
+              {
+                  "sequence_id": "COSO_JUNCTION_2026_M4_0",
+                  "role": "SECONDARY_EXTERNAL_STRESS_REPLICATION",
+                  "file": "Coso_junction_hypodd_cat",
+                  "minimum_events": 200,
+                  "url": "https://service.scedc.caltech.edu/ftp/catalogs/SCSN_DD/Coso_junction_hypodd_cat",
+              },
+          ]
+
+          def sha256_bytes(data: bytes) -> str:
+              return hashlib.sha256(data).hexdigest()
+
+          def parse_time(fields: list[str]) -> datetime:
+              year, month, day, hour, minute = map(int, fields[10:15])
+              seconds = float(fields[15])
+              whole = int(seconds)
+              micros = int(round((seconds - whole) * 1_000_000))
+              if micros == 1_000_000:
+                  whole += 1
+                  micros = 0
+              return datetime(year, month, day, hour, minute, tzinfo=timezone.utc) + timedelta(
+                  seconds=whole, microseconds=micros
+              )
+
+          datasets = []
+          for spec in specs:
+              name = spec["file"]
+              data_path = out / "data" / name
+              header_path = out / "headers" / f"{name}.headers"
+              curl_path = out / "curl" / f"{name}.json"
+
+              payload = data_path.read_bytes()
+              if not payload:
+                  raise SystemExit(f"{name}: empty provider payload")
+              prefix = payload[:2048].lstrip().lower()
+              if prefix.startswith(b"<!doctype html") or prefix.startswith(b"<html") or b"<body" in prefix:
+                  raise SystemExit(f"{name}: HTML received instead of catalog")
+              if b"\x00" in payload:
+                  raise SystemExit(f"{name}: NUL byte found")
+              text = payload.decode("utf-8", errors="strict")
+              physical_lines = text.splitlines()
+              rows = [line for line in physical_lines if line.strip() and not line.lstrip().startswith("#")]
+              if len(rows) < int(spec["minimum_events"]):
+                  raise SystemExit(
+                      f"{name}: {len(rows)} rows below frozen minimum {spec['minimum_events']}"
+                  )
+
+              event_ids: list[str] = []
+              origin_times: list[datetime] = []
+              for line_number, line in enumerate(rows, start=1):
+                  fields = line.split()
+                  if len(fields) != 24:
+                      raise SystemExit(
+                          f"{name}: row {line_number} has {len(fields)} fields, expected 24"
+                      )
+                  event_ids.append(fields[0])
+                  origin_times.append(parse_time(fields))
+
+              duplicates = len(event_ids) - len(set(event_ids))
+              if duplicates:
+                  raise SystemExit(f"{name}: {duplicates} duplicate event IDs")
+              chronological = all(a <= b for a, b in zip(origin_times, origin_times[1:]))
+              if not chronological:
+                  raise SystemExit(f"{name}: origin times are not non-decreasing")
+
+              curl_meta = json.loads(curl_path.read_text(encoding="utf-8"))
+              response_code = int(curl_meta.get("response_code", 0))
+              size_download = int(float(curl_meta.get("size_download", -1)))
+              if response_code != 200:
+                  raise SystemExit(f"{name}: HTTP response code {response_code}")
+              if size_download != len(payload):
+                  raise SystemExit(
+                      f"{name}: curl size_download={size_download} != local bytes={len(payload)}"
+                  )
+
+              datasets.append(
+                  {
+                      **spec,
+                      "status": "ACQUIRED_AND_VALIDATED",
+                      "bytes": len(payload),
+                      "sha256": sha256_bytes(payload),
+                      "physical_lines": len(physical_lines),
+                      "event_count": len(rows),
+                      "field_count": 24,
+                      "duplicate_event_ids": duplicates,
+                      "chronological_non_decreasing": chronological,
+                      "first_event_id": event_ids[0],
+                      "last_event_id": event_ids[-1],
+                      "first_origin_time_utc": origin_times[0].isoformat().replace("+00:00", "Z"),
+                      "last_origin_time_utc": origin_times[-1].isoformat().replace("+00:00", "Z"),
+                      "headers_sha256": sha256_bytes(header_path.read_bytes()),
+                      "curl_metadata_sha256": sha256_bytes(curl_path.read_bytes()),
+                      "curl": {
+                          "response_code": response_code,
+                          "url_effective": curl_meta.get("url_effective"),
+                          "remote_ip": curl_meta.get("remote_ip"),
+                          "content_type": curl_meta.get("content_type"),
+                          "num_redirects": curl_meta.get("num_redirects"),
+                          "ssl_verify_result": curl_meta.get("ssl_verify_result"),
+                          "size_download": size_download,
+                      },
+                      "exact_entity_body_preserved": True,
+                      "content_decoding_requested": False,
+                      "accept_encoding": "identity",
+                  }
+              )
+
+          body = {
+              "format": "KCH_REMOTE_EXACT_BYTE_ACQUISITION_RECEIPT_V1",
+              "version": "0.5.0-transport",
+              "frozen_v0_4_plan_id": "shp:b33956c54818490385024c1a02a0b2f1492650ffed192e8379591c95a4f64b36",
+              "frozen_v0_4_protocol_sha256": "9e222803ed1ff2625b892054bdce8ca7b3069755606ae52343fa986239ee2a85",
+              "acquired_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+              "runner": {
+                  "github_repository": os.environ.get("GITHUB_REPOSITORY"),
+                  "github_run_id": os.environ.get("GITHUB_RUN_ID"),
+                  "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+                  "github_sha": os.environ.get("GITHUB_SHA"),
+                  "github_ref": os.environ.get("GITHUB_REF"),
+                  "runner_os": os.environ.get("RUNNER_OS"),
+                  "python": platform.python_version(),
+              },
+              "transport_contract": {
+                  "scheme": "HTTPS",
+                  "accept_encoding": "identity",
+                  "curl_content_decoding": False,
+                  "redirects_followed_and_recorded": True,
+                  "entity_body_written_without_text_normalization": True,
+              },
+              "datasets": datasets,
+              "all_exact_bytes_validated": len(datasets) == 4,
+              "model_execution_authorized_under_frozen_v0_4_acquisition_rule": len(datasets) == 4,
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+              "canonicalization": "BLOCKED",
+          }
+          canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+          receipt = {
+              "remote_acquisition_receipt_id": "rar:" + sha256_bytes(canonical),
+              **body,
+          }
+          (out / "acquisition_receipt.json").write_text(
+              json.dumps(receipt, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(receipt, ensure_ascii=False, indent=2, sort_keys=True))
+          PY
+
+      - name: Seal acquisition payload
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/scedc_exact_bytes
+        run: |
+          set -euo pipefail
+          cd "$OUT"
+          sha256sum data/* headers/* curl/* acquisition_receipt.json > SHA256SUMS.txt
+          find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FILE_SIZES.txt
+
+      - name: Upload short-lived exact-byte artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scedc-hypodd-exact-bytes-v04
+          path: ${{ runner.temp }}/scedc_exact_bytes
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
