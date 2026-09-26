@@ -100,7 +100,7 @@
       "event_id",
       "latitude",
       "longitude",
-        "depth_km",
+      "depth_km",
       "magnitude"
     ],
     "maximum_events_per_sequence": 6000,
