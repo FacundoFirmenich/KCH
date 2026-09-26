@@ -1,0 +1,58 @@
+name: CFL G1.1 cheese BFTC material gate
+
+on:
+  push:
+    branches:
+      - cfl-uep/g1-1-cheese-bftc-20260926
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g1-1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout frozen branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: experiments/cfl_g1_1_cheese_bftc_20260926/requirements.txt
+
+      - name: Install pinned environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g1_1_cheese_bftc_20260926/requirements.txt
+
+      - name: Materialize and verify runner
+        run: |
+          gzip -dc experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py.gz > experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py
+          echo "f5e403edacc43ffff1f1c41b226037c704dcacd81f3ceabfa171e2c14418794b  experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py" | sha256sum -c -
+          python -m py_compile experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py
+          python -m json.tool experiments/cfl_g1_1_cheese_bftc_20260926/EXECUTION_PROTOCOL.json >/dev/null
+
+      - name: Execute measured-data material gate
+        env:
+          PYTHONHASHSEED: '0'
+          G11_WORKDIR: ${{ github.workspace }}/g11_work
+        run: |
+          python experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py | tee g11_stdout.log
+          python -m pip freeze > g11_work/results/PIP_FREEZE.txt
+          cp g11_stdout.log g11_work/results/STDOUT.log
+          cp experiments/cfl_g1_1_cheese_bftc_20260926/EXECUTION_PROTOCOL.json g11_work/results/EXECUTION_PROTOCOL.json
+          cp experiments/cfl_g1_1_cheese_bftc_20260926/run_g11.py g11_work/results/SOURCE_run_g11.py
+
+      - name: Upload complete evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFL_G1_1_CHEESE_BFTC_${{ github.sha }}
+          path: g11_work
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
