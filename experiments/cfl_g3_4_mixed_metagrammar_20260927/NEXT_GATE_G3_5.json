@@ -1,0 +1,11 @@
+{
+  "program_id":"CFL-UEP-G3.5-ACTIVE-TOPOLOGY-DISAMBIGUATION",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "purpose":"Make the explanatory model fiber, rather than a future value, the object of O3. Select an additional observation/intervention that collapses chart-family/topology ambiguity while preserving calibrated predictive authority.",
+  "starting_regimes":["prediction-identifiable/model-ambiguous","prediction-and-model-ambiguous","model-identifiable"],
+  "required_outputs":["future prediction","compatible model fiber","claim-specific authority vector","selected third observation","post-O3 model fiber","abstention if topology remains non-identifiable"],
+  "mandatory_baselines":["exact expected-information-gain query","Bayesian experimental design","active model discrimination","random query","max predictive variance query","MDL-disagreement query","TOS_NO_PHI","TOS_NO_O3","TOS_FULL_ACTIVE_TOPOLOGY_O3"],
+  "hard_extension":"Include a held-out-composition lane in which the true chart is a composition not present as any named family in the initial metacatalogue.",
+  "support_rule":{"fiber_reduction_gain_over_strongest_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_ontology_promotion_maximum":0.02,"prediction_calibration_must_not_degrade":true},
+  "authority":"NONE","promotion":"BLOCKED"
+}
