@@ -26,7 +26,7 @@ jobs:
       - name: Verify and unpack source
         run: |
           set -euo pipefail
-          echo "e4f5eaa4a70764277759ed5635629166d9f2ac12009b868045c42681f1c94b29  experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip" | sha256sum -c -
+          echo "1fe20cb59d997d0715a82c1683cc62900a1432e7f25f9669b9c1b7824a74bffa  experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip" | sha256sum -c -
           mkdir g35_src
           unzip -q experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip -d g35_src
           python -m py_compile g35_src/run_g35.py g35_src/g35_composition_audit.py
@@ -37,6 +37,7 @@ jobs:
           OPENBLAS_NUM_THREADS: '1'
           MKL_NUM_THREADS: '1'
           G35_WORKDIR: ${{ github.workspace }}/g35_work
+          G35_RUNNER: ${{ github.workspace }}/g35_src/run_g35.py
         run: |
           set -euo pipefail
           python g35_src/run_g35.py 2>&1 | tee g35_stdout.log
