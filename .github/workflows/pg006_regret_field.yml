@@ -1,0 +1,108 @@
+name: PG006 Posterior Regret Field
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg006-decision-coupled-router-20260927
+    paths:
+      - ".github/workflows/pg006_regret_field.yml"
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: pg006-field-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  field:
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [pymc, numpyro]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout field code and frozen non-future data
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg006_field
+            experiments/pi_genesis/pg006_runtime/data
+          sparse-checkout-cone-mode: false
+
+      - name: Download completed component artifacts from primary run
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: FacundoFirmenich/KCH
+          run-id: 36327399524
+          pattern: pg006-${{ matrix.backend }}-*
+          path: components
+          merge-multiple: false
+
+      - name: Add corrected NumPyro global-local artifact
+        if: matrix.backend == 'numpyro'
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: FacundoFirmenich/KCH
+          run-id: 36327504201
+          name: pg006-numpyro-P2_GLOBAL_LOCAL
+          path: components/pg006-numpyro-P2_GLOBAL_LOCAL
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyMC field runtime
+        if: matrix.backend == 'pymc'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "pymc>=5.20,<6"
+
+      - name: Install NumPyro field runtime
+        if: matrix.backend == 'numpyro'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "jax[cpu]>=0.5,<0.10" "numpyro>=0.19,<0.22"
+
+      - name: Compile exact-refit regret surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e experiments/pi_genesis/pg006_runtime/data/future
+          python experiments/pi_genesis/pg006_field/build_field_input.py \
+            --artifacts-root components \
+            --backend ${{ matrix.backend }} \
+            --data-root experiments/pi_genesis/pg006_runtime/data \
+            --out work/field_input_${{ matrix.backend }}_full.npz
+
+      - name: Fit external-PPL posterior regret field
+        env:
+          PYTHONPATH: experiments/pi_genesis/pg006_field:experiments/pi_genesis/pg006_field/generated
+          PYTHONHASHSEED: "0"
+          JAX_ENABLE_X64: "true"
+          XLA_FLAGS: --xla_force_host_platform_device_count=1
+        run: >-
+          python experiments/pi_genesis/pg006_field/field_runner.py
+          --backend ${{ matrix.backend }}
+          --input work/field_input_${{ matrix.backend }}_full_fit.npz
+          --output results/pg006-field-${{ matrix.backend }}
+
+      - name: Preserve compiled surfaces and field receipts
+        shell: bash
+        run: |
+          cp work/field_input_${{ matrix.backend }}_full.npz results/pg006-field-${{ matrix.backend }}/
+          cp work/field_input_${{ matrix.backend }}_full.json results/pg006-field-${{ matrix.backend }}/
+          cp work/field_input_${{ matrix.backend }}_full_fit.npz results/pg006-field-${{ matrix.backend }}/
+
+      - name: Upload content-addressed regret field
+        uses: actions/upload-artifact@v4
+        with:
+          name: pg006-field-${{ matrix.backend }}
+          path: results/pg006-field-${{ matrix.backend }}
+          if-no-files-found: error
+          retention-days: 30
