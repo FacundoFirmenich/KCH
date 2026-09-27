@@ -1,0 +1,35 @@
+{
+  "program_id":"CFL-UEP-G3.3-OBSERVATIONAL-CHART-AND-BASIS-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "purpose":"Remove the privileged latent coordinates that made G3.2 reducible to exact affine/GF(2) identification.",
+  "hard_condition":"Neither the target operator nor a sufficient observation chart/basis is supplied at origin.",
+  "candidate_question":"Can CFL infer a representation in which two partial observations become jointly identifiable and then synthesize a certified operator, outperforming matched representation-learning and symbolic-system-identification baselines?",
+  "domains":[
+    "graph relational representations with hidden relabeling and motif basis",
+    "polynomial ideals under hidden nonlinear coordinate charts",
+    "Diophantine families under latent parameterizations not supplied to the solver",
+    "mechanics under hidden generalized coordinates and coupling basis"
+  ],
+  "mandatory_baselines":[
+    "raw-coordinate symbolic identification",
+    "PCA/SVD chart induction where meaningful",
+    "CCA/multiview latent alignment",
+    "kernel CCA",
+    "autoencoder or nonlinear latent regression under matched budget",
+    "manifold/diffusion representation where meaningful",
+    "symbolic feature synthesis",
+    "program synthesis over candidate charts",
+    "TOS without Phi12",
+    "TOS without O3",
+    "TOS full chart-plus-operator genesis protoform"
+  ],
+  "support_rule":{
+    "minimum_gain_over_strongest_matched_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_promotion_maximum":0.02,
+    "private_reserve_one_shot":true
+  },
+  "authority":"NONE",
+  "promotion":"BLOCKED"
+}
