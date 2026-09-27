@@ -1,0 +1,103 @@
+name: PG006 Materialize Sleepstudy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg006-decision-coupled-router-20260927
+    paths:
+      - ".github/workflows/pg006_materialize_sleepstudy.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout pinned public source
+        uses: actions/checkout@v4
+        with:
+          repository: vincentarelbundock/Rdatasets
+          ref: 1dcc2bf5f955cc1224a3e1307256e1fe86b68dae
+          path: source
+          sparse-checkout: |
+            csv/lme4/sleepstudy.csv
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Split and content-address the frozen temporal blocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import csv
+
+          source = Path('source/csv/lme4/sleepstudy.csv')
+          raw = source.read_bytes()
+          full_sha = hashlib.sha256(raw).hexdigest()
+          rows = list(csv.DictReader(raw.decode('utf-8').splitlines()))
+          if len(rows) != 180:
+              raise SystemExit(f'unexpected row count: {len(rows)}')
+          subjects = sorted({row['Subject'] for row in rows})
+          days = sorted({int(row['Days']) for row in rows})
+          if len(subjects) != 18 or days != list(range(10)):
+              raise SystemExit({'subjects': len(subjects), 'days': days})
+
+          out = Path('pg006-data')
+          out.mkdir()
+          (out / 'sleepstudy_full.csv').write_bytes(raw)
+          blocks = {
+              'construction_days_0_5.csv': {0,1,2,3,4,5},
+              'calibration_days_6_7.csv': {6,7},
+              'future_days_8_9.csv': {8,9},
+          }
+          hashes = {'sleepstudy_full.csv': full_sha}
+          counts = {'sleepstudy_full.csv': len(rows)}
+          fieldnames = ['rownames','Reaction','Days','Subject']
+          for filename, keep in blocks.items():
+              selected = [row for row in rows if int(row['Days']) in keep]
+              target = out / filename
+              with target.open('w', newline='', encoding='utf-8') as stream:
+                  writer = csv.DictWriter(stream, fieldnames=fieldnames, lineterminator='\n')
+                  writer.writeheader()
+                  writer.writerows(selected)
+              hashes[filename] = hashlib.sha256(target.read_bytes()).hexdigest()
+              counts[filename] = len(selected)
+
+          if counts['construction_days_0_5.csv'] != 108 or counts['calibration_days_6_7.csv'] != 36 or counts['future_days_8_9.csv'] != 36:
+              raise SystemExit(counts)
+
+          commitment = {
+              'gate_id': 'KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001',
+              'preprotocol_commit': '2a5446573b3a5b80b831a1c642b19f15af33307a',
+              'source_commitment_commit': '213238c8b4708ad7b3d48a43cbbd5684e2a81b21',
+              'source_repository': 'vincentarelbundock/Rdatasets',
+              'source_commit': '1dcc2bf5f955cc1224a3e1307256e1fe86b68dae',
+              'source_blob_sha': '24b15d8da70b101ce8822f8a31b872dd6c622f46',
+              'hashes_sha256': hashes,
+              'row_counts': counts,
+              'subjects': subjects,
+              'days': days,
+              'future_must_be_absent_from_fit_jobs': True,
+              'no_model_fit_executed': True,
+          }
+          (out / 'PG006_DATA_COMMITMENTS_COMPUTED.json').write_text(json.dumps(commitment, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(commitment, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload frozen PG006 data blocks
+        uses: actions/upload-artifact@v4
+        with:
+          name: pg006-sleepstudy-data-commitments
+          path: pg006-data
+          if-no-files-found: error
+          retention-days: 30
