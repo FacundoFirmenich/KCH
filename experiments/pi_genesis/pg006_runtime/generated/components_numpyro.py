@@ -10,6 +10,11 @@ BACKEND_FAMILY = "NumPyro"
 MODELS = ("P0_POPULATION", "P1_GLOBAL_POOL", "P2_GLOBAL_LOCAL", "P3_LOW_POOL")
 
 
+def half_student_t(df: float, scale: float = 1.0):
+    """Exact folded Student-t realization of a centered half-Student prior."""
+    return dist.FoldedDistribution(dist.StudentT(df, loc=0.0, scale=scale))
+
+
 def component_model(y, t, group, basis, projector, model_id: str):
     if model_id not in MODELS:
         raise ValueError(model_id)
@@ -29,8 +34,8 @@ def component_model(y, t, group, basis, projector, model_id: str):
     elif model_id == "P2_GLOBAL_LOCAL":
         tau_a = numpyro.sample("tau_a", dist.HalfNormal(0.25))
         tau_b = numpyro.sample("tau_b", dist.HalfNormal(0.20))
-        lambda_a = numpyro.sample("lambda_a", dist.HalfStudentT(3.0, 1.0).expand((j,)).to_event(1))
-        lambda_b = numpyro.sample("lambda_b", dist.HalfStudentT(3.0, 1.0).expand((j,)).to_event(1))
+        lambda_a = numpyro.sample("lambda_a", half_student_t(3.0, 1.0).expand((j,)).to_event(1))
+        lambda_b = numpyro.sample("lambda_b", half_student_t(3.0, 1.0).expand((j,)).to_event(1))
         u_a = numpyro.sample("u_a", dist.Normal(0.0, 1.0).expand((j - 1,)).to_event(1))
         u_b = numpyro.sample("u_b", dist.Normal(0.0, 1.0).expand((j - 1,)).to_event(1))
         w_a = basis @ u_a
