@@ -1,0 +1,6 @@
+{
+  "initial_e_value":16.777216000000006,
+  "initial_deficit":0.1757104980795773,
+  "myopic":{"first_action":"critical_A","value":-0.13785524903978866,"expected_raw_cost":0.30,"expected_probes":1.5,"eligibility_rate":1.0},
+  "horizon2":{"first_action":"route","value":-0.055,"expected_raw_cost":0.22,"expected_probes":2.0,"eligibility_rate":1.0}
+}
