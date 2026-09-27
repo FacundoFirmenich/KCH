@@ -118,20 +118,16 @@
     "full_development_fit_pending": true,
     "protected_reserve_touched": false,
     "cheap_screen_fit_authorized": false,
-    "targeted_replication_required": true
+    "targeted_replication_required": false,
+    "pocket_replication_status": "rejected"
   },
   "next_gate": {
-    "name": "G1C_P02_STEP0_SEED_REPLICATION",
-    "source_notebook_commit": "c917536b27b6b578d9187f937a8c4d71e55ecd8a",
-    "seeds": [
-      28,
-      42
-    ],
+    "name": "G1B_COMPLETE_P06_DEVELOPMENT",
     "campaign_prompt_ids": [
-      "p02"
+      "p06"
     ],
     "development_prompt_ids": [
-      "p02"
+      "p06"
     ],
     "reserve_forbidden": [
       "p07",
@@ -139,6 +135,15 @@
       "p09",
       "p10"
     ],
-    "promotion_scope": "authorizes expanded development only; never reserve evaluation or deployment"
+    "purpose": "Complete the only missing development prompt before any broader screen work."
+  },
+  "downstream_g1c": {
+    "status": "G1C_REJECT_POCKET",
+    "result_file": "G1C_P02_STEP0_REPLICATION_RESULT.json",
+    "seed_28_left_gain_over_tmr": 0,
+    "seed_42_left_gain_over_tmr": 0,
+    "pocket_generalization_rejected": true,
+    "router_fit_authorized": false,
+    "reserve_touched": false
   }
 }
