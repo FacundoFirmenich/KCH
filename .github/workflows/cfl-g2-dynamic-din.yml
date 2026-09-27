@@ -30,10 +30,12 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r experiments/cfl_g2_dynamic_din_20260927/requirements.txt
 
-      - name: Materialize and verify deterministic runner
+      - name: Materialize, patch and verify deterministic runner
         run: |
           set -euo pipefail
           gzip -dc experiments/cfl_g2_dynamic_din_20260927/run_g2.py.gz > experiments/cfl_g2_dynamic_din_20260927/run_g2.py
+          echo "a2f06c866e3616f379def31811282dde59eb502713df8b980f615842f31257f0  experiments/cfl_g2_dynamic_din_20260927/run_g2.py" | sha256sum -c -
+          python experiments/cfl_g2_dynamic_din_20260927/apply_fair_cost_patch.py experiments/cfl_g2_dynamic_din_20260927/run_g2.py
           echo "0baba09f1a59b4d32ff0bd64109b1cc676bea56042cd3a72578e10a1cc683a75  experiments/cfl_g2_dynamic_din_20260927/run_g2.py" | sha256sum -c -
           python -m py_compile experiments/cfl_g2_dynamic_din_20260927/run_g2.py
           python -m json.tool experiments/cfl_g2_dynamic_din_20260927/EXECUTION_PROTOCOL.json >/dev/null
@@ -62,6 +64,7 @@ jobs:
           cp g2_stdout.log g2_work/results/STDOUT.log
           cp experiments/cfl_g2_dynamic_din_20260927/EXECUTION_PROTOCOL.json g2_work/results/EXECUTION_PROTOCOL.json
           cp experiments/cfl_g2_dynamic_din_20260927/run_g2.py g2_work/results/SOURCE_run_g2.py
+          cp experiments/cfl_g2_dynamic_din_20260927/apply_fair_cost_patch.py g2_work/results/SOURCE_apply_fair_cost_patch.py
 
       - name: Upload complete evidence bundle
         if: always()
