@@ -1,0 +1,7 @@
+{
+  "gate":"BUDGETED_BELIEF_TREE_SEARCH_AND_ROBUST_POMDP_007",
+  "release":"1.6.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":20,"failed":0},
+  "next_gate":"AMBIGUITY_SET_LEARNING_AND_CALIBRATION_008"
+}
