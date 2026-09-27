@@ -1,0 +1,83 @@
+name: PG006 Component Refits
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg006-decision-coupled-router-20260927
+    paths:
+      - "experiments/pi_genesis/pg006_runtime/**"
+      - ".github/workflows/pg006_components.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pg006-components-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fit:
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [pymc, numpyro]
+        model: [P0_POPULATION, P1_GLOBAL_POOL, P2_GLOBAL_LOCAL, P3_LOW_POOL]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout outcome-blind runtime
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg006_runtime
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify frozen evidence surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=experiments/pi_genesis/pg006_runtime
+          test ! -e "$ROOT/data/future"
+          test "$(sha256sum "$ROOT/data/train/construction_days_0_5.csv" | cut -d' ' -f1)" = "0c9c4b2d365a9a32b84c0221548c54b3c884c2fc68d4f3b436f78cd9fde7c5ee"
+          test "$(sha256sum "$ROOT/data/calibration/calibration_days_6_7.csv" | cut -d' ' -f1)" = "aa3fc9cdd1de05f4dc7f78d64e39257fe6c6ed0eb74d8d6f796287eedd5b59ff"
+          test "$(sha256sum "$ROOT/protocol/PG006_FROZEN_PROTOCOL.json" | cut -d' ' -f1)" = "4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7"
+          test "$(sha256sum "$ROOT/ir/PG006_COMPONENT_IR.json" | cut -d' ' -f1)" = "280403a5fbdc1f8817218a4ac8f5d5b0d8e530934834c0cc3b400881d53f0f8a"
+          python -m py_compile "$ROOT"/src/pg006/*.py "$ROOT"/generated/*.py
+
+      - name: Install PyMC runtime
+        if: matrix.backend == 'pymc'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "pymc>=5.20,<6"
+
+      - name: Install NumPyro runtime
+        if: matrix.backend == 'numpyro'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "jax[cpu]>=0.5,<0.10" "numpyro>=0.19,<0.22"
+
+      - name: Execute exact prequential and final component fits
+        env:
+          PYTHONPATH: experiments/pi_genesis/pg006_runtime/src:experiments/pi_genesis/pg006_runtime/generated
+          PYTHONHASHSEED: "0"
+          JAX_ENABLE_X64: "true"
+          XLA_FLAGS: --xla_force_host_platform_device_count=1
+        run: >-
+          python -m pg006.component_runner
+          --backend ${{ matrix.backend }}
+          --model ${{ matrix.model }}
+          --root experiments/pi_genesis/pg006_runtime
+          --output results/pg006-${{ matrix.backend }}-${{ matrix.model }}
+
+      - name: Upload content-addressed component receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: pg006-${{ matrix.backend }}-${{ matrix.model }}
+          path: results/pg006-${{ matrix.backend }}-${{ matrix.model }}
+          if-no-files-found: error
+          retention-days: 30
