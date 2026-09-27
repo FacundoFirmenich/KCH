@@ -1,0 +1,16 @@
+{
+  "certified_action":"s3",
+  "certified_depth":3,
+  "decision":"CERTIFY",
+  "exact_root_action":"s3",
+  "exact_value":0.6394818652850001,
+  "exhaustive_cached_states":4077,
+  "expanded":65,
+  "gap":0.0,
+  "lower":0.6394818652850001,
+  "memo_states":109,
+  "release":"1.6.0",
+  "schema":"SCA_CFL_ROBUST_PLANNER_CERT_V1",
+  "static_pruned":568,
+  "upper":0.6394818652850001
+}
