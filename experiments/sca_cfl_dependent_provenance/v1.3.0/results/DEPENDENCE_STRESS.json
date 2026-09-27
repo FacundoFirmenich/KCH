@@ -1,0 +1,8 @@
+{
+  "threshold":20.0,
+  "naive_8_supports":{"naive_e_value":42.94967296000002,"robust_e_value":1.6,"admissible_partitions":4140,"min_roots":1,"max_roots":8,"eligible":false},
+  "six_certified_distinct":{"robust_e_value":16.777216000000006,"eligible":false},
+  "seven_certified_distinct":{"robust_e_value":26.843545600000013,"eligible":true},
+  "unauthorized_independence_claims":{"robust_e_value":1.6,"eligible":false},
+  "cartography_authority":"SHADOW_ONLY"
+}
