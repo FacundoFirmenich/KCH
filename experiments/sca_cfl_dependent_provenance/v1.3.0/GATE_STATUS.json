@@ -1,0 +1,7 @@
+{
+  "gate":"PROVENANCE_AWARE_REHABILITATION_UNDER_DEPENDENT_EVIDENCE_004",
+  "release":"1.3.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":16,"failed":0},
+  "next_gate":"ACTIVE_PROVENANCE_PROBING_AND_VALUE_OF_INFORMATION_005"
+}
