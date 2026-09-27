@@ -1,0 +1,75 @@
+name: CFL G1.2 lotus dimensionless closure
+
+on:
+  push:
+    branches:
+      - cfl-uep/g1-2-lotus-dimensionless-20260927
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g1-2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout frozen branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: experiments/cfl_g1_2_lotus_dimensionless_20260927/requirements.txt
+
+      - name: Install pinned numerical environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g1_2_lotus_dimensionless_20260927/requirements.txt
+
+      - name: Materialize and verify deterministic runner
+        run: |
+          set -euo pipefail
+          gzip -dc experiments/cfl_g1_2_lotus_dimensionless_20260927/run_g12.py.gz > experiments/cfl_g1_2_lotus_dimensionless_20260927/run_g12.py
+          echo "219947e7711920769e8aa230a3721d81165476c3ef499ead67b23f4f8a5458bf  experiments/cfl_g1_2_lotus_dimensionless_20260927/run_g12.py" | sha256sum -c -
+          python -m py_compile experiments/cfl_g1_2_lotus_dimensionless_20260927/run_g12.py
+          python -m json.tool experiments/cfl_g1_2_lotus_dimensionless_20260927/EXECUTION_PROTOCOL.json >/dev/null
+
+      - name: Execute measured-data G1.2 material gate
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G12_WORKDIR: ${{ github.workspace }}/g12_work
+        run: |
+          set -euo pipefail
+          python experiments/cfl_g1_2_lotus_dimensionless_20260927/run_g12.py 2>&1 | tee g12_stdout.log
+          test -s g12_work/results/DATA_AUDIT.json
+          test -s g12_work/results/RESULTS.json
+          test -s g12_work/results/FISHER_SPECTRAL_AUDIT.json
+          test -s g12_work/results/RUN_MANIFEST.json
+          test -s g12_work/results/REPORT.md
+          test -s g12_work/results/CV_RECORDS.csv
+          test -s g12_work/visuals/FINAL_METHODS_MONTAGE.png
+          python -m json.tool g12_work/results/DATA_AUDIT.json >/dev/null
+          python -m json.tool g12_work/results/RESULTS.json >/dev/null
+          python -m json.tool g12_work/results/FISHER_SPECTRAL_AUDIT.json >/dev/null
+          python -m json.tool g12_work/results/RUN_MANIFEST.json >/dev/null
+          python -m pip freeze > g12_work/results/PIP_FREEZE.txt
+          cp g12_stdout.log g12_work/results/STDOUT.log
+          cp experiments/cfl_g1_2_lotus_dimensionless_20260927/EXECUTION_PROTOCOL.json g12_work/results/EXECUTION_PROTOCOL.json
+          cp experiments/cfl_g1_2_lotus_dimensionless_20260927/run_g12.py g12_work/results/SOURCE_run_g12.py
+
+      - name: Upload complete evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFL_G1_2_LOTUS_DIMENSIONLESS_${{ github.sha }}
+          path: g12_work
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
