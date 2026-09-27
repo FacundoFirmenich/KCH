@@ -1,0 +1,9 @@
+{
+  "schema":"SCA_CFL_SACRIFICIAL_POINTER_V1",
+  "release":"1.1.0",
+  "artifact_sha256":"7576be5e2cabb70d6198bd1193bb6c1a1244a4f20e8b513f5d8dd2e865e0bbd7",
+  "content_digest":"90613dd7209e3f563310c5c8f7e7b16cdcb2989e1a79fc3295a40086567adee2",
+  "parent_manifest_digest":"4c3f21eaac3a7b796fd506a4a3a9ad2a20ffe2b61a496234ee28781bed2a8749",
+  "library_path":"/SCA-CFL/RecoveryLab/v1.1/SACRIFICIAL_SCA_CFL_Repair_FailClosed_v1_1.zip",
+  "drive_path":"/Google Drive/SCA-CFL/RecoveryLab/v1.1/SACRIFICIAL_SCA_CFL_Repair_FailClosed_v1_1.zip"
+}
