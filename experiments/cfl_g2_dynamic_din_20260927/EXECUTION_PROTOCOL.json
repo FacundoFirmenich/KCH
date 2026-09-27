@@ -1,0 +1,110 @@
+{
+  "program_id": "CFL-UEP-G2-DYNAMIC-DIN-CROSS-PHANTOM-20260927",
+  "parent_program": "CFL-UEP-0.1.0",
+  "predecessor_gate": "CFL-UEP-G1.2-DIMENSIONLESS-CLOSURE",
+  "status": "PREREGISTERED_MATERIAL_EXECUTION",
+  "authority": "NONE",
+  "dataset": {
+    "canonical_name": "FIPS time-dependent 3D cross phantom / DataDynamic_128x15.mat",
+    "upstream_doi": "10.5281/zenodo.1446516",
+    "download_url": "https://zenodo.org/records/1446516/files/DataDynamic_128x15.mat?download=1",
+    "published_md5": "54c83983e1dfa73bb0da7734aea9f649",
+    "physical_measurements": true,
+    "frames": 16,
+    "projections_per_frame": 15,
+    "detectors": 140,
+    "fine_resolution": [128, 128],
+    "execution_resolution": [64, 64],
+    "coarse_model": "exact piecewise-constant 2x2 prolongation through supplied physical forward operator",
+    "silent_imputation": false
+  },
+  "temporal_split": {
+    "history_frames": [0, 1, 2, 3, 4, 5, 6, 7],
+    "held_transition_frames": [8, 9, 10, 11],
+    "sealed_future_frames": [12, 13, 14, 15],
+    "random_row_split": "FORBIDDEN",
+    "rolling_origin": true
+  },
+  "angular_split_each_frame": {
+    "sealed_test_local_positions_zero_based": [2, 7, 12],
+    "observed_positions": [0, 1, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14],
+    "O1_early_acquisition_positions": [0, 1, 3, 4, 5, 6],
+    "O2_late_acquisition_positions": [8, 9, 10, 11, 13, 14]
+  },
+  "din_definition": {
+    "name": "non-adjacent diagonal closure-lens re-entry",
+    "source": "directed O1-to-O2 closure at frame t-2",
+    "target": "spatial reliability lens and prior for frame t",
+    "lineage": "content hash of source frame, O1/O2 positions, transport parameters and holonomy",
+    "non_adjacent": true,
+    "future_test_access": false,
+    "canonical_DIN_claim": false
+  },
+  "mandatory_methods": [
+    "FRAMEWISE_TIKHONOV",
+    "FIXED_SPATIAL",
+    "RECURRENT_NO_DIN",
+    "STATE_SPACE_CV",
+    "CROSS_ATTENTION_NO_DIN",
+    "LOW_RANK_SPARSE_PREDICTOR",
+    "SPATIOTEMPORAL_IRLS",
+    "DIN_DIAGONAL_REENTRY",
+    "DIN_ORDER_REVERSED",
+    "DIN_LINEAGE_SHUFFLED"
+  ],
+  "primary_endpoints": [
+    "future_withheld_projection_nrmse",
+    "future_withheld_projection_gaussian_log_score",
+    "false_closure_rate",
+    "calibration_90_coverage_under_transition"
+  ],
+  "qualified_endpoint": {
+    "change_localization": "operator-relative detector-space proxy; not intrinsic image-space ground truth"
+  },
+  "secondary_endpoints": [
+    "observational_holonomy",
+    "common-basis Fisher logdet gain",
+    "common-basis effective rank",
+    "compute cost",
+    "lineage and order ablation gaps"
+  ],
+  "support_rule": {
+    "minimum_relative_gain_vs_best_operational_baseline": 0.02,
+    "minimum_test_frames_won": 3,
+    "minimum_gain_vs_order_reversed": 0.01,
+    "minimum_gain_vs_lineage_shuffled": 0.01,
+    "maximum_compute_cost_ratio": 3.0,
+    "single_resolution_promotion": "FORBIDDEN"
+  },
+  "allowed_outcomes": [
+    "DIN_LOCAL_SUPPORT",
+    "DIN_BASELINE_EQUIVALENT",
+    "DIN_REFUTED",
+    "ABSTAIN_NOT_IDENTIFIABLE",
+    "MODEL_MISMATCH"
+  ],
+  "allowed_quaternary_states": [
+    "+0_PROTOFORM_UNREPLICATED_RESOLUTION",
+    "0_NO_CLOSURE",
+    "-1_ORDER_ANTI_OPERATOR_CANDIDATE"
+  ],
+  "hard_gates": [
+    "published checksum match",
+    "no missingness or silent imputation",
+    "frame-block structure audit",
+    "future masks frozen before selection",
+    "all mandatory baselines operational",
+    "all final solvers converged",
+    "order and lineage ablations",
+    "test untouched until configuration selection",
+    "main branch unchanged"
+  ],
+  "forbidden": [
+    "test_based_hyperparameter_selection",
+    "posthoc support threshold changes",
+    "canonical TOS or DIN promotion",
+    "general CFL claim",
+    "intrinsic non-euclidean ontology claim",
+    "merge to main"
+  ]
+}
