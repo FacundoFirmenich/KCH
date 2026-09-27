@@ -1,0 +1,70 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG005-LOCAL-POOLING-ROUTER-001",
+  "overall_state": "-1",
+  "tracks": {
+    "statistical": "1",
+    "empirical": "-1",
+    "epistemic": "1",
+    "authority": "1"
+  },
+  "authority": "SHADOW",
+  "protocol_sha256": "050a31457d02f8135090c89d19f51cfd52374506aff970ad14145433e24ef1f2",
+  "summary_hash": "0f6f7545d0e8ba62301d9bff66aef8d12f9d0e9bc9be5d8356df3b6fdf1f4bce",
+  "summary_hash_with_ledger": "3393ff7762f13eb4617d0b55d09844983b224417fb54a9c3fde3b8455680d652",
+  "ledger": {
+    "count": 16,
+    "head": "065f378168b0f1b0b44fb765559c9c9c16a272322cceb04bb9013b4b60213a09",
+    "valid": true
+  },
+  "external_run": {
+    "repository": "FacundoFirmenich/KCH",
+    "branch": "pg005-local-pooling-20260927",
+    "head_sha": "58bebaa2a043253e793f5b3e7d0ed31755884d48",
+    "run_id": 36290297809,
+    "conclusion": "success",
+    "jobs": "9/9 success",
+    "fits": 8,
+    "training_only_stress_runs": 1
+  },
+  "gates": {
+    "G1_DATA_COMMITMENT_AND_FUTURE_ISOLATION": "1",
+    "G2_EXTERNAL_PPL_QUORUM": "1",
+    "G3_SUM_ZERO_SEMANTIC_IDENTITY": "1",
+    "G4_PRIOR_PREDICTIVE_ADMISSIBILITY": "1",
+    "G5_SAMPLING_HEALTH": "1",
+    "G6_CROSS_PPL_CONFORMANCE": "1",
+    "G7_ROUTER_WHITEBOX_REPRODUCIBILITY": "1",
+    "G8_FUTURE_NLPD_NONINFERIORITY": "1",
+    "G9_ORACLE_GAP_CLOSURE": "-1",
+    "G10_ABSTENTION_CALIBRATION": "-1",
+    "G11_ADVERSARIAL_LOCAL_SCALE_STRESS": "-1",
+    "G12_AUTHORITY_CEILING": "1"
+  },
+  "key_results": {
+    "max_rank_folded_rhat": 1.0076746295156038,
+    "min_bulk_ess": 734.7846033371206,
+    "min_tail_ess": 697.6660117196542,
+    "divergences": 0,
+    "cross_ppl_max_standardized_mean_delta": 0.0946141454222083,
+    "cross_ppl_max_standardized_wasserstein": 0.09543017519298178,
+    "router_exact_state_agreement": 1.0,
+    "router_states_both_backends": {"POOL": 0, "LOCAL": 0, "ABSTAIN": 27},
+    "M2_minus_M1_future_nlpd": {
+      "pymc": -0.0004462424282463129,
+      "numpyro": -0.0006320492327731575
+    },
+    "oracle_gap_closure_rho": {
+      "pymc": 0.005179938533242554,
+      "numpyro": 0.007038086330218005
+    },
+    "stress_target": "M05",
+    "stress_target_rank": 1,
+    "stress_target_P_LOCAL_increase": 0.18566666666666667,
+    "stress_required_increase": 0.2,
+    "stress_median_abs_change_others": 0.005833333333333333
+  },
+  "failure_localization": "The statistical realization is sound. The contradiction is decisional: posterior shrinkage intensity is reproducible but is not calibrated to future predictive regret; hard thresholds abstain universally and the global-local model closes less than one percent of the diagnostic oracle gap.",
+  "successor_principle": "Replace scale-threshold routing with a cross-fitted posterior regret field. Keep kappa as a whitebox feature, not as the decision itself.",
+  "negative_results_preserved": true,
+  "parent_pg004_state_remains": "-1"
+}
