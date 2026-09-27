@@ -1,0 +1,8 @@
+{
+  "gate":"MULTISTEP_PROVENANCE_PLANNING_AND_ADAPTIVE_SUBMODULARITY_006",
+  "release":"1.5.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":19,"failed":0},
+  "adaptive_submodularity":"VIOLATED_FOR_BINARY_CERTIFICATION_OBJECTIVE",
+  "next_gate":"BUDGETED_BELIEF_TREE_SEARCH_AND_ROBUST_POMDP_007"
+}
