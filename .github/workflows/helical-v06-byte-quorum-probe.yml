@@ -1,0 +1,40 @@
+name: Helical v0.6 independent byte-route quorum probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-byte-quorum-resume-20260927
+    paths:
+      - .github/workflows/helical-v06-byte-quorum-probe.yml
+      - .github/helical_v06_transport/byte_quorum_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Probe independent exact-byte routes without scientific execution
+        shell: bash
+        env:
+          PROBE_OUT: ${{ runner.temp }}/helical_v06_byte_quorum_probe
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python .github/helical_v06_transport/byte_quorum_probe.py \
+            | tee "$RUNNER_TEMP/helical_v06_byte_quorum_probe_stdout.log"
+          cp "$RUNNER_TEMP/helical_v06_byte_quorum_probe_stdout.log" "$PROBE_OUT/EXECUTION_STDOUT.log"
+
+      - name: Upload route-probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-byte-route-quorum-probe
+          path: ${{ runner.temp }}/helical_v06_byte_quorum_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
