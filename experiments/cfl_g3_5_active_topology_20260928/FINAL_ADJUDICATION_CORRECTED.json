@@ -1,0 +1,20 @@
+{
+  "program_id":"CFL-UEP-G3.5-ACTIVE-TOPOLOGY-DISAMBIGUATION",
+  "version":"0.1.0",
+  "material_gate":"PASS_LOCAL_REMOTE",
+  "outcome":"ACTIVE_EXPERIMENT_DESIGN_DEMONSTRATED_BUT_BASELINE_EQUIVALENT",
+  "active_query_tasks":52,
+  "tos_exact_claim_aware_query_identity":{"equal":52,"total":52,"rate":1.0},
+  "named_lane_active":{"tos_model_reduction":0.4021894417223645,"exact_model_eig_model_reduction":0.418222205255128,"random_model_reduction":0.3234462487179542,"tos_family_reduction":0.1475,"random_family_reduction":0.1375,"tos_B_target_resolution":0.8125,"random_B_target_resolution":0.625,"tos_model_collapse":0.25},
+  "composition_lane_active":{"tos_model_reduction":0.25,"random_model_reduction":0.08333333333333333,"tos_B_target_resolution":1.0,"named_catalog_empty_tasks":18,"total_composition_tasks":18},
+  "regime_C":{"tasks":30,"tos_correct_abstention_rate":1.0},
+  "posthoc_realized_oracle_ceiling":{"mean_tos_regret":0.056542109300206464,"median_tos_regret":0.0,"zero_regret_rate":0.8076923076923077,"status":"CEILING_ONLY_NOT_EVIDENCE"},
+  "o3_nonreducibility":"NOT_SUPPORTED_QUERY_IDENTICAL_TO_EXACT_CLAIM_AWARE_EIG",
+  "benchmark_state":"+0_ACTIVE_EXPERIMENT_DESIGN_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "composition_claim":"NAMED_CATALOG_SHORTCUT_REMOVED_IN_18_OF_18_COMPOSITION_TASKS; bounded composition grammar remains supplied.",
+  "reproducibility":{"remote_run_id":36359755168,"remote_head_sha":"fba5752cc8e8381a7b5134fea0180b43884496d7","remote_artifact_sha256":"552530a4b9a01832f889d9efdcfaf4f3725b40f120522da303ff32af4c0aa779","truth_manifest_byte_identical":true,"summary_byte_identical":true,"query_results_byte_identical":true,"adjudication_semantic_identical_except_elapsed_seconds":true},
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
