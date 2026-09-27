@@ -1,7 +1,7 @@
 {
   "gate": "G2 Always-TMR Policy Freeze",
   "version": "0.1.0",
-  "status": "FROZEN_READY_FOR_ONE_SHOT_RESERVE",
+  "status": "CONSUMED_SAFETY_PASS_NULL_EFFECT",
   "freeze_id": "rdss-v0.1-g2-always-tmr-2026-09-27",
   "frozen_on": "2026-09-27",
   "scientific_scope": "protected_reserve_one_shot",
@@ -73,5 +73,24 @@
     "no_policy_updates_after_observing_reserve": true,
     "posthoc_oracle_use": "evaluation only; never action selection",
     "failure_behavior": "fail closed to fixed TMR and mark the reserve run invalid if any invariant fails"
+  },
+  "result_file": "G2_PROTECTED_RESERVE_RESULT.json",
+  "execution_summary": {
+    "reserve_prompt_ids": [
+      "p07",
+      "p08",
+      "p09",
+      "p10"
+    ],
+    "campaign_rows": 8,
+    "counterfactual_rows": 52,
+    "common_state_groups": 13,
+    "exact_non_interference_pass": true,
+    "primary_mean_tmr_minus_baseline": 0,
+    "contract_pass_rate_tmr": 0.15384615384615385,
+    "contract_pass_rate_baseline": 0.15384615384615385,
+    "formal_gate_pass": true,
+    "performance_uplift_supported": false,
+    "reserve_consumed": true
   }
 }
