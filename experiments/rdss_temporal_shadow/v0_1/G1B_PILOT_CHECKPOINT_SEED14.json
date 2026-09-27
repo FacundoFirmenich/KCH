@@ -1,0 +1,68 @@
+{
+  "gate": "RDSS Temporal Common-State SHADOW Gate",
+  "version": "0.1.0",
+  "status": "G1B_PILOT_CHECKPOINT_PASS",
+  "scientific_scope": "development_only",
+  "model": "Qwen/Qwen3.5-4B-Base",
+  "seed": 14,
+  "default_action": "talon_mass_right",
+  "operator_lineage": "historical_v04_common_projection",
+  "source_notebook_commit": "ecdaecf7a1bd694e07a968b2c2379b3508d08a3a",
+  "preflight_workflow_commit": "fd32ec7d4fe7032e73dec0243e79e2b97e3680ab",
+  "g1a": {
+    "scientific_state": "G1A_COMPLETE",
+    "prompts": 10,
+    "campaign_rows": 20,
+    "counterfactual_rows": 0,
+    "non_interference_identity_pass": true,
+    "identity_failures": []
+  },
+  "g1b_pilot_checkpoint": {
+    "note": "The interrupted development campaign atomically checkpointed complete prompt blocks p01-p05. p06 was not completed and is excluded.",
+    "prompt_ids": [
+      "p01",
+      "p02",
+      "p03",
+      "p04",
+      "p05"
+    ],
+    "reserve_prompts_present": [],
+    "checkpoints": [
+      0,
+      16,
+      32,
+      64
+    ],
+    "actions": [
+      "baseline",
+      "talm_mass_right_soft",
+      "talon_mass_left",
+      "talon_mass_right"
+    ],
+    "rows": 60,
+    "groups": 15,
+    "complete_four_action_groups": 15,
+    "common_state_and_branch_seed_groups": 15,
+    "mean_automatic_utility_by_action": {
+      "baseline": 0.44857142857142857,
+      "talm_mass_right_soft": 0.44857142857142857,
+      "talon_mass_left": 0.41904761904761906,
+      "talon_mass_right": 0.4619047619047619
+    },
+    "oracle_win_counts": {
+      "talon_mass_right": 14,
+      "talon_mass_left": 1
+    },
+    "positive_residual_groups": 1,
+    "mean_oracle_headroom_over_tmr": 0.02,
+    "max_oracle_headroom_over_tmr": 0.3
+  },
+  "interpretation": {
+    "dominant_pillar_confirmed": true,
+    "sparse_residual_headroom_confirmed": true,
+    "rescue_candidate_for_observed_positive_pocket": "talon_mass_left",
+    "promotion_authorized": false,
+    "full_development_fit_pending": true,
+    "protected_reserve_touched": false
+  }
+}
