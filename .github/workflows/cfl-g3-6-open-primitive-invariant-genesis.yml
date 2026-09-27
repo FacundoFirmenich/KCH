@@ -1,0 +1,63 @@
+name: CFL G3.6 open primitive invariant genesis
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-6-open-primitive-invariant-genesis-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_6_open_primitive_invariant_genesis_20260928/requirements.txt
+      - name: Reconstruct and verify source
+        run: |
+          set -euo pipefail
+          mkdir g36_src
+          cat experiments/cfl_g3_6_open_primitive_invariant_genesis_20260928/source_parts/g36_source.zip.b64.* | base64 -d > g36_source.zip
+          echo "1cfdb175800b4a34b65f42b1ee23b258a6e416aa34e66d20623dce40702bbe38  g36_source.zip" | sha256sum -c -
+          unzip -q g36_source.zip -d g36_src
+          echo "308bf691936cedfb8aebb67f8941799f8e6c6b41b40de17e13075507e2c0cef2  g36_src/run_g36.py" | sha256sum -c -
+          echo "ae93b6479cf018959ca66ee6a7506e67f5f28265a7cb1becb864ce1cc9bd208e  g36_src/audit_g36.py" | sha256sum -c -
+          python -m py_compile g36_src/run_g36.py g36_src/audit_g36.py
+      - name: Execute G3.6
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G36_WORKDIR: ${{ github.workspace }}/g36_work
+          G36_RUNNER: ${{ github.workspace }}/g36_src/run_g36.py
+        run: |
+          set -euo pipefail
+          python g36_src/run_g36.py 2>&1 | tee g36_stdout.log
+          python g36_src/audit_g36.py 2>&1 | tee g36_audit.log
+          test -s g36_work/results/FINAL_ADJUDICATION.json
+          test -s g36_work/results/SUMMARY.json
+          test -s g36_work/results/PREDICTIONS.jsonl
+          test -s g36_work/audit/EXACT_AUDIT.json
+          python -m json.tool g36_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g36_work/audit/EXACT_AUDIT.json >/dev/null
+          cp g36_stdout.log g36_work/results/STDOUT.log
+          cp g36_audit.log g36_work/results/AUDIT_STDOUT.log
+          cp experiments/cfl_g3_6_open_primitive_invariant_genesis_20260928/EXECUTION_PROTOCOL.json g36_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_6_OPEN_PRIMITIVE_INVARIANT_GENESIS_${{ github.sha }}
+          path: g36_work
+          if-no-files-found: warn
+          retention-days: 30
