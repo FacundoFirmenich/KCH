@@ -1,0 +1,59 @@
+{
+  "authority": "SHADOW",
+  "external_run": {
+    "conclusion": "success",
+    "head_sha": "6aa575755ed792205dfe5f41f12db403dffb6e88",
+    "initial_operational_attempt": {
+      "conclusion": "failure_before_install_or_fit",
+      "reason": "setup-python cache requested without requirements file",
+      "run_id": 36286193024
+    },
+    "jobs": "4/4 success",
+    "run_id": 36286223395
+  },
+  "gate_id": "KCH-PI-GENESIS-PG004-EXTERNAL-QUORATE-001",
+  "overall_state": "-1",
+  "runtime_health": {
+    "max_rhat": 1.0111835642810474,
+    "min_bulk_ess": 378.56270921370754,
+    "min_tail_ess": 607.5480027234298,
+    "total_divergences": 0
+  },
+  "statistical_results": {
+    "cross_ppl_posterior_conformance": "1",
+    "external_ppl_quorum": "1",
+    "main_runtime_diagnostics": "1",
+    "zero_sum_encoding_equivalence": "1",
+    "zero_sum_prior_covariance_identity": "1"
+  },
+  "empirical_results": {
+    "grunfeld_rolling_origin": "1",
+    "hash_selected_adversarial_stress": {
+      "state": "1",
+      "extremeness": 0.9999972135907578,
+      "target": "IBM 1952",
+      "condition": "+6 training-scale SD"
+    },
+    "baseball_natural_future": {
+      "state": "-1",
+      "pymc_hierarchical_nlpd": 4.013226087886919,
+      "numpyro_hierarchical_nlpd": 4.012178196502429,
+      "hindsight_oracle_envelope_nlpd": 3.8159417857366784,
+      "pymc_delta_to_oracle": 0.19728430215023973,
+      "numpyro_delta_to_oracle": 0.19623641076575116
+    }
+  },
+  "tracks": {
+    "authority": "1",
+    "empirical": "-1",
+    "epistemic": "+0",
+    "statistical": "1"
+  },
+  "live_elicitation_parity": "+0",
+  "ledger": {
+    "count": 4,
+    "head": "5c178c0c424b3e7a0459fd24337971abab016a140419a3dd133b90b838f6a5dc",
+    "valid": true
+  },
+  "summary_hash": "2102712ea996a6eec9f2a3cf6da2e52cb5868622ac3b2126272f6ae2ce93da15"
+}
