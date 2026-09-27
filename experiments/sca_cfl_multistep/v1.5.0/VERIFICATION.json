@@ -1,0 +1,10 @@
+{
+  "schema":"SCA_CFL_CROSSSTORE_VERIFICATION_V1",
+  "release":"1.5.0",
+  "gate":"MULTISTEP_PROVENANCE_PLANNING_AND_ADAPTIVE_SUBMODULARITY_006",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":19,"failed":0},
+  "artifact":{"zip_sha256":"daa2541deab51726f1b0cc3ae27cd49c6839b1beedca762622546c170ffade50","content_digest":"a60d947960c28dff575cb995fe059f93fb3a3270f022c9fa9332c8b61626800d"},
+  "hard_boundary":"Adaptive-submodularity guarantees require proof or finite certificate for the actual objective/instance.",
+  "next_gate":"BUDGETED_BELIEF_TREE_SEARCH_AND_ROBUST_POMDP_007"
+}
