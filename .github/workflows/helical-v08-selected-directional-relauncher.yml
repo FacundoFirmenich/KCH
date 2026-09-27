@@ -1,0 +1,27 @@
+name: Helical v0.8 selected-directional relauncher
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-selected-directional-relauncher.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  dispatch-current-head:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch the materialization workflow at the current branch head
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run helical-v08-selected-directional-preflight.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref gate/helical-v08-blind-eligibility-20260927
