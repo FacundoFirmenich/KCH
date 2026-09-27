@@ -1,0 +1,114 @@
+name: CHP v0.14 Teensy 4.1 target compile
+
+on:
+  push:
+    branches:
+      - chp/v0.14-material-compile
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      ARDUINO_CLI_VERSION: "1.5.1"
+      ARDUINO_CLI_SHA256: "28a8e119c498a25607821c36cb2dc49e8463941b261a0d99091baa7bc692dd2b"
+      TEENSY_PLATFORM_VERSION: "1.62.0"
+      PJRC_INDEX: "https://www.pjrc.com/teensy/package_teensy_index.json"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pinned Arduino CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo arduino-cli.tar.gz "https://github.com/arduino/arduino-cli/releases/download/v${ARDUINO_CLI_VERSION}/arduino-cli_${ARDUINO_CLI_VERSION}_Linux_64bit.tar.gz"
+          echo "${ARDUINO_CLI_SHA256}  arduino-cli.tar.gz" | sha256sum -c -
+          tar -xzf arduino-cli.tar.gz
+          sudo install -m 0755 arduino-cli /usr/local/bin/arduino-cli
+          arduino-cli version
+
+      - name: Install pinned Teensy platform
+        shell: bash
+        run: |
+          set -euo pipefail
+          arduino-cli config init --overwrite
+          arduino-cli core update-index --additional-urls "${PJRC_INDEX}"
+          arduino-cli core install "teensy:avr@${TEENSY_PLATFORM_VERSION}" --additional-urls "${PJRC_INDEX}"
+          arduino-cli core list
+
+      - name: Restore sealed firmware source
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d work/CHP_V014_TARGET_COMPILE/firmware_src.tar.gz.b64 > firmware.tar.gz
+          mkdir -p src
+          tar -xzf firmware.tar.gz -C src
+          find src -maxdepth 2 -type f -print -exec sha256sum {} \;
+
+      - name: Compile Teensy 4.1 target twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          SKETCH="src/CHP_V12_BENCH"
+          FQBN="teensy:avr:teensy41"
+          mkdir -p build1 build2
+          arduino-cli compile --fqbn "${FQBN}" --output-dir build1 --warnings all "${SKETCH}"
+          rm -rf ~/.cache/arduino/sketches || true
+          arduino-cli compile --fqbn "${FQBN}" --output-dir build2 --warnings all "${SKETCH}"
+          sha256sum build1/* | sort | tee build1.sha256
+          sha256sum build2/* | sort | tee build2.sha256
+
+      - name: Verify deterministic firmware outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+
+          def digest(p):
+              return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+
+          matched = {}
+          for ext in (".hex", ".ehex"):
+              a = sorted(Path("build1").glob(f"*{ext}"))
+              b = sorted(Path("build2").glob(f"*{ext}"))
+              if a and b:
+                  matched[ext] = {
+                      "file": a[0].name,
+                      "build1": digest(a[0]),
+                      "build2": digest(b[0]),
+                      "byte_identical": a[0].read_bytes() == b[0].read_bytes(),
+                  }
+          if not matched:
+              raise SystemExit("No .hex/.ehex output produced")
+          if not all(v["byte_identical"] for v in matched.values()):
+              raise SystemExit(f"Non-deterministic firmware output: {matched}")
+          report = {
+              "fqbn": "teensy:avr:teensy41",
+              "arduino_cli": "1.5.1",
+              "teensy_platform": "1.62.0",
+              "outputs": matched,
+              "status": "TARGET_COMPILE_PASS",
+          }
+          Path("target_compile_receipt.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True) + "\n"
+          )
+          print(json.dumps(report, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload target compile evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: chp-v014-teensy41-target-compile
+          path: |
+            build1/
+            target_compile_receipt.json
+            build1.sha256
+          if-no-files-found: error
+          retention-days: 30
