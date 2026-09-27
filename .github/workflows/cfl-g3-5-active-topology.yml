@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           mkdir -p g34src
           unzip -q experiments/cfl_g3_4_mixed_metagrammar_20260927/g34_source.zip -d g34src
-          base64 -d experiments/cfl_g3_5_active_topology_20260928/run_g35.py.gz.b64 > run_g35.py.gz
+          cp experiments/cfl_g3_5_active_topology_20260928/run_g35.py.gz run_g35.py.gz
           echo "d844b750ee33ce48b523f4ad104945afbbca1c1cbe1821dd633abdcab25a1b9f  run_g35.py.gz" | sha256sum -c -
           gzip -dc run_g35.py.gz > run_g35.py
           echo "3a80842579a3d67b83ed6e55efdf3065db195d276a544391037a2156888d55f7  run_g35.py" | sha256sum -c -
