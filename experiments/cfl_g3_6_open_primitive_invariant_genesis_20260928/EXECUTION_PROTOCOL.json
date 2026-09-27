@@ -1,0 +1,36 @@
+{
+  "program_id":"CFL-UEP-G3.6-OPEN-PRIMITIVE-AND-INVARIANT-GENESIS",
+  "version":"0.1.0",
+  "parent_gate":"CFL-UEP-G3.5-ACTIVE-TOPOLOGY-DISAMBIGUATION",
+  "status":"PREREGISTERED_MATERIAL_EXECUTION",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "g0_closure":"linear span over finite field of basis [1,u,v,u^2,v^2,u^3,v^3]",
+  "hard_condition":"private truth primitive class lies outside Closure(G0)",
+  "primitive_equivalence":"same one-dimensional extension subspace modulo Closure(G0)",
+  "heldout_transfer":"DEV truth primitive classes have total degree <=3 cross-terms; PRIVATE truth primitive classes have total degree >=4",
+  "domains":{"graph":7,"algebra":11,"number":13,"mechanics":17},
+  "regimes":["PRIMITIVE_AMBIG_REDUCIBLE","PRIMITIVE_ALREADY_FORM","UNDERIDENTIFIED","ANTI"],
+  "state_1_gate":[
+    "singleton exact primitive equivalence class",
+    "exact held-out invariant certificate on sealed interventions"
+  ],
+  "mandatory_methods":[
+    "RANDOM_QUERY",
+    "EXACT_PRIMITIVE_MINIMAX",
+    "EXACT_EIG_QUERY",
+    "MDL_GRAMMAR_QUERY",
+    "SYMBOLIC_REGRESSION_QUERY",
+    "TOS_RESIDUAL_PRIMITIVE_O3"
+  ],
+  "invalid_negative_control":"posterior-threshold Form promotion; probability may rank queries but cannot certify Form",
+  "support_rule":{
+    "gain_over_strongest_matched_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_form_promotion_maximum":0.02
+  },
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
