@@ -1,0 +1,7 @@
+{
+  "gate":"EPISTEMIC_REHABILITATION_003",
+  "release":"1.2.0",
+  "synthetic_state":"R3_ACTIVE_REHABILITATED",
+  "empirical_state":"R2_SHADOW_REHABILITATED_UNRESOLVED",
+  "decision":"PASS_WITH_LIMITS"
+}
