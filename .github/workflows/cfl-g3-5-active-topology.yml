@@ -1,0 +1,61 @@
+name: CFL G3.5 active topology disambiguation
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-5-active-topology-disambiguation-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_5_active_topology_20260928/requirements.txt
+      - name: Materialize source
+        run: |
+          set -euo pipefail
+          mkdir -p g34src
+          unzip -q experiments/cfl_g3_4_mixed_metagrammar_20260927/g34_source.zip -d g34src
+          base64 -d experiments/cfl_g3_5_active_topology_20260928/run_g35.py.gz.b64 > run_g35.py.gz
+          echo "d844b750ee33ce48b523f4ad104945afbbca1c1cbe1821dd633abdcab25a1b9f  run_g35.py.gz" | sha256sum -c -
+          gzip -dc run_g35.py.gz > run_g35.py
+          echo "3a80842579a3d67b83ed6e55efdf3065db195d276a544391037a2156888d55f7  run_g35.py" | sha256sum -c -
+          python -m py_compile run_g35.py g34src/run_g34.py g34src/base_g33.py
+      - name: Execute G3.5
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G35_G34_PATH: ${{ github.workspace }}/g34src/run_g34.py
+          G35_WORKDIR: ${{ github.workspace }}/g35_work
+        run: |
+          set -euo pipefail
+          python run_g35.py 2>&1 | tee g35_stdout.log
+          test -s g35_work/results/FINAL_ADJUDICATION.json
+          test -s g35_work/results/SUMMARY.json
+          test -s g35_work/results/QUERY_RESULTS.jsonl
+          test -s g35_work/evidence/TRUTH_MANIFEST.jsonl
+          python -m json.tool g35_work/results/FINAL_ADJUDICATION.json >/dev/null
+          cp g35_stdout.log g35_work/results/STDOUT.log
+          cp run_g35.py g35_work/results/SOURCE_run_g35.py
+          cp experiments/cfl_g3_5_active_topology_20260928/EXECUTION_PROTOCOL.json g35_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_5_ACTIVE_TOPOLOGY_${{ github.sha }}
+          path: g35_work
+          if-no-files-found: warn
+          retention-days: 30
