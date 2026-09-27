@@ -1,0 +1,88 @@
+{
+  "format": "KCH_HELICAL_V0_7_EXACT_BYTE_GATE_INDEX",
+  "version": "0.7.0",
+  "transition": "EXACT_BYTE_RESUME_OF_LOCKED_V0_6_PROTOCOL",
+  "protocol": {
+    "protocol_id": "h6p:144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c",
+    "locked_at_utc": "2026-09-27T01:44:51.945745Z",
+    "protocol_changed": false,
+    "thresholds_changed": false,
+    "scientific_runtime_sha256": "a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6"
+  },
+  "remote_execution": {
+    "workflow_run_id": 36289976672,
+    "job_id": 108538067487,
+    "head_sha": "093819409b19b2e99cbf4f88a0e8f39269b9924c",
+    "artifact_id": 10921604442,
+    "artifact_sha256": "1a2812659ef6fb6f7fbf260f09803fb43add2bc093471f93d1a5c17682a68cad",
+    "conclusion": "SUCCESS"
+  },
+  "receipts": {
+    "successor_acquisition_receipt_id": "h6ar:e5d6de138391811d6480600882bf67572e69cc8bb7c8c703e26387f6b878d74a",
+    "execution_receipt_id": "h6xr:25c5a36b5511ab9716f0402bbedfaea1f5d0bd1122ef8634f278f69506a5a31c",
+    "gate_result_id": "v6g:cb95318ee951848f112a744a4ca1abd9161e19bb8b033d72d4cc67cc43d2a851"
+  },
+  "datasets": [
+    {
+      "catalog_id": "CAHUILLA_SWARM_2016_2019",
+      "bytes": 4040600,
+      "sha256": "ad49e97a24c6325417550b899919e67c209b510eaba3ba8921512b82cf206cf0",
+      "valid_schema_rows": 22700
+    },
+    {
+      "catalog_id": "RIDGECREST_QTM_2019",
+      "bytes": 4460469,
+      "sha256": "dcb0035f69c6ea9a960e45544f31bdacb38cb7f502c3d29af827da4ff6850849",
+      "selected_member": "ridgecrest_qtm.cat",
+      "selected_member_valid_schema_rows": 111918
+    },
+    {
+      "catalog_id": "CALMEX_BORDER_2012_2020",
+      "bytes": 3686364,
+      "sha256": "92bfc33d2d7d8b549a52a71939505b1ee8a82f0d07d7293abfe9646328acd229",
+      "valid_schema_rows": 21186
+    }
+  ],
+  "adjudication": {
+    "outcome": "NONHELICAL_BRANCHING_RIVALS_GENERALIZE",
+    "positive_catalogs": 0,
+    "catalogs_tested": 3,
+    "required_positive_catalogs": 2,
+    "weighted_rmse_improvement": 0.011332311864884169,
+    "minimum_required_rmse_improvement": 0.05,
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "universal_absence_of_helicity": "NOT_ESTABLISHED"
+  },
+  "kwanblocks": {
+    "graph_id": "kbg:55215c9770636f67f97a4d31c0522d426585e6d8b4a008a94eb4de24fced3d68",
+    "ledger_head": "c43f711f768f50dd60e36a178f28018f1005b99a5befbe4f7dc0354825c463ba",
+    "blocks": 168,
+    "edges": 335,
+    "events": 506,
+    "validation": "1983/1983 PASS",
+    "sqlite_integrity": "ok",
+    "foreign_key_errors": 0
+  },
+  "local_release": {
+    "package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_7_0.zip",
+      "bytes": 18767195,
+      "sha256": "3a35191cd65d4f65350fc50aff498796a1f8bee14bbd33118f8edbeded2df0d8"
+    },
+    "additive": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_7_0_ADDITIVE_FROM_v0_6_0.zip",
+      "bytes": 14146999,
+      "sha256": "4331791472a1f57a4c92303e7980ea73680c33233bb323f1f560c45fa7bf8058"
+    },
+    "evidence": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_7_0_CONFIRMATORY_EVIDENCE.zip",
+      "bytes": 13282548,
+      "sha256": "90cd8f6cd2ccd1616baaeef00fc870963cccaa6acad10ffabbaf3497811eebff"
+    },
+    "deterministic_rebuild": "PASS",
+    "inherited_files_byte_exact": 414
+  },
+  "authority_ceiling": "NONE",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
