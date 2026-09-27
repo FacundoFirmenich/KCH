@@ -1,0 +1,17 @@
+{
+  "admitted": {
+    "manifest_integrity": true,
+    "parent_binding": true,
+    "quaternary_operational_surface_states": true,
+    "strong_promotion_requires_3of3": true,
+    "verified_divergence_blocks_majority": true
+  },
+  "gate": "CROSS_STORE_CONTINUITY_001",
+  "not_admitted": {
+    "automatic_conflict_resolution": false,
+    "provider_administrative_independence": false,
+    "scientific_truth_from_persistence": false,
+    "whole_account_rollback_protection": false
+  },
+  "release": "1.0.1"
+}
