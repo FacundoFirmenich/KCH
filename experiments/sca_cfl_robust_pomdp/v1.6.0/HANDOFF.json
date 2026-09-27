@@ -1,0 +1,10 @@
+{
+  "content_digest":"bdb83b5a233e1c6ad467a11f4e3b8f4edb6fd8790cf19773a2b3a855c02bb399",
+  "decision":"PASS_WITH_LIMITS",
+  "gate":"BUDGETED_BELIEF_TREE_SEARCH_AND_ROBUST_POMDP_007",
+  "next_gate":"AMBIGUITY_SET_LEARNING_AND_CALIBRATION_008",
+  "release":"1.6.0",
+  "schema":"SCA_CFL_HANDOFF_V1",
+  "tests":"20/20",
+  "zip_sha256":"43844e1bd36cab85b81854133ac7618b1b2de0b9c7386396356f12f00fac8a9f"
+}
