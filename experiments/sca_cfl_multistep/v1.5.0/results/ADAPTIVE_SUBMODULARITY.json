@@ -1,0 +1,5 @@
+{
+  "gate":"MULTISTEP_PROVENANCE_PLANNING_AND_ADAPTIVE_SUBMODULARITY_006",
+  "complementarity":{"initial_e_value":10.485760000000003,"adaptive_submodular":false,"checked_inequalities":10,"max_violation_gap":0.8000000000000002,"witness":{"action":"probe_B","delta_before":0.0,"delta_after":0.8000000000000002,"psi":[],"psi_prime":[["probe_A","DISTINCT_ROOT"]]}},
+  "coverage_control":{"adaptive_submodular":true,"checked_inequalities":10}
+}
