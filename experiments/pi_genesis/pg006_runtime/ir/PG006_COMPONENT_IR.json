@@ -1,0 +1,40 @@
+{
+  "ir_id": "KCH.PI_GENESIS.PG006.SLEEPSTUDY.COMPONENTS",
+  "likelihood": "Normal(mu,sigma)",
+  "models": {
+    "P0_POPULATION": {
+      "random_effects": false
+    },
+    "P1_GLOBAL_POOL": {
+      "basis": "Helmert Jx(J-1)",
+      "tau_a": "HalfNormal(0.75)",
+      "tau_b": "HalfNormal(0.50)"
+    },
+    "P2_GLOBAL_LOCAL": {
+      "lambda": "HalfStudentT(3,1)",
+      "projection": "I-11'/J",
+      "slabs": [
+        1.0,
+        0.75
+      ],
+      "tau_a": "HalfNormal(0.25)",
+      "tau_b": "HalfNormal(0.20)"
+    },
+    "P3_LOW_POOL": {
+      "basis": "Helmert Jx(J-1)",
+      "fixed_tau_a": 1.0,
+      "fixed_tau_b": 0.6
+    }
+  },
+  "protocol_sha256": "4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7",
+  "response": "standardized Reaction",
+  "semantic_effects": [
+    "alpha",
+    "beta",
+    "sigma",
+    "a",
+    "b"
+  ],
+  "time": "(Days-2.5)/2.5",
+  "version": "0.6.0"
+}
