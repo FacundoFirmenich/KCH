@@ -23,12 +23,14 @@ jobs:
           set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install -r experiments/cfl_g3_5_active_topology_form_gate_20260928/requirements.txt
-      - name: Verify and unpack source
+      - name: Reconstruct and verify source
         run: |
           set -euo pipefail
-          echo "1fe20cb59d997d0715a82c1683cc62900a1432e7f25f9669b9c1b7824a74bffa  experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip" | sha256sum -c -
           mkdir g35_src
-          unzip -q experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip -d g35_src
+          cat experiments/cfl_g3_5_active_topology_form_gate_20260928/source_parts/run_g35.py.b64.* | base64 -d > g35_src/run_g35.py
+          base64 -d experiments/cfl_g3_5_active_topology_form_gate_20260928/source_parts/g35_composition_audit.py.b64 > g35_src/g35_composition_audit.py
+          echo "203d7952154b764cb0b56b85d6dab5b594fe71f6d32927d1daca8ef20ecea53d  g35_src/run_g35.py" | sha256sum -c -
+          echo "b436a3b55c3cbfd5d88185c0d72f6c4755c8b33aa9943f96ecb4793d2d89fa2c  g35_src/g35_composition_audit.py" | sha256sum -c -
           python -m py_compile g35_src/run_g35.py g35_src/g35_composition_audit.py
       - name: Execute G3.5
         env:
