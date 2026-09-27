@@ -1,0 +1,10 @@
+{
+  "100_duplicates":{"roots":1,"e_value":1.6,"state":"R0_QUARANTINED"},
+  "six_positive":{"roots":6,"e_value":16.777216000000006,"state":"R0_QUARANTINED"},
+  "seven_positive":{"roots":7,"e_value":26.843545600000013,"state":"R1_EVIDENCE_ELIGIBLE"},
+  "eight_positive_one_negative":{"roots":9,"e_value":17.179869184,"state":"R0_QUARANTINED"},
+  "nine_positive_one_negative":{"roots":10,"e_value":27.487790694400005,"state":"R1_EVIDENCE_ELIGIBLE"},
+  "shadow_performance":{"n":400,"final_e_value":122.88473249746947},
+  "without_authority":"R2_SHADOW_REHABILITATED",
+  "with_authority":"R3_ACTIVE_REHABILITATED"
+}
