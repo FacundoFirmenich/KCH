@@ -1,0 +1,114 @@
+{
+  "program_id": "CFL-UEP-G3S-STRUCTURALBENCH-EXACT-CERTIFICATE-KERNEL-20260927",
+  "parent_program": "CFL-UEP-0.1.0",
+  "predecessor_gate": "CFL-UEP-G2.1-DIN-LENS-ROUTER-GEL",
+  "namespace_note": "G3S is the StructuralBench exact-certificate lane. It does not open or consume the separate TALON/RDSS G3 external-validity reserve already present on main.",
+  "status": "PREREGISTERED_MATERIAL_EXECUTION",
+  "authority": "NONE",
+  "scientific_question": "Can a proto-TOS closure distinguish pseudoform, protoform, form, anti-state, nullity and oversufficient-origin mismatch, and produce exact structural certificates not reproducible by a matched formal active-query baseline?",
+  "corpus_contract": {
+    "hierarchy": "CFL superset TOS\\ superset DIN",
+    "truth_before_observation": true,
+    "pseudoform_is_not_protoform": true,
+    "regime_and_quaternary_state_are_separate": true,
+    "no_preinstalled_target_in_valid_origin": true,
+    "origin_leak_is_model_mismatch_not_success": true
+  },
+  "domains": [
+    {
+      "id": "graph_topology",
+      "exact_certificates": ["graph isomorphism class", "degree sequence", "cycle rank", "spanning-tree count", "adjacency characteristic polynomial"],
+      "operators": ["identity", "complement", "line graph"]
+    },
+    {
+      "id": "algebraic_geometry",
+      "exact_certificates": ["reduced Groebner basis", "zero-dimensional ideal signature"],
+      "operators": ["identity", "variable swap", "sign inversion", "integral shear"]
+    },
+    {
+      "id": "number_theory",
+      "exact_certificates": ["primitive integer triple", "gcd and parity signature", "modular residues", "Diophantine norm constraints"],
+      "operators": ["coordinate permutations"]
+    },
+    {
+      "id": "symbolic_mechanics",
+      "role": "OOD-domain only",
+      "exact_certificates": ["Euler-Lagrange equations", "Noether energy conservation", "quadratic mass and stiffness invariants"],
+      "operators": ["signed coordinate permutations"]
+    }
+  ],
+  "ground_truth_rule": "Construct the exact hidden object, transformed hypothesis and certificate before producing O1, O2, adversarial splices, natural-language labels or query pools.",
+  "splits": {
+    "IID_DEV": "calibration only; graph, algebra and number theory",
+    "IID_TEST": "seen domains and base complexity",
+    "OOD_COMPLEXITY": "seen domains with larger exact catalogs",
+    "OOD_DOMAIN": "symbolic mechanics held out from calibration",
+    "ADVERSARIAL": "anti, oversufficient-origin, protoform and null tasks",
+    "PRIVATE_HELDOUT": "content-addressed private seed; all four domains and five regimes"
+  },
+  "regimes": ["FORM", "PROTOFORM", "NULL", "ANTI", "OVERSUFFICIENT"],
+  "quaternary_states": {
+    "FORM": "1",
+    "PROTOFORM": "+0",
+    "NULL": "0",
+    "ANTI": "-1",
+    "OVERSUFFICIENT": "MODEL_MISMATCH_OVERSUFFICIENT_ORIGIN"
+  },
+  "observation_arms": [
+    "O1_ONLY",
+    "NAIVE_CONCAT",
+    "MATCHED_MULTIVIEW",
+    "CROSS_ATTENTION_QUERY",
+    "FORMAL_TOOL",
+    "FORMAL_TOOL_IG",
+    "TOS_NO_PHI",
+    "TOS_NO_O3",
+    "TOS_FULL_PROTOFORM",
+    "TOS_FULL_DIN"
+  ],
+  "matched_budget": {
+    "third_observations": 1,
+    "formal_query_baseline": "entropy-optimal query over the exact candidate set",
+    "TOS_query": "closure-oriented query over Phi12 candidate partitions",
+    "candidate_evaluation_ceiling": "same complete finite exact catalog",
+    "tool_calls": "reported per arm",
+    "wall_clock": "reported, not a support substitute"
+  },
+  "primary_endpoint": {
+    "name": "private constructive exact-certificate success",
+    "subset": "PRIVATE_HELDOUT FORM plus PROTOFORM only",
+    "comparison": "TOS_FULL_PROTOFORM versus strongest matched active-query baseline",
+    "support_if": "paired gain greater than 0.02 and bootstrap 95 percent interval strictly positive"
+  },
+  "secondary_endpoints": [
+    "state accuracy over all regimes",
+    "adversarial false-promotion rate",
+    "oversufficient-origin detection",
+    "future correctability prediction by eligibility",
+    "OOD-domain exact certificate success",
+    "DIN/no-DIN incremental exact success",
+    "mean tool calls, candidate evaluations and runtime"
+  ],
+  "hard_falsifiers": [
+    "matched formal active-query baseline reproduces O3 exact-certificate success",
+    "pseudoform and protoform eligibility cannot be separated on private held-out tasks",
+    "origin-leak pseudoforms are promoted as form",
+    "gains vanish on OOD-domain mechanics",
+    "DIN equals no-DIN under matched exact constraints"
+  ],
+  "allowed_outcomes": [
+    "LOCAL_SUPPORT_EXACT_STRUCTURAL_PROTOFORM",
+    "MATCHED_FORMAL_BASELINE_REPRODUCES_O3",
+    "NONREDUCIBLE_O3_REFUTED_BY_MATCHED_BASELINE",
+    "BASELINE_EQUIVALENT_OR_MIXED",
+    "MODEL_MISMATCH"
+  ],
+  "authority_limits": {
+    "canonical_TOS": "NOT_TESTED",
+    "CFL_general": "NOT_ADJUDICATED",
+    "language_model_external_validity": "NOT_TESTED",
+    "TALON_G3_reserve": "NOT_OPENED",
+    "promotion": "BLOCKED_PENDING_EXTERNAL_CONFIRMATION",
+    "merge": "FORBIDDEN"
+  }
+}
