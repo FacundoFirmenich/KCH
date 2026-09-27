@@ -1,0 +1,45 @@
+{
+  "program_id": "CFL-UEP-G3.4-MIXED-OBSERVATIONAL-METAGRAMMAR",
+  "parent_gate": "CFL-UEP-G3.3-OBSERVATIONAL-CHART-AND-BASIS-GENESIS",
+  "status": "PREREGISTERED_MATERIAL_EXECUTION",
+  "authority": "NONE",
+  "constructive_identifiability_gate": true,
+  "chart_family_labels_withheld": true,
+  "families": ["LINEAR","TRI_QUAD","TRI_CUBIC","PAIRWISE","MULTISCALE"],
+  "iid_families": ["LINEAR","TRI_QUAD","PAIRWISE"],
+  "ood_meta_families": ["TRI_CUBIC","MULTISCALE"],
+  "domains": ["graph","algebra","number","mechanics"],
+  "splits": {
+    "IID": {"construct_per_domain":12,"adversarial_per_domain":6},
+    "OOD_META": {"construct_per_domain":12,"adversarial_per_domain":6},
+    "PRIVATE_HELDOUT": {"construct_per_domain":24,"adversarial_per_domain":9}
+  },
+  "primary_methods": [
+    "EXACT_METAGRAMMAR_MODEL_SELECTION",
+    "MDL_METAGRAMMAR_SELECTION",
+    "BOUNDED_SYMBOLIC_CHART_PROGRAM_SYNTHESIS",
+    "RAW_COORD_AFFINE",
+    "PCA_SVD_CHART",
+    "CCA_MULTIVIEW",
+    "KERNEL_CCA_PROXY",
+    "MANIFOLD_KERNEL_PCA",
+    "POLY_FEATURE_SYNTHESIS_D2",
+    "TOS_NO_PHI",
+    "TOS_NO_O3_METAGRAMMAR",
+    "TOS_FULL_TOPOLOGY_PLUS_METAGRAMMAR_GENESIS"
+  ],
+  "support_rule": {
+    "minimum_gain_over_exact_metagrammar_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_promotion_maximum":0.02
+  },
+  "hard_limitations": [
+    "finite candidate metagrammar is explicitly supplied to exact methods",
+    "latent dimension is not independently hidden in v0.1",
+    "constructive families are invertible; genuinely non-injective topology genesis is not established"
+  ],
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
