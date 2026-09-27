@@ -1,0 +1,10 @@
+{
+  "alternative_campaign":{"candidate_certification_rate":0.972,"candidate_certifications":486,"episodes":500,"fresh_certification_cross_median":177.0,"outer_cross_median":195.0,"outer_reject_rate":0.996,"outer_rejects":498,"selected_depth_counts":{"0":14,"1":486},"structural_proposal_rate":0.972,"structural_proposals":486},
+  "decision":"PASS_WITH_LIMITS",
+  "gate":"NONPARAMETRIC_AMBIGUITY_EXPANSION_AND_MODEL_CLASS_DISCOVERY_009",
+  "hard_boundary":"A probabilistic candidate may become model-class eligible and even authorized as a competitor while remaining CFL protoform +0; it cannot be promoted to Form 1 by statistical evidence.",
+  "next_gate":"OPEN_ENDED_STRUCTURE_GRAMMAR_AND_ADVERSARIAL_MODEL_SYNTHESIS_010",
+  "null_control":{"episodes":1000,"false_candidate_certification_rate":0.0,"false_candidate_certifications":0,"forced_fresh_depth1_certifier":{"episodes":2000,"false_crossing_rate":0.0085,"false_crossings":17,"nominal_alpha":0.05},"outer_false_reject_rate":0.018,"outer_false_rejects":18,"structural_proposal_rate":0.0,"structural_proposals":0},
+  "reference":{"authorized_registry_version":2,"candidate_certifies_at":58,"candidate_state":"PROTOFORM_REALVIRTUAL_+0","outer_reject_at":423,"selected_depth":1},
+  "release":"1.8.0","tests":"18/18"
+}
