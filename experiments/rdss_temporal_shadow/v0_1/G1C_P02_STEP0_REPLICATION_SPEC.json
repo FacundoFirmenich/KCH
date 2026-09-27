@@ -1,0 +1,79 @@
+{
+  "gate": "G1C P02 Step-0 Seed Replication",
+  "version": "0.1.0",
+  "status": "LOCKED_READY",
+  "scientific_scope": "development_only",
+  "hypothesis": "The p02 step-0 TALON mass-left advantage over fixed TMR is a repeatable sampling-conditioned residual pocket, not a seed-14 accident.",
+  "source_evidence": "G1B_PILOT_CHECKPOINT_SEED14.json",
+  "source_notebook_commit": "c917536b27b6b578d9187f937a8c4d71e55ecd8a",
+  "fixed_generation_authority": "talon_mass_right",
+  "campaign_prompt_ids": [
+    "p02"
+  ],
+  "development_prompt_ids": [
+    "p02"
+  ],
+  "checkpoint_of_interest": 0,
+  "additional_checkpoints_recorded": "all checkpoints naturally observed by the locked campaign",
+  "actions": [
+    "baseline",
+    "talm_mass_right_soft",
+    "talon_mass_left",
+    "talon_mass_right"
+  ],
+  "seeds": [
+    28,
+    42
+  ],
+  "branch_seed_rule": "stable_seed('rdss-shadow-v0.1', prompt_id, campaign_seed, checkpoint_step); identical across actions within each common-state group",
+  "reserve_policy": {
+    "forbidden_prompt_ids": [
+      "p07",
+      "p08",
+      "p09",
+      "p10"
+    ],
+    "protected_reserve_touched": false
+  },
+  "invariants": [
+    "fixed TMR and TMR+SHADOW generated token IDs are exactly identical for every replication seed",
+    "probes sample no token",
+    "probes do not mutate active prefix, RNG, cache, processor state, or generation state",
+    "all four actions start from byte-identical serialized common state and the same branch seed"
+  ],
+  "decision_rule": {
+    "reject_if_any": [
+      "any non-interference identity failure",
+      "any incomplete four-action group",
+      "any reserve prompt appears",
+      "p02 step-0 TALON mass-left gain over TMR is non-positive in both new seeds"
+    ],
+    "pass_to_expanded_development_if_all": [
+      "all invariants pass",
+      "p02 step-0 TALON mass-left gain over TMR is positive in at least one new seed",
+      "mean p02 step-0 gain over TMR across seeds 14, 28, and 42 is positive",
+      "no new seed shows TALON mass-left harm below TMR greater than 0.30 automatic utility"
+    ],
+    "authorization_on_pass": "expanded development evidence only",
+    "explicitly_not_authorized": [
+      "router fitting",
+      "threshold fitting",
+      "protected reserve evaluation",
+      "deployment"
+    ]
+  },
+  "execution": {
+    "seed_28": {
+      "SEED": 28,
+      "CAMPAIGN_PROMPT_IDS": "p02",
+      "RUN_DEVELOPMENT_COUNTERFACTUALS": true,
+      "DEVELOPMENT_PROMPT_IDS": "p02"
+    },
+    "seed_42": {
+      "SEED": 42,
+      "CAMPAIGN_PROMPT_IDS": "p02",
+      "RUN_DEVELOPMENT_COUNTERFACTUALS": true,
+      "DEVELOPMENT_PROMPT_IDS": "p02"
+    }
+  }
+}
