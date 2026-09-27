@@ -45,6 +45,8 @@ jobs:
           echo "6d7d4033aca01b60f7197aa907b49a5570a476c06f5ae7cb122d1a2e2834cdc9  experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py" | sha256sum -c -
           python experiments/cfl_g2_1_gel_lens_router_20260927/apply_mat73_loader_patch.py experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
           echo "41faf3908cd71b1608e17556e1ec75e2e8a6e9a3d10705effb3638db61dfc97f  experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py" | sha256sum -c -
+          python experiments/cfl_g2_1_gel_lens_router_20260927/apply_deterministic_lineage_patch.py experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
+          echo "b134ea4198969912ab50932b397518f136fe6996e8689b0c44f295b796b60b53  experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py" | sha256sum -c -
           python -m py_compile experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
           python experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py --self-test
           python -m json.tool experiments/cfl_g2_1_gel_lens_router_20260927/EXECUTION_PROTOCOL.json >/dev/null
@@ -86,6 +88,7 @@ jobs:
           cp experiments/cfl_g2_1_gel_lens_router_20260927/EXECUTION_PROTOCOL.json g21_work/results/EXECUTION_PROTOCOL.json
           cp experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py g21_work/results/SOURCE_run_g21.py
           cp experiments/cfl_g2_1_gel_lens_router_20260927/apply_mat73_loader_patch.py g21_work/results/SOURCE_apply_mat73_loader_patch.py
+          cp experiments/cfl_g2_1_gel_lens_router_20260927/apply_deterministic_lineage_patch.py g21_work/results/SOURCE_apply_deterministic_lineage_patch.py
 
       - name: Upload complete evidence bundle
         if: always()
