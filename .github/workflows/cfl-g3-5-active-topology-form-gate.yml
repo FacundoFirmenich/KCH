@@ -1,0 +1,60 @@
+name: CFL G3.5 active topology Form gate
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-5-active-topology-form-gate-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_5_active_topology_form_gate_20260928/requirements.txt
+      - name: Verify and unpack source
+        run: |
+          set -euo pipefail
+          echo "e4f5eaa4a70764277759ed5635629166d9f2ac12009b868045c42681f1c94b29  experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip" | sha256sum -c -
+          mkdir g35_src
+          unzip -q experiments/cfl_g3_5_active_topology_form_gate_20260928/g35_source.zip -d g35_src
+          python -m py_compile g35_src/run_g35.py g35_src/g35_composition_audit.py
+      - name: Execute G3.5
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G35_WORKDIR: ${{ github.workspace }}/g35_work
+        run: |
+          set -euo pipefail
+          python g35_src/run_g35.py 2>&1 | tee g35_stdout.log
+          python g35_src/g35_composition_audit.py 2>&1 | tee g35_composition_audit.log
+          test -s g35_work/results/FINAL_ADJUDICATION.json
+          test -s g35_work/results/SUMMARY.json
+          test -s g35_work/results/PREDICTIONS.jsonl
+          test -s g35_work/results/LEGACY_PROBABILITY_CONTROL.jsonl
+          test -s g35_work/audit/COMPOSITION_HARD_EXTENSION.json
+          python -m json.tool g35_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g35_work/audit/COMPOSITION_HARD_EXTENSION.json >/dev/null
+          cp g35_stdout.log g35_work/results/STDOUT.log
+          cp g35_composition_audit.log g35_work/results/COMPOSITION_AUDIT_STDOUT.log
+          cp experiments/cfl_g3_5_active_topology_form_gate_20260928/EXECUTION_PROTOCOL.json g35_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_5_ACTIVE_TOPOLOGY_FORM_GATE_${{ github.sha }}
+          path: g35_work
+          if-no-files-found: warn
+          retention-days: 30
