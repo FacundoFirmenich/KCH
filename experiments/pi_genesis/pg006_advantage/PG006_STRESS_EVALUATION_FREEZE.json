@@ -1,0 +1,27 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001",
+  "freeze_id": "PG006-STRESS-EVALUATION-FREEZE-001",
+  "future_outcomes_visible": false,
+  "stress_run_id": 36328423586,
+  "backend": "numpyro",
+  "target_subject": "349",
+  "target_subject_index_zero_based": 10,
+  "target_day": 3,
+  "perturbation": "+2.5 clean-construction population residual SD",
+  "target_action_probability": "P_LOCAL",
+  "clean_field_receipt": "d89065052fc14432e426c16804e77d44d79c1a816e9817674d59c45a4ab5b00d",
+  "evaluation": {
+    "field_posterior": "keep the clean posterior-regret field frozen",
+    "component_refits": "use stressed exact-refit NumPyro artifacts for all four prior programs and all prequential stages",
+    "response_scaler": "reuse the clean Days 0-5 response mean and SD",
+    "feature_scaler": "reuse the clean crossfit feature mean and SD",
+    "history": "recompute training-only prequential loss history from stressed component refits",
+    "probability": "subject-average Days 8-9 probability that min(regret_P2,regret_P3)+0.02 < regret_P1"
+  },
+  "thresholds": {
+    "minimum_target_P_LOCAL_increase": 0.20,
+    "maximum_target_rank": 3,
+    "maximum_median_abs_P_LOCAL_change_others": 0.10
+  },
+  "authority_ceiling": "SHADOW"
+}
