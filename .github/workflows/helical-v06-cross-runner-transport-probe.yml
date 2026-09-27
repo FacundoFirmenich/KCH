@@ -1,0 +1,110 @@
+name: Helical v0.6 cross-runner official transport probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-piecewise-20260927
+    paths:
+      - .github/workflows/helical-v06-cross-runner-transport-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unix-probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe DNS, TLS and first 64 KiB
+        shell: bash
+        run: |
+          set -u
+          out="$RUNNER_TEMP/probe"
+          mkdir -p "$out"
+          {
+            echo "runner=${{ matrix.os }}"
+            uname -a
+            date -u +%FT%TZ
+            python - <<'PY'
+          import socket
+          for host in ['service.scedc.caltech.edu','stp2.gps.caltech.edu','scedc.caltech.edu','local.scedc.caltech.edu']:
+              try:
+                  print(host, socket.getaddrinfo(host,443,type=socket.SOCK_STREAM))
+              except Exception as e:
+                  print(host, type(e).__name__, str(e))
+          PY
+          } > "$out/environment.txt" 2>&1
+
+          urls=(
+            'https://service.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+            'https://stp2.gps.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+            'https://scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+            'https://local.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+          )
+          i=0
+          for url in "${urls[@]}"; do
+            i=$((i+1))
+            set +e
+            curl --ipv4 --http1.1 --proto '=https' --tlsv1.2 --location \
+              --connect-timeout 20 --max-time 60 --range 0-65535 \
+              --header 'Accept-Encoding: identity' \
+              --output "$out/body_$i.bin" --dump-header "$out/headers_$i.txt" \
+              --write-out '%{json}\n' "$url" > "$out/meta_$i.json" 2> "$out/stderr_$i.txt"
+            rc=$?
+            set -e
+            printf '%s\t%s\t%s\n' "$i" "$rc" "$url" >> "$out/summary.tsv"
+          done
+          sha256sum "$out"/* > "$out/SHA256SUMS.txt" || true
+          cat "$out/summary.tsv"
+      - name: Upload Unix probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scedc-cross-runner-${{ matrix.os }}
+          path: ${{ runner.temp }}/probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
+
+  windows-probe:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe DNS, TLS and first 64 KiB
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $out = Join-Path $env:RUNNER_TEMP 'probe'
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          @('service.scedc.caltech.edu','stp2.gps.caltech.edu','scedc.caltech.edu','local.scedc.caltech.edu') | ForEach-Object {
+            try { Resolve-DnsName $_ -Type A | Out-String } catch { "$_ : $($_.Exception.Message)" }
+          } | Set-Content (Join-Path $out 'dns.txt')
+          $urls = @(
+            'https://service.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat',
+            'https://stp2.gps.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat',
+            'https://scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat',
+            'https://local.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+          )
+          $i = 0
+          foreach ($url in $urls) {
+            $i++
+            & curl.exe --ipv4 --http1.1 --proto '=https' --tlsv1.2 --location --connect-timeout 20 --max-time 60 --range 0-65535 --header 'Accept-Encoding: identity' --output (Join-Path $out "body_$i.bin") --dump-header (Join-Path $out "headers_$i.txt") --write-out '%{json}\n' $url 1> (Join-Path $out "meta_$i.json") 2> (Join-Path $out "stderr_$i.txt")
+            "$i`t$LASTEXITCODE`t$url" | Add-Content (Join-Path $out 'summary.tsv')
+          }
+          Get-Content (Join-Path $out 'summary.tsv')
+      - name: Upload Windows probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scedc-cross-runner-windows-latest
+          path: ${{ runner.temp }}/probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

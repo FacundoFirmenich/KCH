@@ -1,0 +1,51 @@
+name: Helical v0.6 locked local-piecewise gate v2
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-piecewise-20260927
+    paths:
+      - .github/workflows/helical-v06-local-piecewise-gate-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  locked-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pinned Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install pinned numerical packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'scikit-learn==1.5.2'
+
+      - name: Reconstruct lock, acquire exact bytes, and execute frozen gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python .github/helical_v06_transport/run_remote_v06.py \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --work-root "$RUNNER_TEMP/helical_v06_work" \
+            --artifact-root "$RUNNER_TEMP/helical_v06_artifact"
+
+      - name: Upload exact-byte v0.6 gate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-local-piecewise-gate-v2
+          path: ${{ runner.temp }}/helical_v06_artifact
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

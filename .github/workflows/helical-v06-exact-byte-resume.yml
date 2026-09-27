@@ -1,0 +1,72 @@
+name: Helical v0.6 exact-byte resume gate
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-piecewise-20260927
+    paths:
+      - .github/workflows/helical-v06-exact-byte-resume.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  exact-byte-resume:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up protocol-pinned Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install protocol-pinned numerical stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'scikit-learn==1.5.2'
+
+      - name: Recover the already acquired official-byte artifact by immutable artifact ID
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: '10922031783'
+          EXPECTED_ARTIFACT_SHA256: 'c6a2e3245afad2e25d98c19e28ce82dbcce3115404f65474b1ac784edce26198'
+        run: |
+          set -euo pipefail
+          zip="$RUNNER_TEMP/acquired_official_bytes.zip"
+          input="$RUNNER_TEMP/acquired_official_bytes"
+          curl --fail-with-body --location \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            --output "$zip"
+          observed=$(sha256sum "$zip" | awk '{print $1}')
+          test "$observed" = "$EXPECTED_ARTIFACT_SHA256"
+          mkdir -p "$input"
+          unzip -q "$zip" -d "$input"
+
+      - name: Audit receipt serialization without modifying source bytes and execute locked science
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python .github/helical_v06_transport/resume_from_acquired_artifact.py \
+            --input-root "$RUNNER_TEMP/acquired_official_bytes" \
+            --output-root "$RUNNER_TEMP/helical_v06_resume"
+
+      - name: Upload exact-byte resume artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-exact-byte-resume
+          path: ${{ runner.temp }}/helical_v06_resume
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

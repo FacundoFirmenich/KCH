@@ -1,0 +1,52 @@
+name: Helical v0.6 SCEDC endpoint probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-piecewise-20260927
+    paths:
+      - .github/workflows/helical-v06-transport-endpoint-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe official SCEDC frontends without analysis
+        shell: bash
+        run: |
+          set -u
+          out="$RUNNER_TEMP/endpoint_probe"
+          mkdir -p "$out"
+          urls=(
+            'https://service.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+            'https://stp2.gps.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+            'https://scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat'
+          )
+          i=0
+          for url in "${urls[@]}"; do
+            i=$((i+1))
+            set +e
+            curl --proto '=https' --tlsv1.2 --location --connect-timeout 15 --max-time 45 \
+              --range 0-0 --header 'Accept-Encoding: identity' --output "$out/body_$i.bin" \
+              --dump-header "$out/headers_$i.txt" --write-out '%{json}\n' "$url" \
+              > "$out/meta_$i.json" 2> "$out/stderr_$i.txt"
+            code=$?
+            set -e
+            printf '%s\t%s\t%s\n' "$i" "$code" "$url" >> "$out/summary.tsv"
+          done
+          cat "$out/summary.tsv"
+      - name: Upload endpoint-probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-scedc-endpoint-probe
+          path: ${{ runner.temp }}/endpoint_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
