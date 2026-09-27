@@ -1,0 +1,5 @@
+{
+  "private_bundle": {"name":"SCA_CFL_Minimal_Witness_v0_9.zip","sha256":"488687ba06b857a62c326d6f9f4837997e7b758835d35d57da4a21fdec6b998d","size":6189022},
+  "public_bundle": {"name":"SCA_CFL_Minimal_Witness_v0_9_Public.zip","sha256":"39dfcb2bf8edb3ee3d5ddbcd99d996388dffa3fc15055969221f4b068ad141d5","size":461743},
+  "release":"0.9.0"
+}
