@@ -1,0 +1,27 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG005-LOCAL-POOLING-ROUTER-001",
+  "preprotocol_commit": "0e02f10559d60e0509a9faf9a232bd031ce47f9d",
+  "source": {
+    "repository": "vincentarelbundock/Rdatasets",
+    "path": "csv/nlme/Orthodont.csv",
+    "ref": "master",
+    "github_blob_sha": "85391e91fb0450ecc87cfdd901f6453a7ad7e352",
+    "full_sha256": "57793f38654aefd74338be403738f75d469c979c5ed224a9025c9c7ae541b8ee"
+  },
+  "training": {
+    "rule": "age in {8,10,12}",
+    "rows": 81,
+    "subjects": 27,
+    "sha256": "3c3b3c36c03583eb6e980d91b06c0d55f06bd573a05ee39b99ef5fe5bccfe0f5"
+  },
+  "future": {
+    "rule": "age == 14",
+    "rows": 27,
+    "subjects": 27,
+    "sha256": "3888cd2fd350130e285910d808d06018c3d5c95ebc0cf9419dc3ffd17c7c8dba",
+    "fit_jobs_must_not_contain_future": true
+  },
+  "investigator_blinding": false,
+  "procedural_fit_blinding_required": true,
+  "status": "ACQUIRED_AND_HASHED_BEFORE_MODEL_FITTING"
+}
