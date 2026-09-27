@@ -32,14 +32,18 @@ jobs:
           raw = path.read_bytes()
           notebook = json.loads(raw)
           assert notebook["nbformat"] == 4
-          assert len(notebook["cells"]) == 5
+          assert len(notebook["cells"]) == 6
 
           variables = "".join(notebook["cells"][1]["source"])
           assert "SEED = 14" in variables
           assert "LIMIT = 10" in variables
           assert "RUN_DEVELOPMENT_COUNTERFACTUALS = False" in variables
 
-          materializer = "".join(notebook["cells"][2]["source"])
+          runtime_bootstrap = "".join(notebook["cells"][2]["source"])
+          assert "TRANSFORMERS_COMMIT = '96331a9f93b72697f160a958d2883d4b49a56739'" in runtime_bootstrap
+          assert "git+https://github.com/huggingface/transformers.git@" in runtime_bootstrap
+
+          materializer = "".join(notebook["cells"][3]["source"])
           tree = ast.parse(materializer)
           embedded_json = None
           for node in tree.body:
