@@ -1,0 +1,21 @@
+{
+  "program_id": "CFL-UEP-G3.1-STRUCTURAL-CANDIDATE-GENESIS-AND-REPAIR",
+  "material_gate": "PASS_LOCAL",
+  "candidate_genesis": "DEMONSTRATED_IN_EXACT_GENERATED_KERNEL",
+  "initial_private_tos_success": 0.8375,
+  "initial_preregistered_strongest_baseline_success": 0.675,
+  "initial_delta": 0.1625,
+  "initial_bootstrap_95_ci": [0.0875, 0.25],
+  "posthoc_adversarial_baseline": "DOMAIN_REPAIR_HYBRID",
+  "posthoc_adversarial_success": 0.8375,
+  "posthoc_delta": 0.0,
+  "posthoc_bootstrap_95_ci": [0.0, 0.0],
+  "false_promotion_rate": 0.0,
+  "final_outcome": "CANDIDATE_GENESIS_DEMONSTRATED_BUT_NONREDUCIBILITY_NOT_SUPPORTED",
+  "quaternary_benchmark_state": "+0_CANDIDATE_GENESIS_BENCHMARK_PROTOFORM",
+  "quaternary_o3_claim_state": "0_BASELINE_EQUIVALENT",
+  "authority": "NONE",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "note": "The private reserve was consumed locally once. This branch is custody/staging only and must not be described as an independent remote confirmation."
+}
