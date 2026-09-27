@@ -43,8 +43,8 @@ jobs:
           assert "TRANSFORMERS_COMMIT = '96331a9f93b72697f160a958d2883d4b49a56739'" in runtime_bootstrap
           assert "git+https://github.com/huggingface/transformers.git@" in runtime_bootstrap
           assert "bitsandbytes>=0.46.1" in runtime_bootstrap
-          assert "causal-conv1d==1.6.2.post1" in runtime_bootstrap
           assert "flash-linear-attention==0.5.1" in runtime_bootstrap
+          assert "'--no-deps'" in runtime_bootstrap
 
           materializer = "".join(notebook["cells"][3]["source"])
           tree = ast.parse(materializer)
