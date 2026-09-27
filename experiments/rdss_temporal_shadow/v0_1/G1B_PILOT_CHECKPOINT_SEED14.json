@@ -55,7 +55,60 @@
     },
     "positive_residual_groups": 1,
     "mean_oracle_headroom_over_tmr": 0.02,
-    "max_oracle_headroom_over_tmr": 0.3
+    "max_oracle_headroom_over_tmr": 0.3,
+    "positive_pocket": {
+      "prompt_id": "p02",
+      "checkpoint_step": 0,
+      "best_action": "talon_mass_left",
+      "best_automatic_utility": 0.3,
+      "talon_mass_right_automatic_utility": 0,
+      "gain_over_talon_mass_right": 0.3,
+      "all_actions_contract_pass": false,
+      "interpretation": "The gain is semantic-score-only; it is not a full contract pass.",
+      "common_state": {
+        "normalized_position": 0,
+        "raw_entropy_normalized": 0.4470726549625397,
+        "raw_top1_probability": 0.07745566964149475,
+        "raw_top2_probability": 0.04081627354025841,
+        "raw_top1_top2_margin": 0.03663939610123634,
+        "probe_sampled_tokens": false,
+        "probe_mutated_generation_state": false
+      },
+      "operator_fingerprints": {
+        "talon_mass_left": {
+          "kl": 0.03131597489118576,
+          "tv": 0.09257534891366959,
+          "delta_entropy": 0.4542236328125,
+          "mask_fraction": 0.003390786238014698,
+          "top10_overlap": 1,
+          "top1_preflip": 0
+        },
+        "talon_mass_right": {
+          "kl": 0.04038781672716141,
+          "tv": 0.08213961124420166,
+          "delta_entropy": -0.4981803894042969,
+          "mask_fraction": 0.003390786238014698,
+          "top10_overlap": 1,
+          "top1_preflip": 0
+        },
+        "talm_mass_right_soft": {
+          "kl": 0.0015104697085916996,
+          "tv": 0.01839226856827736,
+          "delta_entropy": -0.06696414947509766,
+          "mask_fraction": 0.016454575583338737,
+          "top10_overlap": 1,
+          "top1_preflip": 0
+        },
+        "baseline": {
+          "kl": 0,
+          "tv": 0,
+          "delta_entropy": 0,
+          "mask_fraction": 0,
+          "top10_overlap": 1,
+          "top1_preflip": 0
+        }
+      }
+    }
   },
   "interpretation": {
     "dominant_pillar_confirmed": true,
@@ -63,6 +116,29 @@
     "rescue_candidate_for_observed_positive_pocket": "talon_mass_left",
     "promotion_authorized": false,
     "full_development_fit_pending": true,
-    "protected_reserve_touched": false
+    "protected_reserve_touched": false,
+    "cheap_screen_fit_authorized": false,
+    "targeted_replication_required": true
+  },
+  "next_gate": {
+    "name": "G1C_P02_STEP0_SEED_REPLICATION",
+    "source_notebook_commit": "c917536b27b6b578d9187f937a8c4d71e55ecd8a",
+    "seeds": [
+      28,
+      42
+    ],
+    "campaign_prompt_ids": [
+      "p02"
+    ],
+    "development_prompt_ids": [
+      "p02"
+    ],
+    "reserve_forbidden": [
+      "p07",
+      "p08",
+      "p09",
+      "p10"
+    ],
+    "promotion_scope": "authorizes expanded development only; never reserve evaluation or deployment"
   }
 }
