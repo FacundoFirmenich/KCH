@@ -1,0 +1,72 @@
+name: PG006 Local Stress
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg006-decision-coupled-router-20260927
+    paths:
+      - ".github/workflows/pg006_local_stress.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pg006-stress-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  stress:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [P0_POPULATION, P1_GLOBAL_POOL, P2_GLOBAL_LOCAL, P3_LOW_POOL]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout outcome-blind runtime
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg006_runtime
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify absence of confirmatory outcomes
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=experiments/pi_genesis/pg006_runtime
+          test ! -e "$ROOT/data/future"
+          test "$(sha256sum "$ROOT/data/train/construction_days_0_5.csv" | cut -d' ' -f1)" = "0c9c4b2d365a9a32b84c0221548c54b3c884c2fc68d4f3b436f78cd9fde7c5ee"
+          test "$(sha256sum "$ROOT/data/calibration/calibration_days_6_7.csv" | cut -d' ' -f1)" = "aa3fc9cdd1de05f4dc7f78d64e39257fe6c6ed0eb74d8d6f796287eedd5b59ff"
+          sed -i 's/4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7/56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991/g' "$ROOT/src/pg006/data.py" "$ROOT/src/pg006/component_runner.py"
+          python -m py_compile "$ROOT"/src/pg006/*.py "$ROOT"/generated/*.py
+
+      - name: Install NumPyro stress runtime
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "jax[cpu]>=0.5,<0.10" "numpyro>=0.19,<0.22"
+
+      - name: Execute frozen training-only stress
+        env:
+          PYTHONPATH: experiments/pi_genesis/pg006_runtime/src:experiments/pi_genesis/pg006_runtime/generated
+          PYTHONHASHSEED: "0"
+          JAX_ENABLE_X64: "true"
+          XLA_FLAGS: --xla_force_host_platform_device_count=1
+        run: >-
+          python -m pg006.stress_component_runner
+          --model ${{ matrix.model }}
+          --root experiments/pi_genesis/pg006_runtime
+          --output results/pg006-stress-numpyro-${{ matrix.model }}
+
+      - name: Upload content-addressed stress receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: pg006-stress-numpyro-${{ matrix.model }}
+          path: results/pg006-stress-numpyro-${{ matrix.model }}
+          if-no-files-found: error
+          retention-days: 30
