@@ -1,28 +1,51 @@
 # RDSS Temporal Common-State SHADOW Gate v0.1
 
-TALON mass-right is the fixed generation authority. SHADOW probes are disposable,
-sample no token, and cannot mutate the active prefix, RNG, cache, or processor state.
+TALON mass-right (TMR) is the fixed generation authority. SHADOW probes are
+disposable, sample no token, and cannot mutate the active prefix, RNG, cache,
+processor state, or active generation path.
 
 [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/FacundoFirmenich/KCH/blob/main/experiments/rdss_temporal_shadow/v0_1/RDSS_TEMPORAL_SHADOW_GATE_V0_1.ipynb)
 
-## Current evidence state
+## Verified evidence state
 
-- GitHub Actions scientific preflight: **PASS**
-- Workflow run: https://github.com/FacundoFirmenich/KCH/actions/runs/36271895877
-- Notebook commit: `869c9dc4d372220514813be7f8ac9064e2f4f668`
-- Workflow commit: `1e49c1cb56a33b66f8fd23febb77e2cc016b1606`
-- Prospective state: `GPU_PENDING`
-- Protected reserve touched: **no**
+- **G1a non-interference: PASS**
+  - 10 prompts / 20 paired rows.
+  - Exact fixed-TMR vs TMR+SHADOW token identity.
+  - Zero identity failures.
+- **G1b development pilot checkpoint: PASS**
+  - 60 counterfactual rows.
+  - 15/15 complete four-action common-state groups.
+  - TMR wins 14/15 groups.
+  - The only positive residual pocket is `p02@step0`: TALON mass-left gains
+    `+0.30` automatic utility over TMR, from semantic score only.
+  - Protected reserve `p07-p10`: untouched.
+- Durable receipt:
+  [G1B_PILOT_CHECKPOINT_SEED14.json](./G1B_PILOT_CHECKPOINT_SEED14.json)
+- Kaggle executed notebook:
+  https://www.kaggle.com/code/fjfmad/rdss-temporal-shadow-g1b-pilot-seed14/edit
+
+## Current scientific decision
+
+Do **not** fit or promote a rescue router from one positive group. TMR remains the
+authority. The observed `p02@step0` pocket advances only to a locked,
+development-only seed replication. If it does not replicate, discard the pocket.
+
+The next gate is defined in
+[G1C_P02_STEP0_REPLICATION_SPEC.json](./G1C_P02_STEP0_REPLICATION_SPEC.json).
+The notebook now supports an exact `CAMPAIGN_PROMPT_IDS` filter so targeted
+replication does not spend GPU on unrelated prompts or touch the reserve.
 
 ## Execution order
 
-1. Open the notebook through the Kaggle badge.
-2. Run G1a with `RUN_DEVELOPMENT_COUNTERFACTUALS = False`.
-3. Require exact token identity between fixed TMR and TMR+SHADOW.
-4. Only after G1a passes, enable counterfactuals on development prompts.
-5. Freeze policy, coefficients, thresholds, seeds, budget, split, and hashes.
-6. Evaluate the protected reserve exactly once.
+1. Keep TMR as generation authority and verify exact SHADOW non-interference.
+2. Run the locked `p02` replication on seeds 28 and 42.
+3. Require complete four-action common-state groups and preserve branch seeds.
+4. Apply the pre-registered G1c decision rule.
+5. Only if G1c passes, expand development evidence and fit a cheap screen.
+6. Freeze all hashes, coefficients, thresholds, seeds, budget, and split.
+7. Evaluate the protected reserve exactly once.
 
 Historical results and post-hoc Z are descriptive only and cannot authorize a
-switch. TALON-left is the primary rescue; TALM-right is secondary; baseline is
-the valid fail-closed fallback. TALM-left remains sensor/control-only.
+current switch. TALON mass-left is the primary rescue; TALM mass-right-soft is
+secondary; baseline is the valid fail-closed fallback. TALM-left remains
+sensor/control-only.
