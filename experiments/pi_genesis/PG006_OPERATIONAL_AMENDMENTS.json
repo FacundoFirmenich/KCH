@@ -1,0 +1,28 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001",
+  "amendments": [
+    {
+      "id": "PG006-OPS-001",
+      "recorded_utc": "2026-09-27T14:50:00Z",
+      "failed_runs": [36327231170, 36327240975],
+      "failure_stage": "pre-fit hash verification",
+      "occurred_before_dependency_installation": true,
+      "occurred_before_any_model_fit": true,
+      "scientific_state": "NOT_EVALUATED",
+      "cause": "The canonical local freeze hash was 4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7, while the repository-transported UTF-8 protocol bytes hash to 56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991. The semantic JSON content is unchanged; the mismatch is a byte-serialization/transport commitment mismatch.",
+      "permitted_change": "Bind runtime verification and receipts to the observed repository byte hash while preserving the original freeze commit and canonical hash as genealogy.",
+      "frozen_items_unchanged": [
+        "all data bytes and temporal cuts",
+        "all prior programs and likelihoods",
+        "all router features and action rules",
+        "all seeds, chains, warmup, draws and NUTS settings",
+        "all statistical and empirical thresholds",
+        "all future outcomes",
+        "authority ceiling"
+      ],
+      "diagnostic_run": 36327292343,
+      "diagnostic_commit": "edb7499c41417deeb29e639e987e037cc797f4ff",
+      "repository_protocol_sha256": "56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991"
+    }
+  ]
+}
