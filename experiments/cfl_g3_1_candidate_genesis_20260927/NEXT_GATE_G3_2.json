@@ -1,0 +1,31 @@
+{
+  "program_id": "CFL-UEP-G3.2-OPEN-OPERATOR-GENESIS",
+  "status": "DESIGN_FROZEN_PENDING_EXECUTION",
+  "purpose": "Withhold both the truth candidate and a sufficient repair operator, forcing synthesis of a new operator/grammar before exact verification.",
+  "domains": [
+    "graph rewrite synthesis with held-out motif operators",
+    "polynomial ideal generator synthesis with held-out composition patterns",
+    "Diophantine transformation-program synthesis",
+    "Lagrangian/symmetry operator synthesis with a missing cross-term grammar"
+  ],
+  "mandatory_baselines": [
+    "grammar-guided enumerative synthesis",
+    "beam search with exact verifier",
+    "MCTS/best-first program synthesis",
+    "SMT/symbolic synthesis where valid",
+    "e-graph/superoptimization where valid",
+    "formal active learner",
+    "TOS without Phi12",
+    "TOS without O3",
+    "TOS full operator-genesis protoform"
+  ],
+  "support_rule": {
+    "minimum_gain_over_strongest_matched_synthesis_baseline": 0.02,
+    "paired_bootstrap_interval": "strictly positive",
+    "minimum_supported_domains": 3,
+    "false_promotion_maximum": 0.02,
+    "private_reserve_one_shot": true
+  },
+  "authority": "NONE",
+  "promotion": "BLOCKED"
+}
