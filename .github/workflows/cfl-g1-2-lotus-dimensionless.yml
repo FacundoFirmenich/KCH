@@ -54,7 +54,7 @@ jobs:
           test -s g12_work/results/RUN_MANIFEST.json
           test -s g12_work/results/REPORT.md
           test -s g12_work/results/CV_RECORDS.csv
-          test -s g12_work/visuals/FINAL_METHODS_MONTAGE.png
+          test -s g12_work/results/ALL_METHODS_MONTAGE.png
           python -m json.tool g12_work/results/DATA_AUDIT.json >/dev/null
           python -m json.tool g12_work/results/RESULTS.json >/dev/null
           python -m json.tool g12_work/results/FISHER_SPECTRAL_AUDIT.json >/dev/null
