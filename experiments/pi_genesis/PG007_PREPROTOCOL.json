@@ -1,0 +1,52 @@
+{
+  "authority_ceiling": "SHADOW",
+  "dataset_lottery": {
+    "data_access_before_freeze": false,
+    "ordered_candidates": [
+      "datasets::ChickWeight",
+      "nlme::Oxboys",
+      "nlme::Theoph",
+      "datasets::Orange"
+    ],
+    "selected": "datasets::ChickWeight",
+    "selected_index": 0,
+    "selector": "int(parent_summary_hash[0:8],16) mod 4"
+  },
+  "decision_functional": "E[L] + lambda*CVaR_alpha(L) + gamma*influence_penalty",
+  "gate_id": "KCH-PI-GENESIS-PG007-DISTRIBUTIONAL-AUTHORITY-INSURANCE-001",
+  "genealogy": {
+    "parent_gate": "KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001",
+    "parent_state": "-1",
+    "parent_summary_hash": "72c64fb88614a51fffc790a964de3fa7bdc9b34b020b527a420a31b5838f1823"
+  },
+  "mandatory_gates": {
+    "authority_ceiling": "SHADOW",
+    "external_ppl_quorum": ["PyMC", "NumPyro"],
+    "latent_field_max_standardized_mean_delta": 0.15,
+    "latent_field_max_standardized_wasserstein": 0.2,
+    "leave_one_unit_out_noninferiority_margin": 0.03,
+    "maximum_single_unit_positive_gain_share": 0.35,
+    "maximum_stress_spillover_median": 0.1,
+    "maximum_stress_target_rank": 3,
+    "minimum_CVaR_gain": 0.0,
+    "minimum_domains": 2,
+    "minimum_oracle_gap_closure": 0.25,
+    "minimum_stress_target_probability_increase": 0.2,
+    "shared_canonical_supervision": true
+  },
+  "planes": {
+    "authority": {
+      "actions": ["POOL", "LOCAL", "MIX", "ABSTAIN"],
+      "target": "central predictive loss distribution"
+    },
+    "insurance": {
+      "actions": ["INSURE", "NO_INSURE"],
+      "target": "tail loss and catastrophe avoidance"
+    }
+  },
+  "preprotocol_hash": "68baa11df44cf81f5833d1124fc2fd50eda495f1cb361b60970d26d3fe3931ae",
+  "primary_object": "Distributionally Robust Authority and Catastrophe-Insurance Field",
+  "separation_invariant": "INSURE is a hedge action and cannot imply LOCAL authority, permission, causal credit, or execution rights.",
+  "status": "PREPROTOCOL_FROZEN_BEFORE_SELECTED_DATA_ACQUISITION",
+  "version": "0.1.0-predata-frozen"
+}
