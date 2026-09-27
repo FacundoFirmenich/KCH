@@ -11,18 +11,22 @@
       "scientific_state": "NOT_EVALUATED",
       "cause": "The canonical local freeze hash was 4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7, while the repository-transported UTF-8 protocol bytes hash to 56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991. The semantic JSON content is unchanged; the mismatch is a byte-serialization/transport commitment mismatch.",
       "permitted_change": "Bind runtime verification and receipts to the observed repository byte hash while preserving the original freeze commit and canonical hash as genealogy.",
-      "frozen_items_unchanged": [
-        "all data bytes and temporal cuts",
-        "all prior programs and likelihoods",
-        "all router features and action rules",
-        "all seeds, chains, warmup, draws and NUTS settings",
-        "all statistical and empirical thresholds",
-        "all future outcomes",
-        "authority ceiling"
-      ],
+      "frozen_items_unchanged": ["all data bytes and temporal cuts","all prior programs and likelihoods","all router features and action rules","all seeds, chains, warmup, draws and NUTS settings","all statistical and empirical thresholds","all future outcomes","authority ceiling"],
       "diagnostic_run": 36327292343,
       "diagnostic_commit": "edb7499c41417deeb29e639e987e037cc797f4ff",
       "repository_protocol_sha256": "56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991"
+    },
+    {
+      "id": "PG006-OPS-002",
+      "recorded_utc": "2026-09-27T14:52:00Z",
+      "failed_run": 36327399524,
+      "failed_job": "fit (numpyro, P2_GLOBAL_LOCAL)",
+      "failure_stage": "model initialization before any draw",
+      "scientific_state": "NOT_EVALUATED_FOR_THIS_JOB",
+      "cause": "NumPyro 0.21.0 has no HalfStudentT convenience class.",
+      "permitted_change": "Realize the frozen HalfStudentT(3,1) prior as FoldedDistribution(StudentT(3,0,1)), which is distributionally identical and documented by NumPyro as the folded/half-Student construction.",
+      "frozen_items_unchanged": ["distributional prior semantics","all data and evidence cuts","all sampling budgets and seeds","all gates and authority"],
+      "source_reference": "NumPyro FoldedDistribution over centered StudentT"
     }
   ]
 }
