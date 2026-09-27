@@ -1,0 +1,79 @@
+{
+  "gate_name": "RDSS Temporal Common-State SHADOW Gate",
+  "version": "0.1.0",
+  "scientific_state": "PROSPECTIVE_GPU_PENDING",
+  "mode": "shadow_only",
+  "active_operator_lineage": {
+    "name": "historical_v04_common_projection",
+    "source": "cfldr_plus_v0_4_repaired.py",
+    "talon_mass_right": {
+      "strength": 0.7,
+      "temperature": 1.0,
+      "mass_threshold": 0.92,
+      "selection_mode": "mass",
+      "side_policy": "right",
+      "preserve_top1_inside_operator": false,
+      "common_external_top1_projection": true
+    }
+  },
+  "canonical_tmr_reference_only": {
+    "configuration_sha256": "67875f7e54c14e3aa11b7dea3120ee054116b951ebd2507b8f524c1b9e40712a",
+    "temperature": 0.8,
+    "preserve_top1": true,
+    "warning": "Reference only. Never pool results across this lineage and historical_v04_common_projection."
+  },
+  "authority": {
+    "default_action": "talon_mass_right",
+    "rescue_ladder": [
+      "talon_mass_left",
+      "talm_mass_right_soft",
+      "baseline"
+    ],
+    "formal_outputs": [
+      "KEEP_DEFAULT",
+      "SWITCH_RESCUE",
+      "ABSTAIN",
+      "ASK"
+    ],
+    "fail_closed": true
+  },
+  "temporal_observation": {
+    "checkpoints": [0, 16, 32, 64],
+    "lock_after_fraction": 0.7,
+    "probe_samples_tokens": false,
+    "probe_mutates_generation_state": false,
+    "prefix_source": "talon_mass_right_trajectory"
+  },
+  "cheap_screen": {
+    "enabled": true,
+    "headroom_probability_threshold": 0.2,
+    "minimum_observations": 2
+  },
+  "value_of_continuation": {
+    "minimum_lcb_after_cost": 0.0,
+    "harm_ucb95_delta": 0.025,
+    "compute_cost_per_probe": 0.0025,
+    "risk_penalty": 1.0
+  },
+  "campaign": {
+    "model_id": "Qwen/Qwen3.5-4B-Base",
+    "development_prompts": 40,
+    "protected_reserve_prompts": 20,
+    "seeds": [14, 28, 42],
+    "arms": [
+      "fixed_tmr",
+      "shadow_tmr_non_interference",
+      "screen_plus_shadow",
+      "probe_all_cost_control",
+      "coverage_matched_random",
+      "posthoc_oracle_descriptive_only"
+    ]
+  },
+  "promotion_rule": {
+    "requires_protected_reserve": true,
+    "requires_non_interference_identity": true,
+    "requires_positive_paired_utility_after_cost": true,
+    "requires_harm_ucb95_within_delta": true,
+    "historical_archive_can_promote": false
+  }
+}

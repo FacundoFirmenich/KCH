@@ -56,9 +56,16 @@ This gate supports a clean paper claim about exact SHADOW non-interference and a
 frozen policy with no reserve harm. It does **not** support a reserve performance
 improvement claim: the protected reserve has no action-discriminating headroom.
 
-The active next gate is external validity: repair the stale row split label,
-then execute a new public benchmark or newly locked reserve whose baseline has
-nonzero oracle headroom. Do not reopen p07-p10 or fit on their outcomes.
+The active next gate is G3 external validity. The stale split-emission bug is
+repaired in the canonical source; the historical G2 receipt remains immutable
+and explicitly records the observed label. G3 now has a locked blueprint for
+public, objective benchmarks with a new disjoint reserve and nonzero action
+headroom. Do not reopen p07-p10 or fit on their outcomes.
+
+G3 specifications:
+
+- [Machine-readable blueprint](./G3_EXTERNAL_VALIDITY_SPEC.json)
+- [Execution protocol](./G3_EXTERNAL_VALIDITY_PROTOCOL.md)
 
 ## Contract
 
@@ -68,3 +75,9 @@ nonzero oracle headroom. Do not reopen p07-p10 or fit on their outcomes.
 - Baseline is the valid fail-closed comparator.
 - TALM-left remains sensor/control-only.
 - Post-hoc Z and reserve outcomes never authorize a current action.
+
+## Auditable source
+
+The six files embedded by the Kaggle notebook are also checked in under `config/`,
+`src/`, and `upstream/`. The notebook and extracted source carry the same repaired
+protected-reserve split emission.

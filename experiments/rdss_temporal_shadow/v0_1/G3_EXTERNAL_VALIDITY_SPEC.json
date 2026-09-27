@@ -1,0 +1,125 @@
+{
+  "gate": "G3 External Validity and Uplift",
+  "version": "0.1.0",
+  "status": "LOCKED_BLUEPRINT_NOT_EXECUTED",
+  "created_on": "2026-09-27",
+  "scientific_question": "Does fixed TALON mass-right improve objective task success over raw-logit baseline on public, action-discriminating benchmarks while exact SHADOW non-interference remains true?",
+  "authority": {
+    "generation_action": "talon_mass_right",
+    "primary_comparator": "baseline",
+    "development_only_rescue_candidates": [
+      "talon_mass_left",
+      "talm_mass_right_soft"
+    ],
+    "sensor_only": [
+      "talm_mass_left"
+    ],
+    "current_action_may_use_posthoc_outcomes": false,
+    "abstention_valid": true
+  },
+  "benchmark_families": [
+    {
+      "id": "livebench_objective",
+      "role": "primary_general_reasoning",
+      "canonical_url": "https://github.com/LiveBench/LiveBench",
+      "scope": [
+        "math",
+        "reasoning",
+        "instruction_following",
+        "data_analysis"
+      ],
+      "lock_rule": "Pin repository or dataset revision, release date, exact task IDs, prompt template, scorer, and answer extractor before reserve generation."
+    },
+    {
+      "id": "livecodebench_generation",
+      "role": "primary_code",
+      "canonical_url": "https://github.com/LiveCodeBench/LiveCodeBench",
+      "scope": [
+        "code_generation"
+      ],
+      "lock_rule": "Pin release/revision, contest date window, exact problem IDs, language, timeout, tests, and execution image before reserve generation."
+    },
+    {
+      "id": "evalplus",
+      "role": "secondary_code_sanity",
+      "canonical_url": "https://github.com/evalplus/evalplus",
+      "scope": [
+        "humaneval_plus",
+        "mbpp_plus"
+      ],
+      "lock_rule": "Pin EvalPlus package, dataset release, task IDs, tests, execution image, and greedy pass@1 protocol."
+    }
+  ],
+  "phases": [
+    {
+      "id": "G3A_ADAPTER",
+      "rule": "Validate loading, prompting, answer extraction, scoring, sandboxing, provenance, and exact TMR/TMR+SHADOW token identity. Use public examples or development IDs only."
+    },
+    {
+      "id": "G3B_HEADROOM",
+      "rule": "On development IDs only, execute all four deployable comparators from frozen prompts and seeds. Retain a family only if baseline success is strictly between 0.05 and 0.95 and at least one preregistered action-discordant pair exists. This phase may select families, never thresholds from reserve outcomes."
+    },
+    {
+      "id": "G3C_FREEZE",
+      "rule": "Write a signed machine-readable freeze containing source revisions, item IDs, dev/reserve split hashes, model/tokenizer revisions, operator/config hashes, prompt templates, scorers, seeds, decoding, checkpoint schedule, compute budget, endpoints, and stopping rules."
+    },
+    {
+      "id": "G3D_RESERVE",
+      "rule": "Open each disjoint reserve exactly once. Execute paired baseline and TMR plus TMR+SHADOW identity verification. Rescue arms remain observational unless separately frozen before the reserve."
+    }
+  ],
+  "reserve_integrity": {
+    "development_and_reserve_ids_disjoint": true,
+    "immutable_item_id_lists_required": true,
+    "canonical_content_hash_required": true,
+    "model_and_tokenizer_revision_required": true,
+    "benchmark_revision_required": true,
+    "prompt_and_scorer_hashes_required": true,
+    "one_shot_consumed_marker_required": true,
+    "historical_p07_p10_reuse_for_tuning": false
+  },
+  "endpoints": {
+    "primary": "Macro-average paired task-success difference, TALON mass-right minus baseline, across frozen primary benchmark families.",
+    "confirmatory": [
+      "Per-family paired task-success difference",
+      "Exact McNemar test on discordant pass/fail pairs",
+      "Paired bootstrap 95% confidence interval over items",
+      "TMR harmful-item rate versus baseline",
+      "Exact TMR versus TMR+SHADOW generated-token identity"
+    ],
+    "descriptive_only": [
+      "Post-hoc oracle win count",
+      "Oracle margin capture",
+      "Development rescue-arm headroom",
+      "Probe fingerprints"
+    ]
+  },
+  "claim_rule": {
+    "uplift_supported_if_all": [
+      "Every integrity invariant passes",
+      "The primary paired-difference estimate is positive",
+      "The two-sided 95% paired-bootstrap confidence interval excludes zero in the positive direction",
+      "Holm-adjusted confirmatory p-value is below 0.05",
+      "No preregistered safety or contract endpoint is inferior beyond its frozen margin",
+      "At least 30 discordant baseline/TMR item pairs exist across primary families"
+    ],
+    "otherwise": "Report exact estimates as null, inconclusive, or negative; do not convert a safety pass or oracle co-win into an uplift claim."
+  },
+  "compute_policy": {
+    "reserve_arms": [
+      "baseline",
+      "talon_mass_right",
+      "talon_mass_right_with_shadow_identity_check"
+    ],
+    "decoding": "Greedy unless a benchmark's canonical deterministic protocol requires otherwise; any exception is frozen before reserve.",
+    "no_adaptive_budget_on_reserve": true,
+    "checkpoint_budget_frozen_before_reserve": true
+  },
+  "next_artifacts": [
+    "G3_BENCHMARK_MANIFEST.json",
+    "G3_ADAPTER_RECEIPT.json",
+    "G3_HEADROOM_RESULT.json",
+    "G3_POLICY_FREEZE.json",
+    "G3_PROTECTED_RESERVE_RESULT.json"
+  ]
+}
