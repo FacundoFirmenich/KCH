@@ -1,0 +1,10 @@
+{
+  "gate":"NONPARAMETRIC_AMBIGUITY_EXPANSION_AND_MODEL_CLASS_DISCOVERY_009",
+  "release":"1.8.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":18,"failed":0},
+  "null_outer_false_reject_rate":0.018,
+  "forced_fresh_certifier_false_cross_rate":0.0085,
+  "alternative_candidate_certification_rate":0.972,
+  "next_gate":"OPEN_ENDED_STRUCTURE_GRAMMAR_AND_ADVERSARIAL_MODEL_SYNTHESIS_010"
+}
