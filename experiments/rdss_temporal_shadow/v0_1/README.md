@@ -26,22 +26,26 @@ processor state, or active generation path.
 
 ## Current scientific decision
 
-Do **not** fit or promote a rescue router from one positive group. TMR remains the
-authority. The observed `p02@step0` pocket advances only to a locked,
-development-only seed replication. If it does not replicate, discard the pocket.
+**G1c rejected the `p02@step0` pocket.** On seeds 28 and 42, TALON mass-left
+tied TMR at `0.00`; neither new seed reproduced the seed-14 gain. Therefore no
+rescue router or screen may be fit from this pocket. TMR remains the authority.
 
-The next gate is defined in
-[G1C_P02_STEP0_REPLICATION_SPEC.json](./G1C_P02_STEP0_REPLICATION_SPEC.json).
-The notebook now supports an exact `CAMPAIGN_PROMPT_IDS` filter so targeted
-replication does not spend GPU on unrelated prompts or touch the reserve.
+- Locked protocol:
+  [G1C_P02_STEP0_REPLICATION_SPEC.json](./G1C_P02_STEP0_REPLICATION_SPEC.json)
+- Executed result:
+  [G1C_P02_STEP0_REPLICATION_RESULT.json](./G1C_P02_STEP0_REPLICATION_RESULT.json)
+
+The active next gate is to complete the missing development prompt `p06`.
+The notebook's exact `CAMPAIGN_PROMPT_IDS` filter avoids unrelated GPU work and
+keeps the protected reserve untouched.
 
 ## Execution order
 
 1. Keep TMR as generation authority and verify exact SHADOW non-interference.
-2. Run the locked `p02` replication on seeds 28 and 42.
-3. Require complete four-action common-state groups and preserve branch seeds.
-4. Apply the pre-registered G1c decision rule.
-5. Only if G1c passes, expand development evidence and fit a cheap screen.
+2. Treat the executed G1c rejection as closed; do not fit a `p02@step0` rule.
+3. Complete `p06` on the development split with all four actions.
+4. Recompute the full p01-p06 development evidence.
+5. Only if residual headroom remains supported, pre-register a new cheap screen.
 6. Freeze all hashes, coefficients, thresholds, seeds, budget, and split.
 7. Evaluate the protected reserve exactly once.
 
