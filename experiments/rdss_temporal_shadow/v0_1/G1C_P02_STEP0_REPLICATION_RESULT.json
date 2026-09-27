@@ -1,0 +1,81 @@
+{
+  "gate": "G1C P02 Step-0 Seed Replication",
+  "version": "0.1.0",
+  "status": "G1C_REJECT_POCKET",
+  "executed_on": "2026-09-27",
+  "scientific_scope": "development_only",
+  "source_spec": "G1C_P02_STEP0_REPLICATION_SPEC.json",
+  "model": "Qwen/Qwen3.5-4B-Base",
+  "method_config_hash": "ccfe90518a63966bd834247e11f2a0bb0e11178e6cb94cd4e00a00603388f61e",
+  "prompt_suite_hash": "bb0c752ec71965d62d8b8646876b50a8b52d03479c57103d5a90b4f002da1114",
+  "fixed_generation_authority": "talon_mass_right",
+  "checkpoint_of_interest": 0,
+  "seed_results": {
+    "14": {
+      "source": "G1B_PILOT_CHECKPOINT_SEED14.json",
+      "left_gain_over_tmr": 0.3
+    },
+    "28": {
+      "campaign_prompt_ids": [
+        "p02"
+      ],
+      "campaign_rows": 2,
+      "counterfactual_rows": 8,
+      "complete_step0_actions": [
+        "baseline",
+        "talm_mass_right_soft",
+        "talon_mass_left",
+        "talon_mass_right"
+      ],
+      "non_interference_identity_pass": true,
+      "step0_utilities": {
+        "baseline": 0,
+        "talm_mass_right_soft": 0,
+        "talon_mass_left": 0,
+        "talon_mass_right": 0
+      },
+      "left_gain_over_tmr": 0
+    },
+    "42": {
+      "campaign_prompt_ids": [
+        "p02"
+      ],
+      "campaign_rows": 2,
+      "counterfactual_rows": 4,
+      "complete_step0_actions": [
+        "baseline",
+        "talm_mass_right_soft",
+        "talon_mass_left",
+        "talon_mass_right"
+      ],
+      "non_interference_identity_pass": true,
+      "step0_utilities": {
+        "baseline": 0,
+        "talm_mass_right_soft": 0,
+        "talon_mass_left": 0,
+        "talon_mass_right": 0
+      },
+      "left_gain_over_tmr": 0
+    }
+  },
+  "aggregate": {
+    "new_seed_positive_replications": 0,
+    "new_seeds_tested": 2,
+    "mean_gain_seeds_14_28_42": 0.1
+  },
+  "invariants": {
+    "exact_non_interference_pass": true,
+    "complete_four_action_step0_groups": true,
+    "common_branch_seed_within_group": true,
+    "reserve_touched": false
+  },
+  "decision": {
+    "failed_preregistered_condition": "p02 step-0 TALON mass-left gain over TMR is positive in at least one new seed",
+    "pocket_generalization_rejected": true,
+    "router_fit_authorized": false,
+    "expanded_development_authorized": false,
+    "protected_reserve_evaluation_authorized": false,
+    "fixed_policy": "retain talon_mass_right",
+    "nuance": "This rejects the specific p02 step-0 rescue pocket as a generalizable rule; it does not claim TALON mass-left can never help elsewhere."
+  }
+}
