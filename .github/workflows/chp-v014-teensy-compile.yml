@@ -48,6 +48,7 @@ jobs:
           base64 -d work/CHP_V014_TARGET_COMPILE/firmware_src.tar.gz.b64 > firmware.tar.gz
           mkdir -p src
           tar -xzf firmware.tar.gz -C src
+          patch -p1 < work/CHP_V014_TARGET_COMPILE/embedded-no-exceptions.patch
           find src -maxdepth 2 -type f -print -exec sha256sum {} \;
 
       - name: Compile Teensy 4.1 target twice
