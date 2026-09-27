@@ -27,6 +27,18 @@
       "permitted_change": "Realize the frozen HalfStudentT(3,1) prior as FoldedDistribution(StudentT(3,0,1)), which is distributionally identical and documented by NumPyro as the folded/half-Student construction.",
       "frozen_items_unchanged": ["distributional prior semantics","all data and evidence cuts","all sampling budgets and seeds","all gates and authority"],
       "source_reference": "NumPyro FoldedDistribution over centered StudentT"
+    },
+    {
+      "id": "PG006-OPS-003",
+      "recorded_utc": "2026-09-27T15:02:30Z",
+      "failure_stage": "router freeze receipt transcription, before mixture-advantage fitting and before future outcome unsealing",
+      "scientific_state": "NOT_EVALUATED",
+      "cause": "The first repository copy of ROUTER_CALIBRATION_FREEZE contained incorrectly transcribed component receipt hashes and final-weight hashes, while its temperature selection, feature scaling, action rules and calibration scores were unchanged.",
+      "permitted_change": "Replace only the receipt/hash transcription and exact floating-point serialization with values computed directly from frozen artifacts.",
+      "initial_freeze_commit": "2539d57ecfc57e9e0dc3cb09755cbc5ca24ce14a",
+      "corrected_freeze_commit": "35a4dd192ce908dba64518033765690a82000f51",
+      "corrected_freeze_sha256": "f1a98299f39374dd06fcfbbf78dada1cf161da20e38a25528a9ffdc7911a7646",
+      "frozen_items_unchanged": ["selected temperature 0.2","temperature grid","calibration scores","advantage feature definitions","action thresholds","future evidence cut","authority ceiling"]
     }
   ]
 }
