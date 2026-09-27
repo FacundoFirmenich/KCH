@@ -1,0 +1,12 @@
+{
+  "program_id":"CFL-UEP-G3.6-OPEN-INTERVENTION-GRAMMAR-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "purpose":"Remove the fixed 24-query pool. O3 must synthesize a new measurement/intervention operator that separates the current explanatory fiber under explicit cost and feasibility constraints.",
+  "hard_condition":"The discriminating query is not available as an item in a finite catalogue.",
+  "lanes":["continuous affine probe design","compositional measurement-functional synthesis","held-out intervention primitive compositions","null lane where no admissible intervention identifies the ontology"],
+  "required_outputs":["claim-specific authority vector","current model fiber","synthesized intervention","predicted response partition","post-intervention model fiber","cost certificate","abstention when no admissible intervention suffices"],
+  "mandatory_baselines":["continuous Bayesian experimental design","D-optimal/A-optimal design where applicable","active model discrimination","gradient mutual-information optimization","beam/program synthesis over intervention grammar","random feasible intervention","MDL disagreement design","TOS_NO_PHI","TOS_NO_O3","TOS_FULL_INTERVENTION_GENESIS"],
+  "support_rule":{"minimum_gain_over_strongest_matched_design_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_ontology_promotion_maximum":0.02,"cost_matched":true},
+  "authority":"NONE",
+  "promotion":"BLOCKED"
+}
