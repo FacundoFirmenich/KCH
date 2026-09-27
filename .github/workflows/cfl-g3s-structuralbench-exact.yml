@@ -1,0 +1,82 @@
+name: CFL G3S StructuralBench exact-certificate gate
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3s-structuralbench-exact-20260927
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3s:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout isolated branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: experiments/cfl_g3s_structuralbench_exact_20260927/requirements.txt
+
+      - name: Install pinned exact-symbolic environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3s_structuralbench_exact_20260927/requirements.txt
+
+      - name: Materialize and verify deterministic runner
+        run: |
+          set -euo pipefail
+          cat \
+            experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz.b64.part0 \
+            experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz.b64.part1 \
+            experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz.b64.part2 \
+            experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz.b64.part3 \
+            | base64 -d > experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz
+          echo "1704c369eca49fb5406959806c0650a562d91f304270cc5009f2dec33a9760c3  experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz" | sha256sum -c -
+          gzip -t experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz
+          gzip -dc experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py.gz > experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py
+          echo "a9cb7c67766af4319888fdeb4322b571ad26dee8151bfda9f85242638f35771d  experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py" | sha256sum -c -
+          python -m py_compile experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py
+          python experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py --self-test
+          python -m json.tool experiments/cfl_g3s_structuralbench_exact_20260927/EXECUTION_PROTOCOL.json >/dev/null
+
+      - name: Execute exact-certificate benchmark
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G3_WORKDIR: ${{ github.workspace }}/g3s_work
+        run: |
+          set -euo pipefail
+          python experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py --out g3s_work 2>&1 | tee g3s_stdout.log
+          test -s g3s_work/results/RESULTS.json
+          test -s g3s_work/results/FINAL_ADJUDICATION.json
+          test -s g3s_work/results/TASK_RESULTS.jsonl
+          test -s g3s_work/results/PRIVATE_METHOD_RANKING.json
+          test -s g3s_work/results/RUN_MANIFEST.json
+          test -s g3s_work/evidence/TRUTH_MANIFEST.jsonl
+          python -m json.tool g3s_work/results/RESULTS.json >/dev/null
+          python -m json.tool g3s_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g3s_work/results/RUN_MANIFEST.json >/dev/null
+          python -m pip freeze > g3s_work/results/PIP_FREEZE.txt
+          cp g3s_stdout.log g3s_work/results/STDOUT.log
+          cp experiments/cfl_g3s_structuralbench_exact_20260927/EXECUTION_PROTOCOL.json g3s_work/results/EXECUTION_PROTOCOL.json
+          cp experiments/cfl_g3s_structuralbench_exact_20260927/run_g3.py g3s_work/results/SOURCE_run_g3.py
+
+      - name: Upload complete evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFL_G3S_STRUCTURALBENCH_EXACT_${{ github.sha }}
+          path: g3s_work
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
