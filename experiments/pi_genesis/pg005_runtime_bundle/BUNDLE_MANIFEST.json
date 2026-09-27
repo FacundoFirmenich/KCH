@@ -1,0 +1,18 @@
+{
+  "bundle_format": "base64(gzip(tar(pg005_runtime)))",
+  "bundle_sha256": "c491a64de6fae82b677fbfe9edd8be8df2644bfe10ba971ffd1beda4d3321396",
+  "base64_sha256": "eb18c99743be6cdf196bd12cb8c53b6904f06164d1d07c1bbf1a0dcdf407c101",
+  "parts": [
+    {"path": "part-00", "bytes": 5000, "sha256": "85f71eaeb8c038e274eb8a942de7d4f9565e4d37deebc44c5055b1375093a1cc"},
+    {"path": "part-01", "bytes": 5000, "sha256": "9aa48199714e71fb011f77ee50803ebb4e0a6c89c6f14c32b7bf4fe2fdb22548"},
+    {"path": "part-02", "bytes": 5000, "sha256": "9bc91da9b1c2d0ec58e696cca6c2d56ef4c65e8b30e57b750e46f1091df52f6b"},
+    {"path": "part-03", "bytes": 5000, "sha256": "935fdb7dee91fd0f24a0c99f0debec9d41aef449a694270b3f9972883211acc3"},
+    {"path": "part-04", "bytes": 748, "sha256": "ffbe077127dab04a1fd058ec404a4dc98942c5d711664f12d23c8246dbbf9b7a"}
+  ],
+  "runtime_root_after_extract": "experiments/pi_genesis/pg005_runtime",
+  "future_evidence_in_bundle": false,
+  "training_sha256": "3c3b3c36c03583eb6e980d91b06c0d55f06bd573a05ee39b99ef5fe5bccfe0f5",
+  "protocol_sha256": "050a31457d02f8135090c89d19f51cfd52374506aff970ad14145433e24ef1f2",
+  "ir_sha256": "aef98c4a31ecbfda6a76fd1286fcde76066c780399b954fe4611d0ad0a996cf6",
+  "protocol_commit": "7be0ebbe4d57670ca49e7baa4fa0b17e6a3b396f"
+}
