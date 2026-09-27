@@ -1,0 +1,29 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG005-LOCAL-POOLING-ROUTER-001",
+  "amendments": [
+    {
+      "id": "PG005-OPS-001",
+      "failed_run_id": 36290018871,
+      "failed_head_sha": "4119ca637be5016b966bf623e757e720dff58e78",
+      "stage": "fit-only bundle verification and extraction",
+      "occurred_before_dependency_installation": true,
+      "occurred_before_any_model_fit": true,
+      "scientific_state": "NOT_EVALUATED",
+      "permitted_change": "add explicit hash and filesystem diagnostics and correct runtime reconstruction mechanics if required",
+      "frozen_items_unchanged": [
+        "data bytes and cuts",
+        "prior programs",
+        "likelihoods",
+        "router definition",
+        "seeds",
+        "chains",
+        "warmup",
+        "draws",
+        "target acceptance",
+        "future outcomes",
+        "all statistical and empirical thresholds",
+        "authority ceiling"
+      ]
+    }
+  ]
+}
