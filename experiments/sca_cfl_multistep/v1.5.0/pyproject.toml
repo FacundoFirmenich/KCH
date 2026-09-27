@@ -1,0 +1,9 @@
+[build-system]
+requires=["setuptools>=68"]
+build-backend="setuptools.build_meta"
+[project]
+name="sca-cfl-multistep-provenance"
+version="1.5.0"
+requires-python=">=3.10"
+[tool.pytest.ini_options]
+pythonpath=["src","../../sca_cfl_dependent_provenance/v1.3.0/src"]
