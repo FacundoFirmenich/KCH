@@ -1,0 +1,55 @@
+--- a/src/CHP_V12_BENCH/chp_bench_core.cpp
++++ b/src/CHP_V12_BENCH/chp_bench_core.cpp
+@@ -6,7 +6,9 @@
+ #include <iomanip>
+ #include <limits>
+ #include <sstream>
++#if !defined(ARDUINO)
+ #include <stdexcept>
++#endif
+ 
+ namespace chpbench {
+ namespace {
+@@ -29,6 +31,7 @@
+     put_u32(out, bits);
+ }
+ 
++#if !defined(ARDUINO)
+ std::uint16_t get_u16(const std::vector<std::uint8_t> &b, std::size_t &p) {
+     if (p + 2 > b.size()) throw std::runtime_error("truncated packet");
+     const auto value = static_cast<std::uint16_t>(b[p]) |
+@@ -56,6 +59,7 @@
+     std::memcpy(&value, &bits, sizeof(value));
+     return value;
+ }
++#endif
+ }  // namespace
+ 
+ Mat3 identity3() {
+@@ -160,10 +164,17 @@
+     put_f32(out, p.temperature_c);
+     const std::uint32_t checksum = crc32(out.data(), out.size());
+     put_u32(out, checksum);
+-    if (out.size() != kPacketBytes) throw std::runtime_error("internal packet-size error");
++    if (out.size() != kPacketBytes) {
++#if defined(ARDUINO)
++        return {};
++#else
++        throw std::runtime_error("internal packet-size error");
++#endif
++    }
+     return out;
+ }
+ 
++#if !defined(ARDUINO)
+ PacketV1 decode_packet(const std::vector<std::uint8_t> &b) {
+     if (b.size() != kPacketBytes) throw std::runtime_error("invalid packet length");
+     const std::uint32_t expected = crc32(b.data(), b.size() - 4);
+@@ -191,6 +202,7 @@
+     if (p != b.size() - 4) throw std::runtime_error("packet parser did not consume payload");
+     return out;
+ }
++#endif
+ 
+ std::string vec3_csv(const Vec3 &v) {
+     std::ostringstream os;

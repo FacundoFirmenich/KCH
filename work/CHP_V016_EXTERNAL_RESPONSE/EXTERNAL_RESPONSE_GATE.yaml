@@ -1,0 +1,33 @@
+version: 0.16.0
+gate: EXTERNAL_RESPONSE_GATE
+fail_closed: true
+
+bogen:
+  required:
+    pole_length_mm: 1.0
+    pole_pair_length_mm: 2.0
+    active_length_mm_min: 300
+    explicit_as5311_compatibility: true
+    recommended_airgap_provided: true
+    error_or_accuracy_spec_provided: true
+    thermal_information_provided: true
+    quote_provided: true
+
+metrology:
+  required_chains:
+    - phase_angle
+    - linear_position
+    - camera_metric_scale
+    - timebase
+    - temperature
+  required_per_chain:
+    accredited_scope_status_declared: true
+    achievable_uncertainty_or_cmc_provided: true
+    range_coverage_confirmed: true
+    quotation_or_referral_provided: true
+
+forbidden_promotions:
+  - SENT_TO_PASS
+  - QUOTED_TO_METROLOGICALLY_FIT
+  - ACCREDITED_LAB_TO_REQUIRED_SCOPE_ACCREDITED
+  - VENDOR_COMPATIBLE_TO_SCIENTIFIC_EQUIVALENCE
