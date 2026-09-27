@@ -1,0 +1,86 @@
+{
+  "action_rules": {
+    "ABSTAIN": "otherwise",
+    "LOCAL": "Pr(min(regret_P2,regret_P3)+0.02<regret_P1)>=0.80",
+    "MIX": "Pr(mixture_advantage>0.02)>=0.80",
+    "POOL": "Pr(regret_P1+0.02<min(regret_P0,regret_P2,regret_P3))>=0.80"
+  },
+  "advantage_features": [
+    "weight_entropy",
+    "predicted_regret_spread",
+    "forecast_horizon"
+  ],
+  "advantage_input_sha256": {
+    "numpyro": "2ecd81315dde129c8d45a2a8446a6beda7d1cde1ff6b0f26d8640eff85fb5d1f",
+    "pymc": "ab506211d83f0e265f8e0c5e3020c405da227dcc140c36f1f27c620cfcfec594"
+  },
+  "authority_ceiling": "SHADOW",
+  "average_calibration_mean_nlpd": {
+    "0.05": 1.2636575535988275,
+    "0.1": 1.2481005063273614,
+    "0.2": 1.2412495327182422,
+    "0.5": 1.2457611509856346,
+    "1.0": 1.2535552085778037
+  },
+  "calibration_disclosure": "Temperature and feature scaling were frozen from Days 6-7 before reading Days 8-9 Reaction outcomes.",
+  "calibration_mean_nlpd_by_backend": {
+    "numpyro": {
+      "0.05": 1.2628838081615128,
+      "0.1": 1.2489336595545268,
+      "0.2": 1.2424892964688377,
+      "0.5": 1.2468389250561454,
+      "1.0": 1.2545315466816656
+    },
+    "pymc": {
+      "0.05": 1.2644312990361422,
+      "0.1": 1.247267353100196,
+      "0.2": 1.240009768967647,
+      "0.5": 1.2446833769151235,
+      "1.0": 1.2525788704739418
+    }
+  },
+  "common_advantage_feature_mean": [
+    1.1006184359717234,
+    0.8091893040071346,
+    1.5
+  ],
+  "common_advantage_feature_sd": [
+    0.12946203698083702,
+    0.43828721320842735,
+    0.5
+  ],
+  "component_receipts": {
+    "numpyro": {
+      "P0_POPULATION": "0e68cb659e3ba8299bff87219530a885c22509bbefeece64647a713f74cf1c60",
+      "P1_GLOBAL_POOL": "d92614582253912c8b166b363003b0f89c78a75ad621f9c1e9c744b5e85d4efd",
+      "P2_GLOBAL_LOCAL": "17f41be57e03c2a97a2828d11dbc0ae374223f2937beed7d7f0ca89b4eea24b7",
+      "P3_LOW_POOL": "94dcc44019df950080372cd7d8849889a04235c5fdb52f3c79a5e2616f9370f2"
+    },
+    "pymc": {
+      "P0_POPULATION": "3e44f0bde4acf2ce6f1e425ace581190bc63195643a25714ee28230361337030",
+      "P1_GLOBAL_POOL": "6b99a253ed50043883c084be75739230320fa73095b13f24bb49662d80cb0a49",
+      "P2_GLOBAL_LOCAL": "f91de9943524092a319cff322fd3cfac91e3d6979a706296b451b7f0f94dd035",
+      "P3_LOW_POOL": "f9fe1570dac912747e23280063877880398303808214386816858090443cfca8"
+    }
+  },
+  "field_receipts": {
+    "numpyro": "d89065052fc14432e426c16804e77d44d79c1a816e9817674d59c45a4ab5b00d",
+    "pymc": "a87b2e2ccd42db8963e43fba8cfa94a638fe320d2599f77957943d2268921cfc"
+  },
+  "final_policy_weight_hashes": {
+    "numpyro": "5fc721e88beaab24c767c2615f1e8a3f9d373b750676149191779e6eff759d24",
+    "pymc": "5f20cf19d4c42b55252413838b03dbc9e914d54fd928aefafbe77cc1968865a8"
+  },
+  "freeze_id": "PG006-ROUTER-CALIBRATION-FREEZE-001",
+  "future_outcomes_visible": false,
+  "gate_id": "KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001",
+  "selected_temperature": 0.2,
+  "temperature_grid": [
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "tie_break": "smallest temperature"
+}
