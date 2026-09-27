@@ -1,0 +1,8 @@
+{
+  "gate":"ACTIVE_PROVENANCE_PROBING_AND_VALUE_OF_INFORMATION_005",
+  "release":"1.4.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":19,"failed":0},
+  "benchmark_episodes_per_policy":1000,
+  "next_gate":"MULTISTEP_PROVENANCE_PLANNING_AND_ADAPTIVE_SUBMODULARITY_006"
+}
