@@ -1,0 +1,269 @@
+name: Helical v0.8 selected-directional materialization and preflight
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-selected-directional-preflight.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      SOURCE_ARTIFACT_ID: '10934785986'
+      SOURCE_ARTIFACT_SHA256: 'ffe8dc75f64deecd4ff081c1c0ec25fd53ad5a8c201ed8c005d07aaa9cb6bdfe'
+      ELIGIBILITY_ARTIFACT_ID: '10934816249'
+      ELIGIBILITY_ARTIFACT_SHA256: '3c684840f3660a93b50885511a0a02499bbf98b33549ce14599256e2b84ccc1d'
+      MECHANISM_SHA256: 'cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb'
+      FAULT_SHA256: '37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pinned host Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install pinned host dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pyproj==3.7.0' 'shapely==2.0.6'
+
+      - name: Freeze selected-directional extraction sandbox before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-directional"
+          sandbox="$root/sandbox"
+          artifact="$root/artifact"
+          mkdir -p "$sandbox" "$artifact"
+          docker pull python:3.11-slim-bookworm
+          base_digest=$(docker image inspect python:3.11-slim-bookworm --format '{{index .RepoDigests 0}}')
+          python -m pip download --only-binary=:all: --no-deps --dest "$sandbox" 'numpy==2.1.3'
+          wheel=$(find "$sandbox" -maxdepth 1 -name 'numpy-*.whl' -type f)
+          test -n "$wheel"
+          cp .github/helical_v08/extract_selected_directional.py "$sandbox/extract_selected_directional.py"
+          cat > "$sandbox/Dockerfile" <<EOF
+          FROM $base_digest
+          ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+          COPY $(basename "$wheel") /wheels/
+          RUN pip install --no-cache-dir --no-index /wheels/$(basename "$wheel") && rm -rf /wheels
+          COPY extract_selected_directional.py /app/extract_selected_directional.py
+          ENTRYPOINT ["python", "/app/extract_selected_directional.py"]
+          EOF
+          docker build --pull=false --network=none -t kch-helical-v08-selected-extractor:locked "$sandbox"
+          image_id=$(docker image inspect kch-helical-v08-selected-extractor:locked --format '{{.Id}}')
+          python - "$artifact" "$base_digest" "$image_id" "$wheel" "$sandbox/Dockerfile" "$sandbox/extract_selected_directional.py" <<'PY'
+          from pathlib import Path
+          from datetime import datetime,timezone
+          import hashlib,json,sys
+          out=Path(sys.argv[1]); base=sys.argv[2]; image=sys.argv[3]
+          def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          body={
+            'format':'KCH_HELICAL_V0_8_SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT',
+            'locked_before_source_access':True,
+            'locked_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+            'base_image_digest':base,
+            'sandbox_image_id':image,
+            'numpy_wheel_sha256':sha(sys.argv[4]),
+            'dockerfile_sha256':sha(sys.argv[5]),
+            'extractor_sha256':sha(sys.argv[6]),
+            'network_mode':'NONE',
+            'root_filesystem':'READ_ONLY',
+            'capabilities':'ALL_DROPPED',
+            'no_new_privileges':True,
+            'authority_ceiling':'NONE',
+          }
+          canonical=json.dumps(body,sort_keys=True,separators=(',',':')).encode()
+          body['receipt_id']='h8dirsandbox:'+hashlib.sha256(canonical).hexdigest()
+          (out/'SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT_V0_8.json').write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Recover immutable exact-byte and blind-eligibility artifacts
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-directional"
+          mkdir -p "$root/source" "$root/eligibility"
+          fetch_artifact() {
+            local id="$1" expected="$2" destination="$3"
+            curl --fail-with-body --location \
+              --header "Authorization: Bearer $GH_TOKEN" \
+              --header 'Accept: application/vnd.github+json' \
+              --header 'X-GitHub-Api-Version: 2022-11-28' \
+              "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$id/zip" \
+              --output "$destination"
+            local observed
+            observed=$(sha256sum "$destination" | awk '{print $1}')
+            test "$observed" = "$expected"
+          }
+          fetch_artifact "$SOURCE_ARTIFACT_ID" "$SOURCE_ARTIFACT_SHA256" "$root/source.zip"
+          fetch_artifact "$ELIGIBILITY_ARTIFACT_ID" "$ELIGIBILITY_ARTIFACT_SHA256" "$root/eligibility.zip"
+          python - "$root/source.zip" "$root/source" "$root/eligibility.zip" "$root/eligibility" <<'PY'
+          from pathlib import Path
+          import sys,zipfile
+          source_zip,source_out,elig_zip,elig_out=map(Path,sys.argv[1:])
+          source_wanted={
+            'blind/blind_columns.npz',
+            'blind/EXTRACTION_RECEIPT_V0_8.json',
+            'acquired/focmec_ca_final.pickle',
+            'acquired/gem_active_faults_harmonized.geojson',
+            'acquired/ACQUISITION_RECEIPT_V0_8.json',
+            'SANDBOX_LOCK_RECEIPT_V0_8.json',
+            'PREACCESS_SUCCESSOR_RECEIPT_V0_8.json',
+          }
+          with zipfile.ZipFile(source_zip) as z:
+            missing=source_wanted-set(z.namelist())
+            if missing: raise SystemExit(f'missing source members: {sorted(missing)}')
+            for name in sorted(source_wanted):
+              target=source_out/name; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(z.read(name))
+          with zipfile.ZipFile(elig_zip) as z:
+            name='BLIND_ELIGIBILITY_RESULT_V0_8.json'
+            if name not in z.namelist(): raise SystemExit('missing eligibility result')
+            target=elig_out/name; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(z.read(name))
+          PY
+          echo "$MECHANISM_SHA256  $root/source/acquired/focmec_ca_final.pickle" | sha256sum -c -
+          echo "$FAULT_SHA256  $root/source/acquired/gem_active_faults_harmonized.geojson" | sha256sum -c -
+
+      - name: Recompute and seal exact selected global indices from blind fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-directional"
+          python .github/helical_v08/select_blind_indices.py \
+            --protocol .github/helical_v08/protocol.json \
+            --eligibility-result "$root/eligibility/BLIND_ELIGIBILITY_RESULT_V0_8.json" \
+            --eligibility-module .github/helical_v08/eligibility_standalone_xy.py \
+            --blind-npz "$root/source/blind/blind_columns.npz" \
+            --fault-geojson "$root/source/acquired/gem_active_faults_harmonized.geojson" \
+            --output-dir "$root/selection" \
+            | tee "$root/artifact/SELECTION_STDOUT.log"
+
+      - name: Open directional fields only for the two sealed cohorts inside the networkless sandbox
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-directional"
+          mkdir -p "$root/directional"
+          chmod 777 "$root/directional"
+          indices_sha=$(python - "$root/selection/SELECTED_INDEX_RECEIPT_V0_8.json" <<'PY'
+          import json,sys
+          print(json.load(open(sys.argv[1]))['selected_indices_sha256'])
+          PY
+          )
+          docker run --rm \
+            --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges --pids-limit 64 \
+            --memory 6g --cpus 2 --tmpfs /tmp:rw,noexec,nosuid,size=512m \
+            --user 65534:65534 \
+            -v "$root/source/acquired/focmec_ca_final.pickle:/input/catalog.pickle:ro" \
+            -v "$root/selection/selected_blind_indices.npz:/input/selected_indices.npz:ro" \
+            -v "$root/directional:/output:rw" \
+            kch-helical-v08-selected-extractor:locked \
+            --pickle /input/catalog.pickle \
+            --expected-pickle-sha256 "$MECHANISM_SHA256" \
+            --selected-indices /input/selected_indices.npz \
+            --expected-indices-sha256 "$indices_sha" \
+            --output-dir /output \
+            | tee "$root/artifact/DIRECTIONAL_EXTRACTION_STDOUT.log"
+
+      - name: Execute directional observability and conservative parent-graph preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-directional"
+          directional_sha=$(python - "$root/directional/SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json" <<'PY'
+          import json,sys
+          print(json.load(open(sys.argv[1]))['output_sha256'])
+          PY
+          )
+          set +e
+          python .github/helical_v08/directional_preflight.py \
+            --selected-directional "$root/directional/selected_directional_columns.npz" \
+            --expected-directional-sha256 "$directional_sha" \
+            --fault-geojson "$root/source/acquired/gem_active_faults_harmonized.geojson" \
+            --expected-fault-sha256 "$FAULT_SHA256" \
+            --protocol .github/helical_v08/protocol.json \
+            --output-dir "$root/preflight" \
+            | tee "$root/artifact/PREFLIGHT_STDOUT.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then exit "$rc"; fi
+
+      - name: Assemble and seal compact successor artifact
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-directional"
+          artifact="$root/artifact"
+          mkdir -p "$artifact/selection" "$artifact/directional" "$artifact/preflight" "$artifact/upstream"
+          cp -a "$root/selection/." "$artifact/selection/" 2>/dev/null || true
+          cp -a "$root/directional/." "$artifact/directional/" 2>/dev/null || true
+          cp -a "$root/preflight/." "$artifact/preflight/" 2>/dev/null || true
+          cp "$root/eligibility/BLIND_ELIGIBILITY_RESULT_V0_8.json" "$artifact/upstream/" 2>/dev/null || true
+          cp "$root/source/blind/EXTRACTION_RECEIPT_V0_8.json" "$artifact/upstream/" 2>/dev/null || true
+          cp "$root/source/acquired/ACQUISITION_RECEIPT_V0_8.json" "$artifact/upstream/" 2>/dev/null || true
+          cp "$root/source/SANDBOX_LOCK_RECEIPT_V0_8.json" "$artifact/upstream/" 2>/dev/null || true
+          cp "$root/source/PREACCESS_SUCCESSOR_RECEIPT_V0_8.json" "$artifact/upstream/" 2>/dev/null || true
+          python - "$artifact" <<'PY'
+          from pathlib import Path
+          from datetime import datetime,timezone
+          import hashlib,json,sys
+          root=Path(sys.argv[1])
+          def load(name):
+            hits=list(root.rglob(name))
+            return json.load(open(hits[0])) if len(hits)==1 else None
+          eligibility=load('BLIND_ELIGIBILITY_RESULT_V0_8.json')
+          selection=load('SELECTED_INDEX_RECEIPT_V0_8.json')
+          unblind=load('SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json')
+          preflight=load('DIRECTIONAL_PREFLIGHT_RESULT_V0_8.json')
+          body={
+            'format':'KCH_HELICAL_V0_8_DIRECTIONAL_MATERIAL_GATE_SUMMARY',
+            'protocol_id':'h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f',
+            'eligibility_result_id':eligibility.get('eligibility_result_id') if eligibility else None,
+            'selected_index_receipt_id':selection.get('receipt_id') if selection else None,
+            'directional_extraction_receipt_id':unblind.get('receipt_id') if unblind else None,
+            'preflight_result_id':preflight.get('preflight_result_id') if preflight else None,
+            'selected_primary_cohorts':eligibility.get('selected_primary_cohorts') if eligibility else None,
+            'selected_event_count':selection.get('selected_total') if selection else None,
+            'directional_execution_authorized':preflight.get('directional_execution_authorized') if preflight else False,
+            'outcome':preflight.get('outcome') if preflight else 'FAIL_CLOSED_BEFORE_PREFLIGHT',
+            'scientific_model_execution_performed':False,
+            'physical_helicity':'NOT_EVALUATED',
+            'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+            'promotion':'BLOCKED',
+            'canonicalization':'BLOCKED',
+            'authority_ceiling':'NONE',
+          }
+          canonical=json.dumps(body,sort_keys=True,separators=(',',':')).encode()
+          body['gate_summary_id']='h8dirmat:'+hashlib.sha256(canonical).hexdigest()
+          (root/'DIRECTIONAL_MATERIAL_GATE_SUMMARY_V0_8.json').write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          files=sorted(p for p in root.rglob('*') if p.is_file() and p.name not in {'SHA256SUMS.txt','FILE_SIZES.txt'})
+          (root/'SHA256SUMS.txt').write_text(''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(root).as_posix()}\n' for p in files))
+          all_files=sorted(p for p in root.rglob('*') if p.is_file())
+          (root/'FILE_SIZES.txt').write_text(''.join(f'{p.relative_to(root).as_posix()}\t{p.stat().st_size} bytes\n' for p in all_files))
+          print(json.dumps(body,indent=2,sort_keys=True))
+          PY
+
+      - name: Upload sealed selected-directional material gate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-selected-directional-preflight
+          path: ${{ runner.temp }}/v08-directional/artifact
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

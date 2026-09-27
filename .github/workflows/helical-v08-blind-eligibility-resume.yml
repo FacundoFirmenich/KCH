@@ -1,0 +1,180 @@
+name: Helical v0.8 blind eligibility resume
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-blind-eligibility-resume.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  resume:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      SOURCE_ARTIFACT_ID: '10934785986'
+      SOURCE_ARTIFACT_SHA256: 'ffe8dc75f64deecd4ff081c1c0ec25fd53ad5a8c201ed8c005d07aaa9cb6bdfe'
+      BUNDLE_B64_SHA256: '18ea03307486405fca419fd76d8d8d6e19351538f1994c0695d7aa118e108d4e'
+      BUNDLE_ZIP_SHA256: '9991c7b4f88e78a56725f3f450ec5cf89e62701ad64a0a716ada633eeca236cb'
+      ORIGINAL_ELIGIBILITY_SHA256: '97ef6ccf547d21faee7c487bce90df0753adc22b36deb29d59a99e75be7709d6'
+      XY_ELIGIBILITY_SHA256: 'd7605696d2b2daf11097cb48b9e0de866265b5745d40f25ee30101630cf1ac1a'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pinned host Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install pinned eligibility dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pyproj==3.7.0' 'shapely==2.0.6'
+
+      - name: Recover sealed blind NPZ and fault network by immutable artifact ID
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          zip="$RUNNER_TEMP/v08-v3.zip"
+          input="$RUNNER_TEMP/v08-resume-input"
+          mkdir -p "$input"
+          curl --fail-with-body --location \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID/zip" \
+            --output "$zip"
+          observed=$(sha256sum "$zip" | awk '{print $1}')
+          test "$observed" = "$SOURCE_ARTIFACT_SHA256"
+          python - "$zip" "$input" <<'PY'
+          from pathlib import Path
+          import json, sys, zipfile
+          z=Path(sys.argv[1]); out=Path(sys.argv[2])
+          wanted={
+            'blind/blind_columns.npz',
+            'blind/EXTRACTION_RECEIPT_V0_8.json',
+            'acquired/gem_active_faults_harmonized.geojson',
+            'acquired/ACQUISITION_RECEIPT_V0_8.json',
+            'SANDBOX_LOCK_RECEIPT_V0_8.json',
+            'PREACCESS_SUCCESSOR_RECEIPT_V0_8.json',
+          }
+          with zipfile.ZipFile(z) as f:
+            names=set(f.namelist()); missing=sorted(wanted-names)
+            if missing: raise SystemExit(f'missing sealed members: {missing}')
+            for name in sorted(wanted):
+              target=out/name; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(f.read(name))
+            manifest=[{'name':i.filename,'bytes':i.file_size,'crc':i.CRC} for i in f.infolist()]
+          (out/'SOURCE_ARTIFACT_MANIFEST.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Reconstruct locked runtime and apply XY-only fault-coordinate successor
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v08-runtime"
+          mkdir -p "$root"
+          b64="$root/runtime.b64"
+          zip="$root/runtime.zip"
+          cat .github/helical_v08_bundle_v2/chunk_00 .github/helical_v08_bundle_v2/chunk_01 .github/helical_v08_bundle_v2/chunk_02 > "$b64"
+          echo "$BUNDLE_B64_SHA256  $b64" | sha256sum -c -
+          base64 --decode "$b64" > "$zip"
+          echo "$BUNDLE_ZIP_SHA256  $zip" | sha256sum -c -
+          unzip -q "$zip" -d "$root"
+          original="$root/runtime/eligibility_standalone.py"
+          replacement=.github/helical_v08/eligibility_standalone_xy.py
+          echo "$ORIGINAL_ELIGIBILITY_SHA256  $original" | sha256sum -c -
+          echo "$XY_ELIGIBILITY_SHA256  $replacement" | sha256sum -c -
+          cp "$replacement" "$original"
+          echo "$XY_ELIGIBILITY_SHA256  $original" | sha256sum -c -
+          python -m compileall -q "$root/runtime"
+
+      - name: Execute blind eligibility without directional-field access
+        shell: bash
+        run: |
+          set -euo pipefail
+          input="$RUNNER_TEMP/v08-resume-input"
+          runtime="$RUNNER_TEMP/v08-runtime/runtime"
+          out="$RUNNER_TEMP/v08-resume-output"
+          mkdir -p "$out"
+          blind_sha=$(python - "$input/blind/EXTRACTION_RECEIPT_V0_8.json" <<'PY'
+          import json,sys; print(json.load(open(sys.argv[1]))['output_sha256'])
+          PY
+          )
+          fault_sha=$(python - "$input/acquired/ACQUISITION_RECEIPT_V0_8.json" <<'PY'
+          import json,sys; print(json.load(open(sys.argv[1]))['fault_receipt']['sha256'])
+          PY
+          )
+          set +e
+          PYTHONPATH="$runtime" python "$runtime/run_blind_from_npz.py" \
+            --protocol "$runtime/protocol.json" \
+            --blind-npz "$input/blind/blind_columns.npz" \
+            --blind-sha256 "$blind_sha" \
+            --fault-geojson "$input/acquired/gem_active_faults_harmonized.geojson" \
+            --fault-sha256 "$fault_sha" \
+            --output "$out/BLIND_ELIGIBILITY_RESULT_V0_8.json" \
+            > "$out/ELIGIBILITY_STDOUT.log" 2>&1
+          rc=$?
+          set -e
+          test -f "$out/BLIND_ELIGIBILITY_RESULT_V0_8.json"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then
+            cat "$out/ELIGIBILITY_STDOUT.log"
+            exit "$rc"
+          fi
+          python - "$out" "$input" "$rc" <<'PY'
+          import hashlib,json,os,sys
+          from datetime import datetime,timezone
+          from pathlib import Path
+          out=Path(sys.argv[1]); inp=Path(sys.argv[2]); rc=int(sys.argv[3])
+          result=json.load(open(out/'BLIND_ELIGIBILITY_RESULT_V0_8.json'))
+          body={
+            'format':'KCH_HELICAL_V0_8_BLIND_ELIGIBILITY_RESUME_RECEIPT',
+            'source_artifact_id':int(os.environ['SOURCE_ARTIFACT_ID']),
+            'source_artifact_sha256':os.environ['SOURCE_ARTIFACT_SHA256'],
+            'protocol_id':'h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f',
+            'schema_successor_scope':'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY',
+            'original_eligibility_sha256':os.environ['ORIGINAL_ELIGIBILITY_SHA256'],
+            'replacement_eligibility_sha256':os.environ['XY_ELIGIBILITY_SHA256'],
+            'protocol_changed':False,
+            'thresholds_changed':False,
+            'directional_fields_accessed':False,
+            'sealed_fields_observed':[],
+            'return_code':rc,
+            'eligibility_result_id':result['eligibility_result_id'],
+            'outcome':result['outcome'],
+            'execution_authorized':result['execution_authorized'],
+            'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+            'authority_ceiling':'NONE',
+          }
+          canonical=json.dumps(body,sort_keys=True,separators=(',',':')).encode()
+          body['receipt_id']='h8resume:'+hashlib.sha256(canonical).hexdigest()
+          (out/'BLIND_ELIGIBILITY_RESUME_RECEIPT_V0_8.json').write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          for src in [
+            inp/'blind/EXTRACTION_RECEIPT_V0_8.json',
+            inp/'acquired/ACQUISITION_RECEIPT_V0_8.json',
+            inp/'SANDBOX_LOCK_RECEIPT_V0_8.json',
+            inp/'PREACCESS_SUCCESSOR_RECEIPT_V0_8.json',
+          ]:
+            (out/src.name).write_bytes(src.read_bytes())
+          PY
+          sha256sum "$out"/* > "$out/SHA256SUMS.txt"
+          cat "$out/BLIND_ELIGIBILITY_RESULT_V0_8.json"
+
+      - name: Upload sealed blind-eligibility successor
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-blind-eligibility-resume
+          path: ${{ runner.temp }}/v08-resume-output
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

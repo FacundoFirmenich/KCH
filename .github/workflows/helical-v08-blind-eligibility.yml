@@ -1,0 +1,81 @@
+name: Helical v0.8 exact-byte blind eligibility
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-blind-eligibility.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  blind-eligibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      BUNDLE_B64_SHA256: 18ea03307486405fca419fd76d8d8d6e19351538f1994c0695d7aa118e108d4e
+      BUNDLE_ZIP_SHA256: 9991c7b4f88e78a56725f3f450ec5cf89e62701ad64a0a716ada633eeca236cb
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pinned host Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install pinned host-side eligibility dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install \
+            'numpy==2.1.3' \
+            'pyproj==3.7.0' \
+            'shapely==2.0.6'
+
+      - name: Reconstruct and verify the locked runtime carrier
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v08"
+          mkdir -p "$root/runtime"
+          b64="$root/runtime.b64"
+          zip="$root/runtime.zip"
+          cat \
+            .github/helical_v08_bundle_v2/chunk_00 \
+            .github/helical_v08_bundle_v2/chunk_01 \
+            .github/helical_v08_bundle_v2/chunk_02 \
+            > "$b64"
+          echo "$BUNDLE_B64_SHA256  $b64" | sha256sum -c -
+          base64 --decode "$b64" > "$zip"
+          echo "$BUNDLE_ZIP_SHA256  $zip" | sha256sum -c -
+          unzip -q "$zip" -d "$root/runtime"
+          python -m compileall -q "$root/runtime"
+          cmp --silent \
+            .github/helical_v08/protocol.json \
+            "$root/runtime/runtime/protocol.json"
+
+      - name: Freeze sandbox, acquire exact bytes, extract blind-safe columns, and adjudicate eligibility
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v08"
+          PYTHONUNBUFFERED=1 python "$root/runtime/runtime/orchestrate_blind.py" \
+            --runtime "$root/runtime/runtime" \
+            --work "$root/work" \
+            | tee "$root/orchestrator_stdout.log"
+          cp "$root/orchestrator_stdout.log" "$root/work/artifact/ORCHESTRATOR_STDOUT.log"
+
+      - name: Upload sealed material-gate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-blind-eligibility
+          path: ${{ runner.temp }}/helical_v08/work/artifact
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
