@@ -1,0 +1,32 @@
+{
+  "program_id":"CFL-UEP-G3.5-ACTIVE-TOPOLOGY-DISAMBIGUATION",
+  "version":"0.1.0",
+  "parent_gate":"CFL-UEP-G3.4-MIXED-OBSERVATIONAL-METAGRAMMAR",
+  "status":"PREREGISTERED_MATERIAL_EXECUTION",
+  "form_semantics":{
+    "principle":"FORM_IS_CATEGORICAL_AND_NONPROBABILISTIC",
+    "mapping_state_1":"exact post-query mapping-class fiber cardinality equals one",
+    "family_state_1":"exact post-query chart-family set cardinality equals one",
+    "operator_state_1":"exact post-query operator set cardinality equals one",
+    "state_plus_zero":"fiber remains non-singleton but at least one admissible future observation can deterministically reduce the relevant claim fiber",
+    "state_zero":"non-singleton fiber cannot be reduced within the declared observational jurisdiction",
+    "state_minus_one":"exact compatible fiber is empty",
+    "probability_role":"may rank/select observations only; may never promote a pseudo/protoform to state 1"
+  },
+  "domains":["graph","algebra","number","mechanics"],
+  "lanes":["NAMED","COMPOSITION_OOD"],
+  "composition_lane":"true charts are synthesized by closure of primitive L1/Q1/C1 programs; they are absent from the named primitive catalog",
+  "regimes":["PRED_SAFE_MODEL_AMBIG","PRED_AND_MODEL_AMBIG","MODEL_IDENTIFIED","JURISDICTION_NONIDENT","ANTI"],
+  "valid_query_strategies":["RANDOM_QUERY","EXACT_MINIMAX_QUERY","EXACT_EIG_QUERY","BAYES_MDL_QUERY","MAX_PREDICTIVE_VARIANCE_QUERY","MDL_DISAGREEMENT_QUERY","EXACT_FAMILY_MINIMAX_QUERY","TOS_ACTIVE_TOPOLOGY_O3","TOS_NO_O3"],
+  "invalid_negative_control":"LEGACY posterior-threshold Form promotion at >=0.999; included only to measure false-Form risk",
+  "support_rule":{
+    "family_form_gain_over_strongest_valid_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_form_promotion_maximum":0.02
+  },
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
