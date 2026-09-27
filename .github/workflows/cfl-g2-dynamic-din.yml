@@ -1,0 +1,74 @@
+name: CFL G2 dynamic DIN material gate
+
+on:
+  push:
+    branches:
+      - cfl-uep/g2-dynamic-din-cross-phantom-20260927
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout frozen branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: experiments/cfl_g2_dynamic_din_20260927/requirements.txt
+
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g2_dynamic_din_20260927/requirements.txt
+
+      - name: Materialize and verify deterministic runner
+        run: |
+          set -euo pipefail
+          gzip -dc experiments/cfl_g2_dynamic_din_20260927/run_g2.py.gz > experiments/cfl_g2_dynamic_din_20260927/run_g2.py
+          echo "a2f06c866e3616f379def31811282dde59eb502713df8b980f615842f31257f0  experiments/cfl_g2_dynamic_din_20260927/run_g2.py" | sha256sum -c -
+          python -m py_compile experiments/cfl_g2_dynamic_din_20260927/run_g2.py
+          python -m json.tool experiments/cfl_g2_dynamic_din_20260927/EXECUTION_PROTOCOL.json >/dev/null
+
+      - name: Execute real-data G2 gate
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G2_WORKDIR: ${{ github.workspace }}/g2_work
+        run: |
+          set -euo pipefail
+          python experiments/cfl_g2_dynamic_din_20260927/run_g2.py 2>&1 | tee g2_stdout.log
+          test -s g2_work/results/DATA_AUDIT.json
+          test -s g2_work/results/RESULTS.json
+          test -s g2_work/results/FINAL_ADJUDICATION.json
+          test -s g2_work/results/FISHER_COMMON_BASIS.json
+          test -s g2_work/results/RUN_MANIFEST.json
+          test -s g2_work/results/REPORT.md
+          python -m json.tool g2_work/results/DATA_AUDIT.json >/dev/null
+          python -m json.tool g2_work/results/RESULTS.json >/dev/null
+          python -m json.tool g2_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g2_work/results/FISHER_COMMON_BASIS.json >/dev/null
+          python -m pip freeze > g2_work/results/PIP_FREEZE.txt
+          cp g2_stdout.log g2_work/results/STDOUT.log
+          cp experiments/cfl_g2_dynamic_din_20260927/EXECUTION_PROTOCOL.json g2_work/results/EXECUTION_PROTOCOL.json
+          cp experiments/cfl_g2_dynamic_din_20260927/run_g2.py g2_work/results/SOURCE_run_g2.py
+
+      - name: Upload complete evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFL_G2_DYNAMIC_DIN_${{ github.sha }}
+          path: g2_work
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
