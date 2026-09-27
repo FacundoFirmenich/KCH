@@ -1,0 +1,7 @@
+{
+  "schema":"SCA_CFL_PLANNER_CERT_V1",
+  "release":"1.5.0",
+  "claim":"Horizon-2 selects routing action with zero immediate gate effect because of downstream option value.",
+  "horizon1":{"value":-0.13785524903978866,"first_action":"critical_A"},
+  "horizon2":{"value":-0.055,"first_action":"route","branch_A":"critical_A","branch_B":"critical_B"}
+}
