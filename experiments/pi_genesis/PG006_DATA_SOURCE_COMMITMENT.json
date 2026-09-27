@@ -1,0 +1,27 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001",
+  "preprotocol_commit": "2a5446573b3a5b80b831a1c642b19f15af33307a",
+  "acquired_after_preprotocol": true,
+  "source": {
+    "repository": "vincentarelbundock/Rdatasets",
+    "repository_commit": "1dcc2bf5f955cc1224a3e1307256e1fe86b68dae",
+    "path": "csv/lme4/sleepstudy.csv",
+    "github_blob_sha": "24b15d8da70b101ce8822f8a31b872dd6c622f46",
+    "dataset_identifier": "lme4::sleepstudy"
+  },
+  "observed_structure": {
+    "rows": 180,
+    "subjects": 18,
+    "days": [0,1,2,3,4,5,6,7,8,9],
+    "rows_per_subject": 10,
+    "columns": ["rownames","Reaction","Days","Subject"]
+  },
+  "blocks": {
+    "construction": {"days": [0,1,2,3,4,5], "expected_rows": 108},
+    "calibration": {"days": [6,7], "expected_rows": 36},
+    "confirmatory_future": {"days": [8,9], "expected_rows": 36}
+  },
+  "fit_job_rule": "The confirmatory future block must be absent from all component and router fitting jobs.",
+  "byte_sha256_status": "TO_BE_COMPUTED_BY_PINNED_SOURCE_MATERIALIZATION_BEFORE_ANY_MODEL_FIT",
+  "status": "SOURCE_AND_STRUCTURE_COMMITTED_AFTER_PREPROTOCOL; NO_PG006_FIT_EXECUTED"
+}
