@@ -1,0 +1,19 @@
+{
+  "program_id": "CFL-UEP-G3.1-STRUCTURAL-CANDIDATE-GENESIS-AND-REPAIR",
+  "status": "LOCAL_PRIVATE_RESERVE_CONSUMED_REMOTE_CUSTODY_ONLY",
+  "parent_gate": "CFL-UEP-G3S-STRUCTURALBENCH-EXACT",
+  "truth_absent_from_initial_candidate_pool": true,
+  "domains": ["graph","algebra","number","mechanics"],
+  "search_budget_candidate_evaluations": 120,
+  "private_construct_tasks": 80,
+  "private_adversarial_tasks": 24,
+  "initial_support_rule": {
+    "minimum_gain": 0.02,
+    "paired_bootstrap_ci": "strictly positive",
+    "minimum_supported_domains": 3,
+    "false_promotion_maximum": 0.02
+  },
+  "authority": "NONE",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
