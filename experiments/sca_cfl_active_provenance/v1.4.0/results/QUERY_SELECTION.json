@@ -1,0 +1,10 @@
+{
+  "initial_robust_e_value":16.777216000000006,
+  "threshold":20.0,
+  "voi_choice":{"probe_id":"critical_public","pair_entropy":0.5004024235381879,"decision_voi":0.14056839846366184,"net_value":0.12806839846366183,"promotion_probability":0.8,"e_if_same":16.777216000000006,"e_if_distinct":26.843545600000013},
+  "entropy_choice":"decoy_entropy",
+  "decoy_pair_entropy":0.6931471805599453,
+  "decoy_decision_voi":0.0,
+  "private_channel":"PRIVACY_CAP",
+  "restricted_channel":"AUTHORITY_DENIED"
+}
