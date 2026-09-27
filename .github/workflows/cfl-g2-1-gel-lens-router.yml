@@ -1,0 +1,87 @@
+name: CFL G2.1 gel DIN lens-router material gate
+
+on:
+  push:
+    branches:
+      - cfl-uep/g2-1-gel-lens-router-20260927
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g2-1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout frozen branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: experiments/cfl_g2_1_gel_lens_router_20260927/requirements.txt
+
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g2_1_gel_lens_router_20260927/requirements.txt
+
+      - name: Materialize and verify deterministic runner
+        run: |
+          set -euo pipefail
+          gzip -dc experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py.gz > experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
+          echo "6d7d4033aca01b60f7197aa907b49a5570a476c06f5ae7cb122d1a2e2834cdc9  experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py" | sha256sum -c -
+          python -m py_compile experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
+          python experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py --self-test
+          python -m json.tool experiments/cfl_g2_1_gel_lens_router_20260927/EXECUTION_PROTOCOL.json >/dev/null
+
+      - name: Download and verify physical measurements
+        run: |
+          set -euo pipefail
+          mkdir -p g21_work/data
+          for f in GelPhantomData_b4.mat GelPhantomData_b2.mat GelPhantom_extra_frames.mat; do
+            curl -L --fail --retry 5 --retry-delay 3 \
+              "https://zenodo.org/records/7876521/files/${f}?download=1" \
+              -o "g21_work/data/${f}"
+          done
+          echo "3396dd69ed660d80f6eeab8db7ee39fc  g21_work/data/GelPhantomData_b4.mat" | md5sum -c -
+          echo "a72faf42bfee27a1fab50c55ef8dc7a2  g21_work/data/GelPhantomData_b2.mat" | md5sum -c -
+          echo "b0c8108893c0b9ac892700bc9689e0f3  g21_work/data/GelPhantom_extra_frames.mat" | md5sum -c -
+
+      - name: Execute real-data G2.1 gate
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G21_WORKDIR: ${{ github.workspace }}/g21_work
+        run: |
+          set -euo pipefail
+          python experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py 2>&1 | tee g21_stdout.log
+          test -s g21_work/results/DATA_AUDIT.json
+          test -s g21_work/results/RESULTS.json
+          test -s g21_work/results/FINAL_ADJUDICATION.json
+          test -s g21_work/results/RUN_MANIFEST.json
+          test -s g21_work/results/REPORT.md
+          python -m json.tool g21_work/results/DATA_AUDIT.json >/dev/null
+          python -m json.tool g21_work/results/RESULTS.json >/dev/null
+          python -m json.tool g21_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g21_work/results/RUN_MANIFEST.json >/dev/null
+          python -m pip freeze > g21_work/results/PIP_FREEZE.txt
+          cp g21_stdout.log g21_work/results/STDOUT.log
+          cp experiments/cfl_g2_1_gel_lens_router_20260927/EXECUTION_PROTOCOL.json g21_work/results/EXECUTION_PROTOCOL.json
+          cp experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py g21_work/results/SOURCE_run_g21.py
+
+      - name: Upload complete evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFL_G2_1_GEL_LENS_ROUTER_${{ github.sha }}
+          path: g21_work
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
