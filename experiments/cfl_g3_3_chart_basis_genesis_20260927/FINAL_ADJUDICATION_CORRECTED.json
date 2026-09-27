@@ -1,0 +1,18 @@
+{
+  "authority": "NONE",
+  "benchmark_state": "+0_CHART_GENESIS_BENCHMARK_PROTOFORM_WITH_IDENTIFIABILITY_GATE",
+  "canonicalization": "BLOCKED",
+  "chart_genesis": "DEMONSTRATED_ON_ALL_OBSERVATIONALLY_IDENTIFIABLE_PRIVATE_TASKS",
+  "chart_meta_grammar": "KNOWN_BOUNDED_TRIANGULAR_NONLINEAR_FAMILY",
+  "domain_hidden_truth_success": {"algebra":1.0,"graph":0.65,"mechanics":1.0,"number":1.0},
+  "hidden_truth_metric": {"exact_symbolic_success":0.9125,"paired_bootstrap_95_ci":[0.0,0.0],"paired_delta":0.0,"private_construct_n":80,"tos_success":0.9125},
+  "material_gate": "PASS_LOCAL",
+  "methodological_correction": "Seven graph tasks generated as CONSTRUCT were observationally non-identifiable: the truth target was compatible, but 2-4 distinct future targets remained compatible. Original hidden-truth accuracy is preserved; epistemic adjudication is corrected post hoc.",
+  "nonreducibility": "NOT_SUPPORTED_EXACT_SYMBOLIC_CHART_IDENTIFICATION_MATCHES_TOS",
+  "o3_claim_state": "0_BASELINE_EQUIVALENT",
+  "observational_identifiability_audit": {"ambiguous_by_domain":{"graph":7},"ambiguous_construct_n":7,"exact_symbolic_identifiable_construct_success":1.0,"exact_symbolic_observational_state_accuracy":1.0,"identifiable_construct_n":73,"max_compatible_target_predictions":4,"tos_false_promotion_on_ambiguous_constructs":0.0,"tos_identifiable_construct_success":1.0,"tos_observational_state_accuracy":1.0,"truth_compatible_in_all_ambiguous":true},
+  "outcome": "G3_3_CHART_GENESIS_BASELINE_EQUIVALENT_WITH_IDENTIFIABILITY_CORRECTION",
+  "program_id": "CFL-UEP-G3.3-OBSERVATIONAL-CHART-AND-BASIS-GENESIS",
+  "promotion": "BLOCKED",
+  "version": "0.1.0"
+}
