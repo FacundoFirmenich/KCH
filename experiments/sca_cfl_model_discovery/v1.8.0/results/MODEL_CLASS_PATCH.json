@@ -1,0 +1,12 @@
+{
+  "schema":"SCA_CFL_MODEL_CLASS_PATCH_V1",
+  "release":"1.8.0",
+  "candidate_id":"context_depth_1",
+  "candidate_state":"PROTOFORM_REALVIRTUAL_+0",
+  "probabilistic":true,
+  "model_class_eligible":true,
+  "structure":{"family":"sensor_conditioned_variable_memory_binary_model","context_depth":1,"predictive_prior":"Beta(1/2,1/2) per context leaf"},
+  "discovery_contract":{"discovery_n":600,"future_evaluation_n":600,"no_confirmatory_reuse_of_discovery_data":true},
+  "authority":{"automatic":false,"authorized_reference_run":true,"registry_version_before":1,"registry_version_after":2,"authority_epoch_after":1},
+  "form_1":{"promoted":false,"reason":"probabilistic/statistical object; remains protoform +0"}
+}
