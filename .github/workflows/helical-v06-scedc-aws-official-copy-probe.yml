@@ -1,0 +1,53 @@
+name: Helical v0.6 SCEDC AWS official-copy probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-piecewise-20260927
+    paths:
+      - .github/workflows/helical-v06-scedc-aws-official-copy-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect official SCEDC public bucket without downloading catalogs
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/scedc_aws_probe"
+          mkdir -p "$out"
+          aws --version > "$out/aws_version.txt" 2>&1
+          aws s3api list-objects-v2 --bucket scedc-pds --delimiter '/' --no-sign-request --output json > "$out/top_level.json"
+          python - <<'PY' > "$out/top_level_summary.txt"
+          import json, os
+          p=os.path.join(os.environ['RUNNER_TEMP'],'scedc_aws_probe','top_level.json')
+          o=json.load(open(p))
+          for x in o.get('CommonPrefixes',[]): print(x['Prefix'])
+          for x in o.get('Contents',[]): print(x['Key'],x['Size'])
+          PY
+          for prefix in \
+            'cahuilla' 'cahuilla_swarm/' 'QTMcatalog-ridgecrest/' 'calmex/' \
+            'earthquake_catalogs/' 'catalogs/' 'special/' 'datasets/' 'research/'; do
+            safe=$(printf '%s' "$prefix" | tr '/ ' '__')
+            aws s3api list-objects-v2 --bucket scedc-pds --prefix "$prefix" --max-items 1000 --no-sign-request --output json > "$out/prefix_${safe}.json" || true
+          done
+          grep -R -i -E 'cahuilla|ridgecrest_qtm|hypoDD\.reloc|calmex|growclust' "$out" > "$out/exact_name_hits.txt" || true
+          sha256sum "$out"/* > "$out/SHA256SUMS.txt"
+          cat "$out/top_level_summary.txt"
+          cat "$out/exact_name_hits.txt" || true
+      - name: Upload official-bucket probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-scedc-aws-probe
+          path: ${{ runner.temp }}/scedc_aws_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
