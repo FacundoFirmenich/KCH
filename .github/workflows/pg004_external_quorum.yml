@@ -1,0 +1,74 @@
+name: PG004 External Quorum
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg004-external-quorum-20260927
+    paths:
+      - "experiments/pi_genesis/pg004_runtime/**"
+      - ".github/workflows/pg004_external_quorum.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pg004-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fit:
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [pymc, numpyro]
+        domain: [grunfeld, baseball]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout fitting surface only
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg004_runtime
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install PyMC runtime
+        if: matrix.backend == 'pymc'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "pymc>=5.20,<6"
+      - name: Install NumPyro runtime
+        if: matrix.backend == 'numpyro'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "jax[cpu]>=0.5,<0.10" "numpyro>=0.19,<0.22"
+      - name: Verify frozen sources and absence of future evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=experiments/pi_genesis/pg004_runtime
+          test ! -e "$ROOT/data/future"
+          test "$(sha256sum "$ROOT/ir/PG004_MODEL_IR.json" | cut -d' ' -f1)" = "105dc2449fd7bdc7836e88b302d6db49892b9147a4a217b59f4f378661875397"
+          python -m py_compile "$ROOT"/src/pg004/*.py "$ROOT"/generated/*.py
+      - name: Execute external PPL fit
+        env:
+          PYTHONPATH: experiments/pi_genesis/pg004_runtime/src:experiments/pi_genesis/pg004_runtime/generated
+          PYTHONHASHSEED: "0"
+          XLA_FLAGS: --xla_force_host_platform_device_count=1
+        run: >-
+          python -m pg004.run_backend
+          --backend ${{ matrix.backend }}
+          --domain ${{ matrix.domain }}
+          --root experiments/pi_genesis/pg004_runtime
+          --output results/fit-${{ matrix.backend }}-${{ matrix.domain }}
+      - name: Upload content-addressed fit receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: fit-${{ matrix.backend }}-${{ matrix.domain }}
+          path: results/fit-${{ matrix.backend }}-${{ matrix.domain }}
+          if-no-files-found: error
+          retention-days: 30
