@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kch-mis031-full-csi"
+version = "0.2.0"
+description = "Exhaustive CSI bridge over the sealed MIS 0.3.1 public surface"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
