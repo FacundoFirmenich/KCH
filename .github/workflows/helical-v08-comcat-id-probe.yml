@@ -1,0 +1,88 @@
+name: Helical v0.8 ComCat ID/covariance probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-dynamic-confirmatory-20260927
+    paths:
+      - .github/workflows/helical-v08-comcat-id-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover selected directional materialization by immutable artifact ID
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/input"
+          gh run download 36328772493 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name kch-helical-v08-selected-directional-materialization \
+            --dir "$RUNNER_TEMP/input"
+      - name: Probe deterministic event-id candidates without reading directional fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv, json, math, os, urllib.request
+          from pathlib import Path
+          import numpy as np
+          root=Path(os.environ["RUNNER_TEMP"])/"input"
+          candidates=list(root.rglob("selected_directional_columns.npz"))
+          if len(candidates)!=1: raise SystemExit(f"expected one npz: {candidates}")
+          z=np.load(candidates[0], allow_pickle=False)
+          required=["evid","nc_sc","year","month","day","hour","minute","second","lat_reloc","lon_reloc","dep_reloc","mag","cohort_code"]
+          data={k:z[k] for k in required}
+          # deliberately do not access strike/dip/rake
+          idxs=[0,1,100,1000,10000,37852,37853,40000,50000,61554]
+          rows=[]
+          for i in idxs:
+              evid=int(float(data["evid"][i]))
+              ts=f'{int(data["year"][i]):04d}-{int(data["month"][i]):02d}-{int(data["day"][i]):02d}T{int(data["hour"][i]):02d}:{int(data["minute"][i]):02d}:{float(data["second"][i]):06.3f}Z'
+              for net in ["nc","ci"]:
+                  for code in [str(evid),f"{evid:08d}"]:
+                      eventid=net+code
+                      url="https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventid="+eventid
+                      req=urllib.request.Request(url,headers={"User-Agent":"KCH-Helical-v0.8-ComCat-probe","Accept-Encoding":"identity"})
+                      rec={"index":i,"source_evid":evid,"source_nc_sc":str(data["nc_sc"][i]),"source_time":ts,
+                           "source_lat":float(data["lat_reloc"][i]),"source_lon":float(data["lon_reloc"][i]),
+                           "source_depth":float(data["dep_reloc"][i]),"source_mag":float(data["mag"][i]),
+                           "cohort_code":int(data["cohort_code"][i]),"candidate":eventid}
+                      try:
+                          with urllib.request.urlopen(req,timeout=20) as r:
+                              body=r.read(); obj=json.loads(body)
+                          features=obj.get("features",[])
+                          rec["http"]=200; rec["count"]=len(features)
+                          if features:
+                              f=features[0]; p=f["properties"]; c=f["geometry"]["coordinates"]
+                              rec.update(match_id=f["id"],comcat_time_ms=p.get("time"),comcat_lon=c[0],comcat_lat=c[1],comcat_depth=c[2],
+                                         comcat_mag=p.get("mag"),horizontalError=p.get("horizontalError"),depthError=p.get("depthError"),
+                                         locationSource=p.get("locationSource"))
+                      except Exception as e:
+                          rec["error"]=type(e).__name__+":"+str(e)
+                      rows.append(rec)
+          out=Path(os.environ["RUNNER_TEMP"])/"comcat_probe"
+          out.mkdir(parents=True,exist_ok=True)
+          (out/"COMCAT_ID_PROBE.json").write_text(json.dumps(rows,indent=2,sort_keys=True)+"\n")
+          print(json.dumps(rows,indent=2,sort_keys=True))
+          PY
+      - name: Upload probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-comcat-id-probe
+          path: ${{ runner.temp }}/comcat_probe
+          retention-days: 3
+          compression-level: 0
