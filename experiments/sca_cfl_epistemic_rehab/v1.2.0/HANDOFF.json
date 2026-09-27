@@ -1,0 +1,9 @@
+{
+  "schema":"SCA_CFL_HANDOFF_V1",
+  "release":"1.2.0",
+  "gate":"EPISTEMIC_REHABILITATION_003",
+  "decision":"PASS_WITH_LIMITS",
+  "zip_sha256":"03a3e04895aabe7cd9fc5109ac60069cad3d634199ead64676aa98e73f4448ff",
+  "content_digest":"cb3a4ae46fc0a30bd5065808ee6d27ee802a51031a4df64c1f999f06c6a8b79d",
+  "next_gate":"PROVENANCE_AWARE_REHABILITATION_UNDER_DEPENDENT_EVIDENCE_004"
+}
