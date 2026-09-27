@@ -1,0 +1,5 @@
+{
+  "v1_6_core_shadow":{"set_size":9,"value":0.6394818652850001,"action":"s3","cached_states":4077},
+  "v1_7_outer_authority_initial":{"set_size":25,"value":0.5625,"action":"critical_A","cached_states":5181},
+  "claim":"The v1.6 core planner remains available in shadow but is not the authority ambiguity set without a separate model-class contract."
+}
