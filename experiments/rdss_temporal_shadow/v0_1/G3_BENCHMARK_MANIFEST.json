@@ -1,0 +1,72 @@
+{
+  "manifest": "G3 Public Benchmark Sources",
+  "version": "0.1.0",
+  "status": "SOURCE_REVISIONS_LOCKED_ITEM_IDS_PENDING",
+  "locked_on": "2026-09-27",
+  "purpose": "Pin executable benchmark code and named releases before selecting disjoint development and reserve item IDs.",
+  "sources": [
+    {
+      "id": "livebench_objective",
+      "repository": "LiveBench/LiveBench",
+      "branch": "main",
+      "commit_sha": "85f874fcd0d443fbba525dab300ec1dcf76272ff",
+      "repository_url": "https://github.com/LiveBench/LiveBench",
+      "public_release_option": "2024-11-25",
+      "categories": [
+        "math",
+        "reasoning",
+        "instruction_following",
+        "data_analysis"
+      ],
+      "dataset_host": "https://huggingface.co/livebench",
+      "source_revision_locked": true,
+      "dataset_revision_locked": false,
+      "item_ids_locked": false,
+      "note": "The pinned README identifies 2024-11-25 as the most recent release with public questions across all categories. Dataset revisions and exact IDs remain to be hashed before G3C."
+    },
+    {
+      "id": "livecodebench_generation",
+      "repository": "LiveCodeBench/LiveCodeBench",
+      "branch": "main",
+      "commit_sha": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+      "repository_url": "https://github.com/LiveCodeBench/LiveCodeBench",
+      "release_version": "release_v6",
+      "dataset": "livecodebench/code_generation_lite",
+      "scenario": "codegeneration",
+      "source_revision_locked": true,
+      "dataset_revision_locked": false,
+      "item_ids_locked": false,
+      "contamination_note": "Do not call the slice contamination-free for a model until the model training cutoff and the frozen problem-date window are both verified."
+    },
+    {
+      "id": "evalplus",
+      "repository": "evalplus/evalplus",
+      "tag": "v0.3.1",
+      "commit_sha": "e5d0ed0bab96280b60b637ec7f15b5e4841b0cb2",
+      "repository_url": "https://github.com/evalplus/evalplus",
+      "datasets": [
+        {
+          "name": "HumanEval+",
+          "release": "0.1.10"
+        },
+        {
+          "name": "MBPP+",
+          "release": "0.2.0"
+        }
+      ],
+      "protocol": "greedy pass@1",
+      "source_revision_locked": true,
+      "dataset_revision_locked": false,
+      "item_ids_locked": false
+    }
+  ],
+  "global_requirements": {
+    "exact_item_id_lists_pending": true,
+    "dataset_blob_or_revision_hashes_pending": true,
+    "development_reserve_disjointness_pending": true,
+    "prompt_renderer_hashes_pending": true,
+    "scorer_and_container_hashes_pending": true,
+    "no_reserve_run_authorized": true
+  },
+  "authorization_rule": "This manifest authorizes adapter construction and development-only loading. It does not authorize opening any G3 reserve."
+}

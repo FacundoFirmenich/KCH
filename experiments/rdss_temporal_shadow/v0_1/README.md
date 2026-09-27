@@ -66,6 +66,7 @@ G3 specifications:
 
 - [Machine-readable blueprint](./G3_EXTERNAL_VALIDITY_SPEC.json)
 - [Execution protocol](./G3_EXTERNAL_VALIDITY_PROTOCOL.md)
+- [Pinned benchmark-source manifest](./G3_BENCHMARK_MANIFEST.json)
 
 ## Contract
 
