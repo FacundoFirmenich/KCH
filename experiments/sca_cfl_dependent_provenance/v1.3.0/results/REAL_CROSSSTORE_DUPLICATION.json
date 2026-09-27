@@ -1,0 +1,8 @@
+{
+  "observed_surfaces":3,
+  "shared_parent_release":"1.2.0",
+  "shared_zip_sha256":"03a3e04895aabe7cd9fc5109ac60069cad3d634199ead64676aa98e73f4448ff",
+  "naive_e_value":4.096000000000001,
+  "provenance_aware_e_value":1.6,
+  "interpretation":"Three persisted copies of one release remain one genealogical evidentiary root."
+}
