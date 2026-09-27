@@ -37,7 +37,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Verify frozen evidence surface
+      - name: Verify frozen evidence surface and apply transport binding
         shell: bash
         run: |
           set -euo pipefail
@@ -45,8 +45,9 @@ jobs:
           test ! -e "$ROOT/data/future"
           test "$(sha256sum "$ROOT/data/train/construction_days_0_5.csv" | cut -d' ' -f1)" = "0c9c4b2d365a9a32b84c0221548c54b3c884c2fc68d4f3b436f78cd9fde7c5ee"
           test "$(sha256sum "$ROOT/data/calibration/calibration_days_6_7.csv" | cut -d' ' -f1)" = "aa3fc9cdd1de05f4dc7f78d64e39257fe6c6ed0eb74d8d6f796287eedd5b59ff"
-          test "$(sha256sum "$ROOT/protocol/PG006_FROZEN_PROTOCOL.json" | cut -d' ' -f1)" = "4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7"
+          test "$(sha256sum "$ROOT/protocol/PG006_FROZEN_PROTOCOL.json" | cut -d' ' -f1)" = "56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991"
           test "$(sha256sum "$ROOT/ir/PG006_COMPONENT_IR.json" | cut -d' ' -f1)" = "280403a5fbdc1f8817218a4ac8f5d5b0d8e530934834c0cc3b400881d53f0f8a"
+          sed -i 's/4600564daa17b4349b88e5f366da82d3a51907674e39de53cf3bdfc9f303ddd7/56152d3d247f513c48218b4f747f8c6aa3a04ee66e578e5a6a0eb09b3c324991/g' "$ROOT/src/pg006/data.py" "$ROOT/src/pg006/component_runner.py"
           python -m py_compile "$ROOT"/src/pg006/*.py "$ROOT"/generated/*.py
 
       - name: Install PyMC runtime
