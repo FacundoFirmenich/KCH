@@ -1,0 +1,57 @@
+name: CFL G3.4 mixed metagrammar
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-4-mixed-metagrammar-20260927
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_4_mixed_metagrammar_20260927/requirements.txt
+      - name: Verify and unpack source
+        run: |
+          set -euo pipefail
+          echo "a83540f88ceeb53eeab628d4dd12852b115ac0541a83245828de7644fb8009c9  experiments/cfl_g3_4_mixed_metagrammar_20260927/g34_source.zip" | sha256sum -c -
+          mkdir g34_src
+          unzip -q experiments/cfl_g3_4_mixed_metagrammar_20260927/g34_source.zip -d g34_src
+          python -m py_compile g34_src/run_g34.py g34_src/base_g33.py
+      - name: Execute G3.4
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G34_BASE_G33: ${{ github.workspace }}/g34_src/base_g33.py
+          G34_WORKDIR: ${{ github.workspace }}/g34_work
+        run: |
+          set -euo pipefail
+          python g34_src/run_g34.py 2>&1 | tee g34_stdout.log
+          test -s g34_work/results/FINAL_ADJUDICATION.json
+          test -s g34_work/results/SUMMARY.json
+          test -s g34_work/results/PREDICTIONS.jsonl
+          test -s g34_work/evidence/TRUTH_MANIFEST.jsonl
+          python -m json.tool g34_work/results/FINAL_ADJUDICATION.json >/dev/null
+          cp g34_stdout.log g34_work/results/STDOUT.log
+          cp experiments/cfl_g3_4_mixed_metagrammar_20260927/EXECUTION_PROTOCOL.json g34_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_4_MIXED_METAGRAMMAR_${{ github.sha }}
+          path: g34_work
+          if-no-files-found: warn
+          retention-days: 30
