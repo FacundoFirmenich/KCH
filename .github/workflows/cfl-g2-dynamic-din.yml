@@ -34,7 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           gzip -dc experiments/cfl_g2_dynamic_din_20260927/run_g2.py.gz > experiments/cfl_g2_dynamic_din_20260927/run_g2.py
-          echo "a2f06c866e3616f379def31811282dde59eb502713df8b980f615842f31257f0  experiments/cfl_g2_dynamic_din_20260927/run_g2.py" | sha256sum -c -
+          echo "0baba09f1a59b4d32ff0bd64109b1cc676bea56042cd3a72578e10a1cc683a75  experiments/cfl_g2_dynamic_din_20260927/run_g2.py" | sha256sum -c -
           python -m py_compile experiments/cfl_g2_dynamic_din_20260927/run_g2.py
           python -m json.tool experiments/cfl_g2_dynamic_din_20260927/EXECUTION_PROTOCOL.json >/dev/null
 
