@@ -1,0 +1,31 @@
+{
+  "adversarial": {
+    "condition": "GRUNFELD_FUTURE_SINGLE_OBSERVATION_PLUS_6_SD",
+    "condition_index": 2,
+    "magnitude_training_y_sd": 6.0,
+    "selector_hash": "1b86f43e34583f14d85138dc907c4f56e4d14601024acf0e7f0faeaf9723340b",
+    "target_frame": "primary_grunfeld_future_years_1951_1952",
+    "target_identity": {
+      "firm": "IBM",
+      "year": 1952
+    },
+    "target_row_index_in_primary_future_frame": 18
+  },
+  "files": {
+    "data/future/baseball_remaining_season.csv": "8c7acf9e0caae42d1c8fc4e3befbd2aca2951e50f8cc0652e5e6778f22eb7187",
+    "data/future/grunfeld_future_1947_1952.csv": "946a588a1e0907d0aa49786038f1dd7d5059eafd3ecfa637c43a246a8c0bdf4f",
+    "data/train/baseball_initial_45.csv": "f0ce4e06bdd9625292146b831afb637bbbd57885c07a21f64cdb7817d2915f6d",
+    "data/train/grunfeld_train_through_1950.csv": "3744e2cf77ccafddde808bff4b8b491e29a0fcf91e6df89cfe547a0aaf237432"
+  },
+  "future_commitment": {
+    "canonical_order": [
+      "grunfeld_future_1947_1952",
+      "baseball_remaining_season"
+    ],
+    "combined_sha256": "89e6b80389bdd2f98d615631fcbb9482f26a526cbad23773dbb70c039c66d6a9",
+    "fit_jobs_must_not_contain_future_directory": true
+  },
+  "protocol_commit_created_at": "2026-09-27T01:29:32Z",
+  "protocol_commit_sha": "f3324ec62716da0f3eca8a7b34367b9880a9bb94",
+  "protocol_sha256": "4ffcbf43728c3864fce40c38c8cba17e2af23f1f3481a15f1f02e7a1dc09aafc"
+}
