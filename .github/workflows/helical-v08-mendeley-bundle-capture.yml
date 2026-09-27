@@ -1,0 +1,50 @@
+name: Helical v0.8 Mendeley public-bundle capture
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-mendeley-bundle-capture.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Capture public HTML and JavaScript used by the dataset page
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/mendeley_bundle_capture"
+          mkdir -p "$out"
+          curl --fail-with-body --location --header 'Accept-Encoding: identity' \
+            'https://data.mendeley.com/datasets/2np9vw5v7w/2' \
+            --output "$out/dataset_page.html"
+          bundle=$(python - "$out/dataset_page.html" <<'PY'
+          import re,sys
+          text=open(sys.argv[1],encoding='utf-8').read()
+          hits=re.findall(r'(?:src|href)="([^"]*bundle\.js[^\"]*)"',text)
+          hits=[h for h in hits if '/datasets/' in h]
+          if not hits: raise SystemExit('dataset bundle not found')
+          print(hits[0].replace('&amp;','&'))
+          PY
+          )
+          curl --fail-with-body --location --header 'Accept-Encoding: identity' \
+            "https://data.mendeley.com${bundle}" \
+            --output "$out/datasets_bundle.js"
+          sha256sum "$out"/* > "$out/SHA256SUMS.txt"
+          printf '%s\n' "$bundle" > "$out/BUNDLE_PATH.txt"
+      - name: Upload public bundle evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-mendeley-public-bundle
+          path: ${{ runner.temp }}/mendeley_bundle_capture
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
