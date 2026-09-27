@@ -1,0 +1,10 @@
+{
+  "discovery_n":600,
+  "evaluation_n":600,
+  "outer_monitor":{"cross_time":423,"final_e_value":1608332.563888329,"max_e_value":1608332.563888329,"n":600},
+  "candidate":{"candidate_id":"context_depth_1","depth":1,"posterior_weight":0.9999962995828722,"log_code_gain_vs_depth0":27.715473706248417,"state":"PROTOFORM_REALVIRTUAL_+0","probabilistic":true},
+  "fresh_certification":{"cross_time":58,"final_e_value":5842266.8129836265,"max_e_value":6857782.613231137,"n":600},
+  "depth_controls":{"0":{"cross_time":null,"final_e_value":1.6794984141384262e-08},"1":{"cross_time":58,"final_e_value":5842266.8129836265},"2":{"cross_time":59,"final_e_value":140.82798965990807},"3":{"cross_time":null,"max_e_value":7.325398116058963}},
+  "form_1_attempt":"TypeError:PROBABILISTIC_OBJECT_CANNOT_BE_FORM_1",
+  "registry_authorized":{"state":"MODEL_CLASS_PATCH_AUTHORIZED","version":2,"authority_epoch":1,"patches":["context_depth_1"]}
+}
