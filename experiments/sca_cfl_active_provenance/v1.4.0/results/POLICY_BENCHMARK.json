@@ -1,0 +1,5 @@
+{
+  "voi":{"episodes":1000,"mean_probes":1.0,"mean_cost":0.02,"eligible_rate":0.8},
+  "entropy":{"episodes":1000,"mean_probes":2.0,"mean_cost":0.025,"eligible_rate":0.8},
+  "random":{"episodes":1000,"mean_probes":1.593,"mean_cost":0.022965,"eligible_rate":0.8}
+}
