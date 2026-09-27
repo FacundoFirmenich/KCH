@@ -1,0 +1,37 @@
+name: Helical v0.8 Mendeley public-route probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-mendeley-route-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe public metadata and web download routes without opening scientific values
+        shell: bash
+        env:
+          PROBE_OUT: ${{ runner.temp }}/mendeley_public_probe
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python .github/helical_v08/mendeley_public_route_probe.py \
+            | tee "$RUNNER_TEMP/mendeley_public_probe_stdout.log"
+          cp "$RUNNER_TEMP/mendeley_public_probe_stdout.log" "$PROBE_OUT/EXECUTION_STDOUT.log"
+      - name: Upload route-discovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-mendeley-public-route-probe
+          path: ${{ runner.temp }}/mendeley_public_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
