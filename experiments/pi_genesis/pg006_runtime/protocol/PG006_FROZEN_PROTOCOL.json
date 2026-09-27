@@ -1,0 +1,289 @@
+{
+  "actions": {
+    "ABSTAIN": "otherwise",
+    "LOCAL": "Pr(min(regret_P2,regret_P3)+epsilon < regret_P1) >= 0.80",
+    "MIX": "Pr(mixture_advantage > epsilon) >= 0.80",
+    "POOL": "Pr(regret_P1+epsilon < min(regret_P0,regret_P2,regret_P3)) >= 0.80",
+    "decision_probability": 0.8,
+    "epsilon": 0.02,
+    "separation_from_Q4": true
+  },
+  "authority_ceiling": "SHADOW",
+  "blinding": {
+    "disclosure": "The investigator is not claimed to be blind. Component and regret-field fitting jobs are technically prevented from receiving Days 8-9 Reaction outcomes.",
+    "future_design_allowed": [
+      "Subject",
+      "Days"
+    ],
+    "future_outcomes_forbidden": [
+      "Reaction"
+    ],
+    "investigator_blinding": false,
+    "procedural_fit_blinding": true
+  },
+  "calibration": {
+    "mix_advantage_model": "Bayesian StudentT regression of min(component_NLPD)-mixture_NLPD on weight entropy, predicted-regret spread and horizon; trained only on Days 6-7",
+    "router_freeze_required_before_future_unseal": true,
+    "selection": "common temperature minimizing mean calibration NLPD averaged over PyMC and NumPyro pipelines",
+    "temperature_grid": [
+      0.05,
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "tie_break": "smallest temperature"
+  },
+  "component_models": {
+    "P0_POPULATION": {
+      "mu": "alpha + beta*t",
+      "priors": {
+        "alpha": "Normal(0,1)",
+        "beta": "Normal(0,1)",
+        "sigma": "HalfNormal(1)"
+      }
+    },
+    "P1_GLOBAL_POOL": {
+      "a": "tau_a*B@u_a",
+      "b": "tau_b*B@u_b",
+      "mu": "alpha + beta*t + a[subject] + b[subject]*t",
+      "priors": {
+        "tau_a": "HalfNormal(0.75)",
+        "tau_b": "HalfNormal(0.50)",
+        "u_a": "Normal(0,I17)",
+        "u_b": "Normal(0,I17)"
+      }
+    },
+    "P2_GLOBAL_LOCAL": {
+      "lambda": "HalfStudentT(nu=3,scale=1)",
+      "lambda_tilde": "sqrt(c^2*lambda^2/(c^2+tau^2*lambda^2))",
+      "mu": "alpha + beta*t + a[subject] + b[subject]*t",
+      "priors": {
+        "c_a": 1.0,
+        "c_b": 0.75,
+        "tau_a": "HalfNormal(0.25)",
+        "tau_b": "HalfNormal(0.20)"
+      },
+      "raw_effect": "tau*lambda_tilde*(B@u)",
+      "semantic_effect": "P@raw_effect, P=I-11'/J"
+    },
+    "P3_LOW_POOL": {
+      "a": "1.00*B@u_a",
+      "b": "0.60*B@u_b",
+      "mu": "alpha + beta*t + a[subject] + b[subject]*t",
+      "role": "ex-ante executable low-pooling baseline"
+    }
+  },
+  "component_sampling": {
+    "chains": 4,
+    "draws": 800,
+    "external_ppl_families": [
+      "PyMC",
+      "NumPyro"
+    ],
+    "independent_probability_programs": true,
+    "max_tree_depth": 12,
+    "shared_log_density_kernel": false,
+    "target_accept": 0.95,
+    "warmup": 800
+  },
+  "data": {
+    "calibration_days": [
+      6,
+      7
+    ],
+    "calibration_sha256": "aa3fc9cdd1de05f4dc7f78d64e39257fe6c6ed0eb74d8d6f796287eedd5b59ff",
+    "confirmatory_days": [
+      8,
+      9
+    ],
+    "construction_days": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "construction_sha256": "0c9c4b2d365a9a32b84c0221548c54b3c884c2fc68d4f3b436f78cd9fde7c5ee",
+    "future_sha256": "1efcc6b10cc6871148932058b23b44f33993bdb11084ad9d3e42ab211f98cbdd",
+    "response_scaler": "mean and population SD computed once from Days 0-5 and reused unchanged",
+    "source": "lme4::sleepstudy via pinned Rdatasets blob 24b15d8da70b101ce8822f8a31b872dd6c622f46",
+    "subject_order": [
+      "308",
+      "309",
+      "310",
+      "330",
+      "331",
+      "332",
+      "333",
+      "334",
+      "335",
+      "337",
+      "349",
+      "350",
+      "351",
+      "352",
+      "369",
+      "370",
+      "371",
+      "372"
+    ],
+    "time_coordinate": "t=(Days-2.5)/2.5"
+  },
+  "exact_refits": {
+    "calibration_fit": "fit Days 0-5, predict Days 6-7",
+    "confirmatory_fit": "fit Days 0-7, predict design Days 8-9 without outcomes",
+    "construction_contexts_per_subject": 5,
+    "forbidden_shortcut": "PSIS or LOO substitution for any router-supervision record",
+    "origins": [
+      2,
+      3,
+      4
+    ],
+    "target_rule": "for origin d predict d+1 and d+2 when target <=5"
+  },
+  "frozen_gates": {
+    "G1_DATA_COMMITMENT_AND_FUTURE_ISOLATION": "all hashes exact and no future Reaction in fit jobs",
+    "G10_LOCAL_STRESS": "frozen selector and thresholds above",
+    "G11_ROUTER_WHITEBOX_REPRODUCIBILITY": {
+      "maximum_abs_probability_difference": 0.2,
+      "maximum_mean_abs_probability_difference": 0.08,
+      "minimum_exact_state_agreement": 0.9
+    },
+    "G12_AUTHORITY_CEILING": "SHADOW only",
+    "G2_EXACT_PREQUENTIAL_REFITS": "all 12 component-origin refits per backend are material and exact",
+    "G3_EXTERNAL_PPL_QUORUM": "PyMC and NumPyro live, independent source and kernels",
+    "G4_SAMPLING_HEALTH": {
+      "max_divergences": 0,
+      "max_rank_folded_rhat": 1.05,
+      "min_bulk_ess": 200,
+      "min_tail_ess": 100
+    },
+    "G5_CROSS_PPL_CONFORMANCE": {
+      "max_future_NLPD_difference": 0.04,
+      "max_standardized_mean_delta": 0.15,
+      "max_standardized_wasserstein": 0.2,
+      "sd_ratio_interval": [
+        0.75,
+        1.33
+      ]
+    },
+    "G6_FUTURE_NONINFERIORITY": "P4 minus best aggregate component <=0.03 NLPD/observation in both PPLs",
+    "G7_ORACLE_GAP_CLOSURE": {
+      "maximum_single_subject_positive_gain_share": 0.35,
+      "minimum_gap": 0.02,
+      "minimum_rho": 0.25
+    },
+    "G8_SELECTIVE_ACTION_VALIDITY": {
+      "maximum_false_action_rate_on_ambiguous": 0.2,
+      "minimum_accuracy": 0.7,
+      "minimum_coverage": 0.3,
+      "minimum_decisive_subjects": 6
+    },
+    "G9_CALIBRATION": {
+      "coverage_80_interval": [
+        0.7,
+        0.9
+      ],
+      "coverage_90_interval": [
+        0.82,
+        0.98
+      ]
+    }
+  },
+  "frozen_local_time": "2026-09-27T16:45:00+02:00",
+  "frozen_utc_time": "2026-09-27T14:45:00Z",
+  "gate_id": "KCH-PI-GENESIS-PG006-DECISION-COUPLED-AUTHORITY-FIELD-001",
+  "genealogy": {
+    "data_materialization_commit": "11bbe45be23de47eeac02bb83b08d4c8d32cc5c3",
+    "parent_gate": "KCH-PI-GENESIS-PG005-LOCAL-POOLING-ROUTER-001",
+    "parent_state": "-1",
+    "parent_summary_hash": "0f6f7545d0e8ba62301d9bff66aef8d12f9d0e9bc9be5d8356df3b6fdf1f4bce",
+    "preprotocol_commit": "2a5446573b3a5b80b831a1c642b19f15af33307a"
+  },
+  "protocol_version": "1.0.0-execution-frozen",
+  "q4": {
+    "non_compensatory": true,
+    "precedence": [
+      "0",
+      "-1",
+      "+0",
+      "1"
+    ],
+    "states": [
+      "1",
+      "-1",
+      "+0",
+      "0"
+    ]
+  },
+  "regret_field": {
+    "feature_scaler": "construction crossfit mean and population SD; zero scales replaced by one",
+    "features": [
+      "forecast_horizon",
+      "origin",
+      "subject_empirical_slope",
+      "subject_last_residual",
+      "subject_residual_dispersion",
+      "P1_effect_mean",
+      "P1_effect_sd",
+      "P2_effect_mean",
+      "P2_effect_sd",
+      "P2_kappa_mean",
+      "model_previous_mean_NLPD",
+      "model_previous_NLPD_count"
+    ],
+    "likelihood": "StudentT(nu=4, mu, sigma_model)",
+    "mu": "alpha_model + beta_model'X + subject_effect_model",
+    "posterior_policy_weights": "softmax(-predicted_regret/temperature)",
+    "response": "z=log(regret+0.005), regret=NLPD_m-min_m(NLPD_m)",
+    "sampling": {
+      "chains": 4,
+      "draws": 800,
+      "max_tree_depth": 12,
+      "target_accept": 0.95,
+      "warmup": 800
+    },
+    "subject_effect": "tau_subject_model*B@u_subject_model"
+  },
+  "seeds": {
+    "backend_base": {
+      "numpyro": 2026092762,
+      "pymc": 2026092761
+    },
+    "mix_advantage": {
+      "numpyro": 2026092784,
+      "pymc": 2026092783
+    },
+    "model_offset": {
+      "P0_POPULATION": 0,
+      "P1_GLOBAL_POOL": 100,
+      "P2_GLOBAL_LOCAL": 200,
+      "P3_LOW_POOL": 300
+    },
+    "regret_field": {
+      "numpyro": 2026092782,
+      "pymc": 2026092781
+    },
+    "stage_offset": {
+      "calibration": 21,
+      "crossfit_origin_2": 11,
+      "crossfit_origin_3": 12,
+      "crossfit_origin_4": 13,
+      "final": 31,
+      "stress": 41
+    }
+  },
+  "status": "FROZEN_BEFORE_ANY_PG006_MODEL_FIT",
+  "stress": {
+    "maximum_median_abs_change_others": 0.1,
+    "maximum_target_rank": 3,
+    "minimum_target_action_probability_increase": 0.2,
+    "perturbation": "+2.5 construction residual SD",
+    "selector_digest": "478ed8c49ca534e0d839c370625bc38dc695224038359f8055fd1c3dea437bbe",
+    "target_day": 3,
+    "target_subject": "349",
+    "target_subject_index_zero_based": 10
+  }
+}
