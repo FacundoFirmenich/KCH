@@ -1,0 +1,114 @@
+{
+  "program_id": "CFL-UEP-G1.2-DIMENSIONLESS-CLOSURE-LOTUS-20260927",
+  "parent_program": "CFL-UEP-0.1.0",
+  "predecessor_gates": [
+    "CFL-UEP-G1-REAL-TOMO-DISCOVERY-20260926",
+    "CFL-UEP-G1.1-CHEESE-BFTC-20260926"
+  ],
+  "frozen_date": "2026-09-27",
+  "status": "PREREGISTERED_MATERIAL_EXECUTION",
+  "authority": "NONE",
+  "dataset": {
+    "canonical_name": "FIPS LotusData128.mat",
+    "upstream_doi": "10.5281/zenodo.1254204",
+    "download_url": "https://zenodo.org/records/1254204/files/LotusData128.mat?download=1",
+    "published_md5": "da8b8d64b3becf987d84c6a2eceda2eb",
+    "expected_size_bytes": 110740268,
+    "physical_measurements": true,
+    "independent_object_from_G1_and_G1.1": true,
+    "silent_imputation": false
+  },
+  "dimensionless_normalization": {
+    "operator": "each training or partial-view operator divided by a deterministic power-iteration estimate of its spectral norm",
+    "measurement": "divided by the same operator scale",
+    "laplacian": "divided by twice its maximum weighted degree, a spectral upper bound",
+    "regularization_coefficients": "dimensionless after normalization",
+    "absolute_unscaled_grid": false
+  },
+  "external_test_masks": {
+    "T0_mod12_eq0": [0, 12, 24, 36, 48, 60, 72, 84, 96, 108],
+    "T1_mod12_eq4": [4, 16, 28, 40, 52, 64, 76, 88, 100, 112],
+    "T2_mod12_eq8": [8, 20, 32, 44, 56, 68, 80, 92, 104, 116]
+  },
+  "selection": {
+    "non_test_angles": 90,
+    "cv_folds": 3,
+    "validation_angles_per_fold": 30,
+    "training_angles_per_fold": 60,
+    "O1_O2_angles_per_fold": 30,
+    "test_use_for_selection": "FORBIDDEN"
+  },
+  "mandatory_methods": [
+    "JOINT_TIKHONOV",
+    "FIXED_LAPLACIAN",
+    "SELF_ADAPTIVE_ONCE",
+    "IRLS2",
+    "OLD_PHI12_LAPLACIAN",
+    "DBFTC_ONE_CYCLE",
+    "DFIC_THREE_CYCLE"
+  ],
+  "closure_candidates": {
+    "DBFTC_ONE_CYCLE": "dimensionless bidirectional constrained transport with reverse re-anchoring",
+    "DFIC_THREE_CYCLE": "three-cycle dimensionless fiber-intersection transport inheriting the DBFTC configuration selected without external test access",
+    "canonical_TOS_claim": false,
+    "may_abstain": true
+  },
+  "grids": {
+    "alpha": [0.001, 0.01, 0.1],
+    "beta": [0.01, 0.1],
+    "mu": [0.3, 3.0],
+    "lambda": [0.01, 0.1]
+  },
+  "solver_contract": {
+    "cg_rtol": 0.000002,
+    "cg_maxiter": 1200,
+    "maximum_normal_equation_residual": 0.00002,
+    "required_info": 0,
+    "minimum_adaptive_relative_update": 0.000001,
+    "positive_claim_from_nonconverged_solver": "FORBIDDEN"
+  },
+  "closure_gate": {
+    "minimum_cross_view_gain": 0.05,
+    "maximum_original_view_nrmse_increase": 0.015,
+    "maximum_normalized_holonomy": 0.35,
+    "maximum_ratio_to_strong_validation_envelope": 1.05,
+    "minimum_cv_folds_passed": 2
+  },
+  "confirmation_gate": {
+    "minimum_relative_gain": 0.02,
+    "minimum_external_masks_won": 2,
+    "maximum_cost_ratio_to_strongest_baseline": 2.0,
+    "false_closure_margin": 0.05
+  },
+  "fisher_spectral_audit": {
+    "method": "randomized row-space bases, principal-angle spectrum, joint projected Fisher eigenvalues and exact structural-nullity lower bounds",
+    "sketch_dimension": 96,
+    "exact_full_rank_claim": false,
+    "iteration_capped_LSQR": false,
+    "low_dimensional_DCT_saturation": false
+  },
+  "allowed_outcomes": [
+    "LOCAL_SUPPORT_IN_THIRD_OBJECT",
+    "REFUTED_IN_THIRD_OBJECT",
+    "BASELINE_EQUIVALENT",
+    "ABSTAIN_CV_CLOSURE_GATE_NOT_MET",
+    "ABSTAIN_SOLVER_OR_TRANSPORT_INVALID"
+  ],
+  "allowed_quaternary_states": [
+    "+0_PROTOFORM",
+    "+0_PROTOFORM_UNRESOLVED",
+    "0_NO_CLOSURE",
+    "PSEUDOFORM_FALSE_OR_INFERIOR_CLOSURE"
+  ],
+  "forbidden": [
+    "test_based_hyperparameter_selection",
+    "silent_imputation",
+    "reuse_cheese_or_walnut_test_as_confirmation",
+    "absolute_unscaled_regularization_grid",
+    "posthoc_threshold_change",
+    "canonical_TOS_promotion",
+    "CFL_generalization",
+    "non_euclidean_ontology_claim",
+    "merge_to_main"
+  ]
+}
