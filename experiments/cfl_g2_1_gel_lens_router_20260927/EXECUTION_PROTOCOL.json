@@ -1,0 +1,127 @@
+{
+  "program_id": "CFL-UEP-G2.1-DIN-LENS-ROUTER-GEL-20260927",
+  "parent_program": "CFL-UEP-0.1.0",
+  "predecessor_gate": "CFL-UEP-G2-DYNAMIC-DIN-CROSS-PHANTOM",
+  "status": "PREREGISTERED_MATERIAL_EXECUTION",
+  "authority": "NONE",
+  "dataset": {
+    "canonical_name": "FIPS gel phantom data for dynamic X-ray tomography",
+    "doi": "10.5281/zenodo.7876521",
+    "primary_files": {
+      "GelPhantomData_b4.mat": {
+        "resolution": [256, 256],
+        "md5": "3396dd69ed660d80f6eeab8db7ee39fc"
+      },
+      "GelPhantomData_b2.mat": {
+        "resolution": [512, 512],
+        "md5": "a72faf42bfee27a1fab50c55ef8dc7a2"
+      }
+    },
+    "extra_file": {
+      "name": "GelPhantom_extra_frames.mat",
+      "md5": "b0c8108893c0b9ac892700bc9689e0f3",
+      "keys": ["GelPhantomFrame1_b4", "GelPhantomFrame18_b4"]
+    },
+    "physical_frames": 17,
+    "dynamic_mechanism": "iodine contrast-agent diffusion through agarose gel",
+    "silent_imputation": false
+  },
+  "experimental_domain": {
+    "space": "measured detector-angle sinograms",
+    "intrinsic_image_reconstruction_claim": false,
+    "reason": "the public files contain measurements and metadata but no explicit supplied system matrix; this gate tests acquisition routing without converting a model-generated projector into empirical ground truth"
+  },
+  "temporal_split": {
+    "history_frames": [0, 1, 2, 3, 4, 5, 6, 7],
+    "configuration_frames": [8, 9, 10, 11],
+    "sealed_future_frames": [12, 13, 14, 15, 16],
+    "dense_external_confirmation": "GelPhantomFrame18_b4"
+  },
+  "angle_protocol": {
+    "common_validation_angles": "sixty-angle periodic mask with offset one",
+    "common_test_angles": "sixty-angle periodic mask with offset zero",
+    "primary_acquisition_budget": 30,
+    "efficiency_budgets": [18, 30, 45],
+    "test_angles_never_selectable": true,
+    "dense_budget_scaled_by_native_angle_count": true
+  },
+  "candidate_DIN": {
+    "name": "DIAGONAL_LENS_ROUTER",
+    "source": "directed O1/O2 closure and uncertainty profile at t-2",
+    "reentry_targets": [
+      "future angular acquisition scores",
+      "spatially varying mixture of linear, state-space and low-rank temporal priors",
+      "ex-ante measurement lens"
+    ],
+    "forbidden": "direct injection of the source closure state as the future target state",
+    "current_measurement_seed": "uniform seed followed by uncertainty-guided acquisition",
+    "canonical_DIN_claim": false
+  },
+  "mandatory_methods": [
+    "UNIFORM",
+    "CURRENT_IG",
+    "RECENT_ATTENTION",
+    "STATE_SPACE",
+    "LOW_RANK_SPARSE",
+    "DIN_LENS_ROUTER",
+    "DIN_ORDER_REVERSED",
+    "DIN_LINEAGE_SHUFFLED",
+    "DIN_SOURCE_TIME_SHUFFLED",
+    "ORACLE_POSTHOC_CEILING"
+  ],
+  "reconstruction": {
+    "type": "circular Fourier residual assimilation around a temporal prior",
+    "orders": [4, 8, 12],
+    "ridge": [0.01, 0.1],
+    "temporal_rho": [0.0, 0.5, 1.0],
+    "DIN_lens_weight": [0.25, 0.5, 0.75],
+    "hyperparameter_selection": "configuration frames only"
+  },
+  "primary_endpoints": [
+    "sealed-angle NRMSE",
+    "Gaussian log score calibrated on configuration frames",
+    "90 percent predictive coverage",
+    "measurement-efficiency curve",
+    "router regret against best deployable rival"
+  ],
+  "support_rule": {
+    "minimum_gain_each_resolution": 0.02,
+    "minimum_frames_won_each_resolution": 3,
+    "minimum_order_lineage_time_ablation_gap": 0.01,
+    "maximum_compute_cost_ratio": 3.0,
+    "dense_frame18_minimum_gain": 0.02,
+    "support_requires_all_conditions": true
+  },
+  "allowed_outcomes": [
+    "DIN_LENS_LOCAL_SUPPORT",
+    "DIN_LENS_BASELINE_EQUIVALENT",
+    "DIN_LENS_REFUTED",
+    "ABSTAIN_NOT_IDENTIFIABLE",
+    "MODEL_MISMATCH"
+  ],
+  "allowed_quaternary_states": [
+    "+0_PROTOFORM_UNREPLICATED_RESOLUTION",
+    "0_NO_CLOSURE",
+    "PSEUDOFORM_FALSE_CLOSURE"
+  ],
+  "hard_gates": [
+    "all published checksums match",
+    "both resolutions execute",
+    "dense frame18 executes",
+    "no nonfinite values or silent imputation",
+    "test masks frozen before configuration selection",
+    "all mandatory deployable rivals operational",
+    "order lineage and source-time ablations",
+    "oracle excluded from evidence",
+    "main branch unchanged"
+  ],
+  "forbidden": [
+    "test-based hyperparameter selection",
+    "posthoc support threshold changes",
+    "oracle as evidence",
+    "canonical TOS or DIN promotion",
+    "general CFL claim",
+    "intrinsic non-Euclidean ontology claim",
+    "merge to main"
+  ]
+}
