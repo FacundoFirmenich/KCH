@@ -1,0 +1,9 @@
+{
+  "gate":"AMBIGUITY_SET_LEARNING_AND_CALIBRATION_008",
+  "release":"1.7.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":18,"failed":0},
+  "outer_anytime_coverage_mc":{"episodes":25000,"max_false_exclusion_rate":0.034,"alpha":0.05},
+  "core_monitor_mc":{"episodes":9000,"max_false_reject_rate":0.001},
+  "next_gate":"NONPARAMETRIC_AMBIGUITY_EXPANSION_AND_MODEL_CLASS_DISCOVERY_009"
+}
