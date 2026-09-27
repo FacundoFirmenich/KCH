@@ -1,0 +1,112 @@
+{
+  "format": "KCH_HELICAL_V0_8_2_REMOTE_RESULT_INDEX",
+  "version": "0.8.2",
+  "state": "LOCATION_UNCERTAINTY_MATERIALIZATION_PASS_AWAITING_FULL_PARENT_GRAPH_LOCK",
+  "protocol": {
+    "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+    "locked_at_utc": "2026-09-27T03:22:11.303310Z",
+    "protocol_changed": false,
+    "scientific_models_changed": false,
+    "thresholds_changed": false
+  },
+  "predecessor_v0_8_1": {
+    "graph_id": "kbg:1fad41342aae06b558998903815df57eb08d4f24f408c6967c53ba7fd1413edb",
+    "selected_events": 61555,
+    "axis_observable_events": 60577,
+    "cohorts": [
+      "BAY_AREA_HAYWARD_CALAVERAS",
+      "PARKFIELD_CENTRAL_SAF"
+    ],
+    "scientific_model_execution_performed": false
+  },
+  "comcat_material_gate": {
+    "provider": "USGS_ANSS_COMCAT_FDSN_EVENT_API",
+    "api_documentation": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "event_error_semantics": "horizontalError and depthError",
+    "first_geojson_representation_gate": {
+      "run_id": 36334713288,
+      "artifact_id": 10936432940,
+      "outcome": "NOT_IDENTIFIABLE_LOCATION_UNCERTAINTY_COVERAGE",
+      "reason": "geojson query representation did not materialize error fields in returned event properties",
+      "scientific_result": false
+    },
+    "csv_successor_gate": {
+      "run_id": 36334855282,
+      "job_id": 108663638867,
+      "head_sha": "7de2df440a73e54e93bcec3a612923b752b4da8e",
+      "artifact_id": 10936987975,
+      "artifact_sha256": "8aaa2ec42950717bd19a5572f7e26eb0a1ba6fabb94622d8a7606c6dbafb0ad8",
+      "gate_id": "h8loccsv:6c28428f3ceb2c56c5bab98d0c8939ef7be3d2dfbbf61f3780ae2076bcbedf8d",
+      "outcome": "LOCATION_UNCERTAINTY_CROSSWALK_PASS",
+      "minimum_both_errors_fraction": 0.8,
+      "matching_contract_inherited_from_geojson_gate": true,
+      "scientific_result": false
+    }
+  },
+  "cohorts": {
+    "BAY_AREA_HAYWARD_CALAVERAS": {
+      "selected": 37853,
+      "matched": 37458,
+      "match_fraction": 0.9895648957810478,
+      "both_errors_fraction": 0.9895648957810478,
+      "both_errors_among_matched_fraction": 1,
+      "split_coverage": {
+        "train": 0.989431330472103,
+        "calibration": 0.9802575107296138,
+        "test": 0.9990343347639485
+      },
+      "horizontal_error_km": {
+        "median": 0.23,
+        "p95": 0.57,
+        "p99": 1.04,
+        "max": 21.06
+      },
+      "depth_error_km": {
+        "median": 0.48,
+        "p95": 1.86,
+        "p99": 31.61,
+        "max": 31.61
+      }
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "selected": 23702,
+      "matched": 21331,
+      "match_fraction": 0.8999662475740444,
+      "both_errors_fraction": 0.8999240570415998,
+      "both_errors_among_matched_fraction": 0.999953119872486,
+      "split_coverage": {
+        "train": 0.8526785714285714,
+        "calibration": 0.8974931318681318,
+        "test": 0.9970815450643776
+      },
+      "horizontal_error_km": {
+        "median": 0.3,
+        "p95": 0.94,
+        "p99": 2.2171,
+        "max": 12.56
+      },
+      "depth_error_km": {
+        "median": 0.56,
+        "p95": 2,
+        "p99": 8.5997,
+        "max": 36.21
+      }
+    }
+  },
+  "epistemic_boundary": {
+    "comcat_errors_are_full_covariance_matrix": false,
+    "conservative_interpretation": "horizontalError is the largest horizontal projection of the location-error ellipsoid; depthError is the largest vertical projection",
+    "directional_fields_accessed_by_crosswalk": false,
+    "confirmatory_test_consumed": false,
+    "dynamic_model_execution_performed": false,
+    "physical_helicity": "NOT_EVALUATED"
+  },
+  "next_material_gate": "FULL_FAULT_NETWORK_PARENT_GRAPH_AND_LOCATION_PERTURBATION_OPERATOR_LOCK",
+  "governance": {
+    "scientific_result": null,
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}
