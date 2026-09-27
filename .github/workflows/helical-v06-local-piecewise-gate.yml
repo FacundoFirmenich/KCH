@@ -1,0 +1,328 @@
+name: Helical v0.6 locked local-piecewise gate
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-local-piecewise-20260927
+    paths:
+      - .github/workflows/helical-v06-local-piecewise-gate.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  BUNDLE_B64_SHA256: 27a5d77456219fade65254b3bd7f5518726c7c31a246d6469054b5c683e039b9
+  BUNDLE_ZIP_SHA256: f8de0cff7dd03431a815fbe88da88c57a942d58f6e2f3bfd789f31af810c3b40
+  PROTOCOL_FILE_SHA256: d1dbd521c3b58a27723d25aef5482bc44cd7fde9bbce78d038cffac3f4a30d1d
+  PROTOCOL_BODY_SHA256: 144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c
+  CORE_RUNTIME_SHA256: a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6
+  POWER_RUNTIME_SHA256: c6c354ff1a3c979352390581dcf403060bcd13f658382196fa5a44d413d1e5d9
+
+jobs:
+  locked-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up frozen Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install pinned numerical packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'scikit-learn==1.5.2'
+
+      - name: Reconstruct and verify the prelocked bundle
+        shell: bash
+        env:
+          RUNTIME_ROOT: ${{ runner.temp }}/helical_v06_locked
+        run: |
+          set -euo pipefail
+          b64="$RUNNER_TEMP/KCH_HELICAL_V06_TRANSPORT_RUNTIME.zip.b64"
+          zip="$RUNNER_TEMP/KCH_HELICAL_V06_TRANSPORT_RUNTIME.zip"
+          cat \
+            .github/helical_v06_bundle/chunk_00 \
+            .github/helical_v06_bundle/chunk_01 \
+            .github/helical_v06_bundle/chunk_02 \
+            .github/helical_v06_bundle/chunk_03 \
+            .github/helical_v06_bundle/chunk_04 \
+            > "$b64"
+          echo "$BUNDLE_B64_SHA256  $b64" | sha256sum -c -
+          base64 --decode "$b64" > "$zip"
+          echo "$BUNDLE_ZIP_SHA256  $zip" | sha256sum -c -
+          mkdir -p "$RUNTIME_ROOT"
+          unzip -q "$zip" -d "$RUNTIME_ROOT"
+          echo "$PROTOCOL_FILE_SHA256  $RUNTIME_ROOT/spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json" | sha256sum -c -
+          echo "$CORE_RUNTIME_SHA256  $RUNTIME_ROOT/runtime/helical_v06.py" | sha256sum -c -
+          echo "$POWER_RUNTIME_SHA256  $RUNTIME_ROOT/runtime/power_v06.py" | sha256sum -c -
+          python -m compileall -q "$RUNTIME_ROOT/runtime"
+
+      - name: Verify protocol identity before network acquisition
+        shell: bash
+        env:
+          RUNTIME_ROOT: ${{ runner.temp }}/helical_v06_locked
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+
+          p = Path(os.environ['RUNTIME_ROOT']) / 'spec' / 'HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json'
+          obj = json.loads(p.read_text(encoding='utf-8'))
+          body = dict(obj)
+          body.pop('protocol_id', None)
+          body.pop('protocol_sha256', None)
+          canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
+          observed = hashlib.sha256(canonical).hexdigest()
+          expected = os.environ['PROTOCOL_BODY_SHA256']
+          assert observed == expected, (observed, expected)
+          assert obj['protocol_id'] == 'h6p:' + expected
+          assert obj['status'] == 'LOCKED_BEFORE_V0_6_SOURCE_BYTE_ACQUISITION'
+          assert obj['locked_at_utc'] == '2026-09-27T01:44:51.945745Z'
+          print(json.dumps({
+              'protocol_id': obj['protocol_id'],
+              'locked_at_utc': obj['locked_at_utc'],
+              'sources': [s['catalog_id'] for s in obj['sources']],
+              'identity_verified_before_acquisition': True,
+          }, indent=2))
+          PY
+
+      - name: Acquire untouched official SCEDC source bytes
+        shell: bash
+        env:
+          DATA_ROOT: ${{ runner.temp }}/helical_v06_data
+        run: |
+          set -euo pipefail
+          mkdir -p \
+            "$DATA_ROOT/sources/CAHUILLA_SWARM_2016_2019" \
+            "$DATA_ROOT/sources/RIDGECREST_QTM_2019" \
+            "$DATA_ROOT/sources/CALMEX_BORDER_2012_2020" \
+            "$DATA_ROOT/transport/headers" \
+            "$DATA_ROOT/transport/curl"
+
+          acquire() {
+            local catalog_id="$1"
+            local url="$2"
+            local output="$3"
+            curl \
+              --proto '=https' \
+              --tlsv1.2 \
+              --fail-with-body \
+              --location \
+              --retry 5 \
+              --retry-all-errors \
+              --retry-delay 2 \
+              --connect-timeout 30 \
+              --max-time 1200 \
+              --header 'Accept-Encoding: identity' \
+              --header 'Accept: text/plain,application/gzip,application/octet-stream;q=0.9,*/*;q=0.1' \
+              --user-agent 'KCH-KwanBlocks-Helical-Lift/0.6 locked-gate via GitHub Actions' \
+              --dump-header "$DATA_ROOT/transport/headers/${catalog_id}.headers" \
+              --output "$output" \
+              --write-out '%{json}\n' \
+              "$url" > "$DATA_ROOT/transport/curl/${catalog_id}.json"
+          }
+
+          acquire \
+            CAHUILLA_SWARM_2016_2019 \
+            'https://service.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat' \
+            "$DATA_ROOT/sources/CAHUILLA_SWARM_2016_2019/out.growclust_cat"
+
+          acquire \
+            RIDGECREST_QTM_2019 \
+            'https://service.scedc.caltech.edu/ftp/QTMcatalog-ridgecrest/ridgecrest_qtm.tar.gz' \
+            "$DATA_ROOT/sources/RIDGECREST_QTM_2019/ridgecrest_qtm.tar.gz"
+
+          acquire \
+            CALMEX_BORDER_2012_2020 \
+            'https://service.scedc.caltech.edu/ftp/calmex/out.hypoDD.reloc' \
+            "$DATA_ROOT/sources/CALMEX_BORDER_2012_2020/out.hypoDD.reloc"
+
+      - name: Audit exact bytes and seal acquisition receipt
+        shell: bash
+        env:
+          DATA_ROOT: ${{ runner.temp }}/helical_v06_data
+          RUNTIME_ROOT: ${{ runner.temp }}/helical_v06_locked
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          import tarfile
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          data_root = Path(os.environ['DATA_ROOT'])
+          runtime_root = Path(os.environ['RUNTIME_ROOT'])
+          protocol_path = runtime_root / 'spec' / 'HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json'
+          protocol = json.loads(protocol_path.read_text(encoding='utf-8'))
+
+          def sha256(path: Path) -> str:
+              h = hashlib.sha256()
+              with path.open('rb') as f:
+                  for block in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(block)
+              return h.hexdigest()
+
+          datasets = []
+          for src in protocol['sources']:
+              path = data_root / src['relative_path']
+              payload = path.read_bytes()
+              if not payload:
+                  raise SystemExit(f"{src['catalog_id']}: empty payload")
+              prefix = payload[:4096].lstrip().lower()
+              if prefix.startswith(b'<!doctype html') or prefix.startswith(b'<html') or b'<body' in prefix:
+                  raise SystemExit(f"{src['catalog_id']}: HTML payload rejected")
+
+              curl_path = data_root / 'transport' / 'curl' / f"{src['catalog_id']}.json"
+              header_path = data_root / 'transport' / 'headers' / f"{src['catalog_id']}.headers"
+              curl_meta = json.loads(curl_path.read_text(encoding='utf-8'))
+              response_code = int(curl_meta.get('response_code', 0))
+              size_download = int(float(curl_meta.get('size_download', -1)))
+              if response_code != 200:
+                  raise SystemExit(f"{src['catalog_id']}: HTTP {response_code}")
+              if size_download != len(payload):
+                  raise SystemExit(
+                      f"{src['catalog_id']}: curl bytes {size_download} != file bytes {len(payload)}"
+                  )
+
+              audit = {
+                  'catalog_id': src['catalog_id'],
+                  'parser': src['parser'],
+                  'relative_path': src['relative_path'],
+                  'url': src['url'],
+                  'bytes': len(payload),
+                  'sha256': sha256(path),
+                  'headers_sha256': sha256(header_path),
+                  'curl_metadata_sha256': sha256(curl_path),
+                  'response_code': response_code,
+                  'url_effective': curl_meta.get('url_effective'),
+                  'remote_ip': curl_meta.get('remote_ip'),
+                  'content_type': curl_meta.get('content_type'),
+                  'num_redirects': curl_meta.get('num_redirects'),
+                  'ssl_verify_result': curl_meta.get('ssl_verify_result'),
+                  'size_download': size_download,
+                  'accept_encoding': 'identity',
+                  'content_decoding_requested': False,
+                  'exact_entity_body_preserved': True,
+              }
+
+              if src['parser'] in {'GROWCLUST25', 'HYPODD24'}:
+                  if b'\x00' in payload:
+                      raise SystemExit(f"{src['catalog_id']}: NUL byte in text payload")
+                  text = payload.decode('utf-8', errors='strict')
+                  rows = [line for line in text.splitlines() if line.strip() and not line.lstrip().startswith('#')]
+                  expected_fields = 25 if src['parser'] == 'GROWCLUST25' else 24
+                  valid = sum(len(line.split()) == expected_fields for line in rows)
+                  if valid == 0:
+                      raise SystemExit(f"{src['catalog_id']}: no valid {expected_fields}-field rows")
+                  audit.update({
+                      'physical_lines': len(text.splitlines()),
+                      'noncomment_rows': len(rows),
+                      'valid_schema_rows': valid,
+                      'expected_fields': expected_fields,
+                      'strict_utf8': True,
+                  })
+              else:
+                  members = []
+                  with tarfile.open(path, mode='r:gz') as tf:
+                      for member in tf.getmembers():
+                          if member.isfile():
+                              members.append({'name': member.name, 'bytes': member.size})
+                  if not members:
+                      raise SystemExit(f"{src['catalog_id']}: tar.gz has no regular members")
+                  audit.update({
+                      'tar_gz_integrity': 'PASS',
+                      'regular_members': members,
+                  })
+
+              datasets.append(audit)
+
+          body = {
+              'format': 'KCH_HELICAL_V0_6_EXACT_BYTE_ACQUISITION_RECEIPT',
+              'version': '0.6.0',
+              'protocol_id': protocol['protocol_id'],
+              'protocol_locked_at_utc': protocol['locked_at_utc'],
+              'acquired_at_utc': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+              'runner': {
+                  'repository': os.environ.get('GITHUB_REPOSITORY'),
+                  'run_id': os.environ.get('GITHUB_RUN_ID'),
+                  'run_attempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
+                  'sha': os.environ.get('GITHUB_SHA'),
+                  'ref': os.environ.get('GITHUB_REF'),
+                  'runner_os': os.environ.get('RUNNER_OS'),
+              },
+              'transport_contract': protocol['acquisition_contract'],
+              'datasets': datasets,
+              'all_exact_bytes_validated': len(datasets) == len(protocol['sources']),
+              'inference_authorized_by_acquisition_gate': len(datasets) == len(protocol['sources']),
+              'authority_ceiling': 'NONE',
+              'promotion': 'BLOCKED',
+              'canonicalization': 'BLOCKED',
+          }
+          canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
+          receipt = {
+              'receipt_id': 'h6a:' + hashlib.sha256(canonical).hexdigest(),
+              **body,
+          }
+          out = data_root / 'ACQUISITION_RECEIPT_V0_6.json'
+          out.write_text(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2))
+          PY
+
+      - name: Execute the unchanged locked v0.6 gate
+        shell: bash
+        env:
+          DATA_ROOT: ${{ runner.temp }}/helical_v06_data
+          RUNTIME_ROOT: ${{ runner.temp }}/helical_v06_locked
+          RESULTS_ROOT: ${{ runner.temp }}/helical_v06_results
+        run: |
+          set -euo pipefail
+          mkdir -p "$RESULTS_ROOT"
+          PYTHONUNBUFFERED=1 python "$RUNTIME_ROOT/runtime/helical_v06.py" run-gate \
+            --protocol "$RUNTIME_ROOT/spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json" \
+            --data-root "$DATA_ROOT" \
+            --output-dir "$RESULTS_ROOT" \
+            | tee "$RESULTS_ROOT/EXECUTION_STDOUT.log"
+
+      - name: Seal all outputs
+        if: always()
+        shell: bash
+        env:
+          DATA_ROOT: ${{ runner.temp }}/helical_v06_data
+          RUNTIME_ROOT: ${{ runner.temp }}/helical_v06_locked
+          RESULTS_ROOT: ${{ runner.temp }}/helical_v06_results
+          ARTIFACT_ROOT: ${{ runner.temp }}/helical_v06_artifact
+        run: |
+          set -euo pipefail
+          mkdir -p "$ARTIFACT_ROOT"
+          cp -a "$RUNTIME_ROOT" "$ARTIFACT_ROOT/locked_bundle"
+          cp -a "$DATA_ROOT" "$ARTIFACT_ROOT/data"
+          if [ -d "$RESULTS_ROOT" ]; then
+            cp -a "$RESULTS_ROOT" "$ARTIFACT_ROOT/results"
+          fi
+          (
+            cd "$ARTIFACT_ROOT"
+            find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+            find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FILE_SIZES.txt
+          )
+
+      - name: Upload exact-byte v0.6 gate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-local-piecewise-gate
+          path: ${{ runner.temp }}/helical_v06_artifact
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
