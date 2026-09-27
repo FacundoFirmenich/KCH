@@ -1,7 +1,7 @@
 {
   "gate": "G1C P02 Step-0 Seed Replication",
   "version": "0.1.0",
-  "status": "LOCKED_READY",
+  "status": "EXECUTED_REJECTED",
   "scientific_scope": "development_only",
   "hypothesis": "The p02 step-0 TALON mass-left advantage over fixed TMR is a repeatable sampling-conditioned residual pocket, not a seed-14 accident.",
   "source_evidence": "G1B_PILOT_CHECKPOINT_SEED14.json",
@@ -75,5 +75,14 @@
       "RUN_DEVELOPMENT_COUNTERFACTUALS": true,
       "DEVELOPMENT_PROMPT_IDS": "p02"
     }
+  },
+  "result_file": "G1C_P02_STEP0_REPLICATION_RESULT.json",
+  "result_summary": {
+    "new_seed_gains_over_tmr": {
+      "28": 0,
+      "42": 0
+    },
+    "failed_condition": "positive TALON mass-left gain over TMR in at least one new seed",
+    "decision": "reject p02 step-0 pocket; retain fixed TMR"
   }
 }
