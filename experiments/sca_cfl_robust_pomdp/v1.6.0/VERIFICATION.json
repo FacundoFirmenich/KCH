@@ -1,0 +1,10 @@
+{
+  "schema":"SCA_CFL_CROSSSTORE_VERIFICATION_V1",
+  "release":"1.6.0",
+  "gate":"BUDGETED_BELIEF_TREE_SEARCH_AND_ROBUST_POMDP_007",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":20,"failed":0},
+  "artifact":{"zip_sha256":"43844e1bd36cab85b81854133ac7618b1b2de0b9c7386396356f12f00fac8a9f","content_digest":"bdb83b5a233e1c6ad467a11f4e3b8f4edb6fd8790cf19773a2b3a855c02bb399"},
+  "hard_boundary":"Robust certificate is valid only for the declared ambiguity set and rectangular Bellman semantics; out-of-set control is non-covered.",
+  "next_gate":"AMBIGUITY_SET_LEARNING_AND_CALIBRATION_008"
+}
