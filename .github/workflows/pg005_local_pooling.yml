@@ -1,0 +1,153 @@
+name: PG005 Local Pooling Router
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg005-local-pooling-20260927
+    paths:
+      - "experiments/pi_genesis/pg005_runtime_bundle/**"
+      - ".github/workflows/pg005_local_pooling.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pg005-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fit:
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [pymc, numpyro]
+        model:
+          - M0_POPULATION
+          - M1_GLOBAL_GAUSSIAN
+          - M2_LOCAL_ROUTER
+          - M3_FIXED_LOCAL_BASELINE
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Checkout immutable fit-only bundle
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg005_runtime_bundle
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify and extract fit-only runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUNDLE=experiments/pi_genesis/pg005_runtime_bundle
+          test "$(sha256sum "$BUNDLE/part-00" | cut -d' ' -f1)" = "85f71eaeb8c038e274eb8a942de7d4f9565e4d37deebc44c5055b1375093a1cc"
+          test "$(sha256sum "$BUNDLE/part-01" | cut -d' ' -f1)" = "9aa48199714e71fb011f77ee50803ebb4e0a6c89c6f14c32b7bf4fe2fdb22548"
+          test "$(sha256sum "$BUNDLE/part-02" | cut -d' ' -f1)" = "9bc91da9b1c2d0ec58e696cca6c2d56ef4c65e8b30e57b750e46f1091df52f6b"
+          test "$(sha256sum "$BUNDLE/part-03" | cut -d' ' -f1)" = "935fdb7dee91fd0f24a0c99f0debec9d41aef449a694270b3f9972883211acc3"
+          test "$(sha256sum "$BUNDLE/part-04" | cut -d' ' -f1)" = "ffbe077127dab04a1fd058ec404a4dc98942c5d711664f12d23c8246dbbf9b7a"
+          cat "$BUNDLE"/part-* > /tmp/pg005_runtime.tar.gz.b64
+          test "$(sha256sum /tmp/pg005_runtime.tar.gz.b64 | cut -d' ' -f1)" = "eb18c99743be6cdf196bd12cb8c53b6904f06164d1d07c1bbf1a0dcdf407c101"
+          base64 -d /tmp/pg005_runtime.tar.gz.b64 > /tmp/pg005_runtime.tar.gz
+          test "$(sha256sum /tmp/pg005_runtime.tar.gz | cut -d' ' -f1)" = "c491a64de6fae82b677fbfe9edd8be8df2644bfe10ba971ffd1beda4d3321396"
+          tar -xzf /tmp/pg005_runtime.tar.gz -C experiments/pi_genesis
+          ROOT=experiments/pi_genesis/pg005_runtime
+          test ! -e "$ROOT/data/future"
+          test "$(sha256sum "$ROOT/data/train/Orthodont_ages_8_10_12.csv" | cut -d' ' -f1)" = "3c3b3c36c03583eb6e980d91b06c0d55f06bd573a05ee39b99ef5fe5bccfe0f5"
+          test "$(sha256sum "$ROOT/protocol/PG005_FROZEN_PROTOCOL.json" | cut -d' ' -f1)" = "050a31457d02f8135090c89d19f51cfd52374506aff970ad14145433e24ef1f2"
+          test "$(sha256sum "$ROOT/ir/PG005_MODEL_IR.json" | cut -d' ' -f1)" = "aef98c4a31ecbfda6a76fd1286fcde76066c780399b954fe4611d0ad0a996cf6"
+          python -m py_compile "$ROOT"/src/pg005/*.py "$ROOT"/generated/*.py
+
+      - name: Install PyMC runtime
+        if: matrix.backend == 'pymc'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "pymc>=5.20,<6"
+
+      - name: Install NumPyro runtime
+        if: matrix.backend == 'numpyro'
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "jax[cpu]>=0.5,<0.10" "numpyro>=0.19,<0.22"
+
+      - name: Execute external PPL fit
+        env:
+          PYTHONPATH: experiments/pi_genesis/pg005_runtime/src:experiments/pi_genesis/pg005_runtime/generated
+          PYTHONHASHSEED: "0"
+          JAX_ENABLE_X64: "true"
+          XLA_FLAGS: --xla_force_host_platform_device_count=1
+        run: >-
+          python -m pg005.run_backend
+          --backend ${{ matrix.backend }}
+          --model ${{ matrix.model }}
+          --root experiments/pi_genesis/pg005_runtime
+          --output results/pg005-${{ matrix.backend }}-${{ matrix.model }}
+
+      - name: Upload content-addressed fit receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: pg005-${{ matrix.backend }}-${{ matrix.model }}
+          path: results/pg005-${{ matrix.backend }}-${{ matrix.model }}
+          if-no-files-found: error
+          retention-days: 30
+
+  stress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Checkout immutable fit-only bundle
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg005_runtime_bundle
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify and extract fit-only runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUNDLE=experiments/pi_genesis/pg005_runtime_bundle
+          cat "$BUNDLE"/part-* > /tmp/pg005_runtime.tar.gz.b64
+          test "$(sha256sum /tmp/pg005_runtime.tar.gz.b64 | cut -d' ' -f1)" = "eb18c99743be6cdf196bd12cb8c53b6904f06164d1d07c1bbf1a0dcdf407c101"
+          base64 -d /tmp/pg005_runtime.tar.gz.b64 > /tmp/pg005_runtime.tar.gz
+          test "$(sha256sum /tmp/pg005_runtime.tar.gz | cut -d' ' -f1)" = "c491a64de6fae82b677fbfe9edd8be8df2644bfe10ba971ffd1beda4d3321396"
+          tar -xzf /tmp/pg005_runtime.tar.gz -C experiments/pi_genesis
+          ROOT=experiments/pi_genesis/pg005_runtime
+          test ! -e "$ROOT/data/future"
+          test "$(sha256sum "$ROOT/protocol/PG005_FROZEN_PROTOCOL.json" | cut -d' ' -f1)" = "050a31457d02f8135090c89d19f51cfd52374506aff970ad14145433e24ef1f2"
+
+      - name: Install NumPyro runtime
+        run: >-
+          python -m pip install --upgrade "pip<27" "numpy<3" "scipy<2" "pandas<4"
+          "arviz>=0.20,<1" "jax[cpu]>=0.5,<0.10" "numpyro>=0.19,<0.22"
+
+      - name: Execute frozen training-only stress
+        env:
+          PYTHONPATH: experiments/pi_genesis/pg005_runtime/src:experiments/pi_genesis/pg005_runtime/generated
+          PYTHONHASHSEED: "0"
+          JAX_ENABLE_X64: "true"
+          XLA_FLAGS: --xla_force_host_platform_device_count=1
+        run: >-
+          python -m pg005.run_backend
+          --backend numpyro
+          --model M2_LOCAL_ROUTER
+          --stress
+          --root experiments/pi_genesis/pg005_runtime
+          --output results/pg005-stress-numpyro-M2
+
+      - name: Upload stress receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: pg005-stress-numpyro-M2
+          path: results/pg005-stress-numpyro-M2
+          if-no-files-found: error
+          retention-days: 30
