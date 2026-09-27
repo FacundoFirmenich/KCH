@@ -1,0 +1,23 @@
+{
+  "program_id":"CFL-UEP-G3.2-OPEN-OPERATOR-GENESIS",
+  "material_gate":"PASS_LOCAL",
+  "outcome":"G3_2_BASELINE_EQUIVALENT",
+  "operator_genesis_demonstrated":true,
+  "private_tos_success":1.0,
+  "private_exact_symbolic_success":1.0,
+  "paired_delta":0.0,
+  "paired_bootstrap_95_ci":[0.0,0.0],
+  "private_construct_n":96,
+  "private_adversarial_n":36,
+  "private_tos_state_accuracy":1.0,
+  "private_exact_symbolic_state_accuracy":1.0,
+  "false_promotion_rate_tos":0.0,
+  "false_promotion_rate_exact_symbolic":0.0,
+  "domain_success":{"graph":1.0,"algebra":1.0,"number":1.0,"mechanics":1.0},
+  "benchmark_state":"+0_OPERATOR_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "interpretation":"Operator synthesis beyond a closed named catalog is real, but under a known correct latent chart and known affine/GF(2) meta-grammar it reduces exactly to system identification. No TOS-specific non-reducibility is supported.",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
