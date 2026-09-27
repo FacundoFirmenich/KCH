@@ -1,0 +1,10 @@
+{
+  "gate":"ACTIVE_PROVENANCE_PROBING_AND_VALUE_OF_INFORMATION_005",
+  "release":"1.4.0",
+  "decision":"PASS_WITH_LIMITS",
+  "voi_mean_probes":1.0,
+  "entropy_mean_probes":2.0,
+  "random_mean_probes":1.593,
+  "terminal_eligibility_rate":0.8,
+  "next_gate":"MULTISTEP_PROVENANCE_PLANNING_AND_ADAPTIVE_SUBMODULARITY_006"
+}
