@@ -1,0 +1,145 @@
+{
+  "format": "KCH_HELICAL_V0_6_1_REMOTE_RESULT_INDEX",
+  "version": "0.6.1",
+  "status": "LOCKED_CONFIRMATORY_NEGATIVE_WITHIN_TESTED_STATIC_LOCAL_PIECEWISE_CLASS",
+  "protocol": {
+    "protocol_id": "h6p:144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c",
+    "locked_at_utc": "2026-09-27T01:44:51.945745Z",
+    "protocol_file_sha256": "d1dbd521c3b58a27723d25aef5482bc44cd7fde9bbce78d038cffac3f4a30d1d",
+    "thresholds_changed_after_lock": false,
+    "scientific_runtime_changed_after_lock": false
+  },
+  "exact_sources": {
+    "all_or_none_pass": true,
+    "source_substitution": false,
+    "text_normalization": false,
+    "transport_path_convergence_is_not_independent_origin_replication": true,
+    "datasets": [
+      {
+        "catalog_id": "CAHUILLA_SWARM_2016_2019",
+        "bytes": 4040600,
+        "sha256": "ad49e97a24c6325417550b899919e67c209b510eaba3ba8921512b82cf206cf0",
+        "schema": "GROWCLUST25",
+        "physical_rows": 22700,
+        "events_after_relocation_filter": 20966
+      },
+      {
+        "catalog_id": "RIDGECREST_QTM_2019",
+        "bytes": 4460469,
+        "sha256": "dcb0035f69c6ea9a960e45544f31bdacb38cb7f502c3d29af827da4ff6850849",
+        "archive_member": "ridgecrest_qtm.cat",
+        "archive_member_sha256": "beeba330eb25a86e6a2bd9c84248fbabce5d090c516538d96e78f7321039167f",
+        "schema": "GROWCLUST25_TAR_GZ",
+        "physical_rows": 111918,
+        "events_after_relocation_filter": 46512
+      },
+      {
+        "catalog_id": "CALMEX_BORDER_2012_2020",
+        "bytes": 3686364,
+        "sha256": "92bfc33d2d7d8b549a52a71939505b1ee8a82f0d07d7293abfe9646328acd229",
+        "schema": "HYPODD24",
+        "physical_rows": 21186,
+        "events_after_relocation_filter": 21186
+      }
+    ]
+  },
+  "execution": {
+    "byte_probe_run_id": 36289187730,
+    "byte_probe_artifact_id": 10921731900,
+    "byte_probe_artifact_sha256": "d1b43fbcb52057b1e4a4a7a3b6dd43cbfa75f428a8a7c4a27f85d2d4eca85b5f",
+    "confirmatory_run_id": 36289316076,
+    "confirmatory_job_id": 108536203383,
+    "confirmatory_head_sha": "9bceff576ea345d8e9a1ec9aecda79a35e91bf5a",
+    "confirmatory_artifact_id": 10921958396,
+    "confirmatory_artifact_sha256": "5cdbebdc744b667168d4ab602033a29c02a411421de596c49425f630f11fb3b9",
+    "python": "3.11",
+    "numpy": "2.1.3",
+    "scikit_learn": "1.5.2",
+    "workflow_conclusion": "success"
+  },
+  "scientific_result": {
+    "gate_result_id": "v6g:85f652f9c1ee94a163ee47241e3df1d6e86e480141a462cbb833d43109290572",
+    "outcome": "NONHELICAL_BRANCHING_RIVALS_GENERALIZE",
+    "positive_catalogs": 0,
+    "catalogs_tested": 3,
+    "required_positive_catalogs": 2,
+    "aggregate_weighted_rmse_improvement": 0.011332311864884169,
+    "locked_minimum_aggregate_rmse_improvement": 0.05,
+    "unit_results": {
+      "CAHUILLA_SWARM_2016_2019": {
+        "relative_rmse_improvement": -0.003273247310494758,
+        "mean_nll_gain_per_event": -0.01189486379470206,
+        "holm_p": 0.425,
+        "helix_minus_baseline_delta_bic": 28.036532962564593,
+        "bootstrap_lower_95": -0.04259028263227983,
+        "uncertainty_threshold_pass_fraction": 0.0
+      },
+      "RIDGECREST_QTM_2019": {
+        "relative_rmse_improvement": 0.010394244511415813,
+        "mean_nll_gain_per_event": 0.0065272745366844465,
+        "holm_p": 0.08,
+        "helix_minus_baseline_delta_bic": 56.28228887353271,
+        "bootstrap_lower_95": -0.0031871466694338305,
+        "uncertainty_threshold_pass_fraction": 0.0
+      },
+      "CALMEX_BORDER_2012_2020": {
+        "relative_rmse_improvement": 0.011345948354761527,
+        "mean_nll_gain_per_event": 0.023352786973301676,
+        "holm_p": 0.03,
+        "helix_minus_baseline_delta_bic": -2.6669690514172544,
+        "bootstrap_lower_95": -7.972422767120507,
+        "uncertainty_threshold_pass_fraction": 0.0
+      }
+    },
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "universal_no_helicity": "NOT_ESTABLISHED",
+    "dynamic_claim": "OUTSIDE_STATIC_CATALOG_PROTOCOL"
+  },
+  "kwanblocks": {
+    "base_graph_id": "kbg:fcb2372b7a8d29ccda7f5d41b90c4b8a74932f745da5d4e7a3d9e3c27b93623f",
+    "graph_id": "kbg:fe4aca9b1748191467f27359dfe206cb517dca08192b789b4f4182bfc5a856c1",
+    "block_count": 170,
+    "edge_count": 350,
+    "ledger_event_count": 523,
+    "ledger_head": "fbaeb47530a82e8acd4e9122a56ab4d6ee8e553119bee18965fac2edc5b04347",
+    "predecessor_blocks_preserved": 156,
+    "predecessor_edges_preserved": 319,
+    "predecessor_ledger_events_preserved": 477
+  },
+  "validation": {
+    "internal": "99/99 PASS",
+    "independent": "68/68 PASS",
+    "combined": "167/167 PASS",
+    "sqlite_integrity_check": "ok",
+    "sqlite_foreign_key_errors": 0,
+    "deterministic_full_zip": true,
+    "full_tree_mismatch": [],
+    "cross_environment_maximum_absolute_numeric_difference": 3.637978807091713e-12,
+    "cross_environment_tolerance": 1e-10
+  },
+  "release": {
+    "full_package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_6_1.zip",
+      "bytes": 19099982,
+      "sha256": "e5754c66ad4f1a1249ef7e5857e6b740c8d86ee92e3f49fb2246975ddaa57c43"
+    },
+    "additive_package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_6_1_ADDITIVE_FROM_v0_6_0.zip",
+      "bytes": 14606662,
+      "sha256": "44bb226b488913a0a6f9c6aa227ffdfec53f8169ea84d85d59ca02b61af624a2"
+    },
+    "evidence_bundle": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_6_1_CONFIRMATORY_EVIDENCE.zip",
+      "bytes": 13571544,
+      "sha256": "cf141edb9b986b0c7459d313e29a683f55a868cf77007f557b8adcaa64bbeaee"
+    },
+    "delivery_manifest_sha256": "c4d78811a76e31bc908bd5962a09bb096880fce7c670dfb012444ce2e3bdd515",
+    "independent_validation_sha256": "86917bf75f31ba93e280a09661e044b733d07be0a6798ff3027b2e9d6b774709"
+  },
+  "governance": {
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}
