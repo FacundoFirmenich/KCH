@@ -1,0 +1,77 @@
+{
+  "gate": "G2 Always-TMR Policy Freeze",
+  "version": "0.1.0",
+  "status": "FROZEN_READY_FOR_ONE_SHOT_RESERVE",
+  "freeze_id": "rdss-v0.1-g2-always-tmr-2026-09-27",
+  "frozen_on": "2026-09-27",
+  "scientific_scope": "protected_reserve_one_shot",
+  "evidence_sources": [
+    "G1B_DEVELOPMENT_COMPLETE_SEED14.json",
+    "G1C_P02_STEP0_REPLICATION_RESULT.json"
+  ],
+  "policy": {
+    "generation_authority": "talon_mass_right",
+    "routing_rule": "always select talon_mass_right",
+    "rescue_switches_enabled": false,
+    "abstention_fallback": "talon_mass_right",
+    "talon_mass_left_role": "counterfactual evaluation only",
+    "talm_mass_right_soft_role": "counterfactual evaluation only",
+    "baseline_role": "counterfactual comparator only",
+    "talm_mass_left_role": "sensor/control-only; not a deployable action"
+  },
+  "frozen_runtime": {
+    "model": "Qwen/Qwen3.5-4B-Base",
+    "seed": 14,
+    "operator_lineage": "historical_v04_common_projection",
+    "method_config_hash": "ccfe90518a63966bd834247e11f2a0bb0e11178e6cb94cd4e00a00603388f61e",
+    "prompt_suite_hash": "bb0c752ec71965d62d8b8646876b50a8b52d03479c57103d5a90b4f002da1114",
+    "checkpoints": [
+      0,
+      16,
+      32,
+      64
+    ],
+    "actions": [
+      "baseline",
+      "talm_mass_right_soft",
+      "talon_mass_left",
+      "talon_mass_right"
+    ],
+    "reserve_prompt_ids": [
+      "p07",
+      "p08",
+      "p09",
+      "p10"
+    ]
+  },
+  "required_invariants": [
+    "fixed TMR and TMR+SHADOW token IDs are exactly identical",
+    "SHADOW probes sample no token and mutate no active generation state",
+    "counterfactual actions share byte-identical common state and branch seed within each group",
+    "all four actions are present for every observed checkpoint group",
+    "no development-derived coefficient, threshold, action, seed, budget, hash, or policy is changed after this freeze"
+  ],
+  "preregistered_endpoints": {
+    "primary": "mean paired automatic-utility difference: TMR minus baseline across reserve common-state groups",
+    "secondary": [
+      "TMR oracle-win count",
+      "oracle margin capture relative to baseline",
+      "TMR harmful-group rate versus baseline",
+      "contract-pass-rate difference: TMR minus baseline"
+    ],
+    "reserve_gate_pass_if_all": [
+      "all required invariants pass",
+      "mean paired automatic-utility difference TMR minus baseline is non-negative",
+      "TMR contract-pass rate is not lower than baseline"
+    ],
+    "interpretation_rule": "Report exact estimates and denominators. With this small reserve, do not claim population significance from the gate alone."
+  },
+  "one_shot_rules": {
+    "execute_exactly_once": true,
+    "freeze_id_required": true,
+    "expected_hashes_required": true,
+    "no_policy_updates_after_observing_reserve": true,
+    "posthoc_oracle_use": "evaluation only; never action selection",
+    "failure_behavior": "fail closed to fixed TMR and mark the reserve run invalid if any invariant fails"
+  }
+}
