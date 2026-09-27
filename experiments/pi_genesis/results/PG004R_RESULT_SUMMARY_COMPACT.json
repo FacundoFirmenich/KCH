@@ -1,0 +1,44 @@
+{
+  "gate_id": "KCH-PI-GENESIS-PG004R-BENCHMARK-ADMISSIBILITY-001",
+  "jurisdiction": "POST_HOC_BENCHMARK_REMEDIATION_SHADOW_ONLY",
+  "remediation_state": "1",
+  "new_confirmatory_generalization_state": "+0",
+  "parent_gate_state_remains": "-1",
+  "parent_summary_hash": "2102712ea996a6eec9f2a3cf6da2e52cb5868622ac3b2126272f6ae2ce93da15",
+  "results": {
+    "pymc": {
+      "hierarchical_nlpd": 4.013226087886919,
+      "complete_pooling_nlpd": 4.050264306514982,
+      "no_pooling_nlpd": 4.558456659852545,
+      "hindsight_oracle_nlpd": 3.8159417857366784,
+      "delta_to_complete_pooling": -0.03703821862806311,
+      "delta_to_no_pooling": -0.5452305719656261,
+      "delta_to_hindsight_oracle": 0.19728430215024018
+    },
+    "numpyro": {
+      "hierarchical_nlpd": 4.012178196502429,
+      "complete_pooling_nlpd": 4.050264306514982,
+      "no_pooling_nlpd": 4.558456659852545,
+      "hindsight_oracle_nlpd": 3.8159417857366784,
+      "delta_to_complete_pooling": -0.03808611001255269,
+      "delta_to_no_pooling": -0.5462784633501157,
+      "delta_to_hindsight_oracle": 0.1962364107657506
+    },
+    "oracle_choices": {
+      "complete_pooling": 14,
+      "no_pooling": 4,
+      "no_pooling_players": ["Clemente", "Alvarado", "Williams", "Alvis"]
+    }
+  },
+  "next_object": {
+    "name": "Local Pooling Prior Router",
+    "candidate_family": "sum-zero adaptive local-scale prior or mixture-of-pooling experts governed by a training-only gate",
+    "required_future_evidence": "new untouched natural future block"
+  },
+  "ledger": {
+    "count": 4,
+    "head": "32b32ab10ca13f444e46b4899d9b7a9216bead2e204bcfddc3aa985aed31d997",
+    "valid": true
+  },
+  "summary_hash": "2e9e94221340d21149e459a953c985857a0e49ea97db9502ea49eced1bc01ccf"
+}
