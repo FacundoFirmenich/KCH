@@ -1,0 +1,12 @@
+{
+  "episodes":500,
+  "outer_rejects":498,
+  "outer_reject_rate":0.996,
+  "structural_proposals":486,
+  "structural_proposal_rate":0.972,
+  "candidate_certifications":486,
+  "candidate_certification_rate":0.972,
+  "selected_depth_counts":{"0":14,"1":486},
+  "outer_cross_median":195.0,
+  "fresh_certification_cross_median":177.0
+}
