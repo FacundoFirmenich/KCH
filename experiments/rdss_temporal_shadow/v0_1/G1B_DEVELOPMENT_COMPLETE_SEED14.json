@@ -1,0 +1,80 @@
+{
+  "gate": "RDSS Temporal Common-State SHADOW Gate",
+  "version": "0.1.0",
+  "status": "G1B_DEVELOPMENT_P01_P06_COMPLETE",
+  "executed_on": "2026-09-27",
+  "scientific_scope": "development_only",
+  "model": "Qwen/Qwen3.5-4B-Base",
+  "seed": 14,
+  "default_action": "talon_mass_right",
+  "operator_lineage": "historical_v04_common_projection",
+  "method_config_hash": "ccfe90518a63966bd834247e11f2a0bb0e11178e6cb94cd4e00a00603388f61e",
+  "prompt_suite_hash": "bb0c752ec71965d62d8b8646876b50a8b52d03479c57103d5a90b4f002da1114",
+  "prompts": [
+    "p01",
+    "p02",
+    "p03",
+    "p04",
+    "p05",
+    "p06"
+  ],
+  "actions": [
+    "baseline",
+    "talm_mass_right_soft",
+    "talon_mass_left",
+    "talon_mass_right"
+  ],
+  "evidence": {
+    "counterfactual_rows": 76,
+    "common_state_groups": 19,
+    "complete_four_action_groups": 19,
+    "common_state_and_branch_seed_groups": 19,
+    "mean_automatic_utility_by_action": {
+      "baseline": 0.40545112781954884,
+      "talm_mass_right_soft": 0.40545112781954884,
+      "talon_mass_left": 0.3821428571428571,
+      "talon_mass_right": 0.41597744360902256
+    },
+    "oracle_win_counts": {
+      "talon_mass_right": 18,
+      "talon_mass_left": 1
+    },
+    "positive_residual_groups": 1,
+    "mean_oracle_headroom_over_tmr": 0.015789473684210527,
+    "max_oracle_headroom_over_tmr": 0.3,
+    "positive_residuals": [
+      {
+        "prompt_id": "p02",
+        "checkpoint_step": 0,
+        "best_action": "talon_mass_left",
+        "gain": 0.3,
+        "best_utility": 0.3,
+        "tmr_utility": 0
+      }
+    ]
+  },
+  "p06_completion": {
+    "campaign_rows": 2,
+    "counterfactual_rows": 16,
+    "common_state_groups": 4,
+    "exact_non_interference_pass": true
+  },
+  "downstream_replication": {
+    "result_file": "G1C_P02_STEP0_REPLICATION_RESULT.json",
+    "seed_28_left_gain_over_tmr": 0,
+    "seed_42_left_gain_over_tmr": 0,
+    "pocket_generalization_rejected": true
+  },
+  "invariants": {
+    "exact_non_interference_pass": true,
+    "complete_four_action_groups": true,
+    "common_state_and_branch_seed": true,
+    "protected_reserve_touched": false
+  },
+  "decision": {
+    "rescue_screen_fit_authorized": false,
+    "fixed_policy_freeze_candidate": "always_talon_mass_right",
+    "reason": "TMR wins 18/19 development groups and the sole residual pocket failed both preregistered new-seed replications.",
+    "next_gate": "freeze the always-TMR policy and all hashes before one protected-reserve evaluation"
+  }
+}
