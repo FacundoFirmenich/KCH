@@ -1,0 +1,23 @@
+{
+  "program_id":"CFL-UEP-G3.4-MIXED-OBSERVATIONAL-METAGRAMMAR",
+  "material_gate":"PASS_LOCAL_REMOTE_EXACT_CORE",
+  "outcome":"PREDICTIVE_CLOSURE_EXACT_BUT_METAGRAMMAR_NONREDUCIBILITY_NOT_SUPPORTED",
+  "private_construct_n":96,
+  "private_tos_predictive_success":1.0,
+  "private_exact_metagrammar_success":1.0,
+  "paired_delta":0.0,
+  "paired_bootstrap_95_ci":[0.0,0.0],
+  "private_state_accuracy_tos":1.0,
+  "false_promotion_rate_tos":0.0,
+  "predictive_identifiability":{"unique_target_prediction":96,"total_construct":96,"rate":1.0},
+  "representation_identifiability":{"unique_chart_family":56,"ambiguous_chart_family":40,"unique_chart_family_rate":0.5833333333333334,"truth_family_retained_in_compatible_fiber":1.0,"max_compatible_families":5},
+  "posthoc_extended_identifiability_counts":{"unique_concrete_chart":41,"unique_operator":65,"unique_chart_operator_pair":41},
+  "benchmark_state":"+0_PREDICTIVE_METAGRAMMAR_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "topology_claim_state":"0_PARTIALLY_NOT_IDENTIFIABLE",
+  "authority":{"prediction":"LOCAL_REMOTE_EXACT_WITHIN_GENERATED_KERNEL","chart_family":"PARTIAL_ONLY","chart_identity":"PARTIAL_ONLY","operator_identity":"PARTIAL_ONLY","ontology":"NONE"},
+  "reproducibility":{"remote_run_id":36347377132,"remote_head_sha":"9c750a3d5d3e9c6ae6af42e7b036771a66540c1a","remote_artifact_sha256":"a1ae823f3478012dd5c79101700dd2c23c72670d3ade65e48ab1a111ab6cf425","truth_manifest_byte_identical":true,"final_adjudication_byte_identical":true,"semantic_mismatches_exact_and_tos_methods":0,"semantic_mismatches_all_methods":1,"mismatch":"one IID graph CCA rounding boundary only"},
+  "authority_global":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
