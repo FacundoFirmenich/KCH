@@ -1,0 +1,11 @@
+{
+  "schema":"SCA_CFL_CROSSSTORE_VERIFICATION_V1",
+  "release":"1.4.0",
+  "gate":"ACTIVE_PROVENANCE_PROBING_AND_VALUE_OF_INFORMATION_005",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":19,"failed":0},
+  "artifact":{"zip_sha256":"a43a4110eb4666e63965068bd528c04864006199034476025c2da07c3691697c","content_digest":"56af292bb284a92c2c092513f52b5682d9e676e3597561c3e0ab3f8170b7073e"},
+  "byte_identity":{"local":true,"library":true,"drive":true},
+  "hard_boundary":"Soft provenance beliefs may select probes but cannot create hard genealogy constraints. Only attested authorized results can change the admissible genealogy family.",
+  "next_gate":"MULTISTEP_PROVENANCE_PLANNING_AND_ADAPTIVE_SUBMODULARITY_006"
+}
