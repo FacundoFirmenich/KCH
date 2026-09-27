@@ -1,0 +1,37 @@
+name: Helical v0.6 fast byte-route probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v06-byte-quorum-resume-20260927
+    paths:
+      - .github/workflows/helical-v06-byte-quorum-fast-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe candidate origin-preserving routes in parallel
+        shell: bash
+        env:
+          PROBE_OUT: ${{ runner.temp }}/v06_fast_probe
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python .github/helical_v06_transport/byte_quorum_fast_probe.py \
+            | tee "$RUNNER_TEMP/v06_fast_probe_stdout.log"
+          cp "$RUNNER_TEMP/v06_fast_probe_stdout.log" "$PROBE_OUT/EXECUTION_STDOUT.log"
+      - name: Upload probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v06-fast-byte-route-probe
+          path: ${{ runner.temp }}/v06_fast_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
