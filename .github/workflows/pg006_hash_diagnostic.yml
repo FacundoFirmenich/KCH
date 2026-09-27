@@ -1,0 +1,40 @@
+name: PG006 Hash Diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - pg006-decision-coupled-router-20260927
+    paths:
+      - ".github/workflows/pg006_hash_diagnostic.yml"
+      - "experiments/pi_genesis/pg006_runtime/HASH_DIAGNOSTIC_*"
+
+permissions:
+  contents: read
+
+jobs:
+  hashes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/pi_genesis/pg006_runtime
+          sparse-checkout-cone-mode: false
+      - name: Print exact runtime hashes
+        shell: bash
+        run: |
+          set -euxo pipefail
+          ROOT=experiments/pi_genesis/pg006_runtime
+          find "$ROOT" -type f -print | sort
+          sha256sum \
+            "$ROOT/data/train/construction_days_0_5.csv" \
+            "$ROOT/data/calibration/calibration_days_6_7.csv" \
+            "$ROOT/data/design/future_days_8_9_design.csv" \
+            "$ROOT/protocol/PG006_FROZEN_PROTOCOL.json" \
+            "$ROOT/ir/PG006_COMPONENT_IR.json" \
+            "$ROOT/generated/components_pymc.py" \
+            "$ROOT/generated/components_numpyro.py" \
+            "$ROOT/src/pg006/data.py" \
+            "$ROOT/src/pg006/component_runner.py"
