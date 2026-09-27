@@ -1,0 +1,59 @@
+{
+  "adjudication": {
+    "decision": "PROMOTE_STRONG_3OF3",
+    "states": {
+      "drive": {"reason": "MATCH", "state": "Q3_VERIFIED_CURRENT"},
+      "github": {"reason": "MATCH", "state": "Q3_VERIFIED_CURRENT"},
+      "library": {"reason": "MATCH", "state": "Q3_VERIFIED_CURRENT"}
+    }
+  },
+  "artifact_zip_sha256": "186ae5c1e6124f0f926f8d5a87df094d3fe2f70d0dd58d5c94124ea441068848",
+  "content_digest": "4c3f21eaac3a7b796fd506a4a3a9ad2a20ffe2b61a496234ee28781bed2a8749",
+  "limitations": [
+    "same user controls all three provider accounts",
+    "provider availability is not a truth oracle",
+    "GitHub persists functional source and pointer, while Library/Drive persist complete zip",
+    "whole-account or coordinated provider rollback is not solved"
+  ],
+  "observations": {
+    "drive": {
+      "artifact_sha256": "186ae5c1e6124f0f926f8d5a87df094d3fe2f70d0dd58d5c94124ea441068848",
+      "content_digest": "4c3f21eaac3a7b796fd506a4a3a9ad2a20ffe2b61a496234ee28781bed2a8749",
+      "file_id": "external-gdrive:file:1EvEYILWe9LgR0q3YYxBOdBymDsNf8eYP",
+      "parent_manifest_digest": "a306d327dc8e584fe1f24e1d0b66f351350a5569f150a0299507e3090e175ddf",
+      "path": "/Google Drive/SCA-CFL/SCA_CFL_CrossStore_Continuity_v1_0_1.zip",
+      "release": "1.0.1",
+      "verification": "materialized_and_sha256_matched",
+      "verified": true
+    },
+    "github": {
+      "anchor_commit": "cc74ef834511bec4d22796e9c3fc3b4dade8f2d0",
+      "artifact_sha256": "186ae5c1e6124f0f926f8d5a87df094d3fe2f70d0dd58d5c94124ea441068848",
+      "branch": "sca-cfl-crossstore-v1-0-20260927",
+      "content_digest": "4c3f21eaac3a7b796fd506a4a3a9ad2a20ffe2b61a496234ee28781bed2a8749",
+      "directory": "experiments/sca_cfl_crossstore/v1.0.1/",
+      "parent_manifest_digest": "a306d327dc8e584fe1f24e1d0b66f351350a5569f150a0299507e3090e175ddf",
+      "pointer_blob_sha": "00977a1e8244b89a3ddc0a698e428acbad8caace",
+      "promotion_blob_sha": "752a13c464b9b94972f7e127525690138ddb7f0a",
+      "release": "1.0.1",
+      "repository": "FacundoFirmenich/KCH",
+      "verification": "pointer_and_source_read_back",
+      "verified": true
+    },
+    "library": {
+      "artifact_sha256": "186ae5c1e6124f0f926f8d5a87df094d3fe2f70d0dd58d5c94124ea441068848",
+      "content_digest": "4c3f21eaac3a7b796fd506a4a3a9ad2a20ffe2b61a496234ee28781bed2a8749",
+      "file_id": "file_000000002f5881f499f49a6d8c9d1711",
+      "library_file_id": "libfile_33fda95d40fc8191abc8f998c10168cb",
+      "parent_manifest_digest": "a306d327dc8e584fe1f24e1d0b66f351350a5569f150a0299507e3090e175ddf",
+      "path": "/SCA-CFL/SCA_CFL_CrossStore_Continuity_v1_0_1.zip",
+      "release": "1.0.1",
+      "verification": "materialized_and_sha256_matched",
+      "verified": true
+    }
+  },
+  "parent_manifest_digest": "a306d327dc8e584fe1f24e1d0b66f351350a5569f150a0299507e3090e175ddf",
+  "preliminary_release_note": "v1.0.0 was persisted before final cleanup and was not promoted; v1.0.1 is the promoted release candidate.",
+  "release": "1.0.1",
+  "schema": "SCA_CFL_PERSISTENCE_LEDGER_V1"
+}
