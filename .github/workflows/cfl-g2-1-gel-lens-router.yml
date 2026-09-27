@@ -33,6 +33,9 @@ jobs:
       - name: Materialize and verify deterministic runner
         run: |
           set -euo pipefail
+          base64 -d experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py.gz.b64.part1 > experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py.gz
+          echo "277d5c6f0a0c8351fffcbff18f51b0a78daa3017e7d5e3eba237fd83f57af5ae  experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py.gz" | sha256sum -c -
+          gzip -t experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py.gz
           gzip -dc experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py.gz > experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
           echo "6d7d4033aca01b60f7197aa907b49a5570a476c06f5ae7cb122d1a2e2834cdc9  experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py" | sha256sum -c -
           python -m py_compile experiments/cfl_g2_1_gel_lens_router_20260927/run_g21.py
