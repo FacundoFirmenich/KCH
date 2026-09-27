@@ -1,0 +1,10 @@
+{
+  "episodes":1000,
+  "outer_false_rejects":18,
+  "outer_false_reject_rate":0.018,
+  "structural_proposals":0,
+  "structural_proposal_rate":0.0,
+  "false_candidate_certifications":0,
+  "false_candidate_certification_rate":0.0,
+  "forced_fresh_depth1_certifier":{"episodes":2000,"false_crossings":17,"false_crossing_rate":0.0085,"nominal_alpha":0.05}
+}
