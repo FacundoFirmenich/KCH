@@ -1,0 +1,10 @@
+{
+  "schema":"SCA_CFL_VERIFICATION_V1",
+  "release":"1.7.0",
+  "gate":"AMBIGUITY_SET_LEARNING_AND_CALIBRATION_008",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":18,"failed":0},
+  "content_digest":"b48e17315038cd4654fc09fbdfcc8b46d0567dbc0f1ac73d82a08a192d63c6ed",
+  "zip_sha256":"47000205670ef1a2d52575c66f13ae7aebf7fb5c814ab023fdfe6a52b52165ee",
+  "hard_boundary":"Coverage is conditional on the true DGP being represented by the declared finite authority family. Rejection yields HOLD; fallback activation requires explicit authority."
+}
