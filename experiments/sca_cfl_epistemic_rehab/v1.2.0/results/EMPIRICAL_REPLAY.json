@@ -1,0 +1,12 @@
+{
+  "candidate":"fixed_logistic",
+  "incumbent":"source_frozen",
+  "quarantine_window":"2016",
+  "quarantine_brier":{"candidate":0.10272456694394827,"incumbent":0.08780147408460386},
+  "post_window":"2017-2025",
+  "n":108,
+  "post_brier":{"candidate":0.047110469634649994,"incumbent":0.1078570122407917},
+  "mean_brier_advantage":0.06074654260614171,
+  "safe_mixture_e_process":{"final_e_value":0.4232725741866754,"max_e_value":0.9588478188494135,"threshold":20.0,"decision":"UNRESOLVED"},
+  "interpretation":"Historical replay favors the candidate by average Brier but does not meet the conservative sequential evidence threshold; no automatic activation."
+}
