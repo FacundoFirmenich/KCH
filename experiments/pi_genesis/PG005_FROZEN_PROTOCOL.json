@@ -1,0 +1,248 @@
+{
+  "authority_ceiling": "SHADOW",
+  "domain": {
+    "full_sha256": "57793f38654aefd74338be403738f75d469c979c5ed224a9025c9c7ae541b8ee",
+    "future_rule": "age == 14",
+    "future_sha256": "3888cd2fd350130e285910d808d06018c3d5c95ebc0cf9419dc3ffd17c7c8dba",
+    "investigator_blinding": false,
+    "name": "nlme::Orthodont",
+    "procedural_fit_blinding": true,
+    "source_path": "csv/nlme/Orthodont.csv",
+    "source_repository": "vincentarelbundock/Rdatasets",
+    "training_rule": "age in {8,10,12}",
+    "training_sha256": "3c3b3c36c03583eb6e980d91b06c0d55f06bd573a05ee39b99ef5fe5bccfe0f5"
+  },
+  "evaluation": {
+    "complexity_adjusted_utility": "-NLPD - 0.005*log(1+fit_seconds) - 0.01*abstention_rate; descriptive only",
+    "diagnostic_pooling_label": {
+      "AMBIGUOUS": "otherwise",
+      "LOCAL": "M3 pointwise NLPD + 0.05 < M1 pointwise NLPD",
+      "POOL": "M1 pointwise NLPD + 0.05 < M3 pointwise NLPD"
+    },
+    "oracle_envelope": {
+      "deployable_policy": false,
+      "members": [
+        "M0_POPULATION",
+        "M1_GLOBAL_GAUSSIAN",
+        "M3_FIXED_LOCAL_BASELINE"
+      ],
+      "role": "diagnostic ceiling only"
+    },
+    "oracle_gap_closure": "rho=(L_best_aggregate_baseline-L_M2)/(L_best_aggregate_baseline-L_pointwise_oracle)",
+    "oracle_gap_estimable_floor": 0.02,
+    "primary_future_metric": "mean pointwise negative log predictive density at age 14",
+    "secondary": [
+      "RMSE",
+      "80% coverage",
+      "90% coverage",
+      "unit-level signed gains and harms"
+    ]
+  },
+  "frozen_local_time": "2026-09-27T04:48:39+02:00",
+  "frozen_utc_time": "2026-09-27T02:48:39Z",
+  "gate_id": "KCH-PI-GENESIS-PG005-LOCAL-POOLING-ROUTER-001",
+  "gates": {
+    "G10_ABSTENTION_CALIBRATION": {
+      "maximum_false_decision_rate_on_ambiguous": 0.2,
+      "minimum_coverage_of_decisive_labels": 0.2,
+      "minimum_selective_accuracy": 0.7,
+      "not_estimable_if_decisive_labels_below": 5
+    },
+    "G11_ADVERSARIAL_LOCAL_SCALE_STRESS": {
+      "dimension": "slope",
+      "maximum_median_abs_P_LOCAL_change_others": 0.1,
+      "maximum_target_rank": 3,
+      "minimum_target_P_LOCAL_increase": 0.2,
+      "perturbation": "add +2.5*M0 training residual SD to selected subject age-12 response",
+      "selected_subject_index_zero_based": 15,
+      "selector": "int(SHA256(parent_commit)[0:8],16) mod J",
+      "selector_digest": "b2f424880c79386d2c5806e4fcdc9991b1700be863424fad1dda0a6374332cc4"
+    },
+    "G12_AUTHORITY_CEILING": {
+      "maximum": "SHADOW",
+      "score_cannot_escalate_authority": true
+    },
+    "G1_DATA_COMMITMENT_AND_FUTURE_ISOLATION": {
+      "requirements": [
+        "all frozen hashes exact",
+        "future directory absent from fitting jobs"
+      ]
+    },
+    "G2_EXTERNAL_PPL_QUORUM": {
+      "requirements": [
+        "PyMC live",
+        "NumPyro live",
+        "independent model source",
+        "independent kernels"
+      ]
+    },
+    "G3_SUM_ZERO_SEMANTIC_IDENTITY": {
+      "basis_tolerance": 1e-10,
+      "max_abs_sum": 1e-10
+    },
+    "G4_PRIOR_PREDICTIVE_ADMISSIBILITY": {
+      "finite_fraction": 1.0,
+      "raw_age14_central_99_interval_must_lie_within": [
+        5.0,
+        45.0
+      ]
+    },
+    "G5_SAMPLING_HEALTH": {
+      "max_divergences": 0,
+      "max_rank_folded_rhat": 1.05,
+      "min_bulk_ess": 200,
+      "min_tail_ess": 100
+    },
+    "G6_CROSS_PPL_CONFORMANCE": {
+      "max_future_nlpd_difference_per_subject": 0.05,
+      "max_standardized_mean_delta": 0.15,
+      "max_standardized_wasserstein": 0.2,
+      "sd_ratio_interval": [
+        0.75,
+        1.33
+      ]
+    },
+    "G7_ROUTER_WHITEBOX_REPRODUCIBILITY": {
+      "max_abs_probability_difference": 0.2,
+      "mean_abs_probability_difference": 0.08,
+      "min_exact_state_agreement": 0.9
+    },
+    "G8_FUTURE_NLPD_NONINFERIORITY": {
+      "M2_minus_best_aggregate_baseline_max": 0.05
+    },
+    "G9_ORACLE_GAP_CLOSURE": {
+      "max_single_subject_share_of_positive_gain": 0.5,
+      "minimum_rho": 0.2,
+      "not_estimable_if_oracle_gap_below": 0.02
+    }
+  },
+  "genealogy": {
+    "parent_branch": "pg004-external-quorum-20260927",
+    "parent_commit": "7a0f661254601ea8cce266cb099b4595491ff906",
+    "parent_gate": "KCH-PI-GENESIS-PG004R-BENCHMARK-ADMISSIBILITY-001",
+    "parent_state": "1",
+    "parent_summary_hash": "2e9e94221340d21149e459a953c985857a0e49ea97db9502ea49eced1bc01ccf",
+    "pg004_state_remains": "-1"
+  },
+  "mandatory_failure_or_abstention": [
+    "future leakage => 0",
+    "semantic mismatch => 0",
+    "external PPL quorum missing => +0",
+    "sampling or empirical contradiction => -1",
+    "oracle gap not estimable => +0 for G9 only",
+    "insufficient decisive labels => +0 for G10 only",
+    "authority breach => 0"
+  ],
+  "models": {
+    "M0_POPULATION": {
+      "likelihood": "Normal(mu,sigma)",
+      "mu": "alpha+beta_time*t+beta_sex*sex+beta_time_sex*t*sex",
+      "random_effects": "none"
+    },
+    "M1_GLOBAL_GAUSSIAN": {
+      "a": "tau_a * B @ u_a",
+      "b": "tau_b * B @ u_b",
+      "likelihood": "Normal(mu+a[group]+b[group]*t,sigma)",
+      "tau_a": "HalfNormal(0.35)",
+      "tau_b": "HalfNormal(0.25)",
+      "u_a": "Normal(0,I_{J-1})",
+      "u_b": "Normal(0,I_{J-1})"
+    },
+    "M2_LOCAL_ROUTER": {
+      "a": "P @ r_a; P=I-11'/J",
+      "b": "P @ r_b; P=I-11'/J",
+      "lambda_a": "HalfCauchy(1)",
+      "lambda_b": "HalfCauchy(1)",
+      "lambda_tilde": "sqrt(c^2*lambda^2/(c^2+tau^2*lambda^2))",
+      "likelihood": "Normal(mu+a[group]+b[group]*t,sigma)",
+      "r_a": "tau_a*lambda_tilde_a*w_a",
+      "r_b": "tau_b*lambda_tilde_b*w_b",
+      "slab_a": 1.0,
+      "slab_b": 0.75,
+      "tau_a": "HalfNormal(0.15)",
+      "tau_b": "HalfNormal(0.18)",
+      "w_a": "B @ u_a; u_a~Normal(0,I_{J-1})",
+      "w_b": "B @ u_b; u_b~Normal(0,I_{J-1})"
+    },
+    "M3_FIXED_LOCAL_BASELINE": {
+      "a": "0.85 * B @ u_a",
+      "b": "0.60 * B @ u_b",
+      "likelihood": "Normal(mu+a[group]+b[group]*t,sigma)",
+      "role": "deployable low-pooling diagnostic baseline, not a candidate successor",
+      "u_a": "Normal(0,I_{J-1})",
+      "u_b": "Normal(0,I_{J-1})"
+    },
+    "common_priors": {
+      "alpha": "Normal(0,0.5)",
+      "beta_sex": "Normal(0,0.5)",
+      "beta_time": "Normal(0,0.5)",
+      "beta_time_sex": "Normal(0,0.25)",
+      "sigma": "HalfNormal(0.5)"
+    }
+  },
+  "preprocessing": {
+    "response_standardization": "training-only mean and population SD; inverse transform for reported predictions",
+    "sex_coordinate": "Female=0; Male=1",
+    "subject_order": "lexicographic Subject string",
+    "time_coordinate": "t=(age-10)/2; training t in {-1,0,1}; future t=2",
+    "zero_sum_basis": "Helmert orthonormal J x (J-1)"
+  },
+  "protocol_version": "1.0.0-frozen",
+  "q4": {
+    "non_compensatory": true,
+    "precedence": [
+      "0",
+      "-1",
+      "+0",
+      "1"
+    ],
+    "states": [
+      "1",
+      "-1",
+      "+0",
+      "0"
+    ]
+  },
+  "reporting": {
+    "all draws content-addressed": true,
+    "all unit-level harms_preserved": true,
+    "append_only_ledger": true,
+    "parent_not_rewritten": true,
+    "separate statistical_empirical_epistemic_authority_tracks": true
+  },
+  "router": {
+    "dimension_states": "same probability thresholds applied separately to kappa_intercept and kappa_slope",
+    "future_outcomes_forbidden": true,
+    "scale_convention": {
+      "kappa_age14": "1/(1+(s_a^2+4*s_b^2)/sigma^2)",
+      "kappa_intercept": "1/(1+3*s_a^2/sigma^2)",
+      "kappa_slope": "1/(1+2*s_b^2/sigma^2)",
+      "s_a": "tau_a*lambda_tilde_a before zero-sum projection",
+      "s_b": "tau_b*lambda_tilde_b before zero-sum projection"
+    },
+    "state_rule": {
+      "ABSTAIN": "otherwise",
+      "LOCAL": "Pr(kappa_age14<0.30|training)>=0.80",
+      "POOL": "Pr(kappa_age14>0.70|training)>=0.80"
+    }
+  },
+  "sampling": {
+    "chains": 4,
+    "draws": 750,
+    "families": [
+      "PyMC",
+      "NumPyro"
+    ],
+    "max_tree_depth": 12,
+    "seeds": {
+      "numpyro": 2026092752,
+      "prior_predictive": 2026092753,
+      "pymc": 2026092751,
+      "stress": 2026092754
+    },
+    "separate_processes": true,
+    "shared_generated_log_density_kernel": false,
+    "target_accept": 0.95,
+    "warmup": 750
+  }
+}
