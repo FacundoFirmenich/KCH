@@ -1,0 +1,19 @@
+{
+  "bounded_expanded":65,
+  "bounded_memo_states":109,
+  "certified_gap":0.0,
+  "certified_root_action":"s3",
+  "decision":"PASS_WITH_LIMITS",
+  "exact_root_action":"s3",
+  "exact_value":0.6394818652850001,
+  "exhaustive_cached_states":4077,
+  "gate":"BUDGETED_BELIEF_TREE_SEARCH_AND_ROBUST_POMDP_007",
+  "next_gate":"AMBIGUITY_SET_LEARNING_AND_CALIBRATION_008",
+  "nominal_fixed_worst_case":0.6549999999999999,
+  "nominal_root_action":"s2",
+  "ood_control":{"guarantee_applies":false,"nominal_policy_value":0.585,"robust_policy_value":0.565},
+  "release":"1.6.0",
+  "robust_fixed_worst_case":0.6599999999999999,
+  "static_pruned":568,
+  "tests":"20/20"
+}
