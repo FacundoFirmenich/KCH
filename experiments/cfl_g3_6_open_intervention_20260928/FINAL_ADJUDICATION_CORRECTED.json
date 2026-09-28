@@ -1,0 +1,15 @@
+{
+  "program_id":"CFL-UEP-G3.6-OPEN-INTERVENTION-GRAMMAR-GENESIS",
+  "material_gate":"PASS_LOCAL_REMOTE_WITH_NUMERICAL_VARIATION",
+  "outcome":"G3_6_INFERIOR_TO_EXACT_CONTINUOUS_DESIGN",
+  "intervention_genesis_demonstrated":true,
+  "primary_endpoint":"expected claim-aware information gain before observing the intervention response",
+  "local":{"tos_bits":0.9655029266318302,"exact_bits":0.9723116071272896,"delta_bits":-0.006808680495459203,"ci95":[-0.013617360990918407,-0.0017021701238648008],"taskwise_exact_better":4,"taskwise_equal":44,"taskwise_tos_better":0},
+  "remote":{"tos_bits":0.9638007565079655,"exact_bits":0.9723116071272896,"delta_bits":-0.008510850619324004,"ci95":[-0.015319531114783208,-0.0017021701238648008],"taskwise_exact_better":5,"taskwise_equal":43,"taskwise_tos_better":0},
+  "stress_composition":"INCONCLUSIVE_NOT_ESTABLISHED_AFTER_REPRODUCIBILITY_HARDENING",
+  "benchmark_state":"+0_OPEN_INTERVENTION_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_LOCAL_REMOTE_INFERIOR_TO_EXACT_DESIGN",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
