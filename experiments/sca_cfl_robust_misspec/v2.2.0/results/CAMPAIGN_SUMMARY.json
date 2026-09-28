@@ -1,0 +1,15 @@
+{
+  "legal_episodes":5000,
+  "legal_wrong_certifications":0,
+  "legal_false_breaks":0,
+  "legal_holds":44,
+  "legal_mean_certification_rate":0.9912,
+  "legal_mean_cost":929.216,
+  "legal_mean_risk":37.8168,
+  "legal_mean_samples":845.32,
+  "splice_episodes":4000,
+  "splice_mean_break_rate":0.99625,
+  "splice_false_certifications":0,
+  "parent_v21_splice_certification_rate":1.0,
+  "continuous_offgrid":{"true_probs":[0.3,0.7],"episodes":1000,"break_rate":0.76,"hold_unresolved_rate":0.24,"false_cert_rate":0.0}
+}
