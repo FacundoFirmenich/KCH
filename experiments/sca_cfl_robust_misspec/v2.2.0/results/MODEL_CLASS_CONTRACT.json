@@ -1,0 +1,11 @@
+{
+  "schema":"SCA_CFL_OPERATIONAL_MODEL_CLASS_V1",
+  "release":"2.2.0",
+  "centers":{"L":0.142297650131,"M":0.5,"H":0.860381861575},
+  "radius":0.1,
+  "bands":{"L":[0.042297650131,0.242297650131],"M":[0.4,0.6],"H":[0.760381861575,0.960381861575]},
+  "legal_rectangles":{"AND":["L","L"],"X":["L","H"],"INTERACTION":["M","M"],"Z":["H","L"],"OR":["H","H"]},
+  "structured_misspecification_rectangles":{"SPLICE_LM":["L","M"],"SPLICE_ML":["M","L"],"SPLICE_MH":["M","H"],"SPLICE_HM":["H","M"]},
+  "confidence_sequence":{"type":"Jeffreys-Beta mixture e-process inversion","alpha_per_action":0.025,"simultaneous_two_action_bound":0.05},
+  "inspection_checkpoints":[25,50,100,200,400,800,1200]
+}
