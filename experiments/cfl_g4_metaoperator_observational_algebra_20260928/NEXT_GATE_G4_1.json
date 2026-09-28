@@ -1,0 +1,12 @@
+{
+  "program_id":"CFL-UEP-G4.1-OPEN-OPERATOR-TYPE-ARITY-AND-ALGEBRA-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "parent_result":"G4 v0.1 induces an atomic unary bijective operator class outside the old value language, but unary/permutation type is still supplied.",
+  "hard_condition":"Do not supply operator arity, totality, bijectivity or algebraic carrier type.",
+  "formal_target":"Infer semantic type tau* and generator Omega* jointly; Omega* must be non-definable in the old observational algebra under preregistered bounds, then receive a claim-specific categorical certificate on sealed cross-representation interventions.",
+  "lanes":["unary total non-bijective","binary commutative operation","binary noncommutative relation/operator","quotient/equivalence operator","graph-neighborhood operator","higher-order operator on functions","negative non-identifiable type lane"],
+  "mandatory_baselines":["typed enumerative synthesis","MDL type+operator induction","Bayesian experimental design","SMT/model finding where applicable","neural-symbolic relation induction","universal table/relation completion negative control","TOS_NO_PHI","TOS_NO_O3","TOS_FULL_TYPED_METAOPERATOR_GENESIS"],
+  "form_gate":["semantic type class singleton","operator equivalence class singleton modulo declared identities","sealed cross-representation invariant certificate","no probability/score may promote state 1"],
+  "support_rule":{"gain_over_strongest_matched_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_lanes":3,"false_form_promotion_maximum":0.02,"private_reserve_one_shot":true},
+  "authority":"NONE","promotion":"BLOCKED"
+}
