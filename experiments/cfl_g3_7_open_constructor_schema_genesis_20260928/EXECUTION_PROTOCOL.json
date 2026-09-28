@@ -1,0 +1,20 @@
+{
+  "program_id":"CFL-UEP-G3.7-OPEN-CONSTRUCTOR-AND-SCHEMA-GENESIS",
+  "version":"0.1.0",
+  "parent_gate":"CFL-UEP-G3.6-OPEN-PRIMITIVE-AND-INVARIANT-GENESIS",
+  "status":"PREREGISTERED_MATERIAL_EXECUTION",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "old_language_audit":"truth constructor class must be outside both Closure(G0) and every single-monomial extension class used by G3.6",
+  "g0":"span over finite field of [1,u,v,u^2,v^2,u^3,v^3]",
+  "constructor_schema":"synthesized AST over generic operators; completed constructor families are not supplied as atomic primitives",
+  "development_families":["INV_LINEAR","ISZERO_LINEAR"],
+  "private_ood_families":["INV_BILINEAR","ISZERO_BILINEAR","RATIO_LINEAR","PIECEWISE_EQ","LEGENDRE_REL"],
+  "o3_budget":"up to three sequential interventions, identical for every method",
+  "domains":{"graph":7,"algebra":11,"number":13,"mechanics":17},
+  "regimes":["CONSTRUCTOR_AMBIG_REDUCIBLE","CONSTRUCTOR_ALREADY_FORM","UNDERIDENTIFIED","ANTI"],
+  "mandatory_methods":["RANDOM_QUERY","ENUMERATIVE_AST_SYNTHESIS","EXACT_EIG_QUERY","MDL_GRAMMAR_INDUCTION","GENETIC_PROGRAMMING_QUERY","EGRAPH_GRAMMAR_EXPANSION","TOS_FULL_CONSTRUCTOR_GENESIS"],
+  "state_1_gate":["singleton exact constructor-equivalence class","exact sealed-intervention certificate"],
+  "support_rule":{"gain_over_strongest_matched_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_form_promotion_maximum":0.02},
+  "scope_limit":"generic AST meta-operator vocabulary is still supplied; fully open invention of a new atomic semantic operator is deferred",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED","merge_to_main":"FORBIDDEN"
+}
