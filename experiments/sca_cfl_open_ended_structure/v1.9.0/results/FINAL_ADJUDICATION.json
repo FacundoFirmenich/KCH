@@ -1,0 +1,14 @@
+{
+  "gate":"OPEN_ENDED_STRUCTURE_GRAMMAR_AND_ADVERSARIAL_MODEL_SYNTHESIS_010",
+  "release":"1.9.0",
+  "decision":"PASS_WITH_LIMITS",
+  "reference_constructive":"expr:x",
+  "reference_foil":"expr:z",
+  "equivalence_class_size":117,
+  "observational_state":"NON_IDENTIFIABLE_EQUIVALENCE_CLASS_WITHIN_GRAMMAR",
+  "interventional_discrimination_cross_time":6,
+  "continued_observational_e_value":1.0,
+  "heterogeneous_recovery":{"memory_family_rate":0.995,"regime_family_rate":1.0,"latent2_family_rate":1.0,"xor_operator_rate":0.99},
+  "hard_boundary":"Statistical/symbolic candidates remain CFL protoform +0. Observational equivalence within a searched grammar does not establish global equivalence or causal identity.",
+  "next_gate":"MINIMAL_INTERVENTION_DESIGN_AND_IDENTIFIABILITY_FRONTIER_011"
+}
