@@ -1,0 +1,9 @@
+{
+  "gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012",
+  "release":"2.1.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":15,"failed":0},
+  "formal_familywise_error_bound":0.05,
+  "monte_carlo_episodes":25000,
+  "next_gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013"
+}
