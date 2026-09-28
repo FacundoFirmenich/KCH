@@ -1,0 +1,11 @@
+{
+  "gate":"MINIMAL_INTERVENTION_DESIGN_AND_IDENTIFIABILITY_FRONTIER_011",
+  "release":"2.0.0",
+  "decision":"PASS_WITH_LIMITS",
+  "v19":{"syntactic_candidates":117,"global_semantic_classes":5,"minimum_interventions_for_semantic_class":2,"minimum_cost":2.2,"full_domain_irreducible_syntactic_pairs":1870,"restricted_authority_irreducible_semantic_pairs":2},
+  "greedy_counterexample":{"exact_cost":5.2,"greedy_cost":6.7,"cost_ratio":1.2884615384615385},
+  "statistical_control":{"full_design_accuracy_n11_each":0.95672,"single_probe_accuracy_n11":0.52988},
+  "hard_boundary":"Minimum intervention design is relative to a hypothesis quotient, action domain, cost model, and authority set. No intervention program may claim to distinguish hypotheses that are globally prediction-equivalent over all admissible actions.",
+  "cfl_state":"PROTOFORM_REALVIRTUAL_+0",
+  "next_gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012"
+}
