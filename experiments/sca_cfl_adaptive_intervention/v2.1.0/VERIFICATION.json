@@ -1,0 +1,10 @@
+{
+  "schema":"SCA_CFL_CROSSSTORE_VERIFICATION_V1",
+  "release":"2.1.0",
+  "gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":15,"failed":0},
+  "artifact":{"content_digest":"38e4c26eef7ae68e2814bb9adc3ece1150b2c708b2faf5b44a10f4ad1fb6dabb","zip_sha256":"af1cb5abf647ef93295287d8c1b42e2998bef0085553fea9fca4536a77203bec"},
+  "hard_boundary":"Counterfactual interventions are never evidence; safety/authority gates are hard HOLD; anytime error bound is conditional on the declared five-class model and predeclared staged protocol.",
+  "next_gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013"
+}
