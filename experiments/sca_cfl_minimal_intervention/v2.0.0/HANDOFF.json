@@ -1,0 +1,12 @@
+{
+  "schema":"SCA_CFL_HANDOFF_V1",
+  "release":"2.0.0",
+  "gate":"MINIMAL_INTERVENTION_DESIGN_AND_IDENTIFIABILITY_FRONTIER_011",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":"18/18",
+  "content_digest":"c0cc31cb75c38b71a4491af8169db9755e6616022bd888ef77eb32ab62e4a31f",
+  "zip_sha256":"e56fb33b5e6203c7900c5e0825bb54dd50383ae368e42ff4115c8121cddfe000",
+  "parent_release":"1.9.0",
+  "parent_content_digest":"9280e7cd10836461f55193da2384443a72b2e07799c6ba12d04842c29d23be8b",
+  "next_gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012"
+}
