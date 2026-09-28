@@ -1,0 +1,63 @@
+name: CFL G3.7 open constructor schema genesis
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-7-open-constructor-schema-genesis-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_7_open_constructor_schema_genesis_20260928/requirements.txt
+      - name: Reconstruct and verify source
+        run: |
+          set -euo pipefail
+          mkdir g37_src
+          cat experiments/cfl_g3_7_open_constructor_schema_genesis_20260928/source_parts/g37_source.zip.b64.* | base64 -d > g37_source.zip
+          echo "367f13b10d6c55cece0333c9842759a01e4a8d58ee7c27cb9cd1eb270d634a7a  g37_source.zip" | sha256sum -c -
+          unzip -q g37_source.zip -d g37_src
+          echo "b5b9510016176bff8a42370032b791147e4160b4d0028e8c68b41233d3726889  g37_src/run_g37.py" | sha256sum -c -
+          echo "34903b9596ead65e024f873a3dc65e68879fb53230fe40d7d0db829aa02a5d9d  g37_src/audit_g37.py" | sha256sum -c -
+          python -m py_compile g37_src/run_g37.py g37_src/audit_g37.py
+      - name: Execute G3.7
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G37_WORKDIR: ${{ github.workspace }}/g37_work
+          G37_RUNNER: ${{ github.workspace }}/g37_src/run_g37.py
+        run: |
+          set -euo pipefail
+          python g37_src/run_g37.py 2>&1 | tee g37_stdout.log
+          python g37_src/audit_g37.py 2>&1 | tee g37_audit.log
+          test -s g37_work/results/FINAL_ADJUDICATION.json
+          test -s g37_work/results/SUMMARY.json
+          test -s g37_work/results/PREDICTIONS.jsonl
+          test -s g37_work/audit/EXACT_AUDIT.json
+          python -m json.tool g37_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g37_work/audit/EXACT_AUDIT.json >/dev/null
+          cp g37_stdout.log g37_work/results/STDOUT.log
+          cp g37_audit.log g37_work/results/AUDIT_STDOUT.log
+          cp experiments/cfl_g3_7_open_constructor_schema_genesis_20260928/EXECUTION_PROTOCOL.json g37_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_7_OPEN_CONSTRUCTOR_SCHEMA_GENESIS_${{ github.sha }}
+          path: g37_work
+          if-no-files-found: warn
+          retention-days: 30
