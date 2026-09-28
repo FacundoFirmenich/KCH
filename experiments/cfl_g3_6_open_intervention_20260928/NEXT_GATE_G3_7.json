@@ -1,0 +1,12 @@
+{
+  "program_id":"CFL-UEP-G3.7-SEQUENTIAL-ACTIVE-CLOSURE-DIN-POLICY",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "motivation":"G3.6 exposes a one-bit ceiling for one-shot binary interventions. G3.7 makes observation sequential, response-adaptive and explicitly DIN-like.",
+  "policy":{"horizon":[2,3,4],"stopping_allowed":true,"intervention":"continuous binary hyperplane synthesized at each step","cost":"one unit per intervention plus declared complexity penalty","din_reentry":"posterior/model-fiber closure after each response changes the next intervention"},
+  "mandatory_baselines":["EXACT_DYNAMIC_PROGRAMMING_CONTINUOUS_DESIGN","GREEDY_CONTINUOUS_CLAIM_EIG","GREEDY_CONTINUOUS_MODEL_EIG","BAYESIAN_SEQUENTIAL_EXPERIMENT_DESIGN","POMDP_POLICY","MCTS_POLICY_SEARCH","ADAPTIVE_D_OPTIMAL","OPEN_LOOP_BATCH_DESIGN","RANDOM_ADAPTIVE_POLICY","TOS_NO_DIN_REENTRY","TOS_FULL_SEQUENTIAL_DIN_POLICY"],
+  "primary_endpoints":["expected residual target entropy at matched total cost","expected intervention cost to exact claim closure","probability of exact claim closure by horizon","policy regret versus exact dynamic programming","correct stopping/abstention","false ontology promotion"],
+  "support_rule":{"minimum_gain_over_strongest_matched_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_ontology_promotion_maximum":0.02,"cost_matched":true},
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
