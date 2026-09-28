@@ -1,0 +1,44 @@
+{
+  "program_id":"CFL-UEP-G3.6-OPEN-INTERVENTION-GRAMMAR-GENESIS",
+  "parent_gate":"CFL-UEP-G3.5-ACTIVE-TOPOLOGY-DISAMBIGUATION",
+  "status":"LOCAL_EXECUTED_REMOTE_REPLICATION_FROZEN",
+  "date":"2026-09-28",
+  "authority":"NONE",
+  "intervention_object":{
+    "type":"continuous binary measurement hyperplane",
+    "form":"r = 1[w^T s + b >= 0]",
+    "primitive_sensor_channels":8,
+    "complete_interventions_pre_enumerated":false,
+    "feasibility":"one normalized linear measurement over simultaneously available primitive sensor channels"
+  },
+  "task_design":{
+    "domains":["graph","algebra","number","mechanics"],
+    "main_lane":{"A_per_domain":6,"B_per_domain":6,"C_per_domain":3,"null_per_domain":2,"tasks":68},
+    "stress_lane":{"domains":["algebra","number","mechanics"],"A_per_domain":2,"B_per_domain":2,"tasks":12},
+    "total_tasks":80,
+    "active_main_tasks":48,
+    "null_gauge_tasks":8
+  },
+  "regimes":{
+    "A":"future/target fixed across model fiber; explanatory family remains ambiguous",
+    "B":"target and explanatory model remain ambiguous",
+    "C":"model fiber singleton; correct action is no additional intervention",
+    "N":"gauge-equivalent ontology labels with identical admissible response signatures; no feasible intervention can distinguish them"
+  },
+  "primary_endpoint":{
+    "name":"expected_primary_information_gain_bits",
+    "A":"family information gain",
+    "B":"target-claim information gain",
+    "rationale":"ex-ante design quality must be judged before the realized truth branch is observed"
+  },
+  "secondary_endpoints":["realized model-fiber reduction","realized family-fiber reduction","target ambiguity after realized response","model collapse","truth retention","intervention complexity L1","correct abstention in null lane"],
+  "strongest_baseline":{
+    "name":"EXACT_CONTINUOUS_CLAIM_EIG",
+    "procedure":"enumerate every nontrivial binary partition of the bounded current model fiber; test continuous linear separability by linear programming; construct minimum-L1 separating hyperplane; choose lexicographically maximal claim-aware information partition",
+    "finite_query_pool":false
+  },
+  "mandatory_methods":["EXACT_CONTINUOUS_CLAIM_EIG","D_OPTIMAL_LINEARIZED","GRADIENT_SOFT_MI","BEAM_PROGRAM_SYNTHESIS","MDL_DISAGREEMENT_DESIGN","RANDOM_FEASIBLE_INTERVENTION","TOS_NO_PHI","TOS_NO_O3","TOS_FULL_INTERVENTION_GENESIS"],
+  "support_rule":{"minimum_gain_over_strongest_matched_design_baseline_bits":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_ontology_promotion_maximum":0.02,"cost_matched":true},
+  "hard_limits":["stress lane uses a platform-stable signed/permuted Hadamard sensor-basis composition; it is an OOD basis stress, not proof of unconstrained hardware synthesis","binary measurement carries at most one bit per intervention","generated exact benchmark; no external physical-world claim"],
+  "forbidden":["retrospective realized-best intervention as evidence","promoting predictive discrimination to ontology","canonical TOS/DIN promotion","general CFL claim","merge to main"]
+}
