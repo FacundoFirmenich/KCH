@@ -1,0 +1,63 @@
+name: CFL G4.2 type-system signature genesis
+
+on:
+  push:
+    branches:
+      - cfl-uep/g4-2-open-type-system-signature-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g4-2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g4_2_open_type_system_signature_20260928/requirements.txt
+      - name: Verify and unpack source
+        run: |
+          set -euo pipefail
+          echo "13d58ad80b8ef586969eb64fa9775b81e48c3258d57b626714a2ed44bd55de56  experiments/cfl_g4_2_open_type_system_signature_20260928/g42_source.zip" | sha256sum -c -
+          mkdir g42_src
+          unzip -q experiments/cfl_g4_2_open_type_system_signature_20260928/g42_source.zip -d g42_src
+          echo "0e68778958ffd78b190b21085e5d0ce178d23d0d4f6318a79314cf1b57b27767  g42_src/run_g42.py" | sha256sum -c -
+          echo "36d5f5b243b15bd3a8887a274342336d0fc798dcc025acb7228f4db7976abdac  g42_src/audit_g42.py" | sha256sum -c -
+          python -m py_compile g42_src/run_g42.py g42_src/audit_g42.py
+      - name: Execute G4.2
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G42_WORKDIR: ${{ github.workspace }}/g42_work
+          G42_RUNNER: ${{ github.workspace }}/g42_src/run_g42.py
+        run: |
+          set -euo pipefail
+          python g42_src/run_g42.py 2>&1 | tee g42_stdout.log
+          python g42_src/audit_g42.py 2>&1 | tee g42_audit.log
+          test -s g42_work/results/FINAL_ADJUDICATION.json
+          test -s g42_work/results/SUMMARY.json
+          test -s g42_work/results/PREDICTIONS.jsonl
+          test -s g42_work/evidence/TASKS.jsonl
+          test -s g42_work/audit/EXACT_AUDIT.json
+          python -m json.tool g42_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g42_work/audit/EXACT_AUDIT.json >/dev/null
+          cp g42_stdout.log g42_work/results/STDOUT.log
+          cp g42_audit.log g42_work/results/AUDIT_STDOUT.log
+          cp experiments/cfl_g4_2_open_type_system_signature_20260928/EXECUTION_PROTOCOL.json g42_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G4_2_TYPE_SYSTEM_SIGNATURE_${{ github.sha }}
+          path: g42_work
+          if-no-files-found: warn
+          retention-days: 30
