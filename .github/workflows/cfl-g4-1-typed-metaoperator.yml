@@ -1,0 +1,62 @@
+name: CFL G4.1 typed metaoperator genesis
+
+on:
+  push:
+    branches:
+      - cfl-uep/g4-1-open-operator-type-arity-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g4-1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g4_1_open_operator_type_arity_20260928/requirements.txt
+      - name: Verify and unpack source
+        run: |
+          set -euo pipefail
+          echo "daa616f9804f847331f03a9cbdd24b735d78d726a319ac443e88751e3620461e  experiments/cfl_g4_1_open_operator_type_arity_20260928/g41_source.zip" | sha256sum -c -
+          mkdir g41_src
+          unzip -q experiments/cfl_g4_1_open_operator_type_arity_20260928/g41_source.zip -d g41_src
+          echo "9a600f0ca24d459d846e96801a9891a5969cf713337da3eecbc8ec47792296f7  g41_src/run_g41.py" | sha256sum -c -
+          echo "b8ecfd4ecb8980bb5c85f8095fca11ea974d53dac0c417a95b27b71b6f683d1b  g41_src/audit_g41.py" | sha256sum -c -
+          python -m py_compile g41_src/run_g41.py g41_src/audit_g41.py
+      - name: Execute G4.1
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G41_WORKDIR: ${{ github.workspace }}/g41_work
+        run: |
+          set -euo pipefail
+          python g41_src/run_g41.py 2>&1 | tee g41_stdout.log
+          G41_WORKDIR=${{ github.workspace }}/g41_work python g41_src/audit_g41.py 2>&1 | tee g41_audit.log
+          test -s g41_work/results/FINAL_ADJUDICATION.json
+          test -s g41_work/results/SUMMARY.json
+          test -s g41_work/results/PREDICTIONS.jsonl
+          test -s g41_work/evidence/TASKS.jsonl
+          test -s g41_work/audit/EXACT_AUDIT.json
+          python -m json.tool g41_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g41_work/audit/EXACT_AUDIT.json >/dev/null
+          cp g41_stdout.log g41_work/results/STDOUT.log
+          cp g41_audit.log g41_work/results/AUDIT_STDOUT.log
+          cp experiments/cfl_g4_1_open_operator_type_arity_20260928/EXECUTION_PROTOCOL.json g41_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G4_1_TYPED_METAOPERATOR_${{ github.sha }}
+          path: g41_work
+          if-no-files-found: warn
+          retention-days: 30
