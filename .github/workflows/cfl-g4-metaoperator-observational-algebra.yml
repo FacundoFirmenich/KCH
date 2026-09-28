@@ -1,0 +1,61 @@
+name: CFL G4 metaoperator observational algebra
+
+on:
+  push:
+    branches:
+      - cfl-uep/g4-metaoperator-observational-algebra-20260928
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g4_metaoperator_observational_algebra_20260928/requirements.txt
+      - name: Verify and unpack source
+        run: |
+          set -euo pipefail
+          echo "0c13822db8ca2752ed5a7afa3d904fe27da1e1e64f6fe2d4c0a609321491aeb6  experiments/cfl_g4_metaoperator_observational_algebra_20260928/g4_source.zip" | sha256sum -c -
+          mkdir g4_src
+          unzip -q experiments/cfl_g4_metaoperator_observational_algebra_20260928/g4_source.zip -d g4_src
+          echo "40da851e4a063d7e166a0b9a203161ece548fa1bb234dacc8675428f969add5c  g4_src/run_g4.py" | sha256sum -c -
+          echo "55ab4a27e139a110b56ee13dd0effefbe1a101bfc02411593db8e76a62bfc515  g4_src/audit_g4.py" | sha256sum -c -
+          python -m py_compile g4_src/run_g4.py g4_src/audit_g4.py
+      - name: Execute G4
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G4_WORKDIR: ${{ github.workspace }}/g4_work
+        run: |
+          set -euo pipefail
+          python g4_src/run_g4.py 2>&1 | tee g4_stdout.log
+          G4_WORKDIR=${{ github.workspace }}/g4_work python g4_src/audit_g4.py 2>&1 | tee g4_audit.log
+          test -s g4_work/results/FINAL_ADJUDICATION.json
+          test -s g4_work/results/SUMMARY.json
+          test -s g4_work/results/PREDICTIONS.jsonl
+          test -s g4_work/audit/EXACT_AUDIT_EXTENDED.json
+          python -m json.tool g4_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g4_work/audit/EXACT_AUDIT_EXTENDED.json >/dev/null
+          cp g4_stdout.log g4_work/results/STDOUT.log
+          cp g4_audit.log g4_work/results/AUDIT_STDOUT.log
+          cp experiments/cfl_g4_metaoperator_observational_algebra_20260928/EXECUTION_PROTOCOL.json g4_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G4_METAOPERATOR_OBSERVATIONAL_ALGEBRA_${{ github.sha }}
+          path: g4_work
+          if-no-files-found: warn
+          retention-days: 30
