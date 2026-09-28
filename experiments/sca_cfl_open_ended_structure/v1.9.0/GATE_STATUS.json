@@ -1,0 +1,9 @@
+{
+  "gate":"OPEN_ENDED_STRUCTURE_GRAMMAR_AND_ADVERSARIAL_MODEL_SYNTHESIS_010",
+  "release":"1.9.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":18,"failed":0},
+  "reference_equivalence_class_size":117,
+  "interventional_cross_time":6,
+  "next_gate":"MINIMAL_INTERVENTION_DESIGN_AND_IDENTIFIABILITY_FRONTIER_011"
+}
