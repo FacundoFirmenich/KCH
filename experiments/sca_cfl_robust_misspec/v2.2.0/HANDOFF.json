@@ -1,0 +1,12 @@
+{
+  "schema":"SCA_CFL_HANDOFF_V1",
+  "release":"2.2.0",
+  "gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":"18/18",
+  "content_digest":"3ef17794520a543c3c4e49d41507fe764cb7cffa21a896ef3918ef83f9475830",
+  "zip_sha256":"132bc23336d7e97511c07e9c5223d2fe924b14363a352581e7d7dff11ac6fc75",
+  "parent_release":"2.1.0",
+  "parent_content_digest":"38e4c26eef7ae68e2814bb9adc3ece1150b2c708b2faf5b44a10f4ad1fb6dabb",
+  "next_gate":"EFFICIENT_ROBUST_SENTINEL_DESIGN_AND_SAFE_MODEL_BREAK_014"
+}
