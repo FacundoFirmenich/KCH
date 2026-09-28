@@ -1,0 +1,10 @@
+{
+  "schema":"SCA_CFL_CROSSSTORE_VERIFICATION_V1",
+  "release":"2.0.0",
+  "gate":"MINIMAL_INTERVENTION_DESIGN_AND_IDENTIFIABILITY_FRONTIER_011",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":18,"failed":0},
+  "artifact":{"content_digest":"c0cc31cb75c38b71a4491af8169db9755e6616022bd888ef77eb32ab62e4a31f","zip_sha256":"e56fb33b5e6203c7900c5e0825bb54dd50383ae368e42ff4115c8121cddfe000"},
+  "hard_boundary":"Identifiability is relative to target quotient, admissible intervention domain, cost model, and authority. Globally prediction-equivalent hypotheses remain non-identifiable and probabilistic candidates remain CFL +0.",
+  "next_gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012"
+}
