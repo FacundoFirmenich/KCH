@@ -1,0 +1,22 @@
+{
+  "program_id":"CFL-UEP-G4.1-OPEN-OPERATOR-TYPE-ARITY-AND-ALGEBRA-GENESIS",
+  "version":"0.1.0",
+  "material_gate":"PASS_LOCAL_REMOTE_BYTE_IDENTICAL_CORE",
+  "outcome":"G4_1_TYPED_METAOPERATOR_GENESIS_BASELINE_EQUIVALENT",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "type_and_operator_genesis":"DEMONSTRATED_INSIDE_SUPPLIED_FINITE_TYPE_UNIVERSE",
+  "finite_universe":{"models":454,"types":{"UNARY_TOTAL_NONBIJ":232,"BINARY_COMM":16,"BINARY_NONCOMM":48,"EQUIV_QUOTIENT":15,"GRAPH_NEIGHBOR":64,"HIGHER_CLOSURE":79}},
+  "dev_truth_types":["UNARY_TOTAL_NONBIJ","BINARY_COMM"],
+  "private_truth_types":["BINARY_NONCOMM","EQUIV_QUOTIENT","GRAPH_NEIGHBOR","HIGHER_CLOSURE"],
+  "dev_private_type_overlap":0,
+  "primary":{"n":16,"tos_type_form":16,"tos_operator_form":16,"strongest_baseline":"EXACT_TYPE_MINIMAX","baseline_operator_form":16,"paired_delta":0.0,"bootstrap_95_ci":[0.0,0.0],"discordances":0},
+  "negative_type_lane":{"n":18,"forms":0,"states":{"0":14,"+0":4}},
+  "anti":{"n":16,"minus_one":16},
+  "sealed_certificate_all_forms":true,
+  "controls":{"universal_table_forms":0,"old_g4_unary_forms":0},
+  "reproducibility":{"remote_run_id":36377043742,"remote_head_sha":"e38aa170c72117bc84a208484d6f8736a6503a22","remote_artifact_sha256":"4ba22de22abcd0658d8ce0d4b41826551aa5c59ec11fd7603b44b854bfa801f8","scientific_core_byte_identical":true},
+  "benchmark_state":"+0_TYPED_METAOPERATOR_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "scope_limit":"The six semantic types are supplied as a bounded universe. G4.1 infers which type and which operator, but does not invent a new semantic type constructor outside that universe.",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED"
+}
