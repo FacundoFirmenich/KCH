@@ -1,0 +1,13 @@
+{
+  "program_id":"CFL-UEP-G3.7-OPEN-CONSTRUCTOR-AND-SCHEMA-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "parent_result":"G3.6 proved exact extension beyond Closure(G0), but candidate primitives still belonged to a supplied monomial meta-language.",
+  "hard_condition":"The truth primitive must be absent not only from Closure(G0) but from the supplied atomic primitive dictionary / bounded monomial extension catalogue. A new constructor or expression schema must be synthesized.",
+  "formal_target":"Infer an extended meta-language L1 = L0 union {constructor*} such that invariant I* is exactly expressible and certificate-valid, while I* is not expressible in L0 under the preregistered resource bound.",
+  "candidate_heldout_constructor_families":["rational/inverse interaction","piecewise or indicator interaction","quotient/symmetry operator","nonseparable multiplicative schema","domain-specific relational constructor"],
+  "mandatory_baselines":["symbolic regression with grammar mutation","genetic programming/MCTS","enumerative AST synthesis","e-graph grammar expansion","SMT/theorem synthesis where valid","MDL grammar induction","neural-symbolic constructor discovery","TOS_NO_PHI","TOS_NO_O3","TOS_FULL_CONSTRUCTOR_GENESIS"],
+  "form_gate":["constructor equivalence class singleton modulo declared algebraic identities","exact invariant certificate on sealed interventions","OOD constructor-family transfer","no probability/score may promote state 1"],
+  "support_rule":{"gain_over_strongest_matched_constructor_synthesis_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_form_promotion_maximum":0.02,"private_reserve_one_shot":true},
+  "authority":"NONE",
+  "promotion":"BLOCKED"
+}
