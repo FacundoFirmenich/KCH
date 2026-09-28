@@ -1,0 +1,15 @@
+{
+  "gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013",
+  "release":"2.2.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":"18/18",
+  "formal_simultaneous_terminal_error_bound":0.05,
+  "operational_class_radius":0.1,
+  "legal_campaign":{"episodes":5000,"wrong_certifications":0,"false_breaks":0,"holds":44,"mean_certification_rate":0.9912,"mean_cost":929.216,"mean_risk":37.8168,"mean_samples":845.32},
+  "structured_misspecification":{"episodes":4000,"mean_break_rate":0.99625,"false_certifications":0,"parent_v2_1_certification_rate":1.0},
+  "continuous_offgrid_control":{"true_probs":[0.3,0.7],"episodes":1000,"break_rate":0.76,"hold_unresolved_rate":0.24,"false_cert_rate":0.0},
+  "robustness_tax":{"observed_cost_factor":43.975964510890826,"observed_risk_factor":86.49510124579953},
+  "hard_boundary":"The 5% guarantee is for the declared thickened five-rectangle operational class under stationary Bernoulli outcomes per intervention. Near-boundary or broader misspecification may end in HOLD.",
+  "cfl_state":"PROTOFORM_REALVIRTUAL_+0",
+  "next_gate":"EFFICIENT_ROBUST_SENTINEL_DESIGN_AND_SAFE_MODEL_BREAK_014"
+}
