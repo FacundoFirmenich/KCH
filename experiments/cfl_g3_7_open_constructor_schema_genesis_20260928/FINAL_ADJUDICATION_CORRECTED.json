@@ -1,0 +1,19 @@
+{
+  "program_id":"CFL-UEP-G3.7-OPEN-CONSTRUCTOR-AND-SCHEMA-GENESIS",
+  "version":"0.1.0",
+  "material_gate":"PASS_LOCAL_REMOTE_BYTE_IDENTICAL_CORE",
+  "outcome":"G3_7_CONSTRUCTOR_SCHEMA_GENESIS_BASELINE_EQUIVALENT",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "constructor_schema_genesis":"DEMONSTRATED_RELATIVE_TO_G3_6_LANGUAGE",
+  "hard_boundary":{"private_construct_n":64,"outside_g0_closure":64,"outside_g36_single_monomial_extension_catalog":64,"dev_private_constructor_class_overlap":0,"truth_retained_pre_o3":64},
+  "o3_budget":"up to three sequential interventions, matched across methods",
+  "primary":{"tos_form_count":28,"n_ambiguous":32,"tos_form_rate":0.875,"strongest_valid_baseline":"ENUMERATIVE_AST_SYNTHESIS","baseline_form_count":28,"baseline_form_rate":0.875,"paired_delta":0.0,"paired_bootstrap_95_ci":[0.0,0.0],"form_state_discordances":0},
+  "sealed_certificate":{"tos_certified_forms":60,"tos_total_forms":60},
+  "private_family_breakdown":{"INV_BILINEAR":{"forms":11,"n":11,"rate":1.0},"ISZERO_BILINEAR":{"forms":4,"n":6,"rate":0.6666666666666666},"LEGENDRE_REL":{"forms":9,"n":9,"rate":1.0},"PIECEWISE_EQ":{"forms":2,"n":4,"rate":0.5},"RATIO_LINEAR":{"forms":2,"n":2,"rate":1.0}},
+  "states_tos":{"1":60,"0":36,"-1":32},
+  "reproducibility":{"remote_run_id":36367940052,"remote_head_sha":"b2690a93bdad0fbd7cccf12b61d324b1a6fcaca1","remote_artifact_sha256":"4fabb9828ab7d1351b657cc469e6d4e2403ffa87bde67a8c80a06c2b676860e5","scientific_core_byte_identical":true},
+  "scope_limit":"G3.7 removes the old monomial atomic extension catalogue, but still supplies generic AST atomic semantics including inverse, equality-indicator, quadratic character and arithmetic. Fully open meta-operator invention is not established.",
+  "benchmark_state":"+0_CONSTRUCTOR_SCHEMA_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED"
+}
