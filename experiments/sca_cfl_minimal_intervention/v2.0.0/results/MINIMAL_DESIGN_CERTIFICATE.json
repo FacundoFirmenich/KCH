@@ -1,0 +1,11 @@
+{
+  "schema":"SCA_CFL_MINIMAL_INTERVENTION_CERT_V1",
+  "release":"2.0.0",
+  "target":"identify_global_predictive_semantic_class_within_v1.9_quotient",
+  "selected":["do(x=0,z=1)","do(x=1,z=0)"],
+  "cost":2.2,
+  "semantic_pairs":10,
+  "resolved_semantic_pairs":10,
+  "proof_mode":"exhaustive_subset_enumeration_over_declared_action_set",
+  "minimality":"No strict subset of the selected interventions separates all five semantic classes."
+}
