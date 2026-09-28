@@ -1,0 +1,19 @@
+{
+  "program_id":"CFL-UEP-G4-METAOPERATOR-AND-OBSERVATIONAL-ALGEBRA-GENESIS",
+  "version":"0.1.0",
+  "parent_gate":"CFL-UEP-G3.7-OPEN-CONSTRUCTOR-AND-SCHEMA-GENESIS",
+  "status":"PREREGISTERED_MATERIAL_EXECUTION",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "old_language":"label-wise polynomial maps of degree <=3 over F7",
+  "new_atomic_semantic":"unary state-space transport/permutation operator; Form is its cycle/orbit-law equivalence class, not a lookup table",
+  "development_cycle_types":[[2,2,2,1],[3,3,1]],
+  "private_ood_cycle_types":[[7],[5,1,1],[4,2,1],[3,2,1,1]],
+  "surfaces":"two independently relabelled invention surfaces A/B plus sealed relabelled transfer surface C",
+  "regimes":["METAOP_AMBIG_REDUCIBLE","METAOP_ALREADY_FORM","UNDERIDENTIFIED","ANTI"],
+  "query_budget":3,
+  "mandatory_methods":["RANDOM_QUERY","OLD_VOCABULARY_DEG3","TABLE_INTERPOLATOR","EXACT_METAOP_MINIMAX","EXACT_EIG_QUERY","MDL_ALGEBRA_INDUCTION","TOS_FULL_METAOPERATOR_GENESIS"],
+  "state_1_gate":["singleton exact semantic cycle-type fiber","exact representation-independent orbit invariant certificate on sealed surface C"],
+  "support_rule":{"gain_over_strongest_matched_baseline":0.02,"paired_bootstrap_interval":"strictly positive","false_form_promotion_maximum":0.02},
+  "scope_limit":"v0.1 supplies that Omega is a unary bijection/permutation on seven states; arity/type/totality/bijectivity induction is deferred to G4.1",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED","merge_to_main":"FORBIDDEN"
+}
