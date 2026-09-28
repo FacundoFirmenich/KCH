@@ -1,9 +1,6 @@
 name: CFL G3.6 open intervention genesis
 
 on:
-  push:
-    branches:
-      - cfl-uep/g3-6-open-intervention-genesis-20260928
   workflow_dispatch:
 
 permissions:
