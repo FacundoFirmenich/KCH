@@ -1,0 +1,12 @@
+{
+  "schema":"SCA_CFL_AUTHORITY_IDENTIFIABILITY_FRONTIER_V1",
+  "release":"2.0.0",
+  "authorized_interventions":["do(x=0,z=1)"],
+  "forbidden_interventions":["do(x=1,z=0)"],
+  "resolved_semantic_pairs":8,
+  "irreducible_semantic_pairs":[[0,1],[3,4]],
+  "semantic_cells":3,
+  "syntactic_pairs_remaining":3502,
+  "counterfactual_if_forbidden_action_authorized":{"semantic_cells":5,"syntactic_pairs_remaining":1870},
+  "principle":"Authority restrictions change the identifiability frontier; unavailable interventions are not simulated as evidence."
+}
