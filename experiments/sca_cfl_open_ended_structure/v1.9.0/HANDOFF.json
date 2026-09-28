@@ -1,0 +1,11 @@
+{
+  "schema":"SCA_CFL_HANDOFF_V1",
+  "release":"1.9.0",
+  "gate":"OPEN_ENDED_STRUCTURE_GRAMMAR_AND_ADVERSARIAL_MODEL_SYNTHESIS_010",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":"18/18",
+  "content_digest":"9280e7cd10836461f55193da2384443a72b2e07799c6ba12d04842c29d23be8b",
+  "zip_sha256":"7a9d459a7f203363ae075b48c647b1ac72c9882df4bb31e15dd0cc28ced7b9a6",
+  "parent_release":"1.8.0",
+  "next_gate":"MINIMAL_INTERVENTION_DESIGN_AND_IDENTIFIABILITY_FRONTIER_011"
+}
