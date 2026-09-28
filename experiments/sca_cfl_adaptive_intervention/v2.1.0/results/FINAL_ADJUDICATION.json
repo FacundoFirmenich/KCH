@@ -1,0 +1,14 @@
+{
+  "gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012",
+  "release":"2.1.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":"15/15",
+  "formal_familywise_error_bound":0.05,
+  "monte_carlo":{"episodes":25000,"overall_error_rate":0.01208,"mean_cost":21.130087999999997,"mean_risk":0.4372132,"mean_samples":20.46564,"cost_reduction_vs_parent_static":0.12685586776859514,"risk_reduction_vs_parent_static":0.5583705050505051},
+  "reference_counterfactual":{"true":"INTERACTION","counts":[15,0],"actual_cost":15.0,"actual_risk":0.15,"saved_cost_vs_parent_static":9.2,"saved_risk_vs_parent_static":0.84,"cancelled_action":"do(x=1,z=0)"},
+  "safety_control":{"state":"HOLD_SAFETY_BOUND","risk":0.22999999999999998,"needed_next":"do(x=1,z=0)"},
+  "authority_control":{"state":"HOLD_AUTHORITY","counts":[15,0],"needed_next":"do(x=1,z=0)"},
+  "hard_boundary":"Counterfactual or cancelled interventions are ledger facts only and never evidence. Safety/authority blocks are hard HOLD states. Error bound is conditional on the declared five-class model being correct.",
+  "cfl_state":"PROTOFORM_REALVIRTUAL_+0",
+  "next_gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013"
+}
