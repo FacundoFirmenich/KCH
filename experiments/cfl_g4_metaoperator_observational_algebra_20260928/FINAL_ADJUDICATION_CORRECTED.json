@@ -1,0 +1,19 @@
+{
+  "program_id":"CFL-UEP-G4-METAOPERATOR-AND-OBSERVATIONAL-ALGEBRA-GENESIS",
+  "version":"0.1.0",
+  "material_gate":"PASS_LOCAL_REMOTE_BYTE_IDENTICAL_CORE",
+  "outcome":"G4_METAOPERATOR_GENESIS_NO_SUPPORT_POINT_ESTIMATE_INFERIOR",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "atomic_metaoperator_genesis":"DEMONSTRATED_RELATIVE_TO_DEGREE3_LABEL_LANGUAGE",
+  "private_construct_n":32,
+  "truth_outside_old_language_both_surfaces":32,
+  "dev_private_cycle_type_overlap":0,
+  "primary":{"tos_form_count":4,"n_ambiguous":16,"tos_form_rate":0.25,"strongest_baseline":"EXACT_METAOP_MINIMAX","baseline_form_count":7,"baseline_form_rate":0.4375,"paired_delta":-0.1875,"bootstrap_95_ci":[-0.375,0.0],"tos_only_wins":0,"baseline_only_wins":3,"exact_paired_sign_p":0.25},
+  "sealed_transfer":{"tos_certified_forms":20,"tos_total_forms":20,"certificate":"representation-independent fixed-point counts of powers 1..7 on sealed relabelled surface"},
+  "states_tos":{"1":20,"+0":12,"0":16,"-1":16},
+  "reproducibility":{"remote_run_id":36372300532,"remote_head_sha":"7d6ef3c466035c99e790e0269f59fcd07a6dcda0","remote_artifact_sha256":"0d8b2357f79d76b88382b79bd931d9d527fcb3ee20ac40782cf6b833853e227d","scientific_core_byte_identical":true},
+  "scope_limit":"v0.1 assumes the missing atomic semantic is a unary bijection/permutation on seven states. Operator arity/type/totality/bijectivity are still supplied at meta-level.",
+  "benchmark_state":"+0_METAOPERATOR_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_NO_SUPPORT_POINT_ESTIMATE_INFERIOR",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED"
+}
