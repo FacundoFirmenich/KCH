@@ -1,0 +1,10 @@
+{
+  "parent_release":"2.1.0",
+  "parent_mean_cost":21.130087999999997,
+  "v2_2_legal_mean_cost":929.216,
+  "observed_cost_factor":43.975964510890826,
+  "parent_mean_risk":0.4372132,
+  "v2_2_legal_mean_risk":37.8168,
+  "observed_risk_factor":86.49510124579953,
+  "interpretation":"Reference-implementation cost of demanding cross-action model-class closure; not a lower bound."
+}
