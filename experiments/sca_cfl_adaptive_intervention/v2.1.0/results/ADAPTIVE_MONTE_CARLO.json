@@ -1,0 +1,12 @@
+{
+  "episodes_per_class":5000,
+  "total_episodes":25000,
+  "overall_error_rate":0.01208,
+  "mean_cost_uniform_classes":21.130087999999997,
+  "mean_risk_uniform_classes":0.4372132,
+  "mean_samples_uniform_classes":20.46564,
+  "parent_static_comparator":{"n_each":11,"cost":24.2,"risk":0.99,"empirical_accuracy_from_gate011":0.95672,"same_error_guarantee":false},
+  "cost_reduction_vs_parent_static":0.12685586776859514,
+  "risk_reduction_vs_parent_static":0.5583705050505051,
+  "formal_error_bound":0.05
+}
