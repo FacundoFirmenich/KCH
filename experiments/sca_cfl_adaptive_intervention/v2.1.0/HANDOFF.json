@@ -1,0 +1,12 @@
+{
+  "schema":"SCA_CFL_HANDOFF_V1",
+  "release":"2.1.0",
+  "gate":"ADAPTIVE_INTERVENTION_PROGRAMS_WITH_SAFETY_AND_COUNTERFACTUAL_STOPPING_012",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":"15/15",
+  "content_digest":"38e4c26eef7ae68e2814bb9adc3ece1150b2c708b2faf5b44a10f4ad1fb6dabb",
+  "zip_sha256":"af1cb5abf647ef93295287d8c1b42e2998bef0085553fea9fca4536a77203bec",
+  "parent_release":"2.0.0",
+  "parent_content_digest":"c0cc31cb75c38b71a4491af8169db9755e6616022bd888ef77eb32ab62e4a31f",
+  "next_gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013"
+}
