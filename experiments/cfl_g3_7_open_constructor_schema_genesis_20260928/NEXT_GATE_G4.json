@@ -1,0 +1,12 @@
+{
+  "program_id":"CFL-UEP-G4-METAOPERATOR-AND-OBSERVATIONAL-ALGEBRA-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "phase_transition":"G3 series closed. G3.7 can synthesize constructor ASTs only because atomic semantics are preinstalled. G4 removes that gift.",
+  "hard_condition":"The hidden structural regularity is not expressible, under preregistered bounds, in the complete semantic closure of the supplied atomic AST vocabulary. A new atomic semantic operator / observational algebra generator must be induced.",
+  "formal_target":"Infer L1 = L0 union {Omega*}, with Omega* not definable in Closure(L0) under the declared observational semantics and resource bound; then synthesize an invariant using Omega* and certify it categorically on sealed interventions.",
+  "core_lanes":["cross-domain renamed meta-operator recurrence","open-unary operator induction from partial graph of values without table completion being sufficient","open-binary relational operator induction with latent symmetry/quotient law","negative lane where no unique meta-operator is observationally identifiable"],
+  "form_gate":["atomic operator equivalence class singleton modulo declared semantic identities","invariant exact on sealed interventions","cross-domain transfer to a representation not used for invention","no probability or score can certify state 1"],
+  "mandatory_baselines":["enumerative program synthesis over old vocabulary","grammar mutation/genetic programming","e-graph saturation plus grammar expansion","MDL/Bayesian grammar induction","SMT/theorem synthesis where applicable","neural-symbolic operator induction","universal finite-table interpolator negative control","TOS_NO_PHI","TOS_NO_O3","TOS_FULL_METAOPERATOR_GENESIS"],
+  "support_rule":{"gain_over_strongest_matched_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_form_promotion_maximum":0.02,"private_reserve_one_shot":true},
+  "authority":"NONE","promotion":"BLOCKED"
+}
