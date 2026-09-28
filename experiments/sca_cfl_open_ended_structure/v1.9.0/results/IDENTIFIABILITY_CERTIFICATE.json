@@ -1,0 +1,15 @@
+{
+  "schema":"SCA_CFL_IDENTIFIABILITY_CERT_V1",
+  "release":"1.9.0",
+  "observational_support":"x=z",
+  "constructive_candidate":"expr:x",
+  "contrapolar_candidate":"expr:z",
+  "observational_max_prediction_gap":0.0,
+  "equivalence_class_size_within_depth2_grammar":117,
+  "observational_state":"NON_IDENTIFIABLE_EQUIVALENCE_CLASS_WITHIN_GRAMMAR",
+  "distinguishing_probe":{"x":0,"z":1,"predictive_gap":0.7180842114446307},
+  "continued_observational_e_value":1.0,
+  "interventional_cross_time":6,
+  "post_intervention_state":"INTERVENTION_DISCRIMINATED_WITHIN_DECLARED_CONTRAST",
+  "cfl_state":"PROTOFORM_REALVIRTUAL_+0"
+}
