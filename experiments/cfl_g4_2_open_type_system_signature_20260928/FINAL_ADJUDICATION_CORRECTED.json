@@ -1,0 +1,21 @@
+{
+  "program_id":"CFL-UEP-G4.2-OPEN-TYPE-SYSTEM-AND-SIGNATURE-GENESIS",
+  "version":"0.1.0",
+  "material_gate":"PASS_LOCAL_REMOTE_BYTE_IDENTICAL_CORE",
+  "outcome":"G4_2_TYPE_SYSTEM_SIGNATURE_GENESIS_BASELINE_EQUIVALENT",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "type_system_extension":"DEMONSTRATED_RELATIVE_TO_T0",
+  "finite_signature_grammar":{"models":396,"t0_types":["T0_UNARY_ELEM","T0_BINARY_XX","T0_REL_BOOL","T0_CLOSURE_SET"],"dev_new_types":["NEW_TOTAL_MULTI","NEW_MULTISORT_XY_Z"],"private_new_types":["NEW_PARTIAL_MULTI","NEW_VARIADIC_X","NEW_PAIR_CI","NEW_QUOTIENT_MORPH"]},
+  "hard_boundary":{"private_construct_n":44,"private_types_outside_T0":44,"private_full_behaviors_outside_T0":44,"dev_private_new_type_overlap":0},
+  "primary":{"n":16,"tos_type_forms":16,"tos_operator_forms":16,"strongest_baseline":"TYPE_GRAMMAR_MUTATION","baseline_operator_forms":16,"paired_delta":0.0,"bootstrap_95_ci":[0.0,0.0],"discordances":0},
+  "other_exact_methods":{"MDL_SIGNATURE_INDUCTION":16,"EXACT_EIG_QUERY":15,"EXACT_OPERATOR_MINIMAX":15},
+  "negative_type_lane":{"n":10,"forms":0,"states":{"0":10}},
+  "anti":{"n":16,"minus_one":16},
+  "sealed_relabeling":{"tos_certified_forms":44,"tos_total_construct_forms":44,"pass":true},
+  "controls":{"T0_TYPED_ENUMERATION_forms":0,"UNIVERSAL_RELATION_COMPLETION_forms":0},
+  "reproducibility":{"remote_run_id":36378396186,"remote_head_sha":"85a3ea97a0213fc5573368dc4dacb856c33047e3","remote_artifact_sha256":"0678008f657cf21289d37fe7bbe52a8224e8de0d10e6834e1483ecf8586a4089","scientific_core_byte_identical":true},
+  "benchmark_state":"+0_TYPE_SYSTEM_SIGNATURE_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "scope_limit":"The private signatures are absent from T0 but still derivable inside a supplied bounded signature-constructor grammar. Fully open invention of a new type constructor outside that grammar is not established.",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED"
+}
