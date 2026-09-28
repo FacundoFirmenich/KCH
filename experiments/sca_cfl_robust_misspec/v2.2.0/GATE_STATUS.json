@@ -1,0 +1,8 @@
+{
+  "gate":"ROBUST_ADAPTIVE_INTERVENTION_UNDER_MODEL_MISSPECIFICATION_013",
+  "release":"2.2.0",
+  "decision":"PASS_WITH_LIMITS",
+  "tests":{"passed":18,"failed":0},
+  "formal_simultaneous_terminal_error_bound":0.05,
+  "next_gate":"EFFICIENT_ROBUST_SENTINEL_DESIGN_AND_SAFE_MODEL_BREAK_014"
+}
