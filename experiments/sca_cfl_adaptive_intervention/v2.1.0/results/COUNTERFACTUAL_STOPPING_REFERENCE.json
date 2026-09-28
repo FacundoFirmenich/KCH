@@ -1,0 +1,9 @@
+{
+  "state":"CERTIFIED",
+  "certified":"INTERACTION",
+  "route":"MID",
+  "counts":[15,0],
+  "cost":15.0,
+  "risk":0.15,
+  "counterfactual":{"parent_static_plan":{"do(x=0,z=1)":11,"do(x=1,z=0)":11},"actual_counts":{"do(x=0,z=1)":15,"do(x=1,z=0)":0},"cancelled_unexecuted":[{"action":"do(x=1,z=0)","reason":"IDENTIFICATION_SUFFICIENT_AFTER_ROUTE","parent_static_samples_avoided":11}],"static_cost":24.2,"actual_cost":15.0,"cost_difference_static_minus_actual":9.2,"static_risk":0.99,"actual_risk":0.15,"risk_difference_static_minus_actual":0.84,"epistemic_rule":"Counterfactual/cancelled interventions never update likelihoods or evidence."}
+}
