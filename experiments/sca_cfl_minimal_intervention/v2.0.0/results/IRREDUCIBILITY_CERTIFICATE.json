@@ -1,0 +1,10 @@
+{
+  "schema":"SCA_CFL_IRREDUCIBILITY_CERT_V1",
+  "release":"2.0.0",
+  "declared_action_domain":["do(x=0,z=0)","do(x=0,z=1)","do(x=1,z=0)","do(x=1,z=1)"],
+  "raw_syntactic_programs":117,
+  "global_predictive_semantic_classes":5,
+  "irreducible_syntactic_pairs":1870,
+  "proof":"Programs inside each of the five frozen full-domain predictive signatures agree at every action in the declared binary x,z domain.",
+  "scope":"within v1.9 grammar and declared x,z intervention domain; not a global ontological equivalence claim."
+}
