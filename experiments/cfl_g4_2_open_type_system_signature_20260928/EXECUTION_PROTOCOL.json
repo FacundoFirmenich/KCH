@@ -1,0 +1,56 @@
+{
+  "program_id":"CFL-UEP-G4.2-OPEN-TYPE-SYSTEM-AND-SIGNATURE-GENESIS",
+  "version":"0.1.0",
+  "parent_gate":"CFL-UEP-G4.1-OPEN-OPERATOR-TYPE-ARITY-AND-ALGEBRA-GENESIS",
+  "status":"PREREGISTERED_MATERIAL_EXECUTION",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "initial_type_catalog_T0":[
+    "Unary(X->X)",
+    "Binary(XxX->X)",
+    "Relation(XxX->Bool)",
+    "Closure(P(X)->P(X))"
+  ],
+  "development_new_signatures":[
+    "Unary(X->P(X))",
+    "Binary(XxY->Z)"
+  ],
+  "private_ood_signatures":[
+    "Partial(Unary(X),Set(X))",
+    "Variadic({1,2};X->X)",
+    "Unary(P(X),Pair(P(X),P(X)))",
+    "Unary(X,QuotientBlock(X,~))"
+  ],
+  "hard_condition":[
+    "private truth type constructor not in T0",
+    "private full black-box behavior not equal to any T0 model",
+    "development/private new-type overlap is zero"
+  ],
+  "query_budget":3,
+  "mandatory_methods":[
+    "T0_TYPED_ENUMERATION",
+    "TYPE_GRAMMAR_MUTATION",
+    "EXACT_OPERATOR_MINIMAX",
+    "EXACT_EIG_QUERY",
+    "MDL_SIGNATURE_INDUCTION",
+    "TOS_FULL_TYPE_SYSTEM_GENESIS",
+    "RANDOM_QUERY",
+    "UNIVERSAL_RELATION_COMPLETION"
+  ],
+  "state_1_gate":[
+    "semantic type-constructor class singleton",
+    "operator equivalence class singleton inside inferred type",
+    "independent sealed carrier-relabeling certificate"
+  ],
+  "negative_lane":"two observationally identical schemas with different semantic type labels; correct type state is 0",
+  "support_rule":{
+    "gain_over_strongest_matched_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_private_type_families":3,
+    "false_form_promotion_maximum":0.02
+  },
+  "scope_limit":"private signatures are outside T0 but still generated inside a supplied bounded signature-constructor grammar; fully open type-constructor invention remains untested.",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
