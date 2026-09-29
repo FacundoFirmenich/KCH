@@ -1,0 +1,20 @@
+{
+  "program_id":"CFL-UEP-G3.7-SEQUENTIAL-ACTIVE-CLOSURE-DIN-POLICY",
+  "material_gate":"PASS_LOCAL_REMOTE",
+  "remote_run_id":36581778154,
+  "remote_scientific_head":"f85acc8bd26c005652c7f88236eef531e29b39fe",
+  "remote_artifact_digest":"sha256:2d43273194bad34462d8d31b1ba6c23293f186b28739cf1d392683c6518ca0da",
+  "reproducibility":{"truth_manifest_byte_identical":true,"policy_results_byte_identical":true,"final_adjudication_byte_identical":true,"summary_semantic_identical_excluding_elapsed_s":true},
+  "h4":{"tos":{"closure_prob":0.9791666666666666,"expected_entropy":0.020833333333333332,"expected_steps":2.0052083333333335},"matched_no_reentry":{"closure_prob":0.921875,"expected_entropy":0.0768483724071014,"expected_steps":2.078125},"exact_dp":{"closure_prob":0.9791666666666666,"expected_entropy":0.020833333333333332,"expected_steps":1.6770833333333335}},
+  "h4_reentry_effect":{"entropy_delta_tos_minus_no_reentry":-0.056015039073768064,"entropy_ci95":[-0.10809837240710138,-0.0143483724071014],"closure_delta":0.05729166666666667,"closure_ci95":[0.015625,0.109375]},
+  "h4_cost_regret_vs_dp":{"expected_interventions_delta":0.328125,"ci95":[0.20833333333333334,0.46875]},
+  "admissible_identifiability":{"active_truth_branches":192,"unresolved_truth_branches":4,"unresolved_tasks":2},
+  "din_reentry_effect":"LOCAL_SUPPORT_REENTRY_IMPROVES_MATCHED_NO_REENTRY_BY_H4",
+  "nonreducibility":"NOT_SUPPORTED_TOS_REACHES_ATTAINABLE_CLOSURE_FRONTIER_BUT_IS_COST_INFERIOR_TO_EXACT_DP",
+  "benchmark_state":"+0_SEQUENTIAL_ACTIVE_CLOSURE_POLICY_BENCHMARK_PROTOFORM",
+  "din_policy_state":"+0_REENTRY_POLICY_PROTOFORM_REDUCIBLE",
+  "canonical_DIN":"NOT_PROMOTED",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
