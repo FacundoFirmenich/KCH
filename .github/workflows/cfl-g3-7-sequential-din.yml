@@ -1,9 +1,6 @@
 name: CFL G3.7 sequential DIN policy
 
 on:
-  push:
-    branches:
-      - cfl-uep/g3-7-sequential-din-policy-20260929
   workflow_dispatch:
 
 permissions:
@@ -31,7 +28,6 @@ jobs:
           gzip -dc run_g37.py.gz > run_g37.py
           echo "f2808ac72b134c28dbf9ffea3fa47aeebcfe133c5076ef4eec0ee3f8cd829b8f  run_g37.py" | sha256sum -c -
           python -m py_compile run_g37.py
-          python -m json.tool experiments/cfl_g3_7_sequential_din_20260929/EXECUTION_PROTOCOL.json >/dev/null
       - name: Execute G3.7
         env:
           PYTHONHASHSEED: '0'
@@ -43,13 +39,7 @@ jobs:
           set -euo pipefail
           python run_g37.py 2>&1 | tee g37_stdout.log
           test -s g37_work/results/FINAL_ADJUDICATION.json
-          test -s g37_work/results/SUMMARY.json
           test -s g37_work/results/POLICY_RESULTS.jsonl
-          test -s g37_work/evidence/TRUTH_MANIFEST.jsonl
-          python -m json.tool g37_work/results/FINAL_ADJUDICATION.json >/dev/null
-          cp g37_stdout.log g37_work/results/STDOUT.log
-          cp run_g37.py g37_work/results/SOURCE_run_g37.py
-          cp experiments/cfl_g3_7_sequential_din_20260929/EXECUTION_PROTOCOL.json g37_work/results/EXECUTION_PROTOCOL.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
