@@ -1,0 +1,24 @@
+{
+  "program_id":"CFL-UEP-G3.6-ONE-SHOT-INTERVENTION-SERIES-TERMINATION",
+  "status":"CLOSED",
+  "reason":[
+    "complete intervention object is synthesized continuously rather than selected from a finite query catalogue",
+    "current TOS one-shot intervention heuristic is reproducibly inferior to exact continuous claim-aware design",
+    "one binary intervention carries at most one bit and is structurally insufficient for many multiclass closure tasks",
+    "held-out composition stress did not survive reproducibility hardening"
+  ],
+  "preserved_results":{
+    "intervention_genesis":"DEMONSTRATED",
+    "nonreducibility":"NOT_SUPPORTED",
+    "null_gauge_abstention":"PASS",
+    "stress_composition":"INCONCLUSIVE_NOT_ESTABLISHED"
+  },
+  "reopen_only_if":[
+    "new intervention response alphabet or genuinely new measurement physics",
+    "new external domain or physical acquisition",
+    "new non-one-shot objective not reducible to this family"
+  ],
+  "successor":"CFL-UEP-G3.7-SEQUENTIAL-ACTIVE-CLOSURE-DIN-POLICY",
+  "authority":"NONE",
+  "promotion":"BLOCKED"
+}
