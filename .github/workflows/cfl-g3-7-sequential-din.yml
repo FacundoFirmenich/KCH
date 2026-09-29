@@ -1,0 +1,59 @@
+name: CFL G3.7 sequential DIN policy
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-7-sequential-din-policy-20260929
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_7_sequential_din_20260929/requirements.txt
+      - name: Materialize and verify runner
+        run: |
+          set -euo pipefail
+          cp experiments/cfl_g3_7_sequential_din_20260929/run_g37.py.gz run_g37.py.gz
+          echo "1fc4d9de275aabf85062aefe2037d3f5162ea9e7fe329874bda4f2b115145bfe  run_g37.py.gz" | sha256sum -c -
+          gzip -dc run_g37.py.gz > run_g37.py
+          echo "f2808ac72b134c28dbf9ffea3fa47aeebcfe133c5076ef4eec0ee3f8cd829b8f  run_g37.py" | sha256sum -c -
+          python -m py_compile run_g37.py
+          python -m json.tool experiments/cfl_g3_7_sequential_din_20260929/EXECUTION_PROTOCOL.json >/dev/null
+      - name: Execute G3.7
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G37_WORKDIR: ${{ github.workspace }}/g37_work
+        run: |
+          set -euo pipefail
+          python run_g37.py 2>&1 | tee g37_stdout.log
+          test -s g37_work/results/FINAL_ADJUDICATION.json
+          test -s g37_work/results/SUMMARY.json
+          test -s g37_work/results/POLICY_RESULTS.jsonl
+          test -s g37_work/evidence/TRUTH_MANIFEST.jsonl
+          python -m json.tool g37_work/results/FINAL_ADJUDICATION.json >/dev/null
+          cp g37_stdout.log g37_work/results/STDOUT.log
+          cp run_g37.py g37_work/results/SOURCE_run_g37.py
+          cp experiments/cfl_g3_7_sequential_din_20260929/EXECUTION_PROTOCOL.json g37_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_7_SEQUENTIAL_DIN_${{ github.sha }}
+          path: g37_work
+          if-no-files-found: warn
+          retention-days: 30
