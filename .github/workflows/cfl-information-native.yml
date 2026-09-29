@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   native-model-acceptance:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 35
     env:
       PYTHONUNBUFFERED: '1'
@@ -28,13 +28,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Record hardware and free unused SDK disk
+      - name: Record CPU BF16 execution hardware
         run: |
           free -h
           df -h
           lscpu
-          sudo rm -rf /usr/local/lib/android /opt/ghc /usr/share/dotnet
-          df -h
       - name: Install the runtime on the remote worker
         run: |
           python -m pip install --no-cache-dir torch==2.10.0 --index-url https://download.pytorch.org/whl/cpu
@@ -43,7 +41,7 @@ jobs:
       - name: Run actual Qwen3.5-4B-Base paired generation and native captures
         run: |
           set -o pipefail
-          python experiments/cfl_information_native/v0_1_1/native_acceptance.py 2>&1 | tee native_console.log
+          python experiments/cfl_information_native/v0_1_1/reviewed_run.py 2>&1 | tee native_console.log
       - name: Preserve native results and diagnostic failure records
         if: always()
         uses: actions/upload-artifact@v4
@@ -53,6 +51,6 @@ jobs:
             native_results/
             native_console.log
             runtime_freeze.txt
-            experiments/cfl_information_native/v0_1_1/native_acceptance.py
+            experiments/cfl_information_native/v0_1_1/
           if-no-files-found: error
           retention-days: 7
