@@ -1,0 +1,64 @@
+{
+  "program_id":"CFL-UEP-G3.7-SEQUENTIAL-ACTIVE-CLOSURE-DIN-POLICY",
+  "parent_gate":"CFL-UEP-G3.6-OPEN-INTERVENTION-GRAMMAR-GENESIS",
+  "status":"LOCAL_DEVELOPMENT_COMPLETE_REMOTE_REPLICATION_FROZEN",
+  "date":"2026-09-29",
+  "authority":"NONE",
+  "benchmark":{
+    "type":"generated exact sequential intervention kernel",
+    "domains":["graph","algebra","number","mechanics"],
+    "sensor_dimension":3,
+    "models_per_active_task":6,
+    "active_tasks":32,
+    "identified_control_tasks":8,
+    "gauge_null_tasks":4,
+    "horizons":[1,2,3,4],
+    "truth_prior":"uniform over compatible models"
+  },
+  "regimes":{
+    "A":"prediction already unique; family/explanation claim remains ambiguous",
+    "B":"target claim and explanation remain ambiguous",
+    "C":"claim already identified; correct action is stop/abstain",
+    "N":"gauge-equivalent models have identical admissible sensor signatures; no intervention can identify ontology"
+  },
+  "intervention_class":{
+    "type":"continuous binary affine hyperplanes over current sensor signatures",
+    "action_equivalence":"all distinct linearly separable bipartitions of the finite current fiber",
+    "feasibility":"strict separability verified by linear programming",
+    "response":"one bit"
+  },
+  "din_definition":"after each observed response, the compatible model fiber is recomputed and Phi geometry is regenerated before synthesizing the next intervention",
+  "matched_no_reentry":"the same initial Phi eigendirections and thresholds are optimized as a fixed open-loop batch and never recomputed after responses",
+  "mandatory_methods":[
+    "EXACT_DYNAMIC_PROGRAMMING_CONTINUOUS_DESIGN",
+    "GREEDY_CONTINUOUS_CLAIM_EIG",
+    "GREEDY_CONTINUOUS_MODEL_EIG",
+    "ADAPTIVE_D_OPTIMAL",
+    "OPEN_LOOP_BATCH_DESIGN",
+    "RANDOM_ADAPTIVE_POLICY",
+    "TOS_NO_DIN_REENTRY",
+    "TOS_FULL_SEQUENTIAL_DIN_POLICY"
+  ],
+  "primary_analysis":"entire horizon curve H=1..4; no single horizon is the sole preregistered endpoint",
+  "endpoints":[
+    "expected residual claim entropy",
+    "probability of exact claim closure",
+    "expected intervention count with stopping",
+    "matched TOS reentry vs no-reentry difference",
+    "policy regret versus exact dynamic programming",
+    "correct abstention in C and N",
+    "admissible-intervention identifiability audit"
+  ],
+  "support_interpretation":{
+    "din_reentry_local_support":"requires improvement over matched no-reentry on the horizon curve without false promotion",
+    "nonreducibility":"requires superiority over exact dynamic programming; equivalence or inferiority blocks the claim"
+  },
+  "hard_limits":[
+    "finite generated model fibers are explicitly available to exact baselines",
+    "continuous interventions collapse to finitely many response partitions on each finite fiber",
+    "this is a policy/DIN test, not an external physical-world validation"
+  ],
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
