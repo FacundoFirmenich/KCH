@@ -1,0 +1,15 @@
+{
+  "series":"CFL-UEP-G3-STRUCTURAL-GENESIS",
+  "through":"G3.6",
+  "states":[
+    {"gate":"G3S","object":"candidate selection","result":"exact closure demonstrated; O3 reducible to exact active constraint solving"},
+    {"gate":"G3.1","object":"candidate genesis","result":"genesis demonstrated; strong domain repair baseline matches TOS"},
+    {"gate":"G3.2","object":"operator genesis","result":"operator synthesis demonstrated; exact system identification matches TOS"},
+    {"gate":"G3.3","object":"chart genesis","result":"chart synthesis demonstrated on identifiable tasks; exact symbolic chart identification matches TOS"},
+    {"gate":"G3.4","object":"metagrammar selection","result":"prediction exact; explanation frequently non-identifiable; exact model selection matches TOS"},
+    {"gate":"G3.5","object":"active query selection","result":"experiment design useful; TOS queries identical to claim-aware exact EIG"},
+    {"gate":"G3.6","object":"continuous intervention genesis","result":"intervention genesis demonstrated; TOS slightly and reproducibly inferior to exact continuous design"}
+  ],
+  "next_frontier":"sequential response-adaptive policy with explicit re-entry",
+  "authority":"NONE"
+}
