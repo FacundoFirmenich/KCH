@@ -1,0 +1,14 @@
+{
+  "program_id":"CFL-UEP-G3.7-EXPLICIT-FIBER-SEQUENTIAL-POLICY-TERMINATION",
+  "status":"CLOSED_FOR_CURRENT_GENERATED_FIBERS",
+  "reason":[
+    "DIN re-entry has a reproducible local operational effect versus its matched frozen/no-reentry ablation",
+    "exact dynamic programming reaches the same attainable closure frontier with significantly lower expected intervention cost",
+    "further tuning on the same fibers would be post-hoc optimization against a consumed tribunal",
+    "four truth branches are irreducible under the full admissible intervention class and must remain abstentions"
+  ],
+  "preserved_positive":"sequential response-conditioned re-entry is materially distinct from frozen open-loop TOS",
+  "preserved_negative":"TOS-specific non-reducibility and policy optimality are not supported",
+  "successor":"CFL-UEP-G3.8-OPEN-BELIEF-STATE-AND-HYPOTHESIS-SPACE-GENESIS",
+  "authority":"NONE"
+}
