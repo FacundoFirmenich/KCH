@@ -1,0 +1,64 @@
+name: CFL G3.8 open belief genesis
+
+on:
+  push:
+    branches:
+      - cfl-uep/g3-8-open-belief-genesis-20260929
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g3-8:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g3_8_open_belief_genesis_20260929/requirements.txt
+      - name: Materialize and verify runner
+        run: |
+          set -euo pipefail
+          cp experiments/cfl_g3_8_open_belief_genesis_20260929/run_g38.py.gz run_g38.py.gz
+          echo "cd5cce300855f30d1dd66ce7762431544c5cf98887d962b3ab2937187972647c  run_g38.py.gz" | sha256sum -c -
+          gzip -dc run_g38.py.gz > run_g38.py
+          echo "94e068f085e8a33e06a743e576127c05456caef22868fa81b1f5b7323740caf9  run_g38.py" | sha256sum -c -
+          python -m py_compile run_g38.py
+          python -m json.tool experiments/cfl_g3_8_open_belief_genesis_20260929/EXECUTION_FREEZE.json >/dev/null
+      - name: Execute private G3.8 reserve replica
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G38_SPLIT: private
+          G38_WORKDIR: ${{ github.workspace }}/g38_work
+        run: |
+          set -euo pipefail
+          python run_g38.py 2>&1 | tee g38_stdout.log
+          test -s g38_work/results/FINAL_ADJUDICATION.json
+          test -s g38_work/results/SUMMARY.json
+          test -s g38_work/results/METHOD_RESULTS.jsonl
+          test -s g38_work/evidence/TRUTH_MANIFEST.jsonl
+          test -s g38_work/results/AUDIT.json
+          python -m json.tool g38_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g38_work/results/AUDIT.json >/dev/null
+          cp g38_stdout.log g38_work/results/STDOUT.log
+          cp run_g38.py g38_work/results/SOURCE_run_g38.py
+          cp experiments/cfl_g3_8_open_belief_genesis_20260929/EXECUTION_PROTOCOL.json g38_work/results/EXECUTION_PROTOCOL.json
+          cp experiments/cfl_g3_8_open_belief_genesis_20260929/EXECUTION_FREEZE.json g38_work/results/EXECUTION_FREEZE.json
+          python -m pip freeze > g38_work/results/PIP_FREEZE.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G3_8_OPEN_BELIEF_${{ github.sha }}
+          path: g38_work
+          if-no-files-found: warn
+          retention-days: 30
