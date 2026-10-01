@@ -1,0 +1,13 @@
+{
+  "local_truth_manifest_sha256":"b6c0c75e87e37aafb8cbf3608ea564139d552e97a7533026ea9cbd70b6bac6bf",
+  "remote_truth_manifest_sha256":"b6c0c75e87e37aafb8cbf3608ea564139d552e97a7533026ea9cbd70b6bac6bf",
+  "local_final_adjudication_sha256":"36963535832f355800ffa2595b36d2ad9ecbcb35fc83bf42173bb77f6f2ff1fb",
+  "remote_final_adjudication_sha256":"36963535832f355800ffa2595b36d2ad9ecbcb35fc83bf42173bb77f6f2ff1fb",
+  "local_method_results_sha256":"2ad03a631dd3977f8374b3c7b4c32fc64f307f1772c6ae73dfdb8efb92a845ea",
+  "remote_method_results_sha256":"6e7084c1b08d679a4345c3fd13c0eef782cf5777833619c0afb17826619f71b7",
+  "semantic_method_result_mismatches":0,
+  "max_float_difference":1.2212453270876722e-15,
+  "summary_semantic_equal_excluding_elapsed_seconds":true,
+  "remote_run_id":36909517985,
+  "remote_artifact_digest":"sha256:d35e88366bc3180fd0348d019166bbf462b517a5cb9f9019e08ecafc3cb8577f"
+}
