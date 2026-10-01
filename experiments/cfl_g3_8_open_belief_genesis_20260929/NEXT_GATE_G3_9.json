@@ -1,0 +1,54 @@
+{
+  "program_id":"CFL-UEP-G3.9-OPEN-GRAMMAR-AND-META-HYPOTHESIS-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "motivation":"G3.8 removes the complete hypothesis fiber but still supplies a finite authorized hypothesis grammar and permits exact counterexample certification by scanning it. G3.9 removes that remaining privilege.",
+  "hard_condition":"The truth may require a grammar production, composition, feature primitive or rewrite operator absent from the initial DSL. The system must evolve the hypothesis language itself while preserving authority and genealogy.",
+  "state_object":{
+    "name":"evolving epistemic language state",
+    "components":["live hypotheses","live grammar productions","unknown grammar mass","primitive/library genealogy","hypothesis genealogy","claim authority","deauthorization receipts"],
+    "din_reentry":"observational residuals alter both the live hypothesis support and the grammar/library used to generate the next hypotheses and interventions"
+  },
+  "lanes":{
+    "KNOWN_GRAMMAR_CONTROL":"truth expressible in initial DSL",
+    "COMPOSITION_BIRTH":"truth requires a new composition of known primitives absent as an initial production",
+    "PRIMITIVE_BIRTH":"truth requires a new derived primitive/rewrite feature not in the starting DSL but expressible by the permitted meta-grammar",
+    "META_GRAMMAR_MISSPECIFICATION":"truth lies outside the permitted meta-grammar; correct outcome is MODEL_MISMATCH/ABSTAIN",
+    "GAUGE_NULL":"multiple evolved programs remain observationally equivalent"
+  },
+  "cross_task_transfer":"new validated productions may enter an append-only library and must be tested prospectively on later tasks; leakage from private tasks to earlier tasks is forbidden",
+  "domains":["graph","algebra","number","mechanics"],
+  "mandatory_methods":[
+    "EXPANDED_GRAMMAR_ORACLE_CEILING",
+    "BAYESIAN_GRAMMAR_INDUCTION",
+    "MDL_LIBRARY_LEARNING",
+    "GENETIC_PROGRAMMING_WITH_VERIFIER",
+    "EGRAPH_REWRITE_SYNTHESIS",
+    "DREAMCODER_STYLE_LIBRARY_LEARNING",
+    "NEURAL_PROGRAM_SYNTHESIS_AMORTIZED",
+    "ACTIVE_VERSION_SPACE_WITH_FIXED_GRAMMAR",
+    "TOS_NO_META_GRAMMAR_REENTRY",
+    "TOS_FULL_OPEN_GRAMMAR_DIN"
+  ],
+  "primary_endpoints":[
+    "truth/equivalence-class hypothesis recall",
+    "truth grammar-production recall",
+    "authorized claim closure per intervention+verifier cost",
+    "novel primitive/composition birth efficiency",
+    "prospective transfer gain of validated library productions",
+    "false promotion",
+    "model-mismatch detection",
+    "gauge abstention",
+    "grammar compression/MDL"
+  ],
+  "support_rule":{
+    "minimum_gain_over_strongest_deployable_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_promotion_maximum":0.02,
+    "cost_matched":true,
+    "private_reserve_one_shot":true
+  },
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
