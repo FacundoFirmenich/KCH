@@ -1,0 +1,68 @@
+{
+  "program_id":"CFL-UEP-G3.9-OPEN-GRAMMAR-AND-META-HYPOTHESIS-GENESIS",
+  "parent_gate":"CFL-UEP-G3.8-OPEN-BELIEF-STATE-AND-HYPOTHESIS-SPACE-GENESIS",
+  "status":"PREREGISTERED_DESIGN_ONLY_NOT_EXECUTED",
+  "date":"2026-10-01",
+  "authority":"NONE",
+  "core_removal":"the authorized hypothesis grammar itself is incomplete and evolving; exact counterexample certification cannot scan a closed complete DSL",
+  "state_object":{
+    "name":"evolving epistemic language state",
+    "components":["live hypotheses","live grammar productions","unknown grammar mass","primitive/library genealogy","hypothesis genealogy","claim-specific authority","deauthorization receipts"],
+    "din_reentry":"residuals alter both hypothesis support and the grammar/library that generates later hypotheses and observations"
+  },
+  "lanes":{
+    "KNOWN_GRAMMAR_CONTROL":"truth expressible in initial DSL",
+    "COMPOSITION_BIRTH":"truth requires a new composition of known primitives not present as an initial production",
+    "PRIMITIVE_BIRTH":"truth requires a new derived primitive/rewrite feature absent from the starting DSL but expressible by the allowed meta-grammar",
+    "META_GRAMMAR_MISSPECIFICATION":"truth is outside the permitted meta-grammar; correct state is MODEL_MISMATCH/ABSTAIN",
+    "GAUGE_NULL":"distinct evolved programs remain observationally equivalent"
+  },
+  "cross_task_library":{
+    "enabled":true,
+    "rule":"only externally verified productions may enter the append-only reusable library",
+    "evaluation":"prospective transfer to later tasks only; no backward leakage"
+  },
+  "domains":["graph","algebra","number","mechanics"],
+  "mandatory_methods":[
+    "EXPANDED_GRAMMAR_ORACLE_CEILING",
+    "BAYESIAN_GRAMMAR_INDUCTION",
+    "MDL_LIBRARY_LEARNING",
+    "GENETIC_PROGRAMMING_WITH_VERIFIER",
+    "EGRAPH_REWRITE_SYNTHESIS",
+    "DREAMCODER_STYLE_LIBRARY_LEARNING",
+    "NEURAL_PROGRAM_SYNTHESIS_AMORTIZED",
+    "ACTIVE_VERSION_SPACE_WITH_FIXED_GRAMMAR",
+    "TOS_NO_META_GRAMMAR_REENTRY",
+    "TOS_FULL_OPEN_GRAMMAR_DIN"
+  ],
+  "primary_endpoints":[
+    "truth/equivalence-class hypothesis recall",
+    "truth grammar-production recall",
+    "authorized claim closure per intervention+verifier cost",
+    "novel primitive/composition birth efficiency",
+    "prospective transfer gain from validated library productions",
+    "false promotion",
+    "model-mismatch detection",
+    "gauge abstention",
+    "grammar compression MDL"
+  ],
+  "hard_gates":[
+    "private reserve one-shot",
+    "truth production absent from initial grammar in birth lanes",
+    "private-discovered productions cannot affect earlier private tasks",
+    "oracle expanded grammar excluded from support evidence",
+    "append-only grammar genealogy",
+    "explicit unknown grammar mass",
+    "fail-closed authority when grammar completeness is uncertified"
+  ],
+  "support_rule":{
+    "minimum_gain_over_strongest_deployable_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_promotion_maximum":0.02,
+    "cost_matched":true
+  },
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
