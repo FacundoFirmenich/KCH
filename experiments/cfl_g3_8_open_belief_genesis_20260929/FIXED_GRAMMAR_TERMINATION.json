@@ -1,0 +1,16 @@
+{
+  "program_id":"CFL-UEP-G3.8-FIXED-GRAMMAR-OPEN-BELIEF-TERMINATION",
+  "status":"CLOSED",
+  "reason":[
+    "truth can be absent from initial live support and generated online",
+    "DIN re-entry gives reproducible local support for novel hypothesis recall versus the matched no-reentry ablation",
+    "exact counterexample certification reduces false promotion to zero",
+    "strong learned/amortized belief baselines outperform TOS on novel truth recall",
+    "the authorized grammar remains finite, known and exactly searchable for certification; further tuning on the consumed reserve would be post-hoc"
+  ],
+  "preserved_positive":"open belief-state hypothesis birth with append-only genealogy and fail-closed authority",
+  "preserved_negative":"TOS-specific superiority/nonreducibility not supported",
+  "reopen_only_if":["hypothesis grammar itself is incomplete or evolving","new external/physical domain","new non-enumerable verifier semantics"],
+  "successor":"CFL-UEP-G3.9-OPEN-GRAMMAR-AND-META-HYPOTHESIS-GENESIS",
+  "authority":"NONE"
+}
