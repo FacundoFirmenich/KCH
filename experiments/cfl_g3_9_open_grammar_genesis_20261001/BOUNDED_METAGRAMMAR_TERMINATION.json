@@ -1,0 +1,15 @@
+{
+  "program_id":"CFL-UEP-G3.9-BOUNDED-METAGRAMMAR-TERMINATION",
+  "status":"CLOSED",
+  "reason":[
+    "production birth from an initially incomplete DSL is demonstrated",
+    "meta-grammar re-entry significantly improves novel-truth recall versus the matched frozen-grammar TOS ablation",
+    "stronger amortized/MDL baselines outperform TOS on private recall",
+    "DreamCoder-style library learning strongly dominates TOS on prospective candidate-search compression",
+    "the expanded meta-grammar is still pre-enumerated; further tuning on the consumed reserve would be post-hoc"
+  ],
+  "preserved_positive":"bounded grammar production birth with exact verifier, misspecification detection, gauge abstention, and prospective library accounting",
+  "preserved_negative":"unconstrained open grammar genesis, TOS superiority, and reusable-library dominance are not supported",
+  "successor":"CFL-UEP-G3.10-GENERATIVE-PROGRAM-SPACE-AND-METAGRAMMAR-GENESIS",
+  "authority":"NONE"
+}
