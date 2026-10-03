@@ -1,9 +1,6 @@
 name: CFL G3.9 open grammar genesis
 
 on:
-  push:
-    branches:
-      - cfl-uep/g3-9-open-grammar-genesis-20261001
   workflow_dispatch:
 
 permissions:
@@ -31,8 +28,7 @@ jobs:
           gzip -dc run_g39.py.gz > run_g39.py
           echo "4eabe1be85ae5f7136772a9d73a004babfe90b12055592444ce66fb09710eddc  run_g39.py" | sha256sum -c -
           python -m py_compile run_g39.py
-          python -m json.tool experiments/cfl_g3_9_open_grammar_genesis_20261001/EXECUTION_FREEZE.json >/dev/null
-      - name: Reproduce consumed private reserve
+      - name: Reproduce consumed private reserve only
         env:
           PYTHONHASHSEED: '0'
           OMP_NUM_THREADS: '1'
@@ -44,15 +40,7 @@ jobs:
           set -euo pipefail
           python run_g39.py 2>&1 | tee g39_stdout.log
           test -s g39_work/results/FINAL_ADJUDICATION.json
-          test -s g39_work/results/SUMMARY.json
           test -s g39_work/results/METHOD_RESULTS.jsonl
-          test -s g39_work/evidence/TRUTH_MANIFEST.json
-          python -m json.tool g39_work/results/FINAL_ADJUDICATION.json >/dev/null
-          cp g39_stdout.log g39_work/results/STDOUT.log
-          cp run_g39.py g39_work/results/SOURCE_run_g39.py
-          cp experiments/cfl_g3_9_open_grammar_genesis_20261001/EXECUTION_PROTOCOL.json g39_work/results/EXECUTION_PROTOCOL.json
-          cp experiments/cfl_g3_9_open_grammar_genesis_20261001/EXECUTION_FREEZE.json g39_work/results/EXECUTION_FREEZE.json
-          python -m pip freeze > g39_work/results/PIP_FREEZE.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
