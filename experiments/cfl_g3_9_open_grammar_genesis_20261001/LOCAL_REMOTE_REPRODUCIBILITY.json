@@ -1,0 +1,13 @@
+{
+  "local_truth_manifest_sha256":"fb004795f4cf8d7ea66600a9f946e1ead8a5749b3e7268d9e997002a6cfefb46",
+  "remote_truth_manifest_sha256":"fb004795f4cf8d7ea66600a9f946e1ead8a5749b3e7268d9e997002a6cfefb46",
+  "local_method_results_sha256":"bbe5a41b46f83cb2cb37aa4c3344ba52dec7a40ec6f0df5bb09709a474065f1e",
+  "remote_method_results_sha256":"bbe5a41b46f83cb2cb37aa4c3344ba52dec7a40ec6f0df5bb09709a474065f1e",
+  "local_summary_sha256":"5740b11f9361689cc042ac73fedc5c11e165fd7b3baec5061b9419bf5d19ce86",
+  "remote_summary_sha256":"5740b11f9361689cc042ac73fedc5c11e165fd7b3baec5061b9419bf5d19ce86",
+  "local_transfer_sha256":"8c8aff2fc2b9f3f1ce288fa55a6e7715994d3993bcd6451987c8818608629d5f",
+  "remote_transfer_sha256":"8c8aff2fc2b9f3f1ce288fa55a6e7715994d3993bcd6451987c8818608629d5f",
+  "adjudication_semantic_equal_excluding_elapsed_s":true,
+  "remote_run_id":37162506874,
+  "remote_artifact_digest":"sha256:aae0aaa143dd7a886ff07fe21eced0200b5fc4d0abb59d3222aeef5443cb8aef"
+}
