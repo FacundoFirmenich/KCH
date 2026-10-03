@@ -1,0 +1,19 @@
+{
+  "program_id":"CFL-UEP-G3.10-GENERATIVE-PROGRAM-SPACE-AND-METAGRAMMAR-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "motivation":"G3.9 still pre-enumerates the expanded candidate language. G3.10 removes that privilege: complete candidate programs and new productions must be synthesized as ASTs online.",
+  "hard_condition":"The truth program is not present in any precomputed expanded candidate list. Only primitive semantics and a small meta-grammar of AST construction/rewrite operations are supplied.",
+  "lanes":{
+    "DEPTH_OOD_COMPOSITION":"truth requires AST depth beyond development",
+    "NEW_MACRO_DISCOVERY":"recurrent subtrees should be abstracted into a reusable production prospectively",
+    "REWRITE_BIRTH":"truth requires a rewrite schema not present as a named production but synthesizable from allowed rewrite combinators",
+    "META_GRAMMAR_MISSPECIFICATION":"truth lies outside the permitted AST/rewrite meta-grammar; correct output MODEL_MISMATCH/ABSTAIN",
+    "GAUGE_EQUIVALENCE":"distinct ASTs remain extensionally identical under the full finite verifier universe"
+  },
+  "domains":["graph","algebra","number","mechanics"],
+  "mandatory_methods":["EXHAUSTIVE_AST_ORACLE_CEILING","DREAMCODER_STYLE_LIBRARY_LEARNING","BAYESIAN_PROGRAM_SYNTHESIS","MDL_ENUMERATIVE_SYNTHESIS","GENETIC_PROGRAMMING","MCTS_PROGRAM_SYNTHESIS","EGRAPH_SUPEROPTIMIZATION","NEURAL_GUIDED_PROGRAM_SEARCH","TOS_NO_METAGRAMMAR_REENTRY","TOS_FULL_GENERATIVE_GRAMMAR_DIN"],
+  "primary_endpoints":["truth/equivalence-class program recall","new production recall","authorized closure per AST-node expansion and verifier cost","prospective library transfer","false promotion","misspecification detection","gauge abstention","program MDL"],
+  "hard_gates":["no full candidate list materialized for deployable methods","truth AST absent from initial grammar","private reserve one-shot","oracle ceiling excluded from support evidence","append-only library genealogy","no backward transfer leakage"],
+  "support_rule":{"minimum_gain_over_strongest_deployable_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_domains":3,"false_promotion_maximum":0.02,"cost_matched":true},
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED"
+}
