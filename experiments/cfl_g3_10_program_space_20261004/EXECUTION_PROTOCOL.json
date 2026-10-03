@@ -1,0 +1,58 @@
+{
+  "program_id":"CFL-UEP-G3.10-GENERATIVE-PROGRAM-SPACE-AND-METAGRAMMAR-GENESIS",
+  "parent_gate":"CFL-UEP-G3.9-OPEN-GRAMMAR-AND-META-HYPOTHESIS-GENESIS",
+  "status":"PREREGISTERED_DESIGN_ONLY_NOT_EXECUTED",
+  "date":"2026-10-04",
+  "authority":"NONE",
+  "core_removal":"no deployable method receives a pre-enumerated expanded candidate program list",
+  "program_representation":"typed ASTs with exact domain semantics and append-only production genealogy",
+  "lanes":{
+    "DEPTH_OOD_COMPOSITION":"truth AST depth exceeds development depths",
+    "NEW_MACRO_DISCOVERY":"recurrent verified subtree should be abstracted into a reusable library production prospectively",
+    "REWRITE_BIRTH":"a required rewrite schema is absent as a named production and must be synthesized from allowed rewrite combinators",
+    "META_GRAMMAR_MISSPECIFICATION":"truth lies outside the permitted AST/rewrite meta-grammar; correct output MODEL_MISMATCH/ABSTAIN",
+    "GAUGE_EQUIVALENCE":"distinct ASTs are extensionally identical under the full exact verifier universe"
+  },
+  "domains":["graph","algebra","number","mechanics"],
+  "mandatory_methods":[
+    "EXHAUSTIVE_AST_ORACLE_CEILING",
+    "DREAMCODER_STYLE_LIBRARY_LEARNING",
+    "BAYESIAN_PROGRAM_SYNTHESIS",
+    "MDL_ENUMERATIVE_SYNTHESIS",
+    "GENETIC_PROGRAMMING",
+    "MCTS_PROGRAM_SYNTHESIS",
+    "EGRAPH_SUPEROPTIMIZATION",
+    "NEURAL_GUIDED_PROGRAM_SEARCH",
+    "TOS_NO_METAGRAMMAR_REENTRY",
+    "TOS_FULL_GENERATIVE_GRAMMAR_DIN"
+  ],
+  "primary_endpoints":[
+    "truth/equivalence-class AST recall",
+    "new production recall",
+    "authorized closure per AST-node expansion and verifier cost",
+    "prospective library transfer",
+    "false promotion",
+    "misspecification detection",
+    "gauge abstention",
+    "program MDL"
+  ],
+  "hard_gates":[
+    "truth AST absent from initial grammar in birth lanes",
+    "no full expanded candidate list materialized for deployable methods",
+    "private reserve one-shot",
+    "oracle ceiling excluded from support evidence",
+    "append-only grammar and library genealogy",
+    "no backward transfer leakage",
+    "fail-closed authority when no verified AST or mismatch certificate exists"
+  ],
+  "support_rule":{
+    "minimum_gain_over_strongest_deployable_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_domains":3,
+    "false_promotion_maximum":0.02,
+    "cost_matched":true
+  },
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
