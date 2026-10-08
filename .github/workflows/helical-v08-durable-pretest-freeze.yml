@@ -28,6 +28,7 @@ jobs:
       PUBLIC_WEB_ACQUISITION_SHA256: a49000d5b0f1665e1302c2e57de3cca6e46502aadd801abdf9ced153c83048ff
       ORIGINAL_EXTRACTOR_SHA256: 1f2383e43946b0e728b56c4183cbe750fb8f3b5a13303aa35ebfa53ce7704f35
       SCALAR_NUM_EXTRACTOR_SHA256: 60e900eb96819b0019d8b3dc1046c37879c983eeddd014f075b7e3229ef00fe9
+      ORIGINAL_ELIGIBILITY_SHA256: 97ef6ccf547d21faee7c487bce90df0753adc22b36deb29d59a99e75be7709d6
       MECHANISM_SHA256: cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb
       FAULT_SHA256: 37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1
     steps:
@@ -90,6 +91,40 @@ jobs:
           echo "$SCALAR_NUM_EXTRACTOR_SHA256  $extractor_replacement" | sha256sum -c -
           cp "$acquisition_replacement" "$acquisition_original"
           cp "$extractor_replacement" "$extractor_original"
+          eligibility="$root/runtime/runtime/eligibility_standalone.py"
+          echo "$ORIGINAL_ELIGIBILITY_SHA256  $eligibility" | sha256sum -c -
+          python - "$eligibility" "$artifact/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib, json, sys
+          path=Path(sys.argv[1]); receipt=Path(sys.argv[2])
+          original=path.read_bytes(); original_sha=hashlib.sha256(original).hexdigest()
+          text=original.decode('utf-8')
+          old='coords = [transformer.transform(x, y) for x, y in line.coords]'
+          new='coords = [transformer.transform(float(coord[0]), float(coord[1])) for coord in line.coords]'
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one exact XY geometry token, observed {text.count(old)}')
+          patched=text.replace(old,new).encode('utf-8'); path.write_bytes(patched)
+          body={
+              'format':'KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT',
+              'scope':'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY',
+              'original_sha256':original_sha,
+              'patched_sha256':hashlib.sha256(patched).hexdigest(),
+              'replacement_count':1,
+              'discarded_coordinate_component':'OPTIONAL_GEOJSON_Z_ONLY',
+              'distance_model':'SURFACE_DISTANCE_EPSG_3310_UNCHANGED',
+              'protocol_changed':False,
+              'scientific_models_changed':False,
+              'thresholds_changed':False,
+              'directional_fields_accessed':False,
+              'sealed_test_scored':False,
+              'applied_before_source_access':True,
+              'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+              'authority_ceiling':'NONE',
+          }
+          body['receipt_id']='h8xy3:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          receipt.write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          PY
           python - "$artifact/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'
           from datetime import datetime, timezone
           from pathlib import Path
@@ -97,7 +132,7 @@ jobs:
           body = {
               'format': 'KCH_HELICAL_V0_8_3_PREACCESS_SUCCESSOR_RECEIPT',
               'protocol_id': os.environ['PROTOCOL_ID'],
-              'scope': ['ACQUISITION_TRANSPORT_ONLY', 'NUM_DECLARED_COUNT_SCALAR_CARDINALITY_ONLY'],
+              'scope': ['ACQUISITION_TRANSPORT_ONLY', 'NUM_DECLARED_COUNT_SCALAR_CARDINALITY_ONLY', 'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY'],
               'protocol_changed': False,
               'scientific_models_changed': False,
               'thresholds_changed': False,
