@@ -1,0 +1,49 @@
+{
+  "program_id":"CFL-UEP-G3.10-GENERATIVE-PROGRAM-SPACE-AND-METAGRAMMAR-GENESIS",
+  "status":"PRIVATE_RESERVE_CONSUMED_ONCE_LOCAL_REMOTE_REPLICATION_FROZEN",
+  "date":"2026-10-08",
+  "source_sha256":"566ca8adc74102458ec3d4d98c89ac69968f65190256bfbbe2c465a50384d46a",
+  "gzip_sha256":"1d9834c8d1a7b6f48595ae351991e594d0f30eb370344b0c40d828ec11c35091",
+  "private_seed":202610042,
+  "private_task_count":60,
+  "private_rows":600,
+  "private_truth_manifest_sha256":"557b4e9d156e0ced815b77f3ac51e85d30eaba5b9efc227d9143165376d6de03",
+  "private_method_results_sha256":"e36d362d51d8e2867395b1b666d62fa34ed2333356f89e3fd5e0f262ecba2457",
+  "private_adjudication_sha256":"3a97f8f12cd056bb0b03398d7d540cf7d7bc281be6c51079ea9f42ce59915feb",
+  "private_summary_sha256":"e937935e72c6616b6bfefaa1562d007d9d7c4cba632123f4124aa6eba54f1e2c",
+  "private_transfer_ledger_sha256":"d32d814deb86704b1ff93d56ecb3dd93ee925d79f8ad4443333e15c6f26a5fcb",
+  "infrastructure_note":"An earlier local attempt was killed by container timeout before any manifest/result file was written; no private outcome was observable. The same frozen bytes were then executed to completion.",
+  "generator_boundary_correction":{
+    "excluded_from_primary_novel_endpoint":[
+      "algebra:NEW_MACRO_DISCOVERY:002",
+      "mechanics:NEW_MACRO_DISCOVERY:002"
+    ],
+    "reason":"truth AST expanded size 8 exceeded the preregistered MAX_AST_SIZE=7",
+    "treatment":"preserve rows; reclassify as BENCHMARK_GENERATOR_OUT_OF_BOUND; do not count as method failures",
+    "valid_private_novel_tasks":34,
+    "oracle_valid_novel_recall":1.0
+  },
+  "corrected_private_primary":{
+    "tos_novel_truth_recall":0.47058823529411764,
+    "tos_no_reentry_novel_truth_recall":0.4411764705882353,
+    "dreamcoder_novel_truth_recall":0.4411764705882353,
+    "egraph_novel_truth_recall":0.4117647058823529,
+    "neural_novel_truth_recall":0.4117647058823529,
+    "tos_minus_no_reentry":0.029411764705882353,
+    "tos_minus_no_reentry_ci95":[0.0,0.08823529411764706],
+    "tos_minus_dreamcoder":0.029411764705882353,
+    "tos_minus_dreamcoder_ci95":[0.0,0.08823529411764706],
+    "support_rule_recall":"NOT_MET_CI_TOUCHES_ZERO"
+  },
+  "prospective_macro_transfer":{
+    "tos_effective_macro_uses":6,
+    "mean_ast_expansion_saving_vs_no_reentry_on_effective_uses":822.1666666666666,
+    "bootstrap_ci95":[451.0,1249.0],
+    "domain_mean_rewrite_expansion_saving":{"graph":551.0,"algebra":-91.0,"number":895.3333333333334,"mechanics":198.0},
+    "interpretation":"strong local prospective search-compression signal in graph/number/mechanics, but not universal across all domains"
+  },
+  "post_private_tuning":"FORBIDDEN",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
