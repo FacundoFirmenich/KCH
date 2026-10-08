@@ -1,0 +1,10 @@
+{
+  "authority_ceiling": "NONE",
+  "bytes": 23974,
+  "format": "KCH_HELICAL_V0_8_3_RENDERED_WORKFLOW_RECEIPT",
+  "path": "generated/helical_v08/helical-v08-durable-pretest-freeze.yml",
+  "protocol_changed": false,
+  "scientific_models_changed": false,
+  "sha256": "30ba8109e3e6c864e6e0b0a603e94bb80df30770def68cef225af2066ef090a8",
+  "thresholds_changed": false
+}

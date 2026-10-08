@@ -1,0 +1,161 @@
+{
+  "authority_ceiling": "NONE",
+  "branch": "gate/helical-v08-durable-pretest-freeze-20261008",
+  "canonicalization": "BLOCKED",
+  "directional_fields_accessed": "SELECTED_COHORTS_ONLY_AFTER_BLIND_SELECTION",
+  "exact_source_hashes": {
+    "fault_network_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+    "mechanism_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+  },
+  "format": "KCH_HELICAL_V0_8_3_DURABLE_PRETEST_FREEZE_RECEIPT",
+  "full_artifact_bytes": 667710200,
+  "full_artifact_file_count": 125,
+  "full_artifact_tree_sha256": "e5a46b6cedc90adbd32e235acf8b8bdf5d55b752dd599a7d78ffb93f622fe263",
+  "github_run_attempt": "1",
+  "github_run_id": "37815991537",
+  "key_evidence": [
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 932,
+      "format": "KCH_HELICAL_V0_8_3_SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT",
+      "path": "stage/SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT_V0_8_3.json",
+      "sha256": "c847474044748a05d1e94bbd6ed74104b22690aaa3efaafa3f2be42179ffbe49"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 1348,
+      "format": "KCH_HELICAL_V0_8_COMCAT_CSV_LOCATION_UNCERTAINTY_GATE",
+      "outcome": "LOCATION_UNCERTAINTY_CROSSWALK_PASS",
+      "path": "stage/crosswalk/COMCAT_CSV_LOCATION_UNCERTAINTY_GATE_RESULT.json",
+      "sha256": "95c8b86f5e40c41de42062d861e190644e1889dc1bd38fde69641b61a5cb5469"
+    },
+    {
+      "bytes": 73367,
+      "path": "stage/crosswalk/COMCAT_CSV_QUERY_RECEIPTS.json",
+      "sha256": "99e3128eb480189dc70d5c887eb9db76876c00865e047a869af0d243fe954688"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 1522,
+      "format": "KCH_HELICAL_V0_8_SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT",
+      "path": "stage/directional/SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "fbdf96ea3b3f56ced7760e3e2c01a761d11bbbfcc974ffca817d43e722aa5cc9"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2617,
+      "format": "KCH_HELICAL_V0_8_ETAS_HAWKES_PARENT_GRAPH_PARAMETER_LOCK",
+      "path": "stage/parent_graph/ETAS_HAWKES_PARENT_GRAPH_PARAMETER_LOCK_V0_8.json",
+      "sha256": "2c5a077cd011aeff4aa76b69969ef9b14334b9c90152e938d03209d0aacd17e1"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 3901,
+      "format": "KCH_HELICAL_V0_8_PARENT_GRAPH_TRAIN_ONLY_CALIBRATION_GATE",
+      "outcome": "PARENT_GRAPH_LOCK_PASS",
+      "path": "stage/parent_graph/PARENT_GRAPH_CALIBRATION_RESULT_V0_8.json",
+      "sha256": "a461535e172c263ff17ef9b3dd47c1255fdc856cd1ffba235b57d11643e26588"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2641,
+      "directional_execution_authorized": true,
+      "format": "KCH_HELICAL_V0_8_DIRECTIONAL_PREFLIGHT_RESULT",
+      "outcome": "DIRECTIONAL_MATERIALIZATION_PASS",
+      "path": "stage/preflight/DIRECTIONAL_PREFLIGHT_RESULT_V0_8.json",
+      "physical_helicity": "NOT_EVALUATED",
+      "sha256": "326c4f663325bdc83585fffddd84df60210ce6c0ba38de2a738b5b0015db1f2a"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 1628,
+      "format": "KCH_HELICAL_V0_8_SELECTED_INDEX_RECEIPT",
+      "path": "stage/selection/SELECTED_INDEX_RECEIPT_V0_8.json",
+      "sha256": "fdec28280abc2fedf098f78e7df861e666f0f5bdbcbde2e4ed0dbff7ef2c8efc"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 1165,
+      "format": "KCH_HELICAL_V0_8_LOCATION_PERTURBATION_OPERATOR_LOCK",
+      "path": "stage/topology/LOCATION_PERTURBATION_OPERATOR_LOCK_V0_8.json",
+      "sha256": "451abe7fa08e8998e5178782f27144c03191232350f90ad545bbdc7cb972cf35"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 3864,
+      "format": "KCH_HELICAL_V0_8_TOPOLOGY_AND_LOCATION_OPERATOR_GATE",
+      "outcome": "TOPOLOGY_AND_LOCATION_PERTURBATION_OPERATOR_LOCKED",
+      "path": "stage/topology/TOPOLOGY_AND_LOCATION_OPERATOR_GATE_RESULT_V0_8.json",
+      "sha256": "b6bf8addb3b391584cff4e895f62ae8bb401525b601ce7dbb60fd272b9f65d39"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2710,
+      "execution_authorized": true,
+      "format": "KCH_HELICAL_V0_8_BLIND_ELIGIBILITY_RESULT",
+      "outcome": "ELIGIBILITY_PASS",
+      "path": "upstream/BLIND_ELIGIBILITY_RESULT_V0_8.json",
+      "sha256": "4673a3a831e4ef20bb7bcaa89f5e92ce2f869140370022493353c5b87f8d814c"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 3502,
+      "format": "KCH_HELICAL_V0_8_MATERIAL_GATE_SUMMARY",
+      "path": "upstream/MATERIAL_GATE_SUMMARY_V0_8.json",
+      "promotion": "BLOCKED",
+      "sha256": "11484707a3605f053a5fc26e540fa75f3a38e78871fe8385abe0d8901c44f679"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 716,
+      "format": "KCH_HELICAL_V0_8_3_PREACCESS_SUCCESSOR_RECEIPT",
+      "path": "upstream/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "promotion": "BLOCKED",
+      "sha256": "15432d3cbd172638523d4e4f98d51279568175aff9029d724e896c4ef4cff2dd"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 784,
+      "format": "KCH_HELICAL_V0_8_SANDBOX_LOCK_RECEIPT",
+      "path": "upstream/SANDBOX_LOCK_RECEIPT_V0_8.json",
+      "sha256": "2bae09cd4dc910deb16b3554f9570f04abdf251f140dbbdfcb3cde3d5754e468"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 828,
+      "format": "KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT",
+      "path": "upstream/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "sha256": "5bd55888b56a3b65af89079d61f7d4a5c1582f084ff155d59b4da4fb0aa6278c"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 5223,
+      "format": "KCH_HELICAL_V0_8_ACQUISITION_ATTEMPT",
+      "outcome": "EXACT_BYTE_ACQUISITION_PASS",
+      "path": "upstream/acquired/ACQUISITION_RECEIPT_V0_8.json",
+      "sha256": "f1dc3abd4bb2c27ed61d98a4de838b629b053957169baf97eda811370a29cfd9"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2545,
+      "format": "KCH_HELICAL_V0_8_ISOLATED_PICKLE_EXTRACTION_RECEIPT_SAFE_SUCCESSOR_V2",
+      "path": "upstream/blind/EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "4e9272f3f9e5c103d36fcf13522a9b3f688e720f3b3bb756b1d8bb3f74aaf495"
+    }
+  ],
+  "parent_graph_fit_scope": "TRAIN_ONLY_WITH_CALIBRATION_DIAGNOSTICS",
+  "parent_graph_return_code": 0,
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_commit": "a59bd619aaf8eba3f8bb48a091ac5edf9c44b369",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h8durable3:c1feb7ee7361a235ec2bcc5b918e25cbce84dc1f63ec38028cc22ca32647dad8",
+  "recorded_at_utc": "2026-10-08T17:28:39.686015Z",
+  "retrospective_mutation": "FORBIDDEN",
+  "scientific_model_execution_performed": false,
+  "sealed_test_response_scored": false,
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ]
+}

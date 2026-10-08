@@ -1,0 +1,196 @@
+name: Recover green Helical v0.8.3 durable receipt
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-durable-pretest-freeze-20261008
+    paths:
+      - .github/workflows/helical-v08-recover-green-durable-receipt.yml
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: helical-v08-recover-green-durable-receipt
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SOURCE_RUN_ID: '37815991537'
+      SOURCE_ARTIFACT_ID: '11566699529'
+      SOURCE_ARTIFACT_ZIP_SHA256: '8db78b50f79fe6cf3c28c3142d409f56a52831cc80ff694d2dee1e92c07ea698'
+      SOURCE_RECEIPT_ID: 'h8durable3:c1feb7ee7361a235ec2bcc5b918e25cbce84dc1f63ec38028cc22ca32647dad8'
+      SOURCE_TREE_SHA256: 'e5a46b6cedc90adbd32e235acf8b8bdf5d55b752dd599a7d78ffb93f622fe263'
+      PROTOCOL_ID: 'h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f'
+    steps:
+      - name: Checkout current successor branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download immutable green artifact and verify archive digest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          zip="$RUNNER_TEMP/helical-v083-green-${SOURCE_RUN_ID}.zip"
+          gh api \
+            -H 'Accept: application/vnd.github+json' \
+            "repos/${GITHUB_REPOSITORY}/actions/artifacts/${SOURCE_ARTIFACT_ID}/zip" \
+            > "$zip"
+          echo "${SOURCE_ARTIFACT_ZIP_SHA256}  $zip" | sha256sum -c -
+          unzip -tq "$zip"
+          echo "SOURCE_ZIP=$zip" >> "$GITHUB_ENV"
+
+      - name: Recover exact compact evidence bytes only
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="evidence/helical_v08/durable_pretest_freeze/run-${SOURCE_RUN_ID}"
+          rm -rf "$dest"
+          mkdir -p "$dest"
+          members=(
+            'DURABLE_PRETEST_FREEZE_RECEIPT_V0_8_3.json'
+            'SHA256SUMS_FULL.txt'
+            'FILE_SIZES_FULL.txt'
+            'PROTOCOL.json'
+            'stage/SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT_V0_8_3.json'
+            'stage/crosswalk/COMCAT_CSV_LOCATION_UNCERTAINTY_GATE_RESULT.json'
+            'stage/crosswalk/COMCAT_CSV_QUERY_RECEIPTS.json'
+            'stage/directional/SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json'
+            'stage/parent_graph/ETAS_HAWKES_PARENT_GRAPH_PARAMETER_LOCK_V0_8.json'
+            'stage/parent_graph/PARENT_GRAPH_CALIBRATION_RESULT_V0_8.json'
+            'stage/preflight/DIRECTIONAL_PREFLIGHT_RESULT_V0_8.json'
+            'stage/selection/SELECTED_INDEX_RECEIPT_V0_8.json'
+            'stage/topology/FAULT_NETWORK_TOPOLOGY_INTERSECTIONS_V0_8.json'
+            'stage/topology/LOCATION_PERTURBATION_OPERATOR_LOCK_V0_8.json'
+            'stage/topology/TOPOLOGY_AND_LOCATION_OPERATOR_GATE_RESULT_V0_8.json'
+            'upstream/BLIND_ELIGIBILITY_RESULT_V0_8.json'
+            'upstream/MATERIAL_GATE_SUMMARY_V0_8.json'
+            'upstream/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json'
+            'upstream/SANDBOX_LOCK_RECEIPT_V0_8.json'
+            'upstream/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json'
+            'upstream/acquired/ACQUISITION_RECEIPT_V0_8.json'
+            'upstream/blind/EXTRACTION_RECEIPT_V0_8.json'
+          )
+          for member in "${members[@]}"; do
+            mkdir -p "$dest/$(dirname "$member")"
+            unzip -p "$SOURCE_ZIP" "$member" > "$dest/$member"
+            test -s "$dest/$member"
+          done
+          printf '%s\n' "${members[@]}" > "$dest/RECOVERED_MEMBER_PATHS.txt"
+
+      - name: Verify source tree membership and scientific boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="evidence/helical_v08/durable_pretest_freeze/run-${SOURCE_RUN_ID}"
+          python - "$dest" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+
+          dest = Path(sys.argv[1])
+          sums = {}
+          for line in (dest / 'SHA256SUMS_FULL.txt').read_text().splitlines():
+              if not line.strip():
+                  continue
+              sha, path = line.split('  ', 1)
+              sums[path] = sha
+
+          recovered = [p.strip() for p in (dest / 'RECOVERED_MEMBER_PATHS.txt').read_text().splitlines() if p.strip()]
+          verified = []
+          for rel in recovered:
+              p = dest / rel
+              sha = hashlib.sha256(p.read_bytes()).hexdigest()
+              if rel not in {'DURABLE_PRETEST_FREEZE_RECEIPT_V0_8_3.json', 'SHA256SUMS_FULL.txt', 'FILE_SIZES_FULL.txt'}:
+                  expected = sums.get(rel)
+                  if expected is None:
+                      raise SystemExit(f'member absent from frozen tree index: {rel}')
+                  if sha != expected:
+                      raise SystemExit(f'hash mismatch for {rel}: {sha} != {expected}')
+              verified.append({'path': rel, 'bytes': p.stat().st_size, 'sha256': sha})
+
+          receipt_path = dest / 'DURABLE_PRETEST_FREEZE_RECEIPT_V0_8_3.json'
+          receipt = json.loads(receipt_path.read_text())
+          expected = {
+              'receipt_id': os.environ['SOURCE_RECEIPT_ID'],
+              'protocol_id': os.environ['PROTOCOL_ID'],
+              'github_run_id': os.environ['SOURCE_RUN_ID'],
+              'full_artifact_tree_sha256': os.environ['SOURCE_TREE_SHA256'],
+              'full_artifact_file_count': 125,
+              'full_artifact_bytes': 667710200,
+              'parent_graph_return_code': 0,
+              'sealed_test_response_scored': False,
+              'scientific_model_execution_performed': False,
+              'physical_helicity': 'NOT_EVALUATED',
+              'promotion': 'BLOCKED',
+              'canonicalization': 'BLOCKED',
+              'authority_ceiling': 'NONE',
+              'retrospective_mutation': 'FORBIDDEN',
+          }
+          for key, value in expected.items():
+              if receipt.get(key) != value:
+                  raise SystemExit(f'receipt field mismatch: {key}={receipt.get(key)!r}, expected {value!r}')
+
+          selected = receipt.get('selected_primary_cohorts')
+          if selected != ['BAY_AREA_HAYWARD_CALAVERAS', 'PARKFIELD_CENTRAL_SAF']:
+              raise SystemExit(f'selected cohort drift: {selected!r}')
+
+          parent = json.loads((dest / 'stage/parent_graph/PARENT_GRAPH_CALIBRATION_RESULT_V0_8.json').read_text())
+          if parent.get('outcome') != 'PARENT_GRAPH_LOCK_PASS':
+              raise SystemExit('parent graph lock is not PASS')
+          if parent.get('sealed_test_scored') is not False:
+              raise SystemExit('sealed test boundary violated in parent graph receipt')
+          if parent.get('scientific_dynamic_model_execution_performed') is not False:
+              raise SystemExit('scientific dynamic model unexpectedly executed')
+
+          preflight = json.loads((dest / 'stage/preflight/DIRECTIONAL_PREFLIGHT_RESULT_V0_8.json').read_text())
+          if preflight.get('outcome') != 'DIRECTIONAL_MATERIALIZATION_PASS':
+              raise SystemExit('directional preflight is not PASS')
+          if preflight.get('physical_helicity') != 'NOT_EVALUATED':
+              raise SystemExit('physical helicity boundary drift')
+
+          body = {
+              'format': 'KCH_HELICAL_V0_8_3_GREEN_ARTIFACT_RECOVERY_RECEIPT',
+              'source_run_id': os.environ['SOURCE_RUN_ID'],
+              'source_artifact_id': os.environ['SOURCE_ARTIFACT_ID'],
+              'source_artifact_zip_sha256': os.environ['SOURCE_ARTIFACT_ZIP_SHA256'],
+              'source_receipt_id': os.environ['SOURCE_RECEIPT_ID'],
+              'source_receipt_sha256': hashlib.sha256(receipt_path.read_bytes()).hexdigest(),
+              'source_full_artifact_tree_sha256': os.environ['SOURCE_TREE_SHA256'],
+              'recovered_member_count': len(verified),
+              'recovered_members': verified,
+              'recovery_operation': 'EXACT_BYTE_EXTRACTION_FROM_IMMUTABLE_GITHUB_ACTIONS_ARTIFACT',
+              'source_scientific_gates': 'PASS_THROUGH_PARENT_GRAPH_LOCK',
+              'sealed_test_response_scored': False,
+              'scientific_model_execution_performed': False,
+              'physical_helicity': 'NOT_EVALUATED',
+              'retrospective_mutation': 'FORBIDDEN',
+              'authority_ceiling': 'NONE',
+              'promotion': 'BLOCKED',
+              'canonicalization': 'BLOCKED',
+          }
+          material = json.dumps(body, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+          body['recovery_receipt_id'] = 'h8recover3:' + hashlib.sha256(material).hexdigest()
+          (dest / 'GREEN_ARTIFACT_RECOVERY_RECEIPT_V0_8_3.json').write_text(
+              json.dumps(body, indent=2, sort_keys=True, allow_nan=False) + '\n'
+          )
+          print(json.dumps(body, indent=2, sort_keys=True))
+          PY
+
+      - name: Commit exact recovered green evidence as a successor
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="evidence/helical_v08/durable_pretest_freeze/run-${SOURCE_RUN_ID}"
+          git config user.name 'kch-shadow-evidence-bot'
+          git config user.email '148292966+FacundoFirmenich@users.noreply.github.com'
+          git add "$dest"
+          git commit -m 'evidence: recover exact green v0.8.3 durable receipt [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"

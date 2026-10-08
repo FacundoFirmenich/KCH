@@ -1,0 +1,27 @@
+{
+  "authority_ceiling": "NONE",
+  "engineering_replicates": 16,
+  "engineering_scope": "TRAIN_PLUS_CALIBRATION_ONLY",
+  "fault_reassignment": {
+    "maximum_distance_km": 10.0,
+    "minimum_second_to_first_distance_ratio": 1.5
+  },
+  "fault_topology": {
+    "component_count": 39,
+    "connection_rule": "EXACT_GEOMETRIC_INTERSECTION_ONLY_NO_GAP_TOLERANCE",
+    "exact_intersection_pair_count": 28,
+    "network_path_rule": "SHORTEST_PATH_ALONG_LINES_THROUGH_EXACT_INTERSECTIONS",
+    "selected_line_count": 66
+  },
+  "format": "KCH_HELICAL_V0_8_LOCATION_PERTURBATION_OPERATOR_LOCK",
+  "full_covariance_claim": false,
+  "horizontal_draw": "dx,dy iid Normal(0,horizontalError_km^2)",
+  "missing_error_policy": "UNAVAILABLE_NO_IMPUTATION",
+  "operator_id": "h8locop:dc2fe8b8e090cfe61049e347a8c12c344db212cd87482a039e5d89917d60b6c9",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "representation": "CONSERVATIVE_ISOTROPIC_MAX_HORIZONTAL_PROJECTION_ENVELOPE",
+  "scientific_model_execution_performed": false,
+  "scientific_replicates": 64,
+  "sealed_test_scored": false,
+  "vertical_draw": "dz Normal(0,depthError_km^2)"
+}

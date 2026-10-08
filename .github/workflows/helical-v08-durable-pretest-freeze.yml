@@ -1,0 +1,480 @@
+name: Helical v0.8.3 durable pretest freeze
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-durable-pretest-freeze-20261008
+    paths:
+      - .github/workflows/helical-v08-durable-pretest-freeze.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: helical-v08-durable-pretest-freeze-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      PROTOCOL_ID: h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f
+      BUNDLE_B64_SHA256: 18ea03307486405fca419fd76d8d8d6e19351538f1994c0695d7aa118e108d4e
+      BUNDLE_ZIP_SHA256: 9991c7b4f88e78a56725f3f450ec5cf89e62701ad64a0a716ada633eeca236cb
+      ORIGINAL_ACQUISITION_SHA256: 0598cae1711cff2465e0fafa0ef327734f298d11aa33be1cf645b6a0f64deb19
+      PUBLIC_WEB_ACQUISITION_SHA256: a49000d5b0f1665e1302c2e57de3cca6e46502aadd801abdf9ced153c83048ff
+      ORIGINAL_EXTRACTOR_SHA256: 1f2383e43946b0e728b56c4183cbe750fb8f3b5a13303aa35ebfa53ce7704f35
+      SCALAR_NUM_EXTRACTOR_SHA256: 60e900eb96819b0019d8b3dc1046c37879c983eeddd014f075b7e3229ef00fe9
+      ORIGINAL_ELIGIBILITY_SHA256: 97ef6ccf547d21faee7c487bce90df0753adc22b36deb29d59a99e75be7709d6
+      MECHANISM_SHA256: cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb
+      FAULT_SHA256: 37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1
+    steps:
+      - name: Checkout immutable successor branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up pinned Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install pinned numerical and geometry stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install \
+            'numpy==2.1.3' \
+            'scipy==1.14.1' \
+            'pyproj==3.7.0' \
+            'shapely==2.0.6'
+
+      - name: Reconstruct and verify locked v0.8 runtime before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          mkdir -p "$root/runtime"
+          b64="$root/runtime.b64"
+          zip="$root/runtime.zip"
+          cat \
+            .github/helical_v08_bundle_v2/chunk_00 \
+            .github/helical_v08_bundle_v2/chunk_01 \
+            .github/helical_v08_bundle_v2/chunk_02 \
+            > "$b64"
+          echo "$BUNDLE_B64_SHA256  $b64" | sha256sum -c -
+          base64 --decode "$b64" > "$zip"
+          echo "$BUNDLE_ZIP_SHA256  $zip" | sha256sum -c -
+          unzip -q "$zip" -d "$root/runtime"
+          python -m compileall -q "$root/runtime"
+          cmp --silent .github/helical_v08/protocol.json "$root/runtime/runtime/protocol.json"
+
+      - name: Install transport-only successors before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          artifact="$root/work/artifact"
+          mkdir -p "$artifact"
+          acquisition_original="$root/runtime/runtime/acquire_exact_sources.py"
+          acquisition_replacement=.github/helical_v08/acquire_exact_sources_public.py
+          extractor_original="$root/runtime/runtime/extract_blind_safe.py"
+          extractor_replacement=.github/helical_v08/extract_blind_safe_scalar_num.py
+          echo "$ORIGINAL_ACQUISITION_SHA256  $acquisition_original" | sha256sum -c -
+          echo "$PUBLIC_WEB_ACQUISITION_SHA256  $acquisition_replacement" | sha256sum -c -
+          echo "$ORIGINAL_EXTRACTOR_SHA256  $extractor_original" | sha256sum -c -
+          echo "$SCALAR_NUM_EXTRACTOR_SHA256  $extractor_replacement" | sha256sum -c -
+          cp "$acquisition_replacement" "$acquisition_original"
+          cp "$extractor_replacement" "$extractor_original"
+          eligibility="$root/runtime/runtime/eligibility_standalone.py"
+          echo "$ORIGINAL_ELIGIBILITY_SHA256  $eligibility" | sha256sum -c -
+          python - "$eligibility" "$artifact/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib, json, sys
+          path=Path(sys.argv[1]); receipt=Path(sys.argv[2])
+          original=path.read_bytes(); original_sha=hashlib.sha256(original).hexdigest()
+          text=original.decode('utf-8')
+          old='coords = [transformer.transform(x, y) for x, y in line.coords]'
+          new='coords = [transformer.transform(float(coord[0]), float(coord[1])) for coord in line.coords]'
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one exact XY geometry token, observed {text.count(old)}')
+          patched=text.replace(old,new).encode('utf-8'); path.write_bytes(patched)
+          body={
+              'format':'KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT',
+              'scope':'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY',
+              'original_sha256':original_sha,
+              'patched_sha256':hashlib.sha256(patched).hexdigest(),
+              'replacement_count':1,
+              'discarded_coordinate_component':'OPTIONAL_GEOJSON_Z_ONLY',
+              'distance_model':'SURFACE_DISTANCE_EPSG_3310_UNCHANGED',
+              'protocol_changed':False,
+              'scientific_models_changed':False,
+              'thresholds_changed':False,
+              'directional_fields_accessed':False,
+              'sealed_test_scored':False,
+              'applied_before_source_access':True,
+              'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+              'authority_ceiling':'NONE',
+          }
+          body['receipt_id']='h8xy3:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          receipt.write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          PY
+          python - "$artifact/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib, json, os, sys
+          body = {
+              'format': 'KCH_HELICAL_V0_8_3_PREACCESS_SUCCESSOR_RECEIPT',
+              'protocol_id': os.environ['PROTOCOL_ID'],
+              'scope': ['ACQUISITION_TRANSPORT_ONLY', 'NUM_DECLARED_COUNT_SCALAR_CARDINALITY_ONLY', 'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY'],
+              'protocol_changed': False,
+              'scientific_models_changed': False,
+              'thresholds_changed': False,
+              'directional_fields_accessed': False,
+              'sealed_test_scored': False,
+              'applied_before_source_access': True,
+              'recorded_at_utc': datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+              'authority_ceiling': 'NONE',
+              'promotion': 'BLOCKED',
+          }
+          body['receipt_id'] = 'h8preaccess3:' + hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          Path(sys.argv[1]).write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Reacquire exact public bytes and execute blind count-only eligibility
+        id: blind
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          set +e
+          PYTHONUNBUFFERED=1 python "$root/runtime/runtime/orchestrate_blind.py" \
+            --runtime "$root/runtime/runtime" \
+            --work "$root/work" \
+            | tee "$root/ORCHESTRATOR_STDOUT.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          cp "$root/ORCHESTRATOR_STDOUT.log" "$root/work/artifact/ORCHESTRATOR_STDOUT.log"
+          echo "$rc" > "$root/work/artifact/ORCHESTRATOR_RETURN_CODE.txt"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then exit "$rc"; fi
+          result=$(find "$root/work/artifact" -name BLIND_ELIGIBILITY_RESULT_V0_8.json -print -quit)
+          test -n "$result"
+          authorized=$(python - "$result" <<'PY'
+          import json,sys
+          print(str(bool(json.load(open(sys.argv[1])).get('execution_authorized',False))).lower())
+          PY
+          )
+          echo "authorized=$authorized" >> "$GITHUB_OUTPUT"
+          echo "HELICAL_EXECUTION_AUTHORIZED=$authorized" >> "$GITHUB_ENV"
+
+      - name: Recompute sealed cohort indices after blind authorization
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          artifact="$root/work/artifact"
+          stage="$root/stage"
+          mkdir -p "$stage/selection"
+          result=$(find "$artifact" -name BLIND_ELIGIBILITY_RESULT_V0_8.json -print -quit)
+          blind=$(find "$artifact" -name blind_columns.npz -print -quit)
+          fault=$(find "$artifact" -name gem_active_faults_harmonized.geojson -print -quit)
+          test -n "$result"; test -n "$blind"; test -n "$fault"
+          echo "$FAULT_SHA256  $fault" | sha256sum -c -
+          python .github/helical_v08/select_blind_indices.py \
+            --protocol .github/helical_v08/protocol.json \
+            --eligibility-result "$result" \
+            --eligibility-module .github/helical_v08/eligibility_standalone_xy.py \
+            --blind-npz "$blind" \
+            --fault-geojson "$fault" \
+            --output-dir "$stage/selection" \
+            | tee "$stage/selection/SELECTION_STDOUT.log"
+
+      - name: Freeze networkless selected-directional extractor
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          sandbox="$root/directional_sandbox"
+          mkdir -p "$sandbox"
+          docker pull python:3.11-slim-bookworm
+          base_digest=$(docker image inspect python:3.11-slim-bookworm --format '{{index .RepoDigests 0}}')
+          python -m pip download --only-binary=:all: --no-deps --dest "$sandbox" 'numpy==2.1.3'
+          wheel=$(find "$sandbox" -maxdepth 1 -name 'numpy-*.whl' -type f -print -quit)
+          test -n "$wheel"
+          cp .github/helical_v08/extract_selected_directional.py "$sandbox/extract_selected_directional.py"
+          cat > "$sandbox/Dockerfile" <<EOF
+          FROM $base_digest
+          ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+          COPY $(basename "$wheel") /wheels/
+          RUN pip install --no-cache-dir --no-index /wheels/$(basename "$wheel") && rm -rf /wheels
+          COPY extract_selected_directional.py /app/extract_selected_directional.py
+          ENTRYPOINT ["python", "/app/extract_selected_directional.py"]
+          EOF
+          docker build --pull=false --network=none -t kch-helical-v08-selected-extractor:durable "$sandbox"
+          image_id=$(docker image inspect kch-helical-v08-selected-extractor:durable --format '{{.Id}}')
+          python - "$root/stage/SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT_V0_8_3.json" "$base_digest" "$image_id" "$wheel" "$sandbox/Dockerfile" "$sandbox/extract_selected_directional.py" <<'PY'
+          from datetime import datetime,timezone
+          from pathlib import Path
+          import hashlib,json,sys
+          def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          body={
+            'format':'KCH_HELICAL_V0_8_3_SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT',
+            'locked_before_directional_access':True,
+            'base_image_digest':sys.argv[2],
+            'sandbox_image_id':sys.argv[3],
+            'numpy_wheel_sha256':sha(sys.argv[4]),
+            'dockerfile_sha256':sha(sys.argv[5]),
+            'extractor_sha256':sha(sys.argv[6]),
+            'network_mode':'NONE',
+            'root_filesystem':'READ_ONLY',
+            'capabilities':'ALL_DROPPED',
+            'no_new_privileges':True,
+            'sealed_test_scored':False,
+            'authority_ceiling':'NONE',
+            'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+          }
+          body['receipt_id']='h8dirsandbox3:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          Path(sys.argv[1]).write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Open directional fields only for sealed selected cohorts
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          artifact="$root/work/artifact"
+          stage="$root/stage"
+          mechanism=$(find "$artifact" -name focmec_ca_final.pickle -print -quit)
+          indices="$stage/selection/selected_blind_indices.npz"
+          test -n "$mechanism"; test -f "$indices"
+          echo "$MECHANISM_SHA256  $mechanism" | sha256sum -c -
+          indices_sha=$(python - "$stage/selection/SELECTED_INDEX_RECEIPT_V0_8.json" <<'PY'
+          import json,sys
+          print(json.load(open(sys.argv[1]))['selected_indices_sha256'])
+          PY
+          )
+          mkdir -p "$stage/directional"
+          chmod 777 "$stage/directional"
+          docker run --rm \
+            --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges --pids-limit 64 \
+            --memory 6g --cpus 2 --tmpfs /tmp:rw,noexec,nosuid,size=512m \
+            --user 65534:65534 \
+            -v "$mechanism:/input/catalog.pickle:ro" \
+            -v "$indices:/input/selected_indices.npz:ro" \
+            -v "$stage/directional:/output:rw" \
+            kch-helical-v08-selected-extractor:durable \
+            --pickle /input/catalog.pickle \
+            --expected-pickle-sha256 "$MECHANISM_SHA256" \
+            --selected-indices /input/selected_indices.npz \
+            --expected-indices-sha256 "$indices_sha" \
+            --output-dir /output \
+            | tee "$stage/directional/DIRECTIONAL_EXTRACTION_STDOUT.log"
+
+      - name: Execute directional observability preflight without test scoring
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          artifact="$root/work/artifact"
+          stage="$root/stage"
+          fault=$(find "$artifact" -name gem_active_faults_harmonized.geojson -print -quit)
+          directional_sha=$(python - "$stage/directional/SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json" <<'PY'
+          import json,sys
+          print(json.load(open(sys.argv[1]))['output_sha256'])
+          PY
+          )
+          mkdir -p "$stage/preflight"
+          set +e
+          python .github/helical_v08/directional_preflight.py \
+            --selected-directional "$stage/directional/selected_directional_columns.npz" \
+            --expected-directional-sha256 "$directional_sha" \
+            --fault-geojson "$fault" \
+            --expected-fault-sha256 "$FAULT_SHA256" \
+            --protocol .github/helical_v08/protocol.json \
+            --output-dir "$stage/preflight" \
+            | tee "$stage/preflight/PREFLIGHT_STDOUT.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          echo "$rc" > "$stage/preflight/RETURN_CODE.txt"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then exit "$rc"; fi
+
+      - name: Reacquire ComCat scalar location uncertainty under locked matching rule
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          stage="$root/stage"
+          mkdir -p "$stage/crosswalk"
+          set +e
+          PYTHONUNBUFFERED=1 python .github/helical_v08/comcat_location_uncertainty_crosswalk_csv.py \
+            --selected-npz "$stage/directional/selected_directional_columns.npz" \
+            --out "$stage/crosswalk" \
+            | tee "$stage/crosswalk/STDOUT.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          echo "$rc" > "$stage/crosswalk/RETURN_CODE.txt"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then exit "$rc"; fi
+
+      - name: Lock exact-intersection topology and conservative location perturbation operator
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          artifact="$root/work/artifact"
+          stage="$root/stage"
+          fault=$(find "$artifact" -name gem_active_faults_harmonized.geojson -print -quit)
+          mkdir -p "$stage/topology"
+          PYTHONUNBUFFERED=1 python .github/helical_v08/lock_topology_and_location_operator.py \
+            --selected-artifact-root "$stage" \
+            --crosswalk-root "$stage/crosswalk" \
+            --fault-geojson "$fault" \
+            --out "$stage/topology" \
+            | tee "$stage/topology/STDOUT.log"
+
+      - name: Refit and lock train-only network ETAS/Hawkes parent graph
+        if: steps.blind.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          artifact="$root/work/artifact"
+          stage="$root/stage"
+          fault=$(find "$artifact" -name gem_active_faults_harmonized.geojson -print -quit)
+          mkdir -p "$stage/parent_graph"
+          set +e
+          PYTHONUNBUFFERED=1 python .github/helical_v08/fit_parent_graph_lock.py \
+            --selected-root "$stage" \
+            --topology-root "$stage/topology" \
+            --fault-geojson "$fault" \
+            --out "$stage/parent_graph" \
+            | tee "$stage/parent_graph/STDOUT.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          echo "$rc" > "$stage/parent_graph/RETURN_CODE.txt"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then exit "$rc"; fi
+
+      - name: Assemble full successor and durable evidence receipt
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical_v083"
+          full="$root/full_artifact"
+          evidence="$GITHUB_WORKSPACE/evidence/helical_v08/durable_pretest_freeze/run-${GITHUB_RUN_ID}"
+          mkdir -p "$full/upstream" "$full/stage" "$evidence/json"
+          if [ -d "$root/work/artifact" ]; then cp -a "$root/work/artifact/." "$full/upstream/"; fi
+          if [ -d "$root/stage" ]; then cp -a "$root/stage/." "$full/stage/"; fi
+          cp .github/helical_v08/protocol.json "$full/PROTOCOL.json"
+          python - "$full" "$evidence" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib, json, os, shutil, sys
+          full=Path(sys.argv[1]); evidence=Path(sys.argv[2]); json_out=evidence/'json'
+          json_out.mkdir(parents=True,exist_ok=True)
+          files=sorted(p for p in full.rglob('*') if p.is_file() and p.name not in {'SHA256SUMS_FULL.txt','FILE_SIZES_FULL.txt'})
+          records=[]
+          for p in files:
+              rel=p.relative_to(full).as_posix(); data=p.read_bytes(); sha=hashlib.sha256(data).hexdigest()
+              records.append({'path':rel,'sha256':sha,'bytes':len(data)})
+              if p.suffix.lower()=='.json' and len(data)<=10_000_000:
+                  target=json_out/rel; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(data)
+          sums=''.join(f"{r['sha256']}  {r['path']}\n" for r in records)
+          (full/'SHA256SUMS_FULL.txt').write_text(sums)
+          (full/'FILE_SIZES_FULL.txt').write_text(''.join(f"{r['path']}\t{r['bytes']} bytes\n" for r in records))
+          tree_material=''.join(f"{r['path']}\0{r['sha256']}\0{r['bytes']}\n" for r in records).encode()
+          tree_sha=hashlib.sha256(tree_material).hexdigest()
+          key=[]
+          for r in records:
+              name=Path(r['path']).name
+              if name.endswith('.json') and any(token in name for token in (
+                  'RECEIPT','RESULT','SUMMARY','LOCK','PREFLIGHT','ELIGIBILITY','ACQUISITION','OPERATOR'
+              )):
+                  item=dict(r)
+                  try:
+                      obj=json.loads((full/r['path']).read_text())
+                      for field in ('format','outcome','status','authority_ceiling','promotion','physical_helicity','execution_authorized','directional_execution_authorized'):
+                          if field in obj: item[field]=obj[field]
+                  except Exception as exc:
+                      item['parse_error']=type(exc).__name__
+                  key.append(item)
+          selected=[]
+          for p in full.rglob('BLIND_ELIGIBILITY_RESULT_V0_8.json'):
+              try: selected=json.loads(p.read_text()).get('selected_primary_cohorts',[])
+              except Exception: pass
+          parent_return=None
+          hits=list(full.rglob('parent_graph/RETURN_CODE.txt'))
+          if hits:
+              try: parent_return=int(hits[0].read_text().strip())
+              except Exception: pass
+          body={
+              'format':'KCH_HELICAL_V0_8_3_DURABLE_PRETEST_FREEZE_RECEIPT',
+              'protocol_id':os.environ['PROTOCOL_ID'],
+              'predecessor_commit':os.environ['GITHUB_SHA'],
+              'branch':os.environ['GITHUB_REF_NAME'],
+              'github_run_id':os.environ['GITHUB_RUN_ID'],
+              'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+              'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+              'selected_primary_cohorts':selected,
+              'exact_source_hashes':{
+                  'mechanism_sha256':os.environ['MECHANISM_SHA256'],
+                  'fault_network_sha256':os.environ['FAULT_SHA256'],
+              },
+              'full_artifact_file_count':len(records),
+              'full_artifact_bytes':sum(r['bytes'] for r in records),
+              'full_artifact_tree_sha256':tree_sha,
+              'key_evidence':key,
+              'parent_graph_return_code':parent_return,
+              'directional_fields_accessed':'SELECTED_COHORTS_ONLY_AFTER_BLIND_SELECTION',
+              'parent_graph_fit_scope':'TRAIN_ONLY_WITH_CALIBRATION_DIAGNOSTICS',
+              'sealed_test_response_scored':False,
+              'scientific_model_execution_performed':False,
+              'physical_helicity':'NOT_EVALUATED',
+              'retrospective_mutation':'FORBIDDEN',
+              'promotion':'BLOCKED',
+              'canonicalization':'BLOCKED',
+              'authority_ceiling':'NONE',
+          }
+          body['receipt_id']='h8durable3:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+          receipt=evidence/'DURABLE_PRETEST_FREEZE_RECEIPT_V0_8_3.json'
+          receipt.write_text(json.dumps(body,indent=2,sort_keys=True,allow_nan=False)+'\n')
+          shutil.copy2(receipt,full/receipt.name)
+          (evidence/'FULL_ARTIFACT_INDEX.json').write_text(json.dumps(records,indent=2,sort_keys=True)+'\n')
+          (evidence/'SHA256SUMS_FULL.txt').write_text(sums)
+          print(json.dumps(body,indent=2,sort_keys=True))
+          PY
+
+      - name: Upload full sealed durable-pretest successor
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-durable-pretest-freeze-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical_v083/full_artifact
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error
+
+      - name: Commit durable receipts without promotion
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence="evidence/helical_v08/durable_pretest_freeze/run-${GITHUB_RUN_ID}"
+          test -f "$evidence/DURABLE_PRETEST_FREEZE_RECEIPT_V0_8_3.json"
+          git config user.name 'kch-shadow-evidence-bot'
+          git config user.email '148292966+FacundoFirmenich@users.noreply.github.com'
+          git add "$evidence"
+          git commit -m "evidence: freeze v0.8.3 durable pretest successor [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -1,0 +1,118 @@
+{
+  "authority_ceiling": "NONE",
+  "branch": "gate/helical-v08-durable-pretest-freeze-20261008",
+  "canonicalization": "BLOCKED",
+  "directional_fields_accessed": "SELECTED_COHORTS_ONLY_AFTER_BLIND_SELECTION",
+  "exact_source_hashes": {
+    "fault_network_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+    "mechanism_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+  },
+  "format": "KCH_HELICAL_V0_8_3_DURABLE_PRETEST_FREEZE_RECEIPT",
+  "full_artifact_bytes": 593045920,
+  "full_artifact_file_count": 31,
+  "full_artifact_tree_sha256": "5fc73e198ec8ff1124e6a0219871206db7d6f3b58aaa23c4d0665bda22392f0f",
+  "github_run_attempt": "1",
+  "github_run_id": "37816065554",
+  "key_evidence": [
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 932,
+      "format": "KCH_HELICAL_V0_8_3_SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT",
+      "path": "stage/SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT_V0_8_3.json",
+      "sha256": "33f46c24c6fb9eec07030f5f2441fa75efbed8ae76d0dece65cf883a3325ded2"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 1522,
+      "format": "KCH_HELICAL_V0_8_SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT",
+      "path": "stage/directional/SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "fbdf96ea3b3f56ced7760e3e2c01a761d11bbbfcc974ffca817d43e722aa5cc9"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2641,
+      "directional_execution_authorized": true,
+      "format": "KCH_HELICAL_V0_8_DIRECTIONAL_PREFLIGHT_RESULT",
+      "outcome": "DIRECTIONAL_MATERIALIZATION_PASS",
+      "path": "stage/preflight/DIRECTIONAL_PREFLIGHT_RESULT_V0_8.json",
+      "physical_helicity": "NOT_EVALUATED",
+      "sha256": "ffab91259db201a66de2fbdf1f66fdc8a4da3c2ea7f829dc627fdc5cddf44a61"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 1628,
+      "format": "KCH_HELICAL_V0_8_SELECTED_INDEX_RECEIPT",
+      "path": "stage/selection/SELECTED_INDEX_RECEIPT_V0_8.json",
+      "sha256": "fdec28280abc2fedf098f78e7df861e666f0f5bdbcbde2e4ed0dbff7ef2c8efc"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2710,
+      "execution_authorized": true,
+      "format": "KCH_HELICAL_V0_8_BLIND_ELIGIBILITY_RESULT",
+      "outcome": "ELIGIBILITY_PASS",
+      "path": "upstream/BLIND_ELIGIBILITY_RESULT_V0_8.json",
+      "sha256": "4673a3a831e4ef20bb7bcaa89f5e92ce2f869140370022493353c5b87f8d814c"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 3502,
+      "format": "KCH_HELICAL_V0_8_MATERIAL_GATE_SUMMARY",
+      "path": "upstream/MATERIAL_GATE_SUMMARY_V0_8.json",
+      "promotion": "BLOCKED",
+      "sha256": "726e6bcb866ceed9343e12613166db1997e566c064ba6ae30823b29d19b50b52"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 716,
+      "format": "KCH_HELICAL_V0_8_3_PREACCESS_SUCCESSOR_RECEIPT",
+      "path": "upstream/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "promotion": "BLOCKED",
+      "sha256": "3d50c7205e619a36ecccec2981d8eeb3e07fcb943f5e59907983e769b7e1a52c"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 784,
+      "format": "KCH_HELICAL_V0_8_SANDBOX_LOCK_RECEIPT",
+      "path": "upstream/SANDBOX_LOCK_RECEIPT_V0_8.json",
+      "sha256": "96bbcff0681001733ccb9007651e7c12be38add70c938a5d48d6b8cce6a92b24"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 828,
+      "format": "KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT",
+      "path": "upstream/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "sha256": "64e1a2300cad6baa6e938a6796582a2942a3c9e1b45a9aa564e6aa10aaae5a78"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 5226,
+      "format": "KCH_HELICAL_V0_8_ACQUISITION_ATTEMPT",
+      "outcome": "EXACT_BYTE_ACQUISITION_PASS",
+      "path": "upstream/acquired/ACQUISITION_RECEIPT_V0_8.json",
+      "sha256": "743db1a202a9ab5a3ccff3e4fd2f19b1db27484107ebfdbc6fc6fadd95404c24"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2545,
+      "format": "KCH_HELICAL_V0_8_ISOLATED_PICKLE_EXTRACTION_RECEIPT_SAFE_SUCCESSOR_V2",
+      "path": "upstream/blind/EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "4e9272f3f9e5c103d36fcf13522a9b3f688e720f3b3bb756b1d8bb3f74aaf495"
+    }
+  ],
+  "parent_graph_fit_scope": "TRAIN_ONLY_WITH_CALIBRATION_DIAGNOSTICS",
+  "parent_graph_return_code": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_commit": "8f61b716545c83e2b855ac11b4810dd4ff3748c6",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h8durable3:0efc51cfbae5fdabf8dbe9578e4fbe1f03857384f4a7ddf1f9d0adf4caa355a8",
+  "recorded_at_utc": "2026-10-08T17:31:12.550231Z",
+  "retrospective_mutation": "FORBIDDEN",
+  "scientific_model_execution_performed": false,
+  "sealed_test_response_scored": false,
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "authority_ceiling": "NONE",
+  "directional_fields_opened": false,
+  "error": "eligibility produced no receipt; return code 1",
+  "error_type": "RuntimeError",
+  "failed_stage": "BLIND_ELIGIBILITY",
+  "format": "KCH_HELICAL_V0_8_MATERIAL_GATE_FAIL_CLOSED_RECEIPT",
+  "recorded_at_utc": "2026-10-08T17:17:53.012674Z",
+  "scientific_execution_performed": false,
+  "scientific_result": null,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/_temp/helical_v083/runtime/runtime/orchestrate_blind.py\", line 184, in main\n    raise RuntimeError(f\"eligibility produced no receipt; return code {proc.returncode}\")\nRuntimeError: eligibility produced no receipt; return code 1\n"
+}

@@ -1,0 +1,28 @@
+name: Dispatch corrected Helical v0.8.3 durable pretest freeze
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-durable-pretest-freeze-20261008
+    paths:
+      - .github/workflows/helical-v08-dispatch-durable-pretest-v2.yml
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch corrected successor workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api \
+            --method POST \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/helical-v08-durable-pretest-freeze.yml/dispatches" \
+            -f ref="${GITHUB_REF_NAME}"
