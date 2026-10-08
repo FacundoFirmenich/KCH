@@ -1,0 +1,28 @@
+name: KCH composed runtime contracts
+on:
+  pull_request:
+    paths:
+      - 'integrations/kch-composed-runtime/**'
+      - 'work/SCO_RELEASE_STAGE_v0.1.1/**'
+      - 'construct_successors/KCH_ALL_IN_ONE_0.11.33_STUDIO_0.3.16_AIO2/**'
+      - '.github/workflows/kch-composed-runtime.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Actual local tools, state, recovery and protocol contracts
+        working-directory: integrations/kch-composed-runtime
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Portable host profile generation
+        working-directory: integrations/kch-composed-runtime
+        run: python -m unittest discover -s profiles -p 'test*.py' -v
