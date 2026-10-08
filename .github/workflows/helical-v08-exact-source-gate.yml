@@ -6,8 +6,7 @@ on:
       - helical-v08-exact-source-gate-20261008
     paths:
       - .github/workflows/helical-v08-exact-source-gate.yml
-      - .github/scripts/helical_v08_acquire.py
-      - .github/scripts/mendeley_public_file_discovery.py
+      - .github/scripts/helical_v08_exact_acquire_frontend.py
   workflow_dispatch:
 
 permissions:
@@ -18,9 +17,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  discover-official-public-file-identity:
+  acquire-exact-public-bodies:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 120
     steps:
       - name: Checkout immutable workflow revision
         uses: actions/checkout@v4
@@ -30,15 +29,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Discover exact public file identity through official frontend plane
-        run: python .github/scripts/mendeley_public_file_discovery.py
+      - name: Acquire exact Mendeley v2 and immutable GEM bodies
+        run: python .github/scripts/helical_v08_exact_acquire_frontend.py
 
-      - name: Upload discovery evidence regardless of gate outcome
+      - name: Upload exact-source evidence regardless of gate outcome
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: helical-v08-public-file-discovery-${{ github.run_id }}
-          path: ${{ runner.temp }}/helical-v08-public-file-discovery
+          name: helical-v08-exact-sources-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-exact-source
           if-no-files-found: error
           retention-days: 7
           compression-level: 0
