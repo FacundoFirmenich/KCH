@@ -1,0 +1,105 @@
+                if np.array_equal(feval(a),y):
+                    return {'status':'PASS','ast':a,'obs':len(obs),'expansions':expansions,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':any(tok.startswith('MACRO:') for tok in tokens(a)) or a[0]=='macro'}
+                mis=np.where(feval(a)!=y)[0]
+                if len(mis):
+                    ce=int(mis[0])
+                    if ce not in obs:
+                        obs.append(ce); obs.sort(); genealogy.append({'round':rounds,'event':'COUNTEREXAMPLE','index':ce,'candidate':ast_str(a)})
+                        if reentry: current_costs=infer_costs(t,np.array(obs),base=current_costs)
+                        restart=True; break
+            if restart or expansions>=budget: break
+        if not restart: break
+    return {'status':'ABSTAIN_BUDGET' if expansions>=budget else 'ABSTAIN_NO_PROGRAM','ast':None,'obs':len(obs),'expansions':expansions,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':False}
+
+# Genetic program search with CEGIS-like verifier submissions
+def gp_search(t,rng,budget=MAX_EXP):
+    X=t['X']; y=t['y']; obs=list(map(int,t['obs0'])); verifier=0; expansions=0
+    def mutate(a):
+        if rng.random()<0.35: return random_ast(rng.integers(0,2**31-1) if False else rng,max_depth=int(rng.integers(2,5)))
+        # wrap / combine
+        if rng.random()<0.5: return un(rng.choice(OPS_U),a)
+        b=random_ast(rng,max_depth=2)
+        return binop(rng.choice(OPS_B),a,b) if rng.random()<0.5 else binop(rng.choice(OPS_B),b,a)
+    pop=[random_ast(rng,max_depth=int(rng.integers(2,4))) for _ in range(80)]
+    while expansions<budget:
+        scored=[]
+        for a in pop:
+            yo=y[obs].astype(int)
+            if ast_size(a)>MAX_SIZE: continue
+            pred=eval_ast(a,X[obs]).astype(int); err=float(np.mean(np.abs(pred-yo)))+0.015*ast_size(a)
+            scored.append((err,a)); expansions+=1
+            if np.array_equal(pred,yo):
+                verifier+=1; full=eval_ast(a,X)
+                if np.array_equal(full,y): return {'status':'PASS','ast':a,'obs':len(obs),'expansions':expansions,'verifier_calls':verifier,'genealogy':[],'used_macro':False}
+                mis=np.where(full!=y)[0]
+                if len(mis) and int(mis[0]) not in obs: obs.append(int(mis[0])); obs.sort()
+            if expansions>=budget: break
+        if not scored: break
+        scored.sort(key=lambda z:(z[0],ast_str(z[1]))); elite=[a for _,a in scored[:20]]
+        pop=elite[:]
+        while len(pop)<80:
+            p=elite[int(rng.integers(len(elite)))]; pop.append(mutate(p))
+    return {'status':'ABSTAIN_BUDGET','ast':None,'obs':len(obs),'expansions':expansions,'verifier_calls':verifier,'genealogy':[],'used_macro':False}
+
+# Lightweight actual MCTS over randomly generated AST proposals; UCB learns root op choices.
+def mcts_search(t,rng,budget=MAX_EXP):
+    X=t['X']; y=t['y']; obs=list(map(int,t['obs0'])); verifier=0; expansions=0
+    actions=list(OPS_U+OPS_B)+['leaf']
+    N=Counter(); W=Counter()
+    while expansions<budget:
+        total=sum(N.values())+1
+        scores={a:(W[a]/N[a] if N[a] else 0)+1.2*math.sqrt(math.log(total+1)/(N[a]+1e-9)) for a in actions}
+        root=max(actions,key=lambda a:(scores[a],-actions.index(a)))
+        if root=='leaf': cand=leaf(rng.choice(LEAVES))
+        elif root in OPS_U: cand=un(root,random_ast(rng,max_depth=int(rng.integers(1,4))))
+        else: cand=binop(root,random_ast(rng,max_depth=int(rng.integers(1,4))),random_ast(rng,max_depth=int(rng.integers(1,4))))
+        if ast_size(cand)>MAX_SIZE: N[root]+=1; W[root]-=1; continue
+        pred=eval_ast(cand,X[obs]).astype(int); yo=y[obs].astype(int)
+        err=float(np.mean(np.abs(pred-yo))); reward=1/(1+err)-0.01*ast_size(cand)
+        N[root]+=1; W[root]+=reward; expansions+=1
+        if np.array_equal(pred,yo):
+            verifier+=1; full=eval_ast(cand,X)
+            if np.array_equal(full,y): return {'status':'PASS','ast':cand,'obs':len(obs),'expansions':expansions,'verifier_calls':verifier,'genealogy':[],'used_macro':False}
+            mis=np.where(full!=y)[0]
+            if len(mis) and int(mis[0]) not in obs: obs.append(int(mis[0])); obs.sort()
+    return {'status':'ABSTAIN_BUDGET','ast':None,'obs':len(obs),'expansions':expansions,'verifier_calls':verifier,'genealogy':[],'used_macro':False}
+
+# Fit dev priors/neural token predictor.
+def fit_guides(dev_tasks):
+    counts=Counter(); Xf=[]; Y=[]
+    for t in dev_tasks:
+        if t['truth_ast'] is not None:
+            counts.update(tokens(t['truth_ast']))
+            Xf.append(task_features(t,t['obs0'])); Y.append(truth_token_vector(t))
+    total=sum(counts[o] for o in TOKENS)+len(TOKENS)
+    bayes={o: -math.log((counts[o]+1)/total)+0.4 for o in TOKENS}
+    # map to a modest cost range
+    mn=min(bayes.values()); mx=max(bayes.values()); bayes={o:0.65+0.9*(bayes[o]-mn)/(mx-mn+1e-9) for o in TOKENS}
+    clf=RandomForestClassifier(n_estimators=120,max_depth=7,random_state=991,n_jobs=1)
+    clf.fit(np.vstack(Xf),np.vstack(Y))
+    return bayes,clf
+
+def neural_costs(clf,t):
+    feat=task_features(t,t['obs0']).reshape(1,-1)
+    # multioutput predict_proba is list
+    probs=[]
+    for p in clf.predict_proba(feat):
+        if p.shape[1]==1: probs.append(1.0 if clf.classes_[len(probs)][0]==1 else 0.0)
+        else: probs.append(float(p[0,-1]))
+    return {o:0.55+1.1*(1-probs[i]) for i,o in enumerate(TOKENS)}
+
+def simple_costs(): return {o:1.0 for o in TOKENS}
+
+# task status scoring
+def adjudicate(t,res):
+    lane=t['lane']; st=res['status']
+    if lane=='META_GRAMMAR_MISSPECIFICATION':
+        correct= st in ('MODEL_MISMATCH','ABSTAIN_NO_PROGRAM','ABSTAIN_BUDGET','ABSTAIN_ROUNDS')
+        misspec=(st=='MODEL_MISMATCH')
+        falsepromo=(st=='PASS')
+        recall=0.0
+    elif lane=='GAUGE_EQUIVALENCE':
+        correct=(st=='PASS') or st.startswith('ABSTAIN')
+        misspec=False; falsepromo=False
+        recall=1.0 if st=='PASS' else 0.0
+    else:
