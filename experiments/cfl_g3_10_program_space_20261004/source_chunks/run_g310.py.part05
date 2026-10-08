@@ -1,0 +1,83 @@
+        correct=(st=='PASS'); misspec=False; falsepromo=False; recall=1.0 if st=='PASS' else 0.0
+    return correct,misspec,falsepromo,recall
+
+def run_split(split,dev_tasks=None):
+    tasks=build_tasks(split)
+    if dev_tasks is None: dev_tasks=build_tasks('dev')
+    bayes,clf=fit_guides(dev_tasks)
+    # method-specific macro libraries, append-only; values name->AST
+    libs={m:{} for m in METHODS}
+    subtree_counts={m:Counter() for m in METHODS}
+    results=[]; transfer=[]
+    # deterministic per method RNGs
+    mrng={m:np.random.default_rng((SEED_DEV if split=='dev' else SEED_PRIVATE)+1000+i) for i,m in enumerate(METHODS)}
+    for ti,t in enumerate(tasks):
+        for m in METHODS:
+            if m=='EXHAUSTIVE_AST_ORACLE_CEILING':
+                # exact oracle bounded semantics; excluded from support evidence
+                semmap=get_oracle(t['domain'])[1]
+                if t['y'].tobytes() in semmap:
+                    a=semmap[t['y'].tobytes()]; res={'status':'PASS','ast':a,'obs':len(t['obs0']),'expansions':len(semmap),'verifier_calls':1,'genealogy':[],'used_macro':False}
+                else:
+                    res={'status':'MODEL_MISMATCH','ast':None,'obs':len(t['obs0']),'expansions':len(semmap),'verifier_calls':0,'genealogy':[],'used_macro':False}
+            elif m=='MDL_ENUMERATIVE_SYNTHESIS':
+                res=enum_search(t,simple_costs(),budget=MAX_EXP,semantic_dedup=False,reentry=False,macros={})
+            elif m=='EGRAPH_SUPEROPTIMIZATION':
+                res=enum_search(t,simple_costs(),budget=MAX_EXP,semantic_dedup=True,reentry=False,macros={})
+            elif m=='BAYESIAN_PROGRAM_SYNTHESIS':
+                res=beam_search(t,bayes,budget=MAX_EXP,reentry=False,macros={},beam_width=48)
+            elif m=='NEURAL_GUIDED_PROGRAM_SEARCH':
+                res=beam_search(t,neural_costs(clf,t),budget=MAX_EXP,reentry=False,macros={},beam_width=52)
+            elif m=='DREAMCODER_STYLE_LIBRARY_LEARNING':
+                res=beam_search(t,bayes,budget=MAX_EXP,reentry=False,macros=libs[m],beam_width=48)
+            elif m=='TOS_NO_METAGRAMMAR_REENTRY':
+                c=infer_costs(t,t['obs0']); res=beam_search(t,c,budget=MAX_EXP,reentry=False,macros={},beam_width=48)
+            elif m=='TOS_FULL_GENERATIVE_GRAMMAR_DIN':
+                c=infer_costs(t,t['obs0']); res=beam_search(t,c,budget=MAX_EXP,reentry=True,macros=libs[m],beam_width=48)
+            elif m=='GENETIC_PROGRAMMING':
+                res=gp_search(t,mrng[m],budget=MAX_EXP)
+            elif m=='MCTS_PROGRAM_SYNTHESIS':
+                res=mcts_search(t,mrng[m],budget=MAX_EXP)
+            else: raise KeyError(m)
+            # fail-closed exact bounded mismatch certification only for exact/egraph/TOS full methods when search returned no program and lane misspec
+            if t['lane']=='META_GRAMMAR_MISSPECIFICATION' and res['status']!='PASS' and m in ('EGRAPH_SUPEROPTIMIZATION','TOS_FULL_GENERATIVE_GRAMMAR_DIN','DREAMCODER_STYLE_LIBRARY_LEARNING','BAYESIAN_PROGRAM_SYNTHESIS'):
+                # exact oracle says whether any bounded AST exists; counted as certification cost but not used to propose program
+                semmap=get_oracle(t['domain'])[1]
+                res['expansions'] += len(semmap)
+                if t['y'].tobytes() not in semmap: res['status']='MODEL_MISMATCH'
+            correct,misspec,falsepromo,recall=adjudicate(t,res)
+            ast=res.get('ast'); rec={
+                'split':split,'task_id':t['id'],'domain':t['domain'],'lane':t['lane'],'method':m,'status':res['status'],
+                'correct_state':bool(correct),'truth_recall':float(recall),'misspec_detected':bool(misspec),'false_promotion':bool(falsepromo),
+                'expansions':int(res['expansions']),'verifier_calls':int(res['verifier_calls']),'obs_final':int(res['obs']),
+                'program':ast_str(ast) if ast else None,'program_size':ast_size(ast) if ast else None,'used_macro':bool(res.get('used_macro',False)),
+                'truth_size':t['truth_size'],'truth_program':t['truth_str'],'production':t['production']
+            }
+            results.append(rec)
+            # append-only library learning after verified success only, prospective
+            if res['status']=='PASS' and ast is not None and m in ('DREAMCODER_STYLE_LIBRARY_LEARNING','TOS_FULL_GENERATIVE_GRAMMAR_DIN'):
+                for st in subtrees(ast):
+                    ss=ast_str(st)
+                    if 3<=ast_size(st)<=7: subtree_counts[m][ss]+=1
+                # DreamCoder promotes after first repeat; TOS after 2 repeats (more conservative)
+                thresh=2 if m=='DREAMCODER_STYLE_LIBRARY_LEARNING' else 3
+                for ss,cnt in list(subtree_counts[m].items()):
+                    if cnt>=thresh and not any(ast_str(v)==ss for v in libs[m].values()):
+                        # locate subtree from current ast
+                        found=next((st for st in subtrees(ast) if ast_str(st)==ss),None)
+                        if found is not None:
+                            name=f'{m[:3]}_M{len(libs[m])+1:02d}'
+                            libs[m][name]=found
+                            transfer.append({'split':split,'method':m,'event':'MACRO_BIRTH','after_task':t['id'],'macro':name,'ast':ss,'expanded_size':ast_size(found)})
+        # end methods
+    return tasks,results,transfer,bayes,clf
+
+def summarize(results):
+    out={}
+    for m in METHODS:
+        rr=[r for r in results if r['method']==m]
+        novel=[r for r in rr if r['lane'] in ('DEPTH_OOD_COMPOSITION','NEW_MACRO_DISCOVERY','REWRITE_BIRTH')]
+        out[m]={
+          'n':len(rr),'state_accuracy':float(np.mean([r['correct_state'] for r in rr])),
+          'novel_truth_recall':float(np.mean([r['truth_recall'] for r in novel])) if novel else None,
+          'false_promotion_rate':float(np.mean([r['false_promotion'] for r in rr])),
