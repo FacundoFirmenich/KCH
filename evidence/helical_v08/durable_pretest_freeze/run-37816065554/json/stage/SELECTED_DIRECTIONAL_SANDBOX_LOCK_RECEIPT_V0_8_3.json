@@ -1,0 +1,17 @@
+{
+  "authority_ceiling": "NONE",
+  "base_image_digest": "python@sha256:0a310eeecf4e1f5a0743f9a6520c90c88d089c903ca5fd283f501e3a805f5f89",
+  "capabilities": "ALL_DROPPED",
+  "dockerfile_sha256": "8edda5e35c5982dcb8a169d4d9c988dac5ed2753c6eb1832e88a165233b896ad",
+  "extractor_sha256": "342b8a2398d2196ed63ce1ef124feb93f6afa0447a2824ca1fe73c0638c6b4ed",
+  "format": "KCH_HELICAL_V0_8_3_SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT",
+  "locked_before_directional_access": true,
+  "network_mode": "NONE",
+  "no_new_privileges": true,
+  "numpy_wheel_sha256": "bc6f24b3d1ecc1eebfbf5d6051faa49af40b03be1aaa781ebdadcbc090b4539b",
+  "receipt_id": "h8dirsandbox3:0bf7af144bbd1cadbc32b63cc143f14fd37c6af89430a52df73884dc2ce156ac",
+  "recorded_at_utc": "2026-10-08T17:30:29.067703Z",
+  "root_filesystem": "READ_ONLY",
+  "sandbox_image_id": "sha256:ad1a3b15809143b307344a8a6f6b128acf976505cb90faced407e62e4f1f7c41",
+  "sealed_test_scored": false
+}

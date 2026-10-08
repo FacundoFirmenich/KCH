@@ -1,0 +1,18 @@
+{
+  "applied_before_source_access": true,
+  "authority_ceiling": "NONE",
+  "directional_fields_accessed": false,
+  "discarded_coordinate_component": "OPTIONAL_GEOJSON_Z_ONLY",
+  "distance_model": "SURFACE_DISTANCE_EPSG_3310_UNCHANGED",
+  "format": "KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT",
+  "original_sha256": "97ef6ccf547d21faee7c487bce90df0753adc22b36deb29d59a99e75be7709d6",
+  "patched_sha256": "d7605696d2b2daf11097cb48b9e0de866265b5745d40f25ee30101630cf1ac1a",
+  "protocol_changed": false,
+  "receipt_id": "h8xy3:a85130dee793b95e5fc746826b2788d47339a219e9ba7bd561b03620a99fb64c",
+  "recorded_at_utc": "2026-10-08T17:29:03.844407Z",
+  "replacement_count": 1,
+  "scientific_models_changed": false,
+  "scope": "GEM_LINE_COORDINATE_XY_PROJECTION_ONLY",
+  "sealed_test_scored": false,
+  "thresholds_changed": false
+}
