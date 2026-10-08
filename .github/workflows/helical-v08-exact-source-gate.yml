@@ -38,7 +38,6 @@ jobs:
           import hashlib
           import json
           import os
-          import sys
           import urllib.parse
           import urllib.request
           from datetime import datetime, timezone
@@ -49,7 +48,14 @@ jobs:
           VERSION = 2
           DOI = "10.17632/2np9vw5v7w.2"
           REQUIRED_BASENAME = "focmec_ca_final.pickle"
-          SNAPSHOT_URL = f"https://api.data.mendeley.com/datasets/{DATASET_ID}?version={VERSION}"
+          PUBLIC_FILE_ID = "51b869ad-2a13-4860-8d13-a259d0864fd9"
+          EXPECTED_MECHANISM_BYTES = 10979993
+          PUBLIC_RECORD_URL = f"https://data.mendeley.com/datasets/compare/{DATASET_ID}"
+          PUBLIC_DOWNLOAD_URL = (
+              f"https://api.data.mendeley.com/public-files/datasets/{DATASET_ID}/"
+              f"files/{PUBLIC_FILE_ID}/file_downloaded"
+          )
+
           FAULT_REPOSITORY = "GEMScienceTools/gem-global-active-faults"
           FAULT_COMMIT = "56816508ad92fd6846dad1163b1c8c01376a2cd1"
           FAULT_PATH = "geojson/gem_active_faults_harmonized.geojson"
@@ -85,11 +91,7 @@ jobs:
 
               def redirect_request(self, req, fp, code, msg, headers, newurl):
                   self.events.append(
-                      {
-                          "from_url": req.full_url,
-                          "to_url": newurl,
-                          "status": int(code),
-                      }
+                      {"from_url": req.full_url, "to_url": newurl, "status": int(code)}
                   )
                   return super().redirect_request(req, fp, code, msg, headers, newurl)
 
@@ -103,7 +105,10 @@ jobs:
                   headers={
                       "Accept": accept,
                       "Accept-Encoding": "identity",
-                      "User-Agent": "KCH-KwanBlocks-Helical-Lift/0.8 exact-source gate",
+                      "User-Agent": (
+                          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                          "KCH-KwanBlocks-Helical-Lift-v0.8"
+                      ),
                   },
               )
               requested_at = utc_now()
@@ -124,32 +129,17 @@ jobs:
                   raise RuntimeError(f"unexpected HTTP status {receipt['status']} for {url}")
               return data, receipt
 
-          def walk_files(value: Any) -> list[dict[str, Any]]:
-              rows: list[dict[str, Any]] = []
-              if isinstance(value, dict):
-                  filename = value.get("filename") or value.get("file_name") or value.get("name")
-                  file_id = value.get("id") or value.get("uuid") or value.get("file_id")
-                  if filename and file_id:
-                      rows.append(
-                          {
-                              "filename": str(filename),
-                              "file_id": str(file_id),
-                              "raw": value,
-                          }
-                      )
-                  for child in value.values():
-                      rows.extend(walk_files(child))
-              elif isinstance(value, list):
-                  for child in value:
-                      rows.extend(walk_files(child))
-              return rows
-
           body: dict[str, Any] = {
               "format": "KCH_HELICAL_V0_8_EXACT_SOURCE_ACQUISITION",
               "dataset_id": DATASET_ID,
               "dataset_version": VERSION,
               "dataset_doi": DOI,
               "required_basename": REQUIRED_BASENAME,
+              "public_file_id": PUBLIC_FILE_ID,
+              "expected_mechanism_bytes": EXPECTED_MECHANISM_BYTES,
+              "metadata_binding_mode": "PUBLIC_COMPARE_PAGE_PLUS_FROZEN_PUBLIC_FILE_UUID",
+              "authenticated_api_used": False,
+              "credentials_used": False,
               "fault_repository": FAULT_REPOSITORY,
               "fault_commit": FAULT_COMMIT,
               "fault_path": FAULT_PATH,
@@ -167,51 +157,28 @@ jobs:
           }
 
           try:
-              snapshot_bytes, snapshot_receipt = request(SNAPSHOT_URL, "application/json")
-              snapshot_path = out / "mendeley_dataset_snapshot_v2.json"
-              snapshot_path.write_bytes(snapshot_bytes)
-              snapshot = json.loads(snapshot_bytes.decode("utf-8"))
+              record_bytes, record_receipt = request(PUBLIC_RECORD_URL, "text/html")
+              record_text = record_bytes.decode("utf-8", errors="strict")
+              required_markers = (DOI, "Version 2", REQUIRED_BASENAME)
+              absent = [marker for marker in required_markers if marker not in record_text]
+              if absent:
+                  raise RuntimeError(f"public record missing frozen markers: {absent}")
+              record_path = out / "mendeley_public_comparison_record.html"
+              record_path.write_bytes(record_bytes)
 
-              observed_version = snapshot.get("version")
-              if observed_version is not None and int(observed_version) != VERSION:
-                  raise RuntimeError(f"Mendeley version mismatch: {observed_version}")
-              observed_doi = str(snapshot.get("doi") or "")
-              if observed_doi and observed_doi.lower() != DOI.lower():
-                  raise RuntimeError(f"Mendeley DOI mismatch: {observed_doi}")
-
-              matches = [
-                  row for row in walk_files(snapshot)
-                  if Path(row["filename"]).name == REQUIRED_BASENAME
-              ]
-              unique = {(row["filename"], row["file_id"]): row for row in matches}
-              matches = list(unique.values())
-              if len(matches) != 1:
-                  raise RuntimeError(
-                      f"expected one exact Mendeley file match; observed {len(matches)}"
-                  )
-
-              selected = matches[0]
-              raw = selected["raw"]
-              details = raw.get("content_details") if isinstance(raw, dict) else None
-              download_url = details.get("download_url") if isinstance(details, dict) else None
-              if not download_url:
-                  download_url = (
-                      f"https://api.data.mendeley.com/public-files/datasets/{DATASET_ID}/"
-                      f"files/{selected['file_id']}/file_downloaded"
-                  )
-              parsed = urllib.parse.urlparse(str(download_url))
+              parsed = urllib.parse.urlparse(PUBLIC_DOWNLOAD_URL)
               if parsed.scheme != "https" or parsed.hostname != "api.data.mendeley.com":
-                  raise RuntimeError(f"inadmissible Mendeley download URL: {download_url}")
-              if DATASET_ID not in parsed.path or selected["file_id"] not in parsed.path:
-                  raise RuntimeError("Mendeley download URL is not bound to selected snapshot entity")
+                  raise RuntimeError("inadmissible public-file download host")
+              if DATASET_ID not in parsed.path or PUBLIC_FILE_ID not in parsed.path:
+                  raise RuntimeError("public-file URL is not bound to frozen dataset and file UUID")
 
               mechanism_bytes, mechanism_receipt = request(
-                  str(download_url), "application/octet-stream"
+                  PUBLIC_DOWNLOAD_URL, "application/octet-stream"
               )
-              expected_size = raw.get("size") if isinstance(raw, dict) else None
-              if expected_size is not None and len(mechanism_bytes) != int(expected_size):
+              if len(mechanism_bytes) != EXPECTED_MECHANISM_BYTES:
                   raise RuntimeError(
-                      f"Mendeley size mismatch: {len(mechanism_bytes)} != {expected_size}"
+                      f"Mendeley byte-size mismatch: {len(mechanism_bytes)} != "
+                      f"{EXPECTED_MECHANISM_BYTES}"
                   )
               if not mechanism_bytes:
                   raise RuntimeError("empty focal-mechanism body")
@@ -239,12 +206,12 @@ jobs:
               body.update(
                   outcome="EXACT_BYTE_ACQUISITION_PASS",
                   all_or_none_pass=True,
-                  snapshot_receipt=snapshot_receipt,
+                  public_record_receipt=record_receipt,
                   selected_mendeley_file={
-                      "filename": selected["filename"],
-                      "file_id": selected["file_id"],
-                      "snapshot_declared_size": expected_size,
-                      "download_url": str(download_url),
+                      "filename": REQUIRED_BASENAME,
+                      "file_id": PUBLIC_FILE_ID,
+                      "frozen_expected_size": EXPECTED_MECHANISM_BYTES,
+                      "download_url": PUBLIC_DOWNLOAD_URL,
                   },
                   mechanism_receipt=mechanism_receipt,
                   fault_receipt={
