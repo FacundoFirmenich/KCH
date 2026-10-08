@@ -1,0 +1,101 @@
+                                if expansions_total>budget and not exhaustive:
+                                    return {'status':'ABSTAIN_BUDGET','ast':None,'obs':len(obs),'expansions':expansions_total,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':used_macro}
+                                sem=obs_eval(aa).tobytes()
+                                if semantic_dedup and sem in seen_by_size[size]: continue
+                                seen_by_size[size].add(sem); by[size].append((aa,sem))
+                                z=consider(aa,sem,size)
+                                if z=='PASS': return found
+                                if z=='CE': stop=True; break
+                            if stop: break
+                        if stop: break
+                    if stop: break
+            if counter_added: break
+        if not counter_added:
+            # complete bounded grammar exhausted with no verifying program
+            return {'status':'MODEL_MISMATCH' if exhaustive else 'ABSTAIN_NO_PROGRAM','ast':None,'obs':len(obs),'expansions':expansions_total,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':used_macro}
+    return {'status':'ABSTAIN_ROUNDS','ast':None,'obs':len(obs),'expansions':expansions_total,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':used_macro}
+
+
+# Structured beam/CEGIS search used by guided synthesis methods. It generates ASTs online and never receives a full candidate catalogue.
+def beam_search(t, costs, budget=MAX_EXP, reentry=False, macros=None, beam_width=48, max_depth=7):
+    X=t['X']; y=t['y']; obs=list(map(int,t['obs0'])); verifier=0; expansions=0; genealogy=[]
+    macros=macros or {}; current_costs=dict(costs)
+    fcache={}
+    def feval(a):
+        if a not in fcache: fcache[a]=eval_ast(a,X)
+        return fcache[a]
+    def score(a):
+        p=feval(a)[obs].astype(float); yy=y[obs].astype(float)
+        err=float(np.mean(np.abs(p-yy)))
+        pc=sum(current_costs.get(tok,1.0) for tok in tokens(a) if not tok.startswith('MACRO:'))
+        return err + 0.010*ast_size(a) + 0.035*pc
+    rounds=0
+    while rounds<8 and expansions<budget:
+        rounds+=1
+        leaves=[leaf(n) for n in LEAVES] + [('macro',n,a) for n,a in sorted(macros.items())]
+        beam=[]; seen=set()
+        for a in leaves:
+            sem=feval(a)[obs].tobytes()
+            if sem in seen: continue
+            seen.add(sem); beam.append(a)
+        beam=sorted(beam,key=lambda a:(score(a),ast_str(a)))[:beam_width]
+        # verify leaves
+        restart=False
+        for depth in range(1,max_depth+1):
+            candidates=list(beam)
+            # Extend current beam. Binary combines with high-ranked beam members and leaves, allowing genuine trees without all-pairs explosion.
+            pool=beam[:min(len(beam),8)]
+            base=leaves[:min(len(leaves),8)]
+            for a in pool:
+                for op in sorted(OPS_U,key=lambda o:(current_costs.get(o,1.0),o)):
+                    aa=un(op,a)
+                    if ast_size(aa)<=MAX_SIZE: candidates.append(aa); expansions+=1
+                    if expansions>=budget: break
+                if expansions>=budget: break
+                partners=(base + pool[:8])
+                for b in partners:
+                    for op in sorted(OPS_B,key=lambda o:(current_costs.get(o,1.0),o)):
+                        if op in ('add','mul') and ast_str(a)>ast_str(b): aa=binop(op,b,a)
+                        else: aa=binop(op,a,b)
+                        if ast_size(aa)<=MAX_SIZE: candidates.append(aa); expansions+=1
+                        if expansions>=budget: break
+                    if expansions>=budget: break
+                if expansions>=budget: break
+            # semantic dedup and rank
+            uniq={}
+            for a in candidates:
+                sem=feval(a)[obs].tobytes()
+                old=uniq.get(sem)
+                if old is None or (score(a),ast_str(a))<(score(old),ast_str(old)): uniq[sem]=a
+            beam=sorted(uniq.values(),key=lambda a:(score(a),ast_str(a)))[:beam_width]
+            # DIN-like intra-search re-entry: provisional best residual changes production geometry for the next layer.
+            if reentry and beam:
+                best=beam[0]
+                pred=feval(best)[obs].astype(float); yy=y[obs].astype(float); resid=yy-pred
+                Xo=X[obs].astype(float)
+                if np.std(resid)>1e-9:
+                    cors=[]
+                    for j in range(3):
+                        c=0.0 if np.std(Xo[:,j])<1e-9 else float(np.corrcoef(Xo[:,j],resid)[0,1])
+                        cors.append(0.0 if not np.isfinite(c) else c)
+                    if max(cors)>0.45: current_costs['add']=min(current_costs.get('add',1.0),0.35)
+                    if min(cors)<-0.45: current_costs['sub']=min(current_costs.get('sub',1.0),0.35)
+                    prods=[]
+                    for i in range(3):
+                        for j in range(i,3):
+                            z=np.clip(Xo[:,i]*Xo[:,j],-CLIP,CLIP)
+                            c=0.0 if np.std(z)<1e-9 else float(np.corrcoef(z,resid)[0,1])
+                            if np.isfinite(c): prods.append(abs(c))
+                    if prods and max(prods)>0.5: current_costs['mul']=min(current_costs.get('mul',1.0),0.30)
+                    parity=np.mod(np.rint(resid).astype(int),2)
+                    if len(np.unique(parity))>1:
+                        for j in range(3):
+                            if np.mean(np.mod(Xo[:,j].astype(int),2)==parity)>0.65:
+                                current_costs['mod2']=min(current_costs.get('mod2',1.0),0.30)
+                    # mild decay of productions repeatedly unhelpful under current residual.
+                    for op in TOKENS:
+                        current_costs[op]=min(max(current_costs.get(op,1.0),0.25),1.6)
+            yobs=y[obs]
+            for a in beam:
+                if not np.array_equal(feval(a)[obs],yobs): continue
+                verifier+=1
