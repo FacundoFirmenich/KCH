@@ -6,7 +6,7 @@ on:
       - helical-v08-exact-source-gate-20261008
     paths:
       - .github/workflows/helical-v08-exact-source-gate.yml
-      - .github/scripts/helical_v08_exact_acquire_frontend.py
+      - .github/scripts/helical_v08_exact_acquire_frontend_v2.py
   workflow_dispatch:
 
 permissions:
@@ -30,15 +30,75 @@ jobs:
           python-version: '3.11'
 
       - name: Acquire exact Mendeley v2 and immutable GEM bodies
-        run: python .github/scripts/helical_v08_exact_acquire_frontend.py
+        run: python .github/scripts/helical_v08_exact_acquire_frontend_v2.py
 
-      - name: Upload exact-source evidence regardless of gate outcome
+      - name: Upload compact exact-source evidence regardless of gate outcome
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: helical-v08-exact-sources-${{ github.run_id }}
-          path: ${{ runner.temp }}/helical-v08-exact-source
+          name: helical-v08-source-evidence-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-source-evidence
           if-no-files-found: error
           retention-days: 7
           compression-level: 0
           include-hidden-files: true
+
+      - name: Upload focal part 000
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: helical-v08-focal-part-000-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-focal-parts/focmec_ca_final.pickle.part-000
+          if-no-files-found: ignore
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload focal part 001
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: helical-v08-focal-part-001-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-focal-parts/focmec_ca_final.pickle.part-001
+          if-no-files-found: ignore
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload focal part 002
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: helical-v08-focal-part-002-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-focal-parts/focmec_ca_final.pickle.part-002
+          if-no-files-found: ignore
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload focal part 003
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: helical-v08-focal-part-003-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-focal-parts/focmec_ca_final.pickle.part-003
+          if-no-files-found: ignore
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload focal part 004
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: helical-v08-focal-part-004-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-focal-parts/focmec_ca_final.pickle.part-004
+          if-no-files-found: ignore
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload focal part 005
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: helical-v08-focal-part-005-${{ github.run_id }}
+          path: ${{ runner.temp }}/helical-v08-focal-parts/focmec_ca_final.pickle.part-005
+          if-no-files-found: ignore
+          retention-days: 7
+          compression-level: 0
