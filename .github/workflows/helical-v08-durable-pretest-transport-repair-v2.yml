@@ -1,0 +1,84 @@
+name: Helical v0.8.3 render XY transport successor
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-durable-pretest-freeze-20261008
+    paths:
+      - .github/workflows/helical-v08-durable-pretest-transport-repair-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Render exact transport-only successor outside workflow namespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p generated/helical_v08
+          python - <<'PY'
+          from pathlib import Path
+          source=Path('.github/workflows/helical-v08-durable-pretest-freeze.yml')
+          target=Path('generated/helical_v08/helical-v08-durable-pretest-freeze.yml')
+          text=source.read_text()
+
+          env_anchor="      SCALAR_NUM_EXTRACTOR_SHA256: 60e900eb96819b0019d8b3dc1046c37879c983eeddd014f075b7e3229ef00fe9\n"
+          env_insert=env_anchor+"      ORIGINAL_ELIGIBILITY_SHA256: 97ef6ccf547d21faee7c487bce90df0753adc22b36deb29d59a99e75be7709d6\n"
+          if 'ORIGINAL_ELIGIBILITY_SHA256:' not in text:
+              if text.count(env_anchor)!=1:
+                  raise SystemExit('environment anchor drift')
+              text=text.replace(env_anchor,env_insert)
+
+          anchor='''          cp "$acquisition_replacement" "$acquisition_original"\n          cp "$extractor_replacement" "$extractor_original"\n          python - "$artifact/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'\n'''
+          replacement='''          cp "$acquisition_replacement" "$acquisition_original"\n          cp "$extractor_replacement" "$extractor_original"\n          eligibility="$root/runtime/runtime/eligibility_standalone.py"\n          echo "$ORIGINAL_ELIGIBILITY_SHA256  $eligibility" | sha256sum -c -\n          python - "$eligibility" "$artifact/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'\n          from datetime import datetime, timezone\n          from pathlib import Path\n          import hashlib, json, sys\n          path=Path(sys.argv[1]); receipt=Path(sys.argv[2])\n          original=path.read_bytes(); original_sha=hashlib.sha256(original).hexdigest()\n          text=original.decode('utf-8')\n          old='coords = [transformer.transform(x, y) for x, y in line.coords]'\n          new='coords = [transformer.transform(float(coord[0]), float(coord[1])) for coord in line.coords]'\n          if text.count(old) != 1:\n              raise SystemExit(f'expected one exact XY geometry token, observed {text.count(old)}')\n          patched=text.replace(old,new).encode('utf-8'); path.write_bytes(patched)\n          body={\n              'format':'KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT',\n              'scope':'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY',\n              'original_sha256':original_sha,\n              'patched_sha256':hashlib.sha256(patched).hexdigest(),\n              'replacement_count':1,\n              'discarded_coordinate_component':'OPTIONAL_GEOJSON_Z_ONLY',\n              'distance_model':'SURFACE_DISTANCE_EPSG_3310_UNCHANGED',\n              'protocol_changed':False,\n              'scientific_models_changed':False,\n              'thresholds_changed':False,\n              'directional_fields_accessed':False,\n              'sealed_test_scored':False,\n              'applied_before_source_access':True,\n              'recorded_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),\n              'authority_ceiling':'NONE',\n          }\n          body['receipt_id']='h8xy3:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()\n          receipt.write_text(json.dumps(body,indent=2,sort_keys=True)+'\\n')\n          PY\n          python - "$artifact/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json" <<'PY'\n'''
+          if 'KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT' not in text:
+              if text.count(anchor)!=1:
+                  raise SystemExit('preaccess anchor drift')
+              text=text.replace(anchor,replacement)
+
+          old_scope="'scope': ['ACQUISITION_TRANSPORT_ONLY', 'NUM_DECLARED_COUNT_SCALAR_CARDINALITY_ONLY'],"
+          new_scope="'scope': ['ACQUISITION_TRANSPORT_ONLY', 'NUM_DECLARED_COUNT_SCALAR_CARDINALITY_ONLY', 'GEM_LINE_COORDINATE_XY_PROJECTION_ONLY'],"
+          if old_scope in text:
+              text=text.replace(old_scope,new_scope)
+
+          if text.count('KCH_HELICAL_V0_8_3_XY_GEOMETRY_SUCCESSOR_RECEIPT') != 1:
+              raise SystemExit('rendered XY successor multiplicity drift')
+          if text.count('ORIGINAL_ELIGIBILITY_SHA256:') != 1:
+              raise SystemExit('rendered eligibility hash multiplicity drift')
+          target.write_text(text)
+          PY
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          p=Path('generated/helical_v08/helical-v08-durable-pretest-freeze.yml')
+          body={
+              'format':'KCH_HELICAL_V0_8_3_RENDERED_WORKFLOW_RECEIPT',
+              'path':p.as_posix(),
+              'bytes':p.stat().st_size,
+              'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+              'protocol_changed':False,
+              'thresholds_changed':False,
+              'scientific_models_changed':False,
+              'authority_ceiling':'NONE',
+          }
+          Path('generated/helical_v08/RENDERED_WORKFLOW_RECEIPT_V0_8_3.json').write_text(json.dumps(body,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(body,indent=2,sort_keys=True))
+          PY
+
+      - name: Commit rendered non-workflow blob
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'kch-shadow-evidence-bot'
+          git config user.email '148292966+FacundoFirmenich@users.noreply.github.com'
+          git add generated/helical_v08
+          git commit -m 'gate: render exact XY transport successor blob [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
