@@ -1,0 +1,32 @@
+{
+  "program_id":"CFL-UEP-G3.10-GENERATIVE-PROGRAM-SPACE-AND-METAGRAMMAR-GENESIS",
+  "status":"PRE_PRIVATE_FREEZE_PRIVATE_NOT_YET_CONSUMED",
+  "date":"2026-10-08",
+  "source_sha256":"566ca8adc74102458ec3d4d98c89ac69968f65190256bfbbe2c465a50384d46a",
+  "gzip_sha256":"1d9834c8d1a7b6f48595ae351991e594d0f30eb370344b0c40d828ec11c35091",
+  "private_seed":202610042,
+  "private_task_count":60,
+  "private_rows_expected":600,
+  "max_ast_size":7,
+  "node_expansion_budget":2500,
+  "initial_observations":6,
+  "development_truth_manifest_sha256":"2ed89badaed4cc1809ece92c0936c23b3fec05d6543a04cd6b17b303a7f8ca04",
+  "development_method_results_sha256":"110977aec9fe87d0b8085339081145a61e85fdae7a1fd079af39ad2bf62451f1",
+  "development_adjudication_sha256":"03452df4ea77ae27f0ec1d6c4ebf0cdf13dc468bc13e21ddc82585221ce38e84",
+  "development_result":{
+    "oracle_novel_truth_recall":1.0,
+    "best_deployable":"EGRAPH_SUPEROPTIMIZATION",
+    "best_deployable_novel_truth_recall":0.5,
+    "tos_novel_truth_recall":0.4166666666666667,
+    "tos_no_reentry_novel_truth_recall":0.4166666666666667,
+    "tos_reentry_delta":0.0,
+    "tos_reentry_ci95":[0.0,0.0],
+    "tos_false_promotion":0.0,
+    "tos_misspec_detection":1.0
+  },
+  "interpretation_frozen_before_private":"Removing the pre-enumerated expanded candidate list materially lowers deployable synthesis recall. No DIN/meta-grammar re-entry gain is present in development. Do not tune to manufacture one. Private execution tests generalization and prospective library transfer under this frozen configuration.",
+  "post_private_tuning":"FORBIDDEN",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED"
+}
