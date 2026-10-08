@@ -1,0 +1,16 @@
+{
+  "authority_ceiling": "NONE",
+  "blind_extraction": "PASS",
+  "canonicalization": "BLOCKED",
+  "completed_stage": "BLIND_ELIGIBILITY",
+  "directional_fields_opened": false,
+  "eligibility": null,
+  "exact_byte_acquisition_outcome": "EXACT_BYTE_ACQUISITION_PASS",
+  "format": "KCH_HELICAL_V0_8_MATERIAL_GATE_SUMMARY",
+  "gate_summary_id": "h8mat:7e1d84511e47744460a368c4eac9b469f112a856548fd3cd98aa5002b60a877f",
+  "promotion": "BLOCKED",
+  "recorded_at_utc": "2026-10-08T17:17:53.012893Z",
+  "sandbox_locked_before_source_access": true,
+  "scientific_execution_performed": false,
+  "scientific_result": null
+}

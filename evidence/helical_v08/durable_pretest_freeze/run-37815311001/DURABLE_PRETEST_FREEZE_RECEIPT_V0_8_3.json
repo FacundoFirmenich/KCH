@@ -1,0 +1,75 @@
+{
+  "authority_ceiling": "NONE",
+  "branch": "gate/helical-v08-durable-pretest-freeze-20261008",
+  "canonicalization": "BLOCKED",
+  "directional_fields_accessed": "SELECTED_COHORTS_ONLY_AFTER_BLIND_SELECTION",
+  "exact_source_hashes": {
+    "fault_network_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+    "mechanism_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+  },
+  "format": "KCH_HELICAL_V0_8_3_DURABLE_PRETEST_FREEZE_RECEIPT",
+  "full_artifact_bytes": 586705847,
+  "full_artifact_file_count": 17,
+  "full_artifact_tree_sha256": "b2e39f51c759aedda0add6ab19f36d0de5632c4c6f31d58e3e226fad1d60fb41",
+  "github_run_attempt": "1",
+  "github_run_id": "37815311001",
+  "key_evidence": [
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 709,
+      "format": "KCH_HELICAL_V0_8_MATERIAL_GATE_FAIL_CLOSED_RECEIPT",
+      "path": "upstream/FAIL_CLOSED_RECEIPT_V0_8.json",
+      "sha256": "058b2c0028c039d4186bce1241c7b50f5d0f9007a8fef72e14cf148faecb79cc"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 613,
+      "format": "KCH_HELICAL_V0_8_MATERIAL_GATE_SUMMARY",
+      "path": "upstream/MATERIAL_GATE_SUMMARY_V0_8.json",
+      "promotion": "BLOCKED",
+      "sha256": "b822a537c9e229c191d80c360df99aa483d8fe666148845f08e09964f7c44e45"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 670,
+      "format": "KCH_HELICAL_V0_8_3_PREACCESS_SUCCESSOR_RECEIPT",
+      "path": "upstream/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "promotion": "BLOCKED",
+      "sha256": "6e99b964bc2dc17b071916dfaba82f554466a26a7ee3f11d9680f0ba78ce8e47"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 784,
+      "format": "KCH_HELICAL_V0_8_SANDBOX_LOCK_RECEIPT",
+      "path": "upstream/SANDBOX_LOCK_RECEIPT_V0_8.json",
+      "sha256": "c0bd492d057cba12bf72cbde7ceaa9dad612dc90224a31ae6c53cf55a79245c2"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 5222,
+      "format": "KCH_HELICAL_V0_8_ACQUISITION_ATTEMPT",
+      "outcome": "EXACT_BYTE_ACQUISITION_PASS",
+      "path": "upstream/acquired/ACQUISITION_RECEIPT_V0_8.json",
+      "sha256": "d05ded7d2eda3b418defceb673d706f2b999c3dae078348f13c83a0b3c087ce2"
+    },
+    {
+      "authority_ceiling": "NONE",
+      "bytes": 2545,
+      "format": "KCH_HELICAL_V0_8_ISOLATED_PICKLE_EXTRACTION_RECEIPT_SAFE_SUCCESSOR_V2",
+      "path": "upstream/blind/EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "4e9272f3f9e5c103d36fcf13522a9b3f688e720f3b3bb756b1d8bb3f74aaf495"
+    }
+  ],
+  "parent_graph_fit_scope": "TRAIN_ONLY_WITH_CALIBRATION_DIAGNOSTICS",
+  "parent_graph_return_code": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_commit": "db3a8c46bf75a120d541805725d20a85624da3bb",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h8durable3:01c39ec2bb4335e86091501bef698f4d592904068a87e66b9fe4514bab8d08b4",
+  "recorded_at_utc": "2026-10-08T17:17:53.872491Z",
+  "retrospective_mutation": "FORBIDDEN",
+  "scientific_model_execution_performed": false,
+  "sealed_test_response_scored": false,
+  "selected_primary_cohorts": []
+}
