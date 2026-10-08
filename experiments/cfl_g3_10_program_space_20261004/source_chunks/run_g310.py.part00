@@ -1,0 +1,155 @@
+import os, json, math, random, hashlib, time, itertools, gzip, heapq
+from collections import defaultdict, Counter
+from dataclasses import dataclass
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+
+SEED_DEV=202610041
+SEED_PRIVATE=202610042
+CLIP=9
+MAX_SIZE=7
+MAX_EXP=2500
+INIT_OBS=6
+METHODS=[
+ 'EXHAUSTIVE_AST_ORACLE_CEILING','DREAMCODER_STYLE_LIBRARY_LEARNING','BAYESIAN_PROGRAM_SYNTHESIS',
+ 'MDL_ENUMERATIVE_SYNTHESIS','GENETIC_PROGRAMMING','MCTS_PROGRAM_SYNTHESIS','EGRAPH_SUPEROPTIMIZATION',
+ 'NEURAL_GUIDED_PROGRAM_SEARCH','TOS_NO_METAGRAMMAR_REENTRY','TOS_FULL_GENERATIVE_GRAMMAR_DIN'
+]
+OPS_U=('neg','abs','mod2')
+OPS_B=('add','sub','mul')
+LEAVES=('x0','x1','x2','c-1','c0','c1','c2')
+TOKENS=list(OPS_U+OPS_B)
+
+# AST tuples: ('leaf',name), ('u',op,a), ('b',op,a,b), ('macro',name,expanded_ast)
+def leaf(name): return ('leaf',name)
+def un(op,a): return ('u',op,a)
+def binop(op,a,b): return ('b',op,a,b)
+def ast_size(a):
+    if a[0]=='leaf': return 1
+    if a[0]=='macro': return ast_size(a[2])
+    if a[0]=='u': return 1+ast_size(a[2])
+    return 1+ast_size(a[2])+ast_size(a[3])
+def ast_depth(a):
+    if a[0]=='leaf': return 1
+    if a[0]=='macro': return ast_depth(a[2])
+    if a[0]=='u': return 1+ast_depth(a[2])
+    return 1+max(ast_depth(a[2]),ast_depth(a[3]))
+def ast_str(a):
+    if a[0]=='leaf': return a[1]
+    if a[0]=='macro': return f"@{a[1]}"
+    if a[0]=='u': return f"{a[1]}({ast_str(a[2])})"
+    return f"{a[1]}({ast_str(a[2])},{ast_str(a[3])})"
+def tokens(a):
+    if a[0]=='leaf': return []
+    if a[0]=='macro': return ['MACRO:'+a[1]]+tokens(a[2])
+    if a[0]=='u': return [a[1]]+tokens(a[2])
+    return [a[1]]+tokens(a[2])+tokens(a[3])
+def subtrees(a):
+    out=[]
+    if a[0] in ('u','b'):
+        out.append(a)
+        out.extend(subtrees(a[2]))
+        if a[0]=='b': out.extend(subtrees(a[3]))
+    elif a[0]=='macro': out.extend(subtrees(a[2]))
+    return out
+
+def eval_ast(a,X):
+    typ=a[0]
+    if typ=='leaf':
+        n=a[1]
+        if n.startswith('x'): y=X[:,int(n[1])].astype(np.int16)
+        else: y=np.full(len(X), int(n[1:]), dtype=np.int16)
+    elif typ=='macro': return eval_ast(a[2],X)
+    elif typ=='u':
+        v=eval_ast(a[2],X).astype(np.int16); op=a[1]
+        if op=='neg': y=-v
+        elif op=='abs': y=np.abs(v)
+        elif op=='mod2': y=np.mod(v,2)
+        else: raise KeyError(op)
+    else:
+        l=eval_ast(a[2],X).astype(np.int16); r=eval_ast(a[3],X).astype(np.int16); op=a[1]
+        if op=='add': y=l+r
+        elif op=='sub': y=l-r
+        elif op=='mul': y=l*r
+        else: raise KeyError(op)
+    return np.clip(y,-CLIP,CLIP).astype(np.int8)
+
+def domain_universe(domain):
+    if domain=='graph':
+        # all simple undirected graphs on 4 labelled vertices: features edges, triangles, max degree
+        rows=[]
+        edgelist=[(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)]
+        for mask in range(64):
+            deg=[0]*4; edges=[]
+            for i,e in enumerate(edgelist):
+                if (mask>>i)&1:
+                    edges.append(e); deg[e[0]]+=1; deg[e[1]]+=1
+            E=len(edges); tri=0
+            S=set(tuple(sorted(e)) for e in edges)
+            for a,b,c in itertools.combinations(range(4),3):
+                if (a,b) in S and (a,c) in S and (b,c) in S: tri+=1
+            rows.append([E,tri,max(deg)])
+        return np.array(rows,dtype=np.int8)
+    if domain=='algebra':
+        return np.array([[a,b,c] for a in range(-2,3) for b in range(-2,3) for c in range(-2,3)],dtype=np.int8)
+    if domain=='number':
+        import math
+        return np.array([[a,b,math.gcd(a,b)] for a in range(1,9) for b in range(1,9)],dtype=np.int8)
+    if domain=='mechanics':
+        # exact integer proxy features: momentum=m*v, restoring force=k*x, mass
+        rows=[]
+        for m in range(1,4):
+            for k in range(1,4):
+                for x in range(-2,3):
+                    for v in range(-2,3):
+                        rows.append([m*v,k*x,m])
+        return np.array(rows,dtype=np.int8)
+    raise KeyError(domain)
+
+DOMAINS=['graph','algebra','number','mechanics']
+XDOM={d:domain_universe(d) for d in DOMAINS}
+
+# Candidate generation for oracle only: semantic-dedup exact bounded grammar.
+def oracle_semantics(domain,max_size=MAX_SIZE):
+    X=XDOM[domain]; by={1:{}}
+    for name in LEAVES:
+        a=leaf(name); sem=eval_ast(a,X).tobytes(); by[1].setdefault(sem,a)
+    for size in range(2,max_size+1):
+        dd={}
+        for sem,a in by.get(size-1,{}).items():
+            for op in OPS_U:
+                z=un(op,a); dd.setdefault(eval_ast(z,X).tobytes(),z)
+        for ls in range(1,size-1):
+            rs=size-1-ls
+            if rs<1: continue
+            L=list(by.get(ls,{}).values()); R=list(by.get(rs,{}).values())
+            for a in L:
+                for b in R:
+                    for op in OPS_B:
+                        # commutative canonical order for add/mul
+                        if op in ('add','mul') and ast_str(a)>ast_str(b): continue
+                        z=binop(op,a,b); dd.setdefault(eval_ast(z,X).tobytes(),z)
+        by[size]=dd
+    sem_to_ast={}; minsize={}
+    for s in sorted(by):
+        for sem,a in by[s].items():
+            if sem not in sem_to_ast: sem_to_ast[sem]=a; minsize[sem]=s
+    return by,sem_to_ast,minsize
+
+ORACLE={}
+def get_oracle(domain):
+    if domain not in ORACLE: ORACLE[domain]=oracle_semantics(domain)
+    return ORACLE[domain]
+
+# specific subtree macros per domain
+MACRO_AST={
+ 'graph': binop('add',leaf('x0'),leaf('x1')),
+ 'algebra': binop('sub',binop('mul',leaf('x1'),leaf('x1')),leaf('x0')),
+ 'number': binop('add',un('mod2',leaf('x0')),un('mod2',leaf('x1'))),
+ 'mechanics': binop('add',binop('mul',leaf('x0'),leaf('x0')),leaf('x1')),
+}
+
+REWRITE_AST={
+ 'graph': binop('mul',leaf('x0'),binop('add',leaf('x1'),leaf('x2'))),
+ 'algebra': binop('mul',leaf('x1'),binop('sub',leaf('x1'),leaf('x0'))),
+ 'number': binop('add',binop('mul',leaf('x0'),leaf('x2')),binop('mul',leaf('x1'),leaf('x2'))),
