@@ -1,0 +1,264 @@
+{
+  "authority_ceiling": "NONE",
+  "cohort_topology": {
+    "BAY_AREA_HAYWARD_CALAVERAS": {
+      "events_in_multiline_components": 28433,
+      "events_in_multiline_components_fraction": 0.7626877682403433,
+      "exact_intersection_components": 31,
+      "observable_events": 37280,
+      "same_segment_parent_available_fraction": 1.0,
+      "selected_fault_lines": 55
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "events_in_multiline_components": 16137,
+      "events_in_multiline_components_fraction": 0.6926642915396832,
+      "exact_intersection_components": 10,
+      "observable_events": 23297,
+      "same_segment_parent_available_fraction": 1.0,
+      "selected_fault_lines": 11
+    }
+  },
+  "components": [
+    [
+      0,
+      309,
+      310
+    ],
+    [
+      1
+    ],
+    [
+      2
+    ],
+    [
+      12
+    ],
+    [
+      13
+    ],
+    [
+      14,
+      198
+    ],
+    [
+      27,
+      263,
+      264,
+      265,
+      266,
+      269,
+      311
+    ],
+    [
+      85
+    ],
+    [
+      86
+    ],
+    [
+      91
+    ],
+    [
+      92
+    ],
+    [
+      142
+    ],
+    [
+      212
+    ],
+    [
+      213,
+      255
+    ],
+    [
+      224
+    ],
+    [
+      225
+    ],
+    [
+      227,
+      228,
+      230
+    ],
+    [
+      229
+    ],
+    [
+      232,
+      233,
+      250
+    ],
+    [
+      234,
+      235,
+      236,
+      238,
+      239,
+      241,
+      243,
+      244
+    ],
+    [
+      237
+    ],
+    [
+      240
+    ],
+    [
+      242
+    ],
+    [
+      245,
+      246
+    ],
+    [
+      247,
+      248,
+      249,
+      261
+    ],
+    [
+      251
+    ],
+    [
+      252
+    ],
+    [
+      253
+    ],
+    [
+      256
+    ],
+    [
+      257
+    ],
+    [
+      258
+    ],
+    [
+      259,
+      260,
+      267
+    ],
+    [
+      270
+    ],
+    [
+      271
+    ],
+    [
+      307
+    ],
+    [
+      312
+    ],
+    [
+      330
+    ],
+    [
+      331
+    ],
+    [
+      349
+    ]
+  ],
+  "engineering_validation": {
+    "BAY_AREA_HAYWARD_CALAVERAS": {
+      "engineering_replicates": 16,
+      "fit_events_with_both_errors": 2000,
+      "original_assignment_preserved": 30804,
+      "preservation_fraction_given_unambiguous": 0.9953470337340055,
+      "reassignment_trials": 32000,
+      "unambiguous_fraction": 0.967125,
+      "unambiguous_reassignments": 30948
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "engineering_replicates": 16,
+      "fit_events_with_both_errors": 2000,
+      "original_assignment_preserved": 30999,
+      "preservation_fraction_given_unambiguous": 0.9977469503363481,
+      "reassignment_trials": 31999,
+      "unambiguous_fraction": 0.9709365917684928,
+      "unambiguous_reassignments": 31069
+    }
+  },
+  "fault_geojson_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+  "format": "KCH_HELICAL_V0_8_TOPOLOGY_AND_LOCATION_OPERATOR_GATE",
+  "gate_id": "h8topo:cd3773e70bf87e8a12ebbcb2b608407f0742940d5fb850429d7dadfa8770be91",
+  "intersection_pair_count": 28,
+  "next_material_gate": "ETAS_HAWKES_PARENT_GRAPH_TRAIN_ONLY_CALIBRATION_LOCK",
+  "operator_id": "h8locop:dc2fe8b8e090cfe61049e347a8c12c344db212cd87482a039e5d89917d60b6c9",
+  "outcome": "TOPOLOGY_AND_LOCATION_PERTURBATION_OPERATOR_LOCKED",
+  "scientific_model_execution_performed": false,
+  "sealed_test_scored": false,
+  "selected_fault_lines": [
+    0,
+    1,
+    2,
+    12,
+    13,
+    14,
+    27,
+    85,
+    86,
+    91,
+    92,
+    142,
+    198,
+    212,
+    213,
+    224,
+    225,
+    227,
+    228,
+    229,
+    230,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    263,
+    264,
+    265,
+    266,
+    267,
+    269,
+    270,
+    271,
+    307,
+    309,
+    310,
+    311,
+    312,
+    330,
+    331,
+    349
+  ]
+}

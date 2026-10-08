@@ -1,0 +1,36 @@
+{
+  "authority_ceiling": "NONE",
+  "cohorts": {
+    "BAY_AREA_HAYWARD_CALAVERAS": {
+      "ambiguous": 0,
+      "both_errors_among_matched_fraction": 1.0,
+      "both_errors_fraction": 0.9895648957810478,
+      "comcat_events_in_bbox": 95343,
+      "depth_error_fraction": 0.9895648957810478,
+      "horizontal_error_fraction": 0.9895648957810478,
+      "match_fraction": 0.9895648957810478,
+      "matched": 37458,
+      "selected": 37853
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "ambiguous": 0,
+      "both_errors_among_matched_fraction": 0.999953119872486,
+      "both_errors_fraction": 0.8999240570415998,
+      "comcat_events_in_bbox": 58372,
+      "depth_error_fraction": 0.8999662475740444,
+      "horizontal_error_fraction": 0.8999240570415998,
+      "match_fraction": 0.8999662475740444,
+      "matched": 21331,
+      "selected": 23702
+    }
+  },
+  "directional_fields_accessed": false,
+  "format": "KCH_HELICAL_V0_8_COMCAT_CSV_LOCATION_UNCERTAINTY_GATE",
+  "gate_id": "h8loccsv:6c28428f3ceb2c56c5bab98d0c8939ef7be3d2dfbbf61f3780ae2076bcbedf8d",
+  "matching_contract_inherited_from_geojson_gate": true,
+  "minimum_both_errors_fraction": 0.8,
+  "outcome": "LOCATION_UNCERTAINTY_CROSSWALK_PASS",
+  "representation": "USGS_FDSN_CSV",
+  "result_is_confirmatory_scientific_evidence": false,
+  "scientific_model_execution_performed": false
+}

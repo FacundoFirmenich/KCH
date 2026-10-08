@@ -1,0 +1,132 @@
+{
+  "authority_ceiling": "NONE",
+  "canonicalization": "BLOCKED",
+  "format": "KCH_HELICAL_V0_8_3_GREEN_ARTIFACT_RECOVERY_RECEIPT",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "recovered_member_count": 22,
+  "recovered_members": [
+    {
+      "bytes": 6811,
+      "path": "DURABLE_PRETEST_FREEZE_RECEIPT_V0_8_3.json",
+      "sha256": "31b45ae54d1a7c3cb9a412bdb9a4ebaf661867ac8bc431e6a505a54feb88dde8"
+    },
+    {
+      "bytes": 15279,
+      "path": "SHA256SUMS_FULL.txt",
+      "sha256": "b93cd9deaa98fd880e1c8d7d246197e4c819068ef812949a1090595d642ebec9"
+    },
+    {
+      "bytes": 8581,
+      "path": "FILE_SIZES_FULL.txt",
+      "sha256": "5ea7a93be5e8a34da845093df5d1e7b4133b6d9592c8a39342e97f48c83faf87"
+    },
+    {
+      "bytes": 8027,
+      "path": "PROTOCOL.json",
+      "sha256": "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246"
+    },
+    {
+      "bytes": 932,
+      "path": "stage/SELECTED_DIRECTIONAL_SANDBOX_LOCK_RECEIPT_V0_8_3.json",
+      "sha256": "c847474044748a05d1e94bbd6ed74104b22690aaa3efaafa3f2be42179ffbe49"
+    },
+    {
+      "bytes": 1348,
+      "path": "stage/crosswalk/COMCAT_CSV_LOCATION_UNCERTAINTY_GATE_RESULT.json",
+      "sha256": "95c8b86f5e40c41de42062d861e190644e1889dc1bd38fde69641b61a5cb5469"
+    },
+    {
+      "bytes": 73367,
+      "path": "stage/crosswalk/COMCAT_CSV_QUERY_RECEIPTS.json",
+      "sha256": "99e3128eb480189dc70d5c887eb9db76876c00865e047a869af0d243fe954688"
+    },
+    {
+      "bytes": 1522,
+      "path": "stage/directional/SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "fbdf96ea3b3f56ced7760e3e2c01a761d11bbbfcc974ffca817d43e722aa5cc9"
+    },
+    {
+      "bytes": 2617,
+      "path": "stage/parent_graph/ETAS_HAWKES_PARENT_GRAPH_PARAMETER_LOCK_V0_8.json",
+      "sha256": "2c5a077cd011aeff4aa76b69969ef9b14334b9c90152e938d03209d0aacd17e1"
+    },
+    {
+      "bytes": 3901,
+      "path": "stage/parent_graph/PARENT_GRAPH_CALIBRATION_RESULT_V0_8.json",
+      "sha256": "a461535e172c263ff17ef9b3dd47c1255fdc856cd1ffba235b57d11643e26588"
+    },
+    {
+      "bytes": 2641,
+      "path": "stage/preflight/DIRECTIONAL_PREFLIGHT_RESULT_V0_8.json",
+      "sha256": "326c4f663325bdc83585fffddd84df60210ce6c0ba38de2a738b5b0015db1f2a"
+    },
+    {
+      "bytes": 1628,
+      "path": "stage/selection/SELECTED_INDEX_RECEIPT_V0_8.json",
+      "sha256": "fdec28280abc2fedf098f78e7df861e666f0f5bdbcbde2e4ed0dbff7ef2c8efc"
+    },
+    {
+      "bytes": 4926,
+      "path": "stage/topology/FAULT_NETWORK_TOPOLOGY_INTERSECTIONS_V0_8.json",
+      "sha256": "694756f4e4b7eb0db9d6ade0bd66238670bf7aa1d580ecd0f9f173bebcd422eb"
+    },
+    {
+      "bytes": 1165,
+      "path": "stage/topology/LOCATION_PERTURBATION_OPERATOR_LOCK_V0_8.json",
+      "sha256": "451abe7fa08e8998e5178782f27144c03191232350f90ad545bbdc7cb972cf35"
+    },
+    {
+      "bytes": 3864,
+      "path": "stage/topology/TOPOLOGY_AND_LOCATION_OPERATOR_GATE_RESULT_V0_8.json",
+      "sha256": "b6bf8addb3b391584cff4e895f62ae8bb401525b601ce7dbb60fd272b9f65d39"
+    },
+    {
+      "bytes": 2710,
+      "path": "upstream/BLIND_ELIGIBILITY_RESULT_V0_8.json",
+      "sha256": "4673a3a831e4ef20bb7bcaa89f5e92ce2f869140370022493353c5b87f8d814c"
+    },
+    {
+      "bytes": 3502,
+      "path": "upstream/MATERIAL_GATE_SUMMARY_V0_8.json",
+      "sha256": "11484707a3605f053a5fc26e540fa75f3a38e78871fe8385abe0d8901c44f679"
+    },
+    {
+      "bytes": 716,
+      "path": "upstream/PREACCESS_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "sha256": "15432d3cbd172638523d4e4f98d51279568175aff9029d724e896c4ef4cff2dd"
+    },
+    {
+      "bytes": 784,
+      "path": "upstream/SANDBOX_LOCK_RECEIPT_V0_8.json",
+      "sha256": "2bae09cd4dc910deb16b3554f9570f04abdf251f140dbbdfcb3cde3d5754e468"
+    },
+    {
+      "bytes": 828,
+      "path": "upstream/XY_GEOMETRY_SUCCESSOR_RECEIPT_V0_8_3.json",
+      "sha256": "5bd55888b56a3b65af89079d61f7d4a5c1582f084ff155d59b4da4fb0aa6278c"
+    },
+    {
+      "bytes": 5223,
+      "path": "upstream/acquired/ACQUISITION_RECEIPT_V0_8.json",
+      "sha256": "f1dc3abd4bb2c27ed61d98a4de838b629b053957169baf97eda811370a29cfd9"
+    },
+    {
+      "bytes": 2545,
+      "path": "upstream/blind/EXTRACTION_RECEIPT_V0_8.json",
+      "sha256": "4e9272f3f9e5c103d36fcf13522a9b3f688e720f3b3bb756b1d8bb3f74aaf495"
+    }
+  ],
+  "recovery_operation": "EXACT_BYTE_EXTRACTION_FROM_IMMUTABLE_GITHUB_ACTIONS_ARTIFACT",
+  "recovery_receipt_id": "h8recover3:a70242505a93d9e1dcd17cc1586aeb68ed9ad02be6a84a58bf029402e5160a8c",
+  "retrospective_mutation": "FORBIDDEN",
+  "scientific_model_execution_performed": false,
+  "sealed_test_response_scored": false,
+  "source_artifact_id": "11566699529",
+  "source_artifact_zip_sha256": "8db78b50f79fe6cf3c28c3142d409f56a52831cc80ff694d2dee1e92c07ea698",
+  "source_full_artifact_tree_sha256": "e5a46b6cedc90adbd32e235acf8b8bdf5d55b752dd599a7d78ffb93f622fe263",
+  "source_receipt_id": "h8durable3:c1feb7ee7361a235ec2bcc5b918e25cbce84dc1f63ec38028cc22ca32647dad8",
+  "source_receipt_sha256": "31b45ae54d1a7c3cb9a412bdb9a4ebaf661867ac8bc431e6a505a54feb88dde8",
+  "source_run_id": "37815991537",
+  "source_scientific_gates": "PASS_THROUGH_PARENT_GRAPH_LOCK"
+}

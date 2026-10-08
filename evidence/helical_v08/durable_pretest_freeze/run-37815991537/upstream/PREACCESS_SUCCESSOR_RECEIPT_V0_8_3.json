@@ -1,0 +1,19 @@
+{
+  "applied_before_source_access": true,
+  "authority_ceiling": "NONE",
+  "directional_fields_accessed": false,
+  "format": "KCH_HELICAL_V0_8_3_PREACCESS_SUCCESSOR_RECEIPT",
+  "promotion": "BLOCKED",
+  "protocol_changed": false,
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h8preaccess3:767d9698d36e5d880dfa9dda0301026c141368f087ca91ce36d418b5fd3f5134",
+  "recorded_at_utc": "2026-10-08T17:22:17.897520Z",
+  "scientific_models_changed": false,
+  "scope": [
+    "ACQUISITION_TRANSPORT_ONLY",
+    "NUM_DECLARED_COUNT_SCALAR_CARDINALITY_ONLY",
+    "GEM_LINE_COORDINATE_XY_PROJECTION_ONLY"
+  ],
+  "sealed_test_scored": false,
+  "thresholds_changed": false
+}
