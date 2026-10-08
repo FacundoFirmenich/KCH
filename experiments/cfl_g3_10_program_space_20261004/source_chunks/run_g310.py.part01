@@ -1,0 +1,109 @@
+ 'mechanics': binop('mul',leaf('x2'),binop('add',leaf('x0'),leaf('x1'))),
+}
+
+# unsupported semantics for misspec
+def unsupported_sem(domain,X,variant):
+    a=X[:,0].astype(int); b=X[:,1].astype(int); c=X[:,2].astype(int)
+    if variant%4==0: y=np.maximum(a,b)+c
+    elif variant%4==1: y=np.where(a>b,c,-c)+1
+    elif variant%4==2: y=np.minimum(a*c,b+c)
+    else: y=(a>b).astype(int)*2 + (b>c).astype(int)
+    return np.clip(y,-CLIP,CLIP).astype(np.int8)
+
+def random_ast(rng,max_depth=3,force_binary=False):
+    if max_depth<=1 or rng.random()<0.28:
+        return leaf(rng.choice(LEAVES))
+    if force_binary or rng.random()<0.65:
+        op=rng.choice(OPS_B)
+        return binop(op,random_ast(rng,max_depth-1),random_ast(rng,max_depth-1))
+    return un(rng.choice(OPS_U),random_ast(rng,max_depth-1))
+
+def make_task(domain,lane,idx,rng):
+    X=XDOM[domain]; by,semmap,minsize=get_oracle(domain)
+    truth=None; y=None; production=None; source='grammar'
+    if lane=='KNOWN_GRAMMAR_CONTROL':
+        for _ in range(1000):
+            a=random_ast(rng,max_depth=3); sem=eval_ast(a,X).tobytes(); ms=minsize.get(sem,99)
+            if 2<=ms<=5:
+                truth=semmap[sem]; y=np.frombuffer(sem,dtype=np.int8).copy(); break
+    elif lane=='DEPTH_OOD_COMPOSITION':
+        # construct until minimum representational size is >=7
+        for _ in range(4000):
+            a=random_ast(rng,max_depth=5,force_binary=True); sem=eval_ast(a,X).tobytes(); ms=minsize.get(sem,99)
+            if 6<=ms<=MAX_SIZE:
+                truth=semmap[sem]; y=np.frombuffer(sem,dtype=np.int8).copy(); break
+    elif lane=='NEW_MACRO_DISCOVERY':
+        M=MACRO_AST[domain]
+        extra=leaf(f'x{idx%3}')
+        # repeated cross-task subtree, not necessarily duplicated inside expression
+        variants=[binop('add',M,extra),binop('sub',M,extra),binop('mul',M,un('mod2',extra)),binop('add',M,leaf('c1'))]
+        a=variants[idx%len(variants)]; sem=eval_ast(a,X).tobytes(); truth=semmap.get(sem,a); y=np.frombuffer(sem,dtype=np.int8).copy(); production='MACRO:'+domain
+    elif lane=='REWRITE_BIRTH':
+        a=REWRITE_AST[domain]
+        # deterministic perturbations preserving rewrite motif
+        if idx%2: a=un('neg',un('neg',a))
+        sem=eval_ast(a,X).tobytes(); truth=semmap.get(sem,a); y=np.frombuffer(sem,dtype=np.int8).copy(); production='REWRITE:factor_distribute'
+    elif lane=='META_GRAMMAR_MISSPECIFICATION':
+        # ensure globally outside bounded DSL semantics
+        chosen=None
+        for v in range(idx,idx+20):
+            yy=unsupported_sem(domain,X,v)
+            if yy.tobytes() not in semmap:
+                chosen=yy; production='OUTSIDE_META_GRAMMAR'; break
+        if chosen is None:
+            # force a deterministic unsupported hash-like response
+            a0=X[:,0].astype(int); b0=X[:,1].astype(int); c0=X[:,2].astype(int)
+            for salt in range(3,20):
+                yy=np.clip(((a0*salt+b0*3-c0*2)%7)-3,-CLIP,CLIP).astype(np.int8)
+                if yy.tobytes() not in semmap: chosen=yy; break
+        y=chosen; truth=None; source='outside'
+    elif lane=='GAUGE_EQUIVALENCE':
+        # syntactically distinct, globally extensionally identical; truth syntax withheld
+        base=[leaf('x0'),leaf('x1'),binop('add',leaf('x0'),leaf('x1'))][idx%3]
+        aliases=[binop('add',base,leaf('c0')),binop('sub',binop('add',base,leaf('x2')),leaf('x2')),un('neg',un('neg',base))]
+        truth=aliases[idx%len(aliases)]; y=eval_ast(truth,X); production='GAUGE_EQUIV'
+    else: raise KeyError(lane)
+    if y is None: raise RuntimeError((domain,lane,idx,'no truth'))
+    # initial observations deterministic random distinct
+    obs=np.array(sorted(rng.choice(len(X),size=min(INIT_OBS,len(X)),replace=False).tolist()),dtype=int)
+    return {
+      'id':f'{domain}:{lane}:{idx:03d}','domain':domain,'lane':lane,'X':X,'y':y,'truth_ast':truth,
+      'truth_str':ast_str(truth) if truth else None,'truth_size':ast_size(truth) if truth else None,
+      'production':production,'obs0':obs,'source':source
+    }
+
+LANES=['KNOWN_GRAMMAR_CONTROL','DEPTH_OOD_COMPOSITION','NEW_MACRO_DISCOVERY','REWRITE_BIRTH','META_GRAMMAR_MISSPECIFICATION','GAUGE_EQUIVALENCE']
+DEV_COUNTS={l:1 for l in LANES}
+PRIV_COUNTS={'KNOWN_GRAMMAR_CONTROL':2,'DEPTH_OOD_COMPOSITION':3,'NEW_MACRO_DISCOVERY':3,'REWRITE_BIRTH':3,'META_GRAMMAR_MISSPECIFICATION':2,'GAUGE_EQUIVALENCE':2}
+
+def build_tasks(split):
+    rng=np.random.default_rng(SEED_DEV if split=='dev' else SEED_PRIVATE)
+    counts=DEV_COUNTS if split=='dev' else PRIV_COUNTS
+    tasks=[]
+    for domain in DOMAINS:
+      for lane in LANES:
+        for i in range(counts[lane]): tasks.append(make_task(domain,lane,i,rng))
+    # prospective order: controls first, births in indexed order, misspec/gauge later; fixed cross-domain round-robin
+    order={l:i for i,l in enumerate(LANES)}
+    tasks.sort(key=lambda t:(order[t['lane']], int(t['id'].split(':')[-1]), DOMAINS.index(t['domain'])))
+    return tasks
+
+# Task summary for priors / neural guidance
+def task_features(t,obs):
+    X=t['X'][obs].astype(float); y=t['y'][obs].astype(float)
+    vals=[float(np.mean(y)),float(np.std(y)),float(np.min(y)),float(np.max(y)),float(len(np.unique(y)))]
+    for j in range(3):
+        if np.std(X[:,j])<1e-9 or np.std(y)<1e-9: vals.append(0.0)
+        else: vals.append(float(np.corrcoef(X[:,j],y)[0,1]))
+    vals += [float(np.mean(np.abs(y))), float(np.mean(y==0))]
+    vals += [1.0 if t['domain']==d else 0.0 for d in DOMAINS]
+    return np.nan_to_num(np.array(vals,dtype=float))
+
+def truth_token_vector(t):
+    c=Counter(tokens(t['truth_ast'])) if t['truth_ast'] else Counter()
+    return np.array([1 if c[o]>0 else 0 for o in TOKENS],dtype=int)
+
+# Infer op priorities from observations (TOS heuristic)
+def infer_costs(t,obs,base=None):
+    costs={o:1 for o in TOKENS} if base is None else dict(base)
+    X=t['X'][obs].astype(int); y=t['y'][obs].astype(int)
