@@ -1,0 +1,121 @@
+    # residual signatures: parity -> mod2; sign symmetry -> abs; nonlinear magnitude -> mul; additive correlations -> add/sub
+    if len(np.unique(y%2))<=2:
+        for j in range(3):
+            if np.mean((X[:,j]%2)==(y%2))>0.7: costs['mod2']=0.55
+    for j in range(3):
+        if np.mean(np.abs(X[:,j])==np.abs(y))>0.65: costs['abs']=0.55
+        if np.mean(-X[:,j]==y)>0.65: costs['neg']=0.55
+    # pair simple fits
+    best={'add':0,'sub':0,'mul':0}
+    for a,b in itertools.product(range(3),repeat=2):
+        for op in OPS_B:
+            if op=='add': z=X[:,a]+X[:,b]
+            elif op=='sub': z=X[:,a]-X[:,b]
+            else: z=X[:,a]*X[:,b]
+            z=np.clip(z,-CLIP,CLIP)
+            best[op]=max(best[op],float(np.mean(z==y)))
+    for op,v in best.items():
+        if v>0.5: costs[op]=0.55
+        elif v<0.15: costs[op]=1.25
+    return costs
+
+# Weighted bottom-up CEGIS. No full candidate list exists; expressions generated online.
+def enum_search(t, costs, budget=MAX_EXP, semantic_dedup=True, reentry=False, macros=None, library=None, max_size=MAX_SIZE, exhaustive=False):
+    X=t['X']; y=t['y']; obs=list(map(int,t['obs0']))
+    verifier=0; expansions_total=0; genealogy=[]; used_macro=False
+    macros=macros or {}
+    current_costs=dict(costs)
+    fcache={}
+    def full_eval(a):
+        if a in fcache: return fcache[a]
+        typ=a[0]
+        if typ=='leaf':
+            n=a[1]
+            if n.startswith('x'): yv=X[:,int(n[1])].astype(np.int16)
+            else: yv=np.full(len(X),int(n[1:]),dtype=np.int16)
+        elif typ=='macro':
+            yv=full_eval(a[2]).astype(np.int16)
+        elif typ=='u':
+            v=full_eval(a[2]).astype(np.int16); op=a[1]
+            if op=='neg': yv=-v
+            elif op=='abs': yv=np.abs(v)
+            else: yv=np.mod(v,2)
+        else:
+            l=full_eval(a[2]).astype(np.int16); r=full_eval(a[3]).astype(np.int16); op=a[1]
+            if op=='add': yv=l+r
+            elif op=='sub': yv=l-r
+            else: yv=l*r
+        yv=np.clip(yv,-CLIP,CLIP).astype(np.int8); fcache[a]=yv; return yv
+    def obs_eval(a): return full_eval(a)[obs]
+    # rounded integer-ish weighted cost via 100x to preserve priority
+    def prod_cost(op): return max(1,int(round(100*current_costs.get(op,1.0))))
+    rounds=0
+    while rounds<8:
+        rounds+=1
+        # Buckets by structural size but operator order derived from costs; keeps hard completeness by max_size.
+        by={1:[]}; seen_by_size={1:set()}
+        for name in LEAVES:
+            a=leaf(name); sem=obs_eval(a).tobytes()
+            if (not semantic_dedup) or sem not in seen_by_size[1]:
+                by[1].append((a,sem)); seen_by_size[1].add(sem)
+        for mn,ma in sorted(macros.items()):
+            a=('macro',mn,ma); sem=obs_eval(a).tobytes()
+            if (not semantic_dedup) or sem not in seen_by_size[1]:
+                by[1].append((a,sem)); seen_by_size[1].add(sem)
+        found=None; counter_added=False
+        # check leaves/macros too
+        sizes=range(1,max_size+1)
+        for size in sizes:
+            yobs=y[obs].tobytes()
+            def consider(a, sem, size):
+                nonlocal verifier, counter_added, found, used_macro
+                if sem!=yobs: return None
+                verifier+=1
+                full=full_eval(a)
+                if np.array_equal(full,y):
+                    if a[0]=='macro' or any(tok.startswith('MACRO:') for tok in tokens(a)): used_macro=True
+                    found={'status':'PASS','ast':a,'obs':len(obs),'expansions':expansions_total,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':used_macro}
+                    return 'PASS'
+                mis=np.where(full!=y)[0]
+                if len(mis):
+                    ce=int(mis[0])
+                    if ce not in obs:
+                        obs.append(ce); obs.sort(); genealogy.append({'round':rounds,'event':'COUNTEREXAMPLE','index':ce,'candidate':ast_str(a)})
+                        if reentry: current_costs.update(infer_costs(t,np.array(obs),base=current_costs))
+                        counter_added=True
+                        return 'CE'
+                return None
+            if size==1:
+                for a,sem in by[1]:
+                    z=consider(a,sem,1)
+                    if z=='PASS': return found
+                    if z=='CE': break
+                if counter_added: break
+                continue
+            by[size]=[]; seen_by_size[size]=set()
+            groups=[]
+            for op in OPS_U: groups.append((prod_cost(op),'u',op))
+            for op in OPS_B: groups.append((prod_cost(op),'b',op))
+            groups.sort(key=lambda q:(q[0],q[1],q[2]))
+            stop=False
+            for _,typ,op in groups:
+                if typ=='u':
+                    for a,_sem0 in by.get(size-1,[]):
+                        aa=un(op,a); expansions_total+=1
+                        if expansions_total>budget and not exhaustive:
+                            return {'status':'ABSTAIN_BUDGET','ast':None,'obs':len(obs),'expansions':expansions_total,'verifier_calls':verifier,'genealogy':genealogy,'used_macro':used_macro}
+                        sem=obs_eval(aa).tobytes()
+                        if semantic_dedup and sem in seen_by_size[size]: continue
+                        seen_by_size[size].add(sem); by[size].append((aa,sem))
+                        z=consider(aa,sem,size)
+                        if z=='PASS': return found
+                        if z=='CE': stop=True; break
+                    if stop: break
+                else:
+                    for ls in range(1,size-1):
+                        rs=size-1-ls
+                        if rs<1: continue
+                        for a,_ in by.get(ls,[]):
+                            for b,_ in by.get(rs,[]):
+                                if op in ('add','mul') and ast_str(a)>ast_str(b): continue
+                                aa=binop(op,a,b); expansions_total+=1
