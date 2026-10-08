@@ -23,11 +23,11 @@ jobs:
           set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install -r experiments/cfl_g3_10_program_space_20261004/requirements.txt
-      - name: Materialize and verify runner
+      - name: Materialize and verify scientific source
         run: |
           set -euo pipefail
           cp experiments/cfl_g3_10_program_space_20261004/run_g310.py.gz run_g310.py.gz
-          echo "1d9834c8d1a7b6f48595ae351991e594d0f30eb370344b0c40d828ec11c35091  run_g310.py.gz" | sha256sum -c -
+          sha256sum run_g310.py.gz | tee RUNNER_TRANSPORT_SHA256.txt
           gzip -dc run_g310.py.gz > run_g310.py
           echo "566ca8adc74102458ec3d4d98c89ac69968f65190256bfbbe2c465a50384d46a  run_g310.py" | sha256sum -c -
           python -m py_compile run_g310.py
@@ -51,6 +51,7 @@ jobs:
           python -m json.tool g310_work/results/FINAL_ADJUDICATION.json >/dev/null
           cp g310_stdout.log g310_work/results/STDOUT.log
           cp run_g310.py g310_work/results/SOURCE_run_g310.py
+          cp RUNNER_TRANSPORT_SHA256.txt g310_work/results/RUNNER_TRANSPORT_SHA256.txt
           cp experiments/cfl_g3_10_program_space_20261004/EXECUTION_PROTOCOL.json g310_work/results/EXECUTION_PROTOCOL.json
           cp experiments/cfl_g3_10_program_space_20261004/PRIVATE_EXECUTION_FREEZE.json g310_work/results/PRIVATE_EXECUTION_FREEZE.json
           python -m pip freeze > g310_work/results/PIP_FREEZE.txt
