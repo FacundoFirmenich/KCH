@@ -1,0 +1,69 @@
+{
+  "blind_rows_included": false,
+  "coverage_threshold_changed": false,
+  "crosswalk_rows_included": false,
+  "directional_rows_included": false,
+  "files": [
+    {
+      "bytes": 998,
+      "path": "BLIND_IMAGE_LOCK_RECEIPT_V0_14_2.json",
+      "sha256": "e091079dd674ab4b0aee9ac154ebbfb03955954b2524ca83a6b8f73422f99a64"
+    },
+    {
+      "bytes": 729,
+      "path": "EPHEMERAL_PURGE_RECEIPT_V0_14.json",
+      "sha256": "13794bfa6041b4e3c1b5e95427d9120267669907cf10670c5762e7207dec0438"
+    },
+    {
+      "bytes": 3,
+      "path": "GATE_EXIT_CODE.txt",
+      "sha256": "7ea9844ae84eccbf55e8330640865e36c43521e45a1baec24233327aab7e6595"
+    },
+    {
+      "bytes": 0,
+      "path": "GATE_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1116,
+      "path": "GATE_STDOUT.txt",
+      "sha256": "3acf54770c9a4687c3e2f044cc310470ac248aaf640119731fe4e83842c0e393"
+    },
+    {
+      "bytes": 2506,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "8eb0792769fd917ecc7c9ffa44b84e83ed07bb0430a7bd18daa981545cd36d96"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 1980,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "0605e205dea88eba832cd9325a383970324246ed056fcf93883b2bcdbb86600c"
+    },
+    {
+      "bytes": 494,
+      "path": "RUNTIME_ENVIRONMENT.json",
+      "sha256": "297831337bf4158c131a54c855ccb77f103c602f201a8ce55b3575f80cd6a938"
+    },
+    {
+      "bytes": 1116,
+      "path": "RUN_RECEIPT_V0_14.json",
+      "sha256": "3acf54770c9a4687c3e2f044cc310470ac248aaf640119731fe4e83842c0e393"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_14_2_SAFE_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38001867357",
+  "github_sha": "3f5d266cfd966ecbddee3f0dc85fccb8da188e3f",
+  "manifest_id": "h142manifest:78a3f276676b5d62c485b94301d71055217780cb0eb61c00b7c528074d0f0ab4",
+  "observation_adapter_change": "USGS_FDSN_GEOJSON_SUMMARY_TO_USGS_FDSN_CSV_BULK",
+  "predecessor_run_receipt_id": "h14run:4e07a2a61c461b31dfbcc0f888d56fa4cab1ffbdd4e2106042b60c24e142728d",
+  "raw_sources_included": false,
+  "scientific_matching_contract_changed": false,
+  "sealed_test_values_included": false,
+  "selected_indices_included": false
+}

@@ -1,0 +1,10 @@
+{
+  "docker_version": "Docker version 28.0.4, build b8034c0",
+  "github_ref": "refs/heads/helical-v0142-csv-location-uncertainty-crosswalk-20261010",
+  "github_run_attempt": "1",
+  "github_run_id": "38001867357",
+  "github_sha": "3f5d266cfd966ecbddee3f0dc85fccb8da188e3f",
+  "pip_freeze_sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.11.17 (main, Oct  1 2026, 14:32:31) [GCC 13.3.0]"
+}
