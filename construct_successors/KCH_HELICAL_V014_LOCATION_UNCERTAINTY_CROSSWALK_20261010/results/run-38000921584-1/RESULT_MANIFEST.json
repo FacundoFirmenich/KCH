@@ -1,0 +1,65 @@
+{
+  "blind_rows_included": false,
+  "crosswalk_rows_included": false,
+  "directional_rows_included": false,
+  "files": [
+    {
+      "bytes": 991,
+      "path": "BLIND_IMAGE_LOCK_RECEIPT_V0_14.json",
+      "sha256": "7ecb72518db369e8f7f351e06018ba92fb22b281a078d7d526e4ba73e62ddd3a"
+    },
+    {
+      "bytes": 727,
+      "path": "EPHEMERAL_PURGE_RECEIPT_V0_14.json",
+      "sha256": "2e7f62bcd0ab4f3f5be9a129f937a0106e2e2dda8aca605b932f80fd236699c8"
+    },
+    {
+      "bytes": 3,
+      "path": "GATE_EXIT_CODE.txt",
+      "sha256": "7ea9844ae84eccbf55e8330640865e36c43521e45a1baec24233327aab7e6595"
+    },
+    {
+      "bytes": 0,
+      "path": "GATE_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1018,
+      "path": "GATE_STDOUT.txt",
+      "sha256": "cd0019f70d997be48c1f7c50bdd60535805ada77a4a5b84d505b77263a069a89"
+    },
+    {
+      "bytes": 1881,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "53a67199b9d51a1663f176f0f409710a529f402df59de0307fc34ee483a8482b"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 1928,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "21a45a8efbeb6acd207e5afae966ff448deb88e1bef19ac0f3d4600b7329c487"
+    },
+    {
+      "bytes": 489,
+      "path": "RUNTIME_ENVIRONMENT.json",
+      "sha256": "ca3d7f6a07994a8967ba4ba09027ccb5cff596f08851e9f63c9886e7d8e7b81f"
+    },
+    {
+      "bytes": 1018,
+      "path": "RUN_RECEIPT_V0_14.json",
+      "sha256": "cd0019f70d997be48c1f7c50bdd60535805ada77a4a5b84d505b77263a069a89"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_14_SAFE_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38000921584",
+  "github_sha": "e02005f2d3c56b23209b3dcb4c14f10913fe01e0",
+  "manifest_id": "h14manifest:b7d0f533227025560a1291176c3cb12e832bf35be62f7d382ec4c5d51c97a716",
+  "raw_sources_included": false,
+  "sealed_test_values_included": false,
+  "selected_indices_included": false
+}

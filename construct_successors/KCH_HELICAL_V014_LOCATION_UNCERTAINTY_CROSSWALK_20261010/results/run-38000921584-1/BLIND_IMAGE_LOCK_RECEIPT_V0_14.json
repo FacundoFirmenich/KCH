@@ -1,0 +1,16 @@
+{
+  "authority_ceiling": "EXACT_COMCAT_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
+  "base_image_digest": "docker.io/library/python@sha256:0a310eeecf4e1f5a0743f9a6520c90c88d089c903ca5fd283f501e3a805f5f89",
+  "blind_extractor_sha256": "784575508cbd98be9e3cf1622ffba020277562bf3935fa70b905cd911d1d1bdf",
+  "capabilities_at_extraction": "ALL_DROPPED",
+  "dockerfile_sha256": "faf75feeb143621906f16dedece8f363232a4ce64f04ee25964396e6f95db717",
+  "format": "KCH_HELICAL_V0_14_BLIND_IMAGE_LOCK_RECEIPT",
+  "image_id": "sha256:0e025195aec04d7ffdfff2c4d372e2931db1d3a4a30a0f3e31110460ebf4c3f8",
+  "locked_at_utc": "2026-10-09T22:45:52.194477Z",
+  "locked_before_source_access": true,
+  "network_mode_at_extraction": "NONE",
+  "no_new_privileges_at_extraction": true,
+  "numpy_wheel_sha256": "bc6f24b3d1ecc1eebfbf5d6051faa49af40b03be1aaa781ebdadcbc090b4539b",
+  "receipt_id": "h14imagelock:c7075da12e45baafc6857bf9db39243d584dd0fd02141580af5375e29de385ec",
+  "root_filesystem_at_extraction": "READ_ONLY"
+}

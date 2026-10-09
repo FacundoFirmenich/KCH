@@ -1,0 +1,34 @@
+{
+  "after": {
+    "blind": false,
+    "crosswalk": false,
+    "raw": false,
+    "selection": false
+  },
+  "before": {
+    "blind": {
+      "exists": true,
+      "files": 2
+    },
+    "crosswalk": {
+      "exists": false,
+      "files": 0
+    },
+    "raw": {
+      "exists": true,
+      "files": 2
+    },
+    "selection": {
+      "exists": false,
+      "files": 0
+    }
+  },
+  "blind_rows_purged": true,
+  "crosswalk_rows_purged": true,
+  "format": "KCH_HELICAL_V0_14_EPHEMERAL_PURGE_RECEIPT",
+  "raw_sources_purged": true,
+  "receipt_id": "h14purge:655dc653f4ae41d95c1314ddff7a585c0f5c7d150990414da53bb80a215cb8fc",
+  "row_values_persisted": false,
+  "sealed_test_values_persisted": false,
+  "selected_indices_purged": true
+}
