@@ -1,0 +1,31 @@
+{
+  "format": "KCH_HELICAL_V0_15_FINITE_AUTHORITY_LEASE",
+  "authority_id": "h15auth:historical-runtime-source-quorum-only",
+  "status": "ACTIVE_UNTIL_SINGLE_SUCCESSOR_TERMINATES",
+  "single_use": true,
+  "scope": "HISTORICAL_CODE_ONLY_RUNTIME_SOURCE_QUORUM",
+  "source_commit": "24703e036401185e935b363f839f059c8d49d57e",
+  "allowed_effects": [
+    "READ_EXACT_GIT_BLOBS_FROM_DECLARED_SOURCE_COMMIT",
+    "RECONSTRUCT_BASE64_TRANSPORT_WITHOUT_REPAIR",
+    "SAFE_EXTRACT_CODE_ARCHIVE",
+    "COMPILE_PYTHON_SOURCE",
+    "INVENTORY_REQUIRED_RUNTIME_SYMBOLS",
+    "PERSIST_CODE_ONLY_SOURCE_AND_AGGREGATE_RECEIPTS"
+  ],
+  "transport_repair_authorized": false,
+  "scientific_data_access_authorized": false,
+  "scientific_model_execution_authorized": false,
+  "null_runtime_execution_authorized": false,
+  "sealed_test_access_authorized": false,
+  "publication_authority": false,
+  "promotion_authority": false,
+  "canonicalization_authority": false,
+  "retrospective_mutation_authority": false,
+  "terminal_outcomes": [
+    "HISTORICAL_RUNTIME_SOURCE_QUORUM_PASS",
+    "HISTORICAL_RUNTIME_PARTIAL_SOURCE_ONLY",
+    "FAIL_CLOSED_TRANSPORT_CORRUPT",
+    "FAIL_CLOSED"
+  ]
+}
