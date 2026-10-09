@@ -1,0 +1,46 @@
+{
+  "files": [
+    {
+      "bytes": 565,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "9f4e4c3f70b2de8eca7f35a7f09aa41ccb83cded340cf73bf24d7910ca0cbe6c"
+    },
+    {
+      "bytes": 3,
+      "path": "INSPECTION_EXIT_CODE.txt",
+      "sha256": "7e332bcee418f7d700927c946d36341f0651d6d90997b58d3d5441dec96b2e74"
+    },
+    {
+      "bytes": 119,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "775b419971013b23936a152bbd77547cc4236fde5fd1a1c1d4e13494ecce3955"
+    },
+    {
+      "bytes": 2,
+      "path": "RECONSTRUCTION_EXIT_CODE.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "bytes": 914,
+      "path": "RECONSTRUCTION_STDERR.txt",
+      "sha256": "68653ebb36d7046c92434fb8764509f5706b5d0f0d29f4d62fff7ddab598915b"
+    },
+    {
+      "bytes": 0,
+      "path": "RECONSTRUCTION_STDOUT.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1508,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "17105a2dacc934ed995e45e48c8571eca2bd613bb551081db6c04e92c7e41f9e"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_13_2_SOURCE_INSPECTION_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "37987943485",
+  "github_sha": "ad374166d6db379ad0b5aab3b2cc2a6b365d737c",
+  "manifest_id": "h132inspectmanifest:9da15fba63af2d506a9a738bca43faadf0d7e64f5d4bfed66fe40412a594cadd",
+  "scientific_rows_included": false,
+  "sealed_test_values_included": false
+}
