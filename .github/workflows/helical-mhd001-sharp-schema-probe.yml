@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          python -m pip install 'drms==0.9.1' 'pandas==2.2.3'
+          python -m pip install 'packaging==24.2' 'drms==0.9.1' 'pandas==2.2.3'
       - name: Probe definitive SHARP series without exporting FITS
         shell: bash
         env:
@@ -37,7 +37,7 @@ jobs:
           mkdir -p "$PROBE_OUT"
           python .github/helical_mhd001/sharp_schema_probe.py | tee "$PROBE_OUT/EXECUTION_STDOUT.log"
           cd "$PROBE_OUT"
-          find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
       - name: Upload schema evidence
         if: always()
         uses: actions/upload-artifact@v4
