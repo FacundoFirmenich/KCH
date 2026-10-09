@@ -1,0 +1,13 @@
+{
+  "edge_artifact_bytes": 12239007,
+  "edge_artifact_created": true,
+  "edge_artifact_persisted": false,
+  "edge_artifact_sha256": "ebe90e7eba499856f706c9d59b6cc0756b2e1a3d32de3f5b58c5901952db838f",
+  "format": "KCH_HELICAL_V0_12_EPHEMERAL_PARENT_EDGE_DIGEST_RECEIPT",
+  "parent_edges_export_authorized": false,
+  "parent_graph_gate_id": "h8pg:5690829352b8163faf63bc3cecc0a6efb34fe024894b90e5dd961e2c7eb732ba",
+  "parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "promotion": "BLOCKED",
+  "receipt_id": "h12edges:8c6396518204f67cc9e13824de27ed2b52a90e3247a075dd5cf080b2e082af8f",
+  "sealed_test_edges_generated": false
+}

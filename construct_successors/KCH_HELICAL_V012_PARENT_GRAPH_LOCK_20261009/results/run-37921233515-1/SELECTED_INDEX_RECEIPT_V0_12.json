@@ -1,0 +1,43 @@
+{
+  "authority_ceiling": "FINITE_DIRECTIONAL_PRETEST_ONLY",
+  "blind_npz_sha256": "7719b063252e217b19cc5045b99531dc8b7ac9fe6fbe2b57693b25f28a6a9161",
+  "cohorts": [
+    {
+      "cohort_code": 0,
+      "cohort_id": "BAY_AREA_HAYWARD_CALAVERAS",
+      "coverage": 0.7594598932627101,
+      "first_event_id": "8399.0",
+      "first_time_epoch": 446982680.89,
+      "last_event_id": "73639785.0",
+      "last_time_epoch": 1634276733.21,
+      "quality_and_bbox_count": 49842,
+      "selected_count": 37853
+    },
+    {
+      "cohort_code": 1,
+      "cohort_id": "PARKFIELD_CENTRAL_SAF",
+      "coverage": 0.8299019607843138,
+      "first_event_id": "31433.0",
+      "first_time_epoch": 445242794.97,
+      "last_event_id": "73639940.0",
+      "last_time_epoch": 1634324359.99,
+      "quality_and_bbox_count": 28560,
+      "selected_count": 23702
+    }
+  ],
+  "directional_fields_accessed": false,
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "fault_feature_count": 13696,
+  "fault_geojson_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+  "fault_line_count": 13696,
+  "format": "KCH_HELICAL_V0_11_SELECTED_INDEX_RECEIPT",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h11select:432d17f5302785fee22efcf6aa55c9c1b00220f96d55d5020d09847d08675471",
+  "selected_indices_bytes": 1612032,
+  "selected_indices_sha256": "64079a3ccaff3389ef8814225afdb850a1c17950cfa6bf7e75af908de48a6e28",
+  "selected_total": 61555,
+  "selection_order": "TIME_THEN_EVENT_ID_WITHIN_LOCKED_COHORT_ORDER",
+  "source_values_changed": false,
+  "unselected_total": 1512558
+}

@@ -1,0 +1,10 @@
+{
+  "docker_version": "Docker version 28.0.4, build b8034c0",
+  "github_ref": "refs/heads/helical-v012-parent-graph-lock-20261009",
+  "github_run_attempt": "1",
+  "github_run_id": "37921233515",
+  "github_sha": "5aaeb54f6bd450d418b7ab322f6d478012001f53",
+  "pip_freeze_sha256": "29335cef385af9aaddc763afabf620c80c8ffebd29e2f255221e2352da6f657e",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.11.17 (main, Oct  1 2026, 14:32:31) [GCC 13.3.0]"
+}

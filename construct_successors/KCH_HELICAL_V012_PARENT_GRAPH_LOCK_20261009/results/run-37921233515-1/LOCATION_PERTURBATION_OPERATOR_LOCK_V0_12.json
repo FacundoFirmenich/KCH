@@ -1,0 +1,31 @@
+{
+  "authority_ceiling": "FINITE_PARENT_GRAPH_LOCK_ONLY",
+  "crosswalk_materialized": false,
+  "defer_reason": "PARENT_GRAPH_LOCK_DOES_NOT_CONSUME_LOCATION_PERTURBATION_DRAWS",
+  "engineering_replicates": 0,
+  "fault_reassignment": {
+    "maximum_distance_km": 10.0,
+    "minimum_second_to_first_distance_ratio": 1.5
+  },
+  "fault_topology": {
+    "component_count": 39,
+    "connection_rule": "EXACT_GEOMETRIC_INTERSECTION_ONLY_NO_GAP_TOLERANCE",
+    "exact_intersection_pair_count": 28,
+    "network_path_rule": "SHORTEST_PATH_ALONG_LINES_THROUGH_EXACT_INTERSECTIONS",
+    "selected_line_count": 66
+  },
+  "format": "KCH_HELICAL_V0_12_LOCATION_PERTURBATION_OPERATOR_CONTRACT_LOCK",
+  "full_covariance_claim": false,
+  "horizontal_draw": "dx,dy iid Normal(0,horizontalError_km^2)",
+  "missing_error_policy": "UNAVAILABLE_NO_IMPUTATION",
+  "operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "perturbation_draws_executed": false,
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "representation": "CONSERVATIVE_ISOTROPIC_MAX_HORIZONTAL_PROJECTION_ENVELOPE",
+  "scientific_dynamic_model_execution_performed": false,
+  "scientific_replicates": 64,
+  "sealed_test_scored": false,
+  "status": "CONTRACT_LOCKED_EXECUTION_DEFERRED",
+  "vertical_draw": "dz Normal(0,depthError_km^2)"
+}

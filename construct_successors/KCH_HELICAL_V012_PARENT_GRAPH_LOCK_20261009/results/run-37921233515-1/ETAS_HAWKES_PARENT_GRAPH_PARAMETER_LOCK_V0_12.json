@@ -1,0 +1,66 @@
+{
+  "all_units_pass": true,
+  "authority_ceiling": "NONE",
+  "calibration_scope": "DIAGNOSTIC_ONLY_NO_PARAMETER_UPDATE",
+  "candidate_contract": {
+    "maximum_candidate_parents_per_event": 20,
+    "maximum_network_path_km": 20.0,
+    "maximum_parent_age_days": 30.0
+  },
+  "cohorts": {
+    "BAY_AREA_HAYWARD_CALAVERAS": {
+      "M0": 0.0,
+      "background_rate_per_day": 0.4456555573757873,
+      "branching_ratio_proxy": 0.8380517608126012,
+      "c_days": 0.12102290315627677,
+      "magnitude_scaling": 0.3988745557698727,
+      "network_length_km": 2372.6016289893205,
+      "network_length_scale_km": 1.4603080620301743,
+      "objective": 81604.53160358114,
+      "optimizer_message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+      "optimizer_success": true,
+      "p": 1.01,
+      "parameterization": "STABLE_TRUNCATED_NETWORK_ETAS_PSEUDOLIKELIHOOD_V1",
+      "productivity": 0.44422785260748804,
+      "start_objectives": [
+        81604.53160359093,
+        81604.53160358114,
+        81604.53160365645
+      ],
+      "train_candidate_edge_count": 1406127,
+      "train_duration_days": 6795.32169340278,
+      "train_event_count": 18640
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "M0": 0.0,
+      "background_rate_per_day": 0.13031923810053603,
+      "branching_ratio_proxy": 0.917738575697395,
+      "c_days": 0.06487088232680902,
+      "magnitude_scaling": 0.08530346310114133,
+      "network_length_km": 878.3736774833034,
+      "network_length_scale_km": 1.6005076146490123,
+      "objective": 30074.202693541898,
+      "optimizer_message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+      "optimizer_success": true,
+      "p": 1.01,
+      "parameterization": "STABLE_TRUNCATED_NETWORK_ETAS_PSEUDOLIKELIHOOD_V1",
+      "productivity": 0.8140782459679525,
+      "start_objectives": [
+        30074.202693541898,
+        30074.202693615523,
+        30074.202693559826
+      ],
+      "train_candidate_edge_count": 3830028,
+      "train_duration_days": 7694.405757754629,
+      "train_event_count": 11648
+    }
+  },
+  "fit_scope": "TRAIN_ONLY",
+  "format": "KCH_HELICAL_V0_8_ETAS_HAWKES_PARENT_GRAPH_PARAMETER_LOCK",
+  "location_perturbation_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "network_distance_contract": "EXACT_INTERSECTION_SHORTEST_PATH_V0_8",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "scientific_model_execution_performed": false,
+  "test_access": "COUNTS_ONLY_NO_TEST_VALUES_SCORED"
+}

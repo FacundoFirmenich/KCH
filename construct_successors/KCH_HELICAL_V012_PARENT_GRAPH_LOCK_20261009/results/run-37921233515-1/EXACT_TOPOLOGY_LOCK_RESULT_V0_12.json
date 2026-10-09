@@ -1,0 +1,40 @@
+{
+  "authority_ceiling": "FINITE_PARENT_GRAPH_LOCK_ONLY",
+  "axis_observable_count": 60577,
+  "canonicalization": "BLOCKED",
+  "cohorts": [
+    {
+      "axis_observable_events": 37280,
+      "cohort_code": 0,
+      "cohort_id": "BAY_AREA_HAYWARD_CALAVERAS",
+      "multiline_component_event_fraction_not_computed": true,
+      "selected_fault_line_count": 55,
+      "touched_component_count": 31
+    },
+    {
+      "axis_observable_events": 23297,
+      "cohort_code": 1,
+      "cohort_id": "PARKFIELD_CENTRAL_SAF",
+      "multiline_component_event_fraction_not_computed": true,
+      "selected_fault_line_count": 11,
+      "touched_component_count": 10
+    }
+  ],
+  "component_count": 39,
+  "exact_intersection_pair_count": 28,
+  "exact_intersection_point_count": 30,
+  "fault_geojson_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+  "format": "KCH_HELICAL_V0_12_EXACT_TOPOLOGY_LOCK_RESULT",
+  "gate_id": "h12topo:a5dbc9bfce8a564517cb9572f543d4c17931c668dfd82021e14209360e72fbb4",
+  "largest_component_line_count": 8,
+  "location_operator_executed": false,
+  "location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "next_material_gate": "ETAS_HAWKES_PARENT_GRAPH_TRAIN_ONLY_CALIBRATION_LOCK",
+  "outcome": "EXACT_INTERSECTION_TOPOLOGY_LOCK_PASS",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "scientific_dynamic_model_execution_performed": false,
+  "sealed_test_scored": false,
+  "selected_event_count": 61555,
+  "selected_fault_line_count": 66
+}

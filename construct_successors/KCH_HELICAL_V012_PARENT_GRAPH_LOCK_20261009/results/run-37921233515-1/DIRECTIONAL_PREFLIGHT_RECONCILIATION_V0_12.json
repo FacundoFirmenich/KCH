@@ -1,0 +1,11 @@
+{
+  "axis_observable_count": 60577,
+  "canonical_v11_preflight_result_id": "h11preflight:60c0fb77dbc4c5f70c7ee319e5d875eae0d0ff866dac25f3538adb1d30b7f00f",
+  "cohort_denominators_exact_match": true,
+  "event_count": 61555,
+  "format": "KCH_HELICAL_V0_12_DIRECTIONAL_PREFLIGHT_RECONCILIATION",
+  "process_receipt_id": "h12process:2724783d92644eac186f63ae14cb212145744f3e71a92d551d7154b8d74b87a4",
+  "promotion": "BLOCKED",
+  "reconstructed_preflight_result_id": "h8preflight:a82516feedb2a04bd40400580ac6f2a13932cb3ca8a43ecdef7d3aebe7f9342a",
+  "sealed_test_scored": false
+}

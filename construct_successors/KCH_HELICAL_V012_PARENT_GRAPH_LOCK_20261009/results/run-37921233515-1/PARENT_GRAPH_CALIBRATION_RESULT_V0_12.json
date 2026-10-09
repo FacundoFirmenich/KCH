@@ -1,0 +1,93 @@
+{
+  "authority_ceiling": "NONE",
+  "format": "KCH_HELICAL_V0_8_PARENT_GRAPH_TRAIN_ONLY_CALIBRATION_GATE",
+  "gate_id": "h8pg:5690829352b8163faf63bc3cecc0a6efb34fe024894b90e5dd961e2c7eb732ba",
+  "next_material_gate": "FULL_NULL_AND_PERTURBATION_RUNTIME_FREEZE",
+  "outcome": "PARENT_GRAPH_LOCK_PASS",
+  "parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "scientific_dynamic_model_execution_performed": false,
+  "sealed_test_scored": false,
+  "unit_results": [
+    {
+      "calibration_count": 9320,
+      "calibration_mean_background_probability": 0.21142499672984766,
+      "calibration_mean_log_intensity_gain_vs_background": 4.218253783673815,
+      "calibration_median_max_parent_probability": 0.45572589427780097,
+      "calibration_parent_candidate_fraction": 0.9003218884120172,
+      "calibration_top20_edge_count": 72506,
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "network_length_km": 2372.6016289893205,
+      "parameter_lock": {
+        "M0": 0.0,
+        "background_rate_per_day": 0.4456555573757873,
+        "branching_ratio_proxy": 0.8380517608126012,
+        "c_days": 0.12102290315627677,
+        "magnitude_scaling": 0.3988745557698727,
+        "network_length_km": 2372.6016289893205,
+        "network_length_scale_km": 1.4603080620301743,
+        "objective": 81604.53160358114,
+        "optimizer_message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "optimizer_success": true,
+        "p": 1.01,
+        "parameterization": "STABLE_TRUNCATED_NETWORK_ETAS_PSEUDOLIKELIHOOD_V1",
+        "productivity": 0.44422785260748804,
+        "start_objectives": [
+          81604.53160359093,
+          81604.53160358114,
+          81604.53160365645
+        ],
+        "train_candidate_edge_count": 1406127,
+        "train_duration_days": 6795.32169340278,
+        "train_event_count": 18640
+      },
+      "parent_graph_lock_pass": true,
+      "selected_fault_line_count": 55,
+      "test_count": 9320,
+      "test_values_scored": false,
+      "train_count": 18640,
+      "train_parent_candidate_fraction": 0.9168454935622318,
+      "train_top20_edge_count": 199946
+    },
+    {
+      "calibration_count": 5824,
+      "calibration_mean_background_probability": 0.04640573691580012,
+      "calibration_mean_log_intensity_gain_vs_background": 5.8323351173367275,
+      "calibration_median_max_parent_probability": 0.4060356739974325,
+      "calibration_parent_candidate_fraction": 0.9804258241758241,
+      "calibration_top20_edge_count": 93054,
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "network_length_km": 878.3736774833034,
+      "parameter_lock": {
+        "M0": 0.0,
+        "background_rate_per_day": 0.13031923810053603,
+        "branching_ratio_proxy": 0.917738575697395,
+        "c_days": 0.06487088232680902,
+        "magnitude_scaling": 0.08530346310114133,
+        "network_length_km": 878.3736774833034,
+        "network_length_scale_km": 1.6005076146490123,
+        "objective": 30074.202693541898,
+        "optimizer_message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "optimizer_success": true,
+        "p": 1.01,
+        "parameterization": "STABLE_TRUNCATED_NETWORK_ETAS_PSEUDOLIKELIHOOD_V1",
+        "productivity": 0.8140782459679525,
+        "start_objectives": [
+          30074.202693541898,
+          30074.202693615523,
+          30074.202693559826
+        ],
+        "train_candidate_edge_count": 3830028,
+        "train_duration_days": 7694.405757754629,
+        "train_event_count": 11648
+      },
+      "parent_graph_lock_pass": true,
+      "selected_fault_line_count": 11,
+      "test_count": 5825,
+      "test_values_scored": false,
+      "train_count": 11648,
+      "train_parent_candidate_fraction": 0.9575892857142857,
+      "train_top20_edge_count": 169893
+    }
+  ]
+}

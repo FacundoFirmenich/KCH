@@ -1,0 +1,16 @@
+{
+  "activated_at_utc": "2026-10-09T11:02:25.383917Z",
+  "authority_file_sha256": "112e5faffb7b50b758c830dab41ad60b497e49785cec60786233b6e4bacbc083",
+  "authority_id": "kch-helical-v012-parent-graph-lock-20261009",
+  "dynamic_helical_model_fit_authorized": false,
+  "format": "KCH_HELICAL_V0_12_AUTHORITY_ACTIVATION_RECEIPT",
+  "location_perturbation_execution_authorized": false,
+  "null_family_execution_authorized": false,
+  "predecessor_preflight_result_id": "h11preflight:60c0fb77dbc4c5f70c7ee319e5d875eae0d0ff866dac25f3538adb1d30b7f00f",
+  "predecessor_run_receipt_id": "h11run:a503c121315ce355a7d7ff1e69a309010bc968270c8182ad3f4eb16ae3d2fc7b",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h12auth:1ad51cbe47482600e5989c0a4f873745ffc23c025e5318a79989a4e34be7e62c",
+  "sealed_test_access_authorized": false,
+  "single_use": true
+}
