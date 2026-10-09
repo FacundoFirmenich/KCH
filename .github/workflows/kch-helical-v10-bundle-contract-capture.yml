@@ -1,0 +1,99 @@
+name: KCH Helical v0.10 Mendeley bundle contract capture
+
+on:
+  push:
+    branches:
+      - helical-v09-remote-gate-20261009
+    paths:
+      - ".github/workflows/kch-helical-v10-bundle-contract-capture.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout immutable source revision
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+
+      - name: Capture official frontend bundle and contract snippets
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/bundle-contract"
+          mkdir -p "$out"
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, json, os, pathlib, re, urllib.request
+          out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'bundle-contract'
+          url = 'https://data.mendeley.com/datasets/bundle.js?5e5376ee3a5def54f781'
+          req = urllib.request.Request(url, headers={
+              'User-Agent': 'KCH-KwanBlocks-Helical-Lift/0.10 bundle-contract; no credentials',
+              'Accept-Encoding': 'identity',
+          })
+          with urllib.request.urlopen(req, timeout=90) as resp:
+              body = resp.read(16 * 1024 * 1024)
+          (out / 'bundle.js').write_bytes(body)
+          text = body.decode('utf-8', errors='replace')
+          needles = [
+              'publicApiBaseUrl', 'folder_id', 'folderId', 'files?version',
+              '/files', 'filesLoading', '/public-api', 'zip/${',
+              'file_downloaded', 'file_viewed', 'getFiles', 'listFiles',
+          ]
+          snippets = {}
+          for needle in needles:
+              arr=[]
+              start=0
+              while len(arr)<100:
+                  idx=text.find(needle,start)
+                  if idx<0: break
+                  context=text[max(0,idx-2500):idx+3500]
+                  arr.append({
+                      'offset':idx,
+                      'sha256':hashlib.sha256(context.encode('utf-8')).hexdigest(),
+                      'context':context,
+                  })
+                  start=idx+len(needle)
+              snippets[needle]=arr
+          templates=sorted(set(re.findall(r'`[^`]{0,500}(?:files|folders|public-api)[^`]{0,500}`',text)))
+          strings=sorted(set(re.findall(r'["\'][^"\']{0,500}(?:files|folders|public-api)[^"\']{0,500}["\']',text)))
+          report={
+              'url':url,
+              'bytes':len(body),
+              'sha256':hashlib.sha256(body).hexdigest(),
+              'snippets':snippets,
+              'templates':templates[:500],
+              'strings':strings[:500],
+          }
+          (out/'contract-snippets.json').write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({
+              'bytes':len(body),'sha256':report['sha256'],
+              'needle_counts':{k:len(v) for k,v in snippets.items()},
+              'templates':len(templates),'strings':len(strings),
+          },sort_keys=True,indent=2))
+          PY
+
+      - name: Archive exact bounded evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/bundle-contract"
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -czf "$RUNNER_TEMP/bundle-contract.tar.gz" .
+          sha256sum "$RUNNER_TEMP/bundle-contract.tar.gz" > "$RUNNER_TEMP/bundle-contract.tar.gz.sha256"
+
+      - name: Upload exact bounded evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v10-bundle-contract-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/bundle-contract.tar.gz
+            ${{ runner.temp }}/bundle-contract.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
