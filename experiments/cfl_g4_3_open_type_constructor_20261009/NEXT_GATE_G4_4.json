@@ -1,0 +1,39 @@
+{
+  "program_id":"CFL-UEP-G4.4-OPEN-META-CONSTRUCTOR-AND-ONTOLOGY-GRAMMAR-GENESIS",
+  "status":"DESIGN_FROZEN_PENDING_EXECUTION",
+  "parent_result":"G4.3 synthesizes constructor classes outside Gamma0, but a bounded higher-level mutation vocabulary already names the dependence axes needed by every private constructor.",
+  "hard_condition":"Private truth constructor C* must be non-definable, under a preregistered resource bound, in the complete G4.3 meta-constructor vocabulary M0 and its allowed compositions. The system must introduce a new meta-constructor schema K* before a type/signature/operator can be expressed.",
+  "formal_target":"Infer M1 = M0 union {K*}; then C* = K*(...), tau* = C*(...), Omega*:tau*. Form requires singleton equivalence classes for K*, C*, tau* and Omega* plus sealed cross-domain transfer.",
+  "candidate_heldout_meta_constructor_families":[
+    "emergent hidden-state constructor whose state sort itself must be induced",
+    "recursive dependent fiber whose codomain depends on prior generated output",
+    "dynamically generated incidence/multi-sort constructor",
+    "natural/functorial family requiring coherence across carrier sizes rather than a size flag",
+    "relation-to-relation or operator-to-operator constructor with unknown higher-order carrier",
+    "coinductive/event-stream constructor with observationally finite prefixes"
+  ],
+  "cross_domain_requirement":"A discovered meta-constructor must instantiate correctly in a second structural domain or carrier not used for invention, without changing its semantic law.",
+  "mandatory_baselines":[
+    "frozen G4.3 meta-vocabulary search",
+    "meta-grammar mutation/evolution",
+    "enumerative higher-order AST synthesis",
+    "MDL meta-grammar induction",
+    "e-graph/meta-type saturation",
+    "SMT/model finding with meta-constructor variables where finite",
+    "inductive logic programming / program synthesis",
+    "neural-symbolic meta-constructor induction",
+    "universal table/transducer completion negative control",
+    "TOS_NO_PHI",
+    "TOS_NO_O3",
+    "TOS_FULL_META_CONSTRUCTOR_GENESIS"
+  ],
+  "form_gate":[
+    "meta-constructor equivalence class singleton modulo declared definitional identities",
+    "constructor/signature/operator equivalence classes singleton",
+    "sealed cross-representation certificate",
+    "cross-domain law transfer without refit",
+    "no probability/posterior/score/fit may promote state 1"
+  ],
+  "support_rule":{"gain_over_strongest_matched_baseline":0.02,"paired_bootstrap_interval":"strictly positive","minimum_supported_heldout_meta_constructor_families":3,"false_form_promotion_maximum":0.02,"private_reserve_one_shot":true},
+  "authority":"NONE","promotion":"BLOCKED"
+}
