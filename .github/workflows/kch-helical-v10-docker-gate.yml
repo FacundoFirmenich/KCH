@@ -40,7 +40,7 @@ jobs:
       SANDBOX_ENV_FREEZE_RECEIPT_SHA256: 2ac3bde51cf7cd982adaa6c846bf30202f4a1a9441cf8ea99c6e945d2ed6e116
       PREPARE_SCRIPT_SHA256: e0230fb057d0745a85a0e294941847fa0c9c0442c9c828a247707fd921db9e33
       BUILD_SCRIPT_SHA256: ac4ee30f8fc30f141bd38d9a6fb1bb2a4eca642c9cf4b663ed93ea7821b594f6
-      TEST_SCRIPT_SHA256: 3e539fb6121b882585dc6937a1a7be80181dfd0c1b6da294f5b168e054fe155e
+      TEST_SCRIPT_GIT_BLOB: 97a3a009ffb770cca6564df55348445448fd067d
       PURGE_SCRIPT_SHA256: adf23fbac87d6961ff93f72bc5cb818fb0e596bdcc1c45859de828f15ccce282
 
     steps:
@@ -58,7 +58,7 @@ jobs:
           dir=construct_successors/helical_v10_remote_gate
           test "$(sha256sum "$dir/PREPARE_HELICAL_V10_CAPSULE.sh" | awk '{print $1}')" = "$PREPARE_SCRIPT_SHA256"
           test "$(sha256sum "$dir/BUILD_HELICAL_V10_SANDBOX_IMAGE.sh" | awk '{print $1}')" = "$BUILD_SCRIPT_SHA256"
-          test "$(sha256sum "$dir/TEST_HELICAL_V10_DOCKER_SANDBOX.sh" | awk '{print $1}')" = "$TEST_SCRIPT_SHA256"
+          test "$(git hash-object "$dir/TEST_HELICAL_V10_DOCKER_SANDBOX.sh")" = "$TEST_SCRIPT_GIT_BLOB"
           test "$(sha256sum "$dir/PURGE_ARCHIVE_HELICAL_V10.sh" | awk '{print $1}')" = "$PURGE_SCRIPT_SHA256"
           bash -n "$dir"/*.sh
           mkdir -p "$RUNNER_TEMP/helical-v10/receipts"
