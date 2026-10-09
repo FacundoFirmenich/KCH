@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
           cache: pip
       - name: Install pinned DRMS client
         shell: bash
@@ -34,6 +34,7 @@ jobs:
           PROBE_OUT: ${{ runner.temp }}/mhd001-sharp-probe
         run: |
           set -euo pipefail
+          mkdir -p "$PROBE_OUT"
           python .github/helical_mhd001/sharp_schema_probe.py | tee "$PROBE_OUT/EXECUTION_STDOUT.log"
           cd "$PROBE_OUT"
           find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
