@@ -14,7 +14,7 @@ import pandas as pd
 SERIES = 'hmi.Mharp_720s'
 START = datetime(2010, 5, 1, tzinfo=timezone.utc)
 END = datetime(2026, 1, 1, tzinfo=timezone.utc)
-CHUNK_DAYS = 31
+CHUNK_DAYS = 365
 CADENCE = '6h'
 KEYS = ['HARPNUM','T_REC','NOAA_AR','NOAA_ARS','QUALITY','LON_FWT','LAT_FWT']
 PARTITIONS = {
@@ -138,6 +138,7 @@ def main() -> int:
     body={
         'format':'KCH_MHD_HELICAL_OBSERVABILITY_001_BLIND_HARP_CENSUS',
         'metadata_source_series':SERIES,'cadence':CADENCE,
+        'initial_chunk_days':CHUNK_DAYS,
         'start_utc':START.isoformat(),'end_exclusive_utc':END.isoformat(),
         'fields_accessed':KEYS,'helical_keywords_accessed':False,'flare_labels_accessed':False,
         'unique_record_count':int(len(combined)),'counts':counts,
