@@ -1,0 +1,123 @@
+{
+  "authority": {
+    "authority_ceiling": "NONE",
+    "canonicalization": "BLOCKED",
+    "promotion": "BLOCKED"
+  },
+  "blind_join_outputs": {
+    "helical_keywords_accessed": false,
+    "record_level_fields": [
+      "partition",
+      "HARPNUM",
+      "T_REC",
+      "time_utc",
+      "normalized_noaa_region",
+      "mx24h"
+    ],
+    "test_label_rows_not_printed": true,
+    "test_labels_separate_file": true,
+    "vector_segments_accessed": false
+  },
+  "census_source": {
+    "artifact_digest": "sha256:b188e420b95d01cff065532832c93535754de4160c49dd6dbdf0301f9eab6c31",
+    "artifact_id": 11613151191,
+    "artifact_name": "kch-mhd001-blind-harp-census",
+    "cadence": "6h",
+    "census_id": "mhd001census:4726c460b748f4829ac903366d1941f332b0e34d751d3447b33aa6088a0515f4",
+    "metadata_series": "hmi.Mharp_720s",
+    "repository": "FacundoFirmenich/KCH",
+    "workflow_run_id": 37922877152
+  },
+  "firewall": {
+    "cross_partition_harp_leakage": "FORBIDDEN",
+    "helicity_keywords_before_label_join_receipt": "FORBIDDEN",
+    "sealed_test_labels_for_model_selection": "FORBIDDEN",
+    "source_substitution": "FORBIDDEN",
+    "threshold_changes_after_label_access": "FORBIDDEN",
+    "vector_segments_before_label_join_receipt": "FORBIDDEN"
+  },
+  "format": "KCH_MHD001_NOAA_NCEI_BLIND_LABEL_JOIN_GATE",
+  "harp_record_filter": {
+    "deduplicate_by": [
+      "HARPNUM",
+      "T_REC"
+    ],
+    "exclude_harp_observed_in_more_than_one_frozen_partition": true,
+    "maximum_absolute_lon_fwt_deg": 60.0,
+    "noaa_ars_rule": "EMPTY_OR_EXACTLY_ONE_DISTINCT_NORMALIZED_REGION_EQUAL_TO_PRIMARY_OTHERWISE_EXCLUDE",
+    "noaa_region_normalization": "INTEGER_MODULO_10000_WITH_VALID_RANGE_1_TO_9999",
+    "quality_equals": 0,
+    "require_positive_primary_noaa_ar": true
+  },
+  "identifiability": {
+    "minimum_negative_harps_each_partition": 100,
+    "minimum_positive_harps_calibration": 10,
+    "minimum_positive_harps_each_sealed_epoch": 20,
+    "minimum_positive_harps_train": 30,
+    "minimum_unique_harps_each_sealed_epoch": 200,
+    "outcomes": [
+      "LABEL_JOIN_POWER_PASS",
+      "NOT_IDENTIFIABLE_REGION_LABEL_ASSOCIATION",
+      "INSUFFICIENT_REGION_LEVEL_POWER",
+      "BLOCKED_EXACT_BYTE_ACQUISITION",
+      "MODEL_MISMATCH"
+    ]
+  },
+  "label_rule": {
+    "active_region_missing_action": "EXCLUDE_FLARE_FROM_REGION_JOIN",
+    "association": "EXACT_NORMALIZED_NOAA_REGION_MATCH",
+    "flare_class_prefixes": [
+      "M",
+      "X"
+    ],
+    "flare_time_scale": "UTC",
+    "future_information_in_feature_selection": "FORBIDDEN",
+    "harp_time_conversion": "ASTROPY_TAI_TO_UTC",
+    "target": "M_OR_X_CLASS_FLARE_STARTING_STRICTLY_AFTER_RECORD_AND_WITHIN_24_HOURS",
+    "window_hours": 24,
+    "window_lower": "OPEN",
+    "window_upper": "CLOSED"
+  },
+  "label_sources": {
+    "accept_encoding": "identity",
+    "algorithm_version": "1-0-1",
+    "content_decoding": "FORBIDDEN",
+    "csv_url": "https://data.ngdc.noaa.gov/platforms/solar-space-observing-satellites/goes/multi/l2/data/xrsf-l2-flrpt_science/csv/sci_xrsf-l2-flrpt_geo_s19950103_e20260809_v1-0-1.csv",
+    "metadata_url": "https://data.ngdc.noaa.gov/platforms/solar-space-observing-satellites/goes/multi/l2/data/xrsf-l2-flrpt_science/csv/sci_xrsf-l2-flrpt_geo_metadata.json",
+    "product": "GOES_XRS_FLARE_REPORT_SCIENCE",
+    "provider": "NOAA_NCEI",
+    "required_csv_columns": [
+      "start_time",
+      "flare_class",
+      "active_region"
+    ],
+    "required_metadata_variables": [
+      "start_time",
+      "flare_class",
+      "active_region"
+    ]
+  },
+  "locked_at_utc": "2026-10-09T14:21:08Z",
+  "predecessor_prelock_id": "mhd001:d44e1cdde28ade9eb2bc064b3148cd6e1bd31768eb296d587861030e8c04fd89",
+  "protocol_id": "mhd001label:7c328525d4096c9b780d8bf21b58e063a81b14da0de710a022ca2bd55bad2960",
+  "status": "LOCKED_BEFORE_NOAA_FLARE_LABEL_ENTITY_ACCESS",
+  "temporal_partitions_tai": {
+    "calibration": [
+      "2018-01-01T00:00:00",
+      "2022-01-01T00:00:00"
+    ],
+    "sealed_test_epoch_1": [
+      "2022-01-01T00:00:00",
+      "2024-01-01T00:00:00"
+    ],
+    "sealed_test_epoch_2": [
+      "2024-01-01T00:00:00",
+      "2026-01-01T00:00:00"
+    ],
+    "train": [
+      "2010-05-01T00:00:00",
+      "2018-01-01T00:00:00"
+    ]
+  },
+  "version": "0.2.0"
+}
