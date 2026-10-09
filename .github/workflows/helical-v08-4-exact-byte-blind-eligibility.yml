@@ -1,0 +1,272 @@
+name: Helical v0.8.4 exact-byte blind eligibility
+
+on:
+  push:
+    branches:
+      - experiment/helical-v08-blind-eligibility-20261009
+    paths:
+      - '.github/workflows/helical-v08-4-exact-byte-blind-eligibility.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: helical-v08-4-exact-byte-blind-eligibility
+  cancel-in-progress: false
+
+jobs:
+  exact-byte-blind-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      PYTHONHASHSEED: '0'
+      PYTHONNOUSERSITE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - name: Checkout immutable workflow commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Materialize content-addressed core and acquisition overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/gate" /tmp/v083
+          python - <<'PY'
+          import base64, hashlib, io, json, os, pathlib, tarfile
+
+          def materialize(root, expected_parts, raw_size, raw_sha, archive_size, archive_sha, destination):
+              root = pathlib.Path(root)
+              names = {p.name for p in root.glob('part-*.b64')}
+              if names != set(expected_parts):
+                  raise SystemExit(f'fragment set mismatch in {root}: {sorted(names)}')
+              chunks = []
+              observed_parts = {}
+              for name in sorted(expected_parts):
+                  data = (root / name).read_bytes()
+                  expected_digest, expected_size = expected_parts[name]
+                  digest = hashlib.sha256(data).hexdigest()
+                  observed_parts[name] = {'bytes': len(data), 'sha256': digest}
+                  if len(data) != expected_size or digest != expected_digest:
+                      raise SystemExit(f'fragment mismatch {name}: {len(data)} {digest}')
+                  chunks.append(data)
+              encoded_raw = b''.join(chunks)
+              observed_raw_sha = hashlib.sha256(encoded_raw).hexdigest()
+              if len(encoded_raw) != raw_size or observed_raw_sha != raw_sha:
+                  raise SystemExit(f'raw encoded bundle mismatch in {root}: {len(encoded_raw)} {observed_raw_sha}')
+              encoded_compact = b''.join(encoded_raw.split())
+              archive = base64.b64decode(encoded_compact, validate=True)
+              observed_archive_sha = hashlib.sha256(archive).hexdigest()
+              if len(archive) != archive_size or observed_archive_sha != archive_sha:
+                  raise SystemExit(f'decoded bundle mismatch in {root}: {len(archive)} {observed_archive_sha}')
+              destination = pathlib.Path(destination)
+              destination.mkdir(parents=True, exist_ok=True)
+              with tarfile.open(fileobj=io.BytesIO(archive), mode='r:gz') as tf:
+                  members = tf.getmembers()
+                  for member in members:
+                      path = pathlib.PurePosixPath(member.name)
+                      if member.isdir() or path.is_absolute() or '..' in path.parts or member.issym() or member.islnk():
+                          raise SystemExit(f'inadmissible bundle member: {member.name}')
+                  tf.extractall(path=destination, filter='data')
+              return {
+                  'raw_encoded_bytes': len(encoded_raw),
+                  'raw_encoded_sha256': observed_raw_sha,
+                  'archive_bytes': len(archive),
+                  'archive_sha256': observed_archive_sha,
+                  'parts': observed_parts,
+                  'members': sorted(m.name for m in members),
+              }
+
+          core = materialize(
+              'experiments/helical-v08-1/source_bundle',
+              {
+                'part-00.b64': ('b1eaa90bf5b3ae98cc62a16cf29ebfdd16ecf320e67daa9f6122a64ee4f1f426', 6000),
+                'part-01.b64': ('a28e53233e388169820c65df9aba143ce4db58a7acc0960de00cb24898262de7', 6000),
+                'part-02.b64': ('e5d633efb1f9c253cfae5cb152c50cd8aed71dda51d62239bfdfd7501e3f7247', 6000),
+                'part-03.b64': ('ddedc1091fe79f2a75dada1b9bd50e436b02ebdd6168668e2ff2389267b3383d', 6000),
+                'part-04.b64': ('998dea189883f8a59e51da2dcd6be40af5e6ab0a9236ab58d9d9de5138180f2f', 6000),
+                'part-05.b64': ('84df7b813ec59e207828dcbcad087f86f4e029b6ac12cd4d5c946156da5f657f', 5185),
+              },
+              35185, 'daee98e8da049f7da657f349833db9d32c6c00c98d5563829cde3f026cf81edd',
+              26044, '89f98e8776587a7dab77a8fe5d08b72653943572248d1b6e76a1edc03abd9c7d', '.'
+          )
+          overlay = materialize(
+              'experiments/helical-v08-1/acquisition_bundle',
+              {
+                'part-00.b64': ('55607dbea834df13af431dec0bc478795d80096c6f0d9d762946c250ec09fc62', 6000),
+                'part-01.b64': ('1a022f3db2547693d297a2370e45b950a5c16238529cc896cd6cfae5f257d69b', 1784),
+              },
+              7784, '2901e3b6ea46bc2bcaaa31a2859a1498245eb6556d2623443eee7e3d33f2098c',
+              5837, 'c1d7fbcb99b06d07054f20a1cb945c26db7c0184e25a07d44b11f172b5cb5207', '/tmp/v083'
+          )
+          expected_members = {
+              'MENDELEY_EXACT_BYTE_ACQUISITION_V0_8_3.py': '8ec2a91e836f6869868b69df761180af378dbce9645e20775502040ce59c3fc9',
+              'BUILD_REMOTE_GATE_RECEIPT_V0_8_3.py': '9aca9391fb2a0ca95040af2e66d25ccec049cf956224c1645b9b132a224bcf46',
+          }
+          for name, expected in expected_members.items():
+              path = pathlib.Path('/tmp/v083') / name
+              observed = hashlib.sha256(path.read_bytes()).hexdigest()
+              if observed != expected:
+                  raise SystemExit(f'overlay member mismatch {name}: {observed}')
+          receipt = {
+              'format': 'KCH_HELICAL_V0_8_4_SOURCE_MATERIALIZATION_RECEIPT',
+              'transport_fix_only': True,
+              'scientific_protocol_changed': False,
+              'core': core,
+              'overlay': overlay,
+              'overlay_members': expected_members,
+          }
+          out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'gate' / 'SOURCE_MATERIALIZATION_RECEIPT_V0_8_4.json'
+          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          PY
+          sha256sum -c BUNDLE_SOURCE_SHA256SUMS.txt
+          python -m py_compile /tmp/v083/*.py
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+
+      - name: Freeze runtime and verify locked protocol before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/wheelhouse" "$RUNNER_TEMP/gate"
+          python -m pip download --only-binary=:all: --dest "$RUNNER_TEMP/wheelhouse" \
+            'numpy==2.1.3' 'pyproj==3.7.0' 'shapely==2.0.6'
+          (cd "$RUNNER_TEMP/wheelhouse" && sha256sum * | LC_ALL=C sort) > "$RUNNER_TEMP/gate/PYTHON_WHEELHOUSE_SHA256.txt"
+          python -m pip install --no-index --find-links "$RUNNER_TEMP/wheelhouse" \
+            'numpy==2.1.3' 'pyproj==3.7.0' 'shapely==2.0.6'
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/gate/PYTHON_ENVIRONMENT_FREEZE.txt"
+          python - <<'PY'
+          import hashlib, json, os, sys
+          from pathlib import Path
+          import numpy, pyproj, shapely
+          p = Path('spec/v0_8/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json')
+          raw = p.read_bytes(); obj = json.loads(raw); stripped = dict(obj)
+          pid = stripped.pop('protocol_id'); declared = stripped.pop('protocol_sha256')
+          canonical = json.dumps(stripped, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+          calculated = hashlib.sha256(canonical).hexdigest()
+          checks = {
+            'content_address': pid == f'h8p:{calculated}' and declared == calculated,
+            'status_locked': obj.get('status') == 'LOCKED_BEFORE_REAL_MECHANISM_ANGLE_ACCESS',
+            'angle_firewall': obj.get('blind_eligibility', {}).get('angle_fields_sealed_until_selection_receipt') is True,
+            'authority_none': obj.get('authority_ceiling') == 'NONE',
+            'promotion_blocked': obj.get('promotion') == 'BLOCKED',
+          }
+          if not all(checks.values()): raise SystemExit(checks)
+          out = {
+            'checks': checks,
+            'protocol_id': pid,
+            'protocol_content_sha256': calculated,
+            'protocol_file_sha256': hashlib.sha256(raw).hexdigest(),
+            'runtime': {'python': sys.version, 'numpy': numpy.__version__, 'pyproj': pyproj.__version__, 'shapely': shapely.__version__},
+          }
+          Path(os.environ['RUNNER_TEMP'], 'gate', 'PROTOCOL_AND_RUNTIME_AUDIT.json').write_text(json.dumps(out, indent=2, sort_keys=True) + '\n')
+          PY
+
+      - name: Acquire exact public bodies by frozen UUID, size and SHA-256
+        id: acquire
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p "$RUNNER_TEMP/acquired" "$RUNNER_TEMP/gate"
+          env -i PATH="$PATH" HOME="$HOME" LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+            PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 \
+            python /tmp/v083/MENDELEY_EXACT_BYTE_ACQUISITION_V0_8_3.py \
+              --output-dir "$RUNNER_TEMP/acquired"
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/gate/ACQUISITION_EXIT_CODE.txt"
+          if [[ -f "$RUNNER_TEMP/acquired/ACQUISITION_RECEIPT_V0_8_3.json" ]]; then
+            cp "$RUNNER_TEMP/acquired/ACQUISITION_RECEIPT_V0_8_3.json" "$RUNNER_TEMP/gate/"
+          fi
+          if [[ "$rc" -ne 0 && "$rc" -ne 3 ]]; then exit "$rc"; fi
+          exit 0
+
+      - name: Hardened extraction in networkless read-only namespace
+        if: steps.acquire.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt="$RUNNER_TEMP/acquired/ACQUISITION_RECEIPT_V0_8_3.json"
+          mechanism_sha=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["mechanism_receipt"]["sha256"])' "$receipt")
+          mkdir -p "$RUNNER_TEMP/blind"
+          transport/v0_8/RUN_HARDENED_PICKLE_EXTRACTION_V0_8.sh \
+            --input "$RUNNER_TEMP/acquired/focmec_ca_final.pickle" \
+            --expected-sha256 "$mechanism_sha" \
+            --output-dir "$RUNNER_TEMP/blind"
+
+      - name: Run count-only blind eligibility
+        if: steps.acquire.outputs.exit_code == '0'
+        id: eligibility
+        shell: bash
+        run: |
+          set -uo pipefail
+          receipt="$RUNNER_TEMP/acquired/ACQUISITION_RECEIPT_V0_8_3.json"
+          fault_sha=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["fault_receipt"]["sha256"])' "$receipt")
+          env -i PATH="$PATH" HOME="$HOME" LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+            PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 \
+            OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+            python transport/v0_8/RUN_BLIND_ELIGIBILITY_SAFE_NPZ_V0_8.py \
+              --protocol spec/v0_8/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json \
+              --safe-npz "$RUNNER_TEMP/blind/blind_columns.npz" \
+              --extraction-receipt "$RUNNER_TEMP/blind/EXTRACTION_RECEIPT_V0_8_SUCCESSOR.json" \
+              --acquisition-receipt "$receipt" \
+              --fault-geojson "$RUNNER_TEMP/acquired/gem_active_faults_harmonized.geojson" \
+              --fault-sha256 "$fault_sha" \
+              --output "$RUNNER_TEMP/gate/BLIND_ELIGIBILITY_RESULT_V0_8.json"
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/gate/ELIGIBILITY_EXIT_CODE.txt"
+          if [[ "$rc" -ne 0 && "$rc" -ne 3 ]]; then exit "$rc"; fi
+          exit 0
+
+      - name: Reconcile lineage and seal remote gate receipt
+        if: steps.acquire.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "$RUNNER_TEMP/acquired/MENDELEY_PUBLIC_FILES_V2.json" "$RUNNER_TEMP/gate/"
+          cp "$RUNNER_TEMP/acquired/gem_active_faults_harmonized.geojson" "$RUNNER_TEMP/gate/"
+          cp "$RUNNER_TEMP/blind/blind_columns.npz" "$RUNNER_TEMP/gate/"
+          cp "$RUNNER_TEMP/blind/EXTRACTION_RECEIPT_V0_8_SUCCESSOR.json" "$RUNNER_TEMP/gate/"
+          cp "$RUNNER_TEMP/blind/SANDBOX_EXECUTION_RECEIPT_V0_8.json" "$RUNNER_TEMP/gate/"
+          cp "$RUNNER_TEMP/blind/SAFE_NPZ_VERIFICATION_RECEIPT_V0_8.json" "$RUNNER_TEMP/gate/"
+          cp spec/v0_8/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json "$RUNNER_TEMP/gate/"
+          python /tmp/v083/BUILD_REMOTE_GATE_RECEIPT_V0_8_3.py \
+            --artifact-dir "$RUNNER_TEMP/gate" \
+            --repository "$GITHUB_REPOSITORY" \
+            --branch "$GITHUB_REF_NAME" \
+            --commit "$GITHUB_SHA" \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --eligibility-exit-code '${{ steps.eligibility.outputs.exit_code }}'
+
+      - name: Seal complete artifact and delete raw pickle
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/gate"
+          rm -f "$RUNNER_TEMP/acquired/focmec_ca_final.pickle"
+          (cd "$RUNNER_TEMP/gate" && find . -maxdepth 1 -type f ! -name COMPLETE_SHA256SUMS.txt -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > "$RUNNER_TEMP/gate/COMPLETE_SHA256SUMS.txt"
+          du -ah "$RUNNER_TEMP/gate" | LC_ALL=C sort -h > "$RUNNER_TEMP/gate/ARTIFACT_SIZES.txt"
+
+      - name: Upload governed blind-gate artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: helical-v08-4-blind-gate
+          path: ${{ runner.temp }}/gate
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          include-hidden-files: false
