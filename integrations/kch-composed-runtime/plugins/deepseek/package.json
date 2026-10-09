@@ -1,0 +1,14 @@
+{
+  "name": "@kwancode/kch-deepseek-native",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./index.mjs",
+  "files": ["index.mjs", "native_bridge.py", "prepare_patch.py", "README.md"],
+  "engines": {"node": ">=22.19"},
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-agent": "0.2.1-alpha.1",
+    "@deepseek-ai/dsh-tools": "0.2.1-alpha.1"
+  }
+}

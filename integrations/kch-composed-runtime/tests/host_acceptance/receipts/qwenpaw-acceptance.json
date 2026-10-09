@@ -1,0 +1,34 @@
+{
+  "host": "qwenpaw",
+  "boundary": "ORIGINAL_CLIENT_COMPONENT_TO_KCH_SUBPROCESS",
+  "executed_at": "2026-10-09T00:54:21.521816+00:00",
+  "upstream_commit": "7147731d582fdd106af6ca7e3a3a5dc650183755",
+  "source_sha256": "5edd7037724af11a98eb9112e136333cab84aabd8cc292c70b5c10dfab2c980f",
+  "mcp_package": "1.30.0",
+  "model_inference": false,
+  "user_host_activated": false,
+  "checks": [
+    "original_client_discovery",
+    "real_repository_bytes_equal",
+    "out_of_workspace_read_denied",
+    "disabled_write_denied_without_effect",
+    "real_file_memory_ingest",
+    "first_client_closed",
+    "new_client_process_same_session_exact_memory",
+    "restarted_client_closed"
+  ],
+  "catalog": [
+    "memory_fold",
+    "memory_ingest",
+    "memory_recall",
+    "memory_search",
+    "memory_unfold",
+    "memory_view",
+    "read_file"
+  ],
+  "read_sha256": "e87c0e0cbdd0b75f0ce1f0c7afadea79681aef83a6f28b0e9144c7aec35b2ee6",
+  "journal": true,
+  "bound_session": "qwenpaw-original-client",
+  "durable_calls": 5,
+  "status": "PASS"
+}

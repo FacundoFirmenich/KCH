@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "@openclaw/fs-safe": "0.24.2",
+    "chalk": "6.0.0",
+    "esbuild": "0.28.2",
+    "json5": "2.2.3",
+    "koffi": "3.3.1",
+    "kysely": "0.29.6",
+    "semver": "7.8.5",
+    "string-width": "8.2.2",
+    "tslog": "5.2.0",
+    "tsx": "4.23.15",
+    "undici": "8.11.2",
+    "zod": "4.6.5"
+  },
+  "name": "kch-original-host-client-acceptance",
+  "private": true
+}
