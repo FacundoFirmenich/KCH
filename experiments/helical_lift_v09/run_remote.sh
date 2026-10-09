@@ -45,7 +45,7 @@ python --version > "$work/runtime/python-version.txt" 2>&1
 docker version > "$work/runtime/docker-version.txt" 2>&1 || true
 
 set +e
-python "$base/acquire_exact.py" --output-dir "$work/acquisition" > "$work/runtime/acquisition.stdout.json" 2> "$work/runtime/acquisition.stderr.txt"
+python "$base/acquire_public_exact.py" --output-dir "$work/acquisition" > "$work/runtime/acquisition.stdout.json" 2> "$work/runtime/acquisition.stderr.txt"
 acq_rc=$?
 set -e
 if [[ $acq_rc -ne 0 ]]; then
@@ -81,7 +81,6 @@ docker run --rm \
   > "$work/runtime/extraction.stdout.json" 2> "$work/runtime/extraction.stderr.txt"
 ext_rc=$?
 set -e
-# Immediately remove code-capable source regardless of extraction outcome.
 rm -f "$mechanism"
 if [[ $ext_rc -ne 0 ]]; then
   write_blocked_final "BLOCKED_PICKLE_SANDBOX" "PICKLE_EXTRACTION" "$ext_rc" true
