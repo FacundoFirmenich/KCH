@@ -1,0 +1,33 @@
+{
+  "event_identifiers_included": false,
+  "files": [
+    {
+      "bytes": 858,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "53185920f9798d67e1a262d2d8308f0fbd4382a4fbdfdc826c13c45fd741ea08"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 445,
+      "path": "RAW_SOURCE_PURGE_RECEIPT_V0_13_2.json",
+      "sha256": "06d6371bafc16cbbe98f2f745dcbdf31e1c0a1e59a38208e626f8b7dd9447738"
+    },
+    {
+      "bytes": 864,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "cd8f061e66e73d24825213161bd7d16cfa7c315bdc6eb33ac29803deed3c9d52"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_13_2_SCHEMA_INSPECTION_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "37990749903",
+  "github_sha": "40c04a71769e538d8c34f21e6f5e44fb8733fa27",
+  "manifest_id": "h132schemamanifest:61d543e6fb99e7a28e5ec30d5deaf7dd4c572459b1df6e2bfa6cbe7a61bfdb5a",
+  "raw_source_included": false,
+  "row_values_included": false,
+  "sealed_test_values_included": false
+}

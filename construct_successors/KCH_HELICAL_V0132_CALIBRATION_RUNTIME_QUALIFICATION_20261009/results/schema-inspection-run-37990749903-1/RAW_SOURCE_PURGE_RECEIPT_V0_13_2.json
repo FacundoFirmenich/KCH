@@ -1,0 +1,14 @@
+{
+  "after_exists": false,
+  "authority_ceiling": "EXACT_SOURCE_SCHEMA_INSPECTION_ONLY",
+  "before": {
+    "bytes": null,
+    "existed": false,
+    "sha256": null
+  },
+  "format": "KCH_HELICAL_V0_13_2_RAW_SOURCE_PURGE_RECEIPT",
+  "purged_at_utc": "2026-10-09T21:00:47.002438Z",
+  "raw_directory_exists": false,
+  "receipt_id": "h132schemapurge:01ae391d8e2c551e22ff0c4aebb5eca69672670f1f6f2c14b779027f6a8a20df",
+  "row_values_persisted": false
+}
