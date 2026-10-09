@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          experiments/helical_lift_v09/run_remote.sh "$RUNNER_TEMP/helical-v09"
+          bash experiments/helical_lift_v09/run_remote.sh "$RUNNER_TEMP/helical-v09"
 
       - name: Build governed successor release
         if: always()
@@ -60,4 +60,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat "$RUNNER_TEMP/helical-v09/final/FINAL_GATE_V0_9.json"
+          if [[ -f "$RUNNER_TEMP/helical-v09/final/FINAL_GATE_V0_9.json" ]]; then
+            cat "$RUNNER_TEMP/helical-v09/final/FINAL_GATE_V0_9.json"
+          else
+            echo 'FINAL_GATE_V0_9.json missing after runner failure' >&2
+            exit 1
+          fi
