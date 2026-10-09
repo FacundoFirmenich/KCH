@@ -1,0 +1,70 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 193B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 3.19kB done
+#5 DONE 0.0s
+
+#6 [1/3] FROM docker.io/library/python:3.11-slim@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce
+#6 resolve docker.io/library/python:3.11-slim@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce done
+#6 sha256:541096ae9b05d3b850341b78790e2ed31e94d5aa0ea086933c6ff0c09ffa2e63 5.49kB / 5.49kB done
+#6 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0B / 29.84MB 0.1s
+#6 sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 0B / 1.29MB 0.1s
+#6 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0B / 14.46MB 0.1s
+#6 sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce 10.37kB / 10.37kB done
+#6 sha256:e529028263dbe6910a2d96f7d2b8f5266385e917fd45d286ef166977c094a51e 1.75kB / 1.75kB done
+#6 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 14.68MB / 29.84MB 0.3s
+#6 sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 1.29MB / 1.29MB 0.3s done
+#6 sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 0B / 250B 0.3s
+#6 sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 29.84MB / 29.84MB 0.3s done
+#6 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 4.19MB / 14.46MB 0.4s
+#6 sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d 250B / 250B 0.4s done
+#6 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.1s
+#6 sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 14.46MB / 14.46MB 0.5s done
+#6 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.9s done
+#6 extracting sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca
+#6 extracting sha256:0f752a1982d6f819fc2c9e78ac1514c63f2f2e1dec7885ffd4cb6809ba4a26ca 0.1s done
+#6 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0.1s
+#6 extracting sha256:759a7f30c31818dda4c97b407b24d93da479c306568d185ced927e1a749164f1 0.7s done
+#6 extracting sha256:496c1a902b3a93cea3e54b90b79dbcaa0e58ad90c3fe9dd0a43c9557dc47f17d done
+#6 DONE 2.3s
+
+#7 [2/3] RUN python -m pip install --no-cache-dir numpy==2.1.3
+#7 1.889 Collecting numpy==2.1.3
+#7 1.956   Downloading numpy-2.1.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+#7 1.977      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 2.9 MB/s eta 0:00:00
+#7 2.009 Downloading numpy-2.1.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.3 MB)
+#7 2.236    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.3/16.3 MB 191.4 MB/s eta 0:00:00
+#7 2.307 Installing collected packages: numpy
+#7 4.072 Successfully installed numpy-2.1.3
+#7 4.072 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#7 4.190 
+#7 4.190 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#7 4.190 [notice] To update, run: pip install --upgrade pip
+#7 DONE 4.4s
+
+#8 [3/3] COPY extractor.py /opt/extractor.py
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 1.0s done
+#9 writing image sha256:4d46ff7ce4b067b80bca475b034f501e41c0b188684381b88d2efd0fc038bae1 done
+#9 naming to docker.io/library/kch-helical-v010-extractor:local done
+#9 DONE 1.0s

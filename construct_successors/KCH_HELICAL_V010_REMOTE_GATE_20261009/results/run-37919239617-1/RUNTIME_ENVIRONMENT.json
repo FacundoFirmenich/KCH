@@ -1,0 +1,10 @@
+{
+  "docker_version": "Docker version 28.0.4, build b8034c0",
+  "github_ref": "refs/heads/helical-v010-remote-gate-20261009",
+  "github_run_attempt": "1",
+  "github_run_id": "37919239617",
+  "github_sha": "060ecf9b091d669a37dc2ea4f1540de4aa10384d",
+  "pip_freeze_sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.11.17 (main, Oct  1 2026, 14:32:31) [GCC 13.3.0]"
+}

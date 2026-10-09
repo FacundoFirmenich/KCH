@@ -1,0 +1,61 @@
+{
+  "blind_npz_included": false,
+  "files": [
+    {
+      "bytes": 6588,
+      "path": "ACQUISITION_RECEIPT_V0_10.json",
+      "sha256": "e29eeee5a501b6e2272a136e759f7ef5181bab57ebd8d23469ba4bf5698f51b7"
+    },
+    {
+      "bytes": 1844,
+      "path": "EXTRACTION_RECEIPT_V0_10.json",
+      "sha256": "878be8e56880969972ec8adda60ba3f37888e08a07fb3e759ebd83e7cc0742fe"
+    },
+    {
+      "bytes": 3,
+      "path": "GATE_EXIT_CODE.txt",
+      "sha256": "7ea9844ae84eccbf55e8330640865e36c43521e45a1baec24233327aab7e6595"
+    },
+    {
+      "bytes": 4145,
+      "path": "GATE_STDERR.txt",
+      "sha256": "801257dfaa88e4b70de8674a1d110ca331067486c1117e863a6d9e3a215d7700"
+    },
+    {
+      "bytes": 1109,
+      "path": "GATE_STDOUT.txt",
+      "sha256": "11f7e12619e69e77de9b98c792ce7c8a5e5c7b9d8151a52c004aaebf12f1aa1e"
+    },
+    {
+      "bytes": 496,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "efb7042a278a476ec5160e2be0ea3b715473ebcd3e910514d3f2d9f5a869ab94"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 1728,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "19a976ef36307f3f24fa02ebbfe363b28677ab9174c4b29d9ffab2ed39cdc00e"
+    },
+    {
+      "bytes": 470,
+      "path": "RUNTIME_ENVIRONMENT.json",
+      "sha256": "2ee88f7b0147b2771598d62f1a4b7ca9d6d0e03cd33160697d8cbd2277d7132c"
+    },
+    {
+      "bytes": 1109,
+      "path": "RUN_RECEIPT_V0_10.json",
+      "sha256": "11f7e12619e69e77de9b98c792ce7c8a5e5c7b9d8151a52c004aaebf12f1aa1e"
+    }
+  ],
+  "format": "KCH_HELICAL_V010_SAFE_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "37919239617",
+  "github_sha": "060ecf9b091d669a37dc2ea4f1540de4aa10384d",
+  "manifest_id": "h10manifest:eb1993dc9223fcf3bc2c4d03b0b504b09a7f9988eba794564667ac1524904727",
+  "raw_sources_included": false
+}

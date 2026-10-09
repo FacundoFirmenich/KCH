@@ -1,0 +1,177 @@
+{
+  "all_or_none_pass": true,
+  "authority_ceiling": "NONE",
+  "dataset": {
+    "basename": "focmec_ca_final.pickle",
+    "doi": "10.17632/2np9vw5v7w.2",
+    "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+    "id": "2np9vw5v7w",
+    "version": 2
+  },
+  "directional_fields_accessed": false,
+  "fault": {
+    "bytes": 10622730,
+    "commit": "56816508ad92fd6846dad1163b1c8c01376a2cd1",
+    "content_length_header": "10622730",
+    "content_type": "text/plain; charset=utf-8",
+    "effective": {
+      "host": "raw.githubusercontent.com",
+      "path": "/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson",
+      "query_keys": [],
+      "query_values_recorded": false,
+      "scheme": "https"
+    },
+    "elapsed_seconds": 0.5955378029999991,
+    "etag": "\"7a1672736dfa879d2f41fce6a6907efdc3392b85a80bd4f0472d33e4acc1c359\"",
+    "git_blob_sha1": "fb164770b529695544fa864abe2cc9dd8aa5793d",
+    "last_modified": null,
+    "path": "geojson/gem_active_faults_harmonized.geojson",
+    "repository": "GEMScienceTools/gem-global-active-faults",
+    "requested": {
+      "host": "raw.githubusercontent.com",
+      "path": "/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson",
+      "query_keys": [],
+      "query_values_recorded": false,
+      "scheme": "https"
+    },
+    "sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+    "status": 200
+  },
+  "format": "KCH_HELICAL_V0_10_EXACT_BYTE_ACQUISITION",
+  "mechanism": {
+    "adapter": "MENDELEY_PUBLIC_FILE_EXACT_IDENTITY",
+    "authenticated_api_used": false,
+    "bytes": 528904117,
+    "content_disposition": "attachment; filename=\"focmec_ca_final.pickle\"",
+    "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+    "content_length_header": "528904117",
+    "content_type": "application/octet-stream",
+    "credentials_supplied": false,
+    "dataset_id": "2np9vw5v7w",
+    "dataset_version": 2,
+    "doi": "10.17632/2np9vw5v7w.2",
+    "effective": {
+      "host": "prod-dcd-datasets-public-files-eu-west-1.s3.eu-west-1.amazonaws.com",
+      "path": "/7c520bde-2b77-42ad-8a00-c50d7d923f1c",
+      "query_keys": [],
+      "query_values_recorded": false,
+      "scheme": "https"
+    },
+    "elapsed_seconds": 19.205082398000002,
+    "etag": "\"c5a5ed1415b103be1cbe847407d02366-26\"",
+    "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+    "last_modified": "Tue, 25 Nov 2025 10:27:53 GMT",
+    "provider_identity_match": true,
+    "requested": {
+      "host": "data.mendeley.com",
+      "path": "/public-files/datasets/2np9vw5v7w/files/c5fd3e24-24ef-4186-8794-c681411cdcc3/file_downloaded",
+      "query_keys": [],
+      "query_values_recorded": false,
+      "scheme": "https"
+    },
+    "required_file": "focmec_ca_final.pickle",
+    "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+    "status": 200
+  },
+  "metadata_snapshot": {
+    "adapter": "MENDELEY_PUBLIC_API_EXACT_IDENTITY",
+    "authenticated_api_used": false,
+    "credentials_supplied": false,
+    "dataset_id": "2np9vw5v7w",
+    "dataset_version": 2,
+    "doi": "10.17632/2np9vw5v7w.2",
+    "exact_public_identity": {
+      "bytes": 528904117,
+      "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+      "download_url": {
+        "host": "data.mendeley.com",
+        "path": "/public-files/datasets/2np9vw5v7w/files/c5fd3e24-24ef-4186-8794-c681411cdcc3/file_downloaded",
+        "query_keys": [],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+      "filename": "focmec_ca_final.pickle",
+      "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+      "status": "COMPLETED"
+    },
+    "file_list": {
+      "authenticated_api_used": false,
+      "bytes": 2215,
+      "content_length_header": "2215",
+      "content_type": "application/json; charset=utf-8",
+      "effective": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w/files",
+        "query_keys": [
+          "$limit",
+          "$start",
+          "folder_id",
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "elapsed_seconds": 0.6328785589999981,
+      "etag": "W/\"8a7-9UPk6rBaBWBqePkmOnkKWHa3HzE\"",
+      "label": "PUBLIC_ROOT_FILE_LIST",
+      "last_modified": null,
+      "requested": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w/files",
+        "query_keys": [
+          "$limit",
+          "$start",
+          "folder_id",
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "sha256": "22d6b6ce0b4a641054926235defad878e06e74c83c08fc9d277fcc9f6eb0b227",
+      "status": 200
+    },
+    "metadata": {
+      "authenticated_api_used": false,
+      "bytes": 5574,
+      "content_length_header": null,
+      "content_type": "application/json; charset=utf-8",
+      "effective": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w",
+        "query_keys": [
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "elapsed_seconds": 0.7627105669999992,
+      "etag": null,
+      "label": "PUBLIC_DATASET_METADATA",
+      "last_modified": null,
+      "requested": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w",
+        "query_keys": [
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "sha256": "166eb8d74cfc8e8d0cae5ea71c8b0d8f5dcfeee914d4b8eff031133a97e5ef50",
+      "status": 200
+    },
+    "required_file": "focmec_ca_final.pickle",
+    "synthetic_snapshot_sha256": "3fee096f50b832be98bc866eba4347750384a520b800c6f80578312b253fc844"
+  },
+  "outcome": "EXACT_BYTE_ACQUISITION_PASS",
+  "pickle_opened": false,
+  "promotion": "BLOCKED",
+  "protocol_file_sha256": "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "protocol_semantic_sha256": "99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "provider_expected_bytes": 528904117,
+  "provider_expected_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+  "receipt_id": "h10acq:80ff60b2f3bb1cc672a46fc45b6fb9de85a4ddf3803f28cdbc4e1ef904f3a161",
+  "transaction_committed": true
+}
