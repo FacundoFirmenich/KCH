@@ -30,8 +30,9 @@ SEALED = (
     "strike", "dip", "rake", "strike_orig", "dip_orig", "rake_orig",
     "ftype", "p_azi", "p_dip", "t_azi", "t_dip",
 )
-TEXT_FIELDS = {"time_utc"}
-CATEGORY_FIELDS = {"nc_sc", "ev_bl"}
+TEXT_FIELDS: set[str] = set()
+CATEGORY_FIELDS = {"nc_sc", "ev_bl", "time_utc"}
+PROFILE_CATEGORY_FIELDS = {"nc_sc", "ev_bl"}
 PROFILE_BASENAME = "BLIND_SCHEMA_PROFILE_V0_10.json"
 IDENTIFIER_FIELDS = {"evid"}
 INT_FIELDS = {"num", "year", "month", "day", "hour", "minute", "npol"}
@@ -130,7 +131,7 @@ def field_profile(name: str, value: Any) -> dict[str, Any]:
         "ndim": int(array.ndim),
         "size": int(array.size),
     }
-    if array.ndim <= 1 and name in CATEGORY_FIELDS:
+    if array.ndim <= 1 and name in PROFILE_CATEGORY_FIELDS:
         counts: Counter[tuple[str, str]] = Counter(category_atom(item) for item in array.reshape(-1).tolist())
         ordered = sorted(counts.items(), key=lambda pair: (pair[0][0], pair[0][1]))
         body["category_cardinality"] = len(ordered)
