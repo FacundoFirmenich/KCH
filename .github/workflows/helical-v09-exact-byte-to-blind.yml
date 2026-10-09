@@ -1,0 +1,172 @@
+name: KCH Helical v0.9 exact-byte to blind eligibility
+
+on:
+  push:
+    branches:
+      - gate/helical-v09-exact-byte-blind-20261009
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kch-helical-v09-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-byte-to-blind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMEXPR_NUM_THREADS: "1"
+      CAPSULE_TRANSPORT_DIR: experiments/helical-v09-exact-byte-blind/runtime_capsule_transport
+      CAPSULE_B64_BYTES: "62596"
+      CAPSULE_B64_SHA256: 705cf34c60fe51623e05522d4e8e0f7d2dc56c385307f78baea28008a07632a6
+      CAPSULE_TGZ_BYTES: "46947"
+      CAPSULE_TGZ_SHA256: 4f265ea4e859b0e9a0a7cfcb078907abd3ca971facbd6c1ed8d5551e7a4b37a0
+
+    steps:
+      - name: Checkout immutable workflow commit
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Set up Python 3.11 from immutable action commit
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.11"
+          check-latest: false
+
+      - name: Reconstruct, verify, and unpack the governed v0.9 runtime capsule
+        id: capsule
+        shell: bash
+        run: |
+          set -euo pipefail
+          TRANSPORT="$GITHUB_WORKSPACE/$CAPSULE_TRANSPORT_DIR"
+          STAGE="$RUNNER_TEMP/helical-v09-capsule"
+          ENCODED="$STAGE/runtime-capsule.tar.gz.b64"
+          ARCHIVE="$STAGE/runtime-capsule.tar.gz"
+          ROOT="$STAGE/root"
+          rm -rf "$STAGE"
+          mkdir -p "$ROOT"
+
+          printf '%s  %s\n' 66671c70fe29faba2df435a8f77819484ede2422c357ac739b1587fbd1b5c98c "$TRANSPORT/chunk-00.b64" | sha256sum -c -
+          printf '%s  %s\n' 842bdb78e1a45bfd48363cfba24aac6ae543b233231ba0ca0c06be743c93bdbc "$TRANSPORT/chunk-01.b64" | sha256sum -c -
+          printf '%s  %s\n' cf852e47dcefdcbebefba5b6756c214cc69219e22fa3993c092e4553d923b526 "$TRANSPORT/chunk-02.b64" | sha256sum -c -
+          printf '%s  %s\n' 515615fa3803f933e054b77af0631a102c371a81b0678fb8ef8c888067e3ef6e "$TRANSPORT/chunk-03.b64" | sha256sum -c -
+          printf '%s  %s\n' 9a85d00243c8fb7f10352a6eecd7b0f787806dd5151bccd17df84582d0268050 "$TRANSPORT/chunk-04.b64" | sha256sum -c -
+          printf '%s  %s\n' f7dc161b239d49d496a5636207a1467f937e54d46fbd8d2b548163370b315fa3 "$TRANSPORT/chunk-05.b64" | sha256sum -c -
+          printf '%s  %s\n' bb90ad69f9e73ce50853f2e7996458b375432222af46f7eee044f91c0bdbe654 "$TRANSPORT/chunk-06.b64" | sha256sum -c -
+          printf '%s  %s\n' 2ca8116ee3f52a53aa93f5f9fce29e3984a548b57d0db80d7120fe5511f37129 "$TRANSPORT/chunk-07.b64" | sha256sum -c -
+
+          cat "$TRANSPORT"/chunk-*.b64 > "$ENCODED"
+          test "$(wc -c < "$ENCODED" | tr -d ' ')" = "$CAPSULE_B64_BYTES"
+          printf '%s  %s\n' "$CAPSULE_B64_SHA256" "$ENCODED" | sha256sum -c -
+          base64 --decode "$ENCODED" > "$ARCHIVE"
+          test "$(wc -c < "$ARCHIVE" | tr -d ' ')" = "$CAPSULE_TGZ_BYTES"
+          printf '%s  %s\n' "$CAPSULE_TGZ_SHA256" "$ARCHIVE" | sha256sum -c -
+          tar -xzf "$ARCHIVE" -C "$ROOT"
+          (cd "$ROOT" && sha256sum -c CAPSULE_SHA256SUMS.txt)
+          python "$ROOT/runtime/AUDIT_PROTOCOL_LOCK_V0_8.py" \
+            --protocol "$ROOT/source_lock/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            --output "$STAGE/PROTOCOL_LOCK_AUDIT.json"
+          grep -q '"all_pass": true' "$STAGE/PROTOCOL_LOCK_AUDIT.json"
+          echo "capsule_root=$ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Install frozen runtime dependencies
+        shell: bash
+        env:
+          CAPSULE_ROOT: ${{ steps.capsule.outputs.capsule_root }}
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r "$CAPSULE_ROOT/requirements-runtime.txt"
+          mkdir -p "$RUNNER_TEMP/helical-v09/receipts"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v09/receipts/PIP_FREEZE.txt"
+          python - "$RUNNER_TEMP/helical-v09/receipts" <<'PY'
+          import hashlib, json, pathlib, platform, sys
+          out = pathlib.Path(sys.argv[1])
+          freeze = (out / "PIP_FREEZE.txt").read_bytes()
+          (out / "RUNTIME_ENVIRONMENT.json").write_text(json.dumps({
+              "python": sys.version,
+              "platform": platform.platform(),
+              "pip_freeze_sha256": hashlib.sha256(freeze).hexdigest(),
+          }, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          PY
+
+      - name: Execute exact-byte acquisition, sandbox extraction, and blind eligibility
+        id: gate
+        shell: bash
+        env:
+          CAPSULE_ROOT: ${{ steps.capsule.outputs.capsule_root }}
+        run: |
+          set +e
+          python "$CAPSULE_ROOT/runtime/RUN_EXACT_BYTE_TO_BLIND_GATE_V0_9.py" \
+            --workspace "$RUNNER_TEMP/helical-v09" \
+            --execute-network \
+            --network-timeout-seconds 1200 \
+            --sandbox-timeout-seconds 7200 \
+            --sandbox-memory-mib 6144 \
+            --purge-raw-after-gate
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-v09/receipts/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Purge all raw or partial source bodies from the export surface
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORK="$RUNNER_TEMP/helical-v09"
+          rm -rf "$WORK/exact_sources" "$WORK/cache" "$WORK/quarantine"
+          find "$WORK" -type f \( -name '*.pickle' -o -name '*.part' -o -name 'gem_active_faults_harmonized.geojson' -o -name 'mendeley_dataset_snapshot_v2.json' \) -print -quit | (! grep -q .)
+
+      - name: Build deterministic safe-result archive
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORK="$RUNNER_TEMP/helical-v09"
+          cd "$WORK"
+          paths=()
+          for candidate in receipts blind eligibility; do
+            [[ -e "$candidate" ]] && paths+=("$candidate")
+          done
+          test ${#paths[@]} -gt 0
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -czf helical-v09-result-without-raw-sources.tar.gz "${paths[@]}"
+          sha256sum helical-v09-result-without-raw-sources.tar.gz \
+            > helical-v09-result-without-raw-sources.tar.gz.sha256
+
+      - name: Upload receipts and safe derived artifacts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kch-helical-v09-result-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-v09/helical-v09-result-without-raw-sources.tar.gz
+            ${{ runner.temp }}/helical-v09/helical-v09-result-without-raw-sources.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Adjudicate the governed gate after evidence upload
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0)  echo "ELIGIBILITY_PASS; directional-unseal request prepared; no model fit" ;;
+            30) echo "LEGITIMATE_NOT_IDENTIFIABLE_MECHANISM_COVERAGE; no model fit" ;;
+            *)  echo "Infrastructure or transport gate failed with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
