@@ -1,0 +1,288 @@
+name: KCH Helical v0.13.2 exact-source schema inspection
+
+on:
+  push:
+    branches:
+      - helical-v0132-calibration-runtime-qualification-20261009
+    paths:
+      - "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json"
+      - "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/acquire_exact_mechanism_v0132.py"
+      - "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/inspect_pickle_schema_v0132.py"
+      - ".github/workflows/helical-v0132-exact-source-schema-inspection.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0132-schema-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-source-schema-inspection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      KCH_SEALED_TEST_ACCESS: "FORBIDDEN"
+      V10: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009
+      ROOT: construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009
+      EXPECTED_SOURCE_SHA256: cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb
+      EXPECTED_SOURCE_BYTES: "528904117"
+
+    steps:
+      - name: Checkout finite successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0132-calibration-runtime-qualification-20261009
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned host acquisition stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.1.3 pyproj==3.7.0 shapely==2.0.6
+          mkdir -p "$RUNNER_TEMP/helical-v0132-schema/control"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v0132-schema/control/PIP_FREEZE.txt"
+
+      - name: Verify finite authority and exact source identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json" >/dev/null
+          python -m py_compile \
+            "$ROOT/acquire_exact_mechanism_v0132.py" \
+            "$ROOT/inspect_pickle_schema_v0132.py" \
+            "$V10/helical_remote_gate.py" \
+            "$V10/helical_public_acquisition.py"
+          python - <<'PY'
+          import json, pathlib
+          root=pathlib.Path("construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009")
+          lease=json.loads((root/'AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json').read_text())
+          assert lease['authority_ceiling']=='EXACT_SOURCE_SCHEMA_INSPECTION_ONLY'
+          assert lease['single_use'] is True
+          assert lease['source_identity']['bytes']==528_904_117
+          assert lease['source_identity']['sha256']=='cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb'
+          assert 'EXPORT_ANY_ROW_VALUE' in lease['prohibitions']
+          assert 'CONSTRUCT_COHORT_OR_TRAIN_CALIBRATION_TEST_PARTITIONS' in lease['prohibitions']
+          PY
+          sha256sum \
+            "$ROOT/AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json" \
+            "$ROOT/acquire_exact_mechanism_v0132.py" \
+            "$ROOT/inspect_pickle_schema_v0132.py" \
+            "$V10/helical_remote_gate.py" \
+            "$V10/helical_public_acquisition.py" \
+            > "$RUNNER_TEMP/helical-v0132-schema/control/INPUT_SHA256SUMS.txt"
+
+      - name: Freeze networkless schema-inspection image before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132-schema"
+          build="$work/image-build"
+          mkdir -p "$build"
+          docker pull python:3.11-slim-bookworm
+          base_digest=$(docker image inspect python:3.11-slim-bookworm --format '{{index .RepoDigests 0}}')
+          python -m pip download --only-binary=:all: --no-deps --dest "$build" numpy==2.1.3
+          wheel=$(find "$build" -maxdepth 1 -name 'numpy-*.whl' -type f -print -quit)
+          test -n "$wheel"
+          cp "$ROOT/inspect_pickle_schema_v0132.py" "$build/inspect_pickle_schema_v0132.py"
+          wheel_name=$(basename "$wheel")
+          cat > "$build/Dockerfile" <<EOF
+          FROM $base_digest
+          ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONHASHSEED=0
+          COPY $wheel_name /wheels/$wheel_name
+          RUN pip install --no-cache-dir --no-index /wheels/$wheel_name && rm -rf /wheels
+          COPY inspect_pickle_schema_v0132.py /app/inspect_pickle_schema_v0132.py
+          ENTRYPOINT ["python", "/app/inspect_pickle_schema_v0132.py"]
+          EOF
+          docker build --pull=false --network=none -t kch-helical-v0132-schema:locked "$build"
+          python - "$work/control/SCHEMA_IMAGE_LOCK_RECEIPT.json" "$base_digest" "$wheel" "$build/inspect_pickle_schema_v0132.py" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib,json,subprocess,sys
+          output,base,wheel,script=Path(sys.argv[1]),sys.argv[2],Path(sys.argv[3]),Path(sys.argv[4])
+          def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+          body={'format':'KCH_HELICAL_V0_13_2_SCHEMA_IMAGE_LOCK_RECEIPT','locked_before_source_access':True,'base_image_digest':base,'numpy_wheel_sha256':sha(wheel),'schema_inspector_sha256':sha(script),'image_id':subprocess.check_output(['docker','image','inspect','--format','{{.Id}}','kch-helical-v0132-schema:locked'],text=True).strip(),'network_mode_at_execution':'NONE','root_filesystem_at_execution':'READ_ONLY','capabilities_at_execution':'ALL_DROPPED','no_new_privileges_at_execution':True,'authority_ceiling':'EXACT_SOURCE_SCHEMA_INSPECTION_ONLY','locked_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z')}
+          body['receipt_id']='h132schemaimage:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          output.write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          PY
+          rm -rf "$build"
+
+      - name: Acquire exact public mechanism bytes ephemerally
+        id: acquire
+        shell: bash
+        run: |
+          set +e
+          work="$RUNNER_TEMP/helical-v0132-schema"
+          mkdir -p "$work/raw" "$work/results"
+          PYTHONPATH="$GITHUB_WORKSPACE/$V10:$GITHUB_WORKSPACE/$ROOT" \
+          python "$ROOT/acquire_exact_mechanism_v0132.py" \
+            --output-dir "$work/raw" \
+            --receipt "$work/results/EXACT_SOURCE_ACQUISITION_RECEIPT_V0_13_2.json" \
+            --timeout 1200 \
+            > "$work/control/ACQUISITION_STDOUT.txt" \
+            2> "$work/control/ACQUISITION_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$work/control/ACQUISITION_EXIT_CODE.txt"
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$work/control/ACQUISITION_STDOUT.txt" || true
+          [[ ! -s "$work/control/ACQUISITION_STDERR.txt" ]] || cat "$work/control/ACQUISITION_STDERR.txt" >&2
+          exit 0
+
+      - name: Inspect schema in a networkless read-only container
+        id: inspect
+        shell: bash
+        run: |
+          set +e
+          work="$RUNNER_TEMP/helical-v0132-schema"
+          mkdir -p "$work/authority" "$work/schema-output"
+          cp "$ROOT/AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json" "$work/authority/"
+          chmod 0777 "$work/schema-output"
+          docker run --rm \
+            --network none \
+            --read-only \
+            --cap-drop ALL \
+            --security-opt no-new-privileges:true \
+            --user 65534:65534 \
+            --tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m \
+            -v "$work/raw:/input:ro" \
+            -v "$work/authority:/authority:ro" \
+            -v "$work/schema-output:/output:rw" \
+            kch-helical-v0132-schema:locked \
+            --pickle /input/focmec_ca_final.pickle \
+            --expected-pickle-sha256 "$EXPECTED_SOURCE_SHA256" \
+            --authority /authority/AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json \
+            --output /output/EXACT_SOURCE_SCHEMA_INSPECTION_RESULT_V0_13_2.json \
+            > "$work/control/INSPECTION_STDOUT.txt" \
+            2> "$work/control/INSPECTION_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$work/control/INSPECTION_EXIT_CODE.txt"
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$work/control/INSPECTION_STDOUT.txt" || true
+          [[ ! -s "$work/control/INSPECTION_STDERR.txt" ]] || cat "$work/control/INSPECTION_STDERR.txt" >&2
+          if [[ $rc -eq 0 ]]; then
+            cp "$work/schema-output/EXACT_SOURCE_SCHEMA_INSPECTION_RESULT_V0_13_2.json" "$work/results/"
+          fi
+          exit 0
+
+      - name: Purge raw source and issue destruction receipt
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132-schema"
+          source="$work/raw/focmec_ca_final.pickle"
+          python - "$source" "$work/results/RAW_SOURCE_PURGE_RECEIPT_V0_13_2.json" <<'PY'
+          from datetime import datetime,timezone
+          from pathlib import Path
+          import hashlib,json,os,sys
+          source,output=Path(sys.argv[1]),Path(sys.argv[2])
+          before={'existed':source.exists(),'bytes':source.stat().st_size if source.exists() else None,'sha256':None}
+          if source.exists():
+              h=hashlib.sha256()
+              with source.open('rb') as f:
+                  for block in iter(lambda:f.read(8*1024*1024),b''):h.update(block)
+              before['sha256']=h.hexdigest()
+              source.unlink()
+          body={'format':'KCH_HELICAL_V0_13_2_RAW_SOURCE_PURGE_RECEIPT','before':before,'after_exists':source.exists(),'raw_directory_exists':source.parent.exists(),'purged_at_utc':datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),'row_values_persisted':False,'authority_ceiling':'EXACT_SOURCE_SCHEMA_INSPECTION_ONLY'}
+          body['receipt_id']='h132schemapurge:'+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          if body['after_exists']:raise SystemExit('raw source purge failed')
+          PY
+          rm -rf "$work/raw" "$work/authority" "$work/schema-output"
+          test ! -e "$work/raw"
+
+      - name: Enforce aggregate-only result boundary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132-schema"
+          test ! -e "$work/raw"
+          if find "$work/results" -type f ! -name '*.json' | grep -q .; then
+            echo "non-JSON artifact reached schema results" >&2
+            exit 91
+          fi
+          if find "$work/results" -type f \( -name '*.pickle' -o -name '*.npz' -o -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' \) | grep -q .; then
+            echo "row-level artifact reached schema results" >&2
+            exit 92
+          fi
+
+      - name: Persist aggregate schema receipts append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132-schema"
+          destination="$ROOT/results/schema-inspection-run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$destination"
+          cp -a "$work/results/." "$destination/" 2>/dev/null || true
+          cp -a "$work/control/." "$destination/" 2>/dev/null || true
+          find "$destination" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$destination/RESULT_SHA256SUMS.txt"
+          python - "$destination" <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,sys
+          destination=Path(sys.argv[1]);rows=[]
+          for path in sorted(item for item in destination.rglob('*') if item.is_file() and item.name!='RESULT_MANIFEST.json'):
+              body=path.read_bytes();rows.append({'path':path.relative_to(destination).as_posix(),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()})
+          manifest={'format':'KCH_HELICAL_V0_13_2_SCHEMA_INSPECTION_RESULT_MANIFEST','github_run_id':os.environ['GITHUB_RUN_ID'],'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],'github_sha':os.environ['GITHUB_SHA'],'raw_source_included':False,'row_values_included':False,'event_identifiers_included':False,'sealed_test_values_included':False,'files':rows}
+          manifest['manifest_id']='h132schemamanifest:'+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (destination/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          PY
+          git config user.name "kch-helical-v0132-schema"
+          git config user.email "kch-helical-v0132-schema@users.noreply.github.com"
+          git add "$destination"
+          if ! git diff --cached --quiet; then
+            git commit -m "record v0.13.2 exact-source schema inspection receipts [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload aggregate schema receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0132-schema-inspection-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-v0132-schema/results
+            ${{ runner.temp }}/helical-v0132-schema/control
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate schema inspection after persistence
+        if: always()
+        shell: bash
+        env:
+          ACQUISITION_EXIT_CODE: ${{ steps.acquire.outputs.exit_code }}
+          INSPECTION_EXIT_CODE: ${{ steps.inspect.outputs.exit_code }}
+        run: |
+          set -euo pipefail
+          test "${ACQUISITION_EXIT_CODE:-99}" = "0"
+          test "${INSPECTION_EXIT_CODE:-99}" = "0"
+          python - <<'PY'
+          import json,os,pathlib
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])/'helical-v0132-schema'/'results'
+          schema=json.loads((root/'EXACT_SOURCE_SCHEMA_INSPECTION_RESULT_V0_13_2.json').read_text())
+          purge=json.loads((root/'RAW_SOURCE_PURGE_RECEIPT_V0_13_2.json').read_text())
+          assert schema['row_values_exported'] is False
+          assert schema['event_identifiers_exported'] is False
+          assert schema['train_calibration_test_partition_constructed'] is False
+          assert schema['sealed_test_scored'] is False
+          assert schema['scientific_result'] is None
+          assert purge['after_exists'] is False
+          print('EXACT_SOURCE_SCHEMA_INSPECTION_PASS')
+          print(schema['location_uncertainty_schema_status'])
+          print('horizontal_candidates='+','.join(schema['horizontal_location_uncertainty_candidates']))
+          print('vertical_candidates='+','.join(schema['depth_or_vertical_uncertainty_candidates']))
+          PY
