@@ -1,0 +1,178 @@
+name: KCH Helical v0.9 remote exact-byte gate R2
+
+on:
+  pull_request:
+    paths:
+      - "construct_successors/KCH_HELICAL_V09_REMOTE_GATE_20261009_R2/**"
+      - ".github/workflows/kch-helical-v09-remote-r2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-byte-to-blind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      TRANSPORT_ROOT: construct_successors/KCH_HELICAL_V09_REMOTE_GATE_20261009_R2
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+
+      - name: Install Python 3.11 using immutable action commit
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.11"
+
+      - name: Reconstruct and independently verify the frozen capsule
+        id: reconstruct
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          export CAPSULE_ROOT="$RUNNER_TEMP/helical-v09-capsule"
+          export TRANSPORT_RECEIPT="$RUNNER_TEMP/helical-v09-export/transport/TRANSPORT_RECONSTRUCTION_RECEIPT.json"
+          mkdir -p "$(dirname "$TRANSPORT_RECEIPT")"
+          package_root=$(
+            python "$TRANSPORT_ROOT/bootstrap_remote_gate.py" \
+              --payload-dir "$TRANSPORT_ROOT/payload" \
+              --manifest "$TRANSPORT_ROOT/PAYLOAD_MANIFEST.json" \
+              --output-dir "$CAPSULE_ROOT" \
+              --receipt "$TRANSPORT_RECEIPT"
+          )
+          test -d "$package_root"
+          echo "package_root=$package_root" >> "$GITHUB_OUTPUT"
+          echo "PACKAGE_ROOT=$package_root" >> "$GITHUB_ENV"
+          echo "GATE_WORKSPACE=$RUNNER_TEMP/helical-v09-run" >> "$GITHUB_ENV"
+          echo "SAFE_EXPORT_ROOT=$RUNNER_TEMP/helical-v09-export" >> "$GITHUB_ENV"
+
+      - name: Execute exact-byte acquisition through blind eligibility
+        id: gate
+        if: steps.reconstruct.outcome == 'success'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p "$SAFE_EXPORT_ROOT/control"
+          python -m pip install --disable-pip-version-check -r "$PACKAGE_ROOT/requirements-runtime.txt" \
+            >"$SAFE_EXPORT_ROOT/control/pip-install.stdout.txt" \
+            2>"$SAFE_EXPORT_ROOT/control/pip-install.stderr.txt"
+          pip_rc=$?
+          if [[ "$pip_rc" -ne 0 ]]; then
+            printf '97\n' > "$SAFE_EXPORT_ROOT/control/GATE_EXIT_CODE.txt"
+            echo "gate_exit_code=97" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python -m pip freeze --all | LC_ALL=C sort > "$SAFE_EXPORT_ROOT/control/PIP_FREEZE.txt"
+          python "$PACKAGE_ROOT/runtime/RUN_EXACT_BYTE_TO_BLIND_GATE_V0_9.py" \
+            --workspace "$GATE_WORKSPACE" \
+            --execute-network \
+            --network-timeout-seconds 600 \
+            --sandbox-timeout-seconds 5400 \
+            --sandbox-memory-mib 8192 \
+            >"$SAFE_EXPORT_ROOT/control/gate.stdout.txt" \
+            2>"$SAFE_EXPORT_ROOT/control/gate.stderr.txt"
+          rc=$?
+          printf '%s\n' "$rc" > "$SAFE_EXPORT_ROOT/control/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Remove raw and resumable source material before export
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          workspace="${GATE_WORKSPACE:-$RUNNER_TEMP/helical-v09-run}"
+          rm -rf "$workspace/exact_sources" "$workspace/cache"
+          test ! -e "$workspace/exact_sources"
+          test ! -e "$workspace/cache/focmec_ca_final.pickle"
+
+      - name: Assemble deterministic evidence-only archive
+        if: always()
+        shell: bash
+        env:
+          RECONSTRUCTION_OUTCOME: ${{ steps.reconstruct.outcome }}
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          export_root="${SAFE_EXPORT_ROOT:-$RUNNER_TEMP/helical-v09-export}"
+          workspace="${GATE_WORKSPACE:-$RUNNER_TEMP/helical-v09-run}"
+          mkdir -p "$export_root/evidence"
+          for candidate in receipts blind eligibility; do
+            if [[ -e "$workspace/$candidate" ]]; then
+              cp -a "$workspace/$candidate" "$export_root/evidence/"
+            fi
+          done
+          python - <<'PY'
+          import json, os, pathlib, platform, sys
+          root = pathlib.Path(os.environ.get("SAFE_EXPORT_ROOT", os.path.join(os.environ["RUNNER_TEMP"], "helical-v09-export")))
+          body = {
+              "format": "KCH_HELICAL_V09_REMOTE_RUN_SUMMARY_R2",
+              "repository": os.environ.get("GITHUB_REPOSITORY"),
+              "commit_sha": os.environ.get("GITHUB_SHA"),
+              "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+              "event_name": os.environ.get("GITHUB_EVENT_NAME"),
+              "reconstruction_outcome": os.environ.get("RECONSTRUCTION_OUTCOME"),
+              "gate_exit_code": os.environ.get("GATE_EXIT_CODE"),
+              "python": sys.version,
+              "platform": platform.platform(),
+              "raw_sources_exported": False,
+              "directional_unsealing_authorized": False,
+              "model_fitting_authorized": False,
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+          }
+          (root / "REMOTE_RUN_SUMMARY.json").write_text(json.dumps(body, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          PY
+          (
+            cd "$export_root"
+            find . -type f ! -name 'helical-v09-remote-evidence.tar.gz' ! -name '*.sha256' -print0 \
+              | LC_ALL=C sort -z \
+              | tar --null --files-from=- --sort=name --mtime='UTC 1970-01-01' \
+                  --owner=0 --group=0 --numeric-owner -czf helical-v09-remote-evidence.tar.gz
+            sha256sum helical-v09-remote-evidence.tar.gz > helical-v09-remote-evidence.tar.gz.sha256
+          )
+
+      - name: Upload receipts and safe derived artifacts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kch-helical-v09-r2-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-v09-export/helical-v09-remote-evidence.tar.gz
+            ${{ runner.temp }}/helical-v09-export/helical-v09-remote-evidence.tar.gz.sha256
+            ${{ runner.temp }}/helical-v09-export/REMOTE_RUN_SUMMARY.json
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Adjudicate after evidence upload
+        if: always()
+        shell: bash
+        env:
+          RECONSTRUCTION_OUTCOME: ${{ steps.reconstruct.outcome }}
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          if [[ "$RECONSTRUCTION_OUTCOME" != "success" ]]; then
+            echo "Capsule reconstruction failed" >&2
+            exit 96
+          fi
+          case "${GATE_EXIT_CODE:-98}" in
+            0)
+              echo "ELIGIBILITY_PASS_DIRECTIONAL_UNSEAL_REQUEST_READY"
+              ;;
+            30)
+              echo "LEGITIMATE_NOT_IDENTIFIABLE_MECHANISM_COVERAGE"
+              ;;
+            *)
+              echo "Infrastructure or transport gate failed with exit ${GATE_EXIT_CODE:-98}" >&2
+              exit "${GATE_EXIT_CODE:-98}"
+              ;;
+          esac
