@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from kch_composed.model import (
     ChatCompletionsClient, ModelConfigurationError, ModelProtocolError,
     ModelRefusalError, ModelTransportError, ModelTruncationError,
-    parse_completion_response, parse_tool_arguments, strict_json_loads,
+    parse_completion_response, parse_tool_arguments, strict_json_loads, validate_message_history,
 )
 
 
@@ -127,6 +127,20 @@ class ParserTests(unittest.TestCase):
         for payload in (b'{"choices":[],"choices":[]}', b'{"x":"\xff"}', b'{"x":NaN}'):
             with self.subTest(payload=payload), self.assertRaises(ModelProtocolError):
                 strict_json_loads(payload)
+
+    def test_tool_pairing_rejects_missing_orphan_duplicate_and_interrupted_batches(self):
+        assistant = copy.deepcopy(DOCUMENTED_MESSAGE)
+        result = {"role": "tool", "tool_call_id": assistant["tool_calls"][0]["id"],
+                  "content": "Documented protocol result"}
+        for history in ([assistant], [result], [assistant, result, result],
+                        [assistant, {"role": "user", "content": "interrupted batch"}],
+                        [assistant, {**result, "tool_call_id": "different-batch"}]):
+            with self.subTest(history=history), self.assertRaises(ModelProtocolError):
+                validate_message_history(history)
+        self.assertEqual(validate_message_history([assistant], allow_pending=True), [result["tool_call_id"]])
+        self.assertEqual(validate_message_history([assistant, result]), [])
+        # IDs can recur after their earlier batch was completely paired.
+        self.assertEqual(validate_message_history([assistant, result, assistant, result]), [])
 
 
 class ConfigurationTests(unittest.TestCase):
@@ -251,6 +265,12 @@ class HTTPTransportTests(unittest.TestCase):
         with self.assertRaises(ModelProtocolError):
             client.complete([{"role": "user", "content": "Protocol request"}], [])
         self.assertIsNone(client.last_response)
+
+    def test_invalid_history_is_rejected_before_any_http_request(self):
+        client = ChatCompletionsClient(self.endpoint, "explicit-model")
+        with self.assertRaises(ModelProtocolError):
+            client.complete([copy.deepcopy(DOCUMENTED_MESSAGE)], [])
+        self.assertEqual(self.server.received, [])
 
 
 if __name__ == "__main__":

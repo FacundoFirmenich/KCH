@@ -40,7 +40,11 @@ def make_model_handler(*, repository, state, workspace, principal, client_factor
                              "required_outputs": order["required_outputs"],
                              "termination": order["termination"],
                              "claim_ceiling": order["claim_ceiling"]}, ensure_ascii=False)
-        result = runtime.run(client_factory(), prompt, max_steps=max_steps, binding=model_binding)
+        try:
+            result = runtime.run(client_factory(), prompt, max_steps=max_steps, binding=model_binding)
+            calls = runtime.journal.calls()
+        finally:
+            runtime.close()
         report_dir = state / "order-results"
         report_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
         target = report_dir / (session.split(":", 1)[1] + ".json")
@@ -56,7 +60,7 @@ def make_model_handler(*, repository, state, workspace, principal, client_factor
             os.fsync(directory)
         finally:
             os.close(directory)
-        used = {"MODEL_INFERENCE"} | {"tool:" + c["name"] for c in runtime.journal.calls()
+        used = {"MODEL_INFERENCE"} | {"tool:" + c["name"] for c in calls
                                      if c["status"] == "DONE"}
         return {"outcome": "SUCCEEDED" if result["status"] == "COMPLETED" else "BLOCKED",
                 "output_refs": [target.as_uri()],

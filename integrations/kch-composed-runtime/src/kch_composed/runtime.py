@@ -4,7 +4,7 @@ This is an additive host, not an impersonation of other vendors' agent loops.
 """
 from __future__ import annotations
 
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 import fcntl
 import hashlib
 import json
@@ -15,7 +15,7 @@ import uuid
 
 from .journal import SessionJournal, UncertainEffectError
 from .memory import MemoryStore, Scope
-from .model import parse_tool_arguments
+from .model import parse_tool_arguments, parse_completion_response, validate_message_history
 from .tools import ToolDenied, ToolService, wire
 
 
@@ -41,27 +41,55 @@ def canonical(value):
 
 class Runtime:
     def __init__(self, *, repository: Path, state: Path, workspace: Path,
-                 principal: str, session: str, enabled=None, native_data=None, sensors=None):
+                 principal: str, session: str, enabled=None, native_data=None, sensors=None,
+                 federation=None):
         self.state = Path(state).resolve()
         self.state.mkdir(parents=True, exist_ok=True, mode=0o700)
         # Existing permissions are deliberately not rewritten on a user's directory.
         self.scope = Scope(principal, str(Path(workspace).resolve(strict=True)), session)
-        self.memory = MemoryStore(self.state / "memory.sqlite")
-        self.tools = ToolService(repository, workspace, self.memory, self.scope,
-                                 enabled=enabled, native_data=native_data, sensors=sensors)
-        configuration = {"version": 1, "repository": str(Path(repository).resolve()),
-                         "tools": sorted(self.tools.enabled),
-                         "native_data": str(self.tools.native_data) if self.tools.native_data else None,
-                         "sensors": {k: {"provider": getattr(v, "provider", None),
-                                          "model_revision": getattr(v, "model_revision", None)}
-                                     for k, v in self.tools.sensors.items()}}
-        self.journal = SessionJournal(self.state / "sessions.sqlite", principal=principal,
-                                      workspace=self.scope.workspace, session=session,
-                                      configuration=configuration)
+        self._resources = ExitStack()
+        self._closed = False
+        self.federation = federation
+        if federation is not None:
+            self._resources.callback(federation.close)
+        try:
+            self.memory = MemoryStore(self.state / "memory.sqlite")
+            self._resources.callback(self.memory.close)
+            self.tools = ToolService(repository, workspace, self.memory, self.scope,
+                                     enabled=enabled, native_data=native_data, sensors=sensors,
+                                     federation=federation)
+            configuration = {"version": 1, "repository": str(Path(repository).resolve()),
+                             "tools": sorted(self.tools.enabled),
+                             "native_data": str(self.tools.native_data) if self.tools.native_data else None,
+                             "sensors": {k: {"provider": getattr(v, "provider", None),
+                                              "model_revision": getattr(v, "model_revision", None)}
+                                         for k, v in self.tools.sensors.items()}}
+            if federation is not None:
+                configuration["federation"] = federation.binding()
+            self.journal = SessionJournal(self.state / "sessions.sqlite", principal=principal,
+                                          workspace=self.scope.workspace, session=session,
+                                          configuration=configuration)
+            self._resources.callback(self.journal.close)
+        except BaseException:
+            self.close()
+            raise
         identity = hashlib.sha256(canonical([principal, self.scope.workspace, session]).encode()).hexdigest()
         self.lock_path = self.state / (identity + ".lock")
         self.tools.cancel_check = self.cancelled
         self.tools.denied_roots += (self.state,)
+
+    def close(self):
+        if not self._closed:
+            self._closed = True
+            self._resources.close()
+
+    def __enter__(self):
+        if self._closed:
+            raise RuntimeError("Runtime is closed")
+        return self
+
+    def __exit__(self, *args):
+        self.close()
 
     @contextmanager
     def lock(self):
@@ -120,23 +148,50 @@ class Runtime:
 
     def _pending_tools(self):
         events = self.journal.events()
+        pending = set(validate_message_history(
+            [e["payload"] for e in events if e["kind"] == "message"], allow_pending=True))
+        if not pending:
+            return
+        # Validation guarantees that only the last assistant batch can remain
+        # incomplete. Never append an old tool result after a later user turn.
+        event = next(e for e in reversed(events)
+                     if e["kind"] == "message" and e["payload"].get("role") == "assistant")
+        for call in event["payload"].get("tool_calls") or []:
+            if call["id"] in pending:
+                yield f"model:{event['seq']}:{call['id']}", call
+
+    def _reconcile_legacy_model_receipts(self):
+        """Resolve the old two-commit window only with an exact history match.
+
+        No response, tokens or finish reason is reconstructed. Ambiguous legacy
+        delivery remains uncertain and requires explicit acknowledgement.
+        """
+        events = self.journal.events()
+        resolved = {e["payload"]["request_id"] for e in events
+                    if e["kind"] in {"model.received", "model.retry_acknowledged"}}
         for index, event in enumerate(events):
-            message = event["payload"] if event["kind"] == "message" else {}
-            if message.get("role") != "assistant":
+            if event["kind"] != "model.request" or event["payload"]["request_id"] in resolved:
                 continue
-            following = []
+            before = [e["payload"] for e in events[:index] if e["kind"] == "message"]
+            if hashlib.sha256(canonical(before).encode()).hexdigest() != event["payload"].get("messages_sha256"):
+                continue
             for later in events[index + 1:]:
+                if later["kind"] == "model.request":
+                    break
                 if later["kind"] == "message":
-                    if later["payload"].get("role") != "tool":
-                        break
-                    following.append(later["payload"].get("tool_call_id"))
-            for call in message.get("tool_calls") or []:
-                if call["id"] not in following:
-                    yield f"model:{event['seq']}:{call['id']}", call
+                    if later["payload"].get("role") == "assistant":
+                        validate_message_history(before + [later["payload"]], allow_pending=True)
+                        self.journal.append("model.received", {
+                            "request_id": event["payload"]["request_id"],
+                            "usage": None, "finish_reason": None,
+                            "recovered_from_message_seq": later["seq"],
+                            "basis": "EXACT_HISTORY_AND_PERSISTED_ASSISTANT_NO_PROVIDER_METADATA"})
+                    break
 
     def recover_tools(self):
         """Finish persisted tool calls without requesting any new model response."""
         with self.lock():
+            self._reconcile_legacy_model_receipts()
             results = []
             for call_id, call in list(self._pending_tools()):
                 result = self._execute(call_id, call["function"]["name"],
@@ -155,9 +210,16 @@ class Runtime:
         """
         if type(max_steps) is not int or not 1 <= max_steps <= 1000:
             raise ValueError("max_steps must be 1..1000")
+        if type(max_context_bytes) is not int or max_context_bytes <= 0:
+            raise ValueError("max_context_bytes must be a positive integer")
+        if prompt is not None and not isinstance(prompt, str):
+            raise ValueError("prompt must be text or None")
         binding = binding or {"endpoint": getattr(client, "endpoint", None),
                               "model": getattr(client, "model", None)}
         with self.lock():
+            if self.cancelled():
+                return {"status": "CANCELLED", "steps": 0, "prompt_accepted": False}
+            self._reconcile_legacy_model_receipts()
             events = self.journal.events()
             previous_bindings = [e["payload"] for e in events if e["kind"] == "model.binding"]
             if previous_bindings and previous_bindings[0] != binding:
@@ -181,15 +243,28 @@ class Runtime:
                 self.journal.append("message", {"role": "user", "content": prompt})
             elif not any(m.get("role") == "user" for m in self.journal.messages()):
                 raise ValueError("A first user prompt is required")
+            messages = self.journal.messages()
+            if prompt is None and messages[-1].get("role") == "assistant" and not messages[-1].get("tool_calls"):
+                return {"status": "COMPLETED", "steps": 0, "message": messages[-1],
+                        "reused_persisted_response": True,
+                        "inference_attestation": "PERSISTED_ASSISTANT_NOT_INDEPENDENTLY_VERIFIED"}
             for step in range(max_steps):
                 if self.cancelled():
                     return {"status": "CANCELLED", "steps": step}
                 for call_id, call in list(self._pending_tools()):
-                    result = self._execute(call_id, call["function"]["name"],
-                                           parse_tool_arguments(call["function"]["arguments"]))
+                    try:
+                        result = self._execute(call_id, call["function"]["name"],
+                                               parse_tool_arguments(call["function"]["arguments"]))
+                    except ToolDenied:
+                        if self.cancelled():
+                            return {"status": "CANCELLED", "steps": step}
+                        raise
                     self.journal.append("message", {"role": "tool", "tool_call_id": call["id"],
                                                      "content": self._tool_text(result, call_id)})
+                if self.cancelled():
+                    return {"status": "CANCELLED", "steps": step}
                 messages = self.journal.messages()
+                validate_message_history(messages)
                 if len(canonical(messages).encode()) > max_context_bytes:
                     raise ContextBudgetError("Context byte budget exceeded; originals retained, no silent compaction")
                 request_id = uuid.uuid4().hex
@@ -197,14 +272,21 @@ class Runtime:
                     "messages_sha256": hashlib.sha256(canonical(messages).encode()).hexdigest(),
                     "tool_names": sorted(self.tools.enabled)})
                 message = client.complete(messages, self.tools.schemas())
+                # Alternate clients still cross the same message contract.
+                reported_finish = getattr(client, "last_finish_reason", None)
+                message = parse_completion_response({"choices": [{"message": message,
+                    "finish_reason": reported_finish if reported_finish is not None else (
+                        "tool_calls" if isinstance(message, dict) and message.get("tool_calls") else "stop")}]})
                 if len(message.get("tool_calls") or []) > 32:
                     raise ValueError("Response exceeds the 32 tool-call per-step bound")
-                # Persist assistant BEFORE any effects. A crash between these two
-                # records is conservative: explicit model retry acknowledgement.
-                self.journal.append("message", message)
-                self.journal.append("model.received", {"request_id": request_id,
+                # One SQLite transaction: delivery and assistant become durable
+                # together, before any tool effect or final response is exposed.
+                self.journal.append_many([("message", message), ("model.received", {"request_id": request_id,
                     "usage": getattr(client, "last_usage", None),
-                    "finish_reason": getattr(client, "last_finish_reason", None)})
+                    "finish_reason": getattr(client, "last_finish_reason", None)})])
+                if self.cancelled():
+                    return {"status": "CANCELLED", "steps": step + 1,
+                            "response_persisted": True}
                 if not message.get("tool_calls"):
                     return {"status": "COMPLETED", "steps": step + 1,
                             "message": message, "inference_attestation": "CLIENT_RETURNED_NOT_INDEPENDENTLY_VERIFIED"}

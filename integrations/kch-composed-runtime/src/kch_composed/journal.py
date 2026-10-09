@@ -220,6 +220,29 @@ class SessionJournal:
             self._verify()
             return self._append(kind, payload)
 
+    def append_many(self, entries: list[tuple[str, Any]]) -> list[dict]:
+        """Commit related non-call events together, or leave no event behind.
+
+        In particular, a model response and its delivery receipt must not be
+        split by a process crash. Call projections still require their dedicated
+        APIs, so this method cannot bypass call_begin/call_finish invariants.
+        """
+        if not isinstance(entries, list) or not entries:
+            raise ValueError("entries must be a nonempty list")
+        detached = []
+        for entry in entries:
+            if not isinstance(entry, (tuple, list)) or len(entry) != 2:
+                raise ValueError("each entry must be a kind/payload pair")
+            kind, payload = entry
+            if not isinstance(kind, str) or not kind.strip():
+                raise ValueError("event kind must be explicit")
+            if kind in ("call.started", "call.finished"):
+                raise ValueError("call events require call_begin/call_finish")
+            detached.append((kind, json.loads(_canonical_json(payload))))
+        with self._tx(write=True):
+            self._verify()
+            return [self._append(kind, payload) for kind, payload in detached]
+
     def call_begin(self, call_id: str, name: str, args: dict) -> dict:
         if any(not isinstance(x, str) or not x.strip() for x in (call_id, name)):
             raise ValueError("call_id and name must be explicit")

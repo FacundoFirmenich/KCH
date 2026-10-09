@@ -15,8 +15,11 @@ decision; the final immutable result is written back to the KCH hash-chain ledge
   `native_bridge.py` verifies exact SHA-256 hashes of `kch_native_hook.py` and
   `kch_native_state.py` on every invocation. It does not modify either source.
 - Tested surface: local filesystem composition, real upstream `AgentLoop`,
-  `ToolRuntime`, `LocalFileSystem`, and `dsh-tool-fs`. No model provider, paid API,
-  replayed assistant answer, or substituted DSH runtime was used.
+  `ToolRuntime`, `LocalFileSystem`, and `dsh-tool-fs`; additionally, the supported
+  source SDK launcher with its complete base profile and sandboxed filesystem.
+  The SDK initialization resolves the real DeepSeek adapter without submitting
+  a prompt. No paid API, replayed assistant answer, or substituted DSH runtime
+  was used.
 
 ## What it enforces
 
@@ -37,6 +40,10 @@ decision; the final immutable result is written back to the KCH hash-chain ledge
 5. Plugin activation requires native locks already enabled and a valid existing
    ledger chain. It neither enables locks nor issues authorizations. Native
    single-use authorization consumption remains in KCH.
+6. Generated patches make the required `agent-loop` and SDK/headless endpoint
+   depend on `kchDeepSeek`. DSH otherwise treats an external plugin failure as
+   optional and can keep running. Regenerate older insertion-only patches;
+   merely inserting this plugin does not make it a startup requirement.
 
 ## Explicit mapping
 
@@ -64,10 +71,15 @@ enable native locks.
 
 Mount that generated file with the supported DSH launcher:
 `dsh --profile sdk --patch /absolute/path/to/generated.patch.json`.
+The generator defaults to `--profile sdk`; use `--profile headless` for the
+headless endpoint. It preserves the pinned endpoint's existing dependencies
+and adds KCH as a required service. Other/custom profiles need their own
+reviewed endpoint binding.
 For Python SDK callers, pass the same absolute path through `patches=(path,)`
 and select an explicit `dsh_home`. The profile's agent workspace must equal the
-workspace used when generating the patch. A full SDK/profile launch and a live
-model turn have not been established by the component integration tests.
+workspace used when generating the patch. The supported source SDK profile
+launch is verified below. A live model turn and the published Python runtime
+wheel are not established by this gate.
 
 ## Reproduce the integration test
 
@@ -83,6 +95,39 @@ ledger receipts/hash verification, policy ordering/short-circuiting, symlink
 identity, forged actor identity, missing actor/workspace, an unmapped alias,
 disabled locks and protected control paths. They grant no authorization and
 make no model-quality or scientific-improvement measurement.
+
+## Reproduce the SDK launcher gate
+
+Build the pinned upstream host artifacts and native flock addon first. The
+upstream `pnpm run build:lib:host` and `pnpm run build:native-system` produce
+them. Node must include its matching development headers. Run:
+
+```sh
+python3 tests/launcher_gate.py \
+  --dsh-source /absolute/path/to/pinned/deepseek-harness \
+  --evidence-dir /absolute/path/to/new-evidence-directory
+```
+
+The gate starts `pnpm --silent dsh --profile sdk`, sends only `initialize` and
+`shutdown`, and captures exact JSON-RPC output and diagnostics. An explicit
+test observer uses a real idle registered agent and native file tools to read
+a protected copy of the KCH README and attempt a denied overwrite. It never
+supplies a model response. The test verifies the unchanged source, final KCH
+receipts and native chain. Then it disables locks in its own isolated native
+database and restarts with the same patch: startup must exit nonzero before a
+successful SDK handshake, and locks must remain disabled.
+
+The 2026-10-09 source-launch gate passed: enabled startup/shutdown exited 0;
+disabled-lock startup exited 1; two native tool receipts and four native events
+verified. `verification/sdk-launcher-20261009.json` records the bounded result.
+The wire handshake reports protocol version `0.0.1`; the pinned DSH package
+version is `0.2.1-alpha.1`. These are different version fields.
+
+The test runner creates a new evidence directory, native state and DSH home;
+it never points at the owner's active state. It omits inherited model keys,
+disables telemetry and session-log contribution, sends no session prompt, and
+measures no model quality. Headless's dependency patch is implemented but this
+process gate covers the SDK profile only.
 
 ## Remaining boundaries
 

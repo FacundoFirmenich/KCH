@@ -16,6 +16,8 @@ def main(argv=None):
     parser.add_argument("--session", required=True)
     parser.add_argument("--native-data", type=Path)
     parser.add_argument("--enable-write", action="store_true")
+    parser.add_argument("--federation-config", type=Path,
+                        help="Explicit host-owned allowlist and SuperMCP binding")
     commands = parser.add_subparsers(dest="command", required=True)
     for name in ("mcp", "inspect", "recover-tools", "cancel", "resume"):
         commands.add_parser(name)
@@ -31,12 +33,35 @@ def main(argv=None):
     run.add_argument("--max-steps", type=int, default=16)
     run.add_argument("--retry-model", action="store_true")
     run.add_argument("--options-file", type=Path)
+    export = commands.add_parser("checkpoint-export")
+    export.add_argument("--output", type=Path, required=True)
+    intake = commands.add_parser("checkpoint-import")
+    intake.add_argument("--input", type=Path, required=True)
+    intake.add_argument("--source-id", action="append", default=[],
+                        help="Explicit source to materialize as evidence; repeatable")
+    commands.add_parser("federation-discover")
     args = parser.parse_args(argv)
     from .tools import ToolService
     enabled = ToolService.DEFAULT | ({"write_file"} if args.enable_write else set())
+    federation = None
+    if args.federation_config:
+        from .federation import FederationBridge
+        config = strict_json_loads(args.federation_config.read_bytes())
+        expected = {"principal": args.principal, "workspace": str(args.workspace.resolve()),
+                    "session": args.session, "repository": str(args.repository.resolve())}
+        if any(config.get(k) != v for k, v in expected.items()):
+            parser.error("Federation identity/repository differs from the explicit CLI binding")
+        federation = FederationBridge.from_config(config, audit_path=args.state / "federation.sqlite")
     runtime = Runtime(repository=args.repository, state=args.state, workspace=args.workspace,
                       principal=args.principal, session=args.session, enabled=enabled,
-                      native_data=args.native_data)
+                      native_data=args.native_data, federation=federation)
+    try:
+        return execute_command(args, runtime)
+    finally:
+        runtime.close()
+
+
+def execute_command(args, runtime):
     if args.command == "mcp":
         from .mcp import serve
         serve(runtime)
@@ -52,6 +77,18 @@ def main(argv=None):
         result = runtime.execute(args.call_id, args.tool, strict_json_loads(args.arguments_file.read_bytes()))
     elif args.command == "recover-tools":
         result = runtime.recover_tools()
+    elif args.command == "checkpoint-export":
+        from .checkpoint import export_checkpoint
+        result = export_checkpoint(runtime, args.output)
+    elif args.command == "checkpoint-import":
+        from .checkpoint import import_checkpoint_evidence
+        result = import_checkpoint_evidence(runtime, args.input, source_ids=args.source_id)
+    elif args.command == "federation-discover":
+        if runtime.tools.federation is None:
+            raise ValueError("federation-discover requires --federation-config")
+        result = {"binding": runtime.tools.federation.binding(),
+                  "catalogue": runtime.tools.federation.discover(),
+                  "exposed_tools": runtime.tools.federation.schemas()}
     else:
         result = getattr(runtime, args.command)()
     print(json.dumps(result, ensure_ascii=False, allow_nan=False, indent=2))

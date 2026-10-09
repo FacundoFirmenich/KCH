@@ -72,7 +72,8 @@ class ToolService:
 
     def __init__(self, repository: Path, workspace: Path, memory: MemoryStore,
                  scope: Scope, *, enabled=None, native_data: Path | None = None,
-                 sensors: dict | None = None, max_source_bytes: int = 8 * 1024 * 1024):
+                 sensors: dict | None = None, max_source_bytes: int = 8 * 1024 * 1024,
+                 federation=None):
         self.repository = Path(repository).resolve(strict=True)
         self.workspace = Path(workspace).resolve(strict=True)
         self.memory, self.scope = memory, scope
@@ -87,9 +88,26 @@ class ToolService:
         self.max_source_bytes = max_source_bytes
         self.cancel_check = lambda: False
         self.denied_roots = tuple(p for p in (self.native_data,) if p is not None)
+        self.federation = federation
+        self._federated_schemas = []
+        self.federation_binding = None
+        if federation is not None:
+            self._federated_schemas = federation.schemas()
+            binding = federation.binding()
+            expected = {"principal": scope.principal, "workspace": scope.workspace,
+                        "session": scope.session}
+            if binding.get("scope") != expected:
+                raise ToolDenied("Federation scope differs from the trusted runtime scope")
+            aliases = [s["function"]["name"] for s in self._federated_schemas]
+            if len(aliases) != len(set(aliases)) or set(aliases) & {s["function"]["name"] for s in SCHEMAS}:
+                raise ToolDenied("Federated tool alias collision")
+            self.federation_binding = binding
+            self.enabled = self.enabled | set(aliases)
+            if binding.get("state_dir"):
+                self.denied_roots += (Path(binding["state_dir"]).resolve(),)
 
     def schemas(self):
-        return [s for s in SCHEMAS if s["function"]["name"] in self.enabled]
+        return [s for s in SCHEMAS + self._federated_schemas if s["function"]["name"] in self.enabled]
 
     def _path(self, raw: str, *, exists=True):
         if not isinstance(raw, str) or not raw:
@@ -173,6 +191,16 @@ class ToolService:
     def execute(self, name: str, args: dict, *, call_id: str):
         if name not in self.enabled:
             raise ToolDenied("Tool is not enabled by the host")
+        if any(s["function"]["name"] == name for s in self._federated_schemas):
+            from .federation import FederationDenied
+            if self.cancel_check():
+                raise ToolDenied("Session cancelled before federated dispatch")
+            try:
+                if self.federation.binding() != self.federation_binding:
+                    raise ToolDenied("Federation binding changed after session admission")
+                return self.federation.invoke(name, args, call_id=call_id)
+            except FederationDenied:
+                raise ToolDenied("Federation policy rejected the request before dispatch") from None
         schema = next(s["function"]["parameters"] for s in SCHEMAS if s["function"]["name"] == name)
         if not isinstance(args, dict) or set(args) - set(schema["properties"]) or set(schema["required"]) - set(args):
             raise ToolDenied("Unexpected or missing tool arguments")

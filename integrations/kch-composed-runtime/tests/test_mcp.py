@@ -104,6 +104,35 @@ class MCPSubprocessTests(unittest.TestCase):
         self.assertEqual(base64.b64decode(original_read["value"]["content"]["data"]), self.original[:65536])
         self.assertEqual(base64.b64decode(current_read["value"]["content"]["data"]), second_actual[:65536])
 
+    def test_oversized_frame_suffix_is_not_executed_as_another_request(self):
+        command, cwd = self.profile("qwenpaw")
+        rejected_suffix = request(9, "tools/call", {"name": "memory_ingest",
+            "arguments": {"path": "README.md", "source_id": "must-not-be-ingested"}})
+        # The suffix is valid JSON but belongs to the same oversized line.
+        # It may never be reparsed as a new request after bounded readline.
+        data = (json.dumps(self.initialize()) + "\n" + " " * 1_048_577 +
+                json.dumps(rejected_suffix) + "\n" + json.dumps(request(10, "tools/call", {
+                    "name": "memory_recall", "arguments": {"source_id": "must-not-be-ingested"}})) + "\n")
+        process = subprocess.run(command, cwd=cwd, input=data, capture_output=True,
+                                 text=True, timeout=25, check=False)
+        self.assertEqual(process.returncode, 0, process.stderr)
+        responses = [json.loads(line) for line in process.stdout.splitlines()]
+        self.assertEqual([r["id"] for r in responses], [1, None, 10])
+        self.assertEqual(responses[1]["error"]["code"], -32600)
+        self.assertTrue(responses[2]["result"]["isError"])
+
+    def test_utf8_byte_limit_discards_exactly_one_frame(self):
+        command, cwd = self.profile("qwenpaw")
+        oversized = request(8, "ping", {"contract": "界" * 400_000})
+        data = (json.dumps(self.initialize()) + "\n" + json.dumps(oversized, ensure_ascii=False) +
+                "\n" + json.dumps(request(9, "ping")) + "\n")
+        process = subprocess.run(command, cwd=cwd, input=data, capture_output=True,
+                                 text=True, timeout=25, check=False)
+        self.assertEqual(process.returncode, 0, process.stderr)
+        responses = [json.loads(line) for line in process.stdout.splitlines()]
+        self.assertEqual([r["id"] for r in responses], [1, None, 9])
+        self.assertEqual(responses[-1]["result"], {})
+
 
 if __name__ == "__main__":
     unittest.main()

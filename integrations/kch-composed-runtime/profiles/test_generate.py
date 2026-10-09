@@ -67,6 +67,16 @@ class ProfileGenerationTests(unittest.TestCase):
             with self.subTest(key=key, value=str(value)), self.assertRaises(ValueError):
                 profiles(**{**parameters, key: value})
 
+    def test_either_composition_can_be_selected_without_the_other(self):
+        parameters = dict(repository=REPOSITORY, state=REPOSITORY / ".kch-composed-state",
+                          workspace=REPOSITORY, principal="local-owner", session_prefix="choice")
+        for host in ("qwenpaw", "openclaw"):
+            with self.subTest(host=host):
+                docs = profiles(**parameters, host=host)
+                self.assertEqual(list(docs), [host + ".local.json"])
+        with self.assertRaises(ValueError):
+            profiles(**parameters, host="unsupported")
+
 
 if __name__ == "__main__":
     unittest.main()

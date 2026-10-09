@@ -9,11 +9,13 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import sqlite3
 import tempfile
 import unittest
 
 from kch_composed.journal import SessionConfigurationError, UncertainEffectError
-from kch_composed.runtime import ContextBudgetError, Runtime, SessionBusy
+from kch_composed.model import ModelProtocolError, ModelTruncationError
+from kch_composed.runtime import ContextBudgetError, Runtime, SessionBusy, canonical
 from kch_composed.tools import ToolDenied
 
 
@@ -138,6 +140,8 @@ class RuntimeTests(unittest.TestCase):
         sentinel = NoModelBoundarySentinel()
         response = restarted.run(sentinel, self.original.decode("utf-8"))
         self.assertEqual(response["status"], "CANCELLED")
+        self.assertFalse(response["prompt_accepted"])
+        self.assertEqual(restarted.journal.messages(), [])
         self.assertEqual(sentinel.calls, 0)
         restarted.resume()
         self.assertTrue(restarted.execute("resumed-read", "read_file", {"path": "README.md"})["ok"])
@@ -177,6 +181,120 @@ class RuntimeTests(unittest.TestCase):
             with self.assertRaises(SessionBusy):
                 other.execute("locked-read", "read_file", {"path": "README.md"})
         self.assertEqual(other.journal.calls(), [])
+
+    def test_terminal_persisted_assistant_is_not_generated_again(self):
+        # Authored terminal protocol record, not a reported inference result.
+        self.runtime.journal.append("message", {"role": "user", "content": "Inspect source"})
+        final = {"role": "assistant", "content": self.original.decode("utf-8")}
+        self.runtime.journal.append("message", final)
+        sentinel = NoModelBoundarySentinel()
+        response = self.open().run(sentinel)
+        self.assertEqual(response["status"], "COMPLETED")
+        self.assertEqual(response["message"], final)
+        self.assertTrue(response["reused_persisted_response"])
+        self.assertEqual(sentinel.calls, 0)
+
+    def test_exact_legacy_assistant_recovers_delivery_without_retrying_model(self):
+        self.runtime.journal.append("message", {"role": "user", "content": "Inspect source"})
+        digest = hashlib.sha256(canonical(self.runtime.journal.messages()).encode()).hexdigest()
+        self.runtime.journal.append("model.request", {"request_id": "legacy-response-contract",
+            "messages_sha256": digest, "tool_names": []})
+        final = {"role": "assistant", "content": self.original.decode("utf-8")}
+        assistant_event = self.runtime.journal.append("message", final)
+        sentinel = NoModelBoundarySentinel()
+        restarted = self.open()
+        response = restarted.run(sentinel)
+        self.assertEqual(response["status"], "COMPLETED")
+        self.assertEqual(sentinel.calls, 0)
+        receipt = [e for e in restarted.journal.events() if e["kind"] == "model.received"][0]["payload"]
+        self.assertEqual(receipt["request_id"], "legacy-response-contract")
+        self.assertEqual(receipt["recovered_from_message_seq"], assistant_event["seq"])
+        self.assertIsNone(receipt["usage"])
+        self.assertIsNone(receipt["finish_reason"])
+
+    def test_legacy_message_without_matching_request_context_stays_uncertain(self):
+        self.runtime.journal.append("message", {"role": "user", "content": "Inspect source"})
+        self.runtime.journal.append("model.request", {"request_id": "unmatched-context-contract",
+            "messages_sha256": hashlib.sha256(self.original).hexdigest(), "tool_names": []})
+        self.runtime.journal.append("message", {"role": "assistant", "content": self.original.decode("utf-8")})
+        sentinel = NoModelBoundarySentinel()
+        with self.assertRaises(UncertainEffectError):
+            self.open().run(sentinel)
+        self.assertEqual(sentinel.calls, 0)
+        self.assertFalse(any(e["kind"] == "model.received" for e in self.runtime.journal.events()))
+
+    def test_interrupted_tool_pairing_cannot_execute_an_old_batch(self):
+        self.seed_recovery_contract()
+        self.runtime.journal.append("message", {"role": "user", "content": "Invalid intervening turn contract"})
+        with self.assertRaises(ModelProtocolError):
+            self.runtime.recover_tools()
+        self.assertEqual(self.runtime.journal.calls(), [])
+
+    def test_stop_after_real_tool_prevents_next_model_request(self):
+        self.runtime.journal.append("message", {"role": "user", "content": "Inspect source"})
+        self.seed_recovery_contract()
+        execute = self.runtime.tools.execute
+
+        def execute_then_stop(*args, **kwargs):
+            value = execute(*args, **kwargs)
+            self.runtime.cancel()
+            return value
+
+        self.runtime.tools.execute = execute_then_stop
+        sentinel = NoModelBoundarySentinel()
+        response = self.runtime.run(sentinel)
+        self.assertEqual(response["status"], "CANCELLED")
+        self.assertEqual(sentinel.calls, 0)
+        self.assertEqual(self.runtime.journal.calls()[0]["status"], "DONE")
+        self.assertEqual(self.runtime.journal.messages()[-1]["role"], "tool")
+        self.assertFalse(any(e["kind"] == "model.request" for e in self.runtime.journal.events()))
+
+    def test_stop_during_contract_client_return_persists_response_without_effects(self):
+        # This deliberately authored client tests protocol control flow only.
+        # It does not call, impersonate or measure a model.
+        owner = self.runtime
+        tool_message = {"role": "assistant", "content": None, "tool_calls": [{
+            "id": "explicit-stop-contract", "type": "function", "function": {
+                "name": "read_file", "arguments": '{"path":"README.md"}'}}]}
+
+        class ContractClient:
+            def complete(self, messages, tools):
+                owner.cancel()
+                return tool_message
+
+        response = owner.run(ContractClient(), "Inspect source")
+        self.assertEqual(response["status"], "CANCELLED")
+        self.assertTrue(response["response_persisted"])
+        self.assertEqual(owner.journal.calls(), [])
+        events = owner.journal.events()
+        self.assertEqual([e["kind"] for e in events[-2:]], ["message", "model.received"])
+        owner.resume()
+        recovered = owner.recover_tools()
+        self.assertEqual(base64.b64decode(recovered[0]["result"]["value"]["content"]["data"]),
+                         self.original[:65536])
+
+    def test_reported_truncation_from_alternate_client_cannot_complete_or_dispatch(self):
+        content = self.original.decode("utf-8")
+
+        class ExplicitTruncationContractClient:
+            last_finish_reason = "length"
+
+            def complete(self, messages, tools):
+                return {"role": "assistant", "content": content}
+
+        with self.assertRaises(ModelTruncationError):
+            self.runtime.run(ExplicitTruncationContractClient(), "Inspect source")
+        self.assertEqual(self.runtime.journal.calls(), [])
+        self.assertFalse(any(e["kind"] == "model.received" for e in self.runtime.journal.events()))
+
+    def test_context_manager_closes_real_databases_idempotently(self):
+        with self.open(session="context-managed-session") as runtime:
+            self.assertTrue(runtime.journal.verify())
+        runtime.close()
+        with self.assertRaises(sqlite3.ProgrammingError):
+            runtime.journal.verify()
+        with self.assertRaises(sqlite3.ProgrammingError):
+            runtime.memory.search(runtime.scope, "source")
 
     def test_private_runtime_state_inside_workspace_is_not_a_tool_resource(self):
         nested = self.open(state=self.workspace / "private-state", session="private-state-isolation")

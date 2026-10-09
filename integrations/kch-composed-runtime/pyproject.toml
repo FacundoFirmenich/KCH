@@ -4,10 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kch-composed-runtime"
-version = "0.1.0"
+version = "0.2.0"
 description = "Additive KCH execution, scoped memory and typed decision sensors"
 requires-python = ">=3.11"
 dependencies = []
+
+[project.optional-dependencies]
+federation = ["jsonschema>=4,<5", "numpy>=2,<3", "scipy>=1.11,<2"]
+host-probe = ["mcp>=1.28,<2"]
 
 [project.scripts]
 kch-composed = "kch_composed.cli:main"

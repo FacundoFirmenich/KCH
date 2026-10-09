@@ -151,6 +151,40 @@ def _validate_tool_calls(calls: Any) -> None:
         parse_tool_arguments(function.get("arguments"))
 
 
+def validate_message_history(messages: list[dict[str, Any]], *, allow_pending: bool = False) -> list[str]:
+    """Validate ordered tool pairing without rewriting provider-native fields.
+
+    A pending assistant batch may end a durable recovery transcript, but cannot
+    be sent to a model until every call has exactly one matching tool result.
+    Tool-call IDs are batch-local; providers may reuse an ID in a later batch.
+    """
+    if not isinstance(messages, list) or any(
+            not isinstance(message, dict) or message.get("role") not in
+            ("system", "developer", "user", "assistant", "tool") for message in messages):
+        raise ModelProtocolError("messages must contain role-bearing JSON objects")
+    pending: dict[str, None] = {}
+    for message in messages:
+        role = message["role"]
+        if role == "tool":
+            ident = message.get("tool_call_id")
+            if not isinstance(ident, str) or ident not in pending:
+                raise ModelProtocolError("Tool result is orphaned, duplicated or belongs to another batch")
+            if not isinstance(message.get("content"), (str, list)):
+                raise ModelProtocolError("Tool result content must be text or content parts")
+            del pending[ident]
+            continue
+        if pending:
+            raise ModelProtocolError("Assistant tool calls must be completed before the next message")
+        if role == "assistant":
+            _validate_tool_calls(message.get("tool_calls"))
+            pending = {call["id"]: None for call in message.get("tool_calls") or []}
+        elif message.get("tool_calls") is not None:
+            raise ModelProtocolError("Only assistant messages may request tools")
+    if pending and not allow_pending:
+        raise ModelProtocolError("Assistant tool calls have missing tool results")
+    return list(pending)
+
+
 def parse_completion_response(response: dict[str, Any]) -> dict[str, Any]:
     """Validate one completed choice and return its unmodified assistant data.
 
@@ -274,13 +308,9 @@ class ChatCompletionsClient:
     def complete(self, messages: list[dict[str, Any]],
                  tools: list[dict[str, Any]] | None = None) -> dict[str, Any]:
         self.last_response = self.last_usage = self.last_finish_reason = None
-        if not isinstance(messages, list) or not messages or any(
-                not isinstance(message, dict) or message.get("role") not in
-                ("system", "developer", "user", "assistant", "tool") for message in messages):
-            raise ModelProtocolError("messages must contain role-bearing JSON objects")
-        for message in messages:
-            if message["role"] == "assistant":
-                _validate_tool_calls(message.get("tool_calls"))
+        if not messages:
+            raise ModelProtocolError("messages must not be empty")
+        validate_message_history(messages)
         if tools is not None:
             if not isinstance(tools, list):
                 raise ModelProtocolError("tools must be a list or None")

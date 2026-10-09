@@ -152,6 +152,31 @@ class JournalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.journal.call_finish("missing", {}, "STARTED")
 
+    def test_append_many_is_atomic_on_database_failure(self):
+        # A real SQLite constraint failure in the second insert must roll back
+        # the first insert and head update, including after a fresh connection.
+        with sqlite3.connect(self.path) as db:
+            db.execute("""CREATE TRIGGER contract_insert_failure BEFORE INSERT ON session_events
+                          WHEN NEW.kind='contract.reject'
+                          BEGIN SELECT RAISE(ABORT, 'explicit transaction failure'); END""")
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.journal.append_many([("source.observed", self.result), ("contract.reject", {})])
+        self.assertEqual(self.journal.events(), [])
+        with self.open() as reopened:
+            self.assertEqual(reopened.events(), [])
+            self.assertTrue(reopened.verify())
+
+    def test_append_many_preserves_order_chain_and_reserved_events(self):
+        values = [("source.observed", self.result), ("source.verified", self.result)]
+        events = self.journal.append_many(values)
+        self.assertEqual([e["kind"] for e in events], [x[0] for x in values])
+        self.assertEqual(events[1]["previous_sha256"], events[0]["sha256"])
+        for invalid in ([], [("source.observed", self.result), ("call.finished", {})],
+                        [("source.observed", self.result), ("bad", {"x": float("nan")})]):
+            with self.assertRaises(ValueError):
+                self.journal.append_many(invalid)
+            self.assertEqual(self.journal.events(), events)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -9,7 +9,7 @@ import sys
 
 
 def profiles(*, repository: Path, state: Path, workspace: Path,
-             principal: str, session_prefix: str) -> dict[str, dict]:
+             principal: str, session_prefix: str, host: str = "both") -> dict[str, dict]:
     repository = repository.expanduser().resolve(strict=True)
     workspace = workspace.expanduser().resolve(strict=True)
     state = state.expanduser().resolve()
@@ -24,9 +24,11 @@ def profiles(*, repository: Path, state: Path, workspace: Path,
         raise ValueError("principal must be nonempty and contain no control characters")
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,95}", session_prefix):
         raise ValueError("session-prefix must be 1-96 letters, digits, dots, underscores or hyphens")
+    if host not in {"both", "qwenpaw", "openclaw"}:
+        raise ValueError("host must be both, qwenpaw or openclaw")
     interpreter = Path(sys.executable).resolve(strict=True)
     result = {}
-    for host in ("qwenpaw", "openclaw"):
+    for host in (("qwenpaw", "openclaw") if host == "both" else (host,)):
         client = {
             "transport": "stdio", "command": str(interpreter),
             "args": ["-m", "kch_composed", "--repository", str(repository),
@@ -50,13 +52,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--principal", required=True)
     parser.add_argument("--session-prefix", required=True,
                         help="Explicit local binding; generated sessions are openclaw-/qwenpaw- plus this value")
+    parser.add_argument("--host", choices=("both", "qwenpaw", "openclaw"), default="both",
+                        help="Select either own platform composition or generate both alternatives")
     parser.add_argument("--output", type=Path, required=True,
                         help="Output directory; neither host configuration is automatically changed")
     args = parser.parse_args(argv)
     try:
         documents = profiles(repository=args.repository, state=args.state,
                              workspace=args.workspace, principal=args.principal,
-                             session_prefix=args.session_prefix)
+                             session_prefix=args.session_prefix, host=args.host)
         output = args.output.expanduser().resolve()
         targets = [output / name for name in documents]
         if any(path.exists() for path in targets):

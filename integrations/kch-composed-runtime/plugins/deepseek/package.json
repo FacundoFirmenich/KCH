@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "exports": "./index.mjs",
-  "files": ["index.mjs", "native_bridge.py", "README.md"],
+  "files": ["index.mjs", "native_bridge.py", "prepare_patch.py", "README.md"],
   "engines": {"node": ">=22.19"},
   "peerDependencies": {
     "@deepseek-ai/cordis": "*",

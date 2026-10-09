@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Federation dependencies
+        run: python -m pip install './integrations/kch-composed-runtime[federation]'
       - name: Actual local tools, state, recovery and protocol contracts
         working-directory: integrations/kch-composed-runtime
         env:

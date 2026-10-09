@@ -1,4 +1,4 @@
-# KCH composed runtime 0.1.0
+# KCH composed runtime 0.2.0
 
 An additive execution layer for KCH: durable sessions, an explicit model/tool cycle,
 recoverable memory, SCO execution and typed decision sensors. The existing full KCH
@@ -23,6 +23,8 @@ flowchart TD
     T --> V["Scoped original memory and folds"]
     T --> O["Jev-family typed observations"]
     T --> G["Native KCH exact write gate"]
+    T --> F["Allowlisted original SuperMCP"]
+    J --> P["Evidence-only portable checkpoint"]
     D["DeepSeek native plugin"] --> G
     G --> R["Effect and native receipt"]
 ```
@@ -34,6 +36,15 @@ flowchart TD
   and checked projections. Reusing a call ID with different arguments fails. A call
   left STARTED cannot be repeated automatically. This is conservative recovery, not
   a promise of universal exactly-once external effects.
+- `checkpoint.py` exports only the bound session and scoped original memory. Import
+  archives evidence and optionally materializes selected sources; it never activates
+  source messages, grants, model bindings or pending effects. A sealed outbox reconciles
+  publication across memory and journal databases. See [checkpoints](docs/CHECKPOINTS.md).
+- `federation.py` launches the original SuperMCP and validates its locked governance.
+  Discovery preserves the canonical catalog; an explicit host allowlist, canonical
+  schemas, fixed authority arguments and trusted authorization constrain execution.
+  Four read-only native tools have executed against the 294-tool catalog. Discovery
+  is not verification of every tool. See [federation](docs/FEDERATION.md).
 - `memory.py` retains original bytes, revision/provenance seals, contiguous and nested
   fold manifests, exact unfolding, scoped search, budgeted views and transitive
   invalidation after correction. Folding is an index operation; it is not a learned
@@ -46,17 +57,21 @@ flowchart TD
   receipts. Choice/Score/Noul remain observations with authority NONE. See
   [Jev integration](docs/JEV.md).
 - `plugins/deepseek` invokes the existing KCH hook at DeepSeek's real guard boundary,
-  with source pins and final native receipts. See its own README for launcher patches.
+  with source pins and final native receipts. The SDK launcher now requires the KCH
+  plugin and fails startup when native locks are disabled. See its own README.
 - `mcp.py` exposes only connected tools over newline-delimited stdio JSON-RPC. It is
   an additive server for OpenClaw, QwenPaw, Codex, Cline or another conforming client;
-  host-specific activation must still be verified. See [profiles](profiles/README.md).
+  original OpenClaw/QwenPaw client components have passed real subprocess acceptance.
+  Complete host activation remains separate. See [profiles](profiles/README.md).
 
 ## Run locally
 
-From this directory, no install or dependency download is needed:
+The core uses the standard library. To execute every federation test, install the
+optional original-runtime dependencies from this directory first:
 
 ```sh
 export PYTHONPATH="$PWD/src"
+python -m pip install '.[federation]'
 python -m unittest discover -s tests -v
 python -m kch_composed --help
 ```
@@ -85,6 +100,13 @@ arguments. The native session is a hash of principal/workspace/session, exposed 
 `inspect`, not the bare CLI session name. Overwriting, shell execution and remote
 delivery are not exposed by this package's own loop.
 
+`checkpoint-export --output FILE` creates a scoped portable evidence archive;
+`checkpoint-import --input FILE --source-id ID` imports explicitly selected sources.
+The optional global `--federation-config FILE` connects a host-owned SuperMCP allowlist.
+`federation-discover` reports its actual catalog and exposed subset. Mutation cannot
+be enabled by relabeling a tool as read-only; the CLI supplies no trusted mutation
+authorizer. An embedding host must provide one at the native execution boundary.
+
 For SCO model handlers, order authority must include `MODEL_INFERENCE` and
 `tool:<name>` for each exposed tool. Backend factory, principal and tool selection are
 host-bound. A model's declaration of completion is retained as such; it does not prove
@@ -99,15 +121,18 @@ are not model benchmarks or simulated claims of live inference. DeepSeek tests u
 the original upstream AgentLoop and filesystem tools; their pinned checkout and
 commands are in `plugins/deepseek/README.md`.
 
-The own generative cycle and the SCO model-handler connection require acceptance
-against a real user-selected endpoint; no paid model evaluation was performed here.
-OpenClaw/QwenPaw configuration is prepared and stdio tested, not activated on the
-user's hosts. MCP exposure does not intercept those hosts' other native tools.
+The own generative cycle passed one preregistered local case with official Qwen3-0.6B
+Q8_0 on llama.cpp: actual model-generated read, ingest and recall calls, exact source
+bytes, and reopening a completed session without another request. This is bounded
+integration evidence, not a quality benchmark. See [model acceptance](docs/LIVE_MODEL_ACCEPTANCE.md).
+The SCO model-handler path still needs its own real-model case. Original OpenClaw and
+QwenPaw clients passed discovery, read/denial and memory restart checks; full apps are
+not activated on user hosts. MCP exposure does not intercept unrelated native tools.
 
 Local state can contain exact source material and provider-native reasoning. Place
 it outside source control and bind access to the intended OS user. Hashes detect
 accidental corruption and inconsistent projections, not a malicious owner rewriting
 the whole database and its seals. Shared-machine authentication, hardened sandboxes,
-semantic memory evaluation, automatic compaction policy, cloud deployment and complete
-full-KCH tool federation remain separate integration work. Mechanisms and source
+semantic memory evaluation, automatic compaction policy, cloud deployment and audited
+mutation coverage across the full KCH catalog remain separate integration work. Mechanisms and source
 attribution are listed in [INTEGRATION_MAP.md](INTEGRATION_MAP.md).
