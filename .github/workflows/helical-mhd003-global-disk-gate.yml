@@ -27,8 +27,6 @@ jobs:
       MKL_NUM_THREADS: '1'
       NUMEXPR_NUM_THREADS: '1'
       PIP_DISABLE_PIP_VERSION_CHECK: '1'
-      RAW_WORK: ${{ runner.temp }}/mhd003-raw-work
-      SAFE_OUT: ${{ runner.temp }}/mhd003-safe-evidence
     steps:
       - name: Checkout frozen successor
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
@@ -80,6 +78,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          export RAW_WORK="$RUNNER_TEMP/mhd003-raw-work"
+          export SAFE_OUT="$RUNNER_TEMP/mhd003-safe-evidence"
           rm -rf "$RAW_WORK" "$SAFE_OUT"
           mkdir -p "$RAW_WORK" "$SAFE_OUT"
           python "$RUNNER_TEMP/mhd003_global_disk_gate.py" \
@@ -93,6 +93,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          export RAW_WORK="$RUNNER_TEMP/mhd003-raw-work"
+          export SAFE_OUT="$RUNNER_TEMP/mhd003-safe-evidence"
           rm -rf "$RAW_WORK"
           mkdir -p "$SAFE_OUT"
           if find "$SAFE_OUT" -type f \( -iname '*.csv' -o -iname '*.fits' -o -iname '*.nc' -o -iname '*.parquet' -o -iname '*.part' \) -print -quit | grep -q .; then
@@ -111,6 +113,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          export SAFE_OUT="$RUNNER_TEMP/mhd003-safe-evidence"
           python - <<'PY'
           import hashlib, json, os
           from pathlib import Path
