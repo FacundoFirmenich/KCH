@@ -1,0 +1,71 @@
+{
+  "blind_npz_included": false,
+  "files": [
+    {
+      "bytes": 6588,
+      "path": "ACQUISITION_RECEIPT_V0_10.json",
+      "sha256": "47e866e9d38dad5ac5b5912072550da8ec2c0ed8cbd6db774d9cd11b4dc07db6"
+    },
+    {
+      "bytes": 3361,
+      "path": "BLIND_ELIGIBILITY_RESULT_V0_10.json",
+      "sha256": "acdc974ad10a2e24eac0d3b8f897e22503fed8feb968a39877d505cbc87b5166"
+    },
+    {
+      "bytes": 818,
+      "path": "DIRECTIONAL_UNSEAL_REQUEST_V0_10.json",
+      "sha256": "c6764734ff71a9af653a1c756f49c4c788ceb3b4559736f23160e22edacc93f4"
+    },
+    {
+      "bytes": 1844,
+      "path": "EXTRACTION_RECEIPT_V0_10.json",
+      "sha256": "e732195dd18a512a1d3e4e2053a0f1db71333c10c06c933a440f72903e813b4b"
+    },
+    {
+      "bytes": 2,
+      "path": "GATE_EXIT_CODE.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "bytes": 3968,
+      "path": "GATE_STDERR.txt",
+      "sha256": "5da8df5524d8d478968811a7e32cf0521aa18d05081b9d555fc13bc445f3ae7c"
+    },
+    {
+      "bytes": 1217,
+      "path": "GATE_STDOUT.txt",
+      "sha256": "021aa45e5b4cbcde1c9d2ec0c3bcec3ae833936717eeca7ca6fdbb55bd624ff3"
+    },
+    {
+      "bytes": 649,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "aa118524de8abf327cd33c5b59190d1fadecaec90ede1ff8b035165587e6b7b1"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 2104,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "ef0d2e71801aacb41747b6a98b78fa9ee0883b81e0b320b6b147d0b36b85dd45"
+    },
+    {
+      "bytes": 470,
+      "path": "RUNTIME_ENVIRONMENT.json",
+      "sha256": "940f3a401c74205d69c2325d2b7bc9aa37e9fedfc7855d6ee8e06e77dad2eb78"
+    },
+    {
+      "bytes": 1217,
+      "path": "RUN_RECEIPT_V0_10.json",
+      "sha256": "021aa45e5b4cbcde1c9d2ec0c3bcec3ae833936717eeca7ca6fdbb55bd624ff3"
+    }
+  ],
+  "format": "KCH_HELICAL_V010_SAFE_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "37919577887",
+  "github_sha": "c4be0af53fc1cc5124bab464b7fffa57cfbd8d98",
+  "manifest_id": "h10manifest:d6576b59222f48ba4d8c10f220592b82a0af249c9bfbb524457f203759d79c05",
+  "raw_sources_included": false
+}

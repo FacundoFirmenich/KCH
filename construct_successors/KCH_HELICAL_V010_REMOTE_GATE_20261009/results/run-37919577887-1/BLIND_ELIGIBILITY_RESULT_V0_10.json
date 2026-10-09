@@ -1,0 +1,94 @@
+{
+  "angle_fields_accessed": false,
+  "authority_ceiling": "NONE",
+  "candidate_results": [
+    {
+      "candidate_id": "PARKFIELD_CENTRAL_SAF",
+      "eligible": true,
+      "fault_assignment_coverage": 0.8299019607843138,
+      "quality_and_bbox_count": 28560,
+      "role": "PRIMARY",
+      "time_span_years": 37.680494777188876,
+      "unambiguous_fault_assigned_count": 23702
+    },
+    {
+      "candidate_id": "BAY_AREA_HAYWARD_CALAVERAS",
+      "eligible": true,
+      "fault_assignment_coverage": 0.7594598932627101,
+      "quality_and_bbox_count": 49842,
+      "role": "PRIMARY",
+      "time_span_years": 37.62385075466098,
+      "unambiguous_fault_assigned_count": 37853
+    },
+    {
+      "candidate_id": "MENDOCINO_TRIPLE_JUNCTION",
+      "eligible": false,
+      "fault_assignment_coverage": 0.6501730103806228,
+      "quality_and_bbox_count": 11560,
+      "role": "PRIMARY",
+      "time_span_years": 37.60038106183385,
+      "unambiguous_fault_assigned_count": 7516
+    },
+    {
+      "candidate_id": "NORTHERN_WALKER_LANE",
+      "eligible": false,
+      "fault_assignment_coverage": 0.6312731854133128,
+      "quality_and_bbox_count": 14287,
+      "role": "PRIMARY",
+      "time_span_years": 37.5336067228546,
+      "unambiguous_fault_assigned_count": 9019
+    },
+    {
+      "candidate_id": "GEYSERS_STRESS_CONTROL",
+      "eligible": false,
+      "fault_assignment_coverage": 0.7276268168938742,
+      "quality_and_bbox_count": 119641,
+      "role": "STRESS_CONTROL_NOT_REPLICATION",
+      "time_span_years": 37.623109934064615,
+      "unambiguous_fault_assigned_count": 87054
+    }
+  ],
+  "canonicalization": "BLOCKED",
+  "directional_unsealing_performed": false,
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "execution_authorized": true,
+  "fault_feature_count": 13696,
+  "fault_line_count": 13696,
+  "format": "KCH_HELICAL_V0_10_BLIND_ELIGIBILITY_RESULT",
+  "lineage": {
+    "acquisition_receipt_id": "h10acq:5e6f5ee64028b31cf9f410f24823c5651107e0820fcd36bf0c58ce143de767b3",
+    "direct_pickle_opened_outside_isolation": false,
+    "fault_git_blob_sha1": "fb164770b529695544fa864abe2cc9dd8aa5793d",
+    "fault_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+    "isolated_pickle_boundary": true,
+    "mechanism_bytes": 528904117,
+    "mechanism_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+    "protocol_file_sha256": "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246",
+    "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+    "protocol_semantic_sha256": "99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+    "safe_npz_sha256": "65af73d3ce2de9febf18d53c0d68f25a4224d2bfa79d8cc67cbb58368dd4e2b5"
+  },
+  "model_fitting_performed": false,
+  "outcome": "ELIGIBILITY_PASS",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "scientific_execution_performed": false,
+  "sealed_fields": [
+    "dip",
+    "dip_orig",
+    "ftype",
+    "p_azi",
+    "p_dip",
+    "rake",
+    "rake_orig",
+    "strike",
+    "strike_orig",
+    "t_azi",
+    "t_dip"
+  ],
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ]
+}

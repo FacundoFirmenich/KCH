@@ -1,0 +1,28 @@
+{
+  "authority_ceiling": "NONE",
+  "blind_eligibility_executed": true,
+  "canonicalization": "BLOCKED",
+  "completed_at_utc": "2026-10-09T10:46:52.910937Z",
+  "directional_fields_unsealed": false,
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "exact_fault_bytes_materialized": true,
+  "exact_mechanism_bytes_materialized": true,
+  "exit_code": 0,
+  "format": "KCH_HELICAL_V0_10_REMOTE_GATE_RECEIPT",
+  "model_fitting_performed": false,
+  "outcome": "ELIGIBILITY_PASS",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "protocol_file_sha256": "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "protocol_semantic_sha256": "99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "raw_sources_purged": true,
+  "run_receipt_id": "h10run:066c52307d3df521eb0b0a015de8d5208c455cdaadd25403aa083c5a54396112",
+  "scientific_execution_performed": false,
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ],
+  "started_at_utc": "2026-10-09T10:45:59.438099Z",
+  "version": "0.10.0"
+}

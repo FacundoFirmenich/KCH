@@ -1,0 +1,29 @@
+{
+  "authority_ceiling": "NONE",
+  "directional_unsealing_performed": false,
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "format": "KCH_HELICAL_V0_10_DIRECTIONAL_UNSEAL_REQUEST",
+  "model_fitting_authorized": false,
+  "promotion": "BLOCKED",
+  "request_id": "h10unsealreq:1e886dc0c068df426f52295b860a64948f085a4bdcc16f89a953432c9cc959c0",
+  "requested_fields": [
+    "dip",
+    "dip_orig",
+    "ftype",
+    "p_azi",
+    "p_dip",
+    "rake",
+    "rake_orig",
+    "strike",
+    "strike_orig",
+    "t_azi",
+    "t_dip"
+  ],
+  "requires_new_append_only_successor": true,
+  "requires_new_finite_authority": true,
+  "scientific_interpretation_authorized": false,
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ]
+}
