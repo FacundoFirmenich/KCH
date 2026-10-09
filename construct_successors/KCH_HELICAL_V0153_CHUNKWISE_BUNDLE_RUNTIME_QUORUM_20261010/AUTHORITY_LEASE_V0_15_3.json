@@ -1,0 +1,29 @@
+{
+  "format": "KCH_HELICAL_V0_15_3_FINITE_AUTHORITY_LEASE",
+  "authority_id": "h153auth:chunkwise-base64-decoding-only",
+  "status": "ACTIVE_UNTIL_SINGLE_SUCCESSOR_TERMINATES",
+  "single_use": true,
+  "scope": "HISTORICAL_CODE_ONLY_CHUNKWISE_BASE64_BUNDLE_QUORUM",
+  "source_commit": "e458afe20b8172db5a04194224cf21df5ec00dc4",
+  "predecessor_failed_receipt_id": "h152runtimequorum:fcb759b5a4a39f5009e4ac8e4b8aeb351032cd8f4ba40f9987670fc989627a77",
+  "predecessor_failure": "BASE64_CHUNKS_CONCATENATED_BEFORE_DECODING",
+  "transport_semantics": "STRICT_BASE64_DECODE_EACH_EXACT_GIT_BLOB_THEN_CONCATENATE_DECODED_BYTES",
+  "transport_repair_authorized": false,
+  "byte_insertion_authorized": false,
+  "byte_deletion_authorized": false,
+  "byte_substitution_authorized": false,
+  "scientific_data_access_authorized": false,
+  "scientific_model_execution_authorized": false,
+  "null_runtime_execution_authorized": false,
+  "sealed_test_access_authorized": false,
+  "publication_authority": false,
+  "promotion_authority": false,
+  "canonicalization_authority": false,
+  "retrospective_mutation_authority": false,
+  "terminal_outcomes": [
+    "HISTORICAL_RUNTIME_SOURCE_QUORUM_PASS",
+    "HISTORICAL_RUNTIME_PARTIAL_SOURCE_ONLY",
+    "FAIL_CLOSED_NO_VALID_TRANSPORT",
+    "FAIL_CLOSED"
+  ]
+}
