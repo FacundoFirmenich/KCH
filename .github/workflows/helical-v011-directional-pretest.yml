@@ -1,0 +1,243 @@
+name: KCH Helical v0.11 selected-directional pretest
+
+on:
+  push:
+    branches:
+      - helical-v011-directional-pretest-20261009
+    paths:
+      - "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/**"
+      - ".github/workflows/helical-v011-directional-pretest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v011-directional-pretest-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  directional-pretest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      ROOT: construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009
+      UPSTREAM: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009
+    steps:
+      - name: Checkout finite successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v011-directional-pretest-20261009
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned host geometry stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.1.3 pyproj==3.7.0 shapely==2.0.6
+          mkdir -p "$RUNNER_TEMP/helical-v011/control"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v011/control/PIP_FREEZE.txt"
+
+      - name: Verify code, authority, upstream receipts and frozen protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            "$ROOT/extract_blind_v011.py" \
+            "$ROOT/extract_selected_directional_v011.py" \
+            "$ROOT/helical_v011_directional_pretest.py" \
+            "$UPSTREAM/helical_remote_gate.py" \
+            "$UPSTREAM/helical_public_acquisition.py" \
+            "$UPSTREAM/helical_geometry_adapter.py"
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_11.json" >/dev/null
+          python -m json.tool "$UPSTREAM/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" >/dev/null
+          python -m json.tool "$UPSTREAM/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json" >/dev/null
+          python -m json.tool "$UPSTREAM/results/run-37919577887-1/DIRECTIONAL_UNSEAL_REQUEST_V0_10.json" >/dev/null
+          sha256sum \
+            "$ROOT/AUTHORITY_LEASE_V0_11.json" \
+            "$ROOT/extract_blind_v011.py" \
+            "$ROOT/extract_selected_directional_v011.py" \
+            "$ROOT/helical_v011_directional_pretest.py" \
+            "$UPSTREAM/helical_remote_gate.py" \
+            "$UPSTREAM/helical_public_acquisition.py" \
+            "$UPSTREAM/helical_geometry_adapter.py" \
+            "$UPSTREAM/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            "$UPSTREAM/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json" \
+            "$UPSTREAM/results/run-37919577887-1/DIRECTIONAL_UNSEAL_REQUEST_V0_10.json" \
+            > "$RUNNER_TEMP/helical-v011/control/INPUT_SHA256SUMS.txt"
+
+      - name: Freeze both networkless extraction images before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical-v011"
+          images="$root/images"
+          mkdir -p "$images/blind" "$images/directional"
+          docker pull python:3.11-slim-bookworm
+          base_digest=$(docker image inspect python:3.11-slim-bookworm --format '{{index .RepoDigests 0}}')
+          python -m pip download --only-binary=:all: --no-deps --dest "$images" numpy==2.1.3
+          wheel=$(find "$images" -maxdepth 1 -name 'numpy-*.whl' -type f -print -quit)
+          test -n "$wheel"
+          cp "$wheel" "$images/blind/"
+          cp "$wheel" "$images/directional/"
+          cp "$ROOT/extract_blind_v011.py" "$images/blind/extractor.py"
+          cp "$ROOT/extract_selected_directional_v011.py" "$images/directional/extractor.py"
+          wheel_name=$(basename "$wheel")
+          for kind in blind directional; do
+            cat > "$images/$kind/Dockerfile" <<EOF
+          FROM $base_digest
+          ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONHASHSEED=0
+          COPY $wheel_name /wheels/$wheel_name
+          RUN pip install --no-cache-dir --no-index /wheels/$wheel_name && rm -rf /wheels
+          COPY extractor.py /app/extractor.py
+          ENTRYPOINT ["python", "/app/extractor.py"]
+          EOF
+            docker build --pull=false --network=none \
+              -t "kch-helical-v011-$kind:locked" "$images/$kind"
+          done
+          python - "$root/control/EXTRACTION_IMAGES_LOCK_RECEIPT_V0_11.json" "$base_digest" "$wheel" "$images" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib, json, subprocess, sys
+          output, base, wheel, images = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3]), Path(sys.argv[4])
+          def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          body={
+            "format":"KCH_HELICAL_V0_11_EXTRACTION_IMAGES_LOCK_RECEIPT",
+            "locked_before_source_access":True,
+            "base_image_digest":base,
+            "numpy_wheel_sha256":sha(wheel),
+            "blind_extractor_sha256":sha(images/'blind'/'extractor.py'),
+            "directional_extractor_sha256":sha(images/'directional'/'extractor.py'),
+            "blind_dockerfile_sha256":sha(images/'blind'/'Dockerfile'),
+            "directional_dockerfile_sha256":sha(images/'directional'/'Dockerfile'),
+            "blind_image_id":subprocess.check_output(["docker","image","inspect","--format","{{.Id}}","kch-helical-v011-blind:locked"],text=True).strip(),
+            "directional_image_id":subprocess.check_output(["docker","image","inspect","--format","{{.Id}}","kch-helical-v011-directional:locked"],text=True).strip(),
+            "network_mode_at_execution":"NONE",
+            "root_filesystem_at_execution":"READ_ONLY",
+            "capabilities_at_execution":"ALL_DROPPED",
+            "no_new_privileges_at_execution":True,
+            "locked_at_utc":datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+            "authority_ceiling":"FINITE_DIRECTIONAL_PRETEST_ONLY",
+          }
+          body["receipt_id"]="h11imagelock:"+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          output.write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          PY
+          rm -rf "$images"
+
+      - name: Execute exact selected-directional pretest
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/helical-v011/work"
+          PYTHONPATH="$GITHUB_WORKSPACE/$UPSTREAM:$GITHUB_WORKSPACE/$ROOT" \
+          python "$ROOT/helical_v011_directional_pretest.py" \
+            --protocol "$UPSTREAM/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            --authority "$ROOT/AUTHORITY_LEASE_V0_11.json" \
+            --eligibility-result "$UPSTREAM/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json" \
+            --unseal-request "$UPSTREAM/results/run-37919577887-1/DIRECTIONAL_UNSEAL_REQUEST_V0_10.json" \
+            --workspace "$RUNNER_TEMP/helical-v011/work" \
+            --blind-image kch-helical-v011-blind:locked \
+            --directional-image kch-helical-v011-directional:locked \
+            --timeout 1200 \
+            > "$RUNNER_TEMP/helical-v011/control/GATE_STDOUT.txt" \
+            2> "$RUNNER_TEMP/helical-v011/control/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-v011/control/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/helical-v011/control/GATE_STDOUT.txt"
+          if [[ -s "$RUNNER_TEMP/helical-v011/control/GATE_STDERR.txt" ]]; then
+            cat "$RUNNER_TEMP/helical-v011/control/GATE_STDERR.txt" >&2
+          fi
+          exit 0
+
+      - name: Prove raw, blind, index and directional rows were purged
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v011/work"
+          test ! -e "$work/raw"
+          test ! -e "$work/blind"
+          test ! -e "$work/selection"
+          test ! -e "$work/directional"
+          if find "$work/results" -type f \( -name '*.pickle' -o -name '*.npz' -o -name '*.part' -o -name '*.geojson' \) | grep -q .; then
+            echo "forbidden row-level or raw artifact reached safe results" >&2
+            exit 91
+          fi
+
+      - name: Persist aggregate receipts append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          destination="$ROOT/results/run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$destination"
+          cp -a "$RUNNER_TEMP/helical-v011/work/results/." "$destination/"
+          cp -a "$RUNNER_TEMP/helical-v011/control/." "$destination/"
+          find "$destination" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$destination/RESULT_SHA256SUMS.txt"
+          python - "$destination" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+          destination=Path(sys.argv[1])
+          rows=[]
+          for path in sorted(item for item in destination.rglob('*') if item.is_file() and item.name != 'RESULT_MANIFEST.json'):
+              body=path.read_bytes()
+              rows.append({"path":path.relative_to(destination).as_posix(),"bytes":len(body),"sha256":hashlib.sha256(body).hexdigest()})
+          manifest={
+              "format":"KCH_HELICAL_V0_11_SAFE_RESULT_MANIFEST",
+              "github_run_id":os.environ["GITHUB_RUN_ID"],
+              "github_run_attempt":os.environ["GITHUB_RUN_ATTEMPT"],
+              "github_sha":os.environ["GITHUB_SHA"],
+              "raw_sources_included":False,
+              "blind_rows_included":False,
+              "selected_indices_included":False,
+              "directional_rows_included":False,
+              "sealed_test_scores_included":False,
+              "files":rows,
+          }
+          manifest["manifest_id"]="h11manifest:"+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (destination/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          PY
+          git config user.name "kch-helical-directional-pretest"
+          git config user.email "kch-helical-directional-pretest@users.noreply.github.com"
+          git add "$destination"
+          if git diff --cached --quiet; then
+            echo "No new receipts to persist"
+          else
+            git commit -m "record helical v0.11 directional pretest receipts [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload aggregate receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v011-directional-pretest-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}/results/run-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate after immutable receipt persistence
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0)  echo "DIRECTIONAL_MATERIALIZATION_PASS: parent-graph successor may be separately authorized; sealed test remains untouched" ;;
+            30) echo "LEGITIMATE_NOT_IDENTIFIABLE_MECHANISM_COVERAGE: stop without model fit" ;;
+            *)  echo "DIRECTIONAL_PRETEST_FAILED_CLOSED with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
