@@ -1,0 +1,76 @@
+{
+  "authorized_mutation": "ONE_UNIQUE_SHA256_LOCKED_BASE64_INSERTION_IN_CHUNK_01_ONLY",
+  "canonical_repair_source_git_blob_sha1": "e0d7b4fa396ed90ce5f6cdc31d1f574baa714185",
+  "files": [
+    {
+      "bytes": 3,
+      "path": "receipts/GATE_EXIT_CODE.txt",
+      "sha256": "f4ccd05b3271c386ee55d9876c7450012a3b361e5065c09dc22075e38b3cc35c"
+    },
+    {
+      "bytes": 0,
+      "path": "receipts/GATE_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 10791,
+      "path": "receipts/GATE_STDOUT.txt",
+      "sha256": "e61d831435711cb0e61f1aed96004b7aa4b963162939980b17e946875bca4305"
+    },
+    {
+      "bytes": 10791,
+      "path": "receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_4.json",
+      "sha256": "e61d831435711cb0e61f1aed96004b7aa4b963162939980b17e946875bca4305"
+    },
+    {
+      "bytes": 1127,
+      "path": "receipts/INPUT_SHA256SUMS.txt",
+      "sha256": "1111a38b2712fe7b3047c3744d2aeec29ec558e1f067f28a53a34d0de1fa68ea"
+    },
+    {
+      "bytes": 1215,
+      "path": "receipts/RECOVERED_CODE_SHA256SUMS.txt",
+      "sha256": "b206699171d0b549100d2dc17b8ea99b89d84377c39760fb27a2ba49c2b699ee"
+    },
+    {
+      "bytes": 236439,
+      "path": "recovered_runtime/prelock/POWER_ANALYSIS_PRELOCK.json",
+      "sha256": "477bdaea6f42d88352b12479e40a4d125460bbee7f751969c95dfd8c46a07555"
+    },
+    {
+      "bytes": 60856,
+      "path": "recovered_runtime/prelock/V0_5_DEVELOPMENT_REPLAY.json",
+      "sha256": "11b2d5e32dc7f7c12be9de1dbe33bf42e853b74cdec4523153f9a8f30dd39490"
+    },
+    {
+      "bytes": 74872,
+      "path": "recovered_runtime/runtime/helical_v06.py",
+      "sha256": "a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6"
+    },
+    {
+      "bytes": 5695,
+      "path": "recovered_runtime/runtime/power_v06.py",
+      "sha256": "c6c354ff1a3c979352390581dcf403060bcd13f658382196fa5a44d413d1e5d9"
+    },
+    {
+      "bytes": 7199,
+      "path": "recovered_runtime/spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json",
+      "sha256": "d1dbd521c3b58a27723d25aef5482bc44cd7fde9bbce78d038cffac3f4a30d1d"
+    },
+    {
+      "bytes": 900,
+      "path": "recovered_runtime/spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCK_RECEIPT.json",
+      "sha256": "0da6598250888506cc04df4d88a40431dace9fcd13d5b35366c8ca684d2c25cd"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_15_4_CODE_ONLY_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38004292842",
+  "github_sha": "b99ef84d6892ec986faf7df71467cf551d905ab0",
+  "manifest_id": "h154manifest:9f30c71dfce5fdc86e982dce527058350fcde98d78f12ab43f16ab4e445d8b45",
+  "scientific_data_included": false,
+  "scientific_result_included": false,
+  "sealed_test_values_included": false,
+  "source_commit": "e458afe20b8172db5a04194224cf21df5ec00dc4",
+  "target_chunk_locked_sha256": "361626dd19369a518a8ea1d3754ad33bebd35689442607cb2996e4f95f10f593"
+}

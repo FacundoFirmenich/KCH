@@ -1,0 +1,206 @@
+{
+  "acquisition_contract": {
+    "accept_encoding": "identity",
+    "all_or_none": true,
+    "follow_and_record_redirects": true,
+    "hash": "SHA-256",
+    "no_dataset_substitution": true,
+    "preserve_exact_entity_body": true,
+    "reject_html": true,
+    "reject_nul_bytes": true,
+    "strict_utf8_for_text_catalogs": true,
+    "tar_member_selection": "highest valid relocated 25-field row count then lexicographic member name",
+    "transport": "HTTPS"
+  },
+  "aggregate_adjudication": {
+    "positive_unit_definition": "all per-unit gates pass after Holm correction",
+    "replication_required": "at least two positive catalogs and weighted RMSE improvement >= minimum",
+    "single_positive_outcome": "LOCAL_HELICITY_SINGLE_CATALOG_ONLY",
+    "zero_positive_outcome": "NONHELICAL_CURVED_RIBBON_RIVALS_GENERALIZE"
+  },
+  "authority_ceiling": "NONE",
+  "bootstrap": {
+    "method": "moving block bootstrap of held-out paired squared-error gain",
+    "replicates": 499
+  },
+  "canonicalization": "BLOCKED",
+  "confirmatory_eligibility_on_v0_5_catalogs": false,
+  "decision": {
+    "familywise_alpha": 0.05,
+    "maximum_fit_delta_bic": -10.0,
+    "minimum_mean_nll_gain": 0.02,
+    "minimum_positive_catalogs": 2,
+    "minimum_rmse_improvement": 0.05,
+    "physical_helicity_claim": "NOT_AUTHORIZED"
+  },
+  "derived_after_observing_v0_5": true,
+  "firewall": [
+    "CURRENT_V0_5_FOUR_CATALOGS_NOT_CONFIRMATORY_ELIGIBLE",
+    "LOCK_BEFORE_DOWNLOADING_ANY_V0_6_SOURCE_BYTES",
+    "NO_THRESHOLD_RELAXATION_AFTER_ACQUISITION",
+    "NO_PHYSICAL_HELICITY_CLAIM_FROM_STATIC_EVENT_CLOUDS",
+    "ALL_ADVERSE_RESULTS_PRESERVED",
+    "NO_LATENT_BRANCH_SPLITTING_WITHIN_SELECTED_OFFICIAL_CLUSTER",
+    "NO_SOURCE_BYTES_ACQUIRED_BEFORE_THIS_LOCK",
+    "NO_GMM_BRANCH_DISCOVERY_WITHIN_SELECTED_OFFICIAL_CLUSTER",
+    "NO_REUSE_OF_V0_5_CATALOGS_AS_V0_6_CONFIRMATION",
+    "NO_POSTHOC_SOURCE_REPLACEMENT",
+    "NO_POSTHOC_THRESHOLD_OR_GRID_CHANGE"
+  ],
+  "format": "KCH_HELICAL_V0_6_LOCAL_PIECEWISE_PROTOCOL",
+  "identifiability": {
+    "max_design_condition": 10000000.0,
+    "min_branch_axis_ratio": 1.2,
+    "min_branch_fit": 60,
+    "min_branch_train": 60,
+    "min_segment_fit": 30,
+    "min_segment_train": 30,
+    "min_supported_test": 40
+  },
+  "locked_at_utc": "2026-09-27T01:44:51.945745Z",
+  "model_grid": {
+    "baseline_families": [
+      "POLY0",
+      "POLY1",
+      "POLY2",
+      "SPLINE4",
+      "SPLINE6"
+    ],
+    "branch_selector": "one official relocation cluster per unit; no latent internal branching inferred",
+    "global_reference": "ONE segment with branch_count selected independently of helicity",
+    "max_branches": 1,
+    "piecewise_model": "elliptical sinusoidal residual correction per branch and axial segment",
+    "segment_schemes": [
+      "ONE",
+      "TWO_EQUAL",
+      "THREE_EQUAL"
+    ],
+    "selection_penalty_weight": 0.05,
+    "turns_per_segment": [
+      1.25,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      4.0
+    ]
+  },
+  "null_test": {
+    "method": "within-branch circular shift of baseline residuals against frozen helical correction on held-out test",
+    "permutations": 199
+  },
+  "power_analysis": {
+    "branch_scenarios": [
+      1
+    ],
+    "effect_scales_km": [
+      0.0,
+      0.2,
+      0.3,
+      0.4,
+      0.6
+    ],
+    "replicates_per_cell": 30,
+    "required_max_false_positive_rate": 0.05,
+    "required_power_at_or_above": 0.8,
+    "sample_sizes": [
+      400,
+      800,
+      1600
+    ],
+    "seed": 261000,
+    "target_effect_scale_km": 0.4,
+    "target_minimum_n": 800,
+    "v0_5_catalogs_role": "development_and_power_only"
+  },
+  "prelock_evidence": {
+    "development_replay_on_v0_5_sha256": "11b2d5e32dc7f7c12be9de1dbe33bf42e853b74cdec4523153f9a8f30dd39490",
+    "development_replay_role": "MODEL_ENGINEERING_AND_FALSE_RESCUE_CHECK_ONLY",
+    "higher_n_target_cell": {
+      "effect_scale_km": 0.4,
+      "n": 1600,
+      "pass_rate": 1.0,
+      "passes": 30,
+      "replicates": 30
+    },
+    "null_passes_total": 0,
+    "null_replicates_total": 90,
+    "power_analysis_runtime_sha256": "c6c354ff1a3c979352390581dcf403060bcd13f658382196fa5a44d413d1e5d9",
+    "power_analysis_sha256": "477bdaea6f42d88352b12479e40a4d125460bbee7f751969c95dfd8c46a07555",
+    "target_power_cell": {
+      "effect_scale_km": 0.4,
+      "n": 800,
+      "pass_rate": 0.9666666666666667,
+      "passes": 29,
+      "replicates": 30
+    }
+  },
+  "promotion": "BLOCKED",
+  "protocol_id": "h6p:144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c",
+  "protocol_sha256": "144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c",
+  "random_seed": 260927,
+  "scientific_question": "Do local or piecewise helical residuals generalize beyond curved nonhelical ribbons within an official relocation cluster?",
+  "scope": {
+    "authorized_claim": "predictive geometric residual structure only",
+    "branch_network_claim": "DEFERRED_REQUIRES_FAULT_TOPOLOGY_INFORMATION",
+    "dynamic_trajectory_claim": "NOT_AUTHORIZED",
+    "object": "static relocated earthquake event clouds",
+    "physical_helicity_claim": "NOT_AUTHORIZED"
+  },
+  "software": {
+    "core_runtime_sha256": "a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6",
+    "power_runtime_sha256": "c6c354ff1a3c979352390581dcf403060bcd13f658382196fa5a44d413d1e5d9",
+    "required_packages": {
+      "numpy": "2.1.3",
+      "scikit-learn": "1.5.2"
+    },
+    "required_python": "3.11.x"
+  },
+  "sources": [
+    {
+      "catalog_id": "CAHUILLA_SWARM_2016_2019",
+      "official_page": "https://scedc.caltech.edu/data/cahuilla-swarm.html",
+      "parser": "GROWCLUST25",
+      "relative_path": "sources/CAHUILLA_SWARM_2016_2019/out.growclust_cat",
+      "url": "https://service.scedc.caltech.edu/ftp/cahuilla_swarm/out.growclust_cat"
+    },
+    {
+      "catalog_id": "RIDGECREST_QTM_2019",
+      "official_page": "https://scedc.caltech.edu/data/qtm-ridgecrest.html",
+      "parser": "GROWCLUST25_TAR_GZ",
+      "relative_path": "sources/RIDGECREST_QTM_2019/ridgecrest_qtm.tar.gz",
+      "url": "https://service.scedc.caltech.edu/ftp/QTMcatalog-ridgecrest/ridgecrest_qtm.tar.gz"
+    },
+    {
+      "catalog_id": "CALMEX_BORDER_2012_2020",
+      "official_page": "https://scedc.caltech.edu/data/calmex.html",
+      "parser": "HYPODD24",
+      "relative_path": "sources/CALMEX_BORDER_2012_2020/out.hypoDD.reloc",
+      "url": "https://service.scedc.caltech.edu/ftp/calmex/out.hypoDD.reloc"
+    }
+  ],
+  "split": {
+    "calibration_fraction": 0.25,
+    "ordering": "origin_time_non_decreasing",
+    "test_fraction": 0.25,
+    "train_fraction": 0.5
+  },
+  "status": "LOCKED_BEFORE_V0_6_SOURCE_BYTE_ACQUISITION",
+  "support_overlap": {
+    "definition": "test nearest-fit distance <= multiplier * train q95 6NN distance",
+    "minimum_fraction": 0.8,
+    "radius_multiplier": 2.5
+  },
+  "uncertainty": {
+    "minimum_threshold_pass_fraction": 0.8,
+    "replicates": 32,
+    "seed": 260928
+  },
+  "unit_selection": {
+    "maximum_events_per_unit": 2500,
+    "minimum_cluster_events": 250,
+    "rule": "largest_cluster_ge_min_events_then_cluster_id; otherwise full catalog",
+    "subsample": "uniform chronological indices preserving endpoints"
+  },
+  "version": "0.6.0"
+}

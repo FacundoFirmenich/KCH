@@ -1,0 +1,14 @@
+{
+  "authority_ceiling": "NONE",
+  "development_replay_sha256": "11b2d5e32dc7f7c12be9de1dbe33bf42e853b74cdec4523153f9a8f30dd39490",
+  "format": "KCH_HELICAL_V0_6_PROTOCOL_LOCK_RECEIPT",
+  "lock_precedes_v0_6_source_byte_acquisition": true,
+  "lock_receipt_id": "h6l:07229565adfdf87f3fe90784831e473a694c2a45237f50c7ccd0c2b864fadc01",
+  "locked_at_utc": "2026-09-27T01:44:51.945745Z",
+  "power_analysis_sha256": "477bdaea6f42d88352b12479e40a4d125460bbee7f751969c95dfd8c46a07555",
+  "protocol_body_sha256": "144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c",
+  "protocol_file_sha256": "d1dbd521c3b58a27723d25aef5482bc44cd7fde9bbce78d038cffac3f4a30d1d",
+  "protocol_id": "h6p:144c4aef47e8b9a88b2c74a92fae66a251581b5dd67295caaa4da6cef6e0827c",
+  "runtime_sha256": "a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6",
+  "source_bytes_present_in_local_build_at_lock": false
+}

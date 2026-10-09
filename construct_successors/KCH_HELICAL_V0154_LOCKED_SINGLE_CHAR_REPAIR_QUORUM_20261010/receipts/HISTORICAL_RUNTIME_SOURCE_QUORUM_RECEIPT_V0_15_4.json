@@ -1,0 +1,326 @@
+{
+  "archive_member_count": 6,
+  "archive_members": [
+    {
+      "bytes": 236439,
+      "crc32": "9036cffb",
+      "path": "prelock/POWER_ANALYSIS_PRELOCK.json"
+    },
+    {
+      "bytes": 60856,
+      "crc32": "c561c55e",
+      "path": "prelock/V0_5_DEVELOPMENT_REPLAY.json"
+    },
+    {
+      "bytes": 74872,
+      "crc32": "72a7ae74",
+      "path": "runtime/helical_v06.py"
+    },
+    {
+      "bytes": 5695,
+      "crc32": "1c392800",
+      "path": "runtime/power_v06.py"
+    },
+    {
+      "bytes": 7199,
+      "crc32": "6e058099",
+      "path": "spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json"
+    },
+    {
+      "bytes": 900,
+      "crc32": "3aa07477",
+      "path": "spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCK_RECEIPT.json"
+    }
+  ],
+  "archive_type": "zip",
+  "authority_ceiling": "HISTORICAL_CODE_ONLY_LOCKED_SINGLE_BASE64_CHARACTER_REPAIR_QUORUM",
+  "authority_consumed": true,
+  "authority_id": "h154auth:locked-single-base64-character-repair-only",
+  "authority_terminal_status": "CONSUMED_SUCCESS",
+  "canonical_repair_source": {
+    "bytes": 3572,
+    "git_blob_sha1": "e0d7b4fa396ed90ce5f6cdc31d1f574baa714185",
+    "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/canonical_repair_single_missing_base64_char.py",
+    "sha256": "dcfcde6271524839161f6eeb95509343bcdba08574c677e806860c36b9023857"
+  },
+  "canonicalization": "BLOCKED",
+  "completed_at_utc": "2026-10-09T23:25:09.875249Z",
+  "decoded_archive_bytes": 63907,
+  "decoded_archive_first_32_hex": "504b030414000000080000002100fbcf36908d670000979b0300230000007072",
+  "decoded_archive_last_32_hex": "43454950542e6a736f6e504b05060000000006000600ef0100009ef700000000",
+  "decoded_archive_sha256": "f8de0cff7dd03431a815fbe88da88c57a942d58f6e2f3bfd789f31af810c3b40",
+  "definitions_by_file": {
+    "runtime/helical_v06.py": [
+      "BasisModel",
+      "BranchBaseline",
+      "BranchFrame",
+      "BranchHelix",
+      "CoordinateFrame",
+      "EventCloud",
+      "FittedConfiguration",
+      "SegmentCorrection",
+      "__len__",
+      "_aggregate_model_metrics",
+      "_branch_axis_ratio",
+      "_covariance",
+      "_deterministic_basis",
+      "_dt_to_seconds",
+      "_fit_linear",
+      "_fixed_prediction_arrays",
+      "_mae_radial",
+      "_nll",
+      "_parse_second",
+      "_power_pass",
+      "_predict_labels",
+      "_rmse",
+      "_safe_float",
+      "_segment_bounds",
+      "_segment_mask",
+      "adjudicate_units",
+      "audit_cloud",
+      "baseline_predict",
+      "canonical_bytes",
+      "circular_shift_pvalue",
+      "content_id",
+      "evaluate_unit_once",
+      "extract_growclust_from_tar",
+      "fit_baseline_for_family",
+      "fit_branch_frames",
+      "fit_branch_helix",
+      "fit_coordinate_frame",
+      "fit_gmm_candidates",
+      "fit_transform",
+      "gmm_parameter_count",
+      "helix_correction",
+      "holm_adjust",
+      "load_source",
+      "main",
+      "make_basis",
+      "make_time_split",
+      "moving_block_bootstrap_ci",
+      "parse_growclust25",
+      "parse_growclust25_text",
+      "parse_hypodd24",
+      "project_to_branch",
+      "protocol_body_sha256",
+      "refit_selected_configuration",
+      "run_gate",
+      "run_power_analysis",
+      "select_configuration",
+      "select_largest_eligible_cluster",
+      "sha256_bytes",
+      "sha256_file",
+      "subset",
+      "support_mask",
+      "synthetic_cloud",
+      "to_local_xyz",
+      "transform",
+      "uncertainty_stability",
+      "wilson_interval",
+      "write_json"
+    ],
+    "runtime/power_v06.py": [
+      "main",
+      "summarize",
+      "worker"
+    ]
+  },
+  "exit_code": 30,
+  "format": "KCH_HELICAL_V0_15_4_LOCKED_SINGLE_CHAR_REPAIR_RUNTIME_QUORUM_RECEIPT",
+  "historical_identity_claim": "EXACT_V0_6_LARGE_BUNDLE_WITH_CANONICAL_SHA256_LOCKED_SINGLE_CHAR_TRANSPORT_REPAIR_NOT_V0_8_4_IDENTITY",
+  "imports_by_file": {
+    "runtime/helical_v06.py": [
+      "__future__",
+      "argparse",
+      "csv",
+      "dataclasses",
+      "datetime",
+      "hashlib",
+      "io",
+      "json",
+      "math",
+      "numpy",
+      "numpy.typing",
+      "os",
+      "pathlib",
+      "random",
+      "sklearn.linear_model",
+      "sklearn.mixture",
+      "sklearn.neighbors",
+      "sklearn.preprocessing",
+      "tarfile",
+      "typing"
+    ],
+    "runtime/power_v06.py": [
+      "__future__",
+      "argparse",
+      "concurrent.futures",
+      "helical_v06",
+      "json",
+      "math",
+      "numpy",
+      "os",
+      "pathlib",
+      "sys",
+      "typing"
+    ]
+  },
+  "locked_repair_receipt": {
+    "data_acquired_before_repair": false,
+    "expected_bytes": 18000,
+    "expected_sha256": "361626dd19369a518a8ea1d3754ad33bebd35689442607cb2996e4f95f10f593",
+    "format": "KCH_SINGLE_MISSING_BASE64_CHAR_TRANSPORT_REPAIR_RECEIPT_V1",
+    "input_path": "/home/runner/work/KCH/KCH/construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/kch-helical-v0154-4bgodllm/chunk_01.locked-repair.input",
+    "insertion_performed": true,
+    "observed_bytes_after": 18000,
+    "observed_bytes_before": 17999,
+    "observed_sha256_after": "361626dd19369a518a8ea1d3754ad33bebd35689442607cb2996e4f95f10f593",
+    "observed_sha256_before": "d85d58587f9d99df8e1d06096343a2298cbe31cf0f229334f39240218fcfefe9",
+    "process_returncode": 0,
+    "process_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "process_stdout_sha256": "e4fe9e64bb6e436037a66d82c97b5035f371686c4d4f1933c273a677dfab3342",
+    "protocol_changed": false,
+    "receipt_id": "h6t:bcaee4e0e9a16084dabd694c11135b97dd1b3030f95b842464e3beb85663ad02",
+    "recovered_character": "J",
+    "recovered_position": 7145,
+    "repaired_at_utc": "2026-10-09T23:24:57.060407Z",
+    "scientific_runtime_changed": false,
+    "status": "RECOVERED_EXACT_LOCKED_CHUNK",
+    "thresholds_changed": false
+  },
+  "normalized_base64_bytes_after_repair": 85212,
+  "normalized_base64_sha256_after_repair": "27a5d77456219fade65254b3bd7f5518726c7c31a246d6469054b5c683e039b9",
+  "null_runtime_execution_performed": false,
+  "outcome": "HISTORICAL_RUNTIME_PARTIAL_SOURCE_ONLY",
+  "persisted_code_file_count": 6,
+  "persisted_code_files": [
+    {
+      "bytes": 236439,
+      "path": "prelock/POWER_ANALYSIS_PRELOCK.json",
+      "sha256": "477bdaea6f42d88352b12479e40a4d125460bbee7f751969c95dfd8c46a07555",
+      "suffix": ".json"
+    },
+    {
+      "bytes": 60856,
+      "path": "prelock/V0_5_DEVELOPMENT_REPLAY.json",
+      "sha256": "11b2d5e32dc7f7c12be9de1dbe33bf42e853b74cdec4523153f9a8f30dd39490",
+      "suffix": ".json"
+    },
+    {
+      "bytes": 74872,
+      "path": "runtime/helical_v06.py",
+      "sha256": "a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6",
+      "suffix": ".py"
+    },
+    {
+      "bytes": 5695,
+      "path": "runtime/power_v06.py",
+      "sha256": "c6c354ff1a3c979352390581dcf403060bcd13f658382196fa5a44d413d1e5d9",
+      "suffix": ".py"
+    },
+    {
+      "bytes": 7199,
+      "path": "spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json",
+      "sha256": "d1dbd521c3b58a27723d25aef5482bc44cd7fde9bbce78d038cffac3f4a30d1d",
+      "suffix": ".json"
+    },
+    {
+      "bytes": 900,
+      "path": "spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCK_RECEIPT.json",
+      "sha256": "0da6598250888506cc04df4d88a40431dace9fcd13d5b35366c8ca684d2c25cd",
+      "suffix": ".json"
+    }
+  ],
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_failed_receipt_id": "h153runtimequorum:7e12205dbf3a006d671db9b5b98a7cf9e2cd01d61e58b939f5f8d76905eadbe0",
+  "promotion": "BLOCKED",
+  "python_compile_pass": true,
+  "python_file_count": 2,
+  "receipt_id": "h154runtimequorum:390e837ffa24cede138ce4fd41267be079ae8f7816ea38f03f9d4c55dd4dbed7",
+  "required_symbol_count": 18,
+  "required_symbol_locations": {
+    "write_json": [
+      "runtime/helical_v06.py"
+    ]
+  },
+  "required_symbols_found": [
+    "write_json"
+  ],
+  "required_symbols_missing": [
+    "circular_distance_degrees",
+    "compute_parent_state",
+    "draw_static_fields",
+    "eval_intensity",
+    "head_to_normal",
+    "make_rewired_null",
+    "moving_block_resample",
+    "permute_within_bins",
+    "posterior_mark_expectations",
+    "propagate_mechanism_uncertainty",
+    "reflected_rake",
+    "rewire_parent_graph",
+    "score_null_metrics",
+    "seeded_rng",
+    "simulate_catalog",
+    "simulate_nonhelical_fixed_parent_weights",
+    "static_logodds"
+  ],
+  "scientific_data_accessed": false,
+  "scientific_model_execution_performed": false,
+  "sealed_test_accessed": false,
+  "skipped_member_count": 0,
+  "skipped_members": [],
+  "source_chunks": [
+    {
+      "bytes_before": 18000,
+      "git_blob_sha1": "b3223afa0400d89c82930609be872190dc295b36",
+      "is_repair_target": false,
+      "ordinal": 0,
+      "path": ".github/helical_v06_bundle/chunk_00",
+      "sha256_before": "943bb9c5089baad111bc72361ae758de9c4476f7f27a947114d8c223f318e164"
+    },
+    {
+      "bytes_after": 18000,
+      "bytes_before": 17999,
+      "git_blob_sha1": "7342fb7b130bafb07cfe0151a5cbd7d45bebdad1",
+      "is_repair_target": true,
+      "ordinal": 1,
+      "path": ".github/helical_v06_bundle/chunk_01",
+      "recovered_character": "J",
+      "recovered_position": 7145,
+      "repair_receipt_id": "h6t:bcaee4e0e9a16084dabd694c11135b97dd1b3030f95b842464e3beb85663ad02",
+      "sha256_after": "361626dd19369a518a8ea1d3754ad33bebd35689442607cb2996e4f95f10f593",
+      "sha256_before": "d85d58587f9d99df8e1d06096343a2298cbe31cf0f229334f39240218fcfefe9"
+    },
+    {
+      "bytes_before": 18000,
+      "git_blob_sha1": "932a0bf8c4a12ace6f5798a4c7ac94ac63d56fdc",
+      "is_repair_target": false,
+      "ordinal": 2,
+      "path": ".github/helical_v06_bundle/chunk_02",
+      "sha256_before": "e08c372ad07335f1f13b3873a6c24b97e70753ed5004fd34f0464797264e0c56"
+    },
+    {
+      "bytes_before": 18000,
+      "git_blob_sha1": "47b0fcbcb291d2c8e4fb77fd458a66abe0bf5c0b",
+      "is_repair_target": false,
+      "ordinal": 3,
+      "path": ".github/helical_v06_bundle/chunk_03",
+      "sha256_before": "24af63d98d2a16da2406c70483e99d5b662b19396e1e19cf8c1f35788f280151"
+    },
+    {
+      "bytes_before": 13212,
+      "git_blob_sha1": "ad7b938a60c27eda9e1ec0d6ef34954990063e91",
+      "is_repair_target": false,
+      "ordinal": 4,
+      "path": ".github/helical_v06_bundle/chunk_04",
+      "sha256_before": "55bd949763e5586360da0ed2296f0e674bc6de796e3bde50db7eab05758d3b9c"
+    }
+  ],
+  "source_commit": "e458afe20b8172db5a04194224cf21df5ec00dc4",
+  "started_at_utc": "2026-10-09T23:24:57.018673Z",
+  "transport_repair_authorized": true,
+  "transport_repair_scope": "ONE_SHA256_LOCKED_BASE64_INSERTION_IN_CHUNK_01_ONLY",
+  "transported_base64_bytes_after_repair": 85212,
+  "transported_base64_sha256_after_repair": "27a5d77456219fade65254b3bd7f5518726c7c31a246d6469054b5c683e039b9"
+}
