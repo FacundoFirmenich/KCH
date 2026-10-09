@@ -1,0 +1,103 @@
+--- ACQUIRE_EXACT_SOURCES_V0_9.py
++++ ACQUIRE_EXACT_SOURCES_V0_9.py
+@@ -29,12 +29,16 @@
+     write_json_atomic,
+ )
+ 
+-FORMAT = "KCH_HELICAL_V0_9_TRANSACTIONAL_EXACT_BYTE_ACQUISITION"
++FORMAT = "KCH_HELICAL_V0_10_PUBLIC_ROUTE_TRANSACTIONAL_EXACT_BYTE_ACQUISITION"
+ DATASET_ID = "2np9vw5v7w"
+ VERSION = 2
+ DOI = "10.17632/2np9vw5v7w.2"
+ REQUIRED_BASENAME = "focmec_ca_final.pickle"
+-SNAPSHOT_URL = f"https://api.data.mendeley.com/datasets/{DATASET_ID}?version={VERSION}"
++PUBLIC_API_BASE = "https://data.mendeley.com/public-api"
++SNAPSHOT_URL = f"{PUBLIC_API_BASE}/datasets/{DATASET_ID}?version={VERSION}"
++FILES_URL = f"{PUBLIC_API_BASE}/datasets/{DATASET_ID}/files?" + urllib.parse.urlencode(
++    {"folder_id": "root", "version": VERSION, "$start": 0, "$limit": 1000}
++)
+ FAULT_REPOSITORY = "GEMScienceTools/gem-global-active-faults"
+ FAULT_COMMIT = "56816508ad92fd6846dad1163b1c8c01376a2cd1"
+ FAULT_PATH = "geojson/gem_active_faults_harmonized.geojson"
+@@ -107,7 +111,7 @@
+         headers={
+             "Accept": accept,
+             "Accept-Encoding": "identity",
+-            "User-Agent": "KCH-KwanBlocks-Helical-Lift/0.9 exact-byte transport",
++            "User-Agent": "KCH-KwanBlocks-Helical-Lift/0.10 exact-byte transport",
+         },
+     )
+     started = time.monotonic()
+@@ -183,7 +187,7 @@
+     headers = {
+         "Accept": accept,
+         "Accept-Encoding": "identity",
+-        "User-Agent": "KCH-KwanBlocks-Helical-Lift/0.9 resumable exact-byte transport",
++        "User-Agent": "KCH-KwanBlocks-Helical-Lift/0.10 resumable exact-byte transport",
+     }
+     if resumed_from:
+         headers["Range"] = f"bytes={resumed_from}-"
+@@ -275,7 +279,7 @@
+         if isinstance(node, dict):
+             for key, child in node.items():
+                 k = str(key).lower()
+-                if k in {"sha256", "sha_256", "checksum_sha256"} and isinstance(child, str):
++                if k in {"sha256", "sha_256", "checksum_sha256", "sha256_hash"} and isinstance(child, str):
+                     normalized = child.lower().removeprefix("sha256:")
+                     if len(normalized) == 64 and all(ch in "0123456789abcdef" for ch in normalized):
+                         candidates.append(normalized)
+@@ -302,7 +306,8 @@
+     mechanism = directory / REQUIRED_BASENAME
+     fault = directory / FAULT_BASENAME
+     snapshot = directory / "mendeley_dataset_snapshot_v2.json"
+-    if not all(path.is_file() for path in (receipt_path, mechanism, fault, snapshot)):
++    file_list = directory / "mendeley_public_file_list_v2.json"
++    if not all(path.is_file() for path in (receipt_path, mechanism, fault, snapshot, file_list)):
+         return None
+     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+     if receipt.get("outcome") != "EXACT_BYTE_ACQUISITION_PASS" or receipt.get("all_or_none_pass") is not True:
+@@ -318,7 +323,7 @@
+ 
+ 
+ def main() -> int:
+-    parser = argparse.ArgumentParser(description="Transactional, resumable, exact-byte acquisition for the locked v0.8 scientific protocol")
++    parser = argparse.ArgumentParser(description="Transactional public-route exact-byte acquisition successor for the locked v0.8 scientific protocol")
+     parser.add_argument("--workspace", required=True, type=Path)
+     parser.add_argument("--execute-network", action="store_true", help="Required explicit flag; otherwise the command is effect-free")
+     parser.add_argument("--timeout-seconds", type=int, default=300)
+@@ -386,24 +391,61 @@
+ 
+     staging: Path | None = None
+     try:
+-        metadata_bytes, metadata_receipt = request_bytes(
++        dataset_bytes, dataset_receipt = request_bytes(
+             SNAPSHOT_URL,
+-            accept="application/vnd.mendeley-public-dataset.1+json,application/json",
++            accept="application/json",
++            timeout_seconds=args.timeout_seconds,
++        )
++        snapshot = json.loads(dataset_bytes.decode("utf-8"))
++        observed_doi = snapshot.get("doi", {})
++        if isinstance(observed_doi, dict):
++            observed_doi = observed_doi.get("id")
++        if (
++            snapshot.get("id") != DATASET_ID
++            or int(snapshot.get("version", -1)) != VERSION
++            or observed_doi != DOI
++            or snapshot.get("available") is not True
++        ):
++            raise RuntimeError("public dataset snapshot identity does not match the frozen dataset/version/DOI")
++
++        file_list_bytes, file_list_receipt = request_bytes(
++            FILES_URL,
++            accept="application/json",
+             timeout_seconds=args.timeout_seconds,
+         )
+-        snapshot = json.loads(metadata_bytes.decode("utf-8"))
+-        files = walk_files(snapshot)
+-        matches = [row for row in files if Path(row["filename"]).name == REQUIRED_BASENAME]
++        public_files = json.loads(file_list_bytes.decode("utf-8"))
++        if not isinstance(public_files, list):
++            raise RuntimeError("public file-list response is not a JSON list")
++        matches = [
++  
