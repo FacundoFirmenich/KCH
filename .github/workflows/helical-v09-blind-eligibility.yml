@@ -1,0 +1,63 @@
+name: KCH Helical v0.9 exact-byte blind eligibility
+
+on:
+  push:
+    branches:
+      - work/helical-v09-exact-byte-blind-eligibility-20261009
+    paths:
+      - experiments/helical_lift_v09/**
+      - .github/workflows/helical-v09-blind-eligibility.yml
+
+permissions:
+  contents: read
+
+env:
+  PYTHONHASHSEED: "0"
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  exact-byte-blind-eligibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout pinned action
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Execute exact-byte acquisition, destroyed-boundary extraction and blind eligibility
+        id: execute
+        shell: bash
+        run: |
+          set -euo pipefail
+          experiments/helical_lift_v09/run_remote.sh "$RUNNER_TEMP/helical-v09"
+
+      - name: Build governed successor release
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/helical-v09-release"
+          python experiments/helical_lift_v09/build_release.py \
+            --work "$RUNNER_TEMP/helical-v09" \
+            --source experiments/helical_lift_v09 \
+            --out "$RUNNER_TEMP/helical-v09-release" \
+            > "$RUNNER_TEMP/helical-v09-release/BUILD_RELEASE_RESULT.json"
+
+      - name: Upload successor artifact with pinned action
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: KCH_KWANBLOCKS_HELICAL_LIFT_V0_9_EXACT_BYTE_BLIND_ELIGIBILITY_SUCCESSOR_2026-10-09
+          path: ${{ runner.temp }}/helical-v09-release/*
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - name: Report terminal gate
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat "$RUNNER_TEMP/helical-v09/final/FINAL_GATE_V0_9.json"
