@@ -37,7 +37,10 @@ def flatten(geom) -> Iterable[LineString]:
 
 
 def project_line(line: LineString, transformer: Transformer) -> LineString:
-    return LineString([transformer.transform(float(x), float(y)) for x, y in line.coords])
+    return LineString([
+        transformer.transform(float(coordinate[0]), float(coordinate[1]))
+        for coordinate in line.coords
+    ])
 
 
 def endpoint_distance(a: LineString, b: LineString) -> float:
