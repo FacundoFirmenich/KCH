@@ -47,7 +47,7 @@ selftest="$RUNNER_TEMP/docker-selftest"
 rm -rf "$selftest"
 mkdir -p "$selftest"
 chmod 0777 "$selftest"
-docker run --rm --platform linux/amd64 \
+docker run --rm -i --platform linux/amd64 \
   --network none --read-only --cap-drop ALL --security-opt no-new-privileges:true \
   --pids-limit 32 --memory 512m --memory-swap 512m --cpus 1.0 \
   --ipc none --pid private --cgroupns private --shm-size 8m \
