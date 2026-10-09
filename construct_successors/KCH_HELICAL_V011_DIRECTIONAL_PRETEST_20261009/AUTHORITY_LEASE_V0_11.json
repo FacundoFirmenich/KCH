@@ -1,0 +1,31 @@
+{
+  "authority_id": "kch-helical-v011-directional-pretest-20261009",
+  "authority_type": "FINITE_SINGLE_SUCCESSOR_EXECUTION",
+  "issued_from_user_instruction": "Dale para adelante. A por el siguiente crítico y estratégico gate.",
+  "scope": [
+    "REACQUIRE_ALREADY_IDENTIFIED_PUBLIC_SOURCE_BYTES",
+    "RECOMPUTE_LOCKED_BLIND_SELECTION",
+    "OPEN_STRIKE_DIP_RAKE_FOR_SELECTED_INDICES_ONLY",
+    "COMPUTE_DOUBLE_COUPLE_TENSOR_AND_AXIS_OBSERVABILITY",
+    "COMPUTE_CONSERVATIVE_PARENT_AVAILABILITY_DIAGNOSTIC",
+    "PERSIST_AGGREGATE_RECEIPTS_ONLY"
+  ],
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ],
+  "upstream_eligibility_result_id": "h10elig:26e3e8d730b14d888ed31f8d6392ba68536961349d90e280f28ba20d30b4f9fa",
+  "upstream_directional_unseal_request_id": "h10unsealreq:2e97eba55578986a42b8142e002406f85e7ce493d0f603447ff8c03594d7cd83",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "single_use": true,
+  "expires_after": "ONE_COMPLETED_OR_FAIL_CLOSED_WORKFLOW_RUN",
+  "raw_source_export_authorized": false,
+  "directional_row_export_authorized": false,
+  "sealed_test_scoring_authorized": false,
+  "scientific_model_fit_authorized": false,
+  "publication_authority": false,
+  "promotion_authority": false,
+  "canonicalization_authority": false,
+  "retrospective_mutation_authority": false,
+  "status": "ACTIVE_UNTIL_SINGLE_SUCCESSOR_TERMINATES"
+}
