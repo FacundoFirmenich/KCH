@@ -1,0 +1,194 @@
+name: KCH Helical v0.13.2 historical runtime reconstruction inspection
+
+on:
+  push:
+    branches:
+      - helical-v0132-calibration-runtime-qualification-20261009
+    paths:
+      - "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/**"
+      - ".github/workflows/helical-v0132-source-reconstruction-inspection.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0132-source-inspection-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  reconstruct-and-inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      KCH_SEALED_TEST_ACCESS: "FORBIDDEN"
+      ROOT: construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009
+      HISTORICAL_COMMIT: e458afe20b8172db5a04194224cf21df5ec00dc4
+    steps:
+      - name: Checkout finite successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0132-calibration-runtime-qualification-20261009
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned software-inspection stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.1.3 scipy==1.14.1 pytest==8.3.5
+          mkdir -p "$RUNNER_TEMP/helical-v0132/control"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v0132/control/PIP_FREEZE.txt"
+
+      - name: Verify finite authority and source-inspection code
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_13_2_SOURCE_INSPECTION.json" >/dev/null
+          python -m py_compile \
+            "$ROOT/reconstruct_historical_v084_source.py" \
+            "$ROOT/inspect_historical_runtime_v0132.py"
+          python - <<'PY'
+          import json, pathlib
+          lease=json.loads(pathlib.Path("construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/AUTHORITY_LEASE_V0_13_2_SOURCE_INSPECTION.json").read_text())
+          assert lease["authority_ceiling"] == "SOURCE_RECONSTRUCTION_AND_SOFTWARE_INSPECTION_ONLY"
+          assert lease["single_use"] is True
+          assert lease["sealed_test_accessed"] is False
+          assert "EXECUTE_NULL_ENSEMBLE" in lease["prohibitions"]
+          PY
+          sha256sum \
+            "$ROOT/AUTHORITY_LEASE_V0_13_2_SOURCE_INSPECTION.json" \
+            "$ROOT/reconstruct_historical_v084_source.py" \
+            "$ROOT/inspect_historical_runtime_v0132.py" \
+            > "$RUNNER_TEMP/helical-v0132/control/INPUT_SHA256SUMS.txt"
+
+      - name: Fetch exact historical commit if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "${HISTORICAL_COMMIT}^{commit}" 2>/dev/null || git fetch --no-tags origin "$HISTORICAL_COMMIT"
+          test "$(git rev-parse "$HISTORICAL_COMMIT")" = "$HISTORICAL_COMMIT"
+
+      - name: Reconstruct and inspect exact v0.8.4 runtime source
+        id: inspect
+        shell: bash
+        run: |
+          set +e
+          work="$RUNNER_TEMP/helical-v0132"
+          mkdir -p "$work/source" "$work/receipts"
+          python "$ROOT/reconstruct_historical_v084_source.py" \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --output "$work/source/historical_v084" \
+            --receipt "$work/receipts/HISTORICAL_V084_SOURCE_RECONSTRUCTION_RECEIPT.json" \
+            > "$work/control/RECONSTRUCTION_STDOUT.txt" \
+            2> "$work/control/RECONSTRUCTION_STDERR.txt"
+          rc1=$?
+          if [[ $rc1 -eq 0 ]]; then
+            PYTHONPATH="$work/source/historical_v084/src" \
+            python "$ROOT/inspect_historical_runtime_v0132.py" \
+              --source-root "$work/source/historical_v084" \
+              --output "$work/receipts/HISTORICAL_V084_RUNTIME_INSPECTION.json" \
+              > "$work/control/INSPECTION_STDOUT.txt" \
+              2> "$work/control/INSPECTION_STDERR.txt"
+            rc2=$?
+          else
+            rc2=99
+          fi
+          set -e
+          printf '%s\n' "$rc1" > "$work/control/RECONSTRUCTION_EXIT_CODE.txt"
+          printf '%s\n' "$rc2" > "$work/control/INSPECTION_EXIT_CODE.txt"
+          echo "reconstruction_exit_code=$rc1" >> "$GITHUB_OUTPUT"
+          echo "inspection_exit_code=$rc2" >> "$GITHUB_OUTPUT"
+          cat "$work/control/RECONSTRUCTION_STDOUT.txt" || true
+          cat "$work/control/INSPECTION_STDOUT.txt" || true
+          [[ ! -s "$work/control/RECONSTRUCTION_STDERR.txt" ]] || cat "$work/control/RECONSTRUCTION_STDERR.txt" >&2
+          [[ ! -s "$work/control/INSPECTION_STDERR.txt" ]] || cat "$work/control/INSPECTION_STDERR.txt" >&2
+          exit 0
+
+      - name: Enforce inspection-only boundary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132"
+          test ! -e "$work/raw"
+          test ! -e "$work/calibration"
+          test ! -e "$work/test"
+          if find "$work" -type f \( -name '*.pickle' -o -name '*.npz' -o -name '*.geojson' -o -name '*.csv' -o -name '*.parquet' \) | grep -q .; then
+            echo "scientific row-level artifact reached source-inspection successor" >&2
+            exit 91
+          fi
+
+      - name: Persist aggregate inspection receipts append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132"
+          destination="$ROOT/results/source-inspection-run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$destination"
+          cp -a "$work/receipts/." "$destination/" 2>/dev/null || true
+          cp -a "$work/control/." "$destination/" 2>/dev/null || true
+          find "$destination" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$destination/RESULT_SHA256SUMS.txt"
+          python - "$destination" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+          destination=Path(sys.argv[1]); rows=[]
+          for path in sorted(item for item in destination.rglob('*') if item.is_file() and item.name!='RESULT_MANIFEST.json'):
+              body=path.read_bytes(); rows.append({'path':path.relative_to(destination).as_posix(),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()})
+          manifest={'format':'KCH_HELICAL_V0_13_2_SOURCE_INSPECTION_RESULT_MANIFEST','github_run_id':os.environ['GITHUB_RUN_ID'],'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],'github_sha':os.environ['GITHUB_SHA'],'scientific_rows_included':False,'sealed_test_values_included':False,'files':rows}
+          manifest['manifest_id']='h132inspectmanifest:'+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (destination/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          PY
+          git config user.name "kch-helical-v0132-inspection"
+          git config user.email "kch-helical-v0132-inspection@users.noreply.github.com"
+          git add "$destination"
+          if git diff --cached --quiet; then
+            echo "No new inspection receipts"
+          else
+            git commit -m "record v0.13.2 historical runtime inspection receipts [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload reconstructed source and aggregate receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0132-historical-runtime-inspection-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-v0132/source
+            ${{ runner.temp }}/helical-v0132/receipts
+            ${{ runner.temp }}/helical-v0132/control
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate source reconstruction and inspection
+        if: always()
+        shell: bash
+        env:
+          RECONSTRUCTION_EXIT_CODE: ${{ steps.inspect.outputs.reconstruction_exit_code }}
+          INSPECTION_EXIT_CODE: ${{ steps.inspect.outputs.inspection_exit_code }}
+        run: |
+          set -euo pipefail
+          test "${RECONSTRUCTION_EXIT_CODE:-99}" = "0"
+          test "${INSPECTION_EXIT_CODE:-99}" = "0"
+          python - <<'PY'
+          import json, os, pathlib
+          path=pathlib.Path(os.environ['RUNNER_TEMP'])/'helical-v0132'/'receipts'/'HISTORICAL_V084_RUNTIME_INSPECTION.json'
+          body=json.loads(path.read_text())
+          assert body['all_pass'] is True
+          assert body['scientific_execution_performed'] is False
+          assert body['calibration_data_accessed'] is False
+          assert body['sealed_test_accessed'] is False
+          assert body['scientific_result'] is None
+          print('SOURCE_RECONSTRUCTION_AND_SOFTWARE_INSPECTION_PASS')
+          PY
