@@ -1,0 +1,313 @@
+{
+  "claim_ceiling": "GLOBAL_DISK_PHOTOSPHERIC_CURRENT_HELICITY_PROXY_INCREMENTAL_INFORMATION_NOT_CAUSALITY_NOT_CORONAL_RELATIVE_HELICITY_NOT_PHYSICAL_MONODROMY",
+  "feature_blocks": {
+    "baseline_global_features": [
+      "N_HARP",
+      "LOG1P_SUM_USFLUX",
+      "LOG1P_SUM_AREA_ACR",
+      "LOG1P_SUM_TOTUSJZ",
+      "LOG1P_SUM_TOTPOT",
+      "LOG1P_SUM_R_VALUE",
+      "WMEAN_MEANGBT",
+      "WMEAN_MEANGBZ",
+      "WMEAN_MEANGBH",
+      "WMEAN_MEANJZD",
+      "WMEAN_MEANPOT",
+      "WMEAN_MEANSHR",
+      "WMEAN_SHRGT45",
+      "NORTH_FLUX_FRACTION",
+      "D1_LOG1P_SUM_USFLUX",
+      "D1_LOG1P_SUM_TOTPOT",
+      "D1_LOG1P_SUM_R_VALUE"
+    ],
+    "baseline_region_keywords": [
+      "USFLUX",
+      "AREA_ACR",
+      "MEANGBT",
+      "MEANGBZ",
+      "MEANGBH",
+      "MEANJZD",
+      "TOTUSJZ",
+      "MEANPOT",
+      "TOTPOT",
+      "MEANSHR",
+      "SHRGT45",
+      "R_VALUE"
+    ],
+    "forbidden": [
+      "HARPNUM_IDENTITY",
+      "NOAA_ACTIVE_REGION_IDENTITY",
+      "FUTURE_LABEL_INFORMATION",
+      "TEST_EPOCH_HYPERPARAMETER_SELECTION"
+    ],
+    "helicity_global_features": [
+      "LOG1P_SUM_TOTUSJH",
+      "LOG1P_SUM_ABSNJZH",
+      "LOG1P_SUM_SAVNCPP",
+      "WMEAN_MEANJZH",
+      "WMEAN_MEANALP",
+      "HEMISPHERIC_RULE_MEANJZH",
+      "HEMISPHERIC_RULE_MEANALP",
+      "SIGNED_HELICITY_CANCELLATION",
+      "D1_LOG1P_SUM_TOTUSJH",
+      "D1_WMEAN_MEANJZH",
+      "D1_WMEAN_MEANALP",
+      "D1_SIGNED_HELICITY_CANCELLATION"
+    ],
+    "helicity_region_keywords": [
+      "MEANJZH",
+      "TOTUSJH",
+      "ABSNJZH",
+      "SAVNCPP",
+      "MEANALP"
+    ],
+    "transformations": "PRELOCKED_DETERMINISTIC_GLOBAL_AGGREGATION_AND_ONE_DAY_BACKWARD_DIFFERENCE",
+    "weights": "ABS_USFLUX_WITH_EQUAL_WEIGHT_FALLBACK"
+  },
+  "firewall": {
+    "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+    "canonicalization": "BLOCKED",
+    "mhd001_or_mhd002_threshold_relaxation": "FORBIDDEN",
+    "promotion": "BLOCKED",
+    "raw_source_persistence_in_release": "FORBIDDEN",
+    "row_level_sharp_feature_values_in_artifacts": "FORBIDDEN",
+    "row_level_test_labels_in_logs_or_artifacts": "FORBIDDEN",
+    "test_metric_access_before_selection_receipt": "FORBIDDEN"
+  },
+  "format": "KCH_MHD003_GLOBAL_DISK_HELICITY_RADIATIVE_GATE",
+  "identifiability": {
+    "maximum_condition_number_after_train_scaling": 100000000.0,
+    "maximum_missing_fraction_each_locked_feature": 0.2,
+    "minimum_negative_days_each_partition": 200,
+    "minimum_positive_days": {
+      "calibration": 30,
+      "sealed_test_epoch_1": 40,
+      "sealed_test_epoch_2": 40,
+      "train": 100
+    },
+    "minimum_snapshot_days": {
+      "calibration": 1000,
+      "sealed_test_epoch_1": 500,
+      "sealed_test_epoch_2": 500,
+      "train": 2000
+    },
+    "outcome_on_failure": "INSUFFICIENT_GLOBAL_DISK_POWER_OR_FEATURE_IDENTIFIABILITY"
+  },
+  "locked_at_utc": "2026-10-09T18:02:43Z",
+  "metrics": {
+    "block_bootstrap_lower_95_must_exceed_zero": true,
+    "both_test_epochs_must_have_positive_logscore_gain": true,
+    "ece": {
+      "binning": "EQUAL_WIDTH_ON_ZERO_ONE",
+      "bins": 10,
+      "empty_bins": "IGNORED"
+    },
+    "maximum_absolute_ece_degradation": 0.015,
+    "maximum_delta_bic_helicity_minus_baseline": -10.0,
+    "minimum_brier_skill_improvement": 0.005,
+    "minimum_mean_logscore_gain_per_day": 0.005,
+    "minimum_relative_auprc_improvement": 0.05
+  },
+  "models": {
+    "M0": "TRAIN_PREVALENCE_CLIMATOLOGY",
+    "MB": "RIDGE_LOGISTIC_GLOBAL_NONHELICAL_MAGNETIC_BASELINE",
+    "MH": "SAME_BASELINE_PLUS_PRELOCKED_HELICITY_BLOCK",
+    "class_weight": [
+      null,
+      "balanced"
+    ],
+    "imputation": "TRAIN_MEDIAN_WITH_MISSING_INDICATORS",
+    "max_iter": 5000,
+    "random_state": 805003,
+    "regularization_C": [
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0
+    ],
+    "scaling": "TRAIN_ROBUST_MEDIAN_IQR",
+    "solver": "lbfgs"
+  },
+  "nulls": {
+    "families": [
+      "DEVELOPMENT_HELICITY_28_DAY_BLOCK_PERMUTATION",
+      "DEVELOPMENT_HELICITY_CARRINGTON_CIRCULAR_SHIFT",
+      "DEVELOPMENT_HELICITY_PHASE_RANDOMIZATION",
+      "DEVELOPMENT_SIGNED_HELICITY_CARRINGTON_BLOCK_SIGN_FLIP"
+    ],
+    "fit_hyperparameters": "FIXED_FROM_PRETEST_SELECTION_RECEIPT",
+    "minimum_families_significant_after_correction": 3,
+    "multiplicity": "HOLM_BONFERRONI",
+    "replicates_each": 499,
+    "run_only_after_materiality_screen_passes": true,
+    "seed": 80500371,
+    "test_helicity_block": "UNMODIFIED_SEALED_TEST_VALUES",
+    "test_statistic": "COMBINED_SEALED_TEST_MEAN_LOG_SCORE_GAIN_MH_MINUS_MB"
+  },
+  "observation_unit": {
+    "anchor": "00:00:00_TAI",
+    "harp_identity_as_predictor": "FORBIDDEN",
+    "horizon": "STRICTLY_AFTER_SNAPSHOT_AND_WITHIN_86400_TAI_SECONDS",
+    "overlapping_target_windows": false,
+    "unit": "ONE_GLOBAL_SOLAR_DISK_SNAPSHOT_PER_24_HOURS"
+  },
+  "outcomes": [
+    "GLOBAL_HELICITY_PROXY_INCREMENTAL_INFORMATION_REPLICATED",
+    "NONHELICAL_GLOBAL_MAGNETIC_RIVAL_SUFFICIENT",
+    "GLOBAL_HELICITY_PROXY_UPPER_BOUND_BELOW_MATERIALITY",
+    "LOCAL_OR_EPOCH_SPECIFIC_SIGNAL_NOT_REPLICATED",
+    "INSUFFICIENT_GLOBAL_DISK_POWER_OR_FEATURE_IDENTIFIABILITY",
+    "MODEL_MISMATCH",
+    "BLOCKED_EXACT_BYTE_ACQUISITION"
+  ],
+  "predecessor": {
+    "branch": "gate/mhd001-noaa-label-join-20261009",
+    "commit": "a50934240209a8882e717243ec9224e350e3236e",
+    "mhd001_outcome": "INSUFFICIENT_REGION_LEVEL_POWER",
+    "mhd001_result_id": "mhd001labelresult:17927a63f4881a86856a74a6b014f5a892342c5e18ad55320b24b9ad4e7d9c38",
+    "mhd002_outcome": "PROSPECTIVE_PILOT_INSUFFICIENT_POWER",
+    "mhd002_result_id": "mhd002pilot:bd81b7390ff89be8a23df4301f1854ab90f0078cac8cc28fcc16c45c0bc69899",
+    "repository": "FacundoFirmenich/KCH",
+    "separation_rule": "DISTINCT_GLOBAL_DISK_QUESTION_NOT_THRESHOLD_RELAXATION_OR_POSTHOC_RESCUE_OF_MHD001_OR_MHD002"
+  },
+  "protocol_id": "mhd003:360c7ac372ab7ee0afdcf607fdadd4b6f6caa26b0acf433d9d20a41e04847e27",
+  "record_filter": {
+    "duplicate_action": "KEEP_FIRST_STABLE",
+    "duplicate_key": [
+      "HARPNUM",
+      "T_REC"
+    ],
+    "maximum_absolute_lon_fwt_deg": 60.0,
+    "numeric_nonfinite_action": "SET_MISSING_THEN_TRAIN_ONLY_MEDIAN_IMPUTE",
+    "quality_equals": 0,
+    "require_at_least_one_admitted_harp": true
+  },
+  "scientific_question": "Do prelocked global-disk aggregates of photospheric current-helicity proxy keywords add out-of-sample information for any GOES M/X flare in the next 24 hours beyond global nonhelical magnetic-complexity aggregates?",
+  "selection": {
+    "complexity_k": "NUMBER_OF_FITTED_LOGISTIC_COEFFICIENTS_PLUS_INTERCEPT_AFTER_IMPUTATION_INDICATORS",
+    "final_fit": "TRAIN_PLUS_CALIBRATION",
+    "fit_for_selection": "TRAIN_ONLY",
+    "grid_selected_on": "CALIBRATION_MEAN_LOG_SCORE_MINUS_HALF_K_LOG_N_OVER_N",
+    "selection_receipt_before_test_access": true
+  },
+  "sources": {
+    "flare_reports": {
+      "accept_encoding": "identity",
+      "algorithm_version": "1-0-1",
+      "base_url": "https://data.ngdc.noaa.gov/platforms/solar-space-observing-satellites/goes/multi/l2/data/xrsf-l2-flrpt_science/csv",
+      "expected_combined_csv_sha256": "dda2f5d049d72eff41642fc58b8e73289a1ac22210e34c6c3a676b0521cdb319",
+      "expected_metadata_sha256": "4a8af6ecce0df30d851b8500d362de537bb6e92646a4fc499fcf691a7eef68fb",
+      "filename_template": "sci_xrsf-l2-flrpt_geo_y{year}_v1-0-1.csv",
+      "metadata_filename": "sci_xrsf-l2-flrpt_geo_metadata.json",
+      "product": "GOES_XRS_FLARE_REPORT_SCIENCE",
+      "provider": "NOAA_NCEI",
+      "required_columns": [
+        "start_time",
+        "flare_class"
+      ],
+      "source_substitution": "FORBIDDEN",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    "sharp": {
+      "cadence": "24h",
+      "keywords": [
+        "HARPNUM",
+        "T_REC",
+        "QUALITY",
+        "LAT_FWT",
+        "LON_FWT",
+        "USFLUX",
+        "AREA_ACR",
+        "MEANGBT",
+        "MEANGBZ",
+        "MEANGBH",
+        "MEANJZD",
+        "TOTUSJZ",
+        "MEANPOT",
+        "TOTPOT",
+        "MEANSHR",
+        "SHRGT45",
+        "R_VALUE",
+        "MEANJZH",
+        "TOTUSJH",
+        "ABSNJZH",
+        "SAVNCPP",
+        "MEANALP"
+      ],
+      "provider": "JSOC_SDO_HMI",
+      "series": "hmi.sharp_cea_720s",
+      "time_range_tai": [
+        "2010-05-01T00:00:00",
+        "2026-01-01T00:00:00"
+      ],
+      "vector_segments_required": false
+    }
+  },
+  "status": "LOCKED_BEFORE_MHD003_SHARP_FEATURE_OR_GLOBAL_FLARE_TARGET_ACCESS",
+  "target": {
+    "active_region_association_required": false,
+    "comparison_time_scale": "TAI",
+    "definition": "ANY_NOAA_NCEI_FLARE_CLASS_PREFIX_M_OR_X_STARTING_STRICTLY_AFTER_SNAPSHOT_UTC_AND_AT_OR_BEFORE_PLUS_24H",
+    "flare_class_prefixes": [
+      "M",
+      "X"
+    ],
+    "name": "GLOBAL_MX24H",
+    "source_time_scale": "UTC",
+    "time_conversion": "ASTROPY_UTC_TO_TAI_UNIX_TAI_SECONDS",
+    "window_seconds": 86400
+  },
+  "temporal_design": {
+    "embargo_basis": "ONE_FULL_APPROXIMATE_CARRINGTON_ROTATION_AND_TARGET_WINDOW_SEPARATION",
+    "partition_boundary_embargo_days_each_side": 28,
+    "partitions_tai": {
+      "calibration": [
+        "2018-01-01T00:00:00",
+        "2022-01-01T00:00:00"
+      ],
+      "sealed_test_epoch_1": [
+        "2022-01-01T00:00:00",
+        "2024-01-01T00:00:00"
+      ],
+      "sealed_test_epoch_2": [
+        "2024-01-01T00:00:00",
+        "2026-01-01T00:00:00"
+      ],
+      "train": [
+        "2010-05-01T00:00:00",
+        "2018-01-01T00:00:00"
+      ]
+    },
+    "test_open": "ONCE_AFTER_MODEL_SELECTION_RECEIPT_IS_WRITTEN_FSYNCED_AND_HASHED",
+    "test_reuse": "FORBIDDEN"
+  },
+  "uncertainty": {
+    "block_bootstrap_replicates": 999,
+    "block_length_days": 28,
+    "bootstrap_scheme": "MOVING_CONTIGUOUS_BLOCKS_WITH_REPLACEMENT_WITHIN_EACH_TEST_EPOCH",
+    "bootstrap_seed": 80500317
+  },
+  "version": "0.1.0"
+}
