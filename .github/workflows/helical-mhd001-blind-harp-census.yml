@@ -1,0 +1,49 @@
+name: MHD Helical Observability 001 — blind HARP census
+
+on:
+  push:
+    branches:
+      - gate/helical-v09a-identifiability-power-20261009
+    paths:
+      - .github/workflows/helical-mhd001-blind-harp-census.yml
+      - .github/helical_mhd001/sharp_blind_census.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned census dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'packaging==24.2' 'drms==0.9.1' 'pandas==2.2.3'
+      - name: Execute label-free and helicity-free census
+        shell: bash
+        env:
+          CENSUS_OUT: ${{ runner.temp }}/mhd001-sharp-census
+        run: |
+          set -euo pipefail
+          mkdir -p "$CENSUS_OUT"
+          python .github/helical_mhd001/sharp_blind_census.py | tee "$CENSUS_OUT/EXECUTION_STDOUT.log"
+          cd "$CENSUS_OUT"
+          find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+      - name: Upload blind census evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-mhd001-blind-harp-census
+          path: ${{ runner.temp }}/mhd001-sharp-census
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

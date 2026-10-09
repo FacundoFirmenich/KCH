@@ -1,0 +1,59 @@
+name: Helical v0.9-A exact external-network audit inputs
+
+on:
+  push:
+    branches:
+      - gate/helical-v09a-identifiability-power-20261009
+    paths:
+      - .github/workflows/helical-v09a-network-audit-inputs.yml
+      - .github/helical_v09a/extract_fault_subset.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned geospatial stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'pyproj==3.7.0' 'shapely==2.0.6'
+      - name: Acquire immutable GEM network and verify exact bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/v09a-network"
+          mkdir -p "$out"
+          url='https://raw.githubusercontent.com/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson'
+          curl --fail-with-body --location --retry 5 --retry-all-errors \
+            --header 'Accept-Encoding: identity' --output "$out/gem_active_faults_harmonized.geojson" "$url"
+          echo '37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1  '"$out/gem_active_faults_harmonized.geojson" | sha256sum -c -
+      - name: Extract exact relevant geometry and adjacency
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/v09a-network"
+          python .github/helical_v09a/extract_fault_subset.py \
+            "$out/gem_active_faults_harmonized.geojson" \
+            "$out/audit"
+          cd "$out"
+          find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          find . -type f -print0 | sort -z | xargs -0 -n1 stat --printf='%n\t%s bytes\n' > FILE_SIZES.txt
+      - name: Upload exact audit inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v09a-external-network-audit-inputs
+          path: ${{ runner.temp }}/v09a-network
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

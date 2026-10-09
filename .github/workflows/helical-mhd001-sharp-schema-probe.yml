@@ -1,0 +1,49 @@
+name: MHD Helical Observability 001 — JSOC SHARP schema probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v09a-identifiability-power-20261009
+    paths:
+      - .github/workflows/helical-mhd001-sharp-schema-probe.yml
+      - .github/helical_mhd001/sharp_schema_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned DRMS client
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'packaging==24.2' 'drms==0.9.1' 'pandas==2.2.3'
+      - name: Probe definitive SHARP series without exporting FITS
+        shell: bash
+        env:
+          PROBE_OUT: ${{ runner.temp }}/mhd001-sharp-probe
+        run: |
+          set -euo pipefail
+          mkdir -p "$PROBE_OUT"
+          python .github/helical_mhd001/sharp_schema_probe.py | tee "$PROBE_OUT/EXECUTION_STDOUT.log"
+          cd "$PROBE_OUT"
+          find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+      - name: Upload schema evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-mhd001-sharp-schema-probe
+          path: ${{ runner.temp }}/mhd001-sharp-probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
