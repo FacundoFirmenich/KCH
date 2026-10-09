@@ -1,0 +1,164 @@
+{
+  "adjudication": {
+    "interpretation": "THE_PRELOCKED_GLOBAL_DISK_GATE_DID_NOT_REACH_MODEL_FITTING_BECAUSE_CALIBRATION_POWER_AND_COVERAGE_MINIMA_FAILED",
+    "mhd003_test_opening": "FORBIDDEN",
+    "mhd003_threshold_relaxation": "FORBIDDEN",
+    "next_admissible_successor": "DISJOINT_DIRECT_PHASE_RECURRENCE_AND_FIBER_TRANSPORT_GATE_PRELOCKED_BEFORE_HELICITY_VALUE_INSPECTION",
+    "not_interpretable_as": [
+      "ABSENCE_OF_HELICITY",
+      "ABSENCE_OF_MONODROMY",
+      "NONHELICAL_RIVAL_SUFFICIENT",
+      "UPPER_BOUND_BELOW_MATERIALITY"
+    ],
+    "state": "CLOSED_NO_GO_IDENTIFIABILITY"
+  },
+  "blind_identifiability": {
+    "all_checks_pass": false,
+    "failed_checks": [
+      "calibration_minimum_positive_days",
+      "calibration_minimum_snapshot_days"
+    ],
+    "global_flare_report": {
+      "admitted_global_mx_rows": 3189,
+      "csv_rows": 41723,
+      "duplicate_global_mx_rows_removed": 0,
+      "first_admitted_start_utc": "2010-01-19T13:19:00+00:00",
+      "last_admitted_start_utc": "2025-12-31T13:11:00+00:00",
+      "row_level_flare_data_exported": false
+    },
+    "maximum_feature_missing_fraction": 0.09237875288683603,
+    "partition_counts": {
+      "calibration": {
+        "first_snapshot_utc": "2018-01-30T23:59:23+00:00",
+        "last_snapshot_utc": "2021-12-02T23:59:23+00:00",
+        "negative_days": 847,
+        "positive_days": 19,
+        "positive_fraction": 0.021939953810623556,
+        "snapshot_days": 866
+      },
+      "sealed_test_epoch_1": {
+        "first_snapshot_utc": "2022-01-28T23:59:23+00:00",
+        "last_snapshot_utc": "2023-12-02T23:59:23+00:00",
+        "negative_days": 415,
+        "positive_days": 245,
+        "positive_fraction": 0.3712121212121212,
+        "snapshot_days": 660
+      },
+      "sealed_test_epoch_2": {
+        "first_snapshot_utc": "2024-01-28T23:59:23+00:00",
+        "last_snapshot_utc": "2025-12-30T23:59:23+00:00",
+        "negative_days": 300,
+        "positive_days": 381,
+        "positive_fraction": 0.5594713656387665,
+        "snapshot_days": 681
+      },
+      "train": {
+        "first_snapshot_utc": "2010-05-01T23:59:26+00:00",
+        "last_snapshot_utc": "2017-12-02T23:59:23+00:00",
+        "negative_days": 1766,
+        "positive_days": 533,
+        "positive_fraction": 0.23183993040452372,
+        "snapshot_days": 2299
+      }
+    },
+    "receipt_id": "mhd003ident:fa67d5d95a3b6fda1b2571542ce074be13307d950d30f434757904acd9a68e28",
+    "train_scaled_design_condition_number": 217.787565736795
+  },
+  "execution": {
+    "artifact": {
+      "bytes": 65149,
+      "digest": "sha256:62f8e213f7e670ad4940a5d04a2edc3c42e0e46e8a95005ba1461cb06e88de8a",
+      "expires_at": "2026-10-16T18:16:43Z",
+      "id": 11635748742,
+      "name": "kch-mhd003-global-disk-safe-evidence"
+    },
+    "branch": "gate/mhd003-global-helicity-radiative-20261009",
+    "commit": "c62b483f2b33c313d64ccabbd7a92d3e69b151c7",
+    "conclusion": "success",
+    "forbidden_raw_or_row_level_files_found": false,
+    "independent_zip_sha256": "62f8e213f7e670ad4940a5d04a2edc3c42e0e46e8a95005ba1461cb06e88de8a",
+    "job_id": 113959905100,
+    "repository": "FacundoFirmenich/KCH",
+    "safe_file_count": 11,
+    "safe_manifest_file_sha256": "edce89ab184487736692716c6424595c59f93ece0dfb8da8414e47a007275e7b",
+    "safe_manifest_id": "mhd003manifest:01808c7aaecf1982ea50d1f80cd4be012668245ebd23033eb703ce9106bba163",
+    "sha256sums_verified": true,
+    "workflow_run_id": 37971769568
+  },
+  "format": "KCH_MHD003_REMOTE_RESULT_INDEX",
+  "governance": {
+    "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "promotion": "BLOCKED",
+    "raw_sources_present": false,
+    "row_level_features_present": false,
+    "row_level_labels_present": false
+  },
+  "index_id": "mhd003index:5d913b08779f5dadc2976f74613aa4231a44c9b2b2cc78edbc1e99eeca9b9c14",
+  "predecessor": {
+    "branch": "gate/mhd001-noaa-label-join-20261009",
+    "commit": "a50934240209a8882e717243ec9224e350e3236e",
+    "kwanblocks_graph_id": "kbg:27dd7aa3a8b79fe6668e6c0fadd18e819e47c3a4fd96be1ab5ba029cbd53762a",
+    "kwanblocks_ledger_head": "bb0e169ace4839b3ce7b74cac77616b5a3e7b11b7ea4c888a871cec0e02c4041",
+    "mhd001_outcome": "INSUFFICIENT_REGION_LEVEL_POWER",
+    "mhd002_outcome": "PROSPECTIVE_PILOT_INSUFFICIENT_POWER"
+  },
+  "protocol": {
+    "design_separation": "DISTINCT_GLOBAL_DISK_QUESTION_NOT_THRESHOLD_RELAXATION_OR_POSTHOC_RESCUE_OF_MHD001_OR_MHD002",
+    "observation_unit": "ONE_GLOBAL_SOLAR_DISK_SNAPSHOT_PER_24_HOURS",
+    "protocol_file_sha256": "804b2ccdc2f67002bdf4e5665ae4aa7c2330a9b6b8462b0f1086c30396dbdcf4",
+    "protocol_id": "mhd003:360c7ac372ab7ee0afdcf607fdadd4b6f6caa26b0acf433d9d20a41e04847e27",
+    "scientific_question": "Do prelocked global-disk aggregates of photospheric current-helicity proxy keywords add out-of-sample information for any GOES M/X flare in the next 24 hours beyond global nonhelical magnetic-complexity aggregates?",
+    "status": "LOCKED_BEFORE_MHD003_SHARP_FEATURE_OR_GLOBAL_FLARE_TARGET_ACCESS"
+  },
+  "result": {
+    "causality": "NOT_CLAIMED",
+    "outcome": "INSUFFICIENT_GLOBAL_DISK_POWER_OR_FEATURE_IDENTIFIABILITY",
+    "physical_helicity": "NOT_EVALUATED",
+    "physical_monodromy": "NOT_EVALUATED",
+    "result_file_sha256": "fa1a0e14685c4414a245664d159504ce66a9b0d86eda93003879aaae6d7477c7",
+    "result_id": "mhd003result:8df44722e9c98f7b3ae4d229ee21a90ad56ed7608c781d963b8ae8c9ad68ac3f",
+    "scientific_model_execution_performed": false,
+    "sealed_test_metrics_accessed": false
+  },
+  "sources": {
+    "noaa_annual_source_count": 16,
+    "noaa_combined_csv": {
+      "bytes": 6670325,
+      "combination_rule": "IDENTICAL_HEADER_REQUIRED_KEEP_FIRST_HEADER_APPEND_NONEMPTY_DATA_ROWS_IN_ASCENDING_YEAR",
+      "file": "NOAA_FLARES_2010_2025_EXACT_COMBINED.csv",
+      "sha256": "dda2f5d049d72eff41642fc58b8e73289a1ac22210e34c6c3a676b0521cdb319"
+    },
+    "noaa_metadata": {
+      "bytes": 8516,
+      "sha256": "4a8af6ecce0df30d851b8500d362de537bb6e92646a4fc499fcf691a7eef68fb"
+    },
+    "noaa_receipt_id": "mhd003noaa:dd19636653f372562153371210727fe0edce2248f58095884021de48fe38f902",
+    "noaa_years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "sharp_global_snapshot_count": 4656,
+    "sharp_maximum_split_depth": 0,
+    "sharp_query_count": 16,
+    "sharp_raw_unique_harp_trec_records": 51611,
+    "sharp_receipt_id": "mhd003sharp:9aaa1a135d79ddf3af0cea29fe0e67b44526898e5639947ce97bad5724d45119",
+    "sharp_series": "hmi.sharp_cea_720s"
+  },
+  "version": "0.1.0"
+}
