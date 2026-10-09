@@ -1,0 +1,95 @@
+          row for row in public_files
++            if isinstance(row, dict) and row.get("filename") == REQUIRED_BASENAME
++        ]
+         if len(matches) != 1:
+-            raise RuntimeError(f"expected one exact required basename in the public versioned snapshot; observed {len(matches)}")
+-        match = matches[0]
+-        file_id = match["file_id"]
+-        file_url = (
+-            f"https://api.data.mendeley.com/datasets/{DATASET_ID}/files/{file_id}/"
+-            f"file_downloaded?version={VERSION}"
++            raise RuntimeError(f"expected one exact required basename in the public versioned file list; observed {len(matches)}")
++        raw_file = matches[0]
++        if raw_file.get("status") != "COMPLETED":
++            raise RuntimeError("required provider file is not in COMPLETED state")
++        file_id = str(raw_file.get("id", ""))
++        details = raw_file.get("content_details")
++        if not file_id or not isinstance(details, dict):
++            raise RuntimeError("required provider file lacks stable file/content identity")
++        file_url = str(details.get("download_url", ""))
++        expected_path = f"/public-files/datasets/{DATASET_ID}/files/{file_id}/file_downloaded"
++        parsed_file_url = urllib.parse.urlsplit(file_url)
++        if (
++            parsed_file_url.scheme.lower() != "https"
++            or parsed_file_url.hostname != "data.mendeley.com"
++            or parsed_file_url.path != expected_path
++            or parsed_file_url.query
++            or parsed_file_url.fragment
++        ):
++            raise RuntimeError("provider download URL is outside the exact public-file route")
++        expected_mechanism_bytes = first_positive_integer(
++            raw_file, {"size", "file_size", "content_length", "bytes"}
+         )
+-        expected_mechanism_bytes = first_positive_integer(match["raw"], {"size", "file_size", "content_length", "bytes"})
+-        expected_mechanism_sha256 = expected_digest(match["raw"])
++        expected_mechanism_sha256 = expected_digest(raw_file)
++        if expected_mechanism_bytes is None or expected_mechanism_sha256 is None:
++            raise RuntimeError("provider file list lacks a unique positive size or SHA-256")
+ 
+         mechanism_cache = cache / REQUIRED_BASENAME
+         mechanism_receipt = stream_download(
+@@ -438,10 +480,15 @@
+         mechanism_stage = staging / REQUIRED_BASENAME
+         fault_stage = staging / FAULT_BASENAME
+         snapshot_stage = staging / "mendeley_dataset_snapshot_v2.json"
++        file_list_stage = staging / "mendeley_public_file_list_v2.json"
+         hardlink_or_copy(mechanism_cache, mechanism_stage)
+         hardlink_or_copy(fault_cache, fault_stage)
+         with snapshot_stage.open("wb") as handle:
+-            handle.write(metadata_bytes)
++            handle.write(dataset_bytes)
++            handle.flush()
++            os.fsync(handle.fileno())
++        with file_list_stage.open("wb") as handle:
++            handle.write(file_list_bytes)
+             handle.flush()
+             os.fsync(handle.fileno())
+ 
+@@ -460,9 +507,12 @@
+                     "version": VERSION,
+                     "doi": DOI,
+                     "file_id": file_id,
++                    "content_details_id": details.get("id"),
+                     "basename": REQUIRED_BASENAME,
++                    "status": raw_file.get("status"),
+                     "provider_expected_bytes": expected_mechanism_bytes,
+                     "provider_expected_sha256": expected_mechanism_sha256,
++                    "public_download_url": safe_url_descriptor(file_url),
+                 },
+                 "fault": {
+                     "repository": FAULT_REPOSITORY,
+@@ -472,7 +522,8 @@
+                 },
+             },
+             "source_receipts": {
+-                "metadata_snapshot": metadata_receipt,
++                "dataset_snapshot": dataset_receipt,
++                "public_file_list": file_list_receipt,
+                 "mechanism": mechanism_receipt,
+                 "fault": {**fault_receipt, "git_blob_sha1": observed_blob},
+             },
+@@ -490,9 +541,14 @@
+                     "bytes": snapshot_stage.stat().st_size,
+                     "sha256": sha256_file(snapshot_stage),
+                 },
++                file_list_stage.name: {
++                    "bytes": file_list_stage.stat().st_size,
++                    "sha256": sha256_file(file_list_stage),
++                },
+             },
+             "resume_cache_used": bool(mechanism_receipt.get("resumed_from_bytes") or fault_receipt.get("resumed_from_bytes")),
+             "response_query_values_recorded": False,
++            "transport_successor": "PUBLIC_API_FILE_LIST_AND_PROVIDER_DOWNLOAD_URL",
+             "secret_values_accepted": False,
+             "directional_fields_accessed": False,
+             "pickle_opened": False,
