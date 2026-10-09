@@ -1,0 +1,28 @@
+{
+  "artifact_role": "REMOTE_SHADOW_EXECUTION_SOURCE",
+  "authority_ceiling": "SOFTWARE_CANDIDATE_REMOTE_SHADOW",
+  "base_commit": "714892929ff7d840746ae568d7217af588159053",
+  "branch": "experiment/helical-v08-blind-eligibility-20261009",
+  "bundle": {
+    "base64_bytes": 35185,
+    "base64_sha256": "daee98e8da049f7da657f349833db9d32c6c00c98d5563829cde3f026cf81edd",
+    "decoded_bytes": 26044,
+    "decoded_sha256": "89f98e8776587a7dab77a8fe5d08b72653943572248d1b6e76a1edc03abd9c7d",
+    "parts": {
+      "part-00.b64": {"bytes": 6000, "sha256": "b1eaa90bf5b3ae98cc62a16cf29ebfdd16ecf320e67daa9f6122a64ee4f1f426"},
+      "part-01.b64": {"bytes": 6000, "sha256": "a28e53233e388169820c65df9aba143ce4db58a7acc0960de00cb24898262de7"},
+      "part-02.b64": {"bytes": 6000, "sha256": "e5d633efb1f9c253cfae5cb152c50cd8aed71dda51d62239bfdfd7501e3f7247"},
+      "part-03.b64": {"bytes": 6000, "sha256": "ddedc1091fe79f2a75dada1b9bd50e436b02ebdd6168668e2ff2389267b3383d"},
+      "part-04.b64": {"bytes": 6000, "sha256": "998dea189883f8a59e51da2dcd6be40af5e6ab0a9236ab58d9d9de5138180f2f"},
+      "part-05.b64": {"bytes": 5185, "sha256": "84df7b813ec59e207828dcbcad087f86f4e029b6ac12cd4d5c946156da5f657f"}
+    }
+  },
+  "created_at": "2026-10-09",
+  "frozen_scientific_protocol": "v0.8.0",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "remote_executor": "v0.8.1",
+  "repository": "FacundoFirmenich/KCH",
+  "source_access": "EXACT_PUBLIC_BYTES_ONLY",
+  "workflow_sha256": "56ebf02aedfeef86c5914ec10cc2822e92b8f602c62f6c5a29ade7583cf5a874"
+}
