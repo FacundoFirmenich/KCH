@@ -1,0 +1,30 @@
+{
+  "authority_ceiling": "SOURCE_RECONSTRUCTION_AND_SOFTWARE_INSPECTION_ONLY",
+  "canonicalization": "BLOCKED",
+  "expires_after_single_success_or_failure": true,
+  "format": "KCH_HELICAL_V0_13_2_SOURCE_INSPECTION_AUTHORITY_LEASE",
+  "issued_at_utc": "2026-10-09T00:00:00Z",
+  "lease_id": "h132sourceauth:9a0e57b592e5df62400c1aa7825819ec78a8a23243aaf1305f7ec9a4c5888d12",
+  "parent_commit": "b6563713e6c220bf13156ed8e11d9d533bec4a94",
+  "parent_run_receipt_id": "h12run:34cae48f62b3909ffd032e8259cf15d85c4fd738dd67847ee766bb7124627089",
+  "permissions": [
+    "RECONSTRUCT_PUBLIC_HISTORICAL_V0_8_4_RUNTIME_BYTES",
+    "COMPILE_RECONSTRUCTED_PYTHON",
+    "RUN_RECONSTRUCTED_UNIT_TESTS",
+    "INSPECT_STATIC_API_AND_CLI",
+    "PERSIST_AGGREGATE_SOFTWARE_RECEIPTS"
+  ],
+  "prohibitions": [
+    "ACCESS_CALIBRATION_EVENT_ROWS",
+    "ACCESS_SEALED_TEST",
+    "FIT_SCIENTIFIC_MODEL",
+    "EXECUTE_NULL_ENSEMBLE",
+    "PUBLISH",
+    "PROMOTE",
+    "CANONICALIZE"
+  ],
+  "promotion": "BLOCKED",
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "single_use": true
+}
