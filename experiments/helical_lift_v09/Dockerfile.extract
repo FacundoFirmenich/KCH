@@ -1,0 +1,8 @@
+FROM python:3.11.10-slim-bookworm
+ENV PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 \
+    OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+RUN python -m pip install --no-cache-dir --disable-pip-version-check numpy==2.1.3
+COPY extract_blind.py /app/extract_blind.py
+RUN chmod 0555 /app /app/extract_blind.py
+USER 65532:65532
+ENTRYPOINT ["python", "/app/extract_blind.py"]
