@@ -6,6 +6,7 @@ on:
       - helical-v09-remote-gate-20261009
     paths:
       - "construct_successors/helical_v10_capsule_parts/**"
+      - "construct_successors/helical_v10_acquisition_patch/**"
       - "construct_successors/KCH_HELICAL_V10_REMOTE_EXECUTION_CAPSULE_2026-10-09.tar.gz.sha256"
       - ".github/workflows/kch-helical-v10-remote-gate.yml"
   workflow_dispatch:
@@ -29,6 +30,10 @@ jobs:
       CAPSULE_B64_BYTES: "38012"
       CAPSULE_B64_SHA256: 8c0dc5431526dea38b6293df89bba490827d7ebba38d9401d5e1c4cd3b2c22fe
       CAPSULE_ARCHIVE_SHA256: 111be417871ee951e8487f35e29a5d99c328a1a9ae3951ba5534d8adb846dc27
+      ACQUISITION_PATCH_PARTS_DIR: construct_successors/helical_v10_acquisition_patch
+      ACQUISITION_PATCH_SHA256: 970718c772bbccf33ddd8780f833309dba7d42f62f7e4c0aaaefa1657aefc536
+      ACQUISITION_PREDECESSOR_SHA256: c42c5df08bea3e6c28da1b452b4bac559cb67eeea659a7212d24ddda680a5ba8
+      ACQUISITION_SUCCESSOR_SHA256: bd59aa32c8455818c42d9559a1102c417e673b6758bfb85262d6f070703db66e
 
     steps:
       - name: Checkout immutable source revision
@@ -78,7 +83,7 @@ jobs:
           test -f "$root/runtime/RUN_EXACT_BYTE_TO_BLIND_GATE_V0_9.py"
           echo "root=$root" >> "$GITHUB_OUTPUT"
           python - <<'PYRECEIPT'
-          import hashlib, json, os, pathlib
+          import json, os, pathlib
           runner = pathlib.Path(os.environ["RUNNER_TEMP"])
           obj = {
               "capsule_parts": 7,
@@ -90,6 +95,53 @@ jobs:
           p = runner / "helical-v10" / "receipts" / "CAPSULE_TRANSPORT_RECEIPT.json"
           p.write_text(json.dumps(obj, sort_keys=True, indent=2) + "\n", encoding="utf-8")
           PYRECEIPT
+
+      - name: Apply content-addressed public acquisition successor
+        id: acquisition_successor
+        shell: bash
+        env:
+          CAPSULE_ROOT: ${{ steps.capsule.outputs.root }}
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          cat > "$RUNNER_TEMP/capsule/ACQUISITION_PATCH_PARTS.sha256" <<'PATCHPARTS'
+          5aa4d1bad23dcd89944d4869074bd1d4c2e07d4e3d5847c26c8a037c86f783ad  construct_successors/helical_v10_acquisition_patch/part-000.diff
+          323892119ef9cadb5f9063a0cffed0fb4f37fca308ca4ed82c1b946f8e1243bf  construct_successors/helical_v10_acquisition_patch/part-001.diff
+          PATCHPARTS
+          sha256sum -c "$RUNNER_TEMP/capsule/ACQUISITION_PATCH_PARTS.sha256"
+          cat "$ACQUISITION_PATCH_PARTS_DIR"/part-{000..001}.diff > "$RUNNER_TEMP/capsule/acquisition-successor.patch"
+          observed_patch="$(sha256sum "$RUNNER_TEMP/capsule/acquisition-successor.patch" | awk '{print $1}')"
+          test "$observed_patch" = "$ACQUISITION_PATCH_SHA256"
+          predecessor="$CAPSULE_ROOT/runtime/ACQUIRE_EXACT_SOURCES_V0_9.py"
+          observed_predecessor="$(sha256sum "$predecessor" | awk '{print $1}')"
+          test "$observed_predecessor" = "$ACQUISITION_PREDECESSOR_SHA256"
+          (
+            cd "$CAPSULE_ROOT/runtime"
+            patch --batch --fuzz=0 -p0 < "$RUNNER_TEMP/capsule/acquisition-successor.patch"
+          )
+          observed_successor="$(sha256sum "$predecessor" | awk '{print $1}')"
+          test "$observed_successor" = "$ACQUISITION_SUCCESSOR_SHA256"
+          echo "successor_sha256=$observed_successor" >> "$GITHUB_OUTPUT"
+          python - <<'PYSUCCESSOR'
+          import json, os, pathlib
+          receipts = pathlib.Path(os.environ["RUNNER_TEMP"]) / "helical-v10" / "receipts"
+          body = {
+              "format": "KCH_HELICAL_V0_10_ACQUISITION_TRANSPORT_SUCCESSOR",
+              "scientific_protocol_mutated": False,
+              "predecessor_sha256": os.environ["ACQUISITION_PREDECESSOR_SHA256"],
+              "patch_sha256": os.environ["ACQUISITION_PATCH_SHA256"],
+              "successor_sha256": os.environ["ACQUISITION_SUCCESSOR_SHA256"],
+              "route": "MENDELEY_PUBLIC_API_FILE_LIST_AND_PROVIDER_DOWNLOAD_URL",
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+              "github_run_id": os.environ["GITHUB_RUN_ID"],
+              "github_run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "github_sha": os.environ["GITHUB_SHA"],
+          }
+          (receipts / "ACQUISITION_TRANSPORT_SUCCESSOR_RECEIPT.json").write_text(
+              json.dumps(body, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+          )
+          PYSUCCESSOR
 
       - name: Install frozen runtime dependencies
         shell: bash
@@ -116,6 +168,9 @@ jobs:
           CAPSULE_ROOT: ${{ steps.capsule.outputs.root }}
         run: |
           set -euo pipefail
+          test "$(sha256sum "$CAPSULE_ROOT/runtime/ACQUIRE_EXACT_SOURCES_V0_9.py" | awk '{print $1}')" = "$ACQUISITION_SUCCESSOR_SHA256"
+          grep -F 'https://data.mendeley.com/public-api' "$CAPSULE_ROOT/runtime/ACQUIRE_EXACT_SOURCES_V0_9.py"
+          ! grep -F 'https://api.data.mendeley.com/datasets/' "$CAPSULE_ROOT/runtime/ACQUIRE_EXACT_SOURCES_V0_9.py"
           python -m compileall -q "$CAPSULE_ROOT/runtime"
           test "$(grep -Rho 'pickle\.load' "$CAPSULE_ROOT/runtime" | wc -l)" -eq 1
           ! grep -R 'from \.core' "$CAPSULE_ROOT/runtime/kch_helical_dynamic_v08/eligibility.py"
@@ -128,12 +183,15 @@ jobs:
           test "$rc" -eq 4
           python - <<'PYDRY'
           import json, os, pathlib
-          p = pathlib.Path(os.environ["RUNNER_TEMP"]) / "helical-v10-dry-run" / "receipts" / "GATE_EXECUTION_RECEIPT_V0_9.json"
-          obj = json.loads(p.read_text(encoding="utf-8"))
-          assert obj["outcome"] == "DRY_RUN_NO_EFFECT"
-          assert obj["directional_fields_unsealed"] is False
-          assert obj["model_fitting_performed"] is False
-          assert obj["authority_ceiling"] == "NONE"
+          root = pathlib.Path(os.environ["RUNNER_TEMP"])
+          gate = json.loads((root / "helical-v10-dry-run" / "receipts" / "GATE_EXECUTION_RECEIPT_V0_9.json").read_text(encoding="utf-8"))
+          attempt = json.loads((root / "helical-v10-dry-run" / "receipts" / "ACQUISITION_ATTEMPT_V0_9.json").read_text(encoding="utf-8"))
+          assert gate["outcome"] == "DRY_RUN_NO_EFFECT"
+          assert gate["directional_fields_unsealed"] is False
+          assert gate["model_fitting_performed"] is False
+          assert gate["authority_ceiling"] == "NONE"
+          assert attempt["format"] == "KCH_HELICAL_V0_10_PUBLIC_ROUTE_TRANSACTIONAL_EXACT_BYTE_ACQUISITION"
+          assert attempt["execute_network_explicit"] is False
           PYDRY
 
       - name: Execute exact-byte acquisition, hardened extraction, and blind eligibility
