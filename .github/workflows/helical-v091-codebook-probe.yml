@@ -1,0 +1,138 @@
+name: KCH Helical v0.9.1 authoritative event-code probe
+
+on:
+  push:
+    branches:
+      - work/helical-v09-exact-byte-blind-eligibility-20261009
+    paths:
+      - .github/workflows/helical-v091-codebook-probe.yml
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  authoritative-codebook-probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout pinned action
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Query authoritative NCEDC and SCEDC event services
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/codebook"
+          python - "$RUNNER_TEMP/codebook/EVENT_CODEBOOK_PROBE.json" <<'PY'
+          import concurrent.futures, datetime, hashlib, json, math, pathlib, sys, urllib.parse, urllib.request
+
+          output = pathlib.Path(sys.argv[1])
+          # Deterministic records selected from safe NPZ
+          # SHA-256 f4c586089e6dee9d84b54c27b234abd25394be4093731a47f650fa4fb37d8d2f.
+          records = [
+            # NCSN ev_bl=0
+            ("NCSN","0.0",73632706,"2021-10-03T04:15:48.010Z",38.83483,-122.82867),
+            ("NCSN","0.0",73635980,"2021-10-06T03:52:39.330Z",38.83133,-122.80300),
+            ("NCSN","0.0",73637330,"2021-10-09T03:49:56.010Z",40.59083,-124.92417),
+            ("NCSN","0.0",73638735,"2021-10-12T15:34:54.670Z",36.82383,-121.56967),
+            ("NCSN","0.0",73640110,"2021-10-16T03:10:20.440Z",38.80667,-122.77183),
+            # NCSN ev_bl=1
+            ("NCSN","1.0",72666186,"2016-07-25T17:22:52.340Z",37.32350,-122.10117),
+            ("NCSN","1.0",72816031,"2017-06-15T00:32:51.090Z",39.53800,-121.49850),
+            ("NCSN","1.0",73055541,"2018-07-25T17:34:10.060Z",36.75500,-121.59517),
+            ("NCSN","1.0",73299620,"2019-11-01T17:55:19.910Z",37.91800,-121.95133),
+            ("NCSN","1.0",73639960,"2021-10-15T19:32:58.540Z",38.11250,-122.17100),
+            # SCSN ev_bl=0
+            ("SCSN","0.0",39841383,"2021-10-24T22:59:49.700Z",33.54967,-116.66517),
+            ("SCSN","0.0",39845199,"2021-10-31T04:56:23.890Z",33.49450,-116.77967),
+            ("SCSN","0.0",40063248,"2021-10-05T09:14:51.990Z",35.87083,-117.70350),
+            ("SCSN","0.0",40068088,"2021-10-11T20:46:23.120Z",35.76900,-117.57950),
+            ("SCSN","0.0",39850399,"2021-11-06T06:42:03.640Z",35.63367,-117.57000),
+            # SCSN ev_bl=1
+            ("SCSN","1.0",122617,"1986-04-23T18:44:32.966Z",36.08917,-117.72403),
+            ("SCSN","1.0",1010156,"1988-10-02T09:48:06.288Z",33.88996,-117.99805),
+            ("SCSN","1.0",1062976,"1990-11-11T10:44:25.294Z",32.27887,-116.54128),
+            ("SCSN","1.0",154319,"1991-12-11T22:40:12.248Z",33.20441,-116.01951),
+            ("SCSN","1.0",10084049,"2005-03-03T00:24:37.022Z",36.07460,-117.64651),
+          ]
+          services = {
+            "NCSN":"https://service.ncedc.org/fdsnws/event/1/query",
+            "SCSN":"https://service.scedc.caltech.edu/fdsnws/event/1/query",
+          }
+
+          def fetch(url):
+            req=urllib.request.Request(url,headers={"Accept":"text/plain","User-Agent":"KCH-Helical-v0.9.1-codebook-probe"})
+            with urllib.request.urlopen(req,timeout=60) as response:
+              raw=response.read()
+              return raw, {"status":response.status,"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()}
+
+          def parse(raw):
+            text=raw.decode("utf-8",errors="strict").strip(); header=None; rows=[]
+            for line in text.splitlines():
+              if line.startswith("#"):
+                candidate=line[1:].split("|")
+                if "EventID" in candidate and "EventType" in candidate: header=candidate
+                continue
+              if not line.strip(): continue
+              parts=line.split("|")
+              if header is None:
+                header=["EventID","Time","Latitude","Longitude","Depth/km","Author","Catalog","Contributor","ContributorID","MagType","Magnitude","MagAuthor","EventLocationName","EventType"]
+              if len(parts)>=len(header): rows.append({k:v.strip() for k,v in zip(header,parts)})
+            return rows
+
+          def iso(dt): return dt.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
+
+          def query(record):
+            network,code,evid,time_text,lat,lon=record; service=services[network]; attempts=[]; selected=None
+            event_url=service+"?"+urllib.parse.urlencode({"eventid":str(evid),"format":"text"})
+            try:
+              raw,receipt=fetch(event_url); rows=parse(raw); attempts.append({"route":"EVENT_ID","receipt":receipt,"rows":len(rows)})
+              if rows: selected=rows[0]
+            except Exception as exc: attempts.append({"route":"EVENT_ID","error_type":type(exc).__name__,"error":str(exc)})
+            if selected is None:
+              target=datetime.datetime.fromisoformat(time_text.replace("Z","+00:00"))
+              params={"starttime":iso(target-datetime.timedelta(seconds=2)),"endtime":iso(target+datetime.timedelta(seconds=2)),"format":"text","minlatitude":f"{lat-.03:.6f}","maxlatitude":f"{lat+.03:.6f}","minlongitude":f"{lon-.03:.6f}","maxlongitude":f"{lon+.03:.6f}"}
+              fallback=service+"?"+urllib.parse.urlencode(params)
+              try:
+                raw,receipt=fetch(fallback); rows=parse(raw); attempts.append({"route":"TIME_SPACE","receipt":receipt,"rows":len(rows)})
+                if rows:
+                  def score(row):
+                    try:
+                      t=datetime.datetime.fromisoformat(row["Time"].replace("Z","+00:00")); return abs((t-target).total_seconds())+100*math.hypot(float(row["Latitude"])-lat,float(row["Longitude"])-lon)
+                    except Exception: return float("inf")
+                  selected=min(rows,key=score)
+              except Exception as exc: attempts.append({"route":"TIME_SPACE","error_type":type(exc).__name__,"error":str(exc)})
+            return {"network":network,"source_binary_value":code,"source_event_id":evid,"source_time":time_text,"matched":selected is not None,"authoritative_event_id":selected.get("EventID") if selected else None,"authoritative_event_type":selected.get("EventType") if selected else None,"authoritative_time":selected.get("Time") if selected else None,"catalog":selected.get("Catalog") if selected else None,"attempts":attempts}
+
+          results=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+            for item in pool.map(query,records): results.append(item)
+          results.sort(key=lambda x:(x["network"],x["source_binary_value"],x["source_time"]))
+          summary={}
+          for network in services:
+            for code in ("0.0","1.0"):
+              subset=[r for r in results if r["network"]==network and r["source_binary_value"]==code]
+              types={}
+              for row in subset:
+                value=(row["authoritative_event_type"] or "UNMATCHED").lower().replace("_"," ")
+                types[value]=types.get(value,0)+1
+              summary[f"{network}:{code}"]={"sampled":len(subset),"matched":sum(r["matched"] for r in subset),"types":types}
+          body={"format":"KCH_HELICAL_V0_9_1_AUTHORITATIVE_EVENT_CODE_PROBE","safe_npz_sha256":"f4c586089e6dee9d84b54c27b234abd25394be4093731a47f650fa4fb37d8d2f","results":results,"summary":summary,"angle_fields_accessed":False,"promotion":"BLOCKED","authority_ceiling":"NONE"}
+          body["receipt_id"]="h9codeprobe:"+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(",",":"),allow_nan=False).encode()).hexdigest()
+          output.write_text(json.dumps(body,indent=2,sort_keys=True,allow_nan=False)+"\n")
+          print(json.dumps(body,indent=2,sort_keys=True,allow_nan=False))
+          PY
+
+      - name: Upload codebook probe
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: KCH_HELICAL_V0_9_1_EVENT_CODEBOOK_PROBE
+          path: ${{ runner.temp }}/codebook/EVENT_CODEBOOK_PROBE.json
+          if-no-files-found: error
+          retention-days: 30
