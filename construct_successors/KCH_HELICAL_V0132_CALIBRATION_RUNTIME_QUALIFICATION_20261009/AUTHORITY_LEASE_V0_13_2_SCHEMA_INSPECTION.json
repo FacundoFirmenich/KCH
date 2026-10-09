@@ -1,0 +1,44 @@
+{
+  "authority_ceiling": "EXACT_SOURCE_SCHEMA_INSPECTION_ONLY",
+  "canonicalization": "BLOCKED",
+  "expires_after_single_success_or_failure": true,
+  "format": "KCH_HELICAL_V0_13_2_SCHEMA_INSPECTION_AUTHORITY_LEASE",
+  "issued_at_utc": "2026-10-09T20:55:00Z",
+  "lease_id": "h132schemaauth:dce6ca1370d039e70fbac289d816ab31f74d4d26737afafe26bd0e273acc08c8",
+  "parent_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+  "parent_commit_floor": "f262ae5df7b85d98e01dbeb3ad36ca24d36dd79d",
+  "parent_run_receipt_id": "h12run:34cae48f62b3909ffd032e8259cf15d85c4fd738dd67847ee766bb7124627089",
+  "permissions": [
+    "MATERIALIZE_EXACT_PUBLIC_SOURCE_BYTES_EPHEMERALLY",
+    "DESERIALIZE_IN_NETWORKLESS_READ_ONLY_CONTAINER",
+    "INSPECT_ROOT_FIELD_NAMES_TYPES_DTYPES_SHAPES_AND_LENGTHS",
+    "CLASSIFY_SCHEMA_FIELDS_RELEVANT_TO_LOCATION_UNCERTAINTY",
+    "PERSIST_AGGREGATE_SCHEMA_RECEIPTS_ONLY"
+  ],
+  "prohibitions": [
+    "EXPORT_ANY_ROW_VALUE",
+    "EXPORT_ANY_EVENT_IDENTIFIER",
+    "CONSTRUCT_COHORT_OR_TRAIN_CALIBRATION_TEST_PARTITIONS",
+    "OPEN_SEALED_DIRECTIONAL_FIELDS_BEYOND_NAMES_AND_SCHEMA",
+    "FIT_ANY_MODEL",
+    "EXECUTE_NULLS_OR_PERTURBATIONS",
+    "SCORE_CALIBRATION_OR_TEST",
+    "PUBLISH",
+    "PROMOTE",
+    "CANONICALIZE"
+  ],
+  "promotion": "BLOCKED",
+  "raw_source_persistence": "EPHEMERAL_PURGE_REQUIRED",
+  "scientific_execution_performed": false,
+  "scientific_result": null,
+  "single_use": true,
+  "source_identity": {
+    "bytes": 528904117,
+    "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+    "dataset_id": "2np9vw5v7w",
+    "dataset_version": 2,
+    "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+    "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+  },
+  "version": "0.13.2"
+}
