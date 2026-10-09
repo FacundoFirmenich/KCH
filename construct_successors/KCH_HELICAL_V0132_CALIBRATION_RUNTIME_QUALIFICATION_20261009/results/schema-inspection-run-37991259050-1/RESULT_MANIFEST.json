@@ -1,0 +1,78 @@
+{
+  "event_identifiers_included": false,
+  "files": [
+    {
+      "bytes": 2,
+      "path": "ACQUISITION_EXIT_CODE.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "bytes": 0,
+      "path": "ACQUISITION_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 209,
+      "path": "ACQUISITION_STDOUT.txt",
+      "sha256": "4807559fbe60c28e903767bfa0396df8970595f0d55a887c821daa4698e7db56"
+    },
+    {
+      "bytes": 5478,
+      "path": "EXACT_SOURCE_ACQUISITION_RECEIPT_V0_13_2.json",
+      "sha256": "88759953c5a1ff0e99ee9a9dcd0ae7f3ca2ca5962c3026f4eaf2ebe67197cdf8"
+    },
+    {
+      "bytes": 21711,
+      "path": "EXACT_SOURCE_SCHEMA_INSPECTION_RESULT_V0_13_2.json",
+      "sha256": "4bb070ceeae3ea66c9e70da207deb4d76224818f94f40d3140ef1fddf19c0e41"
+    },
+    {
+      "bytes": 858,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "53185920f9798d67e1a262d2d8308f0fbd4382a4fbdfdc826c13c45fd741ea08"
+    },
+    {
+      "bytes": 2,
+      "path": "INSPECTION_EXIT_CODE.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "bytes": 612,
+      "path": "INSPECTION_STDERR.txt",
+      "sha256": "9bf732e62531492ab17f1136551074a3bbb7fe21d69bfebbb5a5655e8042c11b"
+    },
+    {
+      "bytes": 176,
+      "path": "INSPECTION_STDOUT.txt",
+      "sha256": "609a182ad54aeb727ea078c40e68d4304ac1b3835c50e44e090e38d3b8cfaee5"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 510,
+      "path": "RAW_SOURCE_PURGE_RECEIPT_V0_13_2.json",
+      "sha256": "46a6529456a5b3bbe350dbc79683353350c919eca3b6438c3a3baaca2db09a62"
+    },
+    {
+      "bytes": 2861,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "901ff19957e17cdc4cd6e3b3b60ccc933084cd5aaa0d6b77e745b3e16ebbdcca"
+    },
+    {
+      "bytes": 904,
+      "path": "SCHEMA_IMAGE_LOCK_RECEIPT.json",
+      "sha256": "e307f2b6df11f89bc6ef8d62718753cd00154e07d5e119e4e366148611cb95c5"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_13_2_SCHEMA_INSPECTION_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "37991259050",
+  "github_sha": "bfea21aa7173ead709f149bdc5a14a661457e274",
+  "manifest_id": "h132schemamanifest:aed4919b3490c3898c96e545c272c821e9c9bd9ca130a00fa3e8f35813c916d4",
+  "raw_source_included": false,
+  "row_values_included": false,
+  "sealed_test_values_included": false
+}

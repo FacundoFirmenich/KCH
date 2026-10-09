@@ -1,0 +1,151 @@
+{
+  "adapter": "MENDELEY_PUBLIC_API_EXACT_IDENTITY",
+  "authenticated_api_used": false,
+  "canonicalization": "BLOCKED",
+  "cohort_partition_constructed": false,
+  "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+  "credentials_supplied": false,
+  "dataset_id": "2np9vw5v7w",
+  "dataset_version": 2,
+  "doi": "10.17632/2np9vw5v7w.2",
+  "download_receipt": {
+    "adapter": "MENDELEY_PUBLIC_FILE_EXACT_IDENTITY",
+    "authenticated_api_used": false,
+    "bytes": 528904117,
+    "content_disposition": "attachment; filename=\"focmec_ca_final.pickle\"",
+    "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+    "content_length_header": "528904117",
+    "content_type": "application/octet-stream",
+    "credentials_supplied": false,
+    "dataset_id": "2np9vw5v7w",
+    "dataset_version": 2,
+    "doi": "10.17632/2np9vw5v7w.2",
+    "effective": {
+      "host": "prod-dcd-datasets-public-files-eu-west-1.s3.eu-west-1.amazonaws.com",
+      "path": "/7c520bde-2b77-42ad-8a00-c50d7d923f1c",
+      "query_keys": [],
+      "query_values_recorded": false,
+      "scheme": "https"
+    },
+    "elapsed_seconds": 22.277576239000012,
+    "etag": "\"c5a5ed1415b103be1cbe847407d02366-26\"",
+    "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+    "last_modified": "Tue, 25 Nov 2025 10:27:53 GMT",
+    "provider_identity_match": true,
+    "requested": {
+      "host": "data.mendeley.com",
+      "path": "/public-files/datasets/2np9vw5v7w/files/c5fd3e24-24ef-4186-8794-c681411cdcc3/file_downloaded",
+      "query_keys": [],
+      "query_values_recorded": false,
+      "scheme": "https"
+    },
+    "required_file": "focmec_ca_final.pickle",
+    "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+    "status": 200
+  },
+  "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+  "format": "KCH_HELICAL_V0_13_2_EXACT_SOURCE_ACQUISITION_RECEIPT",
+  "metadata_receipt": {
+    "adapter": "MENDELEY_PUBLIC_API_EXACT_IDENTITY",
+    "authenticated_api_used": false,
+    "credentials_supplied": false,
+    "dataset_id": "2np9vw5v7w",
+    "dataset_version": 2,
+    "doi": "10.17632/2np9vw5v7w.2",
+    "exact_public_identity": {
+      "bytes": 528904117,
+      "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+      "download_url": {
+        "host": "data.mendeley.com",
+        "path": "/public-files/datasets/2np9vw5v7w/files/c5fd3e24-24ef-4186-8794-c681411cdcc3/file_downloaded",
+        "query_keys": [],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+      "filename": "focmec_ca_final.pickle",
+      "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+      "status": "COMPLETED"
+    },
+    "file_list": {
+      "authenticated_api_used": false,
+      "bytes": 2214,
+      "content_length_header": "2214",
+      "content_type": "application/json; charset=utf-8",
+      "effective": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w/files",
+        "query_keys": [
+          "$limit",
+          "$start",
+          "folder_id",
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "elapsed_seconds": 0.2632427279999945,
+      "etag": "W/\"8a6-XKnznOjkZA9yvfsqyjisR0M84KE\"",
+      "label": "PUBLIC_ROOT_FILE_LIST",
+      "last_modified": null,
+      "requested": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w/files",
+        "query_keys": [
+          "$limit",
+          "$start",
+          "folder_id",
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "sha256": "6ef3b76dabac7cd439259e2325fc50060b90dc5b2941e87d40b39f3ad385813b",
+      "status": 200
+    },
+    "metadata": {
+      "authenticated_api_used": false,
+      "bytes": 5574,
+      "content_length_header": null,
+      "content_type": "application/json; charset=utf-8",
+      "effective": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w",
+        "query_keys": [
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "elapsed_seconds": 0.2875180639999826,
+      "etag": null,
+      "label": "PUBLIC_DATASET_METADATA",
+      "last_modified": null,
+      "requested": {
+        "host": "data.mendeley.com",
+        "path": "/public-api/datasets/2np9vw5v7w",
+        "query_keys": [
+          "version"
+        ],
+        "query_values_recorded": false,
+        "scheme": "https"
+      },
+      "sha256": "166eb8d74cfc8e8d0cae5ea71c8b0d8f5dcfeee914d4b8eff031133a97e5ef50",
+      "status": 200
+    },
+    "required_file": "focmec_ca_final.pickle",
+    "synthetic_snapshot_sha256": "df8542f67fe25d9d4d17aa4a467f4e7e0094a5892a2bb256690a31ff09e5c21e"
+  },
+  "model_fit_performed": false,
+  "promotion": "BLOCKED",
+  "provider_identity_match": true,
+  "receipt_id": "h132schemaacq:217802f8ec9b15730a5bb2d07f749beb8ad65bb381606d09e1507199aae8dfc6",
+  "required_file": "focmec_ca_final.pickle",
+  "scientific_result": null,
+  "sealed_test_scored": false,
+  "source_bytes": 528904117,
+  "source_persistence": "EPHEMERAL_PURGE_REQUIRED_AFTER_SCHEMA_INSPECTION",
+  "source_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+  "synthetic_snapshot_sha256": "df8542f67fe25d9d4d17aa4a467f4e7e0094a5892a2bb256690a31ff09e5c21e",
+  "train_calibration_test_partition_constructed": false
+}

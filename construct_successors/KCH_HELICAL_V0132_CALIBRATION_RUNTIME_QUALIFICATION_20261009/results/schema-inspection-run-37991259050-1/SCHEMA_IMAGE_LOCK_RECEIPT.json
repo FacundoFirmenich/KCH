@@ -1,0 +1,15 @@
+{
+  "authority_ceiling": "EXACT_SOURCE_SCHEMA_INSPECTION_ONLY",
+  "base_image_digest": "mcr.microsoft.com/devcontainers/python@sha256:db1b5b5160247189a3252b94f2917e7356bf5d1f4381e8cbcd3ce81b0ad80e5c",
+  "capabilities_at_execution": "ALL_DROPPED",
+  "format": "KCH_HELICAL_V0_13_2_SCHEMA_IMAGE_LOCK_RECEIPT",
+  "image_id": "sha256:1e21b0ffbe4e1072aa7ad106c49b7a677ea13caf3118a304397547f27bf3b012",
+  "locked_at_utc": "2026-10-09T21:06:02.869833Z",
+  "locked_before_source_access": true,
+  "network_mode_at_execution": "NONE",
+  "no_new_privileges_at_execution": true,
+  "numpy_wheel_sha256": "bc6f24b3d1ecc1eebfbf5d6051faa49af40b03be1aaa781ebdadcbc090b4539b",
+  "receipt_id": "h132schemaimage:c3e7ae04f03b44ff7511489b885bae41c36796a8c38c16a3342bc5b47283ae08",
+  "root_filesystem_at_execution": "READ_ONLY",
+  "schema_inspector_sha256": "e9bfe819869b85cf6f9baa871b8e04f02071bb01c11ffd0b19f98a5e91380fac"
+}

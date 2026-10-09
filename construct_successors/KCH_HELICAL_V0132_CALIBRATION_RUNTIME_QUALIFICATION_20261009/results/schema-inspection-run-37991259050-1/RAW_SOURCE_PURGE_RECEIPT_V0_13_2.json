@@ -1,0 +1,14 @@
+{
+  "after_exists": false,
+  "authority_ceiling": "EXACT_SOURCE_SCHEMA_INSPECTION_ONLY",
+  "before": {
+    "bytes": 528904117,
+    "existed": true,
+    "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+  },
+  "format": "KCH_HELICAL_V0_13_2_RAW_SOURCE_PURGE_RECEIPT",
+  "purged_at_utc": "2026-10-09T21:06:27.441150Z",
+  "raw_directory_exists": true,
+  "receipt_id": "h132schemapurge:2b47cda9552841d9ff322d430918b00f7bef440e86c105d2fc5465a474b3ad04",
+  "row_values_persisted": false
+}

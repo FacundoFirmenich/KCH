@@ -1,0 +1,1 @@
+{"receipt_id": "h132schemaacq:217802f8ec9b15730a5bb2d07f749beb8ad65bb381606d09e1507199aae8dfc6", "source_bytes": 528904117, "source_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"}

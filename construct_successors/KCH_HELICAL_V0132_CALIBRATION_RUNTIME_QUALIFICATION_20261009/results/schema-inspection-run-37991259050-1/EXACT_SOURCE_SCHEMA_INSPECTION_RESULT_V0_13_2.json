@@ -1,0 +1,815 @@
+{
+  "authority_ceiling": "EXACT_SOURCE_SCHEMA_INSPECTION_ONLY",
+  "authority_lease_id": "h132schemaauth:dce6ca1370d039e70fbac289d816ab31f74d4d26737afafe26bd0e273acc08c8",
+  "canonicalization": "BLOCKED",
+  "capabilities": "ALL_DROPPED",
+  "cohort_partition_constructed": false,
+  "depth_or_vertical_uncertainty_candidates": [],
+  "dominant_one_dimensional_field_lengths": [
+    {
+      "field_count": 42,
+      "length": 1574113
+    }
+  ],
+  "event_identifiers_exported": false,
+  "fields": [
+    {
+      "location_uncertainty_roles": [],
+      "name": "azi_gap",
+      "normalized_name": "azigap",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "day",
+      "normalized_name": "day",
+      "numpy_convertible": true,
+      "numpy_dtype": "int64",
+      "numpy_dtype_kind": "i",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "dep",
+      "normalized_name": "dep",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "dep_reloc",
+      "normalized_name": "depreloc",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "dip",
+      "normalized_name": "dip",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "dip_gap",
+      "normalized_name": "dipgap",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "dip_orig",
+      "normalized_name": "diporig",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "ev_bl",
+      "normalized_name": "evbl",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "evid",
+      "normalized_name": "evid",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "ftype",
+      "normalized_name": "ftype",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "hour",
+      "normalized_name": "hour",
+      "numpy_convertible": true,
+      "numpy_dtype": "int64",
+      "numpy_dtype_kind": "i",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "lat",
+      "normalized_name": "lat",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "lat_reloc",
+      "normalized_name": "latreloc",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "lon",
+      "normalized_name": "lon",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "lon_reloc",
+      "normalized_name": "lonreloc",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "mag",
+      "normalized_name": "mag",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "minute",
+      "normalized_name": "minute",
+      "numpy_convertible": true,
+      "numpy_dtype": "int64",
+      "numpy_dtype_kind": "i",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "month",
+      "normalized_name": "month",
+      "numpy_convertible": true,
+      "numpy_dtype": "int64",
+      "numpy_dtype_kind": "i",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "nc_sc",
+      "normalized_name": "ncsc",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "npamp",
+      "normalized_name": "npamp",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "npol",
+      "normalized_name": "npol",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "nsamp",
+      "normalized_name": "nsamp",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "nspr",
+      "normalized_name": "nspr",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "num",
+      "normalized_name": "num",
+      "numpy_convertible": true,
+      "numpy_dtype": "int64",
+      "numpy_dtype_kind": "i",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 8,
+      "numpy_ndim": 0,
+      "numpy_object_dtype": false,
+      "numpy_shape": [],
+      "numpy_size": 1,
+      "python_length": null,
+      "python_type": "builtins.int"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "p_azi",
+      "normalized_name": "pazi",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "p_dip",
+      "normalized_name": "pdip",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "pamp_misfit",
+      "normalized_name": "pampmisfit",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "pol_misfit",
+      "normalized_name": "polmisfit",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "prob",
+      "normalized_name": "prob",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "rake",
+      "normalized_name": "rake",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "rake_orig",
+      "normalized_name": "rakeorig",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "samp_misfit",
+      "normalized_name": "sampmisfit",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "second",
+      "normalized_name": "second",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "spr_misfit",
+      "normalized_name": "sprmisfit",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "stdr",
+      "normalized_name": "stdr",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "strike",
+      "normalized_name": "strike",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "strike_orig",
+      "normalized_name": "strikeorig",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "t_azi",
+      "normalized_name": "tazi",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "t_dip",
+      "normalized_name": "tdip",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "time_utc",
+      "normalized_name": "timeutc",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "time_year",
+      "normalized_name": "timeyear",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "uncer",
+      "normalized_name": "uncer",
+      "numpy_convertible": true,
+      "numpy_dtype": "float64",
+      "numpy_dtype_kind": "f",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    },
+    {
+      "location_uncertainty_roles": [],
+      "name": "year",
+      "normalized_name": "year",
+      "numpy_convertible": true,
+      "numpy_dtype": "int64",
+      "numpy_dtype_kind": "i",
+      "numpy_itemsize": 8,
+      "numpy_nbytes": 12592904,
+      "numpy_ndim": 1,
+      "numpy_object_dtype": false,
+      "numpy_shape": [
+        1574113
+      ],
+      "numpy_size": 1574113,
+      "python_length": 1574113,
+      "python_type": "numpy.ndarray"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_13_2_EXACT_SOURCE_SCHEMA_INSPECTION_RESULT",
+  "horizontal_location_uncertainty_candidates": [],
+  "location_covariance_or_ellipse_candidates": [],
+  "location_uncertainty_candidates": [],
+  "location_uncertainty_schema_status": "NO_LOCATION_UNCERTAINTY_SCHEMA_CANDIDATES",
+  "model_fit_performed": false,
+  "network_mode": "NONE",
+  "null_or_perturbation_execution_performed": false,
+  "pickle_opcode_count": 774,
+  "pickle_protocol_versions": [
+    5
+  ],
+  "promotion": "BLOCKED",
+  "result_id": "h132schema:8dc7030b5c46ffa67b5acb94ba294c8c050767c153565fbb1a6431d6d0143b1a",
+  "root_field_count": 43,
+  "root_filesystem": "READ_ONLY",
+  "root_key_type_counts": {
+    "builtins.str": 43
+  },
+  "root_python_type": "builtins.dict",
+  "row_values_exported": false,
+  "scientific_result": null,
+  "sealed_test_scored": false,
+  "source_pickle_bytes": 528904117,
+  "source_pickle_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+  "train_calibration_test_partition_constructed": false
+}
