@@ -1,0 +1,160 @@
+name: MHD003 — global-disk helicity incremental-information gate
+
+on:
+  push:
+    branches:
+      - gate/mhd003-global-helicity-radiative-20261009
+    paths:
+      - .github/workflows/helical-mhd003-global-disk-gate.yml
+      - .github/helical_mhd003/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mhd003-global-disk-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  global-disk-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONHASHSEED: '0'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      RAW_WORK: ${{ runner.temp }}/mhd003-raw-work
+      SAFE_OUT: ${{ runner.temp }}/mhd003-safe-evidence
+    steps:
+      - name: Checkout frozen successor
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+
+      - name: Configure Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.7'
+
+      - name: Install pinned scientific runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --only-binary=:all: \
+            'numpy==2.1.3' \
+            'pandas==2.2.3' \
+            'scipy==1.14.1' \
+            'scikit-learn==1.5.2' \
+            'astropy==6.1.7' \
+            'requests==2.32.3' \
+            'packaging==24.2' \
+            'drms==0.9.1'
+
+      - name: Validate pre-access lock and executable syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d .github/helical_mhd003/source_transport/mhd003_global_disk_gate.py.gz.b64 | gzip -dc > "$RUNNER_TEMP/mhd003_global_disk_gate.py"
+          printf '%s  %s\n' '2922584c4096401b286a96ef6ba758c2182d522aaf4fd616255d3343be5f26b7' "$RUNNER_TEMP/mhd003_global_disk_gate.py" | sha256sum -c -
+          python -m py_compile "$RUNNER_TEMP/mhd003_global_disk_gate.py"
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          path = Path('.github/helical_mhd003/MHD003_GLOBAL_DISK_HELICITY_RADIATIVE_GATE_LOCKED.json')
+          body = json.loads(path.read_text(encoding='utf-8'))
+          supplied = body.pop('protocol_id')
+          canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
+          computed = 'mhd003:' + hashlib.sha256(canonical).hexdigest()
+          expected = 'mhd003:360c7ac372ab7ee0afdcf607fdadd4b6f6caa26b0acf433d9d20a41e04847e27'
+          if supplied != expected or computed != expected:
+              raise SystemExit(f'protocol identity mismatch: supplied={supplied}, computed={computed}, expected={expected}')
+          if body['status'] != 'LOCKED_BEFORE_MHD003_SHARP_FEATURE_OR_GLOBAL_FLARE_TARGET_ACCESS':
+              raise SystemExit('pre-access protocol state is not locked')
+          print(json.dumps({'protocol_id': expected, 'pre_access_lock': 'PASS'}, sort_keys=True))
+          PY
+
+      - name: Execute exact-source global-disk gate
+        id: execute
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RAW_WORK" "$SAFE_OUT"
+          mkdir -p "$RAW_WORK" "$SAFE_OUT"
+          python "$RUNNER_TEMP/mhd003_global_disk_gate.py" \
+            --protocol .github/helical_mhd003/MHD003_GLOBAL_DISK_HELICITY_RADIATIVE_GATE_LOCKED.json \
+            --work-dir "$RAW_WORK" \
+            --output-dir "$SAFE_OUT" \
+            2>&1 | tee "$SAFE_OUT/EXECUTION_STDOUT.log"
+
+      - name: Purge raw and row-level material
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RAW_WORK"
+          mkdir -p "$SAFE_OUT"
+          if find "$SAFE_OUT" -type f \( -iname '*.csv' -o -iname '*.fits' -o -iname '*.nc' -o -iname '*.parquet' -o -iname '*.part' \) -print -quit | grep -q .; then
+            echo 'Forbidden raw or row-level file found in safe evidence directory' >&2
+            find "$SAFE_OUT" -type f -maxdepth 3 -print >&2
+            exit 91
+          fi
+          cp .github/helical_mhd003/MHD003_GLOBAL_DISK_HELICITY_RADIATIVE_GATE_LOCKED.json "$SAFE_OUT/"
+          sha256sum "$RUNNER_TEMP/mhd003_global_disk_gate.py" | sed "s#${RUNNER_TEMP}/##" > "$SAFE_OUT/EXECUTABLE_SHA256.txt"
+          sha256sum .github/helical_mhd003/source_transport/mhd003_global_disk_gate.py.gz.b64 > "$SAFE_OUT/TRANSPORT_SHA256.txt"
+          rm -f "$RUNNER_TEMP/mhd003_global_disk_gate.py"
+          sha256sum .github/workflows/helical-mhd003-global-disk-gate.yml > "$SAFE_OUT/WORKFLOW_SHA256.txt"
+
+      - name: Seal evidence manifest
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ['SAFE_OUT'])
+          root.mkdir(parents=True, exist_ok=True)
+          entries = []
+          for path in sorted(root.rglob('*')):
+              if not path.is_file() or path.name in {'MANIFEST.json', 'SHA256SUMS.txt'}:
+                  continue
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              entries.append({'path': path.relative_to(root).as_posix(), 'bytes': path.stat().st_size, 'sha256': digest})
+          body = {
+              'format': 'KCH_MHD003_SAFE_EVIDENCE_MANIFEST',
+              'protocol_id': 'mhd003:360c7ac372ab7ee0afdcf607fdadd4b6f6caa26b0acf433d9d20a41e04847e27',
+              'repository': os.environ.get('GITHUB_REPOSITORY'),
+              'ref': os.environ.get('GITHUB_REF'),
+              'commit': os.environ.get('GITHUB_SHA'),
+              'workflow_run_id': os.environ.get('GITHUB_RUN_ID'),
+              'workflow_run_attempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
+              'entries': entries,
+              'raw_sources_present': False,
+              'row_level_features_present': False,
+              'row_level_labels_present': False,
+              'promotion': 'BLOCKED',
+              'canonicalization': 'BLOCKED',
+              'authority_ceiling': 'SOFTWARE_CANDIDATE_LOCAL_SHADOW',
+          }
+          canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
+          body['manifest_id'] = 'mhd003manifest:' + hashlib.sha256(canonical).hexdigest()
+          (root / 'MANIFEST.json').write_text(json.dumps(body, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          with (root / 'SHA256SUMS.txt').open('w', encoding='utf-8', newline='\n') as handle:
+              for item in entries:
+                  handle.write(f"{item['sha256']}  {item['path']}\n")
+              manifest = root / 'MANIFEST.json'
+              handle.write(f"{hashlib.sha256(manifest.read_bytes()).hexdigest()}  MANIFEST.json\n")
+          print(json.dumps({'manifest_id': body['manifest_id'], 'files': len(entries) + 1}, sort_keys=True))
+          PY
+
+      - name: Upload safe, aggregate-only evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-mhd003-global-disk-safe-evidence
+          path: ${{ runner.temp }}/mhd003-safe-evidence
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
