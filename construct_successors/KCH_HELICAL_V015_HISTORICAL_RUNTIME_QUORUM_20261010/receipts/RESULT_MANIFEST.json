@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "bytes": 0,
+      "path": "receipts/RECOVERED_CODE_SHA256SUMS.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_15_CODE_ONLY_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38003323885",
+  "github_sha": "c12ba7b0b1c6be1cde220d5370b588f3fe390773",
+  "manifest_id": "h15manifest:a934b6d2d29ce3aa2ca764cd5283df17627f6c2f7b1948dae2d8fb1daea071a6",
+  "scientific_data_included": false,
+  "scientific_result_included": false,
+  "sealed_test_values_included": false,
+  "source_commit": "24703e036401185e935b363f839f059c8d49d57e",
+  "source_identity_claim": "EXACT_V0_6_TRANSPORT_ONLY_NOT_V0_8_4_IDENTITY",
+  "transport_repair_performed": false
+}
