@@ -1,0 +1,19 @@
+{
+  "activated_at_utc": "2026-10-09T23:00:43.507418Z",
+  "authority_file_sha256": "e0506479f2675ff8c0886866be7be061f7b18762412f157267cf70752be36e09",
+  "authority_id": "h143auth:6def7f73381d2000197cb3c6bb2168e383bbb28bb09a6fb0aeac4892724134df",
+  "canonicalization": "BLOCKED",
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "format": "KCH_HELICAL_V0_14_3_AUTHORITY_ACTIVATION_RECEIPT",
+  "location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "null_runtime_execution_authorized": false,
+  "observation_adapter": "USGS_FDSN_CSV_BULK",
+  "predecessor_failed_run_receipt_id": "h14run:73d8aad92ed4d15e493c2d1ecf6de29e5fbe91c42e1615c3c33a0635aad7e7b7",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h143auth:8532df9257abcd151dcf8e261fbf16e16d48471a39e4daa3d3cdb9c150b2ca04",
+  "scientific_model_fit_authorized": false,
+  "scope": "EXACT_COMCAT_CSV_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
+  "sealed_test_access_authorized": false,
+  "single_use": true
+}
