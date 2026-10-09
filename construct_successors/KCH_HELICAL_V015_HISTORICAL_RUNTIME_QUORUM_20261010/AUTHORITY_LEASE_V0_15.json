@@ -5,6 +5,10 @@
   "single_use": true,
   "scope": "HISTORICAL_CODE_ONLY_RUNTIME_SOURCE_QUORUM",
   "source_commit": "24703e036401185e935b363f839f059c8d49d57e",
+  "upstream_location_crosswalk_run_receipt_id": "h14run:8b6bd92eeb59ba9ca495739814e4c4c41b93a23dea97539e96d14460319306d0",
+  "upstream_location_crosswalk_gate_id": "h142loccsv:670bb21399ba5882844998d1a87db2603c658792c23e5a32e4efb12a6b0d4362",
+  "upstream_location_crosswalk_outcome": "LOCATION_UNCERTAINTY_CROSSWALK_PASS",
+  "target_runtime_contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
   "allowed_effects": [
     "READ_EXACT_GIT_BLOBS_FROM_DECLARED_SOURCE_COMMIT",
     "RECONSTRUCT_BASE64_TRANSPORT_WITHOUT_REPAIR",
