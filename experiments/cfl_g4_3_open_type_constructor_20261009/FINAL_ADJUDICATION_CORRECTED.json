@@ -1,0 +1,21 @@
+{
+  "program_id":"CFL-UEP-G4.3-OPEN-TYPE-CONSTRUCTOR-AND-SIGNATURE-GRAMMAR-GENESIS",
+  "version":"0.1.0",
+  "material_gate":"PASS_LOCAL_REMOTE_BYTE_IDENTICAL_CORE",
+  "outcome":"G4_3_TYPE_CONSTRUCTOR_GENESIS_BASELINE_EQUIVALENT",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "constructor_genesis":"DEMONSTRATED_RELATIVE_TO_GAMMA0_META_INVARIANTS",
+  "universe":{"models":360,"gamma0_models":72,"dev_models":96,"private_models":192},
+  "hard_boundary":{"private_construct_n":44,"all_private_outside_gamma0":true,"witness_breakdown":{"dependent-output-sort":11,"depends-on-context":11,"depends-on-carrier-size":11,"depends-on-function-code":11},"dev_private_constructor_overlap":[]},
+  "primary":{"n":16,"tos_forms":16,"strongest_baseline":"TYPE_GRAMMAR_MUTATION","baseline_forms":16,"paired_delta":0.0,"bootstrap_95_ci":[0.0,0.0]},
+  "other_methods":{"EXACT_OPERATOR_MINIMAX":16,"EXACT_EIG_QUERY":15,"MDL_SIGNATURE_INDUCTION":1,"RANDOM_QUERY":10},
+  "negative_constructor_lane":{"n":10,"forms":0,"states":{"0":10}},
+  "anti":{"n":16,"minus_one":16},
+  "sealed_certificate":{"all_tos_construct_forms_sealed":true},
+  "controls":{"gamma0_enumeration_forms":0,"universal_table_completion_forms":0},
+  "reproducibility":{"remote_run_id":37874970091,"remote_head_sha":"e7ff186420ab2d496d26a74fcf27aa7b146cf5ad","remote_artifact_sha256":"6b3c70ccffd9beb15c44c3908ad026d0b07dddc40f3600107bb71e002061295b","scientific_core_byte_identical":true},
+  "benchmark_state":"+0_TYPE_CONSTRUCTOR_GENESIS_BENCHMARK_PROTOFORM",
+  "o3_claim_state":"0_BASELINE_EQUIVALENT",
+  "scope_limit":"Private constructors are outside Gamma0 and violate exact Gamma0 meta-invariants, but a bounded higher-level mutation vocabulary still names the relevant axes: input-dependent output sort, history/context dependence, carrier-size dependence and operator-code dependence. Fully open meta-constructor invention is not established.",
+  "authority":"NONE","promotion":"BLOCKED","canonicalization":"BLOCKED"
+}
