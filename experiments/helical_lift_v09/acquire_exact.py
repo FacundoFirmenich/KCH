@@ -5,11 +5,13 @@ import hashlib
 import json
 import os
 import shutil
+import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, BinaryIO
 
 DATASET_ID = "2np9vw5v7w"
 VERSION = 2
@@ -35,6 +37,14 @@ def now_utc() -> str:
 
 def canonical(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(CHUNK), b""):
+            h.update(block)
+    return h.hexdigest()
 
 
 def write_json(path: Path, value: Any) -> None:
@@ -168,16 +178,45 @@ def main() -> int:
     try:
         snapshot, snapshot_receipt, snapshot_raw = request_json(SNAPSHOT_URL)
         files = walk_files(snapshot)
-        matches = [row for row in files if Path(row["filename"]).name == REQUIRED_BASENAME]
+        raw_matches = [row for row in files if Path(row["filename"]).name == REQUIRED_BASENAME]
+        matches_by_id = {row["file_id"]: row for row in raw_matches}
+        matches = list(matches_by_id.values())
         if len(matches) != 1:
-            raise RuntimeError(f"expected exactly one {REQUIRED_BASENAME}; observed {len(matches)}")
+            raise RuntimeError(f"expected exactly one distinct {REQUIRED_BASENAME}; observed {len(matches)}")
         selected = matches[0]
         file_id = selected["file_id"]
-        file_url = f"https://api.data.mendeley.com/datasets/{DATASET_ID}/files/{file_id}/file_downloaded?version={VERSION}"
+
+        candidate_urls: list[str] = []
+        metadata = selected["metadata"]
+        for key in ("download_url", "file_download_url", "url"):
+            candidate = metadata.get(key) if isinstance(metadata, dict) else None
+            if isinstance(candidate, str):
+                parsed = urllib.parse.urlsplit(candidate)
+                if parsed.scheme == "https" and parsed.hostname in {"api.data.mendeley.com", "data.mendeley.com"}:
+                    candidate_urls.append(candidate)
+        candidate_urls.extend([
+            f"https://api.data.mendeley.com/datasets/{DATASET_ID}/files/{file_id}/file_downloaded?version={VERSION}",
+            f"https://data.mendeley.com/public-files/datasets/{DATASET_ID}/files/{file_id}/file_downloaded",
+        ])
+        candidate_urls = list(dict.fromkeys(candidate_urls))
 
         mechanism_path = data_dir / REQUIRED_BASENAME
         fault_path = data_dir / "gem_active_faults_harmonized.geojson"
-        mechanism_receipt = stream_download(file_url, mechanism_path, accept="application/octet-stream")
+        mechanism_errors: list[dict[str, str]] = []
+        mechanism_receipt = None
+        for candidate_url in candidate_urls:
+            try:
+                mechanism_receipt = stream_download(candidate_url, mechanism_path, accept="application/octet-stream")
+                break
+            except Exception as candidate_exc:
+                mechanism_errors.append({
+                    "url": safe_url_receipt(candidate_url)["origin_and_path"],
+                    "error_type": type(candidate_exc).__name__,
+                    "error": str(candidate_exc),
+                })
+        if mechanism_receipt is None:
+            raise RuntimeError(f"all authoritative Mendeley file routes failed: {mechanism_errors}")
+        mechanism_receipt["route_failures_before_success"] = mechanism_errors
         fault_receipt = stream_download(FAULT_URL, fault_path, accept="application/geo+json,application/json")
 
         if mechanism_path.stat().st_size == 0 or fault_path.stat().st_size == 0:
