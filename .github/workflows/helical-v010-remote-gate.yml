@@ -6,6 +6,7 @@ on:
       - helical-v010-remote-gate-20261009
     paths:
       - "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_remote_gate.py"
+      - "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_public_acquisition.py"
       - "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/protocol/**"
       - ".github/workflows/helical-v010-remote-gate.yml"
   workflow_dispatch:
@@ -62,23 +63,26 @@ jobs:
           (root / "RUNTIME_ENVIRONMENT.json").write_text(json.dumps(data, sort_keys=True, indent=2) + "\n")
           PY
 
-      - name: Verify runner and protocol syntax before network effects
+      - name: Verify runner, public adapter and protocol before network effects
         shell: bash
         run: |
           set -euo pipefail
           ROOT="construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009"
-          python -m py_compile "$ROOT/helical_remote_gate.py"
+          python -m py_compile "$ROOT/helical_remote_gate.py" "$ROOT/helical_public_acquisition.py"
           python -m json.tool "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" >/dev/null
-          sha256sum "$ROOT/helical_remote_gate.py" "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+          sha256sum \
+            "$ROOT/helical_remote_gate.py" \
+            "$ROOT/helical_public_acquisition.py" \
+            "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
             > "$RUNNER_TEMP/helical-v010/control/INPUT_SHA256SUMS.txt"
 
-      - name: Execute exact bytes to blind eligibility
+      - name: Execute exact public bytes to blind eligibility
         id: gate
         shell: bash
         run: |
           set +e
           ROOT="construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009"
-          python "$ROOT/helical_remote_gate.py" \
+          python "$ROOT/helical_public_acquisition.py" \
             --protocol "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
             --workspace "$RUNNER_TEMP/helical-v010" \
             --timeout 1200 \
