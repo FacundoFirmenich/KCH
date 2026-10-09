@@ -1,0 +1,198 @@
+{
+  "authority": {
+    "authority_ceiling": "NONE",
+    "canonicalization": "BLOCKED",
+    "promotion": "BLOCKED"
+  },
+  "claim_ceiling": "PHOTOSPHERIC_CURRENT_HELICITY_PROXY_INCREMENTAL_INFORMATION_NOT_FULL_CORONAL_RELATIVE_HELICITY",
+  "feature_blocks": {
+    "baseline_derived": [
+      "REGION_AGE_HOURS",
+      "USFLUX_SLOPE_6H",
+      "USFLUX_SLOPE_24H",
+      "FIELD_PERSISTENCE_6H",
+      "PRIOR_MX_COUNT_7D",
+      "HEMISPHERE",
+      "SOLAR_CYCLE_PHASE_SIN",
+      "SOLAR_CYCLE_PHASE_COS"
+    ],
+    "baseline_raw": [
+      "USFLUX",
+      "AREA_ACR",
+      "MEANGBT",
+      "MEANGBZ",
+      "MEANGBH",
+      "MEANJZD",
+      "TOTUSJZ",
+      "MEANPOT",
+      "TOTPOT",
+      "MEANSHR",
+      "SHRGT45",
+      "R_VALUE"
+    ],
+    "forbidden": [
+      "HARPNUM_IDENTITY",
+      "FUTURE_LABEL_INFORMATION",
+      "TEST_EPOCH_HYPERPARAMETER_SELECTION"
+    ],
+    "helicity_derived": [
+      "MEANJZH_SLOPE_6H",
+      "MEANJZH_SLOPE_24H",
+      "TOTUSJH_SLOPE_6H",
+      "TOTUSJH_SLOPE_24H",
+      "MEANALP_SLOPE_24H",
+      "HELICITY_CURVATURE_24H",
+      "HEMISPHERE_SIGN_INTERACTION"
+    ],
+    "helicity_raw": [
+      "MEANJZH",
+      "TOTUSJH",
+      "ABSNJZH",
+      "SAVNCPP",
+      "MEANALP"
+    ]
+  },
+  "format": "KCH_MHD001_SHARP_INCREMENTAL_INFORMATION_GATE",
+  "label_join_protocol_id": "mhd001label:7c328525d4096c9b780d8bf21b58e063a81b14da0de710a022ca2bd55bad2960",
+  "locked_at_utc": "2026-10-09T14:26:00Z",
+  "metrics": {
+    "cluster_bootstrap_lower_95_must_exceed_zero": true,
+    "maximum_absolute_ece_degradation": 0.01,
+    "maximum_delta_bic_helicity_minus_baseline": -10.0,
+    "minimum_brier_skill_improvement": 0.02,
+    "minimum_mean_logscore_gain_per_record": 0.01,
+    "minimum_relative_auprc_improvement": 0.1
+  },
+  "models": {
+    "M0": "PARTITION_TRAINING_PREVALENCE_CLIMATOLOGY",
+    "MB": "RIDGE_LOGISTIC_BASELINE",
+    "MH": "RIDGE_LOGISTIC_BASELINE_PLUS_HELICITY",
+    "class_weight": [
+      null,
+      "balanced"
+    ],
+    "max_iter": 4000,
+    "random_state": 805001,
+    "regularization_C": [
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0
+    ],
+    "solver": "lbfgs"
+  },
+  "nulls": {
+    "families": [
+      "WITHIN_HARP_CIRCULAR_TIME_SHIFT_OF_HELICITY_BLOCK",
+      "MATCHED_HARP_HELICITY_BLOCK_SWAP_BY_USFLUX_AREA_AND_AGE",
+      "HEMISPHERE_CONDITIONAL_SIGN_RANDOMIZATION",
+      "FLARE_LABEL_TIME_SHIFT_PRESERVING_EVENT_RATE"
+    ],
+    "multiplicity": "HOLM_BONFERRONI",
+    "replicates_each": 499
+  },
+  "outcomes": [
+    "HELICITY_PROXY_INCREMENTAL_INFORMATION_REPLICATED",
+    "LOCAL_OR_EPOCH_SPECIFIC_SIGNAL_NOT_REPLICATED",
+    "NONHELICAL_MAGNETIC_RIVAL_SUFFICIENT",
+    "HELICITY_PROXY_UPPER_BOUND_BELOW_MATERIALITY",
+    "NOT_IDENTIFIABLE_REGION_LABEL_ASSOCIATION",
+    "NOT_IDENTIFIABLE_VECTOR_FIELD_COVERAGE",
+    "INSUFFICIENT_REGION_LEVEL_POWER",
+    "MODEL_MISMATCH",
+    "BLOCKED_EXACT_BYTE_ACQUISITION"
+  ],
+  "partitions": {
+    "calibration": [
+      "2018-01-01T00:00:00",
+      "2022-01-01T00:00:00"
+    ],
+    "harp_overlap": "FORBIDDEN",
+    "sealed_test_epoch_1": [
+      "2022-01-01T00:00:00",
+      "2024-01-01T00:00:00"
+    ],
+    "sealed_test_epoch_2": [
+      "2024-01-01T00:00:00",
+      "2026-01-01T00:00:00"
+    ],
+    "train": [
+      "2010-05-01T00:00:00",
+      "2018-01-01T00:00:00"
+    ]
+  },
+  "predecessor_prelock_id": "mhd001:d44e1cdde28ade9eb2bc064b3148cd6e1bd31768eb296d587861030e8c04fd89",
+  "protocol_id": "mhd001model:5d14dfdbf3c25a2bc9b8ed111a39cec1fb1cbedd8a8cde6272a80af439a105fd",
+  "record_filter": {
+    "imputation": "TRAIN_MEDIAN_WITH_MISSING_INDICATORS",
+    "maximum_absolute_lon_fwt_deg": 60.0,
+    "quality_equals": 0,
+    "require_finite_baseline_core_fraction": 0.8,
+    "require_locked_label_join_row": true,
+    "standardization": "TRAIN_ONLY_MEDIAN_IQR"
+  },
+  "replication": {
+    "aggregate_must_pass_all_primary_metrics": true,
+    "bootstrap_replicates": 999,
+    "bootstrap_unit": "HARPNUM",
+    "both_test_epochs_must_pass_logscore_and_cluster_bootstrap": true
+  },
+  "selection": {
+    "final_fit": "TRAIN_PLUS_CALIBRATION",
+    "grid_selected_on": "CALIBRATION_CLUSTER_WEIGHTED_MEAN_LOG_SCORE_MINUS_BIC_COMPLEXITY_PENALTY",
+    "test_open": "ONCE_AFTER_SELECTION_RECEIPT_HASHED",
+    "test_reuse": "FORBIDDEN"
+  },
+  "source": {
+    "cadence": "6h",
+    "exact_chunk_csv_receipts_required": true,
+    "keywords": [
+      "HARPNUM",
+      "T_REC",
+      "NOAA_AR",
+      "NOAA_ARS",
+      "QUALITY",
+      "LAT_FWT",
+      "LON_FWT",
+      "USFLUX",
+      "MEANGBT",
+      "MEANGBZ",
+      "MEANGBH",
+      "MEANJZD",
+      "TOTUSJZ",
+      "MEANALP",
+      "MEANJZH",
+      "TOTUSJH",
+      "ABSNJZH",
+      "SAVNCPP",
+      "MEANPOT",
+      "TOTPOT",
+      "MEANSHR",
+      "SHRGT45",
+      "R_VALUE",
+      "AREA_ACR"
+    ],
+    "provider": "JSOC_SDO_HMI",
+    "series": "hmi.sharp_cea_720s",
+    "time_range_tai": [
+      "2010-05-01T00:00:00",
+      "2026-01-01T00:00:00"
+    ],
+    "vector_segments_not_required_for_primary_keyword_gate": true
+  },
+  "status": "LOCKED_BEFORE_SHARP_HELICITY_KEYWORD_ACCESS_AND_BEFORE_LABEL_JOIN_RESULT_INSPECTION",
+  "uncertainty": {
+    "keyword_error_propagations": 128,
+    "label_association_sensitivity": [
+      "NOAA_AR_EXACT",
+      "AMBIGUOUS_MULTI_REGION_EXCLUDED"
+    ],
+    "region_cluster_bootstrap_replicates": 999
+  },
+  "version": "0.3.0"
+}
