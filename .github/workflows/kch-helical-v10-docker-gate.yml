@@ -1,4 +1,4 @@
-name: KCH Helical v0.10 Docker exact-byte gate
+name: KCH Helical v0.10.1 Docker exact-byte gate
 
 on:
   push:
@@ -29,9 +29,9 @@ jobs:
       ACQUISITION_PATCH_SHA256: 970718c772bbccf33ddd8780f833309dba7d42f62f7e4c0aaaefa1657aefc536
       ACQUISITION_PREDECESSOR_SHA256: c42c5df08bea3e6c28da1b452b4bac559cb67eeea659a7212d24ddda680a5ba8
       ACQUISITION_SUCCESSOR_SHA256: bd59aa32c8455818c42d9559a1102c417e673b6758bfb85262d6f070703db66e
-      SANDBOX_OVERLAY_PATH: construct_successors/helical_v10_sandbox_overlay/RUN_HARDENED_PICKLE_EXTRACTION_V0_10_DOCKER.sh
-      SANDBOX_OVERLAY_SHA256: 170c4e0e3cd33fd53df6ef27d9388d8bef06d77b42707d785d69b98ceedf0885
-      SANDBOX_PREDECESSOR_SHA256: 5b62649d88992f7f866b5b577e08d5d7c0a810fa334ca4ffe2b9d57ef9959060
+      SANDBOX_OVERLAY_PATH: construct_successors/helical_v10_sandbox_overlay/RUN_HARDENED_PICKLE_EXTRACTION_V0_10_1_DOCKER.sh
+      SANDBOX_OVERLAY_SHA256: 92c2acc07d27685371ae10ec656bc644d15d16a50b28a1e9ed2b5386fd7f5e98
+      SANDBOX_PREDECESSOR_SHA256: 170c4e0e3cd33fd53df6ef27d9388d8bef06d77b42707d785d69b98ceedf0885
       SANDBOX_BASE_REPO_DIGEST: python@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce
       SANDBOX_BASE_IMAGE_ID: sha256:541096ae9b05d3b850341b78790e2ed31e94d5aa0ea086933c6ff0c09ffa2e63
       NUMPY_WHEEL_FILENAME: numpy-2.1.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
@@ -40,7 +40,7 @@ jobs:
       SANDBOX_ENV_FREEZE_RECEIPT_SHA256: 2ac3bde51cf7cd982adaa6c846bf30202f4a1a9441cf8ea99c6e945d2ed6e116
       PREPARE_SCRIPT_SHA256: e0230fb057d0745a85a0e294941847fa0c9c0442c9c828a247707fd921db9e33
       BUILD_SCRIPT_SHA256: ac4ee30f8fc30f141bd38d9a6fb1bb2a4eca642c9cf4b663ed93ea7821b594f6
-      TEST_SCRIPT_GIT_BLOB: 97a3a009ffb770cca6564df55348445448fd067d
+      TEST_SCRIPT_GIT_BLOB: bcb34597268b61e5e4e9c2bea316ed4c7c151595
       PURGE_SCRIPT_SHA256: adf23fbac87d6961ff93f72bc5cb818fb0e596bdcc1c45859de828f15ccce282
 
     steps:
@@ -58,7 +58,7 @@ jobs:
           dir=construct_successors/helical_v10_remote_gate
           test "$(sha256sum "$dir/PREPARE_HELICAL_V10_CAPSULE.sh" | awk '{print $1}')" = "$PREPARE_SCRIPT_SHA256"
           test "$(sha256sum "$dir/BUILD_HELICAL_V10_SANDBOX_IMAGE.sh" | awk '{print $1}')" = "$BUILD_SCRIPT_SHA256"
-          test "$(git hash-object "$dir/TEST_HELICAL_V10_DOCKER_SANDBOX.sh")" = "$TEST_SCRIPT_GIT_BLOB"
+          test "$(git hash-object "$dir/TEST_HELICAL_V10_1_DOCKER_SANDBOX.sh")" = "$TEST_SCRIPT_GIT_BLOB"
           test "$(sha256sum "$dir/PURGE_ARCHIVE_HELICAL_V10.sh" | awk '{print $1}')" = "$PURGE_SCRIPT_SHA256"
           bash -n "$dir"/*.sh
           mkdir -p "$RUNNER_TEMP/helical-v10/receipts"
@@ -69,7 +69,7 @@ jobs:
             "github_run_id":os.environ["GITHUB_RUN_ID"],
             "github_run_attempt":os.environ["GITHUB_RUN_ATTEMPT"],
             "github_sha":os.environ["GITHUB_SHA"],
-            "predecessor_runs":[37884208343,37884594350,37885282638],
+            "predecessor_runs":[37884208343,37884594350,37885282638,37886081459,37886251723],
             "predecessor_gate_receipt":"h9gate:34c98fad5e90688356b318b29823abc41e66cd0173695ce1105ef5dd4c34b854",
             "predecessors_mutated":False,
             "scientific_protocol_mutated":False,
@@ -135,7 +135,7 @@ jobs:
       - name: Execute adversarial sandbox battery
         shell: bash
         run: |
-          bash construct_successors/helical_v10_remote_gate/TEST_HELICAL_V10_DOCKER_SANDBOX.sh \
+          bash construct_successors/helical_v10_remote_gate/TEST_HELICAL_V10_1_DOCKER_SANDBOX.sh \
             --capsule-root "${{ steps.prepare.outputs.root }}" \
             --image-id "${{ steps.image.outputs.image_id }}" \
             --image-receipt-sha "${{ steps.image.outputs.receipt_sha }}" \
