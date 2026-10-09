@@ -1,0 +1,166 @@
+{
+  "format": "KCH_HELICAL_V0_9_A_REMOTE_RESULT_INDEX",
+  "governance": {
+    "authority_ceiling": "NONE",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "promotion": "BLOCKED"
+  },
+  "kwanblocks": {
+    "blocks": 200,
+    "edges": 382,
+    "events": 588,
+    "foreign_key_errors": 0,
+    "graph_id": "kbg:b72edd48c131a3cc661dc568af7b1e8dd7974678cd4742d8e99e378390deb752",
+    "ledger_head": "2a3324d4813bc5813dc77c857b73821c6ea64d739b8824f5bd31ef28d2aecd38",
+    "sqlite_integrity": "ok",
+    "validation": "2403/2403 PASS"
+  },
+  "mhd001": {
+    "blind_harp_census": {
+      "cadence": "6h",
+      "census_id": "mhd001census:4726c460b748f4829ac903366d1941f332b0e34d751d3447b33aa6088a0515f4",
+      "counts": {
+        "calibration": {
+          "harp_count_total": 504,
+          "harp_count_with_primary_record": 458,
+          "record_count_quality_disk_pass": 4330,
+          "record_count_total": 14453
+        },
+        "sealed_test": {
+          "harp_count_total": 3273,
+          "harp_count_with_primary_record": 2998,
+          "record_count_quality_disk_pass": 30214,
+          "record_count_total": 100506
+        },
+        "train": {
+          "harp_count_total": 4023,
+          "harp_count_with_primary_record": 3658,
+          "record_count_quality_disk_pass": 36968,
+          "record_count_total": 121749
+        }
+      },
+      "executed_head_sha": "f403658b2971e5b2683e26ddadfa9fb1cb02beed",
+      "executed_script_blob_sha": "9d292ea987c37c54f4a977c734b9c31249b91137",
+      "flare_labels_accessed": false,
+      "harp_overlap_across_time_partitions": {
+        "calibration__sealed_test": 11,
+        "train__calibration": 2,
+        "train__sealed_test": 0
+      },
+      "helical_keywords_accessed": false,
+      "metadata_source_series": "hmi.Mharp_720s",
+      "outcome": "PASS",
+      "remote_artifact_digest": "sha256:b188e420b95d01cff065532832c93535754de4160c49dd6dbdf0301f9eab6c31",
+      "remote_artifact_id": 11613151191,
+      "remote_run_id": 37922877152,
+      "unique_record_count": 236708
+    },
+    "current_state": "BLIND_HARP_CENSUS_PASS_AWAITING_EXACT_NOAA_NCEI_FLARE_LABEL_ACQUISITION_AND_HARP_DISJOINT_PARTITION_ADJUDICATION",
+    "gate_state_id": "mhd001state:01aeb96a0273cb1dd93212118302cda5e933d55ebabf56789fddebfa1cfe74a4",
+    "helical_feature_access_performed": false,
+    "label_join_performed": false,
+    "locked_at_utc": "2026-10-09T11:12:06.453886Z",
+    "physical_helicity": "NOT_EVALUATED",
+    "prelock_id": "mhd001:d44e1cdde28ade9eb2bc064b3148cd6e1bd31768eb296d587861030e8c04fd89",
+    "schema_probe": {
+      "available_keyword_count": 215,
+      "available_segment_count": 11,
+      "missing_keywords": [],
+      "missing_segments": [],
+      "outcome": "PASS",
+      "probe_id": "mhd001probe:99791ed1c68b83b1b107ecf9d4a8ca2ca908f84772b604b5306da3b3db8719d7",
+      "remote_artifact_digest": "sha256:a219aa141ecfb70a2848f551ac64ced7b0bc639ed01ff3472e045411ac870be9",
+      "remote_artifact_id": 11611968553,
+      "remote_run_id": 37921955269,
+      "sample_record_count": 4,
+      "series": "hmi.sharp_cea_720s"
+    },
+    "scientific_result": null
+  },
+  "papers": {
+    "empirical": {
+      "name": "FAIL_CLOSED_TESTS_OF_HELICAL_STRUCTURE_IN_EARTHQUAKE_CATALOGS_MANUSCRIPT.md",
+      "sha256": "02d27f0a1ca560a7f07705ba06d7311a7a460ed1172c3a4b156fabb8fb6e2d2d",
+      "status": "SUBSTANTIVE_DRAFT_NOT_SUBMITTED"
+    },
+    "formal": {
+      "name": "PROJECTED_RECURRENCE_IS_NOT_STATE_RETURN_MANUSCRIPT.md",
+      "sha256": "f6dbc2e3eb4544fc8305513fb0ca3622a39b0b373e97fb0d1cb0e79b854245e9",
+      "status": "SUBSTANTIVE_DRAFT_NOT_SUBMITTED"
+    }
+  },
+  "release": {
+    "KCH_KWANBLOCKS_HELICAL_LIFT_v0_9_A.zip": {
+      "bytes": 14013736,
+      "sha256": "f2770ff9834f6bc3e04175bbd3c16e08a42541c3230c25602640de13955fd25f"
+    },
+    "KCH_KWANBLOCKS_HELICAL_LIFT_v0_9_A_ADDITIVE_FROM_v0_8_2.zip": {
+      "bytes": 8441577,
+      "sha256": "715dcc982a50ee6caa9f9983822a4633965d6826fd258289351882d5d6d32619"
+    },
+    "KCH_KWANBLOCKS_HELICAL_LIFT_v0_9_A_EVIDENCE.zip": {
+      "bytes": 8839044,
+      "sha256": "e96c2f91ac32228b1063909f91939539e48ebf5632e779d89ef155a0bdf65e91"
+    }
+  },
+  "seismic": {
+    "cohorts": {
+      "BAY_AREA_HAYWARD_CALAVERAS": {
+        "maximum_oracle_primary_gate_power": 0.0,
+        "median_top_parent_probability": 0.7358738724766555,
+        "power_gate": false,
+        "support_gate": true,
+        "test_children_with_cross_support": 3032,
+        "test_directed_pairs": 77,
+        "test_pairs_with_at_least_50_children": 16,
+        "top_pair_fraction": 0.1550131926121372
+      },
+      "PARKFIELD_CENTRAL_SAF": {
+        "maximum_oracle_primary_gate_power": 0.9195979899497487,
+        "median_top_parent_probability": 0.38566114193480866,
+        "power_gate": true,
+        "support_gate": true,
+        "test_children_with_cross_support": 3633,
+        "test_directed_pairs": 4,
+        "test_pairs_with_at_least_50_children": 4,
+        "top_pair_fraction": 0.48114505917974126
+      }
+    },
+    "decision": "NO_GO_NEW_SEISMIC_CONFIRMATORY_UNDER_CURRENT_CROSS_SEGMENT_DESIGN",
+    "decision_id": "h9a:0a6106ffe3a2c85677436a85e7fb594aac3f78d82a319db4238523d76e5b771e",
+    "exploratory_results": {
+      "BAY_AREA_HAYWARD_CALAVERAS": {
+        "delta_bic": 7.2724033966615025,
+        "logscore_gain": 0.00012278600760229352,
+        "relative_rmse_improvement": -0.002156952394001972,
+        "twist_rad_per_km": 0.02450048805424938
+      },
+      "PARKFIELD_CENTRAL_SAF": {
+        "delta_bic": 1.3705790053772944,
+        "logscore_gain": 0.000939613959103136,
+        "relative_rmse_improvement": 0.002591910825640312,
+        "twist_rad_per_km": -0.011727285744042996
+      }
+    },
+    "network": {
+      "components": 18,
+      "portal_edges": 190,
+      "portal_nodes": 193,
+      "source_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+      "used_segments": 66
+    },
+    "oracle_power_gate": false,
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "posterior_materiality_gate": false,
+    "technical_support_gate": true,
+    "universal_absence_of_helicity": "NOT_ESTABLISHED",
+    "upper_bounds": {
+      "cross_segment_logscore_q975": 0.00796838871387196,
+      "cross_segment_rmse_q975": 0.01903581192909908,
+      "predictive_probability_logscore_material": 0.011259359942766273,
+      "predictive_probability_rmse_material": 0.009225038482798101
+    }
+  },
+  "version": "0.9-A"
+}
