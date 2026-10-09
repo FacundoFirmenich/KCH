@@ -108,9 +108,56 @@ def reconstruct_selection(
     return selected_npz, receipt
 
 
+def aggregate_query_summary(path: Path) -> dict[str, Any]:
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(rows, list):
+        raise RuntimeError("FDSN CSV query receipt payload is not a list")
+    per_cohort: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        cohort = str(row["cohort"])
+        count = row.get("row_count", row.get("feature_count"))
+        if count is None:
+            raise RuntimeError("query receipt lacks row_count/feature_count")
+        state = per_cohort.setdefault(
+            cohort,
+            {
+                "query_count": 0,
+                "catalog_row_count_sum": 0,
+                "response_bytes_sum": 0,
+                "horizontal_error_nonmissing_sum": 0,
+                "depth_error_nonmissing_sum": 0,
+                "response_sha256s": [],
+                "schema_columns_union": set(),
+            },
+        )
+        state["query_count"] += 1
+        state["catalog_row_count_sum"] += int(count)
+        state["response_bytes_sum"] += int(row["bytes"])
+        state["horizontal_error_nonmissing_sum"] += int(row.get("horizontal_error_nonmissing", 0))
+        state["depth_error_nonmissing_sum"] += int(row.get("depth_error_nonmissing", 0))
+        state["response_sha256s"].append(str(row["sha256"]))
+        state["schema_columns_union"].update(str(value) for value in row.get("schema_columns", []))
+    for state in per_cohort.values():
+        state["schema_columns_union"] = sorted(state["schema_columns_union"])
+    body = {
+        "format": "KCH_HELICAL_V0_14_3_FDSN_CSV_QUERY_SUMMARY_RECEIPT",
+        "representation": "USGS_FDSN_CSV",
+        "query_receipts_sha256": predecessor.sha256(path),
+        "query_count": len(rows),
+        "per_cohort": per_cohort,
+        "query_values_persisted": False,
+        "row_values_persisted": False,
+        "credentials_supplied": False,
+        "sealed_test_accessed": False,
+        "authority_ceiling": CSV_SCOPE,
+    }
+    return {"receipt_id": predecessor.content_id("h143querysummary", body), **body}
+
+
 predecessor.validate_authority = validate_authority
 predecessor.acquire_exact = acquire_exact
 predecessor.reconstruct_selection = reconstruct_selection
+predecessor.aggregate_query_summary = aggregate_query_summary
 
 
 if __name__ == "__main__":
