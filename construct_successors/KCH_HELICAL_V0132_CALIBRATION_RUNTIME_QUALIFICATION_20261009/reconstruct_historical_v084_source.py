@@ -50,13 +50,13 @@ def safe_name(name: str) -> bool:
     return bool(name) and not path.is_absolute() and ".." not in path.parts
 
 
-def parse_gzip_header_end(data: bytes) -> int:
-    if len(data) < 10 or data[:2] != b"\x1f\x8b" or data[2] != 8:
-        raise RuntimeError("not a supported gzip stream")
-    flags = data[3]
+def parse_gzip_header_end(data: bytes, offset: int) -> int:
+    if offset + 10 > len(data) or data[offset : offset + 2] != b"\x1f\x8b" or data[offset + 2] != 8:
+        raise RuntimeError(f"unsupported or absent gzip member at offset {offset}")
+    flags = data[offset + 3]
     if flags & 0xE0:
-        raise RuntimeError(f"reserved gzip flags set: {flags:#x}")
-    index = 10
+        raise RuntimeError(f"reserved gzip flags at offset {offset}: {flags:#x}")
+    index = offset + 10
     if flags & 0x04:
         if index + 2 > len(data):
             raise RuntimeError("truncated gzip FEXTRA length")
@@ -75,63 +75,82 @@ def parse_gzip_header_end(data: bytes) -> int:
     return index
 
 
-def decompress_with_trailer_repair(data: bytes) -> tuple[bytes, bytes, dict[str, object]]:
-    try:
-        payload = gzip.decompress(data)
-        return payload, data, {
-            "status": "GZIP_EXACT",
-            "repair_performed": False,
-            "gzip_sha256_before": sha(data),
-            "gzip_sha256_after": sha(data),
-        }
-    except gzip.BadGzipFile as original_error:
-        header_end = parse_gzip_header_end(data)
+def recover_concatenated_gzip(data: bytes) -> tuple[bytes, bytes, dict[str, object]]:
+    offset = 0
+    corrected_parts: list[bytes] = []
+    payload_parts: list[bytes] = []
+    members: list[dict[str, object]] = []
+
+    while offset < len(data):
+        header_end = parse_gzip_header_end(data, offset)
         inflater = zlib.decompressobj(wbits=-zlib.MAX_WBITS)
-        payload = inflater.decompress(data[header_end:]) + inflater.flush()
+        supplied = data[header_end:]
+        payload = inflater.decompress(supplied) + inflater.flush()
         if not inflater.eof:
-            raise RuntimeError("gzip deflate payload did not reach end-of-stream") from original_error
+            raise RuntimeError(f"member {len(members)} deflate stream did not reach EOF")
         if inflater.unconsumed_tail:
-            raise RuntimeError("gzip deflate payload left unconsumed tail") from original_error
-        trailer = inflater.unused_data
-        if len(trailer) != 8:
-            raise RuntimeError(f"gzip trailer length is {len(trailer)}, expected 8") from original_error
+            raise RuntimeError(f"member {len(members)} left unconsumed deflate input")
+        consumed_deflate = len(supplied) - len(inflater.unused_data)
+        trailer_start = header_end + consumed_deflate
+        if trailer_start + 8 > len(data):
+            raise RuntimeError(f"member {len(members)} has truncated gzip trailer")
+        trailer = data[trailer_start : trailer_start + 8]
         stored_crc32, stored_isize = struct.unpack("<II", trailer)
         computed_crc32 = zlib.crc32(payload) & 0xFFFFFFFF
         computed_isize = len(payload) & 0xFFFFFFFF
         if stored_isize != computed_isize:
             raise RuntimeError(
-                f"gzip ISIZE mismatch: stored={stored_isize}, computed={computed_isize}; refusing trailer-only repair"
-            ) from original_error
-        if stored_crc32 == computed_crc32:
-            raise RuntimeError("gzip rejected stream although CRC32 and ISIZE match") from original_error
+                f"member {len(members)} ISIZE mismatch: stored={stored_isize}, computed={computed_isize}"
+            )
+        repaired = stored_crc32 != computed_crc32
         corrected_trailer = struct.pack("<II", computed_crc32, computed_isize)
-        corrected = data[: len(data) - len(trailer)] + corrected_trailer
-        verified = gzip.decompress(corrected)
-        if verified != payload:
-            raise RuntimeError("corrected gzip did not round-trip to the recovered payload")
+        member_end = trailer_start + 8
         changed_offsets = [
-            len(data) - 8 + index
+            trailer_start + index
             for index, (before, after) in enumerate(zip(trailer, corrected_trailer, strict=True))
             if before != after
         ]
-        return payload, corrected, {
-            "status": "GZIP_TRAILER_CRC32_REPAIRED",
-            "repair_performed": True,
-            "repair_scope": "GZIP_TRAILER_CRC32_FIELD_ONLY",
-            "original_error": f"{type(original_error).__name__}: {original_error}",
-            "gzip_header_bytes": header_end,
-            "deflate_stream_eof": True,
-            "unused_trailer_bytes": len(trailer),
-            "stored_crc32": stored_crc32,
-            "computed_crc32": computed_crc32,
-            "stored_isize": stored_isize,
-            "computed_isize": computed_isize,
-            "changed_byte_offsets": changed_offsets,
-            "changed_byte_count": len(changed_offsets),
-            "payload_sha256": sha(payload),
-            "gzip_sha256_before": sha(data),
-            "gzip_sha256_after": sha(corrected),
-        }
+        corrected_parts.append(data[offset:trailer_start] + corrected_trailer)
+        payload_parts.append(payload)
+        members.append(
+            {
+                "member_index": len(members),
+                "start_offset": offset,
+                "header_end_offset": header_end,
+                "trailer_start_offset": trailer_start,
+                "end_offset": member_end,
+                "compressed_member_bytes": member_end - offset,
+                "uncompressed_bytes": len(payload),
+                "payload_sha256": sha(payload),
+                "stored_crc32": stored_crc32,
+                "computed_crc32": computed_crc32,
+                "stored_isize": stored_isize,
+                "computed_isize": computed_isize,
+                "crc32_repaired": repaired,
+                "changed_byte_offsets": changed_offsets,
+            }
+        )
+        offset = member_end
+        if offset < len(data) and data[offset : offset + 2] != b"\x1f\x8b":
+            raise RuntimeError(
+                f"unexpected {len(data) - offset} bytes after gzip member {len(members) - 1}; next bytes={data[offset:offset+8].hex()}"
+            )
+
+    corrected = b"".join(corrected_parts)
+    payload = b"".join(payload_parts)
+    verified = gzip.decompress(corrected)
+    if verified != payload:
+        raise RuntimeError("corrected concatenated gzip did not round-trip")
+    return payload, corrected, {
+        "status": "CONCATENATED_GZIP_EXACT" if all(not item["crc32_repaired"] for item in members) else "CONCATENATED_GZIP_MEMBER_CRC32_REPAIRED",
+        "member_count": len(members),
+        "repair_performed": any(bool(item["crc32_repaired"]) for item in members),
+        "repair_scope": "PER_MEMBER_GZIP_TRAILER_CRC32_ONLY",
+        "members": members,
+        "gzip_sha256_before": sha(data),
+        "gzip_sha256_after": sha(corrected),
+        "payload_sha256": sha(payload),
+    }
 
 
 def locate_unique(root: Path, required_path: str) -> Path:
@@ -139,6 +158,27 @@ def locate_unique(root: Path, required_path: str) -> Path:
     if len(matches) != 1:
         raise RuntimeError(f"required source not uniquely found: {required_path}; matches={len(matches)}")
     return matches[0]
+
+
+def extract_safe(payload: bytes, destination: Path) -> str:
+    buffer = io.BytesIO(payload)
+    try:
+        with tarfile.open(fileobj=buffer, mode="r:*") as archive:
+            members = archive.getmembers()
+            if any(not safe_name(member.name) or member.issym() or member.islnk() for member in members):
+                raise RuntimeError("unsafe tar member")
+            archive.extractall(destination, filter="data")
+            return "tar"
+    except tarfile.ReadError:
+        buffer.seek(0)
+        if not zipfile.is_zipfile(buffer):
+            raise RuntimeError("decoded payload is neither a safe tar nor zip archive")
+        buffer.seek(0)
+        with zipfile.ZipFile(buffer) as archive:
+            if any(not safe_name(name) for name in archive.namelist()):
+                raise RuntimeError("unsafe zip member")
+            archive.extractall(destination)
+        return "zip"
 
 
 def main() -> int:
@@ -159,22 +199,24 @@ def main() -> int:
         observed_blob = git(repo, "rev-parse", f"{COMMIT}:{path}").decode().strip()
         if observed_blob != expected_blob:
             raise RuntimeError(f"blob mismatch {path}: {observed_blob}")
-        data = git(repo, "show", f"{COMMIT}:{path}")
-        chunks.append(data)
+        raw = git(repo, "show", f"{COMMIT}:{path}")
+        compact = b"".join(raw.split())
+        chunks.append(raw)
         source.append(
             {
                 "path": path,
                 "git_blob_sha1": observed_blob,
-                "bytes": len(data),
-                "sha256": sha(data),
-                "non_whitespace_bytes": len(b"".join(data.split())),
+                "bytes": len(raw),
+                "sha256": sha(raw),
+                "non_whitespace_bytes": len(compact),
+                "non_whitespace_sha256": sha(compact),
             }
         )
 
-    base64_transport = b"".join(chunks)
-    base64_compact = b"".join(base64_transport.split())
-    compressed = base64.b64decode(base64_compact, validate=True)
-    payload, corrected_compressed, gzip_recovery = decompress_with_trailer_repair(compressed)
+    transport = b"".join(chunks)
+    compact_transport = b"".join(transport.split())
+    compressed = base64.b64decode(compact_transport, validate=True)
+    payload, corrected_compressed, gzip_recovery = recover_concatenated_gzip(compressed)
 
     independent_blob = git(repo, "rev-parse", f"{COMMIT}:{INDEPENDENT_COMPILER_PATH}").decode().strip()
     if independent_blob != INDEPENDENT_COMPILER_BLOB:
@@ -184,27 +226,8 @@ def main() -> int:
 
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=output.name + ".tmp.", dir=output.parent))
-    archive_type: str | None = None
     try:
-        buffer = io.BytesIO(payload)
-        try:
-            with tarfile.open(fileobj=buffer, mode="r:*") as archive:
-                members = archive.getmembers()
-                if any(not safe_name(member.name) or member.issym() or member.islnk() for member in members):
-                    raise RuntimeError("unsafe tar member")
-                archive.extractall(temporary, filter="data")
-                archive_type = "tar"
-        except tarfile.ReadError:
-            buffer.seek(0)
-            if not zipfile.is_zipfile(buffer):
-                raise RuntimeError("decoded payload is neither a safe tar nor zip archive")
-            buffer.seek(0)
-            with zipfile.ZipFile(buffer) as archive:
-                if any(not safe_name(name) for name in archive.namelist()):
-                    raise RuntimeError("unsafe zip member")
-                archive.extractall(temporary)
-                archive_type = "zip"
-
+        archive_type = extract_safe(payload, temporary)
         found: list[dict[str, object]] = []
         for required in REQUIRED:
             materialized = locate_unique(temporary, required)
@@ -218,16 +241,15 @@ def main() -> int:
             )
 
         compiler_path = locate_unique(temporary, "tools/freeze_null_perturbation_runtime.py")
-        compiler_exact = compiler_path.read_bytes() == independent_compiler
-        if not compiler_exact:
+        if compiler_path.read_bytes() != independent_compiler:
             raise RuntimeError("archive compiler does not match independently transported compiler bytes")
 
-        locked_hash_checks: list[dict[str, object]] = []
+        locked_checks: list[dict[str, object]] = []
         for relative, expected_hash in LOCKED_CANONICAL_SOURCE_HASHES.items():
             materialized = locate_unique(temporary, relative)
             observed_hash = sha(materialized.read_bytes())
             passed = observed_hash == expected_hash
-            locked_hash_checks.append(
+            locked_checks.append(
                 {"path": relative, "expected_sha256": expected_hash, "observed_sha256": observed_hash, "pass": passed}
             )
             if not passed:
@@ -245,30 +267,30 @@ def main() -> int:
         "format": "KCH_HELICAL_V0_13_2_HISTORICAL_V084_SOURCE_RECONSTRUCTION_RECEIPT",
         "source_commit": COMMIT,
         "source_files": source,
-        "concatenated_transport_bytes": len(base64_transport),
-        "compact_base64_bytes": len(base64_compact),
-        "compact_base64_mod4": len(base64_compact) % 4,
-        "concatenated_base64_sha256": sha(base64_transport),
-        "compact_base64_sha256": sha(base64_compact),
+        "concatenated_transport_bytes": len(transport),
+        "compact_base64_bytes": len(compact_transport),
+        "compact_base64_mod4": len(compact_transport) % 4,
+        "concatenated_base64_sha256": sha(transport),
+        "compact_base64_sha256": sha(compact_transport),
         "compressed_sha256_before": sha(compressed),
         "compressed_sha256_after": sha(corrected_compressed),
         "decoded_archive_sha256": sha(payload),
         "gzip_recovery": gzip_recovery,
         "archive_type": archive_type,
         "required_files": found,
-        "locked_canonical_source_hash_checks": locked_hash_checks,
+        "locked_canonical_source_hash_checks": locked_checks,
         "independent_compiler": {
             "path": INDEPENDENT_COMPILER_PATH,
             "git_blob_sha1": independent_blob,
             "transport_sha256": sha(compiler_transport),
             "decoded_bytes": len(independent_compiler),
             "decoded_sha256": sha(independent_compiler),
-            "archive_compiler_exact_match": True
+            "archive_compiler_exact_match": True,
         },
         "scientific_execution_performed": False,
         "calibration_data_accessed": False,
         "sealed_test_accessed": False,
-        "authority": "SOURCE_RECONSTRUCTION_AND_SOFTWARE_INSPECTION_ONLY"
+        "authority": "SOURCE_RECONSTRUCTION_AND_SOFTWARE_INSPECTION_ONLY",
     }
     body["receipt_id"] = "h132v084source:" + sha(
         json.dumps(body, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
