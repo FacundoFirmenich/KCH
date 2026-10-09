@@ -1,0 +1,148 @@
+name: KCH Helical v0.10 public route discovery
+
+on:
+  push:
+    branches:
+      - helical-v09-remote-gate-20261009
+    paths:
+      - ".github/workflows/kch-helical-v10-public-route-discovery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout immutable source revision
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+
+      - name: Discover Mendeley public file route and exact file identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/route-discovery"
+          mkdir -p "$out"
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, html, json, os, pathlib, re, urllib.error, urllib.parse, urllib.request
+
+          out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'route-discovery'
+          ua = 'KCH-KwanBlocks-Helical-Lift/0.10 route-discovery; public data; no credentials'
+          base = 'https://data.mendeley.com'
+          candidates = [
+              '/public-api/datasets/2np9vw5v7w/files?version=2',
+              '/public-api/datasets/2np9vw5v7w/files?version=2&$start=0&$limit=100',
+              '/public-api/datasets/2np9vw5v7w/versions/2/files',
+              '/public-api/datasets/2np9vw5v7w/2/files',
+              '/public-api/datasets/2np9vw5v7w?version=2',
+              '/api/datasets-v2/2np9vw5v7w/files?version=2',
+              '/api/datasets-v2/datasets/2np9vw5v7w/files?version=2',
+              '/api/datasets-v2/2np9vw5v7w/versions/2/files',
+              '/api/datasets-v2/datasets/2np9vw5v7w/versions/2/files',
+              '/api/datasets-v2/2np9vw5v7w/2/files',
+          ]
+
+          def get(url: str, limit: int = 32 * 1024 * 1024):
+              req = urllib.request.Request(url, headers={
+                  'User-Agent': ua,
+                  'Accept': 'application/json,text/html,*/*',
+                  'Accept-Encoding': 'identity',
+              })
+              try:
+                  with urllib.request.urlopen(req, timeout=90) as resp:
+                      return int(resp.getcode()), resp.geturl(), dict(resp.headers), resp.read(limit)
+              except urllib.error.HTTPError as exc:
+                  return int(exc.code), exc.geturl(), dict(exc.headers), exc.read(limit)
+
+          records = {}
+          for index, path in enumerate(candidates):
+              status, effective, headers, body = get(base + path)
+              name = f'candidate-{index:02d}'
+              (out / f'{name}.body').write_bytes(body)
+              records[name] = {
+                  'path': path,
+                  'status': status,
+                  'effective_url': effective,
+                  'content_type': headers.get('Content-Type'),
+                  'content_length_header': headers.get('Content-Length'),
+                  'bytes': len(body),
+                  'sha256': hashlib.sha256(body).hexdigest(),
+                  'contains_required_filename': b'focmec_ca_final.pickle' in body,
+              }
+
+          pages = {
+              'dataset_page': base + '/datasets/2np9vw5v7w/2',
+              'compare_page': base + '/datasets/compare/2np9vw5v7w',
+              'bundle': base + '/datasets/bundle.js?5e5376ee3a5def54f781',
+          }
+          for name, url in pages.items():
+              status, effective, headers, body = get(url, 64 * 1024 * 1024)
+              (out / f'{name}.body').write_bytes(body)
+              records[name] = {
+                  'url': url,
+                  'status': status,
+                  'effective_url': effective,
+                  'content_type': headers.get('Content-Type'),
+                  'bytes': len(body),
+                  'sha256': hashlib.sha256(body).hexdigest(),
+                  'contains_required_filename': b'focmec_ca_final.pickle' in body,
+              }
+
+          combined = b'\n'.join((out / f).read_bytes() for f in sorted(p.name for p in out.glob('*.body')))
+          text = combined.decode('utf-8', errors='replace')
+          findings = {
+              'uuid_near_required_filename': [],
+              'public_file_paths': sorted(set(re.findall(r'/public-files/datasets/[^"\'<>\\ ]+', text))),
+              'route_strings': sorted(set(re.findall(r'/(?:public-api|api/datasets-v2)/[^"\'<>\\ ]{1,240}', text))),
+              'all_uuids': sorted(set(re.findall(r'(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b', text))),
+          }
+          needle = 'focmec_ca_final.pickle'
+          start = 0
+          while True:
+              idx = text.find(needle, start)
+              if idx < 0:
+                  break
+              context = text[max(0, idx - 4000):idx + 4000]
+              findings['uuid_near_required_filename'].append({
+                  'context_sha256': hashlib.sha256(context.encode('utf-8')).hexdigest(),
+                  'uuids': sorted(set(re.findall(r'(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b', context))),
+                  'context': context,
+              })
+              start = idx + len(needle)
+
+          (out / 'records.json').write_text(json.dumps(records, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          (out / 'findings.json').write_text(json.dumps(findings, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps({
+              'records': records,
+              'public_file_path_count': len(findings['public_file_paths']),
+              'route_string_count': len(findings['route_strings']),
+              'uuid_count': len(findings['all_uuids']),
+              'required_filename_occurrences': len(findings['uuid_near_required_filename']),
+          }, sort_keys=True, indent=2))
+          PY
+
+      - name: Archive bounded evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/route-discovery"
+          rm -f bundle.body dataset_page.body
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -czf "$RUNNER_TEMP/route-discovery.tar.gz" .
+          sha256sum "$RUNNER_TEMP/route-discovery.tar.gz" > "$RUNNER_TEMP/route-discovery.tar.gz.sha256"
+
+      - name: Upload bounded evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v10-route-discovery-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/route-discovery.tar.gz
+            ${{ runner.temp }}/route-discovery.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
