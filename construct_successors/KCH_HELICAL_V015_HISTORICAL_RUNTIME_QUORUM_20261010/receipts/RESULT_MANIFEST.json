@@ -1,6 +1,31 @@
 {
   "files": [
     {
+      "bytes": 3,
+      "path": "receipts/GATE_EXIT_CODE.txt",
+      "sha256": "7ea9844ae84eccbf55e8330640865e36c43521e45a1baec24233327aab7e6595"
+    },
+    {
+      "bytes": 0,
+      "path": "receipts/GATE_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 989,
+      "path": "receipts/GATE_STDOUT.txt",
+      "sha256": "123dc6c941f579e2676dfae78ce5e6ac933b9ea4f3fc61a9bbc0907643af224a"
+    },
+    {
+      "bytes": 989,
+      "path": "receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15.json",
+      "sha256": "123dc6c941f579e2676dfae78ce5e6ac933b9ea4f3fc61a9bbc0907643af224a"
+    },
+    {
+      "bytes": 763,
+      "path": "receipts/INPUT_SHA256SUMS.txt",
+      "sha256": "5cda6b6d5bdf9080c43c7d5e97d10ce8ec3619985a9f640551e308adf0df17c3"
+    },
+    {
       "bytes": 0,
       "path": "receipts/RECOVERED_CODE_SHA256SUMS.txt",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -8,9 +33,9 @@
   ],
   "format": "KCH_HELICAL_V0_15_CODE_ONLY_RESULT_MANIFEST",
   "github_run_attempt": "1",
-  "github_run_id": "38003323885",
-  "github_sha": "c12ba7b0b1c6be1cde220d5370b588f3fe390773",
-  "manifest_id": "h15manifest:a934b6d2d29ce3aa2ca764cd5283df17627f6c2f7b1948dae2d8fb1daea071a6",
+  "github_run_id": "38003397727",
+  "github_sha": "02a71bc99b10c0620cc303b7eb1ccf2fdcd51176",
+  "manifest_id": "h15manifest:3254e1afd77e20ef7be53c83755281499da6ceb9f430d68c4862fa7a29d16d35",
   "scientific_data_included": false,
   "scientific_result_included": false,
   "sealed_test_values_included": false,

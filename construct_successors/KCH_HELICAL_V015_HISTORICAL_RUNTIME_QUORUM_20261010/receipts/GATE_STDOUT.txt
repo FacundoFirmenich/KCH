@@ -1,0 +1,22 @@
+{
+  "authority_ceiling": "HISTORICAL_CODE_ONLY_RUNTIME_SOURCE_QUORUM",
+  "authority_consumed": true,
+  "authority_terminal_status": "CONSUMED_FAIL_CLOSED",
+  "canonicalization": "BLOCKED",
+  "completed_at_utc": "2026-10-09T23:14:25.658674Z",
+  "error": "chunk_01 does not equal the exact concatenation of its ten audited subchunks",
+  "error_type": "RuntimeError",
+  "exit_code": 50,
+  "format": "KCH_HELICAL_V0_15_HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT",
+  "null_runtime_execution_performed": false,
+  "outcome": "FAIL_CLOSED_TRANSPORT_CORRUPT",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "receipt_id": "h15runtimequorum:a84e2effd93675f4758730631ba8e9d62d875ffe3be2cc15eb722e8893873193",
+  "scientific_data_accessed": false,
+  "scientific_model_execution_performed": false,
+  "sealed_test_accessed": false,
+  "source_commit": "24703e036401185e935b363f839f059c8d49d57e",
+  "started_at_utc": "2026-10-09T23:14:25.606548Z",
+  "transport_repair_performed": false
+}
