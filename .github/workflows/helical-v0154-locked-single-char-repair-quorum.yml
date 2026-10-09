@@ -1,0 +1,193 @@
+name: KCH Helical v0.15.4 locked single-character repair quorum
+
+on:
+  push:
+    branches:
+      - helical-v0154-locked-single-char-repair-quorum-20261010
+    paths:
+      - ".github/workflows/helical-v0154-locked-single-char-repair-quorum.yml"
+      - "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0154-locked-repair-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-locked-repair-runtime-quorum:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      V15: construct_successors/KCH_HELICAL_V015_HISTORICAL_RUNTIME_QUORUM_20261010
+      V152: construct_successors/KCH_HELICAL_V0152_LARGE_BUNDLE_RUNTIME_QUORUM_20261010
+      V153: construct_successors/KCH_HELICAL_V0153_CHUNKWISE_BUNDLE_RUNTIME_QUORUM_20261010
+      ROOT: construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010
+      FAILED: construct_successors/KCH_HELICAL_V0153_CHUNKWISE_BUNDLE_RUNTIME_QUORUM_20261010/receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_3.json
+
+    steps:
+      - name: Checkout complete finite lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0154-locked-single-char-repair-quorum-20261010
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify finite authority, canonical repair source and predecessor closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ROOT/receipts"
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/helical-v0154-pycache"
+          python -m py_compile \
+            "$ROOT/canonical_repair_single_missing_base64_char.py" \
+            "$ROOT/reconstruct_locked_repaired_v06_bundle_v0154.py" \
+            "$V152/reconstruct_large_v06_bundle_v0152.py" \
+            "$V15/reconstruct_v06_runtime_quorum.py"
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_15_4.json" >/dev/null
+          python -m json.tool "$FAILED" >/dev/null
+          repair_blob=$(git hash-object "$ROOT/canonical_repair_single_missing_base64_char.py")
+          test "$repair_blob" = "e0d7b4fa396ed90ce5f6cdc31d1f574baa714185"
+          python - "$ROOT/AUTHORITY_LEASE_V0_15_4.json" "$FAILED" <<'PY'
+          import json, sys
+          lease=json.load(open(sys.argv[1])); failed=json.load(open(sys.argv[2]))
+          assert failed['outcome']=='FAIL_CLOSED_NO_VALID_TRANSPORT'
+          assert failed['receipt_id']==lease['predecessor_failed_receipt_id']
+          assert failed['error']=='strict Base64 decode failed for exact chunk 1: Incorrect padding'
+          assert failed['scientific_data_accessed'] is False
+          assert failed['null_runtime_execution_performed'] is False
+          assert failed['sealed_test_accessed'] is False
+          assert lease['canonical_repair_source_git_blob_sha1']=='e0d7b4fa396ed90ce5f6cdc31d1f574baa714185'
+          assert lease['target_chunk_source_git_blob_sha1']=='7342fb7b130bafb07cfe0151a5cbd7d45bebdad1'
+          assert lease['required_sha256_after']=='361626dd19369a518a8ea1d3754ad33bebd35689442607cb2996e4f95f10f593'
+          assert lease['maximum_insertions']==1
+          assert lease['maximum_deletions']==0
+          assert lease['maximum_substitutions']==0
+          assert lease['ambiguous_repair_authorized'] is False
+          assert lease['scientific_data_access_authorized'] is False
+          assert lease['sealed_test_access_authorized'] is False
+          PY
+          git cat-file -e 'e458afe20b8172db5a04194224cf21df5ec00dc4^{commit}'
+          sha256sum \
+            "$ROOT/AUTHORITY_LEASE_V0_15_4.json" \
+            "$ROOT/canonical_repair_single_missing_base64_char.py" \
+            "$ROOT/reconstruct_locked_repaired_v06_bundle_v0154.py" \
+            "$V152/reconstruct_large_v06_bundle_v0152.py" \
+            "$V15/reconstruct_v06_runtime_quorum.py" \
+            "$FAILED" \
+            > "$ROOT/receipts/INPUT_SHA256SUMS.txt"
+
+      - name: Apply unique SHA-locked repair and inventory recovered runtime
+        id: quorum
+        shell: bash
+        run: |
+          set +e
+          PYTHONPATH="$GITHUB_WORKSPACE/$V15:$GITHUB_WORKSPACE/$V152:$GITHUB_WORKSPACE/$ROOT" \
+          python "$ROOT/reconstruct_locked_repaired_v06_bundle_v0154.py" \
+            --repo-root . \
+            --authority "$ROOT/AUTHORITY_LEASE_V0_15_4.json" \
+            --canonical-repair "$ROOT/canonical_repair_single_missing_base64_char.py" \
+            --output-code "$ROOT/recovered_runtime" \
+            --receipt "$ROOT/receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_4.json" \
+            > "$ROOT/receipts/GATE_STDOUT.txt" \
+            2> "$ROOT/receipts/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$ROOT/receipts/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$ROOT/receipts/GATE_STDOUT.txt"
+          if [[ -s "$ROOT/receipts/GATE_STDERR.txt" ]]; then cat "$ROOT/receipts/GATE_STDERR.txt" >&2; fi
+          exit 0
+
+      - name: Validate code-only payload and build immutable manifest
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d "$ROOT/recovered_runtime" ]]; then
+            if find "$ROOT/recovered_runtime" -type f \( \
+              -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o \
+              -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o \
+              -name '*.h5' -o -name '*.hdf5' -o -name '*.sqlite' -o -name '*.db' \
+            \) | grep -q .; then
+              echo "forbidden scientific/raw payload entered code-only successor" >&2
+              exit 91
+            fi
+            find "$ROOT/recovered_runtime" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$ROOT/receipts/RECOVERED_CODE_SHA256SUMS.txt"
+          else
+            : > "$ROOT/receipts/RECOVERED_CODE_SHA256SUMS.txt"
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+          root=Path(sys.argv[1]); rows=[]
+          for base in (root/'receipts',root/'recovered_runtime'):
+              if not base.exists(): continue
+              for path in sorted(item for item in base.rglob('*') if item.is_file() and item.name!='RESULT_MANIFEST.json'):
+                  body=path.read_bytes()
+                  rows.append({'path':path.relative_to(root).as_posix(),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()})
+          manifest={
+            'format':'KCH_HELICAL_V0_15_4_CODE_ONLY_RESULT_MANIFEST',
+            'github_run_id':os.environ['GITHUB_RUN_ID'],
+            'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+            'github_sha':os.environ['GITHUB_SHA'],
+            'source_commit':'e458afe20b8172db5a04194224cf21df5ec00dc4',
+            'canonical_repair_source_git_blob_sha1':'e0d7b4fa396ed90ce5f6cdc31d1f574baa714185',
+            'target_chunk_locked_sha256':'361626dd19369a518a8ea1d3754ad33bebd35689442607cb2996e4f95f10f593',
+            'authorized_mutation':'ONE_UNIQUE_SHA256_LOCKED_BASE64_INSERTION_IN_CHUNK_01_ONLY',
+            'scientific_data_included':False,
+            'sealed_test_values_included':False,
+            'scientific_result_included':False,
+            'files':rows,
+          }
+          manifest['manifest_id']='h154manifest:'+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (root/'receipts'/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          PY
+
+      - name: Persist code-only successor append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0154-runtime-quorum"
+          git config user.email "kch-helical-v0154-runtime-quorum@users.noreply.github.com"
+          git add "$ROOT/receipts"
+          if [[ -d "$ROOT/recovered_runtime" ]]; then git add "$ROOT/recovered_runtime"; fi
+          if git diff --cached --quiet; then
+            echo "No runtime quorum delta"
+          else
+            git commit -m "record v0.15.4 locked single-character repair quorum [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload code-only evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0154-runtime-quorum-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate locked-repair runtime quorum
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.quorum.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0)  echo "HISTORICAL_RUNTIME_SOURCE_QUORUM_PASS: calibration-only runtime qualification may be separately authorized" ;;
+            30) echo "HISTORICAL_RUNTIME_PARTIAL_SOURCE_ONLY: safe source recovered, but explicit new operators remain necessary" ;;
+            *)  echo "LOCKED_REPAIR_RUNTIME_QUORUM_FAILED_CLOSED with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
