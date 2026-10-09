@@ -26,6 +26,8 @@ jobs:
       MKL_NUM_THREADS: "1"
       NUMEXPR_NUM_THREADS: "1"
       CAPSULE_TRANSPORT_DIR: experiments/helical-v09-exact-byte-blind/runtime_capsule_transport
+      DELIVERY_MANIFEST_REL: experiments/helical-v09-exact-byte-blind/source_lock/KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_0_DELIVERY_MANIFEST.json
+      DELIVERY_MANIFEST_SHA256: e216f04c85d20b8d9fa7426a17884ed9f4af03e237aa96f9f1ad4e0c522f7158
       CAPSULE_B64_BYTES: "62596"
       CAPSULE_B64_SHA256: 705cf34c60fe51623e05522d4e8e0f7d2dc56c385307f78baea28008a07632a6
       CAPSULE_TGZ_BYTES: "46947"
@@ -33,13 +35,41 @@ jobs:
 
     steps:
       - name: Checkout immutable workflow commit
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
           persist-credentials: false
           fetch-depth: 1
 
+      - name: Initialize append-only execution receipt surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORK="$RUNNER_TEMP/helical-v09"
+          mkdir -p "$WORK/receipts"
+          python - "$WORK/receipts/WORKFLOW_BOOTSTRAP_RECEIPT.json" <<'PY'
+          import json, os, pathlib, sys
+          out = pathlib.Path(sys.argv[1])
+          body = {
+              "format": "KCH_HELICAL_V0_9_WORKFLOW_BOOTSTRAP_RECEIPT",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "ref": os.environ["GITHUB_REF"],
+              "commit_sha": os.environ["GITHUB_SHA"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "scientific_execution_performed": False,
+              "directional_fields_unsealed": False,
+              "model_fitting_performed": False,
+              "physical_helicity": "NOT_EVALUATED",
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+              "canonicalization": "BLOCKED",
+              "state": "WORKFLOW_STARTED",
+          }
+          out.write_text(json.dumps(body, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          PY
+
       - name: Set up Python 3.11 from immutable action commit
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.11"
           check-latest: false
@@ -50,12 +80,16 @@ jobs:
         run: |
           set -euo pipefail
           TRANSPORT="$GITHUB_WORKSPACE/$CAPSULE_TRANSPORT_DIR"
+          DELIVERY="$GITHUB_WORKSPACE/$DELIVERY_MANIFEST_REL"
           STAGE="$RUNNER_TEMP/helical-v09-capsule"
+          WORK="$RUNNER_TEMP/helical-v09"
           ENCODED="$STAGE/runtime-capsule.tar.gz.b64"
           ARCHIVE="$STAGE/runtime-capsule.tar.gz"
           ROOT="$STAGE/root"
           rm -rf "$STAGE"
-          mkdir -p "$ROOT"
+          mkdir -p "$ROOT" "$WORK/receipts"
+
+          printf '%s  %s\n' "$DELIVERY_MANIFEST_SHA256" "$DELIVERY" | sha256sum -c -
 
           cat \
             "$TRANSPORT/segment-00-0.b64" \
@@ -79,8 +113,16 @@ jobs:
 
           python "$ROOT/runtime/AUDIT_PROTOCOL_LOCK_V0_8.py" \
             --protocol "$ROOT/source_lock/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
-            --output "$STAGE/PROTOCOL_LOCK_AUDIT.json"
-          grep -q '"all_pass": true' "$STAGE/PROTOCOL_LOCK_AUDIT.json"
+            --delivery-manifest "$DELIVERY" \
+            --output "$WORK/receipts/PROTOCOL_LOCK_AUDIT_V0_8.json"
+
+          python - "$WORK/receipts/PROTOCOL_LOCK_AUDIT_V0_8.json" <<'PY'
+          import json, pathlib, sys
+          receipt = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+          if receipt.get("status") != "PASS" or not all(receipt.get("checks", {}).values()):
+              raise SystemExit("protocol lock audit did not pass")
+          PY
+
           echo "capsule_root=$ROOT" >> "$GITHUB_OUTPUT"
 
       - name: Install frozen runtime dependencies
@@ -89,10 +131,10 @@ jobs:
           CAPSULE_ROOT: ${{ steps.capsule.outputs.capsule_root }}
         run: |
           set -euo pipefail
+          WORK="$RUNNER_TEMP/helical-v09"
           python -m pip install --disable-pip-version-check -r "$CAPSULE_ROOT/requirements-runtime.txt"
-          mkdir -p "$RUNNER_TEMP/helical-v09/receipts"
-          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v09/receipts/PIP_FREEZE.txt"
-          python - "$RUNNER_TEMP/helical-v09/receipts" <<'PY'
+          python -m pip freeze --all | LC_ALL=C sort > "$WORK/receipts/PIP_FREEZE.txt"
+          python - "$WORK/receipts" <<'PY'
           import hashlib, json, pathlib, platform, sys
           out = pathlib.Path(sys.argv[1])
           freeze = (out / "PIP_FREEZE.txt").read_bytes()
@@ -129,8 +171,64 @@ jobs:
         run: |
           set -euo pipefail
           WORK="$RUNNER_TEMP/helical-v09"
+          mkdir -p "$WORK/receipts"
           rm -rf "$WORK/exact_sources" "$WORK/cache" "$WORK/quarantine"
-          find "$WORK" -type f \( -name '*.pickle' -o -name '*.part' -o -name 'gem_active_faults_harmonized.geojson' -o -name 'mendeley_dataset_snapshot_v2.json' \) -print -quit | (! grep -q .)
+          if find "$WORK" -type f \( \
+              -name '*.pickle' -o \
+              -name '*.part' -o \
+              -name 'gem_active_faults_harmonized.geojson' -o \
+              -name 'mendeley_dataset_snapshot_v2.json' \
+            \) -print -quit | grep -q .; then
+            echo "raw or partial source material remained after purge" >&2
+            exit 1
+          fi
+
+      - name: Seal terminal workflow status receipt
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          WORK="$RUNNER_TEMP/helical-v09"
+          mkdir -p "$WORK/receipts"
+          python - "$WORK/receipts/WORKFLOW_TERMINAL_RECEIPT.json" "${GATE_EXIT_CODE:-99}" <<'PY'
+          import hashlib, json, os, pathlib, sys
+          out = pathlib.Path(sys.argv[1])
+          gate_exit = int(sys.argv[2])
+          if gate_exit == 0:
+              state = "ELIGIBILITY_PASS_DIRECTIONAL_UNSEAL_REQUEST_READY"
+              legitimacy = "SCIENTIFIC_GATE_RESULT"
+          elif gate_exit == 30:
+              state = "NOT_IDENTIFIABLE_MECHANISM_COVERAGE"
+              legitimacy = "SCIENTIFIC_GATE_RESULT"
+          elif gate_exit == 99:
+              state = "WORKFLOW_INFRASTRUCTURE_FAILURE_BEFORE_GATE"
+              legitimacy = "NON_SCIENTIFIC_FAILURE"
+          else:
+              state = "GATE_INFRASTRUCTURE_OR_TRANSPORT_BLOCKED"
+              legitimacy = "NON_SCIENTIFIC_FAILURE"
+          body = {
+              "format": "KCH_HELICAL_V0_9_WORKFLOW_TERMINAL_RECEIPT",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "ref": os.environ["GITHUB_REF"],
+              "commit_sha": os.environ["GITHUB_SHA"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "gate_exit_code": gate_exit,
+              "state": state,
+              "result_class": legitimacy,
+              "directional_fields_unsealed": False,
+              "model_fitting_performed": False,
+              "physical_helicity": "NOT_EVALUATED",
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+              "canonicalization": "BLOCKED",
+          }
+          canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+          body["receipt_id"] = "h9workflow:" + hashlib.sha256(canonical).hexdigest()
+          out.write_text(json.dumps(body, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          PY
 
       - name: Build deterministic safe-result archive
         if: always()
@@ -138,12 +236,12 @@ jobs:
         run: |
           set -euo pipefail
           WORK="$RUNNER_TEMP/helical-v09"
+          mkdir -p "$WORK/receipts"
           cd "$WORK"
-          paths=()
-          for candidate in receipts blind eligibility; do
+          paths=(receipts)
+          for candidate in blind eligibility; do
             [[ -e "$candidate" ]] && paths+=("$candidate")
           done
-          test ${#paths[@]} -gt 0
           tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
             -czf helical-v09-result-without-raw-sources.tar.gz "${paths[@]}"
           sha256sum helical-v09-result-without-raw-sources.tar.gz \
@@ -151,7 +249,7 @@ jobs:
 
       - name: Upload receipts and safe derived artifacts only
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: kch-helical-v09-result-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
