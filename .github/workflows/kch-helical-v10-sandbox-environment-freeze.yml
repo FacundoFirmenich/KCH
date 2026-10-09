@@ -1,0 +1,83 @@
+name: KCH Helical v0.10 sandbox environment freeze
+
+on:
+  push:
+    branches:
+      - helical-v09-remote-gate-20261009
+    paths:
+      - ".github/workflows/kch-helical-v10-sandbox-environment-freeze.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout immutable source revision
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+
+      - name: Resolve immutable Python image and NumPy wheel
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/sandbox-env-freeze"
+          mkdir -p "$out/wheels"
+          docker pull --platform=linux/amd64 python:3.11-slim
+          base_repo_digest="$(docker image inspect --format '{{index .RepoDigests 0}}' python:3.11-slim)"
+          base_image_id="$(docker image inspect --format '{{.Id}}' python:3.11-slim)"
+          python -m pip download \
+            --disable-pip-version-check \
+            --only-binary=:all: \
+            --no-deps \
+            --platform manylinux_2_17_x86_64 \
+            --implementation cp \
+            --python-version 311 \
+            --abi cp311 \
+            --dest "$out/wheels" \
+            numpy==2.1.3
+          test "$(find "$out/wheels" -maxdepth 1 -type f -name '*.whl' | wc -l)" -eq 1
+          wheel="$(find "$out/wheels" -maxdepth 1 -type f -name '*.whl' -print -quit)"
+          wheel_name="$(basename "$wheel")"
+          wheel_sha256="$(sha256sum "$wheel" | awk '{print $1}')"
+          docker_version="$(docker version --format '{{.Server.Version}}')"
+          python - "$out/FROZEN_SANDBOX_ENVIRONMENT.json" "$base_repo_digest" "$base_image_id" "$wheel_name" "$wheel_sha256" "$docker_version" <<'PY'
+          import hashlib, json, pathlib, sys
+          path = pathlib.Path(sys.argv[1])
+          body = {
+              "format": "KCH_HELICAL_V0_10_SANDBOX_ENVIRONMENT_FREEZE",
+              "platform": "linux/amd64",
+              "python_image_tag_resolved": "python:3.11-slim",
+              "python_image_repo_digest": sys.argv[2],
+              "python_image_id": sys.argv[3],
+              "numpy_version": "2.1.3",
+              "numpy_wheel_filename": sys.argv[4],
+              "numpy_wheel_sha256": sys.argv[5],
+              "docker_server_version": sys.argv[6],
+              "network_used_for_resolution_only": True,
+              "sandbox_execution_network_mode": "none",
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+          }
+          canonical = json.dumps(body, sort_keys=True, separators=(",", ":")).encode()
+          body["receipt_id"] = "h10sandboxenv:" + hashlib.sha256(canonical).hexdigest()
+          path.write_text(json.dumps(body, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          print(json.dumps(body, sort_keys=True, indent=2))
+          PY
+          sha256sum "$out/FROZEN_SANDBOX_ENVIRONMENT.json" > "$out/FROZEN_SANDBOX_ENVIRONMENT.json.sha256"
+
+      - name: Upload environment freeze receipt and exact wheel
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v10-sandbox-env-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/sandbox-env-freeze/FROZEN_SANDBOX_ENVIRONMENT.json
+            ${{ runner.temp }}/sandbox-env-freeze/FROZEN_SANDBOX_ENVIRONMENT.json.sha256
+            ${{ runner.temp }}/sandbox-env-freeze/wheels/*.whl
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
