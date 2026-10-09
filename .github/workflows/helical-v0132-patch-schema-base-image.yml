@@ -1,0 +1,53 @@
+name: KCH Helical v0.13.2 patch schema base image
+
+on:
+  push:
+    branches:
+      - helical-v0132-calibration-runtime-qualification-20261009
+    paths:
+      - ".github/workflows/helical-v0132-patch-schema-base-image.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-schema-base-image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout finite successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0132-calibration-runtime-qualification-20261009
+          fetch-depth: 0
+
+      - name: Replace Docker Hub tag with immutable MCR digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('.github/workflows/helical-v0132-exact-source-schema-inspection.yml')
+          text=path.read_text()
+          old="""          docker pull python:3.11-slim-bookworm
+          base_digest=$(docker image inspect python:3.11-slim-bookworm --format '{{index .RepoDigests 0}}')
+"""
+          new="""          base_digest=\"mcr.microsoft.com/devcontainers/python@sha256:db1b5b5160247189a3252b94f2917e7356bf5d1f4381e8cbcd3ce81b0ad80e5c\"
+          docker pull \"$base_digest\"
+"""
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one base-image block, found {text.count(old)}')
+          path.write_text(text.replace(old,new))
+          PY
+          grep -F "mcr.microsoft.com/devcontainers/python@sha256:db1b5b5160247189a3252b94f2917e7356bf5d1f4381e8cbcd3ce81b0ad80e5c" .github/workflows/helical-v0132-exact-source-schema-inspection.yml
+
+      - name: Persist workflow repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0132-schema-repair"
+          git config user.email "kch-helical-v0132-schema-repair@users.noreply.github.com"
+          git add .github/workflows/helical-v0132-exact-source-schema-inspection.yml
+          git commit -m "repair schema gate with immutable MCR base image"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
