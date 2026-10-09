@@ -1,0 +1,14 @@
+{
+  "capabilities_dropped": "ALL",
+  "elapsed_seconds": 2.864721053000011,
+  "format": "KCH_HELICAL_V0_11_CONTAINER_EXECUTION_RECEIPT",
+  "label": "SELECTED_DIRECTIONAL_EXTRACTION",
+  "network_mode": "NONE",
+  "no_new_privileges": true,
+  "non_root_uid": 65534,
+  "read_only_root": true,
+  "receipt_id": "h11container:de675c6abff632fa68c1e829aa397d71677cb68179427b9d33dedc3e00c89a33",
+  "returncode": 0,
+  "stderr_tail": "/app/extractor.py:102: DeprecationWarning: numpy.core.numeric is deprecated and has been renamed to numpy._core.numeric. The numpy._core namespace contains private NumPy internals and its use is discouraged, as NumPy internals can change without warning in any release. In practice, most real-world usage of numpy.core is to access functionality in the public NumPy API. If that is the case, use the public NumPy API. If not, you are using NumPy internals. If you would still like to access an internal attribute, use numpy._core.numeric._frombuffer.\n  root = mapping(pickle.load(handle))\n",
+  "stdout_tail": "{\n  \"authority_ceiling\": \"FINITE_DIRECTIONAL_PRETEST_ONLY\",\n  \"catalog_event_count\": 1574113,\n  \"cohort_counts_by_code\": {\n    \"0\": 37853,\n    \"1\": 23702\n  },\n  \"directional_fields_opened\": [\n    \"strike\",\n    \"dip\",\n    \"rake\"\n  ],\n  \"fields_emitted\": [\n    \"cohort_code\",\n    \"day\",\n    \"dep_reloc\",\n    \"dip\",\n    \"ev_bl\",\n    \"event_time_epoch\",\n    \"evid\",\n    \"fault_assignment\",\n    \"global_index\",\n    \"hour\",\n    \"lat_reloc\",\n    \"lon_reloc\",\n    \"mag\",\n    \"minute\",\n    \"month\",\n    \"nc_sc\",\n    \"nearest_km\",\n    \"npol\",\n    \"prob\",\n    \"rake\",\n    \"second\",\n    \"second_km\",\n    \"strike\",\n    \"time_utc\",\n    \"uncer\",\n    \"year\"\n  ],\n  \"finite_sdr_count\": 61555,\n  \"format\": \"KCH_HELICAL_V0_11_SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT\",\n  \"network_mode\": \"NONE\",\n  \"output_bytes\": 3463091,\n  \"output_sha256\": \"008faaff16f46c97c6b91ba55545609beeda58e79192fdd2b595871604c18c9b\",\n  \"physically_bounded_sdr_count\": 61555,\n  \"pickle_opcode_count\": 774,\n  \"promotion\": \"BLOCKED\",\n  \"receipt_id\": \"h11unseal:8d9976d0044cbe0dd0fc960cabac8e0965e679fe49e741cecb8dbe2612b8154b\",\n  \"remaining_sealed_fields_not_emitted\": [\n    \"strike_orig\",\n    \"dip_orig\",\n    \"rake_orig\",\n    \"ftype\",\n    \"p_azi\",\n    \"p_dip\",\n    \"t_azi\",\n    \"t_dip\"\n  ],\n  \"scientific_model_fit_performed\": false,\n  \"sealed_test_scored\": false,\n  \"selected_event_count\": 61555,\n  \"selected_indices_sha256\": \"64079a3ccaff3389ef8814225afdb850a1c17950cfa6bf7e75af908de48a6e28\",\n  \"selection_changed\": false,\n  \"source_pickle_bytes\": 528904117,\n  \"source_pickle_sha256\": \"cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb\",\n  \"source_values_changed\": false\n}\n"
+}

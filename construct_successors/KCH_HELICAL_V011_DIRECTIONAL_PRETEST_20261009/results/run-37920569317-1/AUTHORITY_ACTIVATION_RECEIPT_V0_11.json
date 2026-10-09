@@ -1,0 +1,14 @@
+{
+  "activated_at_utc": "2026-10-09T10:55:58.262612Z",
+  "authority_file_sha256": "6b67b10ed715363fa9f20890aab9477c4dd5d9f577f942608a781d3b25ff764c",
+  "authority_id": "kch-helical-v011-directional-pretest-20261009",
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "format": "KCH_HELICAL_V0_11_AUTHORITY_ACTIVATION_RECEIPT",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h11auth:f01bbd0ecbba838c158727f3c775b758e4a6bf4efa19ba732e8660f6732319cd",
+  "scientific_model_fit_authorized": false,
+  "sealed_test_scoring_authorized": false,
+  "single_use": true,
+  "unseal_request_id": "h10unsealreq:1e886dc0c068df426f52295b860a64948f085a4bdcc16f89a953432c9cc959c0"
+}

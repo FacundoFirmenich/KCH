@@ -1,0 +1,19 @@
+{
+  "authority_ceiling": "FINITE_DIRECTIONAL_PRETEST_ONLY",
+  "base_image_digest": "python@sha256:0a310eeecf4e1f5a0743f9a6520c90c88d089c903ca5fd283f501e3a805f5f89",
+  "blind_dockerfile_sha256": "9c18c46c23ce63dc495c26ef429fc0f766025cbbcc9f75381e35232fae503444",
+  "blind_extractor_sha256": "784575508cbd98be9e3cf1622ffba020277562bf3935fa70b905cd911d1d1bdf",
+  "blind_image_id": "sha256:355ea93175332cd1417fcbb146ef893ca70cf92a5e52deed9180e9baf63d2cae",
+  "capabilities_at_execution": "ALL_DROPPED",
+  "directional_dockerfile_sha256": "9c18c46c23ce63dc495c26ef429fc0f766025cbbcc9f75381e35232fae503444",
+  "directional_extractor_sha256": "4c9e48dd18b95b6c052aa4b70c2354e80958475f458b72696bf8528da656f383",
+  "directional_image_id": "sha256:417fc652212608438d5d468b4157baf544ce25f1d7415c2ba34da5ceede2e68b",
+  "format": "KCH_HELICAL_V0_11_EXTRACTION_IMAGES_LOCK_RECEIPT",
+  "locked_at_utc": "2026-10-09T10:55:58.074372Z",
+  "locked_before_source_access": true,
+  "network_mode_at_execution": "NONE",
+  "no_new_privileges_at_execution": true,
+  "numpy_wheel_sha256": "bc6f24b3d1ecc1eebfbf5d6051faa49af40b03be1aaa781ebdadcbc090b4539b",
+  "receipt_id": "h11imagelock:4941ed4915f1c606a5c353a2a895ed4a9d8a14d2209a30cbc8828d24726e50bd",
+  "root_filesystem_at_execution": "READ_ONLY"
+}
