@@ -1,0 +1,153 @@
+name: KCH Helical v0.9 Mendeley public-route probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v09-exact-byte-blind-20261009
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-route-probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout probe commit without credentials
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Probe public metadata and rendered download surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/mendeley-public-route-probe"
+          mkdir -p "$OUT"
+
+          python - "$OUT" <<'PY'
+          import json, pathlib, urllib.error, urllib.request, sys
+          out = pathlib.Path(sys.argv[1])
+          endpoints = {
+              "api_dataset": "https://api.data.mendeley.com/datasets/2np9vw5v7w?version=2",
+              "api_public_files": "https://api.data.mendeley.com/datasets/publics/2np9vw5v7w/files?version=2&%24limit=100",
+              "api_files": "https://api.data.mendeley.com/datasets/2np9vw5v7w/files?version=2&%24limit=100",
+              "dataset_page": "https://data.mendeley.com/datasets/2np9vw5v7w/2",
+              "dataset_compare": "https://data.mendeley.com/datasets/compare/2np9vw5v7w",
+              "oai_day": "https://data.mendeley.com/oai?verb=ListRecords&metadataPrefix=oai_dc&from=2025-11-25&until=2025-11-25",
+              "oai_identifier_id": "https://data.mendeley.com/oai?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:data.mendeley.com:2np9vw5v7w",
+              "oai_identifier_version": "https://data.mendeley.com/oai?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:data.mendeley.com:2np9vw5v7w.2",
+          }
+          results = {}
+          for name, url in endpoints.items():
+              req = urllib.request.Request(url, headers={
+                  "User-Agent": "KCH-Helical-v0.9-public-route-probe/1.0",
+                  "Accept": "application/json, application/xml, text/html;q=0.9, */*;q=0.1",
+              })
+              try:
+                  with urllib.request.urlopen(req, timeout=120) as response:
+                      body = response.read(8 * 1024 * 1024)
+                      results[name] = {
+                          "status": response.status,
+                          "final_url": response.geturl(),
+                          "content_type": response.headers.get("Content-Type"),
+                          "content_length_header": response.headers.get("Content-Length"),
+                          "captured_bytes": len(body),
+                      }
+              except urllib.error.HTTPError as exc:
+                  body = exc.read(8 * 1024 * 1024)
+                  results[name] = {
+                      "status": exc.code,
+                      "final_url": exc.geturl(),
+                      "content_type": exc.headers.get("Content-Type"),
+                      "content_length_header": exc.headers.get("Content-Length"),
+                      "captured_bytes": len(body),
+                      "error": str(exc),
+                  }
+              except Exception as exc:
+                  body = b""
+                  results[name] = {"status": None, "error": f"{type(exc).__name__}: {exc}"}
+              (out / f"{name}.body").write_bytes(body)
+          (out / "ENDPOINT_RESULTS.json").write_text(
+              json.dumps(results, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+
+          browser=""
+          for candidate in google-chrome google-chrome-stable chromium chromium-browser; do
+            if command -v "$candidate" >/dev/null 2>&1; then browser="$candidate"; break; fi
+          done
+          printf '%s\n' "${browser:-NOT_FOUND}" > "$OUT/BROWSER_BINARY.txt"
+          if [[ -n "$browser" ]]; then
+            set +e
+            timeout 180 "$browser" --headless --disable-gpu --no-sandbox --disable-dev-shm-usage \
+              --virtual-time-budget=30000 --dump-dom \
+              'https://data.mendeley.com/datasets/2np9vw5v7w/2' \
+              > "$OUT/rendered_dom.html" 2> "$OUT/browser.stderr.txt"
+            printf '%s\n' "$?" > "$OUT/BROWSER_EXIT_CODE.txt"
+            set -e
+          fi
+
+          python - "$OUT" <<'PY'
+          import hashlib, json, pathlib, re, sys
+          from html.parser import HTMLParser
+          out = pathlib.Path(sys.argv[1])
+          target = "focmec_ca_final.pickle"
+          uuid_re = re.compile(r"(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b")
+          url_re = re.compile(r"https?://[^\s\"'<>\\]+")
+          markers = (target, "file_downloaded", "download_url", "public-files", "api.data.mendeley.com", "2np9vw5v7w")
+          report = {"files": {}, "uuids": [], "urls": [], "contexts": []}
+          uuids, urls = set(), set()
+          for path in sorted(out.glob("*")):
+              if not path.is_file() or path.name == "PROBE_REPORT.json":
+                  continue
+              data = path.read_bytes()
+              report["files"][path.name] = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+              text = data.decode("utf-8", errors="replace")
+              uuids.update(uuid_re.findall(text))
+              urls.update(url_re.findall(text))
+              lowered = text.lower()
+              for marker in markers:
+                  start = 0
+                  while True:
+                      idx = lowered.find(marker.lower(), start)
+                      if idx < 0:
+                          break
+                      report["contexts"].append({
+                          "file": path.name,
+                          "marker": marker,
+                          "context": text[max(0, idx-500):min(len(text), idx+1000)],
+                      })
+                      start = idx + len(marker)
+                      if len(report["contexts"]) >= 200:
+                          break
+                  if len(report["contexts"]) >= 200:
+                      break
+          report["uuids"] = sorted(uuids)
+          report["urls"] = sorted(urls)
+          (out / "PROBE_REPORT.json").write_text(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          PY
+
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -czf "$OUT/mendeley-public-route-probe.tar.gz" \
+            -C "$OUT" \
+            ENDPOINT_RESULTS.json PROBE_REPORT.json BROWSER_BINARY.txt \
+            api_dataset.body api_public_files.body api_files.body dataset_page.body dataset_compare.body \
+            oai_day.body oai_identifier_id.body oai_identifier_version.body \
+            $(test -f "$OUT/rendered_dom.html" && echo rendered_dom.html) \
+            $(test -f "$OUT/browser.stderr.txt" && echo browser.stderr.txt) \
+            $(test -f "$OUT/BROWSER_EXIT_CODE.txt" && echo BROWSER_EXIT_CODE.txt)
+          sha256sum "$OUT/mendeley-public-route-probe.tar.gz" > "$OUT/mendeley-public-route-probe.tar.gz.sha256"
+
+      - name: Upload public-route diagnostic only
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v09-mendeley-route-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/mendeley-public-route-probe/mendeley-public-route-probe.tar.gz
+            ${{ runner.temp }}/mendeley-public-route-probe/mendeley-public-route-probe.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
