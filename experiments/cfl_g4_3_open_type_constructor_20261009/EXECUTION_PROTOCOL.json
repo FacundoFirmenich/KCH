@@ -1,0 +1,57 @@
+{
+  "program_id":"CFL-UEP-G4.3-OPEN-TYPE-CONSTRUCTOR-AND-SIGNATURE-GRAMMAR-GENESIS",
+  "version":"0.1.0",
+  "parent_gate":"CFL-UEP-G4.2-OPEN-TYPE-SYSTEM-AND-SIGNATURE-GENESIS",
+  "status":"PREREGISTERED_MATERIAL_EXECUTION",
+  "form_semantics":"CATEGORICAL_NONPROBABILISTIC_ONLY",
+  "gamma0_invariants":[
+    "fixed output sort/tag",
+    "stateless response for fixed current input",
+    "carrier-size invariant behavior",
+    "no operator/function code as semantic input"
+  ],
+  "development_constructor_families":[
+    "recursive-list proxy",
+    "dynamic-multisort proxy"
+  ],
+  "private_ood_constructor_families":[
+    "dependent codomain / input-indexed output sort",
+    "history-indexed stateful transducer",
+    "polymorphic family across carrier-size regime",
+    "higher-kinded operator taking function/probe code as input"
+  ],
+  "hard_condition":[
+    "each private constructive truth violates at least one exact Gamma0 meta-invariant",
+    "development/private constructor-family overlap is zero",
+    "primary tasks start with constructor, signature and operator fibers all non-singleton"
+  ],
+  "query_budget":3,
+  "mandatory_methods":[
+    "T0_GRAMMAR_ENUMERATION",
+    "TYPE_GRAMMAR_MUTATION",
+    "EXACT_OPERATOR_MINIMAX",
+    "EXACT_EIG_QUERY",
+    "MDL_SIGNATURE_INDUCTION",
+    "TOS_FULL_TYPE_CONSTRUCTOR_GENESIS",
+    "RANDOM_QUERY",
+    "UNIVERSAL_TABLE_COMPLETION"
+  ],
+  "state_1_gate":[
+    "constructor class singleton",
+    "signature class singleton",
+    "operator equivalence class singleton",
+    "independent output-label relabeling certificate"
+  ],
+  "negative_lane":"observationally indistinguishable models with distinct constructor labels; correct constructor state is 0",
+  "support_rule":{
+    "gain_over_strongest_matched_baseline":0.02,
+    "paired_bootstrap_interval":"strictly positive",
+    "minimum_supported_private_constructor_families":3,
+    "false_form_promotion_maximum":0.02
+  },
+  "scope_limit":"private constructors are outside Gamma0 but are still generated inside a supplied higher-level mutation vocabulary naming dependence on input, history, carrier-size and operator-code. Fully open meta-constructor invention is not established.",
+  "authority":"NONE",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "merge_to_main":"FORBIDDEN"
+}
