@@ -1,0 +1,148 @@
+{
+  "format": "KCH_HELICAL_V0_8_1_REMOTE_RESULT_INDEX",
+  "version": "0.8.1",
+  "state": "DIRECTIONAL_MATERIALIZATION_PREFLIGHT_PASS_AWAITING_DYNAMIC_MODEL_EXECUTION",
+  "protocol": {
+    "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+    "locked_at_utc": "2026-09-27T03:22:11.303310Z",
+    "protocol_changed": false,
+    "scientific_models_changed": false,
+    "thresholds_changed": false
+  },
+  "exact_sources": {
+    "mechanism_catalog": {
+      "basename": "focmec_ca_final.pickle",
+      "mendeley_file_uuid": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+      "bytes": 528904117,
+      "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+    },
+    "fault_network": {
+      "repository": "GEMScienceTools/gem-global-active-faults",
+      "commit": "56816508ad92fd6846dad1163b1c8c01376a2cd1",
+      "path": "geojson/gem_active_faults_harmonized.geojson",
+      "bytes": 10622730,
+      "sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1"
+    }
+  },
+  "blind_stage": {
+    "catalog_event_count": 1574113,
+    "blind_npz_bytes": 47147632,
+    "blind_npz_sha256": "25e0f82b037cc042c541c508386dbf783d7c1ac2e29b66e79dc23601b6c5992b",
+    "angle_fields_accessed": false,
+    "eligibility_result_id": "h8elig:076bb4b6efe7bfb01d92c81d8e011a3f9ccb6a151faa93577034b02c0391f374",
+    "outcome": "ELIGIBILITY_PASS",
+    "selected_primary_cohorts": [
+      "BAY_AREA_HAYWARD_CALAVERAS",
+      "PARKFIELD_CENTRAL_SAF"
+    ],
+    "candidate_results": {
+      "BAY_AREA_HAYWARD_CALAVERAS": {
+        "quality_and_bbox_count": 49842,
+        "selected_count": 37853,
+        "fault_assignment_coverage": 0.7594598932635135,
+        "time_span_years": 37.62385438664723
+      },
+      "PARKFIELD_CENTRAL_SAF": {
+        "quality_and_bbox_count": 28560,
+        "selected_count": 23702,
+        "fault_assignment_coverage": 0.8299019607843138,
+        "time_span_years": 37.68048577353402
+      }
+    }
+  },
+  "selected_directional_stage": {
+    "gate_summary_id": "h8dirmat:a3ceac1fb409045413d63954b08a4f1009e146f2041003f31153f4416be06bdf",
+    "selected_index_receipt_id": "h8select:840dbd71528f30a2936505d1ffddaaccb6236670a77ea157bb7ab295242a1486",
+    "directional_extraction_receipt_id": "h8unblind:9fa86f5f03a7314c1287065482e35b6ef85aeece3968abf6266966907758c057",
+    "preflight_result_id": "h8preflight:f36e2e0e01626cfc679bed6c0d261aa7bda7a156510e296377f7503fae850186",
+    "selected_event_count": 61555,
+    "unselected_event_count": 1512558,
+    "opened_directional_fields": [
+      "strike",
+      "dip",
+      "rake"
+    ],
+    "remaining_sealed_fields": [
+      "strike_orig",
+      "dip_orig",
+      "rake_orig",
+      "ftype",
+      "p_azi",
+      "p_dip",
+      "t_azi",
+      "t_dip"
+    ],
+    "axis_observable_count": 60577,
+    "axis_observable_fraction": 0.9841117699618228,
+    "cohorts": {
+      "BAY_AREA_HAYWARD_CALAVERAS": {
+        "selected": 37853,
+        "observable": 37280,
+        "train": 18640,
+        "calibration": 9320,
+        "sealed_test": 9320,
+        "same_segment_parent_available": 33261,
+        "same_segment_parent_fraction": 0.8921931330472103
+      },
+      "PARKFIELD_CENTRAL_SAF": {
+        "selected": 23702,
+        "observable": 23297,
+        "train": 11648,
+        "calibration": 5824,
+        "sealed_test": 5825,
+        "same_segment_parent_available": 22379,
+        "same_segment_parent_fraction": 0.9605957840065244
+      }
+    },
+    "directional_execution_authorized": true,
+    "scientific_model_execution_performed": false,
+    "physical_helicity": "NOT_EVALUATED"
+  },
+  "remote_execution": {
+    "blind_eligibility_run_id": 36328249163,
+    "blind_eligibility_artifact_id": 10934816249,
+    "blind_eligibility_artifact_sha256": "3c684840f3660a93b50885511a0a02499bbf98b33549ce14599256e2b84ccc1d",
+    "selected_directional_run_id": 36328772493,
+    "selected_directional_job_id": 108646557306,
+    "selected_directional_artifact_id": 10934329977,
+    "selected_directional_artifact_sha256": "ba2858030909b02c83ae107b062cce705bf6f485834c3e556c328dcd8d81e066"
+  },
+  "kwanblocks": {
+    "base_graph_id": "kbg:1c3baf7a496ad5d45ff6954904a0b778ad991636fda1478407344f79af18628a",
+    "graph_id": "kbg:1fad41342aae06b558998903815df57eb08d4f24f408c6967c53ba7fd1413edb",
+    "blocks": 190,
+    "edges": 372,
+    "ledger_events": 567,
+    "ledger_head": "2e23b081d256404fc82340fc4dca206c329b7cb97e5a27fd139b3cae6751e31d",
+    "inherited_files_byte_exact": 629,
+    "validation": "6338/6338 PASS",
+    "sqlite_integrity": "ok",
+    "foreign_key_errors": 0
+  },
+  "release": {
+    "full_package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_1.zip",
+      "bytes": 26820281,
+      "sha256": "65651a2eb94655ffdbfeaaf8b5609e137deb7eab13436bbf870b0db4bd0baeb5"
+    },
+    "additive_package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_1_ADDITIVE_FROM_v0_8_0.zip",
+      "bytes": 7295269,
+      "sha256": "e873771e43878c1c3dfe58830ca477265b7745cba04c7040a575c3ca02072e7c"
+    },
+    "evidence_bundle": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_1_MATERIAL_EVIDENCE.zip",
+      "bytes": 7277297,
+      "sha256": "5d32c5574f1f0f080d2e7d6c726f4522998bc395dffc6c7f18a4c2a7493379f2"
+    },
+    "delivery_manifest_sha256": "4d4c6fd065d43ce3469326dfdd849fa32335a7d4c8f61b26fcd46ac3ed88f313",
+    "transport_validation_sha256": "4e4652a46d3107b91c717bb9acf18ff9c6210f7b9851cd16100d2e5683702b0a"
+  },
+  "governance": {
+    "scientific_result": null,
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}

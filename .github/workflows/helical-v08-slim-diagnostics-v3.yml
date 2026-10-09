@@ -1,0 +1,62 @@
+name: Helical v0.8 slim diagnostics extractor v3
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-slim-diagnostics-v3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download sealed large artifact and retain diagnostics only
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: '10934785986'
+          EXPECTED_SHA256: 'ffe8dc75f64deecd4ff081c1c0ec25fd53ad5a8c201ed8c005d07aaa9cb6bdfe'
+        run: |
+          set -euo pipefail
+          zip="$RUNNER_TEMP/v08-large.zip"
+          out="$RUNNER_TEMP/v08-slim"
+          mkdir -p "$out"
+          curl --fail-with-body --location \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            --output "$zip"
+          observed=$(sha256sum "$zip" | awk '{print $1}')
+          test "$observed" = "$EXPECTED_SHA256"
+          python - "$zip" "$out" <<'PY'
+          from pathlib import Path
+          import json, sys, zipfile
+          zip_path=Path(sys.argv[1]); out=Path(sys.argv[2]); selected=[]
+          with zipfile.ZipFile(zip_path) as zf:
+              manifest=[]
+              for info in zf.infolist():
+                  manifest.append({'name':info.filename,'bytes':info.file_size,'crc':info.CRC})
+                  low=info.filename.lower()
+                  keep=(info.file_size <= 20_000_000 and (low.endswith(('.json','.txt','.log','.md','.csv')) or 'receipt' in low or 'summary' in low or 'manifest' in low) and not low.endswith(('.pickle','.pkl','.npz','.npy','.geojson','.tar')))
+                  if keep and not info.is_dir():
+                      target=out/info.filename; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(zf.read(info)); selected.append(info.filename)
+              (out/'ARTIFACT_MEMBER_MANIFEST.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
+              (out/'SELECTED_MEMBERS.json').write_text(json.dumps(selected,indent=2,sort_keys=True)+'\n')
+          PY
+      - name: Upload slim diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-slim-diagnostics-v3
+          path: ${{ runner.temp }}/v08-slim
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

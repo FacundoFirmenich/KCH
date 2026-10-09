@@ -1,0 +1,81 @@
+{
+  "format": "KCH_HELICAL_V0_8_2_REMOTE_RESULT_INDEX",
+  "version": "0.8.2",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "material_predecessor": {
+    "version": "0.8.1",
+    "graph_id": "kbg:1fad41342aae06b558998903815df57eb08d4f24f408c6967c53ba7fd1413edb",
+    "selected_event_count": 61555,
+    "axis_observable_count": 60577
+  },
+  "calibration": {
+    "grid_rows": 72,
+    "grid_sha256": "02d1459992441fb415c5e06d0c4e608a68faee2f23a8b5de7450c3ac29e7baaf",
+    "selection_sha256": "a1ce9bfc763a14057b187a3c1fe1c338a9d117024702196362d805687e502343",
+    "freeze_receipt_id": "h8freeze:c42cb8fe2be9e47359d8c3b05a934dd0d3975cf17949de7d11b608289abd439e",
+    "test_open_receipt_id": "h8test:0cf885a3099e3af5856ca02672c57f76dbfaaa77d9fcf88c876a449f4fd0315e"
+  },
+  "primary_result": {
+    "primary_result_id": "h8primary:5bbb20a32c2b546f89e2a84c1b0e61a1a33f613b872fb0ca8fc4ffd2ad5c4aed",
+    "replay": "EXACT",
+    "bay_area": {
+      "test_n": 9320,
+      "logscore_gain": -0.0002946408966082448,
+      "relative_rmse_improvement": -0.002916492825305291,
+      "delta_bic_helical_minus_baseline": 417.1387960769571
+    },
+    "parkfield": {
+      "test_n": 5825,
+      "logscore_gain": 0.003443122675065302,
+      "relative_rmse_improvement": 0.008368716943368618,
+      "delta_bic_helical_minus_baseline": 123.28526895053801
+    },
+    "weighted_logscore_gain": 0.0011429604771123502,
+    "weighted_relative_rmse_improvement": 0.0014239724703385202
+  },
+  "adjudication": {
+    "gate_result_id": "h8g2:f319c4b741dfaff5f517033cb3a7f851eface19bb4ed6674fe954386a5c5b5d2",
+    "outcome": "NONHELICAL_DYNAMIC_RIVAL_SUFFICIENT_WITHIN_CONSERVATIVE_PARENT_GRAPH",
+    "positive_primary_cohorts": 0,
+    "required_positive_primary_cohorts": 2,
+    "minimum_logscore_gain": 0.02,
+    "minimum_relative_rmse_improvement": 0.05,
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "universal_absence_of_helicity": "NOT_ESTABLISHED",
+    "full_cross_segment_network_claim": "NOT_ADJUDICATED"
+  },
+  "reproducibility": {
+    "primary_out_of_sample_metrics": "INDEPENDENTLY_REPLAYED_EXACT",
+    "heavy_null_and_stability_battery": "ONE_COMPLETE_EXECUTION_PRESERVED",
+    "monolithic_heavy_replay": "INCOMPLETE_RUNTIME_STALL_AFTER_PRIMARY_RESULT",
+    "independent_validation": "2587/2587 PASS"
+  },
+  "kwanblocks": {
+    "graph_id": "kbg:ae5c4b86cd336b94aad61bbd0142155e69ea01d89f039f616d7d9fc9cac75dda",
+    "ledger_head": "677c7ed4af2873a75857127e4b99ac4072ec500d5aceb5e0bf3b83c748b2e128",
+    "blocks": 190,
+    "edges": 366,
+    "events": 561,
+    "validation": "2775/2775 PASS",
+    "sqlite_integrity": "ok",
+    "foreign_key_errors": 0
+  },
+  "release": {
+    "package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_2.zip",
+      "bytes": 5576875,
+      "sha256": "921f8fd9de08a4880776562cd66e80117124da9694bb9f6cbd1b0329df942e1c"
+    },
+    "evidence": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_2_EVIDENCE.zip",
+      "bytes": 5111806,
+      "sha256": "48e949cd1625a0f5969567fcd9da7f00f3488be3b6d7d9299e3f53032babcf69"
+    }
+  },
+  "governance": {
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}

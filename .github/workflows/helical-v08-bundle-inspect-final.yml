@@ -1,0 +1,44 @@
+name: Helical v0.8 frozen bundle inspection
+
+on:
+  push:
+    branches:
+      - gate/helical-v08-blind-eligibility-20260927
+    paths:
+      - .github/workflows/helical-v08-bundle-inspect-final.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode frozen v0.8 bundle and enumerate executable surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/v08-bundle-inspect"
+          mkdir -p "$out/runtime"
+          cat .github/helical_v08_bundle_v2/chunk_00 .github/helical_v08_bundle_v2/chunk_01 .github/helical_v08_bundle_v2/chunk_02 > "$out/runtime.b64"
+          sha256sum "$out/runtime.b64" | tee "$out/base64.sha256"
+          base64 --decode "$out/runtime.b64" > "$out/runtime.zip"
+          sha256sum "$out/runtime.zip" | tee "$out/zip.sha256"
+          unzip -t "$out/runtime.zip" | tee "$out/zip-test.txt"
+          unzip -q "$out/runtime.zip" -d "$out/runtime"
+          find "$out/runtime" -type f -printf '%P\t%s\n' | sort | tee "$out/file-list.tsv"
+          grep -RInE 'run-gate|dynamic|Hawkes|helical|parent_graph|log_score|time_reversal' "$out/runtime" > "$out/entrypoint-grep.txt" || true
+          cat "$out/file-list.tsv"
+          echo '--- ENTRYPOINTS ---'
+          cat "$out/entrypoint-grep.txt"
+      - name: Upload inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v08-frozen-bundle-inspection
+          path: ${{ runner.temp }}/v08-bundle-inspect
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
