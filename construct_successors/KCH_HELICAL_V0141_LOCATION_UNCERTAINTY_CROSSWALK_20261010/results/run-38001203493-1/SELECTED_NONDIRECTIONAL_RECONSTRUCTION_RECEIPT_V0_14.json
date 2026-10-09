@@ -1,0 +1,22 @@
+{
+  "authority_ceiling": "EXACT_COMCAT_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
+  "blind_npz_sha256": "7719b063252e217b19cc5045b99531dc8b7ac9fe6fbe2b57693b25f28a6a9161",
+  "cohort_counts": {
+    "BAY_AREA_HAYWARD_CALAVERAS": 37853,
+    "PARKFIELD_CENTRAL_SAF": 23702
+  },
+  "directional_fields_accessed": false,
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "fault_geojson_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+  "format": "KCH_HELICAL_V0_14_SELECTED_NONDIRECTIONAL_RECONSTRUCTION_RECEIPT",
+  "legacy_operator_receipt_id": "h11select:432d17f5302785fee22efcf6aa55c9c1b00220f96d55d5020d09847d08675471",
+  "operator_source": "V0_11_SELECT_INDICES_EXACT_REUSE_WITH_NARROWER_V0_14_AUTHORITY",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h14select:90e2827e1ec0f1202cb83806dc446c5c81bd6f74ad7f1cc78115aa0c78ad0a32",
+  "row_values_persisted": false,
+  "sealed_test_accessed": false,
+  "selected_indices_bytes": 1612032,
+  "selected_indices_sha256": "64079a3ccaff3389ef8814225afdb850a1c17950cfa6bf7e75af908de48a6e28",
+  "selected_total": 61555
+}

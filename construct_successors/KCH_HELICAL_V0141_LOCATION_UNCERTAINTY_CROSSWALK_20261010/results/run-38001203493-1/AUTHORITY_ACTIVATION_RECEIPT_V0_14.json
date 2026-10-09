@@ -1,0 +1,15 @@
+{
+  "activated_at_utc": "2026-10-09T22:49:07.363210Z",
+  "authority_file_sha256": "69cc2fe17ce7a4a5177168ee33afc6b5aa75b44301ac6c2e8187d2a280aa8c77",
+  "authority_id": "h141auth:273844bf423636203ac13103f49e52f3ff4265645cfa485c2aaece2ff36f3cb5",
+  "eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "format": "KCH_HELICAL_V0_14_AUTHORITY_ACTIVATION_RECEIPT",
+  "location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "receipt_id": "h14auth:5b2836ffc8d718bc47cfad3d23351391b2d13a55c6c2e084ae06c80fc6e54d63",
+  "scientific_model_fit_authorized": false,
+  "scope": "EXACT_COMCAT_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
+  "sealed_test_access_authorized": false,
+  "single_use": true
+}

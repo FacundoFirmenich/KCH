@@ -1,0 +1,15 @@
+{
+  "capabilities_dropped": "ALL",
+  "elapsed_seconds": 16.483524098000004,
+  "format": "KCH_HELICAL_V0_14_BLIND_CONTAINER_RECEIPT",
+  "image": "kch-helical-v0141-blind:locked",
+  "image_id": "sha256:de103654fa90a7fda415d568d087664367e0b7412869046e7d4650147994e2f8",
+  "network_mode": "NONE",
+  "no_new_privileges": true,
+  "non_root_uid": 65534,
+  "read_only_root": true,
+  "receipt_id": "h14blindcontainer:95a27c1e894d2f67e41073b64760bf57c169d4c086c149d3a2f2a2f8437b20df",
+  "returncode": 0,
+  "stderr_tail": "/app/extractor.py:81: DeprecationWarning: numpy.core.numeric is deprecated and has been renamed to numpy._core.numeric. The numpy._core namespace contains private NumPy internals and its use is discouraged, as NumPy internals can change without warning in any release. In practice, most real-world usage of numpy.core is to access functionality in the public NumPy API. If that is the case, use the public NumPy API. If not, you are using NumPy internals. If you would still like to access an internal attribute, use numpy._core.numeric._frombuffer.\n  root = mapping(pickle.load(handle))\n",
+  "stdout_tail": "{\n  \"authority_ceiling\": \"FINITE_DIRECTIONAL_PRETEST_ONLY\",\n  \"directional_fields_accessed\": false,\n  \"event_count\": 1574113,\n  \"fields_emitted\": [\n    \"day\",\n    \"dep_reloc\",\n    \"ev_bl\",\n    \"evid\",\n    \"hour\",\n    \"lat_reloc\",\n    \"lon_reloc\",\n    \"mag\",\n    \"minute\",\n    \"month\",\n    \"nc_sc\",\n    \"npol\",\n    \"prob\",\n    \"second\",\n    \"time_utc\",\n    \"uncer\",\n    \"year\"\n  ],\n  \"format\": \"KCH_HELICAL_V0_11_BLIND_EXTRACTION_RECEIPT\",\n  \"network_mode\": \"NONE\",\n  \"output_bytes\": 47147448,\n  \"output_sha256\": \"7719b063252e217b19cc5045b99531dc8b7ac9fe6fbe2b57693b25f28a6a9161\",\n  \"pickle_opcode_count\": 774,\n  \"promotion\": \"BLOCKED\",\n  \"receipt_id\": \"h11blind:7467b33b6d8207a42ae237939963336b0a1044d7deb72c07eda52832108a583e\",\n  \"sealed_fields_emitted\": [],\n  \"source_bytes\": 528904117,\n  \"source_sha256\": \"cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb\"\n}\n"
+}
