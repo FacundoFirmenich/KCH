@@ -1,0 +1,63 @@
+name: CFL G4.3 type-constructor genesis
+
+on:
+  push:
+    branches:
+      - cfl-uep/g4-3-open-type-constructor-20261009
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute-g4-3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned environment
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r experiments/cfl_g4_3_open_type_constructor_20261009/requirements.txt
+      - name: Verify and unpack source
+        run: |
+          set -euo pipefail
+          echo "9aeea907dcc8e592c0505388a44ba58e7b43dc7d3b6d51ac53b584c07e759e67  experiments/cfl_g4_3_open_type_constructor_20261009/g43_source.zip" | sha256sum -c -
+          mkdir g43_src
+          unzip -q experiments/cfl_g4_3_open_type_constructor_20261009/g43_source.zip -d g43_src
+          echo "464b844706d486439fcc857896ba934a8f3aaa308feba79698c15152a37ebf20  g43_src/run_g43.py" | sha256sum -c -
+          echo "bd8014008c9def34625e2d47d07b25dfd2560d0cd8b737f94694720e0ebddc23  g43_src/audit_g43.py" | sha256sum -c -
+          python -m py_compile g43_src/run_g43.py g43_src/audit_g43.py
+      - name: Execute G4.3
+        env:
+          PYTHONHASHSEED: '0'
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          G43_WORKDIR: ${{ github.workspace }}/g43_work
+          G43_RUNNER: ${{ github.workspace }}/g43_src/run_g43.py
+        run: |
+          set -euo pipefail
+          python g43_src/run_g43.py 2>&1 | tee g43_stdout.log
+          python g43_src/audit_g43.py 2>&1 | tee g43_audit.log
+          test -s g43_work/results/FINAL_ADJUDICATION.json
+          test -s g43_work/results/SUMMARY.json
+          test -s g43_work/results/PREDICTIONS.jsonl
+          test -s g43_work/evidence/TASKS.jsonl
+          test -s g43_work/audit/EXACT_AUDIT.json
+          python -m json.tool g43_work/results/FINAL_ADJUDICATION.json >/dev/null
+          python -m json.tool g43_work/audit/EXACT_AUDIT.json >/dev/null
+          cp g43_stdout.log g43_work/results/STDOUT.log
+          cp g43_audit.log g43_work/results/AUDIT_STDOUT.log
+          cp experiments/cfl_g4_3_open_type_constructor_20261009/EXECUTION_PROTOCOL.json g43_work/results/EXECUTION_PROTOCOL.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CFL_G4_3_TYPE_CONSTRUCTOR_${{ github.sha }}
+          path: g43_work
+          if-no-files-found: warn
+          retention-days: 30
