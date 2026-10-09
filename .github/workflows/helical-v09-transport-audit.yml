@@ -1,0 +1,54 @@
+name: KCH Helical v0.9 transport atom audit
+
+on:
+  push:
+    branches:
+      - gate/helical-v09-exact-byte-blind-20261009
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transport-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout immutable audit commit
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Verify every transport atom and aggregate object
+        shell: bash
+        run: |
+          set -uo pipefail
+          TRANSPORT="$GITHUB_WORKSPACE/experiments/helical-v09-exact-byte-blind/runtime_capsule_transport"
+          cd "$TRANSPORT"
+
+          set +e
+          sha256sum -c TRANSPORT_SHA256SUMS.txt
+          atom_rc=$?
+          set -e
+
+          ENCODED="$RUNNER_TEMP/runtime-capsule.tar.gz.b64"
+          cat \
+            segment-00-0.b64 \
+            segment-00-1.b64 \
+            chunk-01.b64 \
+            chunk-02.b64 \
+            chunk-03.b64 \
+            chunk-04.b64 \
+            atom-05-*.b64 \
+            chunk-06.b64 \
+            atom-07-*.b64 \
+            > "$ENCODED"
+
+          actual_bytes="$(wc -c < "$ENCODED" | tr -d ' ')"
+          actual_sha="$(sha256sum "$ENCODED" | awk '{print $1}')"
+          printf 'atom_manifest_rc=%s\nactual_bytes=%s\nactual_sha256=%s\n' "$atom_rc" "$actual_bytes" "$actual_sha"
+
+          test "$atom_rc" -eq 0
+          test "$actual_bytes" = 62596
+          test "$actual_sha" = 705cf34c60fe51623e05522d4e8e0f7d2dc56c385307f78baea28008a07632a6
