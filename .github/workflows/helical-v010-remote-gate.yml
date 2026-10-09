@@ -1,0 +1,162 @@
+name: KCH Helical v0.10 exact-byte blind eligibility
+
+on:
+  push:
+    branches:
+      - helical-v010-remote-gate-20261009
+    paths:
+      - "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_remote_gate.py"
+      - "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/protocol/**"
+      - ".github/workflows/helical-v010-remote-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v010-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-byte-blind-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 210
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Checkout branch at immutable action commit
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v010-remote-gate-20261009
+          fetch-depth: 0
+
+      - name: Install Python 3.11 at immutable action commit
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install frozen host dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.1.3 pyproj==3.7.0 shapely==2.0.6
+          mkdir -p "$RUNNER_TEMP/helical-v010/control"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v010/control/PIP_FREEZE.txt"
+          python - <<'PY'
+          import hashlib, json, os, pathlib, platform, subprocess, sys
+          root = pathlib.Path(os.environ["RUNNER_TEMP"]) / "helical-v010" / "control"
+          freeze = (root / "PIP_FREEZE.txt").read_bytes()
+          data = {
+              "python": sys.version,
+              "platform": platform.platform(),
+              "pip_freeze_sha256": hashlib.sha256(freeze).hexdigest(),
+              "docker_version": subprocess.check_output(["docker", "--version"], text=True).strip(),
+              "github_run_id": os.environ["GITHUB_RUN_ID"],
+              "github_run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "github_sha": os.environ["GITHUB_SHA"],
+              "github_ref": os.environ["GITHUB_REF"],
+          }
+          (root / "RUNTIME_ENVIRONMENT.json").write_text(json.dumps(data, sort_keys=True, indent=2) + "\n")
+          PY
+
+      - name: Verify runner and protocol syntax before network effects
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009"
+          python -m py_compile "$ROOT/helical_remote_gate.py"
+          python -m json.tool "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" >/dev/null
+          sha256sum "$ROOT/helical_remote_gate.py" "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            > "$RUNNER_TEMP/helical-v010/control/INPUT_SHA256SUMS.txt"
+
+      - name: Execute exact bytes to blind eligibility
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          ROOT="construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009"
+          python "$ROOT/helical_remote_gate.py" \
+            --protocol "$ROOT/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            --workspace "$RUNNER_TEMP/helical-v010" \
+            --timeout 1200 \
+            > "$RUNNER_TEMP/helical-v010/control/GATE_STDOUT.txt" \
+            2> "$RUNNER_TEMP/helical-v010/control/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-v010/control/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/helical-v010/control/GATE_STDOUT.txt"
+          if [[ -s "$RUNNER_TEMP/helical-v010/control/GATE_STDERR.txt" ]]; then
+            cat "$RUNNER_TEMP/helical-v010/control/GATE_STDERR.txt" >&2
+          fi
+          exit 0
+
+      - name: Enforce non-export of raw or blind data
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e "$RUNNER_TEMP/helical-v010/raw"
+          test ! -e "$RUNNER_TEMP/helical-v010/blind"
+          test ! -e "$RUNNER_TEMP/helical-v010/extractor_image"
+          if find "$RUNNER_TEMP/helical-v010/results" -type f \( -name '*.pickle' -o -name '*.npz' -o -name '*.part' \) | grep -q .; then
+            echo "raw or blind artifact reached results" >&2
+            exit 91
+          fi
+
+      - name: Persist safe receipts append-only on successor branch
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009"
+          DEST="$ROOT/results/run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$DEST"
+          cp -a "$RUNNER_TEMP/helical-v010/results/." "$DEST/"
+          cp -a "$RUNNER_TEMP/helical-v010/control/." "$DEST/"
+          find "$DEST" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$DEST/RESULT_SHA256SUMS.txt"
+          python - <<'PY'
+          import hashlib, json, os, pathlib
+          dest = pathlib.Path("construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/results") / f"run-{os.environ['GITHUB_RUN_ID']}-{os.environ['GITHUB_RUN_ATTEMPT']}"
+          rows=[]
+          for p in sorted(x for x in dest.rglob('*') if x.is_file() and x.name != 'RESULT_MANIFEST.json'):
+              b=p.read_bytes(); rows.append({"path":p.relative_to(dest).as_posix(),"bytes":len(b),"sha256":hashlib.sha256(b).hexdigest()})
+          body={"format":"KCH_HELICAL_V010_SAFE_RESULT_MANIFEST","github_run_id":os.environ['GITHUB_RUN_ID'],"github_run_attempt":os.environ['GITHUB_RUN_ATTEMPT'],"github_sha":os.environ['GITHUB_SHA'],"raw_sources_included":False,"blind_npz_included":False,"files":rows}
+          body["manifest_id"]="h10manifest:"+hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (dest/'RESULT_MANIFEST.json').write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          PY
+          git config user.name "kch-helical-gate"
+          git config user.email "kch-helical-gate@users.noreply.github.com"
+          git add "$DEST"
+          if git diff --cached --quiet; then
+            echo "No new safe receipts to commit"
+          else
+            git commit -m "record helical v0.10 remote gate receipts [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload safe receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v010-safe-receipts-${{ github.run_id }}-${{ github.run_attempt }}
+          path: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/results/run-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate gate after receipt persistence
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0)  echo "ELIGIBILITY_PASS: directional-unseal request exists; no directions opened and no model fit" ;;
+            30) echo "LEGITIMATE_NOT_IDENTIFIABLE_MECHANISM_COVERAGE: no directions opened and no model fit" ;;
+            *)  echo "REMOTE_GATE_FAILED_CLOSED with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
