@@ -1,0 +1,56 @@
+{
+  "authority": {
+    "authority_ceiling": "NONE",
+    "canonicalization": "BLOCKED",
+    "promotion": "BLOCKED"
+  },
+  "failed_attempt": {
+    "artifact_id": 11622172562,
+    "http_outcome": "404",
+    "requested_composite": "sci_xrsf-l2-flrpt_geo_s19950103_e20260809_v1-0-1.csv",
+    "scientific_label_rows_accessed": false,
+    "workflow_run_id": 37943871142
+  },
+  "format": "KCH_MHD001_NOAA_LABEL_SOURCE_RESOLUTION",
+  "locked_at_utc": "2026-10-09T14:29:00Z",
+  "parent_protocol_id": "mhd001label:7c328525d4096c9b780d8bf21b58e063a81b14da0de710a022ca2bd55bad2960",
+  "reason": "LOCKED_COMPOSITE_FILENAME_RETURNED_HTTP_404_BEFORE_ANY_FLARE_ROW_ACCESS",
+  "resolution_id": "mhd001labelsource:88504ec15ade35820b339a04d23f2090ed502c96e13dfb54dd0ab6e14da29ef4",
+  "resolved_source": {
+    "algorithm_version": "1-0-1",
+    "all_annual_entity_bodies_preserved": true,
+    "annual_body_hashes_recorded": true,
+    "base_url": "https://data.ngdc.noaa.gov/platforms/solar-space-observing-satellites/goes/multi/l2/data/xrsf-l2-flrpt_science/csv",
+    "deterministic_combination": "IDENTICAL_HEADER_REQUIRED_KEEP_FIRST_HEADER_APPEND_DATA_ROWS_IN_ASCENDING_YEAR",
+    "filename_template": "sci_xrsf-l2-flrpt_geo_y{year}_v1-0-1.csv",
+    "metadata_filename": "sci_xrsf-l2-flrpt_geo_metadata.json",
+    "product": "GOES_XRS_FLARE_REPORT_SCIENCE",
+    "provider": "NOAA_NCEI",
+    "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "scientific_contract": {
+    "association_rule_unchanged": true,
+    "identifiability_thresholds_unchanged": true,
+    "model_protocol_unchanged": true,
+    "partitions_unchanged": true,
+    "target_unchanged": true
+  },
+  "version": "2.0.0"
+}

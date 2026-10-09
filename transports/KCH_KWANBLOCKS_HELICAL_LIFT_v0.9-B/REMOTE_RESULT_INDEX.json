@@ -1,0 +1,109 @@
+{
+  "format": "KCH_HELICAL_V0_9_B_REMOTE_RESULT_INDEX",
+  "version": "0.9-B",
+  "predecessor": {
+    "version": "0.9-A",
+    "graph_id": "kbg:561455faf1652768eaed314b8f7525eeac9b168578b00f04cdb48eac89de6b96",
+    "ledger_head": "86a0ae2bf527b0eaf42e3dc545b164283a2348c47bc64b56a3db2a4441187fd3",
+    "seismic_decision": "NO_GO_NEW_SEISMIC_CONFIRMATORY_UNDER_CURRENT_CROSS_SEGMENT_DESIGN"
+  },
+  "mhd001_label_gate": {
+    "label_protocol_id": "mhd001label:7c328525d4096c9b780d8bf21b58e063a81b14da0de710a022ca2bd55bad2960",
+    "model_protocol_id": "mhd001model:5d14dfdbf3c25a2bc9b8ed111a39cec1fb1cbedd8a8cde6272a80af439a105fd",
+    "source_resolution_id": "mhd001labelsource:88504ec15ade35820b339a04d23f2090ed502c96e13dfb54dd0ab6e14da29ef4",
+    "result_id": "mhd001labelresult:17927a63f4881a86856a74a6b014f5a892342c5e18ad55320b24b9ad4e7d9c38",
+    "outcome": "INSUFFICIENT_REGION_LEVEL_POWER",
+    "noaa_exact_source_years": [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    "combined_noaa_csv": {
+      "bytes": 6670325,
+      "sha256": "dda2f5d049d72eff41642fc58b8e73289a1ac22210e34c6c3a676b0521cdb319"
+    },
+    "noaa_metadata": {
+      "bytes": 8516,
+      "sha256": "4a8af6ecce0df30d851b8500d362de537bb6e92646a4fc499fcf691a7eef68fb"
+    },
+    "exact_label_artifact": {
+      "workflow_run_id": 37944242386,
+      "job_id": 113866247402,
+      "artifact_id": 11622783336,
+      "artifact_digest": "sha256:7f4d29850f04722b892c3564b4acf16aa784cc7543865921bad6891329557db7"
+    },
+    "partition_summary": {
+      "train": {"unique_harps": 1031, "positive_harps": 97, "negative_harps": 934},
+      "calibration": {"unique_harps": 192, "positive_harps": 6, "negative_harps": 186},
+      "sealed_test_epoch_1": {"unique_harps": 332, "positive_harps": 52, "negative_harps": 280},
+      "sealed_test_epoch_2": {"unique_harps": 358, "positive_harps": 41, "negative_harps": 317}
+    },
+    "failed_gate": "CALIBRATION_POSITIVE_HARPS_6_LT_FROZEN_MINIMUM_10",
+    "helicity_keywords_accessed": false,
+    "vector_segments_accessed": false,
+    "scientific_model_execution_performed": false
+  },
+  "mhd002_prospective_pilot": {
+    "protocol_id": "mhd002:6de1592567ccc3ffc269d3cd668c81bb2677d9f473e43539e4d603c0b41f98ea",
+    "locked_at_utc": "2026-10-09T14:31:14Z",
+    "locked_before_2026_harp_metadata_access": true,
+    "locked_before_2026_noaa_label_access": true,
+    "locked_before_2026_sharp_feature_access": true,
+    "result_id": "mhd002pilot:bd81b7390ff89be8a23df4301f1854ab90f0078cac8cc28fcc16c45c0bc69899",
+    "outcome": "PROSPECTIVE_PILOT_INSUFFICIENT_POWER",
+    "time_range_tai": ["2026-01-01T00:00:00", "2026-08-10T00:00:00"],
+    "noaa_2026": {
+      "bytes": 427198,
+      "sha256": "00839744962c2a7641ac332827a3d368cc91271bfa36babd5f63a0868e4be726"
+    },
+    "blind_counts": {
+      "unique_harps": 94,
+      "positive_harps": 12,
+      "negative_harps": 82,
+      "record_count": 1434,
+      "positive_record_count": 58
+    },
+    "frozen_minima": {
+      "unique_harps": 100,
+      "positive_harps": 15,
+      "negative_harps": 80
+    },
+    "failed_gates": ["UNIQUE_HARPS_94_LT_100", "POSITIVE_HARPS_12_LT_15"],
+    "pilot_artifact": {
+      "workflow_run_id": 37945082293,
+      "job_id": 113869153510,
+      "artifact_id": 11622469860,
+      "artifact_digest": "sha256:d78d4306527d07b5ac980d0fc0950c4d0766093963f5622e091ebad92a78e5c8"
+    },
+    "helicity_keywords_accessed": false,
+    "sharp_feature_values_accessed": false,
+    "scientific_model_execution_performed": false,
+    "future_replication_epochs": ["2027", "2028"]
+  },
+  "combined_decision": {
+    "state": "NO_MODEL_ACCESS_CURRENT_EPOCHS_AWAIT_FUTURE_PRELOCKED_REPLICATION",
+    "physical_helicity": "NOT_EVALUATED",
+    "universal_nonhelicity": "NOT_CLAIMED",
+    "threshold_relaxation": "FORBIDDEN",
+    "posthoc_feature_access": "FORBIDDEN"
+  },
+  "kwanblocks_successor": {
+    "graph_id": "kbg:27dd7aa3a8b79fe6668e6c0fadd18e819e47c3a4fd96be1ab5ba029cbd53762a",
+    "ledger_head": "bb0e169ace4839b3ce7b74cac77616b5a3e7b11b7ea4c888a871cec0e02c4041",
+    "new_blocks": 8,
+    "new_edges": 10,
+    "new_ledger_events": 18,
+    "validation": "176/176 PASS",
+    "sqlite_integrity": "ok"
+  },
+  "release": {
+    "package": {
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_9_B.zip",
+      "bytes": 4362188,
+      "sha256": "dca2fe95daf2aaa0ad0622016cd55c1250fe85a0e42f9688fd0a29b443baace7",
+      "deterministic_rebuild": true
+    }
+  },
+  "governance": {
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}
