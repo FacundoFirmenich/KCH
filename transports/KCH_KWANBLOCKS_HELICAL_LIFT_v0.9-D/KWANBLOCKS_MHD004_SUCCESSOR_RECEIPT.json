@@ -1,0 +1,74 @@
+{
+  "claim_boundary": {
+    "does_not_support": [
+      "ABSENCE_OF_CURRENT_HELICITY",
+      "ABSENCE_OF_ALL_HELICAL_STRUCTURE",
+      "ABSENCE_OF_ALL_MONODROMY",
+      "CAUSAL_PHYSICAL_TRANSPORT",
+      "CORONAL_RELATIVE_HELICITY_CLAIM",
+      "UNIVERSAL_ONTOLOGICAL_CLAIM"
+    ],
+    "supports": "UPPER_BOUND_FOR_THE_PRELOCKED_ONE_TURN_EIGHT_BIN_NORTH_SOUTH_PROXY_TRANSPORT_SPECIFICATION"
+  },
+  "evidence_separation": {
+    "development": {
+      "B": 0.05279479470652465,
+      "bootstrap_95": [
+        0.010594547486880147,
+        0.0910603801265044
+      ],
+      "interpretation": "DEVELOPMENT_ONLY_POSITIVE_SIGNED_ANTISYMMETRIC_TERM"
+    },
+    "nulls": {
+      "executed": false,
+      "reason": "PRELOCKED_MATERIALITY_SCREEN_FAILED"
+    },
+    "prospective": {
+      "combined_bootstrap_95": [
+        -0.023233476470197696,
+        0.003032451764765231
+      ],
+      "combined_logscore_gain_MH_minus_MS": -0.008965291337319048,
+      "epoch_1_logscore_gain_MH_minus_MS": -0.0027170310301789513,
+      "epoch_2_logscore_gain_MH_minus_MS": -0.014788912594459358,
+      "interpretation": "NO_OUT_OF_SAMPLE_MATERIALITY_RELATIVE_TO_SYMMETRIC_RIVAL"
+    }
+  },
+  "format": "KWANBLOCKS_MHD004_SUCCESSOR_RECEIPT",
+  "governance": {
+    "authority": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "promotion": "BLOCKED"
+  },
+  "next_frontier": {
+    "forbidden_shortcut": "ANOTHER_AGGREGATE_PROXY_REPARAMETERIZATION",
+    "gate": "DIRECT_SPATIAL_VECTOR_FIELD_OPERATOR",
+    "required_data": "MAP_LEVEL_VECTOR_MAGNETOGRAMS_WITH_UNCERTAINTY_AND_GEOMETRIC_OPERATORS"
+  },
+  "operation": "APPEND_ONLY_SCIENTIFIC_GATE_CLOSURE",
+  "predecessor": {
+    "commit": "6e4cb04c7e82525057f59f11d6c567b3a6579796",
+    "id": "mhd003index:5d913b08779f5dadc2976f74613aa4231a44c9b2b2cc78edbc1e99eeca9b9c14",
+    "mutated": false,
+    "type": "MHD003_REMOTE_RESULT_INDEX"
+  },
+  "receipt_id": "kbreceipt:mhd004:aab6feddefa0921c2f070f0ff4fe440cb658604d1a36639a1aca2d07e919caff",
+  "state_semantics": {
+    "current_specification_reuse": "FORBIDDEN",
+    "development_signal_rewrites_test_outcome": false,
+    "future_reanalysis_may_mutate_closed_result": false,
+    "future_work_location": "NEW_DISJOINT_SUCCESSOR_ONLY",
+    "observed_phase_recurrence_implies_state_return": false
+  },
+  "successor": {
+    "index_id": "mhd004index:b17d610b44f131a2125455bb00c56736cedd14f921775cfaf64862d15a89cd5c",
+    "outcome": "FORMAL_MONODROMY_UPPER_BOUND_BELOW_MATERIALITY",
+    "protocol_id": "mhd004:d81c0b9edce95e9b874021881f8f70454917d2b2cfcfb47257277ad3db57fdf3",
+    "result_id": "mhd004result:601c1116bb4f2e5527148fed0f8467baa178953aab3124e09abd184413d3ce67",
+    "state": "CLOSED",
+    "type": "MHD004_CARRINGTON_PHASE_FIBER_TRANSPORT",
+    "verification_id": "mhd004verify:215f2ab8c56f115fbdc27e20172200b3e761fcb628db0651303c4289b93c02e9"
+  },
+  "version": "0.1.0"
+}
