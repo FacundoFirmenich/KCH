@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/runner/work/KCH/KCH/construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/forensic_recover_v084_transport.py", line 308, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/runner/work/KCH/KCH/construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/forensic_recover_v084_transport.py", line 253, in main
+    decoded = base64.b64decode(compact, validate=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/base64.py", line 88, in b64decode
+    return binascii.a2b_base64(s, strict_mode=validate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+binascii.Error: Invalid base64-encoded string: number of data characters (15853) cannot be 1 more than a multiple of 4
