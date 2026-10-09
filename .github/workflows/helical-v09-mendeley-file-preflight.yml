@@ -1,0 +1,130 @@
+name: KCH Helical v0.9 Mendeley exact-file preflight
+
+on:
+  push:
+    branches:
+      - gate/helical-v09-exact-byte-blind-20261009
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-file-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout preflight commit without credentials
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Probe HEAD and one-byte Range without downloading entity body
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/mendeley-file-preflight"
+          mkdir -p "$OUT"
+          python - "$OUT/PREFLIGHT.json" <<'PY'
+          import hashlib, json, pathlib, time, urllib.error, urllib.parse, urllib.request, sys
+
+          URL = "https://data.mendeley.com/public-files/datasets/2np9vw5v7w/files/c5fd3e24-24ef-4186-8794-c681411cdcc3/file_downloaded"
+          OUT = pathlib.Path(sys.argv[1])
+          ALLOW = {
+              "accept-ranges", "cache-control", "content-disposition", "content-length",
+              "content-range", "content-type", "etag", "last-modified", "digest",
+              "content-md5", "x-amz-version-id", "x-amz-request-id", "x-ms-version",
+              "x-ms-blob-type", "server", "via",
+          }
+
+          def descriptor(url: str) -> dict:
+              p = urllib.parse.urlsplit(url)
+              return {
+                  "scheme": p.scheme.lower(),
+                  "host": (p.hostname or "").lower(),
+                  "port": p.port,
+                  "path": p.path,
+                  "query_parameter_names": sorted({k for k, _ in urllib.parse.parse_qsl(p.query, keep_blank_values=True)}),
+                  "query_values_recorded": False,
+                  "url_sha256": hashlib.sha256(url.encode()).hexdigest(),
+              }
+
+          class Redirects(urllib.request.HTTPRedirectHandler):
+              def __init__(self, rows):
+                  super().__init__(); self.rows = rows
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  if urllib.parse.urlsplit(newurl).scheme.lower() != "https":
+                      raise RuntimeError("non-HTTPS redirect forbidden")
+                  self.rows.append({"status": int(code), "from": descriptor(req.full_url), "to": descriptor(newurl)})
+                  return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+          def probe(method: str, range_header: bool) -> dict:
+              redirects = []
+              opener = urllib.request.build_opener(Redirects(redirects))
+              headers = {
+                  "Accept": "application/octet-stream",
+                  "Accept-Encoding": "identity",
+                  "User-Agent": "KCH-Helical-v0.9.1-public-file-preflight/1.0",
+              }
+              if range_header:
+                  headers["Range"] = "bytes=0-0"
+              req = urllib.request.Request(URL, method=method, headers=headers)
+              started = time.monotonic()
+              try:
+                  with opener.open(req, timeout=120) as response:
+                      body = b"" if method == "HEAD" else response.read(1)
+                      return {
+                          "status": int(response.getcode()),
+                          "requested": descriptor(URL),
+                          "effective": descriptor(response.geturl()),
+                          "redirects": redirects,
+                          "headers": {str(k).lower(): str(v) for k, v in response.headers.items() if str(k).lower() in ALLOW},
+                          "bytes_read": len(body),
+                          "first_byte_sha256": hashlib.sha256(body).hexdigest() if body else None,
+                          "elapsed_seconds": time.monotonic() - started,
+                      }
+              except urllib.error.HTTPError as exc:
+                  body = exc.read(1)
+                  return {
+                      "status": int(exc.code),
+                      "requested": descriptor(URL),
+                      "effective": descriptor(exc.geturl()),
+                      "redirects": redirects,
+                      "headers": {str(k).lower(): str(v) for k, v in exc.headers.items() if str(k).lower() in ALLOW},
+                      "bytes_read": len(body),
+                      "error": str(exc),
+                      "elapsed_seconds": time.monotonic() - started,
+                  }
+
+          result = {
+              "format": "KCH_HELICAL_V0_9_1_PUBLIC_FILE_PREFLIGHT",
+              "dataset_id": "2np9vw5v7w",
+              "version": 2,
+              "doi": "10.17632/2np9vw5v7w.2",
+              "file_uuid": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+              "required_basename": "focmec_ca_final.pickle",
+              "head": probe("HEAD", False),
+              "range_0_0": probe("GET", True),
+              "secret_values_used": False,
+              "scientific_execution_performed": False,
+              "directional_fields_accessed": False,
+              "authority_ceiling": "NONE",
+              "promotion": "BLOCKED",
+          }
+          canonical = json.dumps(result, sort_keys=True, separators=(",", ":")).encode()
+          result["receipt_id"] = "h9preflight:" + hashlib.sha256(canonical).hexdigest()
+          OUT.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          PY
+          sha256sum "$OUT/PREFLIGHT.json" > "$OUT/PREFLIGHT.json.sha256"
+
+      - name: Upload bounded preflight receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v09-file-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/mendeley-file-preflight/PREFLIGHT.json
+            ${{ runner.temp }}/mendeley-file-preflight/PREFLIGHT.json.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
