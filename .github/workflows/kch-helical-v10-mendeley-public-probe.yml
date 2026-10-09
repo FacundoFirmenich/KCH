@@ -1,0 +1,113 @@
+name: KCH Helical v0.10 Mendeley public-surface probe
+
+on:
+  push:
+    branches:
+      - helical-v09-remote-gate-20261009
+    paths:
+      - ".github/workflows/kch-helical-v10-mendeley-public-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe-public-surfaces:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout immutable source revision
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          persist-credentials: false
+
+      - name: Probe official public metadata surfaces without credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/mendeley-public-probe"
+          mkdir -p "$out"
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, json, pathlib, re, ssl, urllib.error, urllib.request
+
+          out = pathlib.Path(__import__('os').environ['RUNNER_TEMP']) / 'mendeley-public-probe'
+          urls = {
+              'dataset_page': 'https://data.mendeley.com/datasets/2np9vw5v7w/2',
+              'api_snapshot': 'https://api.data.mendeley.com/datasets/2np9vw5v7w?version=2',
+              'api_public_dataset': 'https://api.data.mendeley.com/datasets/publics/2np9vw5v7w?version=2',
+              'api_public_files': 'https://api.data.mendeley.com/datasets/publics/2np9vw5v7w/files?version=2',
+              'oai_identify': 'https://data.mendeley.com/oai?verb=Identify',
+              'oai_list_metadata_formats': 'https://data.mendeley.com/oai?verb=ListMetadataFormats',
+              'oai_list_identifiers': 'https://data.mendeley.com/oai?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2025-11-25&until=2025-11-26',
+          }
+          ua = 'KCH-KwanBlocks-Helical-Lift/0.10 public-surface probe; no credentials'
+          summary = {}
+          for name, url in urls.items():
+              req = urllib.request.Request(url, headers={'User-Agent': ua, 'Accept-Encoding': 'identity'})
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as resp:
+                      body = resp.read(16 * 1024 * 1024)
+                      status = int(resp.getcode())
+                      effective = resp.geturl()
+                      headers = {k.lower(): v for k, v in resp.headers.items() if k.lower() in {
+                          'content-type','content-length','location','etag','last-modified','cache-control'
+                      }}
+              except urllib.error.HTTPError as exc:
+                  body = exc.read(16 * 1024 * 1024)
+                  status = int(exc.code)
+                  effective = exc.geturl()
+                  headers = {k.lower(): v for k, v in exc.headers.items() if k.lower() in {
+                      'content-type','content-length','location','etag','last-modified','cache-control','www-authenticate'
+                  }}
+              record = {
+                  'requested_url': url,
+                  'effective_url': effective,
+                  'status': status,
+                  'headers': headers,
+                  'bytes_captured': len(body),
+                  'sha256': hashlib.sha256(body).hexdigest(),
+              }
+              (out / f'{name}.body').write_bytes(body)
+              summary[name] = record
+
+          page = (out / 'dataset_page.body').read_text('utf-8', errors='replace')
+          patterns = {
+              'public_file_urls': sorted(set(re.findall(r'https://data\.mendeley\.com/public-files/datasets/[^"\'<>\\ ]+', page))),
+              'file_download_paths': sorted(set(re.findall(r'/public-files/datasets/[^"\'<>\\ ]+/file_downloaded', page))),
+              'uuids': sorted(set(re.findall(r'(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b', page))),
+              'focmec_contexts': [],
+          }
+          needle = 'focmec_ca_final.pickle'
+          start = 0
+          while True:
+              idx = page.find(needle, start)
+              if idx < 0:
+                  break
+              patterns['focmec_contexts'].append(page[max(0, idx-1200):idx+1800])
+              start = idx + len(needle)
+          (out / 'extracted_patterns.json').write_text(json.dumps(patterns, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          (out / 'probe_summary.json').write_text(json.dumps(summary, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps({'summary': summary, 'patterns': {k: (len(v) if isinstance(v, list) else v) for k,v in patterns.items()}}, sort_keys=True, indent=2))
+          PY
+
+      - name: Archive bounded probe evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/mendeley-public-probe"
+          rm -f api_snapshot.body api_public_dataset.body api_public_files.body
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -czf "$RUNNER_TEMP/mendeley-public-probe.tar.gz" .
+          sha256sum "$RUNNER_TEMP/mendeley-public-probe.tar.gz" > "$RUNNER_TEMP/mendeley-public-probe.tar.gz.sha256"
+
+      - name: Upload bounded probe evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v10-mendeley-public-probe-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/mendeley-public-probe.tar.gz
+            ${{ runner.temp }}/mendeley-public-probe.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
