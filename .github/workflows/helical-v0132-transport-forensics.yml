@@ -1,0 +1,141 @@
+name: KCH Helical v0.13.2 exact source-transport forensics
+
+on:
+  push:
+    branches:
+      - helical-v0132-calibration-runtime-qualification-20261009
+    paths:
+      - "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/forensic_recover_v084_transport.py"
+      - ".github/workflows/helical-v0132-transport-forensics.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0132-transport-forensics-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-transport-forensics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      KCH_SEALED_TEST_ACCESS: "FORBIDDEN"
+      ROOT: construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009
+      HISTORICAL_COMMIT: e458afe20b8172db5a04194224cf21df5ec00dc4
+    steps:
+      - name: Checkout finite successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0132-calibration-runtime-qualification-20261009
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify authority and forensic runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_13_2_SOURCE_INSPECTION.json" >/dev/null
+          python -m py_compile "$ROOT/forensic_recover_v084_transport.py"
+          git cat-file -e "${HISTORICAL_COMMIT}^{commit}" 2>/dev/null || git fetch --no-tags origin "$HISTORICAL_COMMIT"
+          test "$(git rev-parse "$HISTORICAL_COMMIT")" = "$HISTORICAL_COMMIT"
+
+      - name: Execute exact-byte transport forensics
+        id: forensic
+        shell: bash
+        run: |
+          set +e
+          work="$RUNNER_TEMP/helical-v0132-forensic"
+          mkdir -p "$work/output" "$work/control"
+          python "$ROOT/forensic_recover_v084_transport.py" \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --output "$work/output" \
+            > "$work/control/STDOUT.txt" \
+            2> "$work/control/STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$work/control/EXIT_CODE.txt"
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$work/control/STDOUT.txt" || true
+          [[ ! -s "$work/control/STDERR.txt" ]] || cat "$work/control/STDERR.txt" >&2
+          exit 0
+
+      - name: Enforce source-forensics-only boundary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132-forensic"
+          test ! -e "$work/raw_scientific_data"
+          test ! -e "$work/calibration"
+          test ! -e "$work/test"
+          if find "$work" -type f \( -name '*.npz' -o -name '*.pickle' -o -name '*.geojson' -o -name '*.csv' -o -name '*.parquet' \) | grep -q .; then
+            echo "scientific row-level artifact reached transport forensics" >&2
+            exit 91
+          fi
+
+      - name: Persist aggregate forensic receipt append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0132-forensic"
+          destination="$ROOT/results/transport-forensics-run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$destination"
+          cp "$work/output/V084_SOURCE_TRANSPORT_FORENSIC_RECEIPT.json" "$destination/" 2>/dev/null || true
+          cp -a "$work/control/." "$destination/" 2>/dev/null || true
+          find "$destination" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$destination/RESULT_SHA256SUMS.txt"
+          python - "$destination" <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,sys
+          d=Path(sys.argv[1]); rows=[]
+          for p in sorted(x for x in d.rglob('*') if x.is_file() and x.name!='RESULT_MANIFEST.json'):
+              b=p.read_bytes(); rows.append({'path':p.relative_to(d).as_posix(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()})
+          m={'format':'KCH_HELICAL_V0_13_2_TRANSPORT_FORENSICS_MANIFEST','github_run_id':os.environ['GITHUB_RUN_ID'],'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],'github_sha':os.environ['GITHUB_SHA'],'scientific_rows_included':False,'sealed_test_values_included':False,'files':rows}
+          m['manifest_id']='h132forensicmanifest:'+hashlib.sha256(json.dumps(m,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (d/'RESULT_MANIFEST.json').write_text(json.dumps(m,sort_keys=True,indent=2)+'\n')
+          PY
+          git config user.name "kch-helical-v0132-forensics"
+          git config user.email "kch-helical-v0132-forensics@users.noreply.github.com"
+          git add "$destination"
+          if ! git diff --cached --quiet; then
+            git commit -m "record v0.13.2 source-transport forensic receipt [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload complete forensic workspace
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0132-transport-forensics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/helical-v0132-forensic
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate forensic software execution
+        if: always()
+        shell: bash
+        env:
+          FORENSIC_EXIT_CODE: ${{ steps.forensic.outputs.exit_code }}
+        run: |
+          set -euo pipefail
+          test "${FORENSIC_EXIT_CODE:-99}" = "0"
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'helical-v0132-forensic'/'output'/'V084_SOURCE_TRANSPORT_FORENSIC_RECEIPT.json'
+          r=json.loads(p.read_text())
+          assert r['scientific_execution_performed'] is False
+          assert r['calibration_data_accessed'] is False
+          assert r['sealed_test_accessed'] is False
+          assert r['scientific_result'] is None
+          print('SOURCE_TRANSPORT_FORENSICS_PASS')
+          PY
