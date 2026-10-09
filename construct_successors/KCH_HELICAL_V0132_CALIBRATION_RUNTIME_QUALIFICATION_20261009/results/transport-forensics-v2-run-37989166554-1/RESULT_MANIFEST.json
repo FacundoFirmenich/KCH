@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "bytes": 2,
+      "path": "EXIT_CODE.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "bytes": 1090,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "d0e5192d69e2a305493cb8e1d9b04b184632eecbdaefa71b31fb7c1796474a22"
+    },
+    {
+      "bytes": 0,
+      "path": "STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 130,
+      "path": "STDOUT.txt",
+      "sha256": "dee97ed6947a8e8dd7ba84bbb1736c9ceaa70c162373f22f48cad5dfb7a15042"
+    },
+    {
+      "bytes": 8069,
+      "path": "V084_SOURCE_TRANSPORT_FORENSIC_RECEIPT_V2.json",
+      "sha256": "2d0e8ca4fee9edbd98ef43d948e934ac8b3d89692cde4a680f156a9562b83eb4"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_13_2_TRANSPORT_FORENSICS_V2_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "37989166554",
+  "github_sha": "834f20bd2b54d010b2ee720ea563943562f542fc",
+  "manifest_id": "h132forensicv2manifest:7fefcc8948e25e122f96c5125956e045a806e2cf83561f2f603fc2403300d505",
+  "scientific_rows_included": false,
+  "sealed_test_values_included": false
+}

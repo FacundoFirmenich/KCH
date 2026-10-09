@@ -1,0 +1,167 @@
+{
+  "authority_ceiling": "SOURCE_RECONSTRUCTION_AND_SOFTWARE_INSPECTION_ONLY",
+  "calibration_data_accessed": false,
+  "candidate_diagnostics": [
+    {
+      "compressed_bytes": 31206,
+      "compressed_sha256": "a8bec29cff82a386dd7c59b2b6813c32a8e6a833db3e2b544f24d56b7b2c4fd1",
+      "deflate_consumed_bytes": 11496,
+      "deflate_eof": true,
+      "gzip_header_end": 10,
+      "gzip_magic_offsets": [
+        0
+      ],
+      "label": "CONCAT_COMPACT_BASE64_THEN_DECODE",
+      "partial_payload_bytes": 42651,
+      "partial_payload_contains_freeze_compiler": false,
+      "partial_payload_contains_null_runtime": false,
+      "partial_payload_contains_test_null_runtime": false,
+      "partial_payload_contains_ustar": true,
+      "partial_payload_prefix_hex": "7372632f6b63685f68656c6963616c5f64796e616d69635f7630382f636f72652e70790000000000000000000000000000000000000000000000000000000000",
+      "partial_payload_sha256": "94a59bc2d0f06588ab6eecfd69fc18398b6b94a0347195fa5513eee5bd8d51fb",
+      "partial_payload_suffix_hex": "0000000000000000003030303036343400303030303030300030303030303030003030303030303030313735003030303030303030303030003031353233377a",
+      "prefix_hex": "1f8b0800000000000003edbd6b7b1a4996203c9ffd2b72e86777c14618d05d5d",
+      "suffix_hex": "fef9fef9fef9fef9fef9fef9fef9fef9fef9fff874fbfcfe633d237400200800",
+      "tar_scan": {
+        "all_complete_headers_checksum_pass": true,
+        "complete_member_count": 2,
+        "member_count": 2,
+        "members": [
+          {
+            "bytes": 29349,
+            "checksum_pass": true,
+            "complete": true,
+            "computed_checksum": 6430,
+            "name": "src/kch_helical_dynamic_v08/core.py",
+            "offset": 0,
+            "safe_name": true,
+            "sha256": "231f2267057906cdc08d0d1299bd9407e431aae3a5eb6e9f3b1cbd951d5ba798",
+            "size": 29349,
+            "stored_checksum": 6430,
+            "typeflag": "0"
+          },
+          {
+            "bytes": 11328,
+            "checksum_pass": true,
+            "complete": true,
+            "computed_checksum": 7170,
+            "name": "src/kch_helical_dynamic_v08/eligibility.py",
+            "offset": 30208,
+            "safe_name": true,
+            "sha256": "4f882027beea67826fb282f2912c805e087fb320ced23d143e64576555a646a4",
+            "size": 11328,
+            "stored_checksum": 7170,
+            "typeflag": "0"
+          }
+        ],
+        "payload_bytes": 42651,
+        "payload_sha256": "94a59bc2d0f06588ab6eecfd69fc18398b6b94a0347195fa5513eee5bd8d51fb",
+        "scanned_through_offset": 42496,
+        "stop_reason": "END_OF_PREFIX",
+        "target_recovered_count": 2,
+        "targets_recovered": [
+          {
+            "bytes": 29349,
+            "name": "src/kch_helical_dynamic_v08/core.py",
+            "output_path": "recovered/src/kch_helical_dynamic_v08/core.py",
+            "sha256": "231f2267057906cdc08d0d1299bd9407e431aae3a5eb6e9f3b1cbd951d5ba798"
+          },
+          {
+            "bytes": 11328,
+            "name": "src/kch_helical_dynamic_v08/eligibility.py",
+            "output_path": "recovered/src/kch_helical_dynamic_v08/eligibility.py",
+            "sha256": "4f882027beea67826fb282f2912c805e087fb320ced23d143e64576555a646a4"
+          }
+        ]
+      },
+      "unconsumed_tail_bytes": 0,
+      "unused_bytes": 19700,
+      "unused_gzip_offsets": [],
+      "unused_prefix_hex": "8bcfef13fe138de9bb4d93da3f28827cfcb1e99f0e626699216ffb9324ac51e63a57ddfb03cbdb919069eb365c24fbe4249283016dda25ebc8134f2716be3b7c06cf62fce3c9bef6de04b88377f095fb7cfdffdc05cf76727719fcf6e5f1cdc8295606163ca40742ef8f5e9c9e5c7d7bdb8fffc78661e33e7f7a7af7e32e1439",
+      "unused_suffix_hex": "fce8f9e46efde1eddb45fde451f694ed6281e28e95ee0f041fc00234c0e1aef788074e7e3b4fe6f385dba3fee62f5af9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fef9fff874fbfcfe633d237400200800",
+      "unused_zip_offsets": [],
+      "zip_magic_offsets": []
+    }
+  ],
+  "chunks": [
+    {
+      "base64_prefix": "H4sIAAAAAAAAA+29a3saSZYgPJ/9K3Lo",
+      "base64_suffix": "52i0Hkefb9NplETsyhMVFDGeXWej54og",
+      "compact_base64_bytes": 15853,
+      "compact_base64_mod4": 1,
+      "compact_base64_sha256": "baa89c9a5879a18313643bc8d2314f5826e21cbc6e43e7f268451389cd3eaede",
+      "git_blob_sha1": "da9a691447b022087063b132a03ad1d4399cadd1",
+      "individual_decode_error": "Error: Invalid base64-encoded string: number of data characters (15853) cannot be 1 more than a multiple of 4",
+      "individually_decodable": false,
+      "path": ".github/helical_v08_4/source_transport/chunk_00",
+      "raw_bytes": 15853,
+      "raw_sha256": "baa89c9a5879a18313643bc8d2314f5826e21cbc6e43e7f268451389cd3eaede"
+    },
+    {
+      "base64_prefix": "k9ENIUWf8+VkjMkMP2U5JnEc8xksI5aY",
+      "base64_suffix": "AR8JynN0VVgkk/ymxW9rTg2iVaJaK5+B",
+      "compact_base64_bytes": 16000,
+      "compact_base64_mod4": 0,
+      "compact_base64_sha256": "cbfaf5d4a3c72978453748b6121d37ceb76943cbd45015f05b0d927552ef6dd1",
+      "git_blob_sha1": "3082e6ee37ad74319195d37dea59d495fe90f490",
+      "individually_decodable": true,
+      "individually_decoded_bytes": 12000,
+      "individually_decoded_prefix_hex": "93d10d21459ff3e5648cc90c3f653926711cf3192c2396988fc7fd0ad2f90359",
+      "individually_decoded_sha256": "6bd58e28abb07c21be533b0921efab5743d6c006426ce919297e2406a484071c",
+      "individually_decoded_suffix_hex": "986fee66247a1b6b011f09ca737455582493fca6c56f6b4e0da255a25a2b9f81",
+      "path": ".github/helical_v08_4/source_transport/chunk_01",
+      "raw_bytes": 16000,
+      "raw_sha256": "cbfaf5d4a3c72978453748b6121d37ceb76943cbd45015f05b0d927552ef6dd1"
+    },
+    {
+      "base64_prefix": "HF77PKwRkbq+LQezcOnWeHk3q6vd34SC",
+      "base64_suffix": "vn++f75/vn++f/4dPv8/mM9I3QAIAgA=",
+      "compact_base64_bytes": 9756,
+      "compact_base64_mod4": 0,
+      "compact_base64_sha256": "72e8f50f89183adeb47f278644955b7ff474e8e67fad12d4747ed4ec9f9485a1",
+      "git_blob_sha1": "6449dfb0065b3fd8347cb83bb1b9f07236e6fb89",
+      "individually_decodable": true,
+      "individually_decoded_bytes": 7316,
+      "individually_decoded_prefix_hex": "1c5efb3cac1191babe2d07b370e9d6787937ababdddf84822e7561c2e875841e",
+      "individually_decoded_sha256": "20711effd3d1b42e4d1db79fcf4a5013d5b9e1ef33a2053098af8ec82f75d558",
+      "individually_decoded_suffix_hex": "7fbe7fbe7fbe7fbe7fbe7fbe7fbe7fbe7fbe7ffe1d3eff3f98cf48dd00080200",
+      "path": ".github/helical_v08_4/source_transport/chunk_02",
+      "raw_bytes": 9756,
+      "raw_sha256": "72e8f50f89183adeb47f278644955b7ff474e8e67fad12d4747ed4ec9f9485a1"
+    }
+  ],
+  "chunks_are_individually_decodable": false,
+  "concatenated_compact_base64_bytes": 41609,
+  "concatenated_compact_base64_mod4": 1,
+  "concatenated_compact_base64_sha256": "e0fee7c2813be1f91d642cfdd460f9a92194d15e8bcd4ac047a63c799c360390",
+  "concatenated_raw_bytes": 41609,
+  "concatenated_raw_sha256": "e0fee7c2813be1f91d642cfdd460f9a92194d15e8bcd4ac047a63c799c360390",
+  "cumulative_chunk_boundaries": [
+    {
+      "after_chunk_index": 0,
+      "corresponding_complete_decoded_bytes": 11889,
+      "cumulative_base64_characters": 15853,
+      "cumulative_mod4": 1
+    },
+    {
+      "after_chunk_index": 1,
+      "corresponding_complete_decoded_bytes": 23889,
+      "cumulative_base64_characters": 31853,
+      "cumulative_mod4": 1
+    },
+    {
+      "after_chunk_index": 2,
+      "corresponding_complete_decoded_bytes": 31206,
+      "cumulative_base64_characters": 41609,
+      "cumulative_mod4": 1
+    }
+  ],
+  "format": "KCH_HELICAL_V0_13_2_V084_SOURCE_TRANSPORT_FORENSIC_RECEIPT_V2",
+  "global_decoded_bytes": 31206,
+  "global_decoded_sha256": "a8bec29cff82a386dd7c59b2b6813c32a8e6a833db3e2b544f24d56b7b2c4fd1",
+  "receipt_id": "h132transportforensicv2:77c9056b55951659fab19d5a0dc9dbf8732369d0d74771dc6d595be9b32ba330",
+  "scientific_execution_performed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "source_commit": "e458afe20b8172db5a04194224cf21df5ec00dc4"
+}
