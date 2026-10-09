@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/KCH/KCH/construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/reconstruct_historical_v084_source.py", line 51, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/home/runner/work/KCH/KCH/construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/reconstruct_historical_v084_source.py", line 24, in main
+    b64=b"".join(chunks);compressed=base64.b64decode(b"".join(b64.split()),validate=True);payload=gzip.decompress(compressed)
+                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/gzip.py", line 612, in decompress
+    raise BadGzipFile("CRC check failed")
+gzip.BadGzipFile: CRC check failed
