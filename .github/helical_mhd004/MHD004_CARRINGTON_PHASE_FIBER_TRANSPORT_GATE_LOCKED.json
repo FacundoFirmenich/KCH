@@ -1,0 +1,252 @@
+{
+  "claim_ceiling": "FORMAL_OUT_OF_SAMPLE_CARRINGTON_PHASE_FIBER_TRANSPORT_IN_PHOTOSPHERIC_CURRENT_HELICITY_PROXIES_NOT_CAUSALITY_NOT_FULL_CORONAL_RELATIVE_HELICITY_NOT_UNIVERSAL_PHYSICAL_MONODROMY",
+  "controls": {
+    "features": [
+      "INTERCEPT",
+      "PHASE_SIN_1",
+      "PHASE_COS_1",
+      "PHASE_SIN_2",
+      "PHASE_COS_2",
+      "ROTATION_INDEX_LINEAR",
+      "ROTATION_INDEX_QUADRATIC",
+      "LOG1P_N_HARP",
+      "LOG1P_NORTH_USFLUX",
+      "LOG1P_SOUTH_USFLUX",
+      "LOG1P_SUM_AREA_ACR",
+      "LOG1P_SUM_TOTPOT",
+      "LOG1P_SUM_R_VALUE",
+      "NORTH_FLUX_FRACTION",
+      "STRUCTURAL_ZERO_FRACTION",
+      "OBSERVED_DAILY_FRACTION"
+    ],
+    "future_information": "FORBIDDEN",
+    "scaling": "TRAIN_ONLY_MEDIAN_IQR_EXCEPT_INTERCEPT"
+  },
+  "fiber": {
+    "hemisphere_boundary_latitude_deg": 0.0,
+    "primary_coordinates": [
+      "NORTH_WMEAN_MEANJZH",
+      "SOUTH_WMEAN_MEANJZH"
+    ],
+    "primary_required_for_claim": true,
+    "secondary_coordinates": [
+      "NORTH_WMEAN_MEANALP",
+      "SOUTH_WMEAN_MEANALP"
+    ],
+    "secondary_role": "PRELOCKED_DIRECTIONAL_CONSISTENCY_ONLY_NOT_MODEL_SELECTION",
+    "train_only_scaling": "MEDIAN_IQR",
+    "weights": "ABS_USFLUX_WITH_EQUAL_WEIGHT_FALLBACK_WITHIN_HEMISPHERE",
+    "zero_when_no_admitted_flux_in_hemisphere": true
+  },
+  "firewall": {
+    "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+    "canonicalization": "BLOCKED",
+    "mhd003_threshold_or_target_modification": "FORBIDDEN",
+    "phase_cell_fiber_values_in_release": "FORBIDDEN",
+    "promotion": "BLOCKED",
+    "raw_source_persistence_in_release": "FORBIDDEN",
+    "row_level_harp_values_in_release": "FORBIDDEN",
+    "sealed_test_predictions_in_release": "FORBIDDEN",
+    "test_metric_access_before_selection_seal": "FORBIDDEN"
+  },
+  "format": "KCH_MHD004_CARRINGTON_PHASE_FIBER_TRANSPORT_GATE",
+  "identifiability": {
+    "maximum_missing_fraction_each_locked_variable": 0.2,
+    "maximum_train_joint_design_condition_number": 100000000.0,
+    "minimum_pairs": {
+      "calibration": 250,
+      "sealed_test_epoch_1": 120,
+      "sealed_test_epoch_2": 120,
+      "train": 600
+    },
+    "minimum_pairs_each_phase_bin": {
+      "calibration": 15,
+      "sealed_test_epoch_1": 6,
+      "sealed_test_epoch_2": 6,
+      "train": 40
+    },
+    "minimum_train_primary_fiber_iqr": 1e-12,
+    "minimum_unique_target_rotations": {
+      "calibration": 25,
+      "sealed_test_epoch_1": 12,
+      "sealed_test_epoch_2": 12,
+      "train": 60
+    },
+    "outcome_on_failure": "NOT_IDENTIFIABLE_CARRINGTON_PHASE_FIBER_COVERAGE"
+  },
+  "locked_at_utc": "2026-10-09T18:20:00Z",
+  "metrics": {
+    "both_test_epochs_block_bootstrap_lower_95_above_zero": true,
+    "both_test_epochs_positive_logscore_gain_MH_minus_MS": true,
+    "combined_block_bootstrap_lower_95_above_zero": true,
+    "development_b_rotation_bootstrap_ci_excludes_zero": true,
+    "maximum_development_delta_bic_MH_minus_MS": -10.0,
+    "minimum_combined_relative_mse_improvement_MH_minus_MS": 0.02,
+    "minimum_combined_test_logscore_gain_MH_minus_MS_per_pair": 0.005,
+    "secondary_fiber_directional_consistency_required": true
+  },
+  "models": {
+    "MB": "NONHELICAL_PHASE_AND_ACTIVITY_CONTROLS_ONLY",
+    "MH": "MS_PLUS_SIGNED_ANTISYMMETRIC_TRANSPORT_B",
+    "MP": "MB_PLUS_DIAGONAL_REAL_FIBER_PERSISTENCE_AX_AY",
+    "MS": "MP_PLUS_SYMMETRIC_CROSS_HEMISPHERE_COUPLING_C",
+    "final_fit": "TRAIN_PLUS_CALIBRATION_AFTER_SELECTION_RECEIPT_SEALED",
+    "primary_contrast": "MH_MINUS_MS",
+    "random_state": 805004,
+    "ridge_alpha": [
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0,
+      30.0,
+      100.0
+    ],
+    "secondary_contrasts": [
+      "MH_MINUS_MP",
+      "MS_MINUS_MP",
+      "MP_MINUS_MB"
+    ],
+    "selection": "EACH_MODEL_ALPHA_SELECTED_ON_CALIBRATION_GAUSSIAN_LOG_SCORE_AFTER_TRAIN_FIT",
+    "transport_matrix": "[[AX,C_MINUS_B],[C_PLUS_B,AY]]"
+  },
+  "nulls": {
+    "families": [
+      "SOURCE_ROTATION_BLOCK_PERMUTATION_WITHIN_PHASE_BIN",
+      "SOURCE_PHASE_BIN_PERMUTATION_WITHIN_ROTATION",
+      "SOURCE_HEMISPHERE_SWAP_BY_ROTATION_BLOCK",
+      "SOURCE_CARRINGTON_LAG_SHIFT_EXCLUDING_ZERO_AND_ONE"
+    ],
+    "fit_hyperparameters": "FIXED_FROM_PRETEST_SELECTION_RECEIPT",
+    "minimum_families_significant_after_correction": 3,
+    "multiplicity": "HOLM_BONFERRONI",
+    "replicates_each": 499,
+    "run_only_after_materiality_screen_passes": true,
+    "seed": 80500471,
+    "test_statistic": "COMBINED_SEALED_TEST_GAUSSIAN_LOG_SCORE_GAIN_MH_MINUS_MS"
+  },
+  "observation_unit": {
+    "cell": "ONE_CARRINGTON_ROTATION_BY_PHASE_BIN",
+    "censored_day_rule": "RAW_HARP_PRESENT_BUT_NO_RECORD_PASSES_QUALITY_AND_LONGITUDE_FILTER_IS_MISSING_NOT_ZERO",
+    "daily_aggregation": "GLOBAL_AND_HEMISPHERIC_QUALITY_FILTERED_HARP_AGGREGATE",
+    "minimum_observed_daily_fraction_per_phase_cell": 0.5,
+    "minimum_observed_days_per_phase_cell": 1,
+    "phase_cell_aggregation": "COMPONENTWISE_MEDIAN_OVER_ADMITTED_OR_STRUCTURAL_ZERO_DAYS",
+    "raw_grid": "ONE_JSOC_HMI_SHARP_QUERY_AT_00_00_00_TAI_PER_DAY",
+    "structural_zero_rule": "NO_RAW_HARP_RECORD_AT_EXPECTED_DAILY_GRID_TIME_IMPLIES_ZERO_ACTIVE_REGION_CONTRIBUTION"
+  },
+  "outcomes": [
+    "CARRINGTON_PHASE_FIBER_TRANSPORT_REPLICATED",
+    "REAL_OR_SYMMETRIC_PERSISTENCE_RIVAL_SUFFICIENT",
+    "NONHELICAL_PHASE_ACTIVITY_RIVAL_SUFFICIENT",
+    "FORMAL_MONODROMY_UPPER_BOUND_BELOW_MATERIALITY",
+    "LOCAL_OR_EPOCH_SPECIFIC_FIBER_TRANSPORT_NOT_REPLICATED",
+    "NOT_IDENTIFIABLE_CARRINGTON_PHASE_FIBER_COVERAGE",
+    "MODEL_MISMATCH",
+    "BLOCKED_EXACT_BYTE_ACQUISITION"
+  ],
+  "phase_coordinate": {
+    "first_rotation_start_jd_tt": 2398167.4,
+    "formula": "1_PLUS_TT_JD_MINUS_2398167_4_DIVIDED_BY_27_2753",
+    "mean_synodic_period_days": 27.2753,
+    "name": "MEAN_SYNODIC_CARRINGTON_ROTATION_COORDINATE",
+    "phase_bin_width_degrees": 45.0,
+    "phase_bins": 8,
+    "same_phase_bin_required": true,
+    "scale": "TT_JULIAN_DATE",
+    "successor_lag_rotations": 1
+  },
+  "predecessor": {
+    "branch": "gate/mhd003-global-helicity-radiative-20261009",
+    "commit": "6e4cb04c7e82525057f59f11d6c567b3a6579796",
+    "known_before_lock": {
+      "phase_recurrence_statistics_computed": false,
+      "raw_or_row_level_fiber_values_inspected_by_analyst": false,
+      "sealed_test_metrics_accessed": false,
+      "sharp_metadata_and_missingness_only": true,
+      "transport_models_fitted": false
+    },
+    "mhd003_index_id": "mhd003index:5d913b08779f5dadc2976f74613aa4231a44c9b2b2cc78edbc1e99eeca9b9c14",
+    "mhd003_outcome": "INSUFFICIENT_GLOBAL_DISK_POWER_OR_FEATURE_IDENTIFIABILITY",
+    "repository": "FacundoFirmenich/KCH",
+    "separation_rule": "DIRECT_PHASE_RECURRENCE_AND_FIBER_TRANSPORT_QUESTION_NOT_FLARE_TARGET_RESCUE_NOT_MHD003_THRESHOLD_RELAXATION"
+  },
+  "protocol_id": "mhd004:d81c0b9edce95e9b874021881f8f70454917d2b2cfcfb47257277ad3db57fdf3",
+  "record_filter": {
+    "duplicate_action": "KEEP_FIRST_STABLE",
+    "duplicate_key": [
+      "HARPNUM",
+      "T_REC"
+    ],
+    "maximum_absolute_lon_fwt_deg": 60.0,
+    "numeric_nonfinite_action": "SET_MISSING",
+    "quality_equals": 0
+  },
+  "scientific_question": "After one recurrent Carrington turn at the same phase bin, does the north-south photospheric current-helicity proxy fiber exhibit a stable signed antisymmetric transport component beyond nonhelical controls, diagonal persistence, and symmetric cross-hemisphere coupling?",
+  "source": {
+    "cadence": "24h",
+    "exact_chunk_receipts_required": true,
+    "keywords": [
+      "HARPNUM",
+      "T_REC",
+      "QUALITY",
+      "LAT_FWT",
+      "LON_FWT",
+      "USFLUX",
+      "AREA_ACR",
+      "TOTPOT",
+      "R_VALUE",
+      "MEANJZH",
+      "MEANALP",
+      "TOTUSJH",
+      "ABSNJZH",
+      "SAVNCPP"
+    ],
+    "provider": "JSOC_SDO_HMI",
+    "series": "hmi.sharp_cea_720s",
+    "time_range_tai": [
+      "2010-05-01T00:00:00",
+      "2026-01-01T00:00:00"
+    ],
+    "vector_segments_required": false
+  },
+  "status": "LOCKED_BEFORE_MHD004_PHASE_FIBER_STATISTIC_OR_MODEL_ACCESS",
+  "temporal_design": {
+    "partition_boundary_embargo_days_each_side": 28,
+    "partitions_by_target_phase_cell_midpoint_tai": {
+      "calibration": [
+        "2018-01-01T00:00:00",
+        "2022-01-01T00:00:00"
+      ],
+      "sealed_test_epoch_1": [
+        "2022-01-01T00:00:00",
+        "2024-01-01T00:00:00"
+      ],
+      "sealed_test_epoch_2": [
+        "2024-01-01T00:00:00",
+        "2026-01-01T00:00:00"
+      ],
+      "train": [
+        "2010-05-01T00:00:00",
+        "2018-01-01T00:00:00"
+      ]
+    },
+    "source_and_target_pair_must_share_phase_bin": true,
+    "test_open": "ONCE_AFTER_MODEL_SELECTION_RECEIPT_IS_WRITTEN_FSYNCED_HASHED_AND_SELECTION_SEAL_EXISTS",
+    "test_reuse": "FORBIDDEN",
+    "whole_rotation_grouping_required": true
+  },
+  "uncertainty": {
+    "bootstrap_seed": 80500417,
+    "bootstrap_unit": "TARGET_CARRINGTON_ROTATION",
+    "development_transport_bootstrap_replicates": 999,
+    "test_block_bootstrap_replicates": 999
+  },
+  "version": "0.1.0"
+}
