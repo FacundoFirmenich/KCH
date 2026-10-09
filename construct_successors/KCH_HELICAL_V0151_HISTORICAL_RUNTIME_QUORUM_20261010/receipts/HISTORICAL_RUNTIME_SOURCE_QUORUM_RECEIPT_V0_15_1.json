@@ -1,0 +1,156 @@
+{
+  "authority_ceiling": "HISTORICAL_CODE_ONLY_ALTERNATE_EXACT_TRANSPORT_ADJUDICATION",
+  "authority_consumed": true,
+  "authority_terminal_status": "CONSUMED_FAIL_CLOSED",
+  "byte_mutation_performed": false,
+  "candidate_probes": [
+    {
+      "archive_payload_bytes": 19162,
+      "archive_payload_sha256": "d3d7ce6f60c2078b52b0b8328d76992736b6279688368dcaa190fcb37037055f",
+      "byte_mutation_performed": false,
+      "decoded_bytes": 19162,
+      "decoded_sha256": "d3d7ce6f60c2078b52b0b8328d76992736b6279688368dcaa190fcb37037055f",
+      "decompression": "none",
+      "error": "decoded transport is neither a safe ZIP nor TAR archive",
+      "error_type": "RuntimeError",
+      "normalized_base64_bytes": 25552,
+      "normalized_base64_sha256": "84b2f3db03a118b6e10ac689afb2207f13b20d44afd143c917f20b2a1dd36ace",
+      "route": "MAIN_CHUNK_01",
+      "transport_repair_performed": false,
+      "transported_bytes": 25552,
+      "transported_sha256": "84b2f3db03a118b6e10ac689afb2207f13b20d44afd143c917f20b2a1dd36ace",
+      "valid": false
+    },
+    {
+      "archive_payload_bytes": 19162,
+      "archive_payload_sha256": "c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a",
+      "byte_mutation_performed": false,
+      "decoded_bytes": 19162,
+      "decoded_sha256": "c09245994bcec6d3194b3608a07fc1cbb0dae014e156138f0d7b19d934183f9a",
+      "decompression": "none",
+      "error": "decoded transport is neither a safe ZIP nor TAR archive",
+      "error_type": "RuntimeError",
+      "normalized_base64_bytes": 25552,
+      "normalized_base64_sha256": "27a88ffb3f5e7bc3e6373cee9d0a71ac7e813140a9832ed3df46ddd3250b6452",
+      "route": "TEN_EXACT_CHUNK_01_SUBCHUNKS",
+      "transport_repair_performed": false,
+      "transported_bytes": 25552,
+      "transported_sha256": "27a88ffb3f5e7bc3e6373cee9d0a71ac7e813140a9832ed3df46ddd3250b6452",
+      "valid": false
+    }
+  ],
+  "canonicalization": "BLOCKED",
+  "completed_at_utc": "2026-10-09T23:16:19.200994Z",
+  "exit_code": 50,
+  "format": "KCH_HELICAL_V0_15_1_ALTERNATE_EXACT_TRANSPORT_ADJUDICATION_RECEIPT",
+  "null_runtime_execution_performed": false,
+  "outcome": "FAIL_CLOSED_NO_VALID_TRANSPORT",
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_failed_receipt_id": "h15runtimequorum:a84e2effd93675f4758730631ba8e9d62d875ffe3be2cc15eb722e8893873193",
+  "promotion": "BLOCKED",
+  "receipt_id": "h151runtimequorum:8160f92267d3d92586f9330fe373c16ead114f0903a561210f0c94e4f53633cc",
+  "scientific_data_accessed": false,
+  "scientific_model_execution_performed": false,
+  "sealed_test_accessed": false,
+  "source_blobs": [
+    {
+      "bytes": 5000,
+      "git_blob_sha1": "3ba37c990f0c3d29e7bedc3bee6deae3a5a8e654",
+      "path": ".github/helical_v06/runtime_b64/chunk_00",
+      "sha256": "fab98fed312b0f38a1e7c486b4073e6de89d8d6d54d54ba2c81e42b16bca81d1"
+    },
+    {
+      "bytes": 5000,
+      "git_blob_sha1": "b58197cb6d5d23fb9f33db03df7fc04c1bc3fd33",
+      "path": ".github/helical_v06/runtime_b64/chunk_01",
+      "sha256": "a78f9fb29d22f70f9fc5bd23fe4b3f849f6e7b4bca2ab0c86de3f9d32b56d3fa"
+    },
+    {
+      "bytes": 5000,
+      "git_blob_sha1": "a06efca521f8e07bcd34a037bf70be9c01467be0",
+      "path": ".github/helical_v06/runtime_b64/chunk_02",
+      "sha256": "faeb1354df63865cf0e41a1fa612f9cdf33099af8f548ca83e0c045135930d19"
+    },
+    {
+      "bytes": 5000,
+      "git_blob_sha1": "bc2ce20415f02a8b3facad8309e4c35e51fad60b",
+      "path": ".github/helical_v06/runtime_b64/chunk_03",
+      "sha256": "6d4794e11a7f822840d73cede96298f22ea8fa5a0750dcab1cafe2658d20ab9d"
+    },
+    {
+      "bytes": 5000,
+      "git_blob_sha1": "8661307e4f5166f25ddd0b1d312ffc5804fe90b3",
+      "path": ".github/helical_v06/runtime_b64/chunk_04",
+      "sha256": "192b9d52a118835183801cb07188fe2313a4de63e010986b8ef04595ec61110b"
+    },
+    {
+      "bytes": 552,
+      "git_blob_sha1": "40cb4b432cdfb1a4158b85a9c60623693fdce3b5",
+      "path": ".github/helical_v06/runtime_b64/chunk_05",
+      "sha256": "0068c143511ab99f979d19e477230b9178f641928ff125630f3086e3beb3ef81"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "94e0b6a7b0388f75f2bc263bab4389d3297fa02d",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_00",
+      "sha256": "71dac449f4a974a51aee0e724d29e155024782477d3f91d1706103d26119b9e1"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "d325e5957e04bb687352afc53cb20cf72e3cea73",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_01",
+      "sha256": "e30e1f83912efb20b80b9bc6efaab4fb31c01d4041fd256be87f0a8bc9eb1bba"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "dbe24ced84046eacb15a0a461e2eaf8c443278ba",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_02",
+      "sha256": "d4f7a84baeff7ac2c36639051e2f28ef8c78707af7a7a8388316db6a9862a41e"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "415abf5ff15d4778a4f8c4d70fd7e857e65b294e",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_03",
+      "sha256": "1acfcc604c9fed2fb1374a014d41f01b7ea3751cd286b3e0dc4786915dcf2108"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "8903a4d4456a818f8f4d9823553d304c13149ed7",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_04",
+      "sha256": "7b175ad8d16b9a1f078c4e49bfc2d9f8528d580724a8466143be32c9d368ff93"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "cdf2ac0652b274818ff76e6babe310a95913b374",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_05",
+      "sha256": "3fc9df77563fc646e648b7e6512620694fcb4685bd9d6247c3c197f9770452cd"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "732a74050e0242967cba8eda4e7c1965c2293681",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_06",
+      "sha256": "bd97a056a39360a9d896f23b0ce8ccef7fa0b919992dc1e82827e696692a7891"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "5382db4560cf3c25a43c7e09f0ae862fdcadbd47",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_07",
+      "sha256": "73b4778c5f390f519a77c86ef366767045782d58ceeb7f6ed0e726d4d79e5c9f"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "b9c8618ef16ee32ec33e33601cae452a5a6d84f8",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_08",
+      "sha256": "7eaea21f9d5548a44afeccecfe6e638af866bfd2e1dd133903728e1f117f9874"
+    },
+    {
+      "bytes": 500,
+      "git_blob_sha1": "35efd88a31111393a9f55d09928b28e2ce23a4eb",
+      "path": ".github/helical_v06/runtime_b64/chunk_01_09",
+      "sha256": "cc122a05a8f4cc2cc6048d8b9b820412450c778225745dd9bf12edc1765ca929"
+    }
+  ],
+  "source_commit": "24703e036401185e935b363f839f059c8d49d57e",
+  "started_at_utc": "2026-10-09T23:16:19.156266Z",
+  "transport_repair_performed": false
+}

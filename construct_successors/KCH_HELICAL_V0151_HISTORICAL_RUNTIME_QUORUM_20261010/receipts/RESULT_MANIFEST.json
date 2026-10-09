@@ -1,0 +1,45 @@
+{
+  "byte_mutation_performed": false,
+  "files": [
+    {
+      "bytes": 3,
+      "path": "receipts/GATE_EXIT_CODE.txt",
+      "sha256": "7ea9844ae84eccbf55e8330640865e36c43521e45a1baec24233327aab7e6595"
+    },
+    {
+      "bytes": 0,
+      "path": "receipts/GATE_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 6651,
+      "path": "receipts/GATE_STDOUT.txt",
+      "sha256": "609fe8a30550d03575e1cecee5a35272d9b07d96763b2fd086eb8b33ef00b6f2"
+    },
+    {
+      "bytes": 6651,
+      "path": "receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_1.json",
+      "sha256": "609fe8a30550d03575e1cecee5a35272d9b07d96763b2fd086eb8b33ef00b6f2"
+    },
+    {
+      "bytes": 729,
+      "path": "receipts/INPUT_SHA256SUMS.txt",
+      "sha256": "5f2edfb00f04b06b8303f36c16c9a75575c983cc6c6887f2c3bb74a3209d5a39"
+    },
+    {
+      "bytes": 0,
+      "path": "receipts/RECOVERED_CODE_SHA256SUMS.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_15_1_CODE_ONLY_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38003565387",
+  "github_sha": "1e849f7a00c41e8c5c17da6197237a9d52e0ed78",
+  "manifest_id": "h151manifest:58316046be9d866e1ce7592b56ad0e246b7ffdf7074927fbe0a1d05d0c7d79f7",
+  "scientific_data_included": false,
+  "scientific_result_included": false,
+  "sealed_test_values_included": false,
+  "source_commit": "24703e036401185e935b363f839f059c8d49d57e",
+  "transport_repair_performed": false
+}
