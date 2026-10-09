@@ -1,0 +1,145 @@
+name: Helical v0.8.2 Mendeley public-route discovery
+
+on:
+  push:
+    branches:
+      - experiment/helical-v08-blind-eligibility-20261009
+    paths:
+      - '.github/workflows/helical-v08-mendeley-public-route-discovery.yml'
+      - 'experiments/helical-v08-1/public_route/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: helical-v08-mendeley-public-route-discovery
+  cancel-in-progress: false
+
+jobs:
+  public-route-discovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONHASHSEED: '0'
+      PYTHONNOUSERSITE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout immutable diagnostic commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+
+      - name: Reconstruct and verify credential-free CDP diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/discovery" "$RUNNER_TEMP/wheelhouse"
+          python - <<'PY'
+          import base64, hashlib, pathlib
+          root = pathlib.Path('experiments/helical-v08-1/public_route/cdp_parts')
+          expected = {
+            'part-00.b64': (5000, 'e4c279e283ba3cf8d581289098e15423a25ec3dfe26630f4fed3fbafa20ddfa3'),
+            'part-01.b64': (5000, 'dcb9c2793b9263a5e9d3b6bc3cbcb1f592d2e152d34e9d0c8deace227023442c'),
+            'part-02.b64': (5000, 'f0b730f3ca9809c4ce33eafee6a60252c65d5d06db74a06239a2126cd82e40e8'),
+            'part-03.b64': (1776, '7f24875cf165e137e0143119471c335abc4f416d529063cb046f2650fbe2b171'),
+          }
+          names = {p.name for p in root.glob('part-*.b64')}
+          if names != set(expected):
+              raise SystemExit(f'fragment set mismatch: {sorted(names)}')
+          chunks = []
+          for name in sorted(expected):
+              data = (root / name).read_bytes()
+              size, digest = expected[name]
+              observed = hashlib.sha256(data).hexdigest()
+              if len(data) != size or observed != digest:
+                  raise SystemExit(f'fragment mismatch {name}: {len(data)} {observed}')
+              chunks.append(data)
+          encoded = b''.join(chunks)
+          if len(encoded) != 16776 or hashlib.sha256(encoded).hexdigest() != '1e55b65f8a93a66bbd09b6940cdc61157ef666dd2997681bafc6bcd2add19c89':
+              raise SystemExit('encoded diagnostic mismatch')
+          source = base64.b64decode(encoded, validate=True)
+          if len(source) != 12581 or hashlib.sha256(source).hexdigest() != '67410c54d027e0f09f6895abe520b81a7d55e00a7d755f7e1492c95928de78c3':
+              raise SystemExit('decoded diagnostic mismatch')
+          target = pathlib.Path('/tmp/MENDELEY_PUBLIC_UI_CDP_DISCOVERY_V0_8_2.py')
+          target.write_bytes(source)
+          print({'source_bytes': len(source), 'source_sha256': hashlib.sha256(source).hexdigest()})
+          PY
+          python -m py_compile /tmp/MENDELEY_PUBLIC_UI_CDP_DISCOVERY_V0_8_2.py
+
+      - name: Freeze browser diagnostic dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip download --only-binary=:all: --dest "$RUNNER_TEMP/wheelhouse" 'selenium==4.50.0'
+          (cd "$RUNNER_TEMP/wheelhouse" && sha256sum * | LC_ALL=C sort) > "$RUNNER_TEMP/discovery/SELENIUM_WHEELHOUSE_SHA256.txt"
+          python -m pip install --no-index --find-links "$RUNNER_TEMP/wheelhouse" 'selenium==4.50.0'
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/discovery/PYTHON_ENVIRONMENT_FREEZE.txt"
+          {
+            python --version
+            google-chrome --version || true
+            chromedriver --version || true
+          } > "$RUNNER_TEMP/discovery/BROWSER_RUNTIME.txt" 2>&1
+
+      - name: Observe public UI route with ephemeral browser
+        id: discover
+        shell: bash
+        run: |
+          set -uo pipefail
+          env -i \
+            PATH="$PATH" HOME="$HOME" LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+            RUNNER_TEMP="$RUNNER_TEMP" \
+            PYTHONHASHSEED=0 PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 \
+            python /tmp/MENDELEY_PUBLIC_UI_CDP_DISCOVERY_V0_8_2.py \
+              --output-dir "$RUNNER_TEMP/discovery"
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/discovery/DISCOVERY_EXIT_CODE.txt"
+          if [[ "$rc" -ne 0 && "$rc" -ne 3 ]]; then
+            exit "$rc"
+          fi
+          exit 0
+
+      - name: Seal diagnostic lineage
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os, pathlib
+          out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'discovery'
+          lineage = {
+            'format': 'KCH_HELICAL_V0_8_2_PUBLIC_ROUTE_DISCOVERY_LINEAGE',
+            'repository': os.environ['GITHUB_REPOSITORY'],
+            'branch': os.environ['GITHUB_REF_NAME'],
+            'commit': os.environ['GITHUB_SHA'],
+            'run_id': os.environ['GITHUB_RUN_ID'],
+            'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+            'authority_ceiling': 'NONE',
+            'credentials_used': False,
+            'angle_fields_accessed': False,
+            'scientific_inference_executed': False,
+            'promotion': 'BLOCKED',
+          }
+          canonical = json.dumps(lineage, sort_keys=True, separators=(',', ':')).encode()
+          lineage['receipt_id'] = 'h8route-lineage:' + hashlib.sha256(canonical).hexdigest()
+          (out / 'PUBLIC_ROUTE_DISCOVERY_LINEAGE.json').write_text(json.dumps(lineage, indent=2, sort_keys=True) + '\n')
+          PY
+          (cd "$RUNNER_TEMP/discovery" && find . -maxdepth 1 -type f ! -name COMPLETE_SHA256SUMS.txt -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > "$RUNNER_TEMP/discovery/COMPLETE_SHA256SUMS.txt"
+
+      - name: Upload governed public-route diagnostic
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: helical-v08-2-mendeley-public-route-discovery
+          path: ${{ runner.temp }}/discovery
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          include-hidden-files: false
