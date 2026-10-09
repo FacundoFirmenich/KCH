@@ -1,0 +1,144 @@
+name: KCH Helical v0.15.2 large historical bundle quorum
+
+on:
+  push:
+    branches:
+      - helical-v0152-large-bundle-runtime-quorum-20261010
+    paths:
+      - ".github/workflows/helical-v0152-large-bundle-runtime-quorum.yml"
+      - "construct_successors/KCH_HELICAL_V0152_LARGE_BUNDLE_RUNTIME_QUORUM_20261010/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0152-large-bundle-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-large-bundle-quorum:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      V15: construct_successors/KCH_HELICAL_V015_HISTORICAL_RUNTIME_QUORUM_20261010
+      V151: construct_successors/KCH_HELICAL_V0151_HISTORICAL_RUNTIME_QUORUM_20261010
+      ROOT: construct_successors/KCH_HELICAL_V0152_LARGE_BUNDLE_RUNTIME_QUORUM_20261010
+      FAILED: construct_successors/KCH_HELICAL_V0151_HISTORICAL_RUNTIME_QUORUM_20261010/receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_1.json
+
+    steps:
+      - name: Checkout complete finite lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0152-large-bundle-runtime-quorum-20261010
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify new authority and predecessor closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ROOT/receipts"
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/helical-v0152-pycache"
+          python -m py_compile "$ROOT/reconstruct_large_v06_bundle_v0152.py" "$V15/reconstruct_v06_runtime_quorum.py"
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_15_2.json" >/dev/null
+          python -m json.tool "$FAILED" >/dev/null
+          python - "$ROOT/AUTHORITY_LEASE_V0_15_2.json" "$FAILED" <<'PY'
+          import json, sys
+          lease=json.load(open(sys.argv[1])); failed=json.load(open(sys.argv[2]))
+          assert failed['outcome']=='FAIL_CLOSED_NO_VALID_TRANSPORT'
+          assert failed['receipt_id']==lease['predecessor_failed_receipt_id']
+          assert failed['scientific_data_accessed'] is False
+          assert failed['sealed_test_accessed'] is False
+          assert lease['transport_repair_authorized'] is False
+          assert lease['scientific_data_access_authorized'] is False
+          assert lease['null_runtime_execution_authorized'] is False
+          PY
+          git cat-file -e 'e458afe20b8172db5a04194224cf21df5ec00dc4^{commit}'
+          sha256sum "$ROOT/AUTHORITY_LEASE_V0_15_2.json" "$ROOT/reconstruct_large_v06_bundle_v0152.py" "$V15/reconstruct_v06_runtime_quorum.py" "$FAILED" > "$ROOT/receipts/INPUT_SHA256SUMS.txt"
+
+      - name: Reconstruct exact large bundle and inventory runtime symbols
+        id: quorum
+        shell: bash
+        run: |
+          set +e
+          PYTHONPATH="$GITHUB_WORKSPACE/$V15:$GITHUB_WORKSPACE/$ROOT" \
+          python "$ROOT/reconstruct_large_v06_bundle_v0152.py" \
+            --repo-root . \
+            --authority "$ROOT/AUTHORITY_LEASE_V0_15_2.json" \
+            --output-code "$ROOT/recovered_runtime" \
+            --receipt "$ROOT/receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_2.json" \
+            > "$ROOT/receipts/GATE_STDOUT.txt" \
+            2> "$ROOT/receipts/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$ROOT/receipts/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$ROOT/receipts/GATE_STDOUT.txt"
+          if [[ -s "$ROOT/receipts/GATE_STDERR.txt" ]]; then cat "$ROOT/receipts/GATE_STDERR.txt" >&2; fi
+          exit 0
+
+      - name: Validate code-only payload and manifest
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d "$ROOT/recovered_runtime" ]]; then
+            if find "$ROOT/recovered_runtime" -type f \( -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o -name '*.h5' -o -name '*.hdf5' -o -name '*.sqlite' -o -name '*.db' \) | grep -q .; then exit 91; fi
+            find "$ROOT/recovered_runtime" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$ROOT/receipts/RECOVERED_CODE_SHA256SUMS.txt"
+          else
+            : > "$ROOT/receipts/RECOVERED_CODE_SHA256SUMS.txt"
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+          root=Path(sys.argv[1]); rows=[]
+          for base in (root/'receipts',root/'recovered_runtime'):
+              if not base.exists(): continue
+              for path in sorted(item for item in base.rglob('*') if item.is_file() and item.name!='RESULT_MANIFEST.json'):
+                  body=path.read_bytes(); rows.append({'path':path.relative_to(root).as_posix(),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()})
+          manifest={'format':'KCH_HELICAL_V0_15_2_CODE_ONLY_RESULT_MANIFEST','github_run_id':os.environ['GITHUB_RUN_ID'],'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],'github_sha':os.environ['GITHUB_SHA'],'source_commit':'e458afe20b8172db5a04194224cf21df5ec00dc4','transport_repair_performed':False,'scientific_data_included':False,'sealed_test_values_included':False,'scientific_result_included':False,'files':rows}
+          manifest['manifest_id']='h152manifest:'+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (root/'receipts'/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          PY
+
+      - name: Persist code-only successor append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0152-runtime-quorum"
+          git config user.email "kch-helical-v0152-runtime-quorum@users.noreply.github.com"
+          git add "$ROOT/receipts"
+          if [[ -d "$ROOT/recovered_runtime" ]]; then git add "$ROOT/recovered_runtime"; fi
+          if git diff --cached --quiet; then echo "No runtime quorum delta"; else git commit -m "record v0.15.2 large historical bundle quorum [skip ci]"; git push origin "HEAD:${GITHUB_REF_NAME}"; fi
+
+      - name: Upload code-only evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0152-runtime-quorum-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate large bundle quorum
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.quorum.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0) echo "HISTORICAL_RUNTIME_SOURCE_QUORUM_PASS: calibration-only qualification may be separately authorized" ;;
+            30) echo "HISTORICAL_RUNTIME_PARTIAL_SOURCE_ONLY: exact bundle recovered but missing v0.13 operators" ;;
+            *) echo "LARGE_BUNDLE_QUORUM_FAILED_CLOSED with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
