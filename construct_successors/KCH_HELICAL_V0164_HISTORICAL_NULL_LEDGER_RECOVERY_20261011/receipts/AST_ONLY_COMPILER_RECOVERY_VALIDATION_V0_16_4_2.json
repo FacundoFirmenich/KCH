@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "argparse_surface_present": true,
+    "bytecode_compile_without_import": true,
+    "git_blob_identity": true,
+    "gzip_decompression": true,
+    "historical_execution_is_non_authoritative": true,
+    "ledger_not_regenerated": true,
+    "main_function_present": true,
+    "python_ast_parse": true,
+    "scientific_data_not_accessed": true,
+    "sealed_test_not_accessed": true,
+    "strict_base64_decode": true,
+    "strict_utf8_decode": true
+  },
+  "format": "KCH_HELICAL_V0_16_4_2_AST_ONLY_COMPILER_RECOVERY_VALIDATION",
+  "receipt_id": "h1642compiler:d8d43599d722118390dd35b36d87a7ec269cac3844952d4943bb93b9b338573a",
+  "status": "PASS",
+  "validation_id": "h1642validation:197051c48b92c988cc84f016a0075df0e9dda53ffe431d014f4aed962fca5d69"
+}

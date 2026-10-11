@@ -1,0 +1,148 @@
+{
+  "add_argument_calls": [
+    {
+      "keywords": {
+        "required": true,
+        "type": {
+          "name": "Path"
+        }
+      },
+      "lineno": 88,
+      "positional": [
+        "--repo-root"
+      ]
+    },
+    {
+      "keywords": {
+        "required": true,
+        "type": {
+          "name": "Path"
+        }
+      },
+      "lineno": 89,
+      "positional": [
+        "--evidence-root"
+      ]
+    },
+    {
+      "keywords": {
+        "required": true,
+        "type": {
+          "name": "Path"
+        }
+      },
+      "lineno": 90,
+      "positional": [
+        "--junit"
+      ]
+    },
+    {
+      "keywords": {
+        "required": true,
+        "type": {
+          "name": "Path"
+        }
+      },
+      "lineno": 91,
+      "positional": [
+        "--output"
+      ]
+    },
+    {
+      "keywords": {
+        "default": "LOCAL"
+      },
+      "lineno": 92,
+      "positional": [
+        "--github-run-id"
+      ]
+    },
+    {
+      "keywords": {
+        "default": "LOCAL"
+      },
+      "lineno": 93,
+      "positional": [
+        "--github-sha"
+      ]
+    }
+  ],
+  "ast_dump_sha256": "cb84da294563aae49396c1fbfd498427967a6d5ebe0fb8024e7f24bbae4133fe",
+  "classes": [],
+  "cli_options": [
+    "--evidence-root",
+    "--github-run-id",
+    "--github-sha",
+    "--junit",
+    "--output",
+    "--repo-root"
+  ],
+  "functions": [
+    {
+      "args": [
+        "checks",
+        "name",
+        "condition",
+        "detail"
+      ],
+      "kwonlyargs": [],
+      "lineno": 66,
+      "name": "assertion"
+    },
+    {
+      "args": [
+        "path"
+      ],
+      "kwonlyargs": [],
+      "lineno": 54,
+      "name": "load_json"
+    },
+    {
+      "args": [],
+      "kwonlyargs": [],
+      "lineno": 86,
+      "name": "main"
+    },
+    {
+      "args": [
+        "path"
+      ],
+      "kwonlyargs": [],
+      "lineno": 72,
+      "name": "parse_junit"
+    },
+    {
+      "args": [
+        "path"
+      ],
+      "kwonlyargs": [],
+      "lineno": 46,
+      "name": "sha256_file"
+    },
+    {
+      "args": [
+        "path",
+        "value"
+      ],
+      "kwonlyargs": [],
+      "lineno": 61,
+      "name": "write_json"
+    }
+  ],
+  "imports": [
+    "__future__:annotations",
+    "argparse",
+    "datetime:datetime,timezone",
+    "hashlib",
+    "json",
+    "kch_helical_dynamic_v08.core:canonical_json_bytes",
+    "kch_helical_dynamic_v08.null_runtime:NULL_FAMILIES,build_job_ledger,runtime_contract",
+    "pathlib:Path",
+    "sys",
+    "xml.etree.ElementTree"
+  ],
+  "module_docstring": null,
+  "top_level_shapes": [
+    "if:__name__ == '__main__'"
+  ]
+}
