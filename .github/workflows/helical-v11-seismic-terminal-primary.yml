@@ -51,7 +51,7 @@ jobs:
             'https://raw.githubusercontent.com/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson' \
             --output "$RUNNER_TEMP/terminal/source/gem_active_faults_harmonized.geojson"
           echo '37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1  '"$RUNNER_TEMP/terminal/source/gem_active_faults_harmonized.geojson" | sha256sum -c -
-      - name: Materialize axial marks and ambiguity-filtered full-network candidates
+      - name: Materialize Aki-Richards axes and ambiguity-filtered full-network candidates
         shell: bash
         run: |
           set -euo pipefail
@@ -63,17 +63,85 @@ jobs:
             --fault-geojson "$out/source/gem_active_faults_harmonized.geojson" \
             --protocol .github/helical_v11/SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1_LOCKED.json \
             --out "$out" | tee "$out/MATERIALIZATION_STDOUT.log"
-      - name: Freeze calibration selection and open held-out test once
+          python .github/helical_v11/repair_terminal_directional_npz.py \
+            --npz "$out/SEISMIC_TERMINAL_DIRECTIONAL_V1_1.npz" \
+            --materialization-report "$out/SEISMIC_TERMINAL_INPUT_MATERIALIZATION_V1_1.json" \
+            --out-receipt "$out/EVENT_ID_DTYPE_REPAIR_RECEIPT.json" \
+            | tee "$out/DTYPE_REPAIR_STDOUT.log"
+      - name: Apply pretest mechanism-observability gate
         shell: bash
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/terminal"
-          PYTHONUNBUFFERED=1 python .github/helical_v11/run_primary_gate_json_safe.py \
-            --script .github/helical_v11/seismic_terminal_primary_gate.py \
-            --directional "$out/SEISMIC_TERMINAL_DIRECTIONAL_V1_1.npz" \
-            --preflight "$out/SEISMIC_TERMINAL_PREFLIGHT_V1_1.npz" \
-            --protocol .github/helical_v11/SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1_LOCKED.json \
-            --out "$out" | tee "$out/PRIMARY_GATE_STDOUT.log"
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          out = Path(os.environ['RUNNER_TEMP']) / 'terminal'
+          report = json.loads((out / 'SEISMIC_TERMINAL_INPUT_MATERIALIZATION_V1_1.json').read_text())
+          cohorts = report['cohorts']
+          minimum = 200
+          pass_all = all(int(row['sealed_test_observable_events']) >= minimum for row in cohorts)
+          body = {
+              'format': 'KCH_SEISMIC_MECHANISM_OBSERVABILITY_GATE_V1_1',
+              'materialization_id': report['materialization_id'],
+              'minimum_sealed_test_observable_events_per_primary_cohort': minimum,
+              'cohorts': [
+                  {
+                      'region': row['region'],
+                      'sealed_test_parsed_events': row['sealed_test_parsed_events'],
+                      'sealed_test_observable_events': row['sealed_test_observable_events'],
+                      'pass': int(row['sealed_test_observable_events']) >= minimum,
+                  }
+                  for row in cohorts
+              ],
+              'test_open_authorized': pass_all,
+              'failure_outcome': None if pass_all else 'NOT_IDENTIFIABLE_MECHANISM_COVERAGE',
+              'test_metrics_evaluated': False,
+              'authority_ceiling': 'NONE',
+          }
+          canonical = json.dumps(body, sort_keys=True, separators=(',', ':')).encode()
+          body['observability_gate_id'] = 's11obs:' + hashlib.sha256(canonical).hexdigest()
+          (out / 'SEISMIC_MECHANISM_OBSERVABILITY_GATE_V1_1.json').write_text(json.dumps(body, indent=2, sort_keys=True) + '\n')
+          print(json.dumps(body, indent=2, sort_keys=True))
+          PY
+      - name: Freeze calibration selection and open held-out test at most once
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/terminal"
+          if jq -e '.test_open_authorized == true' "$out/SEISMIC_MECHANISM_OBSERVABILITY_GATE_V1_1.json" >/dev/null; then
+            PYTHONUNBUFFERED=1 python .github/helical_v11/run_primary_gate_json_safe.py \
+              --script .github/helical_v11/seismic_terminal_primary_gate.py \
+              --directional "$out/SEISMIC_TERMINAL_DIRECTIONAL_V1_1.npz" \
+              --preflight "$out/SEISMIC_TERMINAL_PREFLIGHT_V1_1.npz" \
+              --protocol .github/helical_v11/SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1_LOCKED.json \
+              --out "$out" | tee "$out/PRIMARY_GATE_STDOUT.log"
+          else
+            python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          out = Path(os.environ['RUNNER_TEMP']) / 'terminal'
+          gate = json.loads((out / 'SEISMIC_MECHANISM_OBSERVABILITY_GATE_V1_1.json').read_text())
+          body = {
+              'format': 'KCH_SEISMIC_TERMINAL_FULL_NETWORK_PRIMARY_RESULT_V1_1',
+              'observability_gate_id': gate['observability_gate_id'],
+              'test_access': 'NOT_OPENED',
+              'positive_primary_cohorts': 0,
+              'required_positive_primary_cohorts': 2,
+              'outcome': 'NOT_IDENTIFIABLE_MECHANISM_COVERAGE',
+              'physical_helicity': 'NOT_EVALUATED',
+              'universal_absence_of_helicity': 'NOT_ESTABLISHED',
+              'terminal_closure_authorized': False,
+              'promotion': 'BLOCKED',
+              'canonicalization': 'BLOCKED',
+              'authority_ceiling': 'NONE',
+          }
+          canonical = json.dumps(body, sort_keys=True, separators=(',', ':')).encode()
+          body['gate_result_id'] = 's11g:' + hashlib.sha256(canonical).hexdigest()
+          (out / 'SEISMIC_TERMINAL_FULL_NETWORK_PRIMARY_RESULT_V1_1.json').write_text(json.dumps(body, indent=2, sort_keys=True) + '\n')
+          print(json.dumps(body, indent=2, sort_keys=True))
+          PY
+          fi
           cp .github/helical_v11/SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1_LOCKED.json "$out/"
           cp "$RUNNER_TEMP/network/SEISMIC_FULL_NETWORK_LOCK_V1_1.json" "$out/"
           cp "$RUNNER_TEMP/network/COHORT_OVERLAP_ABSTENTION_RECEIPT.json" "$out/"
