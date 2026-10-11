@@ -1,0 +1,22 @@
+{
+  "format": "KCH_HELICAL_V0_16_3_1_SOURCE_CUSTODY_VALIDATION",
+  "manifest_id": "h1631manifest:119eefc5ae41eed670e4ac43a5df400619a1f3850ee2750e4a644fa09742e3de",
+  "receipt_id": "h1631custody:30463dc08f4343b9240a6f816c33275db749337c2d3532ebc4394b9f37e03b35",
+  "required_checks": {
+    "all_python_sources_parse": true,
+    "all_required_git_blobs_match": true,
+    "all_source_roots_exist": true,
+    "deterministic_member_order": true,
+    "each_root_has_admitted_source": true,
+    "forbidden_payloads_not_archived": true,
+    "historical_outcomes_excluded": true,
+    "member_hash_identity_pass": true,
+    "scientific_execution_not_performed": true,
+    "sealed_test_not_accessed": true,
+    "v0_16_2_failure_preserved": true,
+    "v0_16_3_failure_preserved": true,
+    "zip_crc_pass": true
+  },
+  "status": "PASS",
+  "validation_id": "h1631validation:426448cc8ec188073b0178ad9c5984cb96f1da4b69d91b9d3a2a8817bcf29fa7"
+}

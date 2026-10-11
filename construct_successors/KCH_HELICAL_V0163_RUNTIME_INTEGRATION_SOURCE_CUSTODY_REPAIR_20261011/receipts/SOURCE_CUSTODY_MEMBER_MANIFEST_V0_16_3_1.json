@@ -1,0 +1,223 @@
+{
+  "format": "KCH_HELICAL_V0_16_3_1_SOURCE_CUSTODY_MEMBER_MANIFEST",
+  "manifest_id": "h1631manifest:119eefc5ae41eed670e4ac43a5df400619a1f3850ee2750e4a644fa09742e3de",
+  "member_count": 43,
+  "member_tree_sha256": "5f08346e728d0618c57cb7ccd50e45bc64b89981c483aa1496ce597e3345469b",
+  "members": [
+    {
+      "bytes": 2616,
+      "path": "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_geometry_adapter.py",
+      "sha256": "965a3a4af636600cdc119d60fb5936d079645e6fbe04c74142be1bf31c962be3"
+    },
+    {
+      "bytes": 10698,
+      "path": "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_public_acquisition.py",
+      "sha256": "dbded4a00a0ff3133b2cded2107d7f23f0f8d6eb45d66aed2f037777d86ebcf9"
+    },
+    {
+      "bytes": 28906,
+      "path": "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_remote_gate.py",
+      "sha256": "7fb06e9931b28e2fee78459cc53f0651d52cc25308121183b175466d4363e975"
+    },
+    {
+      "bytes": 8027,
+      "path": "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json",
+      "sha256": "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246"
+    },
+    {
+      "bytes": 1723,
+      "path": "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/AUTHORITY_LEASE_V0_11.json",
+      "sha256": "6b67b10ed715363fa9f20890aab9477c4dd5d9f577f942608a781d3b25ff764c"
+    },
+    {
+      "bytes": 4789,
+      "path": "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/extract_blind_v011.py",
+      "sha256": "784575508cbd98be9e3cf1622ffba020277562bf3935fa70b905cd911d1d1bdf"
+    },
+    {
+      "bytes": 7831,
+      "path": "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/extract_selected_directional_v011.py",
+      "sha256": "4c9e48dd18b95b6c052aa4b70c2354e80958475f458b72696bf8528da656f383"
+    },
+    {
+      "bytes": 789,
+      "path": "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/helical_v011_directional_pretest.py",
+      "sha256": "867f81740ef15bf64d760d29501ee721a2ea7586f6ec289a501555dd5de2be72"
+    },
+    {
+      "bytes": 30011,
+      "path": "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/helical_v011_directional_pretest_core.py",
+      "sha256": "985881aa8a4fe18a8cb805c6c0933228b8b2ad4fd0140644f333281538b2490a"
+    },
+    {
+      "bytes": 2141,
+      "path": "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/AUTHORITY_LEASE_V0_12.json",
+      "sha256": "112e5faffb7b50b758c830dab41ad60b497e49785cec60786233b6e4bacbc083"
+    },
+    {
+      "bytes": 11110,
+      "path": "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/build_topology_lock_v012.py",
+      "sha256": "497d68546637a07a477d88d7d5d692ee24ffb6ed6856f2fafdc2923c38f34249"
+    },
+    {
+      "bytes": 12232,
+      "path": "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/directional_preflight_frozen_v08.py",
+      "sha256": "f33f7f0c316762aca5356451f6dac1152d217b1b9e3999a555c10d319efb383b"
+    },
+    {
+      "bytes": 15493,
+      "path": "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/fit_parent_graph_lock_frozen_v08.py",
+      "sha256": "635a059d3f3d613c6cc47aa46cda8a1efe67bdb46ddb284fde14512e69ebebcd"
+    },
+    {
+      "bytes": 20375,
+      "path": "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/helical_v012_parent_graph_gate.py",
+      "sha256": "5487f2c4dcd6d402e37a3daa33c4ce6535ed873bbe2188810b502b4c529b6bf5"
+    },
+    {
+      "bytes": 1770,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/AUTHORITY_LEASE_V0_13_2_SCHEMA_INSPECTION.json",
+      "sha256": "39c28661274c1b5b1036d02da97f45831d091148b1150e5282ec7a493a2f435c"
+    },
+    {
+      "bytes": 1072,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/AUTHORITY_LEASE_V0_13_2_SOURCE_INSPECTION.json",
+      "sha256": "a02e0e1e83c83d927096e92d2cf00c9a39a7286ced475d3eed56015b1c2c8a7f"
+    },
+    {
+      "bytes": 3185,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/acquire_exact_mechanism_v0132.py",
+      "sha256": "4e159e42845b80ff6271f54714f0b28fefc79f81f57e879a51fc01d51ca8845f"
+    },
+    {
+      "bytes": 12425,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/forensic_recover_v084_transport.py",
+      "sha256": "f802224637ee26628d2e00b0f22453daf299ae8d236ace45d4000c15d6b93411"
+    },
+    {
+      "bytes": 5041,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/forensic_recover_v084_transport_v2.py",
+      "sha256": "024d4686f71993d4efb61224c885de888fde53c3fc5c64f314b73bdff06fb5f4"
+    },
+    {
+      "bytes": 5272,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/inspect_historical_runtime_v0132.py",
+      "sha256": "2c5aedd8de0969273cb4655508471786cadd279cde1b85f6a2f6879c01d740ec"
+    },
+    {
+      "bytes": 9547,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/inspect_pickle_schema_v0132.py",
+      "sha256": "e9bfe819869b85cf6f9baa871b8e04f02071bb01c11ffd0b19f98a5e91380fac"
+    },
+    {
+      "bytes": 13213,
+      "path": "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/reconstruct_historical_v084_source.py",
+      "sha256": "8546a119ae8b23ddb81c3f22db8818b2b317ee954f3150f359e8ddc173670a40"
+    },
+    {
+      "bytes": 2580,
+      "path": "construct_successors/KCH_HELICAL_V0143_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010/AUTHORITY_LEASE_V0_14_3.json",
+      "sha256": "e0506479f2675ff8c0886866be7be061f7b18762412f157267cf70752be36e09"
+    },
+    {
+      "bytes": 7066,
+      "path": "construct_successors/KCH_HELICAL_V0143_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010/helical_v0143_location_uncertainty_gate.py",
+      "sha256": "3417509c893c4aed893d8d32196418f1d7ddf6a0ddf11d43a17a35f8575efeae"
+    },
+    {
+      "bytes": 1872,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/AUTHORITY_LEASE_V0_15_4.json",
+      "sha256": "64e8610bd55240af03da66527e7eb95140954e26c32b5e4042c7330d0a07a01a"
+    },
+    {
+      "bytes": 3572,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/canonical_repair_single_missing_base64_char.py",
+      "sha256": "dcfcde6271524839161f6eeb95509343bcdba08574c677e806860c36b9023857"
+    },
+    {
+      "bytes": 13009,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/reconstruct_locked_repaired_v06_bundle_v0154.py",
+      "sha256": "5d00563e2b3fd047e94f89933388a8cc76750a598705934166ef422ce06ea7ca"
+    },
+    {
+      "bytes": 236439,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/recovered_runtime/prelock/POWER_ANALYSIS_PRELOCK.json",
+      "sha256": "477bdaea6f42d88352b12479e40a4d125460bbee7f751969c95dfd8c46a07555"
+    },
+    {
+      "bytes": 60856,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/recovered_runtime/prelock/V0_5_DEVELOPMENT_REPLAY.json",
+      "sha256": "11b2d5e32dc7f7c12be9de1dbe33bf42e853b74cdec4523153f9a8f30dd39490"
+    },
+    {
+      "bytes": 74872,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/recovered_runtime/runtime/helical_v06.py",
+      "sha256": "a7d261274c92a2d1f4a161773b55fb3c3ecd561fbb7e093a9a9f14cbbf471bd6"
+    },
+    {
+      "bytes": 5695,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/recovered_runtime/runtime/power_v06.py",
+      "sha256": "c6c354ff1a3c979352390581dcf403060bcd13f658382196fa5a44d413d1e5d9"
+    },
+    {
+      "bytes": 7199,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/recovered_runtime/spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCKED.json",
+      "sha256": "d1dbd521c3b58a27723d25aef5482bc44cd7fde9bbce78d038cffac3f4a30d1d"
+    },
+    {
+      "bytes": 900,
+      "path": "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/recovered_runtime/spec/HELICAL_LOCAL_PIECEWISE_GATE_V0_6_LOCK_RECEIPT.json",
+      "sha256": "0da6598250888506cc04df4d88a40431dace9fcd13d5b35366c8ca684d2c25cd"
+    },
+    {
+      "bytes": 1344,
+      "path": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/AUTHORITY_LEASE_V0_16_3_1.json",
+      "sha256": "210c2d33515393e8fb8e60f816fd91d7752ddbb3eb8cb232b77669d64d922233"
+    },
+    {
+      "bytes": 1334,
+      "path": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/README.md",
+      "sha256": "9fdea3160f4ea5f2876996f20708274747fe0ea9536db9a41ca89cef91fa56f0"
+    },
+    {
+      "bytes": 5677,
+      "path": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/SOURCE_CUSTODY_CONTRACT_V0_16_3.json",
+      "sha256": "fef9c96272c17e92148758d1d65daf2b48fd1b6d5792e664ae33a5304d0a86a8"
+    },
+    {
+      "bytes": 13007,
+      "path": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/build_source_custody_v0163_1.py",
+      "sha256": "4755b20dc5ac7637d6081df2b5fe7e288ef4f0c8aad490334ac537af3828aee4"
+    },
+    {
+      "bytes": 1397,
+      "path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/AUTHORITY_LEASE_V0_16.json",
+      "sha256": "a276238a2433ccf755acaea6f573951392495ee5bb821e6990e81c52dc084a70"
+    },
+    {
+      "bytes": 2489,
+      "path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/OPERATOR_CONTRACT_V0_16.json",
+      "sha256": "580df07140446367a968ce0c139bf1857461fd4c73c1e84e5e25b260ab99a638"
+    },
+    {
+      "bytes": 993,
+      "path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/README.md",
+      "sha256": "aeb0b3abad7d1430f572880780843b7380473d9cdcd9f56213e8a26dc100b30b"
+    },
+    {
+      "bytes": 38672,
+      "path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/null_perturbation_operators_v016.py",
+      "sha256": "6a41cdbfc3131c3e42d7bcd41770dd615712e75824cc016e0fa8a1a70d389acb"
+    },
+    {
+      "bytes": 7254,
+      "path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/run_operator_qualification_v016.py",
+      "sha256": "6449321443df1e82f94455fbc1174b1c89510f66ce56ca6ecfc867b2289f97d3"
+    },
+    {
+      "bytes": 17127,
+      "path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/test_null_perturbation_operators_v016.py",
+      "sha256": "1b38fbb25b6622520cd2c8d6dbaf4790a3c3f64014ed2a3c3bcd3263973c6820"
+    }
+  ]
+}
