@@ -1,0 +1,13 @@
+{
+  "format":"KCH_HELICAL_V1_1_TERMINAL_AXIS_OBSERVABILITY_ADDENDUM",
+  "parent":"SEISMIC_TERMINAL_NUMERICAL_CONVENTION_ADDENDUM.json",
+  "applies_before_directional_artifact_access":true,
+  "minimum_transverse_P_axis_projection_norm":0.10,
+  "below_threshold_action":"ABSTAIN_EVENT",
+  "nodal_plane_P_axis_equivalence_abs_dot_minimum":0.995,
+  "missing_locked_representation_action":"ABSTAIN_EVENT",
+  "minimum_test_children_after_all_directional_abstentions":200,
+  "insufficient_test_support_outcome":"NOT_IDENTIFIABLE_DIRECTIONAL_SUPPORT",
+  "posthoc_rescue":"FORBIDDEN",
+  "authority_ceiling":"NONE"
+}
