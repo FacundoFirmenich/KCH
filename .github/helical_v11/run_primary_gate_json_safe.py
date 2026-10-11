@@ -23,6 +23,33 @@ def normalize(value: Any) -> Any:
     return value
 
 
+def aki_richards_p_axis(strike_deg, dip_deg, rake_deg):
+    strike = np.deg2rad(np.asarray(strike_deg, dtype=float))
+    dip = np.deg2rad(np.asarray(dip_deg, dtype=float))
+    rake = np.deg2rad(np.asarray(rake_deg, dtype=float))
+    normal = np.stack(
+        [
+            -np.sin(dip) * np.sin(strike),
+            np.sin(dip) * np.cos(strike),
+            -np.cos(dip),
+        ],
+        axis=1,
+    )
+    slip = np.stack(
+        [
+            np.cos(rake) * np.cos(strike) + np.sin(rake) * np.cos(dip) * np.sin(strike),
+            np.cos(rake) * np.sin(strike) - np.sin(rake) * np.cos(dip) * np.cos(strike),
+            -np.sin(rake) * np.sin(dip),
+        ],
+        axis=1,
+    )
+    normal /= np.linalg.norm(normal, axis=1)[:, None]
+    slip /= np.linalg.norm(slip, axis=1)[:, None]
+    axis = slip - normal
+    axis /= np.linalg.norm(axis, axis=1)[:, None]
+    return axis
+
+
 def load_module(path: Path):
     spec = importlib.util.spec_from_file_location("kch_terminal_primary_base", path)
     if spec is None or spec.loader is None:
@@ -42,6 +69,7 @@ def main() -> int:
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     module = load_module(args.script)
+    module.p_axis = aki_richards_p_axis
     original_dumps = json.dumps
 
     def safe_dumps(value: Any, *positional: Any, **kwargs: Any) -> str:
@@ -84,16 +112,19 @@ def main() -> int:
     except SystemExit as exc:
         code = int(exc.code or 0)
     receipt = {
-        "format": "KCH_NUMPY_JSON_CANONICALIZATION_REPAIR_V1_1",
+        "format": "KCH_NUMPY_JSON_AND_SDR_CONVENTION_ADAPTER_V1_1",
         "scientific_model_changed": False,
         "thresholds_changed": False,
         "only_numpy_scalars_and_arrays_converted_to_native_json_types": True,
         "stdout_json_serialization_intercepted": True,
+        "sdr_coordinate_system": "AKI_RICHARDS_NORTH_EAST_DOWN",
+        "p_axis": "NORMALIZED_SLIP_MINUS_NORMAL",
+        "previous_inconsistent_sdr_materialization_used_for_scientific_result": False,
         "base_script_sha256": hashlib.sha256(args.script.read_bytes()).hexdigest(),
         "authority_ceiling": "NONE",
     }
-    receipt["receipt_id"] = "s11json:" + hashlib.sha256(canonical(receipt)).hexdigest()
-    write_json(args.out / "JSON_CANONICALIZATION_REPAIR_RECEIPT.json", receipt)
+    receipt["receipt_id"] = "s11jsonsdr:" + hashlib.sha256(canonical(receipt)).hexdigest()
+    write_json(args.out / "JSON_AND_SDR_ADAPTER_RECEIPT.json", receipt)
     return code
 
 
