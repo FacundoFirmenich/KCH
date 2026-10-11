@@ -22,7 +22,7 @@ jobs:
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/probe"; mkdir -p "$out"
-          curl --fail-with-body --location             'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventid=nc73671846&includeallorigins=true&includeallmagnitudes=true'             -o "$out/event.geojson"
+          curl --fail-with-body --location             'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventid=nc73671846'             -o "$out/event.geojson"
           jq '{id:.id,product_types:(.properties.products|keys),focal_mechanism:(.properties.products["focal-mechanism"]//[]|map({preferredWeight,updateTime,properties}))}' "$out/event.geojson" > "$out/schema.json"
           sha256sum "$out"/* > "$out/SHA256SUMS.txt"
           cat "$out/schema.json"
