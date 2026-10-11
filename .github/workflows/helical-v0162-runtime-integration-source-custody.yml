@@ -1,0 +1,128 @@
+name: KCH Helical v0.16.2 runtime integration source custody
+
+on:
+  push:
+    branches:
+      - helical-v0162-runtime-integration-source-custody-20261011
+    paths:
+      - ".github/workflows/helical-v0162-runtime-integration-source-custody.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0162-source-custody-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0162_RUNTIME_INTEGRATION_SOURCE_CUSTODY_20261011
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+
+jobs:
+  source-custody:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout finite successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0162-runtime-integration-source-custody-20261011
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Build deterministic code-only custody bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ROOT/receipts" "$RUNNER_TEMP/v0162/stage"
+          python - "$RUNNER_TEMP/v0162/stage" "$ROOT/receipts" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, stat, sys, zipfile
+
+          stage=Path(sys.argv[1]).resolve()
+          receipts=Path(sys.argv[2]).resolve()
+          repo=Path.cwd().resolve()
+          roots=[
+            Path('.github/helical_v08'),
+            Path('construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009'),
+            Path('construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009'),
+            Path('construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009'),
+            Path('construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011'),
+          ]
+          forbidden_suffixes={'.pickle','.pkl','.npz','.npy','.csv','.parquet','.geojson','.fits','.h5','.hdf5','.sqlite','.db'}
+          files=[]
+          for relroot in roots:
+              source=repo/relroot
+              if not source.exists():
+                  raise SystemExit(f'missing required source root: {relroot}')
+              for path in sorted(item for item in source.rglob('*') if item.is_file()):
+                  rel=path.relative_to(repo)
+                  if path.suffix.lower() in forbidden_suffixes:
+                      raise SystemExit(f'forbidden scientific/raw payload in source custody: {rel}')
+                  data=path.read_bytes()
+                  target=stage/rel
+                  target.parent.mkdir(parents=True,exist_ok=True)
+                  target.write_bytes(data)
+                  files.append({'path':rel.as_posix(),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          if not files:
+              raise SystemExit('empty source custody bundle')
+          archive=receipts/'RUNTIME_INTEGRATION_SOURCE_CUSTODY_V0_16_2.zip'
+          with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as zf:
+              for row in files:
+                  path=stage/row['path']
+                  info=zipfile.ZipInfo(row['path'],date_time=(1980,1,1,0,0,0))
+                  info.compress_type=zipfile.ZIP_DEFLATED
+                  info.external_attr=(stat.S_IFREG|0o644)<<16
+                  zf.writestr(info,path.read_bytes())
+          body={
+            'format':'KCH_HELICAL_V0_16_2_RUNTIME_INTEGRATION_SOURCE_CUSTODY_RECEIPT',
+            'github_run_id':os.environ['GITHUB_RUN_ID'],
+            'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+            'github_sha':os.environ['GITHUB_SHA'],
+            'source_roots':[p.as_posix() for p in roots],
+            'file_count':len(files),
+            'files':files,
+            'archive_bytes':archive.stat().st_size,
+            'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),
+            'scientific_data_included':False,
+            'calibration_executed':False,
+            'sealed_test_accessed':False,
+            'scientific_result':None,
+            'authority_ceiling':'CODE_ONLY_SOURCE_CUSTODY',
+            'promotion':'BLOCKED',
+            'canonicalization':'BLOCKED',
+          }
+          canonical=json.dumps(body,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+          body['receipt_id']='h162custody:'+hashlib.sha256(canonical).hexdigest()
+          (receipts/'RUNTIME_INTEGRATION_SOURCE_CUSTODY_RECEIPT_V0_16_2.json').write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          PY
+
+      - name: Persist code-only custody receipt append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0162-source-custody"
+          git config user.email "kch-helical-v0162-source-custody@users.noreply.github.com"
+          git add "$ROOT/receipts"
+          if git diff --cached --quiet; then
+            echo "No new receipt delta"
+          else
+            git commit -m "record v0.16.2 runtime integration source custody [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload code-only source custody
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0162-source-custody-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}/receipts
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
