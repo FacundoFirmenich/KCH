@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 import networkx as nx
+import numpy as np
 
 AMBIGUITY_RATIO = 1.10
 MAX_DISTANCE_KM = 20.0
@@ -29,6 +30,33 @@ def load_module(path: Path):
     return module
 
 
+def aki_richards_p_axis(strike_deg, dip_deg, rake_deg):
+    strike = np.deg2rad(np.asarray(strike_deg, dtype=float))
+    dip = np.deg2rad(np.asarray(dip_deg, dtype=float))
+    rake = np.deg2rad(np.asarray(rake_deg, dtype=float))
+    normal = np.stack(
+        [
+            -np.sin(dip) * np.sin(strike),
+            np.sin(dip) * np.cos(strike),
+            -np.cos(dip),
+        ],
+        axis=1,
+    )
+    slip = np.stack(
+        [
+            np.cos(rake) * np.cos(strike) + np.sin(rake) * np.cos(dip) * np.sin(strike),
+            np.cos(rake) * np.sin(strike) - np.sin(rake) * np.cos(dip) * np.cos(strike),
+            -np.sin(rake) * np.sin(dip),
+        ],
+        axis=1,
+    )
+    normal /= np.linalg.norm(normal, axis=1)[:, None]
+    slip /= np.linalg.norm(slip, axis=1)[:, None]
+    axis = slip - normal
+    axis /= np.linalg.norm(axis, axis=1)[:, None]
+    return axis
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--script", type=Path, required=True)
@@ -39,6 +67,7 @@ def main() -> int:
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     module = load_module(args.script)
+    module.p_axis = aki_richards_p_axis
 
     class AmbiguityAwareOracle:
         instances: list["AmbiguityAwareOracle"] = []
@@ -142,16 +171,33 @@ def main() -> int:
     receipt["receipt_id"] = "s11path:" + hashlib.sha256(canonical(receipt)).hexdigest()
     receipt_path = args.out / "PATH_AMBIGUITY_IMPLEMENTATION_RECEIPT.json"
     receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    convention_receipt = {
+        "format": "KCH_SDR_TO_PRINCIPAL_AXIS_CONVENTION_RECEIPT_V1_1",
+        "coordinate_system": "NORTH_EAST_DOWN",
+        "fault_normal": "[-sin(dip)sin(strike), sin(dip)cos(strike), -cos(dip)]",
+        "slip_vector": "[cos(rake)cos(strike)+sin(rake)cos(dip)sin(strike), cos(rake)sin(strike)-sin(rake)cos(dip)cos(strike), -sin(rake)sin(dip)]",
+        "p_axis": "NORMALIZED_SLIP_MINUS_NORMAL",
+        "source_convention": "AKI_RICHARDS_NED",
+        "previous_materialization_result_used_for_scientific_adjudication": False,
+        "scientific_threshold_changed": False,
+        "authority_ceiling": "NONE",
+    }
+    convention_receipt["receipt_id"] = "s11sdr:" + hashlib.sha256(canonical(convention_receipt)).hexdigest()
+    (args.out / "SDR_AXIS_CONVENTION_RECEIPT.json").write_text(
+        json.dumps(convention_receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     report_path = args.out / "SEISMIC_TERMINAL_INPUT_MATERIALIZATION_V1_1.json"
     if report_path.exists():
         report = json.loads(report_path.read_text(encoding="utf-8"))
         report["path_ambiguity_receipt_id"] = receipt["receipt_id"]
         report["path_ambiguity_statistics"] = totals
-        report["materialization_id_before_path_receipt"] = report.get("materialization_id")
+        report["sdr_axis_convention_receipt_id"] = convention_receipt["receipt_id"]
+        report["materialization_id_before_wrapper_receipts"] = report.get("materialization_id")
         report.pop("materialization_id", None)
         report["materialization_id"] = "s11mat:" + hashlib.sha256(canonical(report)).hexdigest()
         report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2, sort_keys=True))
+    print(json.dumps(convention_receipt, indent=2, sort_keys=True))
     return return_code
 
 
