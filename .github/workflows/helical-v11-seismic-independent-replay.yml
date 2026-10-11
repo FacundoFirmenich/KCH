@@ -1,0 +1,101 @@
+name: Helical v1.1 terminal seismic independent replay
+
+on:
+  push:
+    branches:
+      - gate/helical-v11-mhd-execution-seismic-terminal-20261011
+    paths:
+      - .github/workflows/helical-v11-seismic-independent-replay.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install independent numerical stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.16.2'
+      - name: Recover canonical terminal artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/canonical" "$RUNNER_TEMP/replay"
+          gh run download 38168145373 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name kch-helical-v11-seismic-terminal-primary \
+            --dir "$RUNNER_TEMP/canonical"
+          jq -e '.gate_result_id == "s11g:8d00bdfa348c406d18c4ee5bcaa1ad9b25a57c0a71dea5f32fe29f28d7d8b437" and .outcome == "NONHELICAL_FULL_NETWORK_RIVAL_GENERALIZES"' \
+            "$RUNNER_TEMP/canonical/SEISMIC_TERMINAL_FULL_NETWORK_PRIMARY_RESULT_V1_1.json" >/dev/null
+      - name: Replay frozen calibration and held-out metrics
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/replay"
+          python .github/helical_v11/run_primary_gate_json_safe.py \
+            --script .github/helical_v11/seismic_terminal_primary_gate.py \
+            --directional "$RUNNER_TEMP/canonical/SEISMIC_TERMINAL_DIRECTIONAL_V1_1.npz" \
+            --preflight "$RUNNER_TEMP/canonical/SEISMIC_TERMINAL_PREFLIGHT_V1_1.npz" \
+            --protocol .github/helical_v11/SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1_LOCKED.json \
+            --out "$out" > "$out/EXECUTION_STDOUT.log"
+      - name: Compare canonical and independent replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])
+          canonical = json.loads((root/'canonical'/'SEISMIC_TERMINAL_FULL_NETWORK_PRIMARY_RESULT_V1_1.json').read_text())
+          replay = json.loads((root/'replay'/'SEISMIC_TERMINAL_FULL_NETWORK_PRIMARY_RESULT_V1_1.json').read_text())
+          assert canonical['outcome'] == replay['outcome']
+          assert canonical['positive_primary_cohorts'] == replay['positive_primary_cohorts']
+          def flatten(value, prefix=''):
+              out = {}
+              if isinstance(value, dict):
+                  for key, item in value.items(): out.update(flatten(item, prefix + '/' + str(key)))
+              elif isinstance(value, list):
+                  for index, item in enumerate(value): out.update(flatten(item, prefix + '/' + str(index)))
+              elif isinstance(value, (int, float)) and not isinstance(value, bool): out[prefix] = float(value)
+              return out
+          left = flatten(canonical['unit_results']); right = flatten(replay['unit_results'])
+          common = sorted(set(left) & set(right))
+          maximum = max((abs(left[key]-right[key]) for key in common), default=0.0)
+          receipt = {
+              'format': 'KCH_SEISMIC_TERMINAL_CROSS_ENVIRONMENT_REPLAY_V1_1',
+              'canonical_outcome': canonical['outcome'],
+              'replay_outcome': replay['outcome'],
+              'outcome_agreement': True,
+              'positive_cohort_count_agreement': True,
+              'maximum_absolute_numeric_difference': maximum,
+              'tolerance': 1e-9,
+              'numeric_tolerance_pass': maximum <= 1e-9,
+              'authority_ceiling': 'NONE',
+          }
+          assert receipt['numeric_tolerance_pass'], receipt
+          (root/'replay'/'SEISMIC_CROSS_ENVIRONMENT_REPLAY_V1_1.json').write_text(json.dumps(receipt, indent=2, sort_keys=True)+'\n')
+          print(json.dumps(receipt, indent=2, sort_keys=True))
+          PY
+          find "$RUNNER_TEMP/replay" -type f -print0 | sort -z | xargs -0 sha256sum > "$RUNNER_TEMP/replay/SHA256SUMS.txt"
+      - name: Upload independent replay
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-seismic-independent-replay
+          path: ${{ runner.temp }}/replay
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
