@@ -67,6 +67,12 @@
     ".sqlite",
     ".db"
   ],
+  "excluded_path_components": [
+    "__pycache__",
+    "results",
+    "receipts",
+    "release"
+  ],
   "minimum_admitted_files_per_root": 1,
   "archive": {
     "deterministic_timestamp": "1980-01-01T00:00:00Z",
