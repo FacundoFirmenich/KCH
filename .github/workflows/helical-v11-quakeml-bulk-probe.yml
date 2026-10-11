@@ -1,0 +1,53 @@
+name: Helical v1.1 ComCat bulk QuakeML focal-mechanism probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v11-mhd-execution-seismic-terminal-20261011
+    paths:
+      - .github/workflows/helical-v11-quakeml-bulk-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Query a blind one-month Bay Area product cohort as QuakeML
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/quakeml_probe"
+          mkdir -p "$out"
+          url='https://earthquake.usgs.gov/fdsnws/event/1/query?format=xml&starttime=2022-01-01&endtime=2022-02-01&minlatitude=36.5&maxlatitude=38.8&minlongitude=-123.5&maxlongitude=-120.5&producttype=focal-mechanism&eventtype=earthquake'
+          curl --fail-with-body --location --retry 5 --retry-all-errors --connect-timeout 20 --max-time 180 \
+            --header 'Accept-Encoding: identity' --output "$out/bay_2022_01.xml" --dump-header "$out/headers.txt" --write-out '%{json}\n' "$url" > "$out/curl.json"
+          python - <<'PY' > "$out/inspection.json"
+          import hashlib,json,os,re
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP'])/'quakeml_probe'/'bay_2022_01.xml'
+          b=p.read_bytes()
+          text=b.decode('utf-8',errors='strict')
+          result={
+            'bytes':len(b),
+            'sha256':hashlib.sha256(b).hexdigest(),
+            'event_elements':len(re.findall(r'<(?:\w+:)?event\b',text)),
+            'focal_mechanism_elements':len(re.findall(r'<(?:\w+:)?focalMechanism\b',text)),
+            'nodal_planes_elements':len(re.findall(r'<(?:\w+:)?nodalPlanes\b',text)),
+            'moment_tensor_elements':len(re.findall(r'<(?:\w+:)?momentTensor\b',text)),
+          }
+          print(json.dumps(result,indent=2,sort_keys=True))
+          PY
+          cat "$out/inspection.json"
+      - name: Upload probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-quakeml-bulk-probe
+          path: ${{ runner.temp }}/quakeml_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
