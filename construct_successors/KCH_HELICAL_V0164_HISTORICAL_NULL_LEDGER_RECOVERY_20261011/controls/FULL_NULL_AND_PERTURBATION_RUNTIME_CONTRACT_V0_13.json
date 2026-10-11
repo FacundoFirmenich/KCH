@@ -1,0 +1,169 @@
+{
+  "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+  "canonicalization": "BLOCKED",
+  "cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ],
+  "contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
+  "format": "KCH_HELICAL_V0_13_FULL_NULL_PERTURBATION_RUNTIME_CONTRACT",
+  "location_perturbation_replicates": 64,
+  "moving_block_bootstrap_replicates": 1999,
+  "moving_block_bootstrap_span_days": 60.0,
+  "multiplicity": "HOLM_BONFERRONI_ACROSS_COHORTS_AND_NULL_FAMILIES",
+  "null_families": [
+    "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS",
+    "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION",
+    "STATIC_ORIENTATION_FIELD_SURROGATES",
+    "PROPAGATION_DIRECTION_REVERSAL",
+    "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY"
+  ],
+  "null_replicates_each": 199,
+  "operational_amendment_id": "h13opamend:76852c846b19d5388829a495c3b7e2fcf3ce0899558f3016877d41c831f62b23",
+  "operator_specs": {
+    "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS": {
+      "action": "PERMUTE_ORIENTATION_MARKS_ONLY",
+      "destroy": [
+        "parent_child_orientation_transport_alignment"
+      ],
+      "preserve": [
+        "event_time",
+        "magnitude",
+        "quality",
+        "location",
+        "fault_assignment",
+        "parent_graph",
+        "ETAS_weights",
+        "mark_multiset_within_stratum"
+      ],
+      "singleton_policy": "UNCHANGED_AND_REPORTED",
+      "strata": [
+        "cohort",
+        "fault_component_id",
+        "30_day_time_block",
+        "0.5_magnitude_unit_bin",
+        "exact_quality_label"
+      ]
+    },
+    "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY": {
+      "action": "SIMULATE_FROM_LOCKED_ETAS_HAWKES_WITH_SIGNED_TWIST_FIXED_TO_ZERO",
+      "orientation_generation": "STATIC_NODE_MAGNITUDE_QUALITY_FIELD_WITH_ZERO_DIRECTED_TWIST",
+      "parameter_update": "FORBIDDEN",
+      "preserve_or_match": [
+        "cohort_duration",
+        "locked_background_rate",
+        "locked_branching_structure",
+        "magnitude_empirical_distribution",
+        "network_support",
+        "measurement_uncertainty_contract"
+      ],
+      "test_conditioning": "FORBIDDEN"
+    },
+    "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION": {
+      "action": "DIRECTED_DOUBLE_EDGE_SWAP_WITHIN_WEIGHT_DECILE_AND_COHORT",
+      "constraints": [
+        "parent_time_before_child_time",
+        "no_self_edge",
+        "candidate_contract_respected",
+        "in_degree_preserved",
+        "out_degree_preserved",
+        "weight_multiset_preserved"
+      ],
+      "failure_policy": "FAIL_CLOSED_IF_MIXING_FLOOR_NOT_REACHED",
+      "maximum_proposals_per_edge": 100,
+      "minimum_successful_swaps_per_edge": 5,
+      "target_successful_swaps_per_edge": 10
+    },
+    "PROPAGATION_DIRECTION_REVERSAL": {
+      "action": "REVERSE_DIRECTED_TRANSPORT_FRAME_AND_EXPECT_CHIRALITY_SIGN_FLIP",
+      "preserve": [
+        "undirected_edge_set",
+        "edge_weight_multiset",
+        "marks",
+        "locations"
+      ],
+      "replicate_generation": "ONE_CONTENT_ADDRESSED_CALIBRATION_EVENT_BOOTSTRAP_PER_FROZEN_REPLICATE",
+      "required_equivariance": "SIGNED_CHIRALITY_FLIPS; AXIAL_LOSS_INVARIANT"
+    },
+    "STATIC_ORIENTATION_FIELD_SURROGATES": {
+      "action": "RESAMPLE_MARK_FROM_STATIC_NODE_MAGNITUDE_QUALITY_EMPIRICAL_FIELD",
+      "destroy": [
+        "directed_dynamic_parent_child_mark_transport"
+      ],
+      "empty_cell_policy": "HIERARCHICAL_BACKOFF_NODE_TO_COMPONENT_TO_COHORT_WITH_BACKOFF_LEVEL_RECORDED",
+      "preserve": [
+        "static_node_orientation_distribution",
+        "event_time",
+        "magnitude",
+        "quality",
+        "location",
+        "parent_graph",
+        "ETAS_weights"
+      ]
+    }
+  },
+  "parent_graph_resamples": 64,
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor": {
+    "artifact_zip_sha256": "8cc8b0f1393b70f10cb6a6a6efba6d70a832d7d505baa602b7208d6993a3f04b",
+    "github_commit": "b6563713e6c220bf13156ed8e11d9d533bec4a94",
+    "github_job_id": 113789381473,
+    "github_run_id": 37921233515,
+    "location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+    "parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+    "process_receipt_id": "h12process:89666f0a747c8a794bf990add7fe370092331592b9f8fa7dbf531bc42acfa3a0",
+    "result_manifest_id": "h12manifest:de8793e51e1a5843c859120655005efc5c821ebadc10e9c732f5e927cf869bbb",
+    "run_receipt_id": "h12run:34cae48f62b3909ffd032e8259cf15d85c4fd738dd67847ee766bb7124627089"
+  },
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "publication": "BLOCKED",
+  "qualification_result_record_contract": {
+    "all_jobs_must_pass_for_qualification": true,
+    "blocking_statuses": [
+      "FAIL_CLOSED",
+      "NOT_RUN"
+    ],
+    "input_hashes": "NONEMPTY_MAP_OF_LOWERCASE_SHA256",
+    "operator_diagnostics": "NONEMPTY_JSON_OBJECT",
+    "output_sha256": "LOWERCASE_SHA256",
+    "pass_status": "PASS",
+    "required_fields": [
+      "job_id",
+      "seed",
+      "protocol_id",
+      "runtime_contract_id",
+      "stage",
+      "cohort",
+      "family",
+      "replicate",
+      "status",
+      "input_hashes",
+      "output_sha256",
+      "operator_diagnostics",
+      "sealed_test_accessed",
+      "scientific_result"
+    ],
+    "scientific_result": null,
+    "sealed_test_accessed": false
+  },
+  "qualification_scope": "CALIBRATION_ONLY_FULL_RUNTIME_QUALIFICATION_NO_TEST_ACCESS",
+  "retrospective_mutation": "FORBIDDEN",
+  "scientific_result": null,
+  "sealed_test_scored": false,
+  "sealed_test_values_accessed": false,
+  "thresholds": {
+    "maximum_helix_minus_baseline_delta_bic": -10.0,
+    "maximum_holm_adjusted_null_p": 0.05,
+    "minimum_fault_assignment_perturbation_pass_fraction": 0.8,
+    "minimum_mechanism_uncertainty_pass_fraction": 0.8,
+    "minimum_moving_block_bootstrap_lower_95": 0.0,
+    "minimum_parent_graph_resample_pass_fraction": 0.8,
+    "minimum_positive_primary_cohorts": 2,
+    "minimum_relative_axial_rmse_improvement": 0.05,
+    "minimum_test_mean_log_score_gain_per_edge": 0.02,
+    "minimum_time_reversal_sign_consistency": 0.8,
+    "minimum_weighted_aggregate_log_score_gain": 0.02
+  },
+  "uncertainty_replicates": 64
+}
