@@ -1,0 +1,105 @@
+name: Helical v1.1 MHD independent numerical replay
+
+on:
+  push:
+    branches:
+      - gate/helical-v11-mhd-execution-seismic-terminal-20261011
+    paths:
+      - .github/workflows/helical-v11-mhd-independent-replay.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install independent numerical stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0'
+      - name: Recover exact census and canonical result
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/census" "$RUNNER_TEMP/canonical" "$RUNNER_TEMP/replay"
+          gh run download 38145647725 --repo "$GITHUB_REPOSITORY" --name kch-helical-v10-mhd-census-complete --dir "$RUNNER_TEMP/census"
+          gh run download 38164651261 --repo "$GITHUB_REPOSITORY" --name kch-helical-v11-mhd-predictive-gate --dir "$RUNNER_TEMP/canonical"
+      - name: Replay model selection and test
+        shell: bash
+        run: |
+          set -euo pipefail
+          census=$(find "$RUNNER_TEMP/census" -name MHD_SOLAR_CENSUS_WINDOWS.csv.gz -type f -print -quit)
+          test -n "$census"
+          out="$RUNNER_TEMP/replay"
+          python .github/helical_v11/mhd_predictive_gate.py select-lock \
+            --census "$census" \
+            --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
+            --output "$out/MHD_MODEL_SELECTION_LOCK_REPLAY.json" > "$out/SELECTION_STDOUT.log"
+          python .github/helical_v11/mhd_predictive_gate.py evaluate \
+            --census "$census" \
+            --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
+            --lock "$out/MHD_MODEL_SELECTION_LOCK_REPLAY.json" \
+            --out "$out" > "$out/EVALUATION_STDOUT.log"
+      - name: Compare canonical and replay results
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])
+          def one(base, name):
+              matches = list(base.rglob(name))
+              assert len(matches) == 1, matches
+              return json.loads(matches[0].read_text())
+          canonical = one(root / 'canonical', 'MHD_HELICITY_FORECAST_GATE_RESULT_V1_1.json')
+          replay = one(root / 'replay', 'MHD_HELICITY_FORECAST_GATE_RESULT_V1_1.json')
+          assert canonical['outcome'] == replay['outcome']
+          assert canonical['horizon_status'] == replay['horizon_status']
+          def numbers(obj, prefix=''):
+              out = {}
+              if isinstance(obj, dict):
+                  for key, value in obj.items(): out.update(numbers(value, prefix + '/' + str(key)))
+              elif isinstance(obj, list):
+                  for index, value in enumerate(obj): out.update(numbers(value, prefix + '/' + str(index)))
+              elif isinstance(obj, (int, float)) and not isinstance(obj, bool): out[prefix] = float(obj)
+              return out
+          left, right = numbers(canonical['metrics']), numbers(replay['metrics'])
+          common = sorted(set(left) & set(right))
+          maximum = max((abs(left[key] - right[key]) for key in common), default=0.0)
+          receipt = {
+              'format': 'KCH_MHD_V1_1_CROSS_ENVIRONMENT_REPLAY',
+              'canonical_outcome': canonical['outcome'],
+              'replay_outcome': replay['outcome'],
+              'outcome_agreement': True,
+              'horizon_status_agreement': True,
+              'maximum_absolute_numeric_difference': maximum,
+              'tolerance': 1e-9,
+              'numeric_tolerance_pass': maximum <= 1e-9,
+          }
+          assert receipt['numeric_tolerance_pass'], receipt
+          (root / 'replay' / 'MHD_CROSS_ENVIRONMENT_REPLAY.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          print(json.dumps(receipt, indent=2, sort_keys=True))
+          PY
+          find "$RUNNER_TEMP/replay" -type f -print0 | sort -z | xargs -0 sha256sum > "$RUNNER_TEMP/replay/SHA256SUMS.txt"
+      - name: Upload independent replay
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-mhd-independent-replay
+          path: ${{ runner.temp }}/replay
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
