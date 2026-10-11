@@ -1,0 +1,48 @@
+name: Helical v1.0 post-2021 blind seismic census
+
+on:
+  push:
+    branches:
+      - gate/helical-v10-mhd-census-seismic-post2021-review-20261011
+    paths:
+      - .github/helical_v10/seismic_post2021_census.py
+      - .github/workflows/helical-v10-seismic-census.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned census dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'pandas==2.2.3' 'requests==2.32.3'
+      - name: Execute blind post-2021 census without opening focal angles
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/helical_v10_seismic"
+          mkdir -p "$out"
+          PYTHONUNBUFFERED=1 python .github/helical_v10/seismic_post2021_census.py --out "$out" \
+            | tee "$out/EXECUTION_STDOUT.log"
+          find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
+      - name: Upload sealed seismic census artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v10-seismic-census
+          path: ${{ runner.temp }}/helical_v10_seismic
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
