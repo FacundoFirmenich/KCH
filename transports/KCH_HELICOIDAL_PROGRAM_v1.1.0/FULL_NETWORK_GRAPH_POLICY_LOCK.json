@@ -1,0 +1,26 @@
+{
+  "directional_fields_accessed": false,
+  "endpoint_node_count": 1250,
+  "etas_like_weight": {
+    "alpha": 1.0,
+    "c_days": 0.01,
+    "ell_km": 10.0,
+    "p": 1.1
+  },
+  "event_cloud_clustering_for_topology": "FORBIDDEN",
+  "event_to_endpoint_distance": "polyline_arc_length_from_snapped_event_position",
+  "exact_tie_break": "networkx_stable_node_insertion_order_then_lexical_receipt",
+  "fault_line_count": 625,
+  "fault_source_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+  "format": "KCH_HELICAL_V1_1_FULL_NETWORK_GRAPH_POLICY",
+  "graph_edge_count": 837,
+  "interior_crossing_without_endpoint_proximity": "NOT_CONNECTED",
+  "junction_count": 212,
+  "junction_definition": "endpoint_to_endpoint_euclidean_distance_le_2km",
+  "maximum_candidate_parents": 20,
+  "maximum_network_path_km": 20.0,
+  "maximum_parent_age_days": 30.0,
+  "path_distance": "segment_arc_lengths_plus_endpoint_transfer_distances",
+  "path_solver": "Dijkstra_shortest_path",
+  "policy_id": "fgp:ce4d3b9d34d9dce512723c3020d59a437e856c484fb8d7b404e41d7e0d7e22de"
+}
