@@ -1,0 +1,298 @@
+name: KCH Helical v0.17.1 ComCat CSV location correction
+
+on:
+  push:
+    branches:
+      - helical-v0171-comcat-csv-location-correction-20261011
+    paths:
+      - "construct_successors/KCH_HELICAL_V0171_COMCAT_CSV_LOCATION_CORRECTION_20261011/**"
+      - ".github/workflows/helical-v0171-comcat-csv-location-correction.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0171-comcat-csv-location-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  comcat-csv-location-correction:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      V10: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009
+      V11: construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009
+      V17: construct_successors/KCH_HELICAL_V017_COMCAT_LOCATION_UNCERTAINTY_GATE_20261011
+      ROOT: construct_successors/KCH_HELICAL_V0171_COMCAT_CSV_LOCATION_CORRECTION_20261011
+      EXPECTED_ADAPTER_SHA256: d38876c5f82a6aebcbc645eb8634a9a4087999828815601a22926375344d84c4
+      EXPECTED_ADAPTER_BLOB: 4b02d95db273f760274762522d18990beb3816e4
+
+    steps:
+      - name: Checkout finite CSV-correction successor
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0171-comcat-csv-location-correction-20261011
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned host geometry stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.1.3 pyproj==3.7.0 shapely==2.0.6
+          mkdir -p "$RUNNER_TEMP/helical-v0171/control"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v0171/control/PIP_FREEZE.txt"
+          python - <<'PY'
+          import hashlib, json, os, pathlib, platform, subprocess, sys
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])/"helical-v0171"/"control"
+          freeze=(root/"PIP_FREEZE.txt").read_bytes()
+          body={
+            "python":sys.version,
+            "platform":platform.platform(),
+            "pip_freeze_sha256":hashlib.sha256(freeze).hexdigest(),
+            "docker_version":subprocess.check_output(["docker","--version"],text=True).strip(),
+            "github_run_id":os.environ["GITHUB_RUN_ID"],
+            "github_run_attempt":os.environ["GITHUB_RUN_ATTEMPT"],
+            "github_sha":os.environ["GITHUB_SHA"],
+            "github_ref":os.environ["GITHUB_REF"],
+          }
+          (root/"RUNTIME_ENVIRONMENT.json").write_text(json.dumps(body,sort_keys=True,indent=2)+"\n")
+          PY
+
+      - name: Verify authority, predecessor, adapter and runtime source
+        shell: bash
+        run: |
+          set -euo pipefail
+          ADAPTER="$ROOT/comcat_csv_location_crosswalk_v0171.py"
+          WRAPPER="$ROOT/helical_v0171_comcat_csv_location_gate.py"
+          test "$(git hash-object "$ADAPTER")" = "$EXPECTED_ADAPTER_BLOB"
+          test "$(sha256sum "$ADAPTER" | awk '{print $1}')" = "$EXPECTED_ADAPTER_SHA256"
+          python -m py_compile \
+            "$ADAPTER" \
+            "$WRAPPER" \
+            "$V17/helical_v017_comcat_location_gate.py" \
+            "$V11/extract_blind_v011.py" \
+            "$V11/extract_selected_directional_v011.py" \
+            "$V11/helical_v011_directional_pretest.py" \
+            "$V11/helical_v011_directional_pretest_core.py" \
+            "$V10/helical_remote_gate.py" \
+            "$V10/helical_public_acquisition.py" \
+            "$V10/helical_geometry_adapter.py"
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_17_1.json" >/dev/null
+          python -m json.tool "$V10/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" >/dev/null
+          python -m json.tool "$V10/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json" >/dev/null
+          python -m json.tool "$V10/results/run-37919577887-1/DIRECTIONAL_UNSEAL_REQUEST_V0_10.json" >/dev/null
+          python -m json.tool "$V17/results/run-38166703404-1/COMCAT_LOCATION_UNCERTAINTY_GATE_RESULT_V0_17.json" >/dev/null
+          python -m json.tool "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/results/run-37921233515-1/LOCATION_PERTURBATION_OPERATOR_LOCK_V0_12.json" >/dev/null
+          sha256sum \
+            "$ROOT/AUTHORITY_LEASE_V0_17_1.json" \
+            "$ADAPTER" \
+            "$WRAPPER" \
+            "$V17/helical_v017_comcat_location_gate.py" \
+            "$V17/results/run-38166703404-1/COMCAT_LOCATION_UNCERTAINTY_GATE_RESULT_V0_17.json" \
+            "$V11/extract_blind_v011.py" \
+            "$V11/extract_selected_directional_v011.py" \
+            "$V11/helical_v011_directional_pretest.py" \
+            "$V11/helical_v011_directional_pretest_core.py" \
+            "$V10/helical_remote_gate.py" \
+            "$V10/helical_public_acquisition.py" \
+            "$V10/helical_geometry_adapter.py" \
+            "$V10/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            "$V10/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json" \
+            "$V10/results/run-37919577887-1/DIRECTIONAL_UNSEAL_REQUEST_V0_10.json" \
+            "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/results/run-37921233515-1/LOCATION_PERTURBATION_OPERATOR_LOCK_V0_12.json" \
+            > "$RUNNER_TEMP/helical-v0171/control/INPUT_SHA256SUMS.txt"
+
+      - name: Freeze both networkless extraction images before source access
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/helical-v0171"
+          images="$root/images"
+          mkdir -p "$images/blind" "$images/directional"
+          docker pull python:3.11-slim-bookworm
+          base_digest=$(docker image inspect python:3.11-slim-bookworm --format '{{index .RepoDigests 0}}')
+          python -m pip download --only-binary=:all: --no-deps --dest "$images" numpy==2.1.3
+          wheel=$(find "$images" -maxdepth 1 -name 'numpy-*.whl' -type f -print -quit)
+          test -n "$wheel"
+          cp "$wheel" "$images/blind/"
+          cp "$wheel" "$images/directional/"
+          cp "$V11/extract_blind_v011.py" "$images/blind/extractor.py"
+          cp "$V11/extract_selected_directional_v011.py" "$images/directional/extractor.py"
+          wheel_name=$(basename "$wheel")
+          for kind in blind directional; do
+            cat > "$images/$kind/Dockerfile" <<EOF
+          FROM $base_digest
+          ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONHASHSEED=0
+          COPY $wheel_name /wheels/$wheel_name
+          RUN pip install --no-cache-dir --no-index /wheels/$wheel_name && rm -rf /wheels
+          COPY extractor.py /app/extractor.py
+          ENTRYPOINT ["python", "/app/extractor.py"]
+          EOF
+            docker build --pull=false --network=none \
+              -t "kch-helical-v0171-$kind:locked" "$images/$kind"
+          done
+          python - "$root/control/EXTRACTION_IMAGES_LOCK_RECEIPT_V0_17_1.json" "$base_digest" "$wheel" "$images" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import hashlib, json, subprocess, sys
+          output,base,wheel,images=Path(sys.argv[1]),sys.argv[2],Path(sys.argv[3]),Path(sys.argv[4])
+          def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          body={
+            "format":"KCH_HELICAL_V0_17_1_EXTRACTION_IMAGES_LOCK_RECEIPT",
+            "locked_before_source_access":True,
+            "base_image_digest":base,
+            "numpy_wheel_sha256":sha(wheel),
+            "blind_extractor_sha256":sha(images/"blind"/"extractor.py"),
+            "directional_extractor_sha256":sha(images/"directional"/"extractor.py"),
+            "blind_image_id":subprocess.check_output(
+              ["docker","image","inspect","--format","{{.Id}}","kch-helical-v0171-blind:locked"],text=True
+            ).strip(),
+            "directional_image_id":subprocess.check_output(
+              ["docker","image","inspect","--format","{{.Id}}","kch-helical-v0171-directional:locked"],text=True
+            ).strip(),
+            "network_mode_at_extraction":"NONE",
+            "root_filesystem_at_extraction":"READ_ONLY",
+            "capabilities_at_extraction":"ALL_DROPPED",
+            "no_new_privileges_at_extraction":True,
+            "locked_at_utc":datetime.now(timezone.utc).isoformat().replace("+00:00","Z"),
+            "authority_ceiling":"FINITE_LOCATION_UNCERTAINTY_CSV_CORRECTION_ONLY",
+          }
+          body["receipt_id"]="h171imagelock:"+hashlib.sha256(
+            json.dumps(body,sort_keys=True,separators=(",",":")).encode()
+          ).hexdigest()
+          output.write_text(json.dumps(body,sort_keys=True,indent=2)+"\n")
+          PY
+          rm -rf "$images"
+
+      - name: Execute documented CSV location-uncertainty correction
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/helical-v0171/work"
+          export KCH_V0171_COMCAT_CSV_ADAPTER="$GITHUB_WORKSPACE/$ROOT/comcat_csv_location_crosswalk_v0171.py"
+          PYTHONPATH="$GITHUB_WORKSPACE/$V10:$GITHUB_WORKSPACE/$V11:$GITHUB_WORKSPACE/$V17:$GITHUB_WORKSPACE/$ROOT" \
+          python "$ROOT/helical_v0171_comcat_csv_location_gate.py" \
+            --protocol "$V10/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json" \
+            --authority "$ROOT/AUTHORITY_LEASE_V0_17_1.json" \
+            --eligibility-result "$V10/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json" \
+            --unseal-request "$V10/results/run-37919577887-1/DIRECTIONAL_UNSEAL_REQUEST_V0_10.json" \
+            --workspace "$RUNNER_TEMP/helical-v0171/work" \
+            --blind-image kch-helical-v0171-blind:locked \
+            --directional-image kch-helical-v0171-directional:locked \
+            --timeout 1200 \
+            > "$RUNNER_TEMP/helical-v0171/control/GATE_STDOUT.txt" \
+            2> "$RUNNER_TEMP/helical-v0171/control/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-v0171/control/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/helical-v0171/control/GATE_STDOUT.txt"
+          if [[ -s "$RUNNER_TEMP/helical-v0171/control/GATE_STDERR.txt" ]]; then
+            cat "$RUNNER_TEMP/helical-v0171/control/GATE_STDERR.txt" >&2
+          fi
+          exit 0
+
+      - name: Prove all raw and row-level artifacts were purged
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/helical-v0171/work"
+          test ! -e "$work/raw"
+          test ! -e "$work/blind"
+          test ! -e "$work/selection"
+          test ! -e "$work/directional"
+          test ! -e "$work/comcat_csv_location_crosswalk_ephemeral"
+          if find "$work/results" -type f \( \
+            -name '*.pickle' -o -name '*.npz' -o -name '*.part' -o \
+            -name '*.geojson' -o -name '*.csv' -o -name '*.parquet' \
+          \) | grep -q .; then
+            echo "forbidden row-level or raw artifact reached safe results" >&2
+            exit 91
+          fi
+
+      - name: Persist safe aggregate receipts append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          destination="$ROOT/results/run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$destination"
+          if [[ -d "$RUNNER_TEMP/helical-v0171/work/results" ]]; then
+            cp -a "$RUNNER_TEMP/helical-v0171/work/results/." "$destination/"
+          fi
+          cp -a "$RUNNER_TEMP/helical-v0171/control/." "$destination/"
+          find "$destination" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$destination/RESULT_SHA256SUMS.txt"
+          python - "$destination" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+          destination=Path(sys.argv[1]); rows=[]
+          for path in sorted(item for item in destination.rglob("*") if item.is_file() and item.name!="RESULT_MANIFEST.json"):
+              body=path.read_bytes()
+              rows.append({"path":path.relative_to(destination).as_posix(),
+                           "bytes":len(body),"sha256":hashlib.sha256(body).hexdigest()})
+          manifest={
+            "format":"KCH_HELICAL_V0_17_1_SAFE_RESULT_MANIFEST",
+            "github_run_id":os.environ["GITHUB_RUN_ID"],
+            "github_run_attempt":os.environ["GITHUB_RUN_ATTEMPT"],
+            "github_sha":os.environ["GITHUB_SHA"],
+            "raw_sources_included":False,
+            "blind_rows_included":False,
+            "selected_indices_included":False,
+            "directional_rows_included":False,
+            "comcat_rows_included":False,
+            "crosswalk_rows_included":False,
+            "event_identifiers_included":False,
+            "sealed_test_values_included":False,
+            "files":rows,
+          }
+          manifest["manifest_id"]="h171manifest:"+hashlib.sha256(
+            json.dumps(manifest,sort_keys=True,separators=(",",":")).encode()
+          ).hexdigest()
+          (destination/"RESULT_MANIFEST.json").write_text(
+            json.dumps(manifest,sort_keys=True,indent=2)+"\n"
+          )
+          PY
+          git config user.name "kch-helical-v0171-comcat-csv"
+          git config user.email "kch-helical-v0171-comcat-csv@users.noreply.github.com"
+          git add "$destination"
+          if git diff --cached --quiet; then
+            echo "No new safe receipts to persist"
+          else
+            git commit -m "record v0.17.1 CSV location-correction receipts [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload safe aggregate receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0171-comcat-csv-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}/results/run-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate after immutable receipt persistence
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0)  echo "LOCATION_UNCERTAINTY_CSV_CROSSWALK_PASS: full 6376-job calibration-only runtime may be separately authorized; sealed test remains untouched" ;;
+            30) echo "LEGITIMATE_NOT_IDENTIFIABLE_LOCATION_UNCERTAINTY_CSV_COVERAGE: stop without location draws, null execution, model fitting or test access" ;;
+            *)  echo "COMCAT_CSV_LOCATION_CORRECTION_FAILED_CLOSED with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
