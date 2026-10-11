@@ -1,0 +1,18 @@
+{
+  "calibration_runtime_executed": false,
+  "canonical_manifest_byte_identical_to_historical_typo": true,
+  "errors": [],
+  "format": "KCH_HELICAL_V0_16_1_INDEPENDENT_ARTIFACT_VERIFICATION",
+  "gate_exit_code": "0",
+  "gate_stderr_bytes": 0,
+  "manifest_entries_verified": 17,
+  "packaging_correction_receipt_id": "h161packfix:b33a75f42c0bad638fe6d3495058011a1fc9b36e41f8efaf39419f6494f01448",
+  "qualification_manifest_id": "h16manifest:96d8263fb9d97a4af58eaa8c249d51b3ae4837af824fcf01afdb9c9e4c581137",
+  "qualification_receipt_id": "h16opqual:d923a259f37435c71192467d4e9c9ba26f8135c7dc5ac94e258aea0812f03958",
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "source_artifact_sha256": "533a831a7ff4291669b4e1eaab6f0f205a5371429426936728f966136ddb1751",
+  "status": "PASS",
+  "verification_id": "h161verify:46ec6bf7e8dbee118162654b95c83b86e3d8ae746f2844de2341e684b230fe81"
+}

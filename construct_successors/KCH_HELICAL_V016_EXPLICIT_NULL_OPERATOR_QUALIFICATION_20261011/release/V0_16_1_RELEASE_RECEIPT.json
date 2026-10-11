@@ -1,0 +1,15 @@
+{
+  "authority_ceiling": "CODE_ONLY_QUALIFICATION_EVIDENCE",
+  "canonicalization": "BLOCKED",
+  "file_count": 21,
+  "format": "KCH_HELICAL_V0_16_1_RELEASE_RECEIPT",
+  "independent_verification_id": "h161verify:46ec6bf7e8dbee118162654b95c83b86e3d8ae746f2844de2341e684b230fe81",
+  "manifest_id": "h161manifest:ccdb1cc9ea7e2ec6e201829d223c98528e87ce2ae7f4cd939c1365250f887310",
+  "next_gate": "CALIBRATION_ONLY_FULL_RUNTIME_QUALIFICATION_6376_JOBS_NO_TEST_ACCESS",
+  "packaging_correction_receipt_id": "h161packfix:b33a75f42c0bad638fe6d3495058011a1fc9b36e41f8efaf39419f6494f01448",
+  "payload_bytes": 130222,
+  "promotion": "BLOCKED",
+  "qualification_receipt_id": "h16opqual:d923a259f37435c71192467d4e9c9ba26f8135c7dc5ac94e258aea0812f03958",
+  "receipt_id": "h161release:b0471c2e425c334749aa21fac05248f3f273dfbde0216bac63c095ff85d2e690",
+  "status": "VERIFIED_CODE_ONLY_OPERATOR_QUALIFICATION_RELEASE"
+}
