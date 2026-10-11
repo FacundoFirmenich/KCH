@@ -1,0 +1,10 @@
+{
+  "format":"KCH_HELICAL_V1_1_TERMINAL_TANGENT_DISCRETIZATION_ADDENDUM",
+  "parent":"SEISMIC_TERMINAL_NUMERICAL_CONVENTION_ADDENDUM.json",
+  "applies_before_directional_artifact_access":true,
+  "fault_tangent_finite_difference_halfwidth_m":50.0,
+  "endpoint_behavior":"one-sided finite difference clipped to [0,line_length]",
+  "zero_length_or_degenerate_tangent":"ABSTAIN_EVENT",
+  "posthoc_rescue":"FORBIDDEN",
+  "authority_ceiling":"NONE"
+}
