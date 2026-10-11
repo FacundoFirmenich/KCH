@@ -24,6 +24,17 @@
     "gate_result_id": "mhd11g:ed7b292a93627e9c80d1b0a0375b6ca92f5fec092a856a756d3e0aec40e4cbf5",
     "all_power_gates_pass": true
   },
+  "independent_replay": {
+    "workflow_run_id": 38165892452,
+    "artifact_id": 11712475635,
+    "artifact_sha256": "6f38da81221e54e9c06790afdcf38600fe535f00c6fa874893e233a02ceb139b",
+    "environment": "PYTHON_3_12_NUMPY_2_3_5_SCIKIT_LEARN_1_8_0",
+    "outcome_agreement": true,
+    "horizon_status_agreement": true,
+    "maximum_absolute_numeric_difference": 4.300490519248967e-12,
+    "tolerance": 1e-9,
+    "pass": true
+  },
   "model_families": {
     "B": "NONHELICAL_MAGNETIC_BASELINE",
     "U": "B_PLUS_UNSIGNED_HELICITY_MAGNITUDE",
