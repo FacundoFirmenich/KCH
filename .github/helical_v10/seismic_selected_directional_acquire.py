@@ -23,7 +23,7 @@ def write_json(p:Path,o)->None:
 
 def fetch_one(event_id:str, raw_dir:Path):
     headers={"User-Agent":"KCH-Helical-v1.1-terminal-seismic/2026-10-11"}
-    params={"format":"geojson","eventid":event_id,"includeallorigins":"true","includeallmagnitudes":"true"}
+    params={"format":"geojson","eventid":event_id}
     last=None
     for attempt in range(1,6):
         try:
