@@ -1,0 +1,72 @@
+{
+  "format": "KCH_MHD_SIGNED_HELICITY_RESULT_INDEX_V1_1",
+  "version": "1.1.0",
+  "protocol": {
+    "status": "LOCKED_BEFORE_PREDICTIVE_TEST_EVALUATION",
+    "protocol_sha256": "d5463ea96816b539132cf4702fc62c38af50d8b46ed08b073a2802efaf516e33",
+    "selection_lock_id": "mhd11lock:13eb91344eaca2d647855a1907624f8efb182904162f60be4b7dc4d01fe5fa1e",
+    "selection_used": ["TRAIN", "CALIBRATION"],
+    "test_periods": ["TEST_A", "TEST_B"],
+    "test_opened_once": true
+  },
+  "source": {
+    "census_run_id": 38145647725,
+    "census_artifact_id": 11704382819,
+    "census_artifact_sha256": "b33d019c993b7e9abda74e2d876aa2e344e480b874306eedc538c74df308a28e",
+    "census_file_sha256": "cc4f4e125b325023579748232e870296dd31980f95520ca70b25e8629ed02948",
+    "strict_windows": 25508,
+    "active_regions": 1806
+  },
+  "execution": {
+    "workflow_run_id": 38164651261,
+    "artifact_id": 11711726297,
+    "artifact_sha256": "cc3ced3110e098fb424502224dcdf90789d622632ec2f549e9f8c5faa7f5db51",
+    "gate_result_id": "mhd11g:ed7b292a93627e9c80d1b0a0375b6ca92f5fec092a856a756d3e0aec40e4cbf5",
+    "all_power_gates_pass": true
+  },
+  "model_families": {
+    "B": "NONHELICAL_MAGNETIC_BASELINE",
+    "U": "B_PLUS_UNSIGNED_HELICITY_MAGNITUDE",
+    "H": "U_PLUS_SIGNED_HELICITY_AND_HEMISPHERE_INTERACTIONS"
+  },
+  "result": {
+    "outcome": "UNSIGNED_MAGNITUDE_OR_NONHELICAL_RIVAL_SUFFICIENT",
+    "positive_replicated_horizons": 0,
+    "required_positive_replicated_horizons": 2,
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "universal_absence_of_helicity": "NOT_ESTABLISHED",
+    "horizons": {
+      "M1_PLUS_12H": {
+        "TEST_A_logscore_gain_H_minus_U": -0.000037784101197584075,
+        "TEST_B_logscore_gain_H_minus_U": -0.00012418268649196096,
+        "replicated_positive": false
+      },
+      "M1_PLUS_24H": {
+        "TEST_A_logscore_gain_H_minus_U": -0.00420548680719951,
+        "TEST_B_logscore_gain_H_minus_U": -0.004579063379196224,
+        "replicated_positive": false
+      },
+      "M1_PLUS_48H": {
+        "TEST_A_logscore_gain_H_minus_U": -0.000044974831243493885,
+        "TEST_B_logscore_gain_H_minus_U": 0.0005068332366320455,
+        "replicated_positive": false
+      }
+    },
+    "material_minimum_logscore_gain": 0.01,
+    "material_minimum_relative_rmse_improvement": 0.05,
+    "holm_adjusted_significance_passes": 0,
+    "bootstrap_lower_bound_passes": 0
+  },
+  "interpretation": {
+    "signed_proxy_adds_replicated_predictive_value_beyond_unsigned_magnitude": false,
+    "negative_result_caused_by_pretest_power_failure": false,
+    "direct_magnetic_helicity_nonexistence_proven": false,
+    "claim_scope": "SHARP_SCALAR_SIGNED_PROXIES_FOR_M1_PLUS_FORECASTING_AT_12_24_48_HOURS_UNDER_THE_LOCKED_MODEL_CLASS"
+  },
+  "governance": {
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}
