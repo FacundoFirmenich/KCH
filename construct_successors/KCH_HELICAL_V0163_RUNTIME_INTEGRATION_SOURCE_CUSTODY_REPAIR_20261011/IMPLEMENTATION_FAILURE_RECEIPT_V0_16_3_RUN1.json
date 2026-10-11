@@ -1,0 +1,19 @@
+{
+  "format": "KCH_HELICAL_V0_16_3_IMPLEMENTATION_FAILURE_RECEIPT",
+  "github_run_id": 38164023152,
+  "github_job_id": 114542710164,
+  "head_sha": "010c6cf4aaab46055f2958788f0f77ca44db3fc9",
+  "failed_step": "Build and independently verify deterministic source custody",
+  "terminal_error": "SyntaxError: no binding for nonlocal 'python_files_parsed' found",
+  "failure_class": "GATE_IMPLEMENTATION_ERROR",
+  "source_custody_archive_produced": false,
+  "receipt_produced": false,
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "predecessor_mutated": false,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "successor": "v0.16.3.1_STANDALONE_BUILDER_REPAIR"
+}
