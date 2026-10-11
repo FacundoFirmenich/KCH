@@ -1,0 +1,32 @@
+{
+  "blind_rows_included": false,
+  "comcat_rows_included": false,
+  "crosswalk_rows_included": false,
+  "directional_rows_included": false,
+  "event_identifiers_included": false,
+  "files": [
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 575,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "582f055b971cbaf3ef85e6076e9f11e461a056ae2265cf7430037cdc45cd9ba6"
+    },
+    {
+      "bytes": 490,
+      "path": "RUNTIME_ENVIRONMENT.json",
+      "sha256": "ac97cf33962dcdd09e8b3f549a1a0956fd9920d2a0930f2513368804cf64aaa0"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_17_1_SAFE_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38167675707",
+  "github_sha": "dbd29a40f66c8a13d0e8f60324787606afe1aedf",
+  "manifest_id": "h171manifest:39ff33807231b9989cb9da7acce05656727be0ecc8355db3679abc32d3b28191",
+  "raw_sources_included": false,
+  "sealed_test_values_included": false,
+  "selected_indices_included": false
+}
