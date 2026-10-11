@@ -1,0 +1,114 @@
+name: KCH Helical v0.16.4.2 AST-only compiler recovery
+
+on:
+  push:
+    branches:
+      - helical-v0164-2-ast-only-compiler-recovery-20261011
+    paths:
+      - ".github/workflows/helical-v0164-2-ast-only-compiler-recovery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0164-2-compiler-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0164_HISTORICAL_NULL_LEDGER_RECOVERY_20261011
+  RECOVER: construct_successors/KCH_HELICAL_V0164_HISTORICAL_NULL_LEDGER_RECOVERY_20261011/recover_independent_compiler_v0164_2.py
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+
+jobs:
+  ast-only-compiler-recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout complete Git lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0164-2-ast-only-compiler-recovery-20261011
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify successor authority and recovery code
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_16_4_2.json" >/dev/null
+          python -m json.tool "$ROOT/FAILURE_RECEIPT_V0_16_4_1_RUN1.json" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v0164_2/pycache"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v0164_2/pycache" python -m py_compile "$RECOVER"
+
+      - name: Recover exact compiler by blob decode AST and compile
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/recovered_exact" "$ROOT/receipts"
+          mkdir -p "$ROOT/recovered_exact" "$ROOT/receipts"
+          python "$RECOVER" --repo-root "$GITHUB_WORKSPACE" --root "$ROOT"
+
+      - name: Prove AST-only code custody boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find "$ROOT/recovered_exact" "$ROOT/receipts" -type f \( \
+              -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o \
+              -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o \
+              -name '*.sqlite' -o -name '*.db' -o -name '*.pyc' \
+            \) | grep -q .; then
+            echo "scientific, row-level, database, or bytecode payload crossed v0.16.4.2 boundary" >&2
+            exit 91
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json, sys
+          root=Path(sys.argv[1])
+          body=json.loads((root/'receipts/AST_ONLY_COMPILER_RECOVERY_RECEIPT_V0_16_4_2.json').read_text())
+          validation=json.loads((root/'receipts/AST_ONLY_COMPILER_RECOVERY_VALIDATION_V0_16_4_2.json').read_text())
+          assert body['status']=='PASS'
+          assert validation['status']=='PASS'
+          assert body['exact_independent_compiler_materialized'] is True
+          assert body['python_ast_parse']=='PASS'
+          assert body['python_bytecode_compile_without_import']=='PASS'
+          assert body['execution_diagnostic_governs_recovery'] is False
+          assert body['ledger_rows_regenerated'] is False
+          assert body['scientific_data_accessed'] is False
+          assert body['calibration_executed'] is False
+          assert body['sealed_test_accessed'] is False
+          assert body['scientific_result'] is None
+          assert body['promotion']=='BLOCKED'
+          assert body['canonicalization']=='BLOCKED'
+          PY
+
+      - name: Persist exact compiler and receipts append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0164-2-ast-recovery"
+          git config user.email "kch-helical-v0164-2-ast-recovery@users.noreply.github.com"
+          git add "$ROOT/recovered_exact" "$ROOT/receipts"
+          if git diff --cached --quiet; then
+            echo "No AST-only compiler recovery delta"
+          else
+            git commit -m "record v0.16.4.2 AST-only exact compiler recovery [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload code-only exact compiler artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0164-2-ast-compiler-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.ROOT }}/recovered_exact
+            ${{ env.ROOT }}/receipts
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
