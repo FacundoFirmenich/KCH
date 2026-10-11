@@ -42,19 +42,36 @@ def main() -> int:
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     module = load_module(args.script)
+    original_dumps = json.dumps
+
+    def safe_dumps(value: Any, *positional: Any, **kwargs: Any) -> str:
+        return original_dumps(normalize(value), *positional, **kwargs)
 
     def canonical(value: Any) -> bytes:
-        return json.dumps(normalize(value), ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+        return original_dumps(
+            normalize(value),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        ).encode("utf-8")
 
     def write_json(path: Path, value: Any) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(
-            json.dumps(normalize(value), ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + "\n",
+            original_dumps(
+                normalize(value),
+                ensure_ascii=False,
+                sort_keys=True,
+                indent=2,
+                allow_nan=False,
+            ) + "\n",
             encoding="utf-8",
         )
 
     module.canonical = canonical
     module.write_json = write_json
+    module.json.dumps = safe_dumps
     sys.argv = [
         str(args.script),
         "--directional", str(args.directional),
@@ -71,6 +88,7 @@ def main() -> int:
         "scientific_model_changed": False,
         "thresholds_changed": False,
         "only_numpy_scalars_and_arrays_converted_to_native_json_types": True,
+        "stdout_json_serialization_intercepted": True,
         "base_script_sha256": hashlib.sha256(args.script.read_bytes()).hexdigest(),
         "authority_ceiling": "NONE",
     }
