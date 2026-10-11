@@ -61,7 +61,7 @@ def main() -> int:
     headers={"User-Agent":"KCH-Helical-v1.1-fresh-2026/2026-10-11"}
     listing=requests.get(GOES_BASE,headers=headers,timeout=180); listing.raise_for_status()
     import re
-    names=sorted(set(re.findall(rb"sci_xrsf-l2-flrpt_geo_s\\d+_e\\d+_v[\\d-]+\\.csv",listing.content)))
+    names=sorted(set(re.findall(rb"sci_xrsf-l2-flrpt_geo_s\d+_e\d+_v[\d-]+\.csv",listing.content)))
     if not names: raise RuntimeError("GOES flare report not found")
     name=names[-1].decode("ascii")
     flare=requests.get(GOES_BASE+name,headers=headers,timeout=180); flare.raise_for_status()
