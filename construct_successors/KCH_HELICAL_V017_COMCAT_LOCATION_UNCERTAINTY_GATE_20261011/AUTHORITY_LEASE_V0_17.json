@@ -1,6 +1,6 @@
 {
   "authority_ceiling": "FINITE_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
-  "authority_id": "h17locauth:0f1652c97ae2a1a9a0ea9941a3e95e30d465bf6d234208508190589eb82dd620",
+  "authority_id": "h17locauth:287bac8b200d0d9fffd63438faa6bfb9b2fac451f413f4a70d1c5fa6c2ff4242",
   "authority_type": "FINITE_SINGLE_SUCCESSOR_EXECUTION",
   "canonicalization_authority": false,
   "crosswalk_row_export_authorized": false,
