@@ -64,7 +64,8 @@ jobs:
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/terminal"
-          PYTHONUNBUFFERED=1 python .github/helical_v11/seismic_terminal_primary_gate.py \
+          PYTHONUNBUFFERED=1 python .github/helical_v11/run_primary_gate_json_safe.py \
+            --script .github/helical_v11/seismic_terminal_primary_gate.py \
             --directional "$out/SEISMIC_TERMINAL_DIRECTIONAL_V1_1.npz" \
             --preflight "$out/SEISMIC_TERMINAL_PREFLIGHT_V1_1.npz" \
             --protocol .github/helical_v11/SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1_LOCKED.json \
