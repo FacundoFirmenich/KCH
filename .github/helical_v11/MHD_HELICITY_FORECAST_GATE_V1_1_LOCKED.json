@@ -1,0 +1,96 @@
+{
+  "format": "KCH_MHD_HELICITY_FORECAST_GATE_V1_1",
+  "version": "1.1.0",
+  "status": "LOCKED_BEFORE_PREDICTIVE_TEST_EVALUATION",
+  "locked_at_utc": "2026-10-11T20:00:00Z",
+  "source_run_id": 38145647725,
+  "source_artifact_name": "kch-helical-v10-mhd-census-complete",
+  "unit_of_independence": "NOAA_ACTIVE_REGION",
+  "splits": ["TRAIN", "CALIBRATION", "TEST_A", "TEST_B"],
+  "primary_targets": [
+    {"name": "M1_PLUS_12H", "label": "label_M1_plus_12h"},
+    {"name": "M1_PLUS_24H", "label": "label_M1_plus_24h"},
+    {"name": "M1_PLUS_48H", "label": "label_M1_plus_48h"}
+  ],
+  "model_families": {
+    "B": {
+      "meaning": "NONHELICAL_MAGNETIC_BASELINE",
+      "channels": ["USFLUX", "MEANSHR", "SHRGT45", "R_VALUE", "TOTUSJZ", "TOTPOT", "AREA_ACR", "LAT_FWT", "LON_FWT"]
+    },
+    "U": {
+      "meaning": "UNSIGNED_HELICITY_MAGNITUDE_CONTROL",
+      "extends": "B",
+      "channels": ["ABSNJZH", "TOTUSJH"]
+    },
+    "H": {
+      "meaning": "SIGNED_HELICITY_EXTENSION",
+      "extends": "U",
+      "channels": ["MEANJZH", "MEANALP"],
+      "hemisphere_interactions": true
+    }
+  },
+  "feature_history": {
+    "cadence_hours": 6,
+    "representations": ["SIGNED_LOG1P_CURRENT", "SIGNED_LOG1P_DELTA_6H"],
+    "first_delta_value": 0.0,
+    "test_history_may_use_only_strictly_earlier_observations": true
+  },
+  "estimator": {
+    "type": "L2_LOGISTIC_REGRESSION",
+    "solver": "lbfgs",
+    "maximum_iterations": 3000,
+    "C_grid": [0.001, 0.01, 0.1, 1.0, 10.0],
+    "selection_metric": "ACTIVE_REGION_WEIGHTED_CALIBRATION_LOG_LOSS",
+    "tie_break": "SMALLER_C",
+    "sample_weight": "EQUAL_TOTAL_WEIGHT_PER_ACTIVE_REGION_WITHIN_SPLIT",
+    "refit_after_selection": "TRAIN_PLUS_CALIBRATION"
+  },
+  "metrics": {
+    "primary": "ACTIVE_REGION_WEIGHTED_LOG_SCORE_GAIN_H_MINUS_U",
+    "secondary": ["RELATIVE_RMSE_IMPROVEMENT_H_MINUS_U", "AUPRC_GAIN_H_MINUS_U", "ECE_DIFFERENCE_H_MINUS_U"]
+  },
+  "materiality": {
+    "minimum_log_score_gain_nats_per_window": 0.01,
+    "minimum_relative_rmse_improvement": 0.05,
+    "minimum_auprc_gain": 0.02,
+    "maximum_ece_degradation": 0.01,
+    "cluster_bootstrap_lower_95_must_exceed": 0.0,
+    "signed_channel_positive_bootstrap_fraction": 0.8,
+    "holm_family_alpha": 0.05,
+    "required_independent_test_periods": 2,
+    "required_positive_horizons_for_family_claim": 2
+  },
+  "resampling": {
+    "cluster_bootstrap_replicates": 499,
+    "cluster_sign_flip_replicates": 1999,
+    "random_seed": 841771
+  },
+  "power_gate": {
+    "minimum_power": 0.8,
+    "material_log_score_gain": 0.01,
+    "power_estimated_from_calibration_active_region_difference_dispersion": true,
+    "failure_outcome": "INSUFFICIENT_POWER_BEFORE_TEST_OPEN"
+  },
+  "multiplicity": {
+    "tests": "3_HORIZONS_X_2_TEST_PERIODS",
+    "method": "HOLM_BONFERRONI"
+  },
+  "allowed_outcomes": [
+    "SIGNED_HELICITY_FORECASTING_SUPPORTED_REPLICATED",
+    "UNSIGNED_MAGNITUDE_OR_NONHELICAL_RIVAL_SUFFICIENT",
+    "INSUFFICIENT_POWER_BEFORE_TEST_OPEN",
+    "MODEL_MISMATCH",
+    "NOT_IDENTIFIABLE"
+  ],
+  "prohibitions": [
+    "NO_ACTIVE_REGION_CROSSES_SPLITS",
+    "NO_PIXEL_LEVEL_PSEUDOREPLICATION",
+    "NO_TARGET_OR_THRESHOLD_CHANGE_AFTER_TEST_OPEN",
+    "NO_SIGNED_CLAIM_UNLESS_H_BEATS_U",
+    "NO_X1_OR_M1_6H_PROMOTION",
+    "NO_POSTHOC_RESCUE"
+  ],
+  "authority_ceiling": "NONE",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
