@@ -1,0 +1,13 @@
+{
+  "adapter_path": "construct_successors/KCH_HELICAL_V0171_COMCAT_CSV_LOCATION_CORRECTION_20261011/comcat_csv_location_crosswalk_v0171.py",
+  "binding_basis": "GIT_BLOB_VERIFIED_BY_WORKFLOW_AND_SHA256_RECOMPUTED_AT_EXECUTION",
+  "binding_id": "h171r2adapter:2ba4b990979e0d715284319ff757572ca48b21974f6f2a16d55216e05dee3783",
+  "bytes": 12362,
+  "format": "KCH_HELICAL_V0_17_1_R2_ADAPTER_RUNTIME_BINDING",
+  "git_blob_sha1": "4b02d95db273f760274762522d18990beb3816e4",
+  "matching_rule_changed": false,
+  "materiality_threshold_changed": false,
+  "scientific_selection_changed": false,
+  "sealed_test_accessed": false,
+  "sha256": "ccb30771be1eaf3d5400d47478173e1d130848116ee765684157b7078fcb45ff"
+}

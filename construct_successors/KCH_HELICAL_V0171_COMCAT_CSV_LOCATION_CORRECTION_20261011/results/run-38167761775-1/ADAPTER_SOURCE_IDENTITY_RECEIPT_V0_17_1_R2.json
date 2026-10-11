@@ -1,0 +1,12 @@
+{
+  "binding_basis": "GIT_BLOB_PRIMARY_PLUS_RUNTIME_SHA256",
+  "bytes": 12362,
+  "format": "KCH_HELICAL_V0_17_1_R2_ADAPTER_SOURCE_IDENTITY_RECEIPT",
+  "git_blob_sha1": "4b02d95db273f760274762522d18990beb3816e4",
+  "path": "construct_successors/KCH_HELICAL_V0171_COMCAT_CSV_LOCATION_CORRECTION_20261011/comcat_csv_location_crosswalk_v0171.py",
+  "receipt_id": "h171r2source:4645f65a2ea0dbe3f9002fe57a96766012ec15477076e6b764f2fc22099b686b",
+  "scientific_execution_performed": false,
+  "sealed_test_accessed": false,
+  "sha256": "ccb30771be1eaf3d5400d47478173e1d130848116ee765684157b7078fcb45ff",
+  "source_modified_after_binding": false
+}
