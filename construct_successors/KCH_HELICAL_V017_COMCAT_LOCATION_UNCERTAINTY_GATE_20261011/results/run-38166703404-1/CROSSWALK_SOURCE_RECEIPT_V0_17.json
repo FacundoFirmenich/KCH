@@ -1,0 +1,13 @@
+{
+  "bytes": 9283,
+  "format": "KCH_HELICAL_V0_17_FROZEN_CROSSWALK_SOURCE_RECEIPT",
+  "git_blob_sha1": "cfa0ee325d573679db497636e28fbc5b6e2b628e",
+  "receipt_id": "h17crosswalksource:91def26c45c1bbd3f02964117e9bfea5ca1bbc7735eec879d33a6ace04a9ce33",
+  "recovered_at_utc": "2026-10-11T19:08:01.050045Z",
+  "scientific_execution_performed": false,
+  "sealed_test_accessed": false,
+  "sha256": "fc9ea4909c974fd5613146d35f4d5a51473f6323f329685623b3d3fc0c479e11",
+  "source_commit": "e458afe20b8172db5a04194224cf21df5ec00dc4",
+  "source_modified": false,
+  "source_path": ".github/helical_v08/comcat_location_uncertainty_crosswalk.py"
+}

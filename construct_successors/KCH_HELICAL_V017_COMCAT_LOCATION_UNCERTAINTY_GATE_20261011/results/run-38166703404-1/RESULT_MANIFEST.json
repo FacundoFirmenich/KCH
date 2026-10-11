@@ -1,0 +1,122 @@
+{
+  "blind_rows_included": false,
+  "comcat_rows_included": false,
+  "crosswalk_rows_included": false,
+  "directional_rows_included": false,
+  "event_identifiers_included": false,
+  "files": [
+    {
+      "bytes": 6070,
+      "path": "ACQUISITION_RECEIPT_V0_11.json",
+      "sha256": "ec4dd1cc122ff996fa11abd6717f6f91fe92ea9c2320f3766958e83a97d828c9"
+    },
+    {
+      "bytes": 833,
+      "path": "AUTHORITY_ACTIVATION_RECEIPT_V0_11.json",
+      "sha256": "d03393df5566f138b0b4064eaf662d275662993d2b0d06e7c689e6dd7654315b"
+    },
+    {
+      "bytes": 2010,
+      "path": "BLIND_CONTAINER_RECEIPT_V0_11.json",
+      "sha256": "fecb6e2931002b8f49fad5a2feabceafe1e78626ac7161ce6e95dc65544899d5"
+    },
+    {
+      "bytes": 984,
+      "path": "BLIND_EXTRACTION_RECEIPT_V0_11.json",
+      "sha256": "a376f7fa174bf1612ffabf167abd7df52042d73f6fc344d29bac2483189114f6"
+    },
+    {
+      "bytes": 5877,
+      "path": "COMCAT_LOCATION_UNCERTAINTY_GATE_RESULT_V0_17.json",
+      "sha256": "57440ed5bf7402f6e70c9bf81cb4901645366229d4ec6c957702980292114fc4"
+    },
+    {
+      "bytes": 30969,
+      "path": "COMCAT_QUERY_RECEIPT_MANIFEST_V0_17.json",
+      "sha256": "9286bdd077d4958f08d009e0e45dc3d17a8f33369549e13bb596f2c51aea4ffd"
+    },
+    {
+      "bytes": 632,
+      "path": "CROSSWALK_SOURCE_RECEIPT_V0_17.json",
+      "sha256": "8708fdc4651bfd79261e1a803090945a7fd863bd4f5cc5c23847525b68680eaa"
+    },
+    {
+      "bytes": 2889,
+      "path": "DIRECTIONAL_CONTAINER_RECEIPT_V0_11.json",
+      "sha256": "1cc1f77db54ee4c0cf528deafe736ba45ac7001adcef5753d8a27745ad63197a"
+    },
+    {
+      "bytes": 2839,
+      "path": "DIRECTIONAL_PREFLIGHT_RESULT_V0_11.json",
+      "sha256": "f3766e71373c2952c0a8e39a3e6f216190b6f81738d7c32be9386732a285bf18"
+    },
+    {
+      "bytes": 1091,
+      "path": "EXTRACTION_IMAGES_LOCK_RECEIPT_V0_17.json",
+      "sha256": "5a161384d14a6c53198a423bf2ac818db21001e9fdd8e236d0f7c4c67115aa6e"
+    },
+    {
+      "bytes": 3,
+      "path": "GATE_EXIT_CODE.txt",
+      "sha256": "f4ccd05b3271c386ee55d9876c7450012a3b361e5065c09dc22075e38b3cc35c"
+    },
+    {
+      "bytes": 0,
+      "path": "GATE_STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7143,
+      "path": "GATE_STDOUT.txt",
+      "sha256": "ffbb288b6b517d98b73dbabb454be8ea3ab0b9e9d63a065fe44a72b6adcdaa57"
+    },
+    {
+      "bytes": 2253,
+      "path": "INPUT_SHA256SUMS.txt",
+      "sha256": "2f27932a42743ca507ae5224bbf216ffa290dd3b3f3c55bfce437f03ce344aaf"
+    },
+    {
+      "bytes": 92,
+      "path": "PIP_FREEZE.txt",
+      "sha256": "ec5ea9618797cf7751d540c3de58a0cc62ed4cde9d7c319ad25939f1b234f2f4"
+    },
+    {
+      "bytes": 4270,
+      "path": "RESULT_SHA256SUMS.txt",
+      "sha256": "ef8b911a144f2daa9110e5e230c98f429ebb2120b0350d07fe29235e9b1d9da7"
+    },
+    {
+      "bytes": 491,
+      "path": "RUNTIME_ENVIRONMENT.json",
+      "sha256": "c3b7e6785e6d8c09f8f6fd62a21323aec9fcce228da882ab1ff91cf930463e15"
+    },
+    {
+      "bytes": 1703,
+      "path": "RUN_RECEIPT_V0_11.json",
+      "sha256": "4c1a4b7a55c5412e4ed3cdfc06c72b412f433f72fc43f6c761e8a033e7959036"
+    },
+    {
+      "bytes": 5440,
+      "path": "RUN_RECEIPT_V0_17.json",
+      "sha256": "1851fd24ab9697a8510d29fef599d6a8f0027b886261d6bde9404cecdc07c3d3"
+    },
+    {
+      "bytes": 1750,
+      "path": "SELECTED_DIRECTIONAL_EXTRACTION_RECEIPT_V0_11.json",
+      "sha256": "0a7f7a62d6737ddfdeb5bc623b8eb95d7de8c485d944de6d250f35f8d5df46c1"
+    },
+    {
+      "bytes": 1713,
+      "path": "SELECTED_INDEX_RECEIPT_V0_11.json",
+      "sha256": "4666c7f056518c977e5267f26a04060791c18fafb5ffcc406791fb4e9951bb5a"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_17_SAFE_RESULT_MANIFEST",
+  "github_run_attempt": "1",
+  "github_run_id": "38166703404",
+  "github_sha": "66caeba9e0db7504a220673c8ead2f914c3a1a13",
+  "manifest_id": "h17manifest:d48c683897a1b03f776fd37d480bf526fd341c65d857bbb0e002fdde4af3f2a8",
+  "raw_sources_included": false,
+  "sealed_test_values_included": false,
+  "selected_indices_included": false
+}
