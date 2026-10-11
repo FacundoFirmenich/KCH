@@ -1,0 +1,49 @@
+name: Helical v1.1 terminal seismic software qualification v2
+
+on:
+  push:
+    branches:
+      - gate/helical-v11-mhd-execution-seismic-terminal-20261011
+    paths:
+      - .github/helical_v11/qualify_terminal_primary.py
+      - .github/helical_v11/run_primary_gate_json_safe.py
+      - .github/workflows/helical-v11-seismic-primary-software-qualification-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pandas==2.2.3' 'scipy==1.14.1'
+      - name: Execute zero-authority qualification through JSON-safe transport adapter
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/qualification"
+          mkdir -p "$out"
+          python .github/helical_v11/qualify_terminal_primary.py \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --out "$out" | tee "$out/EXECUTION_STDOUT.log"
+          find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
+      - name: Upload zero-authority qualification
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-seismic-primary-software-qualification-v2
+          path: ${{ runner.temp }}/qualification
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
