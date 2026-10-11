@@ -18,31 +18,31 @@ def wrap_axial(value: np.ndarray | float) -> np.ndarray | float:
 def sdr_from_normal_slip(normal: np.ndarray, slip: np.ndarray) -> tuple[float, float, float]:
     normal = np.asarray(normal, dtype=float)
     slip = np.asarray(slip, dtype=float)
-    if normal[2] < 0.0:
+    if normal[2] > 0.0:
         normal = -normal
         slip = -slip
     normal /= np.linalg.norm(normal)
     slip = slip - np.dot(slip, normal) * normal
     slip /= np.linalg.norm(slip)
-    dip = math.acos(float(np.clip(normal[2], -1.0, 1.0)))
-    strike = math.atan2(float(normal[0]), float(-normal[1]))
+    dip = math.acos(float(np.clip(-normal[2], -1.0, 1.0)))
+    strike = math.atan2(float(-normal[0]), float(normal[1]))
     if strike < 0.0:
         strike += 2.0 * math.pi
     strike_vector = np.array([math.cos(strike), math.sin(strike), 0.0])
-    down_dip = np.array([
-        -math.sin(strike) * math.cos(dip),
-        math.cos(strike) * math.cos(dip),
-        math.sin(dip),
+    rake_basis = np.array([
+        math.cos(dip) * math.sin(strike),
+        -math.cos(dip) * math.cos(strike),
+        -math.sin(dip),
     ])
-    rake = math.atan2(float(np.dot(slip, down_dip)), float(np.dot(slip, strike_vector)))
+    rake = math.atan2(float(np.dot(slip, rake_basis)), float(np.dot(slip, strike_vector)))
     return tuple(float(value) for value in np.rad2deg([strike, dip, rake]))
 
 
 def sdr_from_phase(phase: float) -> tuple[float, float, float]:
     p_axis = np.array([0.0, math.cos(phase), math.sin(phase)])
     t_axis = np.array([1.0, 0.0, 0.0])
-    normal = (t_axis + p_axis) / math.sqrt(2.0)
-    slip = (t_axis - p_axis) / math.sqrt(2.0)
+    slip = (t_axis + p_axis) / math.sqrt(2.0)
+    normal = (t_axis - p_axis) / math.sqrt(2.0)
     return sdr_from_normal_slip(normal, slip)
 
 
@@ -153,6 +153,7 @@ def main() -> int:
         "format": "KCH_TERMINAL_SEISMIC_BIDIRECTIONAL_SOFTWARE_QUALIFICATION_V1_1",
         "fixture_authority": "ZERO",
         "scientific_evidence": False,
+        "sdr_coordinate_system": "AKI_RICHARDS_NORTH_EAST_DOWN",
         "null_outcome": negative["outcome"],
         "null_positive_cohorts": negative["positive_primary_cohorts"],
         "null_rejected": null_pass,
