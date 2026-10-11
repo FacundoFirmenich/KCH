@@ -1,0 +1,39 @@
+{
+  "format": "KCH_HELICAL_V0_16_3_AUTHORITY_LEASE",
+  "lease_id": "helical-v0163-source-custody-repair-20261011",
+  "predecessor_branch": "helical-v0162-runtime-integration-source-custody-20261011",
+  "predecessor_commit": "6232fb63b0bfbd87d3d3d12befea2145f89faef3",
+  "predecessor_failed_run_id": 38147651181,
+  "predecessor_failed_job_id": 114494269697,
+  "authority_ceiling": "CODE_ONLY_SOURCE_CUSTODY_REPAIR",
+  "authorized_operations": [
+    "verify_extant_lineage_source_roots",
+    "verify_required_file_blob_identities",
+    "inventory_admitted_and_excluded_paths",
+    "build_deterministic_code_contract_archive",
+    "independently_verify_archive_members",
+    "emit_append_only_custody_receipt",
+    "upload_custody_artifact"
+  ],
+  "forbidden_operations": [
+    "scientific_data_acquisition",
+    "pickle_deserialization",
+    "directional_value_access",
+    "parent_graph_refit",
+    "calibration_job_execution",
+    "sealed_test_access",
+    "scientific_scoring",
+    "scientific_interpretation",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "scientific_data_included": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "successor_if_pass": "CALIBRATION_ONLY_FULL_RUNTIME_QUALIFICATION_6376_JOBS_NO_TEST_ACCESS",
+  "finite": true
+}
