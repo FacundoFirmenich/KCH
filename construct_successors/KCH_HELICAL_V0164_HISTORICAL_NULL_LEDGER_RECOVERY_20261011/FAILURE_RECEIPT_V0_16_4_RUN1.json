@@ -1,0 +1,21 @@
+{
+  "format": "KCH_HELICAL_V0_16_4_FAILURE_RECEIPT",
+  "github_run_id": 38164726340,
+  "github_job_id": 114544802406,
+  "head_sha": "d4b6848ca8cf6e52f52582d0254cf4dc71518b83",
+  "failed_step": "Recover exact compiler runtime and tests",
+  "failure_class": "HISTORICAL_TRANSPORT_GZIP_ISIZE_MISMATCH",
+  "terminal_error": "member 0 ISIZE mismatch: stored=3918337022, computed=42651",
+  "repair_attempted": false,
+  "recovery_receipt_produced": false,
+  "ledger_rows_regenerated": false,
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_mutated": false,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "successor": "V0_16_4_1_INDEPENDENT_COMPILER_RECOVERY"
+}
