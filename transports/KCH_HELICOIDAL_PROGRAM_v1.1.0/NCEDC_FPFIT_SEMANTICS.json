@@ -1,0 +1,26 @@
+{
+  "format":"KCH_HELICAL_V1_1_NCEDC_FPFIT_SEMANTICS",
+  "source_format":"NCEDC FPFIT Y2K HYPO71 augmented mechanism card",
+  "angular_fields":{
+    "columns_84_86_1based":"dip_direction_degrees",
+    "columns_88_89_1based":"dip_degrees",
+    "columns_90_93_1based":"rake_degrees",
+    "event_id_columns_132_141_1based":"NCSS event identifier"
+  },
+  "conversion_to_standard_strike_dip_rake":{
+    "strike_degrees":"(dip_direction_degrees - 90) mod 360",
+    "dip_degrees":"unchanged",
+    "rake_degrees":"unchanged"
+  },
+  "control_event":{
+    "event_id":"73671846",
+    "fpfit_dip_direction":230,
+    "converted_strike":140,
+    "dip":70,
+    "rake":150,
+    "comcat_np1":[140,70,150],
+    "agreement":"EXACT_AT_REPORTED_PRECISION"
+  },
+  "scientific_model_changed":false,
+  "authority_ceiling":"NONE"
+}
