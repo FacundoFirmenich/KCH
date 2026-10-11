@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install 'numpy==2.1.3' 'pandas==2.2.3' 'scipy==1.14.1' 'networkx==3.4.2' 'pyproj==3.7.0' 'shapely==2.0.6'
-      - name: Recover immutable network and directional artifacts
+      - name: Recover immutable network and complete directional artifacts
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -39,10 +39,14 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --name kch-helical-v11-seismic-network-lock-v3-disjoint \
             --dir "$RUNNER_TEMP/network"
-          gh run download 38165301374 \
+          gh run download 38167438725 \
             --repo "$GITHUB_REPOSITORY" \
-            --name kch-helical-v11-seismic-directional-acquisition-v2 \
+            --name kch-helical-v11-seismic-directional-acquisition-complete \
             --dir "$RUNNER_TEMP/directional"
+          jq -e '.directional_acquisition_id == "s11dir:e22bb558ab385163211bb1b87e2d45cf9d98f1e638fcc9f183511bdf03779a72" and .directional_coverage_gate_pass == true and .fetch_failures == 0 and .selected_event_count == 5489' \
+            "$RUNNER_TEMP/directional/SEISMIC_DIRECTIONAL_ACQUISITION_V1_1.json" >/dev/null
+          echo '2246faf8d41a3a386539d7973180e6ac55c52fefbc80661135bf28046d5100f0  '"$RUNNER_TEMP/directional/SELECTED_DIRECTIONAL_MECHANISMS.csv.gz" | sha256sum -c -
+          echo 'e6253256acf3ad016330b73f44f9cc1575aa43f47e674abd2774cb569ca416de  '"$RUNNER_TEMP/directional/COMCAT_DETAIL_BODIES.tar.gz" | sha256sum -c -
           curl --fail-with-body --location --retry 5 --retry-all-errors \
             'https://raw.githubusercontent.com/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson' \
             --output "$RUNNER_TEMP/terminal/source/gem_active_faults_harmonized.geojson"
