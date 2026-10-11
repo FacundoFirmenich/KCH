@@ -1,0 +1,128 @@
+{
+  "format": "KCH_SEISMIC_TERMINAL_FULL_NETWORK_GATE_V1_1",
+  "version": "1.1.0",
+  "status": "LOCKED_BEFORE_REAL_MECHANISM_ANGLE_ACCESS",
+  "locked_at_utc": "2026-10-11T20:46:30Z",
+  "scientific_question": "Does signed focal-mechanism orientation transport over a prelocked full external fault network improve future predictive density beyond ETAS/Hawkes, temporal drift, static orientation field, curvature, regime, magnitude and network-distance rivals on genuinely post-2021 events?",
+  "network_lock_id": "s11net:67ed98bec7602ce1de9f2a86196f5894549fa4fc1fb66a577b0e2f7a51fe540f",
+  "network_lock_artifact_run_id": 38165177631,
+  "network_lock_artifact_name": "kch-helical-v11-seismic-network-lock-v3-disjoint",
+  "network_lock_artifact_sha256": "d947a65761db8df8710de7a805898cead7136f11fbe4e2569a303ff7f582307d",
+  "cohort_overlap_abstention_receipt_id": "s11overlap:41c0b5078eb647c76cdf50043668e47407f09a68d211219dc3f88355ba0b8874",
+  "overlapping_events_abstained_from_all_primary_cohorts": 909,
+  "selected_cohorts": [
+    {
+      "id": "BAY_AREA",
+      "assigned_events": 4466,
+      "train_events": 2233,
+      "calibration_events": 1116,
+      "sealed_test_events": 1117,
+      "test_children_with_full_network_parent_before_mechanism_filter": 1041
+    },
+    {
+      "id": "PARKFIELD_CENTRAL_SAF",
+      "assigned_events": 1023,
+      "train_events": 511,
+      "calibration_events": 256,
+      "sealed_test_events": 256,
+      "test_children_with_full_network_parent_before_mechanism_filter": 226
+    }
+  ],
+  "directional_acquisition": {
+    "source": "USGS_ANSS_COMCAT_EVENT_DETAIL_PRODUCTS",
+    "event_ids": "EXACTLY_THE_PRELOCKED_SELECTED_EVENT_FILE",
+    "preferred_product_order": ["focal-mechanism", "moment-tensor"],
+    "within_type_order": ["preferredWeight_desc", "updateTime_desc", "source_asc", "id_asc"],
+    "required_fields": [
+      "nodal-plane-1-strike", "nodal-plane-1-dip", "nodal-plane-1-rake",
+      "nodal-plane-2-strike", "nodal-plane-2-dip", "nodal-plane-2-rake"
+    ],
+    "minimum_cohort_directional_coverage": 0.75,
+    "minimum_sealed_test_directional_events": 200,
+    "source_substitution": "FORBIDDEN"
+  },
+  "observation_model": {
+    "orientation_mark": "DOUBLE_COUPLE_P_AXIS_FROM_NODAL_PLANES",
+    "nodal_plane_equivalence_minimum_absolute_dot": 0.95,
+    "axial_phase": "PROJECTIVE_P_AXIS_IN_LOCAL_FAULT_NORMAL_DOWN_CROSS_SECTION",
+    "minimum_axis_projection": 0.15,
+    "local_tangent": "CANONICALLY_ORIENTED_IMMUTABLE_GEM_FAULT_GEOMETRY",
+    "parallel_transport": "LOCAL_NORMAL_TO_LOCAL_NORMAL_WITH_FIXED_DOWN_AXIS",
+    "primary_mechanism_angle_sigma_deg": 15.0,
+    "sensitivity_sigma_deg": [5.0, 15.0, 25.0, 35.0]
+  },
+  "parent_graph": {
+    "network": "PRIMARY_PRELOCKED_JUNCTION_GRAPH",
+    "maximum_parent_age_days": 30.0,
+    "maximum_network_path_km": 20.0,
+    "maximum_candidate_parents": 20,
+    "etas_weight_parameters": {"alpha": 1.0, "c_days": 0.05, "p": 1.1, "ell_km": 5.0},
+    "background_probability_fit_on_train_only": true,
+    "helical_model_may_change_parent_graph": false,
+    "ambiguous_multiple_path_action": "ABSTAIN"
+  },
+  "models": {
+    "M0": "ZERO_SIGNED_MARK_DRIFT_WITH_STATIC_BACKGROUND",
+    "MT": "TEMPORAL_SIGNED_DRIFT_RIVAL",
+    "MG": "STATIC_FIELD_CURVATURE_REGIME_MAGNITUDE_AND_LOG_DISTANCE_RIVAL",
+    "MH": "MG_PLUS_LINEAR_SIGNED_AXIAL_TWIST_PER_NETWORK_KM"
+  },
+  "calibration_grid": {
+    "static_field_degree": [0, 1, 2],
+    "ridge_lambda": [0.1, 1.0, 10.0],
+    "baseline_selection": "MAX_CALIBRATION_LOG_SCORE_MINUS_HALF_BIC_PER_OBSERVATION_AMONG_M0_MT_MG",
+    "helical_selection": "MAX_CALIBRATION_ADJUSTED_SCORE_AMONG_MH_AT_SELECTED_STATIC_DEGREE",
+    "test_access": "ONCE_AFTER_SELECTION_RECEIPT"
+  },
+  "materiality": {
+    "minimum_mean_log_score_gain_per_test_child": 0.02,
+    "minimum_relative_axial_rmse_improvement": 0.05,
+    "maximum_delta_bic_helical_minus_baseline": -10.0,
+    "cluster_bootstrap_lower_95_must_exceed": 0.0,
+    "mechanism_uncertainty_full_pass_fraction": 0.8,
+    "fault_assignment_full_pass_fraction": 0.8,
+    "parent_graph_full_pass_fraction": 0.8,
+    "time_reversal_sign_flip_required": true,
+    "holm_family_alpha": 0.05,
+    "positive_primary_cohorts_required": 2
+  },
+  "nulls": {
+    "replicates_each": 199,
+    "families": [
+      "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_BLOCKS",
+      "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION",
+      "STATIC_ORIENTATION_FIELD_SURROGATES",
+      "NONHELICAL_HAWKES_SIMULATIONS"
+    ],
+    "multiplicity": "HOLM_BONFERRONI_ACROSS_COHORTS_AND_NULL_FAMILIES"
+  },
+  "stability": {
+    "moving_block_bootstrap_replicates": 199,
+    "mechanism_perturbation_replicates": 64,
+    "fault_assignment_replicates": 64,
+    "parent_graph_resamples": 64,
+    "time_reversal": "DETERMINISTIC_SIGN_FLIP_TEST"
+  },
+  "terminal_rule": {
+    "negative_outcome": "SEISMIC_HELICAL_PROGRAM_CLOSED_WITH_UPPER_BOUNDS",
+    "positive_outcome": "DYNAMIC_FULL_NETWORK_TRANSPORT_SUPPORTED_REPLICATED",
+    "single_cohort_physical_claim": "FORBIDDEN",
+    "posthoc_rescue": "FORBIDDEN"
+  },
+  "allowed_outcomes": [
+    "DYNAMIC_FULL_NETWORK_TRANSPORT_SUPPORTED_REPLICATED",
+    "LOCAL_DYNAMIC_SIGNAL_NOT_REPLICATED",
+    "NONHELICAL_FULL_NETWORK_RIVAL_GENERALIZES",
+    "SIGNED_TRANSPORT_UPPER_BOUND",
+    "NOT_IDENTIFIABLE_MECHANISM_COVERAGE",
+    "NOT_IDENTIFIABLE_PARENT_GRAPH",
+    "MODEL_MISMATCH",
+    "BLOCKED_EXACT_BYTE_ACQUISITION"
+  ],
+  "directional_fields_accessed_before_lock": false,
+  "scientific_execution_performed": false,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "authority_ceiling": "NONE"
+}
