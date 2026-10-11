@@ -1,0 +1,68 @@
+name: Helical v1.0 post-2021 blind fault-assignment preflight
+
+on:
+  push:
+    branches:
+      - gate/helical-v10-mhd-census-seismic-post2021-review-20261011
+    paths:
+      - .github/helical_v10/seismic_fault_assignment_preflight.py
+      - .github/workflows/helical-v10-seismic-fault-preflight.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned geospatial dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pandas==2.2.3' 'pyproj==3.7.0' 'shapely==2.0.6'
+      - name: Recover sealed blind census and immutable fault network
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          census="$RUNNER_TEMP/seismic_census"
+          out="$RUNNER_TEMP/seismic_fault_preflight"
+          mkdir -p "$census" "$out/source"
+          gh run download 38145229762 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name kch-helical-v10-seismic-census \
+            --dir "$census"
+          curl --fail-with-body --location --retry 5 --retry-all-errors \
+            'https://raw.githubusercontent.com/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson' \
+            --output "$out/source/gem_active_faults_harmonized.geojson"
+          echo '37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1  '"$out/source/gem_active_faults_harmonized.geojson" | sha256sum -c -
+      - name: Execute blind fault assignment and conservative parent-support audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/seismic_fault_preflight"
+          PYTHONUNBUFFERED=1 python .github/helical_v10/seismic_fault_assignment_preflight.py \
+            --census-root "$RUNNER_TEMP/seismic_census" \
+            --fault-geojson "$out/source/gem_active_faults_harmonized.geojson" \
+            --expected-fault-sha256 37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1 \
+            --out "$out" | tee "$out/EXECUTION_STDOUT.log"
+          find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
+      - name: Upload sealed blind preflight artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v10-seismic-fault-preflight
+          path: ${{ runner.temp }}/seismic_fault_preflight
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
