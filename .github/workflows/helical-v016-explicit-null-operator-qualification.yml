@@ -45,11 +45,28 @@ jobs:
           mkdir -p "$ROOT"
           python - "$PAYLOAD" "$ROOT" <<'PY'
           from pathlib import Path
-          import hashlib, sys, zipfile
+          import base64, hashlib, sys, zipfile
 
           payload_path=Path(sys.argv[1]).resolve()
           root=Path(sys.argv[2]).resolve()
-          payload=payload_path.read_bytes()
+          chunk_dir=payload_path.parent/'chunks'
+          chunk_specs=[
+              ('V0_16_CODE_PAYLOAD.part00.b64','10fd2412a374d4bf833bd68455a946e3819ef5f77e7cdde356ed9472d3e4e099',4096),
+              ('V0_16_CODE_PAYLOAD.part01.b64','6bb9d40eee80c7a203d7a545b256b7ab978030f4f56fa764000ae0424a259df1',4096),
+              ('V0_16_CODE_PAYLOAD.part02.b64','ad6dab7b3f7d88cadce5b78309eafcc55ff2652f54ca58860cc40b94008887b5',4096),
+              ('V0_16_CODE_PAYLOAD.part03.b64','8069b8ed8575574d6b43b6883d160747a9d0f1c9074577a6cb5d4e4331ebd8b8',4096),
+              ('V0_16_CODE_PAYLOAD.part04.b64','58030c4f5b2e4bcfb34a79abd34fcd62c5dd68c5134739cc4fdfcf9ab21946e2',4096),
+              ('V0_16_CODE_PAYLOAD.part05.b64','ed0b431dd1b21015bfe2be538615497adcd43e64700cf0627d3060a9e35f4463',159),
+          ]
+          assembled=bytearray()
+          for name, expected_sha, expected_size in chunk_specs:
+              text=(chunk_dir/name).read_text(encoding='ascii').strip()
+              raw=base64.b64decode(text, validate=True)
+              if len(raw)!=expected_size or hashlib.sha256(raw).hexdigest()!=expected_sha:
+                  raise SystemExit(f'chunk integrity mismatch: {name}')
+              assembled.extend(raw)
+          payload=bytes(assembled)
+          payload_path.write_bytes(payload)
           expected_zip_sha='885ef07e53056eacd3d28f6de9a6a483df6899719cc1d41309b490aa4c086b65'
           if len(payload)!=20639 or hashlib.sha256(payload).hexdigest()!=expected_zip_sha:
               raise SystemExit('payload size/SHA-256 mismatch')
@@ -150,7 +167,7 @@ jobs:
             'files':rows,
           }
           manifest['manifest_id']='h16manifest:'+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-          (root/'receipts'/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          (root/'receipts'/'RESULT_MANIEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
           PY
 
       - name: Persist append-only qualification receipt and source
