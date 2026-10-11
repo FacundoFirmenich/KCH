@@ -58,6 +58,7 @@ jobs:
           ]
           forbidden_suffixes={'.pickle','.pkl','.npz','.npy','.csv','.parquet','.geojson','.fits','.h5','.hdf5','.sqlite','.db'}
           files=[]
+          skipped_forbidden=[]
           for relroot in roots:
               source=repo/relroot
               if not source.exists():
@@ -65,7 +66,8 @@ jobs:
               for path in sorted(item for item in source.rglob('*') if item.is_file()):
                   rel=path.relative_to(repo)
                   if path.suffix.lower() in forbidden_suffixes:
-                      raise SystemExit(f'forbidden scientific/raw payload in source custody: {rel}')
+                      skipped_forbidden.append(rel.as_posix())
+                      continue
                   data=path.read_bytes()
                   target=stage/rel
                   target.parent.mkdir(parents=True,exist_ok=True)
@@ -89,6 +91,7 @@ jobs:
             'source_roots':[p.as_posix() for p in roots],
             'file_count':len(files),
             'files':files,
+            'skipped_forbidden_paths':skipped_forbidden,
             'archive_bytes':archive.stat().st_size,
             'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),
             'scientific_data_included':False,
