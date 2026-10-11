@@ -1,0 +1,58 @@
+{
+  "format": "KCH_HELICAL_V0_16_EXPLICIT_NULL_OPERATOR_CONTRACT",
+  "version": "0.16.0",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "runtime_contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
+  "predecessor_receipt_id": "h154runtimequorum:390e837ffa24cede138ce4fd41267be079ae8f7816ea38f03f9d4c55dd4dbed7",
+  "lineage_semantics": "NEW_EXPLICIT_SUCCESSOR_NOT_HISTORICAL_RUNTIME_IDENTITY",
+  "authority_ceiling": "FINITE_CODE_ONLY_OPERATOR_QUALIFICATION",
+  "operator_symbols": [
+    "circular_distance_degrees",
+    "compute_parent_state",
+    "draw_static_fields",
+    "eval_intensity",
+    "head_to_normal",
+    "make_rewired_null",
+    "moving_block_resample",
+    "permute_within_bins",
+    "posterior_mark_expectations",
+    "propagate_mechanism_uncertainty",
+    "reflected_rake",
+    "rewire_parent_graph",
+    "score_null_metrics",
+    "seeded_rng",
+    "simulate_catalog",
+    "simulate_nonhelical_fixed_parent_weights",
+    "static_logodds"
+  ],
+  "numeric_contract": {
+    "floating_point": "IEEE754_FLOAT64_FINITE_ONLY",
+    "integer_indices": "SIGNED_INT64",
+    "missingness": "FAIL_CLOSED_NO_IMPUTATION",
+    "rng": "SHA256_CONTENT_ADDRESSED_PCG64DXSM_NUMPY_2_1_3"
+  },
+  "frozen_semantics": {
+    "mark_permutation": "MARK_ROWS_ONLY_WITHIN_COHORT_COMPONENT_30_DAY_0_5_MAG_EXACT_QUALITY_STRATA",
+    "rewiring": "DIRECTED_DOUBLE_EDGE_SWAP_WITHIN_COHORT_AND_WEIGHT_DECILE_PRESERVING_DEGREES_AND_WEIGHT_MULTISET",
+    "static_field": "NODE_TO_COMPONENT_TO_COHORT_HIERARCHICAL_BACKOFF_RECORDED",
+    "direction_reversal": "SIGNED_CHIRALITY_FLIPS_AXIAL_LOSS_INVARIANT",
+    "nonhelical_simulation": "LOCKED_PARAMETERS_STATIC_MARK_FIELD_SIGNED_TWIST_ZERO_NO_PARAMETER_UPDATE",
+    "bootstrap": "OVERLAPPING_CIRCULAR_MOVING_BLOCK_TRUNCATED_TO_N"
+  },
+  "qualification": {
+    "expected_operator_count": 17,
+    "expected_test_count": 40,
+    "all_tests_must_pass": true,
+    "source_import_allowlist": ["__future__", "collections", "dataclasses", "hashlib", "json", "math", "typing", "numpy"],
+    "scientific_data_access": "FORBIDDEN",
+    "calibration_execution": "FORBIDDEN",
+    "sealed_test_access": "FORBIDDEN",
+    "network_access": "FORBIDDEN",
+    "file_io_in_operator_module": "FORBIDDEN",
+    "process_execution_in_operator_module": "FORBIDDEN"
+  },
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED"
+}

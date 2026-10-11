@@ -1,0 +1,40 @@
+{
+  "format": "KCH_FINITE_AUTHORITY_LEASE_V0_16",
+  "authority_id": "h16auth:explicit-null-operator-qualification-code-only",
+  "predecessor_receipt_id": "h154runtimequorum:390e837ffa24cede138ce4fd41267be079ae8f7816ea38f03f9d4c55dd4dbed7",
+  "authority_ceiling": "FINITE_CODE_ONLY_OPERATOR_QUALIFICATION",
+  "allowed_actions": [
+    "CREATE_NEW_EXPLICIT_SUCCESSOR_OPERATOR_MODULE",
+    "RUN_DETERMINISTIC_CONTRACT_FIXTURES",
+    "RUN_ALGEBRAIC_METAMORPHIC_AND_ADVERSARIAL_TESTS",
+    "EMIT_CONTENT_ADDRESSED_CODE_ONLY_RECEIPTS"
+  ],
+  "operator_symbols": [
+    "circular_distance_degrees",
+    "compute_parent_state",
+    "draw_static_fields",
+    "eval_intensity",
+    "head_to_normal",
+    "make_rewired_null",
+    "moving_block_resample",
+    "permute_within_bins",
+    "posterior_mark_expectations",
+    "propagate_mechanism_uncertainty",
+    "reflected_rake",
+    "rewire_parent_graph",
+    "score_null_metrics",
+    "seeded_rng",
+    "simulate_catalog",
+    "simulate_nonhelical_fixed_parent_weights",
+    "static_logodds"
+  ],
+  "scientific_data_access_authorized": false,
+  "calibration_runtime_authorized": false,
+  "sealed_test_access_authorized": false,
+  "model_refit_authorized": false,
+  "threshold_change_authorized": false,
+  "publication_authorized": false,
+  "promotion_authorized": false,
+  "historical_identity_claim_authorized": false,
+  "expires_on_terminal_receipt": true
+}
