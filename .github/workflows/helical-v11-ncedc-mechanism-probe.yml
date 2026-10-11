@@ -1,0 +1,34 @@
+name: Helical v1.1 NCEDC mechanism archive probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v10-mhd-census-seismic-post2021-review-20261011
+    paths:
+      - .github/workflows/helical-v11-ncedc-mechanism-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download representative official NCEDC FPFIT monthly file
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/probe"; mkdir -p "$out"
+          aws s3 cp --no-sign-request s3://ncedc-pds/mechanism/2022/2022.01.mech "$out/2022.01.mech"
+          sha256sum "$out/2022.01.mech" > "$out/SHA256SUMS.txt"
+          wc -l -c "$out/2022.01.mech" | tee "$out/size.txt"
+          head -n 20 "$out/2022.01.mech" | tee "$out/head.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-ncedc-mechanism-probe
+          path: ${{ runner.temp }}/probe
+          retention-days: 3
+          compression-level: 0
