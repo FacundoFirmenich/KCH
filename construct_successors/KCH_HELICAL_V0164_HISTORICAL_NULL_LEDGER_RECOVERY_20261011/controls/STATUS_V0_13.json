@@ -1,0 +1,19 @@
+{
+  "authority": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+  "calibration_runtime_qualification_executed": false,
+  "canonicalization": "BLOCKED",
+  "format": "KCH_HELICAL_V0_13_STATUS",
+  "freeze_id": "h13nullfreeze:1bc0b66c7030de5784f2a5c882b8b9e1069c628fef5919558c4415413cbea6d7",
+  "job_ledger_id": "h13nullledger:6abcf3c64273d25a52d75fd423b6b825ee0b1a1b800aaf5d38acf98795179c2a",
+  "next_gate": "CALIBRATION_ONLY_FULL_RUNTIME_QUALIFICATION_NO_TEST_ACCESS",
+  "packaging_state": "EXECUTABLE_FREEZE_AUDIT",
+  "packaging_successor": "v0.13.1",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "remote_qualification_executed": false,
+  "runtime_contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
+  "scheduled_job_count": 6376,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "state": "FULL_NULL_AND_PERTURBATION_RUNTIME_FROZEN"
+}
