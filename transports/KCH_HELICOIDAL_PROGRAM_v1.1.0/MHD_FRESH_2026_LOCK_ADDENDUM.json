@@ -1,0 +1,17 @@
+{
+  "format": "KCH_MHD_FRESH_2026_BLIND_ANALYSIS_LOCK_ADDENDUM",
+  "parent_model_lock_id": "mhd11lock:39386aec6efeedb085e22ca03925c24be47f475000ef2213263d8daaf4f4e17f",
+  "applies_before_fresh_artifact_access": true,
+  "active_region_independence": {
+    "rule": "EXCLUDE_ANY_2026_NOAA_AR_PRESENT_IN_2010_2025_TRAINING_SOURCE",
+    "rationale": "active region is the inferential cluster and may not cross development-confirmation boundary"
+  },
+  "fresh_period_eligibility": {
+    "minimum_active_regions_per_period": 197,
+    "minimum_positive_active_regions_per_primary_horizon": 30,
+    "cross_period_active_region": "EXCLUDE_ENTIRE_ACTIVE_REGION"
+  },
+  "insufficient_support_outcome": "INSUFFICIENT_FRESH_CONFIRMATORY_POWER_OR_UPPER_BOUND_ONLY",
+  "posthoc_rescue": "FORBIDDEN",
+  "authority_ceiling": "NONE"
+}
