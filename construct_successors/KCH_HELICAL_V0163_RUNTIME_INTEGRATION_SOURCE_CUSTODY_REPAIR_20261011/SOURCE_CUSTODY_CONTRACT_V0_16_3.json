@@ -1,0 +1,83 @@
+{
+  "format": "KCH_HELICAL_V0_16_3_SOURCE_CUSTODY_CONTRACT",
+  "predecessor_failure": {
+    "branch": "helical-v0162-runtime-integration-source-custody-20261011",
+    "commit": "6232fb63b0bfbd87d3d3d12befea2145f89faef3",
+    "run_id": 38147651181,
+    "job_id": 114494269697,
+    "terminal_error": "missing required source root: .github/helical_v08"
+  },
+  "source_roots": [
+    "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009",
+    "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009",
+    "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009",
+    "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009",
+    "construct_successors/KCH_HELICAL_V0143_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010",
+    "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010",
+    "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011"
+  ],
+  "required_blobs": {
+    "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_geometry_adapter.py": "9af05bf632b0e043292d293f1e93aed42031db01",
+    "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_public_acquisition.py": "20a976da96ef68434b45fdb1e541a35256e0b52d",
+    "construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/helical_remote_gate.py": "bd44ba162d7dcf7669612176462a0f9092b52760",
+    "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/extract_blind_v011.py": "3c28cf64253be4d4109fb33b7b5f026f2155bd17",
+    "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/extract_selected_directional_v011.py": "741ba041bb5b1fd01f2e8e00545e71dfd1a40b13",
+    "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/helical_v011_directional_pretest.py": "9aca57695c6a2395e10497f4713ec7ff5a6e9272",
+    "construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009/helical_v011_directional_pretest_core.py": "d14619f6106c5fa2bb4181331ea3a7f6a25447a7",
+    "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/build_topology_lock_v012.py": "b4aa19d838de07f6935be2e0008dcd991070786a",
+    "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/directional_preflight_frozen_v08.py": "a5c84eff7d360bea4a027ded6d0e553ca3a7b190",
+    "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/fit_parent_graph_lock_frozen_v08.py": "2bc8c6ca458ea674ce6636d6cb8b65809381b8a7",
+    "construct_successors/KCH_HELICAL_V012_PARENT_GRAPH_LOCK_20261009/helical_v012_parent_graph_gate.py": "5e188fbbfb69a1f62e30a453c96e20291f725be7",
+    "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/acquire_exact_mechanism_v0132.py": "d0a23186e8a946917f715d7e7e3d44cd727154b8",
+    "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/forensic_recover_v084_transport_v2.py": "4252827e95acd5afdd3b39bb804d1c7b62ef6fca",
+    "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/inspect_historical_runtime_v0132.py": "edd6d34dceb8a764aa6776a684f7ef3c2b001d06",
+    "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/inspect_pickle_schema_v0132.py": "91e6836dda8a51158ba9b61720046425976a9962",
+    "construct_successors/KCH_HELICAL_V0132_CALIBRATION_RUNTIME_QUALIFICATION_20261009/reconstruct_historical_v084_source.py": "0e054ee6aa32efd1de2be997911fe5e9f784f7ce",
+    "construct_successors/KCH_HELICAL_V0143_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010/helical_v0143_location_uncertainty_gate.py": "dc08d33aa7d11aefba1dfff8300de2d802ded6e6",
+    "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/canonical_repair_single_missing_base64_char.py": "e0d7b4fa396ed90ce5f6cdc31d1f574baa714185",
+    "construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/reconstruct_locked_repaired_v06_bundle_v0154.py": "079d5659dcd049412d3471ae0daeb88432808a1d",
+    "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/AUTHORITY_LEASE_V0_16.json": "7fc13be820c9ce06fb2aefdf8b9ea88363a35166",
+    "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/OPERATOR_CONTRACT_V0_16.json": "ee3c3b34867963f662ec1d7f4d6a53d750f37059",
+    "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/null_perturbation_operators_v016.py": "daa09b60cf08bbf4ce7cba65d561692051f9a35d",
+    "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/run_operator_qualification_v016.py": "54d43fc9edee8f960c45c94b20acc28f0aade9f0",
+    "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/test_null_perturbation_operators_v016.py": "06e55e4334724c81e0fbaa88e9a964c2498479a6"
+  },
+  "admitted_suffixes": [
+    ".py",
+    ".sh",
+    ".md",
+    ".json",
+    ".jsonl",
+    ".toml",
+    ".yml",
+    ".yaml",
+    ".txt"
+  ],
+  "forbidden_suffixes": [
+    ".pickle",
+    ".pkl",
+    ".npz",
+    ".npy",
+    ".csv",
+    ".parquet",
+    ".geojson",
+    ".fits",
+    ".h5",
+    ".hdf5",
+    ".sqlite",
+    ".db"
+  ],
+  "minimum_admitted_files_per_root": 1,
+  "archive": {
+    "deterministic_timestamp": "1980-01-01T00:00:00Z",
+    "compression": "ZIP_DEFLATED_LEVEL_9",
+    "member_permissions": "0644",
+    "independent_reopen_and_hash_verification": true
+  },
+  "scientific_data_included": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
