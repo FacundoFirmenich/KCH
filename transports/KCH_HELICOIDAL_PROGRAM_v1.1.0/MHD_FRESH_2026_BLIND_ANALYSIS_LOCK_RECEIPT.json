@@ -1,0 +1,32 @@
+{
+  "format": "KCH_MHD_FRESH_2026_BLIND_ANALYSIS_LOCK_RECEIPT",
+  "model_lock_id": "mhd11lock:39386aec6efeedb085e22ca03925c24be47f475000ef2213263d8daaf4f4e17f",
+  "model_lock_sha256": "ba1160b1e30bb948b5ccffda06e0a1c8807538bc63fe71ec8ddde56b7330859a",
+  "training_source_sha256": "cc4f4e562702ab525c7d53c73b96cb13cdf3acc194be99b9dcda349a7e7e2948",
+  "model_family": "active-region-balanced ridge logistic regression",
+  "primary_horizons_hours": [12, 24, 48],
+  "fresh_periods": {
+    "TEST_C1": ["2026-01-01T00:00:00Z", "2026-05-31T23:59:59Z"],
+    "TEST_C2": ["2026-06-01T00:00:00Z", "2026-10-10T23:59:59Z"]
+  },
+  "decision_thresholds": {
+    "minimum_logscore_gain": 0.01,
+    "minimum_relative_brier_improvement": 0.05,
+    "minimum_auprc_gain": 0.02,
+    "maximum_ece_degradation": 0.01,
+    "bootstrap_lower_95_logscore_gain": 0.0,
+    "minimum_positive_horizons_in_both_periods": 2,
+    "weighted_logscore_gain_minimum": 0.01,
+    "weighted_brier_improvement_minimum": 0.05
+  },
+  "signed_features": ["MEANJZH", "MEANALP"],
+  "unsigned_controls": ["ABSNJZH", "TOTUSJH"],
+  "hemisphere_interactions": ["MEANJZH_X_HEMISPHERE_SIGN", "MEANALP_X_HEMISPHERE_SIGN"],
+  "developmental_2021_2025_results": "DESIGN_ONLY_NOT_CONFIRMATORY",
+  "fresh_2026_artifact_accessed_before_lock": false,
+  "fresh_2026_values_inspected_before_lock": false,
+  "acquisition_workflow_may_have_started_before_remote_lock_commit": true,
+  "classification": "BLIND_ANALYSIS_LOCK_BEFORE_ARTIFACT_ACCESS_NOT_STRICT_PREACQUISITION_PREREGISTRATION",
+  "posthoc_rescue": "FORBIDDEN",
+  "authority_ceiling": "NONE"
+}
