@@ -41,32 +41,60 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --name kch-helical-v10-mhd-census-complete \
             --dir "$RUNNER_TEMP/mhd_census"
-          find "$RUNNER_TEMP/mhd_census" -name MHD_CENSUS_WINDOWS.csv.gz -type f -print
+          census=$(find "$RUNNER_TEMP/mhd_census" -name MHD_SOLAR_CENSUS_WINDOWS.csv.gz -type f -print -quit)
+          test -n "$census"
+          echo "MHD_CENSUS_PATH=$census" >> "$GITHUB_ENV"
       - name: Select models and seal power gate before test evaluation
         shell: bash
         run: |
           set -euo pipefail
-          census=$(find "$RUNNER_TEMP/mhd_census" -name MHD_CENSUS_WINDOWS.csv.gz -type f -print -quit)
-          test -n "$census"
           out="$RUNNER_TEMP/mhd_v11"
           mkdir -p "$out"
+          set +e
           python .github/helical_v11/mhd_predictive_gate.py select-lock \
-            --census "$census" \
+            --census "$MHD_CENSUS_PATH" \
             --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
             --output "$out/MHD_MODEL_SELECTION_LOCK_V1_1.json" \
-            | tee "$out/SELECTION_STDOUT.log"
-      - name: Open TEST_A and TEST_B once under sealed selection
+            2>&1 | tee "$out/SELECTION_STDOUT.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$rc" > "$out/SELECTION_EXIT_CODE.txt"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then
+            exit "$rc"
+          fi
+      - name: Open TEST_A and TEST_B once if the sealed power gate authorizes it
         shell: bash
         run: |
           set -euo pipefail
-          census=$(find "$RUNNER_TEMP/mhd_census" -name MHD_CENSUS_WINDOWS.csv.gz -type f -print -quit)
           out="$RUNNER_TEMP/mhd_v11"
-          python .github/helical_v11/mhd_predictive_gate.py evaluate \
-            --census "$census" \
-            --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
-            --lock "$out/MHD_MODEL_SELECTION_LOCK_V1_1.json" \
-            --out "$out" \
-            | tee "$out/EVALUATION_STDOUT.log"
+          if jq -e '.test_open_authorized == true' "$out/MHD_MODEL_SELECTION_LOCK_V1_1.json" >/dev/null; then
+            python .github/helical_v11/mhd_predictive_gate.py evaluate \
+              --census "$MHD_CENSUS_PATH" \
+              --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
+              --lock "$out/MHD_MODEL_SELECTION_LOCK_V1_1.json" \
+              --out "$out" \
+              2>&1 | tee "$out/EVALUATION_STDOUT.log"
+          else
+            python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          out = Path(os.environ['RUNNER_TEMP']) / 'mhd_v11'
+          lock = json.loads((out / 'MHD_MODEL_SELECTION_LOCK_V1_1.json').read_text())
+          body = {
+              'format': 'KCH_MHD_HELICITY_FORECAST_GATE_RESULT_V1_1',
+              'outcome': 'INSUFFICIENT_POWER_BEFORE_TEST_OPEN',
+              'selection_lock_id': lock['selection_lock_id'],
+              'test_metrics_evaluated': False,
+              'physical_helicity': 'NOT_EVALUATED',
+              'promotion': 'BLOCKED',
+              'canonicalization': 'BLOCKED',
+              'authority_ceiling': 'NONE',
+          }
+          canonical = json.dumps(body, sort_keys=True, separators=(',', ':')).encode()
+          body['gate_result_id'] = 'mhd11g:' + hashlib.sha256(canonical).hexdigest()
+          (out / 'MHD_HELICITY_FORECAST_GATE_RESULT_V1_1.json').write_text(json.dumps(body, indent=2, sort_keys=True) + '\n')
+          PY
+          fi
           cp .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json "$out/"
           find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
       - name: Upload sealed MHD v1.1 result
