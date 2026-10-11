@@ -1,0 +1,50 @@
+{
+  "authority_ceiling": "FINITE_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
+  "authority_id": "h17locauth:0f1652c97ae2a1a9a0ea9941a3e95e30d465bf6d234208508190589eb82dd620",
+  "authority_type": "FINITE_SINGLE_SUCCESSOR_EXECUTION",
+  "canonicalization_authority": false,
+  "crosswalk_row_export_authorized": false,
+  "directional_row_export_authorized": false,
+  "event_identifier_export_authorized": false,
+  "expires_after": "ONE_COMPLETED_OR_FAIL_CLOSED_WORKFLOW_RUN",
+  "frozen_crosswalk_git_blob_sha1": "cfa0ee325d573679db497636e28fbc5b6e2b628e",
+  "frozen_crosswalk_git_commit": "e458afe20b8172db5a04194224cf21df5ec00dc4",
+  "issued_from_user_instruction": "a por la siguiente frontera material.",
+  "location_perturbation_draw_execution_authorized": false,
+  "minimum_both_errors_fraction_per_cohort": 0.8,
+  "null_family_execution_authorized": false,
+  "predecessor_failure_class": "MISSING_LOCATION_UNCERTAINTY_IN_PRIMARY_FOCAL_MECHANISM_SOURCE",
+  "promotion_authority": false,
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "publication_authority": false,
+  "raw_source_export_authorized": false,
+  "retrospective_mutation_authority": false,
+  "scope": [
+    "REACQUIRE_ALREADY_IDENTIFIED_PUBLIC_SOURCE_BYTES",
+    "RECOMPUTE_LOCKED_BLIND_SELECTION",
+    "OPEN_STRIKE_DIP_RAKE_FOR_SELECTED_INDICES_ONLY",
+    "REEXECUTE_LOCKED_DIRECTIONAL_PREFLIGHT",
+    "QUERY_USGS_COMCAT_PUBLIC_FDSN_EVENT_API_1981_2021_FOR_SELECTED_COHORT_BBOXES",
+    "MATCH_SELECTED_EVENTS_TO_COMCAT_WITH_FROZEN_V0_8_OPERATOR",
+    "MEASURE_HORIZONTAL_AND_DEPTH_ERROR_COVERAGE",
+    "PERSIST_AGGREGATE_RECEIPTS_AND_CONTENT_DIGESTS_ONLY",
+    "PURGE_RAW_SOURCE_BLIND_DIRECTIONAL_CROSSWALK_AND_COMCAT_ROWS"
+  ],
+  "scientific_model_fit_authorized": false,
+  "sealed_test_scoring_authorized": false,
+  "selected_counts": {
+    "BAY_AREA_HAYWARD_CALAVERAS": 37853,
+    "PARKFIELD_CENTRAL_SAF": 23702
+  },
+  "selected_event_count": 61555,
+  "selected_primary_cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ],
+  "single_use": true,
+  "status": "ACTIVE_UNTIL_SINGLE_SUCCESSOR_TERMINATES",
+  "upstream_directional_unseal_request_id": "h10unsealreq:1e886dc0c068df426f52295b860a64948f085a4bdcc16f89a953432c9cc959c0",
+  "upstream_eligibility_result_id": "h10elig:8126dfea8302dd5c9ea15c04afb5d4e7d1407c2bdb47b24cea34c91efbb37ed0",
+  "upstream_location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "upstream_parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb"
+}
