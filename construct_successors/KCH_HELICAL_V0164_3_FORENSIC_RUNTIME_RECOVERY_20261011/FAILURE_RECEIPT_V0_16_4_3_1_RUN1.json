@@ -1,0 +1,28 @@
+{
+  "format": "KCH_HELICAL_V0_16_4_3_1_FAILURE_RECEIPT",
+  "github_run_id": 38165435830,
+  "github_job_id": 114546916838,
+  "head_sha": "5bedc702833cc3e385c27d0dc97e4b4ae38eabbb",
+  "failed_step": "Derive trust anchor and recover complete runtime members",
+  "failure_class": "RECOVERY_CHANNEL_CONFLATION",
+  "terminal_error": "NOT_RECOVERABLE_FROM_VALID_PREFIX: tools/freeze_null_perturbation_runtime.py",
+  "compiler_required_from_tar_prefix": true,
+  "compiler_available_from_independent_exact_transport": true,
+  "corrected_semantics": {
+    "compiler_channel": "INDEPENDENT_GIT_BLOB_TRANSPORT",
+    "runtime_channel": "VALID_COMPLETE_TAR_PREFIX_MEMBER",
+    "tests_channel": "VALID_COMPLETE_TAR_PREFIX_MEMBER"
+  },
+  "runtime_recoverability_evaluated": false,
+  "tests_recoverability_evaluated": false,
+  "ledger_rows_regenerated": false,
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_mutated": false,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "successor": "V0_16_4_3_2_SEPARATE_RECOVERY_CHANNELS"
+}
