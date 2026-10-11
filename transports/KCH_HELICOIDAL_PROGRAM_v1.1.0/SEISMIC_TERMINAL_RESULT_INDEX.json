@@ -1,0 +1,100 @@
+{
+  "format": "KCH_SEISMIC_TERMINAL_RESULT_INDEX_V1_1",
+  "version": "1.1.0",
+  "protocol": {
+    "status": "LOCKED_BEFORE_REAL_MECHANISM_ANGLE_ACCESS",
+    "protocol_sha256": "6319eda56f95bc2e6781eec4a00249f71afe0df7836efd17ee382faa28169773",
+    "network_lock_id": "s11net:67ed98bec7602ce1de9f2a86196f5894549fa4fc1fb66a577b0e2f7a51fe540f",
+    "overlap_abstention_receipt_id": "s11overlap:41c0b5078eb647c76cdf50043668e47407f09a68d211219dc3f88355ba0b8874",
+    "overlapping_events_abstained": 909,
+    "calibration_freeze_id": "s11freeze:2f4d1dec0a495d72cb9355687b90b07eec8c956f38856136d4e35373eb651a41",
+    "test_access": "OPENED_ONCE_AFTER_CALIBRATION_FREEZE"
+  },
+  "directional_acquisition": {
+    "directional_acquisition_id": "s11dir:e22bb558ab385163211bb1b87e2d45cf9d98f1e638fcc9f183511bdf03779a72",
+    "selected_event_count": 5489,
+    "successful_directional_parse_count": 5489,
+    "coverage_gate_pass": true,
+    "mechanism_file_sha256": "2246faf8d41a3a386539d7973180e6ac55c52fefbc80661135bf28046d5100f0",
+    "exact_body_archive_sha256": "e6253256acf3ad016330b73f44f9cc1575aa43f47e674abd2774cb569ca416de",
+    "source_rate_limit_recovery": "INITIAL_2289_PLUS_16_SHARDS_RESOLVING_3200_HTTP_429_FAILURES",
+    "source_substitution": false
+  },
+  "observation_and_topology": {
+    "sdr_convention_receipt_id": "s11sdr:94f92ee64a80dd06dcc59909d3228a64d0df1ca40e62bbc7bd07b1400c52a971",
+    "coordinate_system": "AKI_RICHARDS_NORTH_EAST_DOWN",
+    "nodal_plane_equivalence_failures": 165,
+    "projection_failures": 6,
+    "axis_observable_events": 5318,
+    "materialization_id": "s11mat:d769261237673ec2394e20bb76cd5f015048f066e9174bf1c312daa7e2390ca7",
+    "path_ambiguity_receipt_id": "s11path:91719e274eb7508007738a1ba63be04f2f5ad48ef80f0f5e2f714a7744b6667c",
+    "path_queries": 378105,
+    "accepted_candidate_edges": 80632,
+    "ambiguous_paths_abstained": 936,
+    "observability_gate_id": "s11obs:088db1005caf16a520508193ca61a2a43ac1fb572738ce57ccf444069d3a793c",
+    "bay_area_test_observable_events": 1077,
+    "parkfield_test_observable_events": 245
+  },
+  "execution": {
+    "workflow_run_id": 38168145373,
+    "artifact_id": 11712194400,
+    "artifact_sha256": "51d3b3d048776b26a2f08ed4ac700e090ae6d6aa7bbad3ff81cc3d4433131089",
+    "gate_result_id": "s11g:8d00bdfa348c406d18c4ee5bcaa1ad9b25a57c0a71dea5f32fe29f28d7d8b437",
+    "outcome": "NONHELICAL_FULL_NETWORK_RIVAL_GENERALIZES",
+    "positive_primary_cohorts": 0,
+    "required_positive_primary_cohorts": 2,
+    "terminal_closure_authorized": true
+  },
+  "unit_results": {
+    "BAY_AREA": {
+      "test_n": 1077,
+      "baseline_model": "M0",
+      "log_score_gain": 0.00042280233788094534,
+      "relative_rmse_improvement": -0.0057470167205734115,
+      "delta_bic_helical_minus_baseline": 54.586318244516406,
+      "bootstrap_log_gain_q025_median_q975": [-0.00161797283925434, 0.00037774347442470855, 0.002280692551277979],
+      "bootstrap_rmse_gain_q025_median_q975": [-0.022442050029929012, -0.006824499508663262, 0.009402771727901318],
+      "primary_gate_pass": false
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "test_n": 245,
+      "baseline_model": "M0",
+      "log_score_gain": 0.009332098173821413,
+      "relative_rmse_improvement": 0.008518490583971835,
+      "delta_bic_helical_minus_baseline": 38.32889884421593,
+      "bootstrap_log_gain_q025_median_q975": [0.0011851461527105946, 0.008789229414031758, 0.017606302542055315],
+      "bootstrap_rmse_gain_q025_median_q975": [-0.014660151086972719, 0.007002324822993674, 0.031011357325472288],
+      "primary_gate_pass": false
+    }
+  },
+  "aggregate": {
+    "test_n": 1322,
+    "event_weighted_log_score_gain": 0.002073919947416055,
+    "event_weighted_relative_rmse_improvement": -0.003103257802560109,
+    "minimum_log_score_gain": 0.02,
+    "minimum_relative_rmse_improvement": 0.05
+  },
+  "program_decision": {
+    "decision": "SEISMIC_HELICAL_PROGRAM_CLOSED_WITH_UPPER_BOUNDS",
+    "bay_area_95pct_bootstrap_upper_log_score_gain": 0.002280692551277979,
+    "parkfield_95pct_bootstrap_upper_log_score_gain": 0.017606302542055315,
+    "bay_area_95pct_bootstrap_upper_rmse_improvement": 0.009402771727901318,
+    "parkfield_95pct_bootstrap_upper_rmse_improvement": 0.031011357325472288,
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "universal_absence_of_helicity": "NOT_ESTABLISHED",
+    "posthoc_rescue": "FORBIDDEN"
+  },
+  "qualification": {
+    "null_qualification_run_id": 38168028699,
+    "bidirectional_qualification_run_id": 38168089632,
+    "null_rejected": true,
+    "strong_synthetic_signal_detected_in_two_cohorts": true,
+    "fixture_authority": "ZERO"
+  },
+  "governance": {
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "merge": "NOT_PERFORMED",
+    "authority_ceiling": "NONE"
+  }
+}
