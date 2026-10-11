@@ -19,12 +19,29 @@ def sha256_file(path: Path) -> str:
 
 
 def p_axis(strike: np.ndarray, dip: np.ndarray, rake: np.ndarray) -> np.ndarray:
-    s = np.deg2rad(strike); d = np.deg2rad(dip); r = np.deg2rad(rake)
-    sv = np.stack([np.cos(s), np.sin(s), np.zeros_like(s)], axis=1)
-    dd = np.stack([-np.sin(s) * np.cos(d), np.cos(s) * np.cos(d), np.sin(d)], axis=1)
-    normal = np.cross(sv, dd); normal /= np.linalg.norm(normal, axis=1)[:, None]
-    slip = np.cos(r)[:, None] * sv + np.sin(r)[:, None] * dd; slip /= np.linalg.norm(slip, axis=1)[:, None]
-    axis = normal - slip; axis /= np.linalg.norm(axis, axis=1)[:, None]
+    strike = np.deg2rad(np.asarray(strike, dtype=float))
+    dip = np.deg2rad(np.asarray(dip, dtype=float))
+    rake = np.deg2rad(np.asarray(rake, dtype=float))
+    normal = np.stack(
+        [
+            -np.sin(dip) * np.sin(strike),
+            np.sin(dip) * np.cos(strike),
+            -np.cos(dip),
+        ],
+        axis=1,
+    )
+    slip = np.stack(
+        [
+            np.cos(rake) * np.cos(strike) + np.sin(rake) * np.cos(dip) * np.sin(strike),
+            np.cos(rake) * np.sin(strike) - np.sin(rake) * np.cos(dip) * np.cos(strike),
+            -np.sin(rake) * np.sin(dip),
+        ],
+        axis=1,
+    )
+    normal /= np.linalg.norm(normal, axis=1)[:, None]
+    slip /= np.linalg.norm(slip, axis=1)[:, None]
+    axis = slip - normal
+    axis /= np.linalg.norm(axis, axis=1)[:, None]
     return axis
 
 
@@ -104,7 +121,7 @@ def main() -> int:
         "SEISMIC_TERMINAL_FULL_NETWORK_PRIMARY_RESULT_V1_1.json",
         "SEISMIC_TERMINAL_CALIBRATION_GRID_V1_1.csv",
         "SEISMIC_TERMINAL_CALIBRATION_FREEZE_V1_1.json",
-        "JSON_CANONICALIZATION_REPAIR_RECEIPT.json",
+        "JSON_AND_SDR_ADAPTER_RECEIPT.json",
     ]
     for name in required:
         path = result_root / name
@@ -119,10 +136,11 @@ def main() -> int:
         "serialization_completed": True,
         "calibration_freeze_created": True,
         "test_adjudication_created": True,
+        "sdr_coordinate_system": "AKI_RICHARDS_NORTH_EAST_DOWN",
         "outcome": result["outcome"],
         "result_sha256": sha256_file(result_root / required[0]),
         "base_runtime_sha256": sha256_file(args.repo_root / ".github/helical_v11/seismic_terminal_primary_gate.py"),
-        "json_adapter_sha256": sha256_file(args.repo_root / ".github/helical_v11/run_primary_gate_json_safe.py"),
+        "json_sdr_adapter_sha256": sha256_file(args.repo_root / ".github/helical_v11/run_primary_gate_json_safe.py"),
         "authority_ceiling": "NONE",
     }
     (args.out / "QUALIFICATION_RECEIPT.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
