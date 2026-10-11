@@ -1,0 +1,41 @@
+{
+  "format": "KCH_HELICAL_V0_16_4_AUTHORITY_LEASE",
+  "lease_id": "helical-v0164-historical-null-ledger-recovery-20261011",
+  "predecessor_branch": "helical-v0163-runtime-integration-source-custody-repair-20261011",
+  "predecessor_commit": "4652aadf68f7e9aa79e9a1743a966bee451eb2c7",
+  "predecessor_receipt_id": "h1631custody:30463dc08f4343b9240a6f816c33275db749337c2d3532ebc4394b9f37e03b35",
+  "predecessor_validation_id": "h1631validation:426448cc8ec188073b0178ad9c5984cb96f1da4b69d91b9d3a2a8817bcf29fa7",
+  "authority_ceiling": "HISTORICAL_CODE_AND_LEDGER_COMPILER_RECOVERY_ONLY",
+  "authorized_operations": [
+    "recover_exact_v0_8_4_source_transport",
+    "verify_frozen_git_blob_identities",
+    "verify_locked_canonical_source_hashes",
+    "materialize_exact_null_runtime_compiler_and_tests",
+    "compile_recovered_python_sources",
+    "freeze_compiler_cli_and_ast_surface",
+    "carry_v0_13_contract_summary_and_status_as_verification_targets",
+    "emit_append_only_recovery_receipt",
+    "upload_code_only_recovery_artifact"
+  ],
+  "forbidden_operations": [
+    "scientific_data_acquisition",
+    "pickle_deserialization",
+    "directional_value_access",
+    "parent_graph_regeneration",
+    "calibration_job_execution",
+    "sealed_test_access",
+    "scientific_scoring",
+    "scientific_interpretation",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "scientific_data_included": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "finite": true
+}
