@@ -47,12 +47,13 @@ jobs:
             'https://raw.githubusercontent.com/GEMScienceTools/gem-global-active-faults/56816508ad92fd6846dad1163b1c8c01376a2cd1/geojson/gem_active_faults_harmonized.geojson' \
             --output "$RUNNER_TEMP/terminal/source/gem_active_faults_harmonized.geojson"
           echo '37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1  '"$RUNNER_TEMP/terminal/source/gem_active_faults_harmonized.geojson" | sha256sum -c -
-      - name: Materialize nodal-plane-invariant axial marks and full-network candidates
+      - name: Materialize axial marks and ambiguity-filtered full-network candidates
         shell: bash
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/terminal"
-          PYTHONUNBUFFERED=1 python .github/helical_v11/seismic_terminal_prepare.py \
+          PYTHONUNBUFFERED=1 python .github/helical_v11/run_terminal_prepare_with_path_ambiguity.py \
+            --script .github/helical_v11/seismic_terminal_prepare.py \
             --network-root "$RUNNER_TEMP/network" \
             --directional-root "$RUNNER_TEMP/directional" \
             --fault-geojson "$out/source/gem_active_faults_harmonized.geojson" \
