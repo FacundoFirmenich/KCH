@@ -1,0 +1,53 @@
+name: Helical v1.1 event-id QuakeML probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v11-mhd-execution-seismic-terminal-20261011
+    paths:
+      - .github/workflows/helical-v11-eventid-quakeml-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare event-detail GeoJSON and event-id QuakeML
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/eventid_probe"; mkdir -p "$out"
+          id='nc73671846'
+          curl --fail-with-body --location --retry 5 --retry-all-errors --max-time 180 \
+            "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/${id}.geojson" -o "$out/detail.geojson"
+          curl --fail-with-body --location --retry 5 --retry-all-errors --max-time 180 \
+            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=xml&eventid=${id}" -o "$out/event.xml"
+          python - <<'PY' > "$out/inspection.json"
+          import hashlib,json,os,re
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'eventid_probe'
+          result={}
+          for name in ['detail.geojson','event.xml']:
+              b=(root/name).read_bytes(); text=b.decode('utf-8')
+              result[name]={
+                'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),
+                'focal_mechanism_elements':len(re.findall(r'<(?:\\w+:)?focalMechanism\\b',text)),
+                'nodal_planes_elements':len(re.findall(r'<(?:\\w+:)?nodalPlanes\\b',text)),
+                'np1_property_in_text':'nodal-plane-1-strike' in text,
+              }
+          print(json.dumps(result,indent=2,sort_keys=True))
+          PY
+          cat "$out/inspection.json"
+      - name: Upload probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-eventid-quakeml-probe
+          path: ${{ runner.temp }}/eventid_probe
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
