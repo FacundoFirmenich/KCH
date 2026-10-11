@@ -1,0 +1,80 @@
+name: Helical v1.1 MHD signed-helicity predictive gate
+
+on:
+  push:
+    branches:
+      - gate/helical-v11-mhd-execution-seismic-terminal-20261011
+    paths:
+      - .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json
+      - .github/helical_v11/mhd_predictive_gate.py
+      - .github/workflows/helical-v11-mhd-predictive-gate.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned predictive stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pandas==2.2.3' 'scikit-learn==1.5.2'
+      - name: Recover sealed exact-source MHD census
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/mhd_census"
+          gh run download 38145647725 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name kch-helical-v10-mhd-census-complete \
+            --dir "$RUNNER_TEMP/mhd_census"
+          find "$RUNNER_TEMP/mhd_census" -name MHD_CENSUS_WINDOWS.csv.gz -type f -print
+      - name: Select models and seal power gate before test evaluation
+        shell: bash
+        run: |
+          set -euo pipefail
+          census=$(find "$RUNNER_TEMP/mhd_census" -name MHD_CENSUS_WINDOWS.csv.gz -type f -print -quit)
+          test -n "$census"
+          out="$RUNNER_TEMP/mhd_v11"
+          mkdir -p "$out"
+          python .github/helical_v11/mhd_predictive_gate.py select-lock \
+            --census "$census" \
+            --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
+            --output "$out/MHD_MODEL_SELECTION_LOCK_V1_1.json" \
+            | tee "$out/SELECTION_STDOUT.log"
+      - name: Open TEST_A and TEST_B once under sealed selection
+        shell: bash
+        run: |
+          set -euo pipefail
+          census=$(find "$RUNNER_TEMP/mhd_census" -name MHD_CENSUS_WINDOWS.csv.gz -type f -print -quit)
+          out="$RUNNER_TEMP/mhd_v11"
+          python .github/helical_v11/mhd_predictive_gate.py evaluate \
+            --census "$census" \
+            --protocol .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json \
+            --lock "$out/MHD_MODEL_SELECTION_LOCK_V1_1.json" \
+            --out "$out" \
+            | tee "$out/EVALUATION_STDOUT.log"
+          cp .github/helical_v11/MHD_HELICITY_FORECAST_GATE_V1_1_LOCKED.json "$out/"
+          find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
+      - name: Upload sealed MHD v1.1 result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-mhd-predictive-gate
+          path: ${{ runner.temp }}/mhd_v11
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
