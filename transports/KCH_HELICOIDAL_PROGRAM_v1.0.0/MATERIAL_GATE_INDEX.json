@@ -1,0 +1,114 @@
+{
+  "format": "KCH_HELICOIDAL_PROGRAM_V1_0_MATERIAL_GATE_INDEX",
+  "version": "1.0.0",
+  "state": "MATERIAL_GATE_COMPLETE_SCIENTIFIC_EXECUTION_PENDING",
+  "mhd": {
+    "census_id": "mhdc:79a47e7db721fe2114a5e0064217e1c36c6ccffd4d52fefd1b168604410bfd08",
+    "decision_id": "mhd10:75b78f564ce663c6a25895a88a9acfa4db81924b0387dd3a4e8f05913d47c3b3",
+    "outcome": "MHD_CENSUS_PASS_PRIMARY_M1_12_24_48H",
+    "raw_jsoc_rows": 204827,
+    "strict_six_hour_windows": 25508,
+    "active_regions": 1806,
+    "active_region_split": {
+      "train": 893,
+      "calibration": 131,
+      "test_a": 429,
+      "test_b": 353
+    },
+    "primary_confirmatory_targets": [
+      "M1_PLUS_12H",
+      "M1_PLUS_24H",
+      "M1_PLUS_48H"
+    ],
+    "secondary_or_upper_bound_only": [
+      "M1_PLUS_6H",
+      "X1_PLUS_12H",
+      "X1_PLUS_24H",
+      "X1_PLUS_48H"
+    ],
+    "feature_outcome_association_evaluated": false,
+    "scientific_model_execution_performed": false,
+    "remote_run_id": 38145647725,
+    "remote_artifact_id": 11704382819,
+    "remote_artifact_sha256": "b33d019c993b7e9abda74e2d876aa2e344e480b874306eedc538c74df308a28e"
+  },
+  "seismic_post2021": {
+    "blind_census_id": "s9c:f24956fad2fa770735f2e7aa65d15e169de2ffccdd6c66d5d0301fe01a0c326d",
+    "blind_census_outcome": "BLIND_CENSUS_PASS",
+    "fault_preflight_id": "s9f:f1f907c42a5d74c40338a85863efef39d46d11cecac6fb2ad7107351acd77d3b",
+    "fault_preflight_outcome": "FAULT_ASSIGNMENT_PREFLIGHT_PASS",
+    "material_decision_id": "s10m:b474ff888855f1de293b0c5a654f24f4eb110739cf71e973cef0852006eb4254",
+    "selected_new_data_cohorts": [
+      "BAY_AREA",
+      "PARKFIELD_CENTRAL_SAF"
+    ],
+    "bay_area": {
+      "blind_events": 6513,
+      "assigned_events": 5346,
+      "assignment_coverage": 0.82081989866421,
+      "sealed_test_events": 1337,
+      "test_children_with_same_segment_parent": 1195
+    },
+    "parkfield": {
+      "blind_events": 2302,
+      "assigned_events": 1903,
+      "assignment_coverage": 0.8266724587315378,
+      "sealed_test_events": 476,
+      "test_children_with_same_segment_parent": 422
+    },
+    "mendocino_excluded_before_angle_access": true,
+    "walker_lane_excluded_before_angle_access": true,
+    "directional_angles_accessed": false,
+    "scientific_model_execution_performed": false,
+    "terminal_rule": "CLOSE_SEISMIC_HELICAL_PROGRAM_IF_FINAL_NEW_DATA_FULL_NETWORK_GATE_IS_NEGATIVE",
+    "census_run_id": 38145229762,
+    "census_artifact_id": 11704830522,
+    "census_artifact_sha256": "aceb947e1a302e3eae9fbd8d88d211a52aa96e9d6b7ef875f8b4897d1bcf8dd0",
+    "preflight_run_id": 38145986840,
+    "preflight_artifact_id": 11704706818,
+    "preflight_artifact_sha256": "e7867cdfd3fdb5bd0a4399bbd22bb1d5e5ce7f61753f09ea623afd857df13d7f"
+  },
+  "manuscripts": {
+    "audit_id": "ms10:7ef3d1d163c4a9782671ba7a7f1193b54dfebf9e178edd50899f03fc4a15193d",
+    "outcome": "INTERNAL_MAJOR_REVISION_PASS_AWAITING_EXTERNAL_REVIEW",
+    "formal_manuscript": "PAPER_1_PROJECTED_RECURRENCE_HELICAL_LIFTS_V2.md",
+    "empirical_manuscript": "PAPER_2_FAIL_CLOSED_HELICAL_TESTS_CALIFORNIA_V3.md",
+    "external_peer_review_performed": false,
+    "submission_authority": "BLOCKED"
+  },
+  "kwanblocks": {
+    "predecessor_graph_id": "kbg:aee1f7a1fc200ebcdf8b5fc2a3d2525e25e30f4bc12e962feb578668f4fc8ac2",
+    "graph_id": "kbg:35d45bd471f9aef92db14d54f2ee66a590a29af5ee87ef899367fb9ea9312cbd",
+    "ledger_head": "046e46657bed4cb38b9748138994ec3ceaca046bbbdad2c4d6983aca0fce1c6b",
+    "blocks": 20,
+    "edges": 26,
+    "events": 48,
+    "validation_id": "h10val:d0650b51f38f59a7d5d49c7d9780936f5d395d7d92bd729d9b9ac95794a95063",
+    "validation": "124/124 PASS",
+    "sqlite_integrity": "ok",
+    "foreign_key_errors": 0
+  },
+  "release": {
+    "full_package": {
+      "name": "KCH_HELICOIDAL_PROGRAM_v1_0_0_MATERIAL_GATE.zip",
+      "bytes": 74175728,
+      "sha256": "869cb023dfd2a323ce7373c8d646b19cc47dd5e391fc1307bb59e46c375803b1",
+      "deterministic_rebuild": "PASS",
+      "zip_crc": "PASS"
+    },
+    "evidence_bundle": {
+      "name": "KCH_HELICOIDAL_PROGRAM_v1_0_0_EVIDENCE.zip",
+      "bytes": 6278242,
+      "sha256": "811736e0a95c398b9a5ac9c0c6b4c28e56fad25b15ece1ba3b993c41eaae2fcb",
+      "deterministic_rebuild": "PASS",
+      "zip_crc": "PASS"
+    },
+    "delivery_id": "h10delivery:c65483e710e0a47e20a51036c02d1fb82263f7a7f54f7eb6d5a0f2c8193c6bf3"
+  },
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED_IN_NEW_GATES",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "merge": "NOT_PERFORMED",
+  "authority_ceiling": "NONE"
+}
