@@ -1,0 +1,191 @@
+name: KCH Helical v0.16 explicit null operator qualification
+
+on:
+  push:
+    branches:
+      - helical-v016-explicit-null-operator-qualification-20261011
+    paths:
+      - ".github/workflows/helical-v016-explicit-null-operator-qualification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v016-operator-qualification-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011
+  PAYLOAD: construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/bootstrap/V0_16_CODE_PAYLOAD.zip
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+
+jobs:
+  qualify-explicit-null-operators:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout finite lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v016-explicit-null-operator-qualification-20261011
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Reconstruct SHA-locked code-only successor payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ROOT"
+          python - "$PAYLOAD" "$ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib, sys, zipfile
+
+          payload_path=Path(sys.argv[1]).resolve()
+          root=Path(sys.argv[2]).resolve()
+          payload=payload_path.read_bytes()
+          expected_zip_sha='885ef07e53056eacd3d28f6de9a6a483df6899719cc1d41309b490aa4c086b65'
+          if len(payload)!=20639 or hashlib.sha256(payload).hexdigest()!=expected_zip_sha:
+              raise SystemExit('payload size/SHA-256 mismatch')
+          expected={
+            'AUTHORITY_LEASE_V0_16.json':('a276238a2433ccf755acaea6f573951392495ee5bb821e6990e81c52dc084a70',1397),
+            'OPERATOR_CONTRACT_V0_16.json':('580df07140446367a968ce0c139bf1857461fd4c73c1e84e5e25b260ab99a638',2489),
+            'README.md':('aeb0b3abad7d1430f572880780843b7380473d9cdcd9f56213e8a26dc100b30b',993),
+            'null_perturbation_operators_v016.py':('6a41cdbfc3131c3e42d7bcd41770dd615712e75824cc016e0fa8a1a70d389acb',38672),
+            'run_operator_qualification_v016.py':('6449321443df1e82f94455fbc1174b1c89510f66ce56ca6ecfc867b2289f97d3',7254),
+            'test_null_perturbation_operators_v016.py':('1b38fbb25b6622520cd2c8d6dbaf4790a3c3f64014ed2a3c3bcd3263973c6820',17127),
+          }
+          with zipfile.ZipFile(payload_path) as archive:
+              names=archive.namelist()
+              if set(names)!=set(expected) or len(names)!=len(expected):
+                  raise SystemExit(f'unexpected payload members: {names}')
+              for info in archive.infolist():
+                  rel=Path(info.filename)
+                  if rel.is_absolute() or '..' in rel.parts or info.is_dir():
+                      raise SystemExit(f'unsafe payload member: {info.filename}')
+                  data=archive.read(info)
+                  sha,size=expected[info.filename]
+                  if len(data)!=size or hashlib.sha256(data).hexdigest()!=sha:
+                      raise SystemExit(f'member integrity mismatch: {info.filename}')
+                  target=root/rel
+                  target.parent.mkdir(parents=True,exist_ok=True)
+                  target.write_bytes(data)
+          PY
+
+      - name: Install frozen numerical dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --only-binary=:all: 'numpy==2.1.3'
+          python - <<'PY'
+          import numpy
+          assert numpy.__version__ == '2.1.3'
+          PY
+
+      - name: Verify predecessor, lease and source syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ROOT/receipts"
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/helical-v016-pycache"
+          python -m py_compile \
+            "$ROOT/null_perturbation_operators_v016.py" \
+            "$ROOT/test_null_perturbation_operators_v016.py" \
+            "$ROOT/run_operator_qualification_v016.py"
+          python -m json.tool "$ROOT/OPERATOR_CONTRACT_V0_16.json" >/dev/null
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_16.json" >/dev/null
+          python -m json.tool construct_successors/KCH_HELICAL_V0154_LOCKED_SINGLE_CHAR_REPAIR_QUORUM_20261010/receipts/HISTORICAL_RUNTIME_SOURCE_QUORUM_RECEIPT_V0_15_4.json >/dev/null
+
+      - name: Execute code-only qualification
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          python "$ROOT/run_operator_qualification_v016.py" \
+            --receipt "$ROOT/receipts/EXPLICIT_NULL_OPERATOR_QUALIFICATION_RECEIPT_V0_16.json" \
+            > "$ROOT/receipts/GATE_STDOUT.txt" \
+            2> "$ROOT/receipts/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$ROOT/receipts/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat "$ROOT/receipts/GATE_STDOUT.txt"
+          if [[ -s "$ROOT/receipts/GATE_STDERR.txt" ]]; then cat "$ROOT/receipts/GATE_STDERR.txt" >&2; fi
+          exit 0
+
+      - name: Audit code-only payload and emit immutable manifest
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find "$ROOT" -type f \( -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o -name '*.h5' -o -name '*.hdf5' -o -name '*.sqlite' -o -name '*.db' \) | grep -q .; then
+            echo "forbidden scientific/raw payload entered v0.16 successor" >&2
+            exit 91
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, sys
+          root=Path(sys.argv[1]); rows=[]
+          for path in sorted(item for item in root.rglob('*') if item.is_file() and item.name!='RESULT_MANIFEST.json'):
+              body=path.read_bytes()
+              rows.append({'path':path.relative_to(root).as_posix(),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()})
+          manifest={
+            'format':'KCH_HELICAL_V0_16_CODE_ONLY_RESULT_MANIFEST',
+            'github_run_id':os.environ['GITHUB_RUN_ID'],
+            'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+            'github_sha':os.environ['GITHUB_SHA'],
+            'payload_sha256':'885ef07e53056eacd3d28f6de9a6a483df6899719cc1d41309b490aa4c086b65',
+            'predecessor_receipt_id':'h154runtimequorum:390e837ffa24cede138ce4fd41267be079ae8f7816ea38f03f9d4c55dd4dbed7',
+            'operator_lineage':'NEW_EXPLICIT_SUCCESSOR_NOT_HISTORICAL_IDENTITY',
+            'scientific_data_included':False,
+            'calibration_executed':False,
+            'sealed_test_accessed':False,
+            'scientific_result':None,
+            'files':rows,
+          }
+          manifest['manifest_id']='h16manifest:'+hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (root/'receipts'/'RESULT_MANIFEST.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          PY
+
+      - name: Persist append-only qualification receipt and source
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v016-operator-qualification"
+          git config user.email "kch-helical-v016-operator-qualification@users.noreply.github.com"
+          git add "$ROOT"
+          if git diff --cached --quiet; then
+            echo "No qualification/source delta"
+          else
+            git commit -m "record v0.16 explicit null operator qualification [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload code-only evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v016-operator-qualification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate explicit operator qualification
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0) echo "EXPLICIT_NULL_OPERATOR_QUALIFICATION_PASS: separate finite calibration-only authority may now be considered" ;;
+            *) echo "EXPLICIT_NULL_OPERATOR_QUALIFICATION_FAIL_CLOSED with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac
