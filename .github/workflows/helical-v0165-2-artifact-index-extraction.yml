@@ -1,0 +1,68 @@
+name: KCH Helical v0.16.5.2 relevant artifact index extraction
+
+on:
+  push:
+    branches:
+      - helical-v0165-2-artifact-index-extraction-20261012
+    paths:
+      - ".github/workflows/helical-v0165-2-artifact-index-extraction.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012
+  SCRIPT: construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012/extract_relevant_artifact_index_v0165_2.py
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+
+jobs:
+  compact-artifact-index:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout successor branch
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0165-2-artifact-index-extraction-20261012
+          fetch-depth: 1
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+      - name: Verify authority and compact persisted inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_16_5_2.json" >/dev/null
+          python -m py_compile "$SCRIPT"
+          python "$SCRIPT" --root "$ROOT"
+      - name: Verify no payload operation occurred
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json,sys
+          root=Path(sys.argv[1]);p=root/'receipts/RELEVANT_ARTIFACT_INDEX_V0_16_5_2.json'
+          v=json.loads(p.read_text())
+          assert v['status']=='PASS'
+          assert v['artifact_payloads_downloaded'] is False
+          assert v['records_modified'] is False
+          assert v['scientific_data_accessed'] is False
+          assert v['sealed_test_accessed'] is False
+          assert v['scientific_result'] is None
+          assert v['promotion']=='BLOCKED'
+          assert v['canonicalization']=='BLOCKED'
+          PY
+      - name: Persist compact index append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0165-2-index"
+          git config user.email "kch-helical-v0165-2-index@users.noreply.github.com"
+          git add "$ROOT/receipts/RELEVANT_ARTIFACT_INDEX_V0_16_5_2.json"
+          git commit -m "record v0.16.5.2 relevant artifact index [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
