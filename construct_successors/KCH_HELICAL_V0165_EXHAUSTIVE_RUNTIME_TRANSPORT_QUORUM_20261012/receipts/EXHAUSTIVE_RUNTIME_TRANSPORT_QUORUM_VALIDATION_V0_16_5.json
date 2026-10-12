@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "all_actions_artifacts_listed": true,
+    "all_git_refs_enumerated": true,
+    "candidate_execution_forbidden": true,
+    "git_object_type_discrimination": true,
+    "predecessor_failure_preserved": true,
+    "scientific_payloads_skipped": true,
+    "sealed_test_not_accessed": true,
+    "strict_base64_only": true
+  },
+  "format": "KCH_HELICAL_V0_16_5_1_VALIDATION",
+  "inventory_id": "h1651inventory:e8cc7247c1d70f08f18927e81bcab0fc10dd45e0cc938bdffda31dfb64d60204",
+  "receipt_id": "h1651transport:a45d1b835cca51a25d736cba638c01ac0b094c49c4af41491cde3c2f04f7b08b",
+  "status": "PASS",
+  "validation_id": "h1651validation:f566e059ba6cb504dcd0ca028806df360fe893b274971626e35c54d4d7e78001"
+}

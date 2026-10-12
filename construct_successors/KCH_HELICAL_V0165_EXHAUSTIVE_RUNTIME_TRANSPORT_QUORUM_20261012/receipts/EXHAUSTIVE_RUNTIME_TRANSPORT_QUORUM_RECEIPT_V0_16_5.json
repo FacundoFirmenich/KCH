@@ -1,0 +1,689 @@
+{
+  "artifacts": {
+    "downloaded": 0,
+    "downloaded_bytes": 0,
+    "errors": [
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11574549527,
+        "name": "helical-v08-exact-sources-37835637164"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11575771597,
+        "name": "helical-v08-exact-sources-37835892646"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11574829230,
+        "name": "helical-v08-exact-sources-37836377349"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11575319191,
+        "name": "helical-v08-exact-sources-37836724453"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11576161260,
+        "name": "helical-v08-public-file-discovery-37837054729"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11576406781,
+        "name": "helical-v08-source-evidence-37837804668"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11576900598,
+        "name": "helical-v08-focal-part-005-37837804668"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11593978890,
+        "name": "kch-helical-v08-frozen-bundle-inspection"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11594212656,
+        "name": "helical-v08-2-mendeley-public-route-discovery"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11593384772,
+        "name": "helical-v08-4-blind-gate"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11594766261,
+        "name": "helical-v08-5-blind-gate"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11595385091,
+        "name": "helical-v08-6-blind-gate"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11594966584,
+        "name": "kch-helical-v08-selected-directional-preflight"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11594781964,
+        "name": "helical-v08-7-blind-gate"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11643896422,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37987432029-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11643946798,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37987748493-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11643208621,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37987943485-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644645471,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37988963077-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11643614915,
+        "name": "kch-helical-v0132-transport-forensics-37989004454-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644930230,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37989093059-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644675628,
+        "name": "kch-helical-v0132-transport-forensics-v2-37989166554-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644651980,
+        "name": "kch-helical-v0132-source-custody-37989910641-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11645280902,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37990527479-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644977154,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37990558345-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644548154,
+        "name": "kch-helical-v0132-historical-runtime-inspection-37990626907-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644772691,
+        "name": "kch-helical-v0132-schema-inspection-37990749903-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11644464337,
+        "name": "kch-helical-v0132-schema-inspection-37991259050-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11650052272,
+        "name": "kch-helical-v015-runtime-quorum-38003323885-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11650077308,
+        "name": "kch-helical-v015-runtime-quorum-38003397727-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11650560559,
+        "name": "kch-helical-v0151-runtime-quorum-38003565387-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11649274968,
+        "name": "kch-helical-v0152-runtime-quorum-38003899554-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11650063512,
+        "name": "kch-helical-v0153-runtime-quorum-38004037221-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11650775833,
+        "name": "kch-helical-v0154-runtime-quorum-38004292842-1"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11703913987,
+        "name": "kch-helical-v10-source-probe"
+      },
+      {
+        "error": "<HTTPError 401: 'Server failed to authenticate the request. Please refer to the information in the www-authenticate header.'>",
+        "id": 11710669557,
+        "name": "kch-helical-v0163-1-source-custody-38164123238-1"
+      }
+    ],
+    "listed": 298,
+    "relevant_unexpired": 44
+  },
+  "calibration_executed": false,
+  "candidate_source_executed": false,
+  "candidate_source_imported": false,
+  "canonicalization": "BLOCKED",
+  "format": "KCH_HELICAL_V0_16_5_1_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM",
+  "git": {
+    "reachable_objects": 8305,
+    "relevant_blobs": 1584
+  },
+  "git_object_type_discrimination": "PASS",
+  "github_run_id": "38189770167",
+  "github_sha": "4252c402ec48849b269c2a602ee253a6102bb249",
+  "historical_v0_13_ledger_identity_transferred": false,
+  "inspection": {
+    "members_seen": 1439,
+    "scientific_members_skipped_without_read": 6
+  },
+  "missing_source_bytes_inferred": false,
+  "next_gate": "SPECIFICATION_DERIVED_NONIDENTICAL_RUNTIME_SUCCESSOR",
+  "object_type_guard_skipped_count": 384,
+  "outcome": "RUNTIME_SOURCE_NOT_RECOVERABLE_FROM_AVAILABLE_INDEPENDENT_TRANSPORTS",
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor_failed_job_id": 114619344855,
+  "predecessor_failed_run_id": 38189616529,
+  "promotion": "BLOCKED",
+  "receipt_id": "h1651transport:a45d1b835cca51a25d736cba638c01ac0b094c49c4af41491cde3c2f04f7b08b",
+  "repository": "FacundoFirmenich/KCH",
+  "scientific_data_accessed": false,
+  "scientific_payload_members_read": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "search_protocol_status": "PASS",
+  "symbol_candidates": [
+    {
+      "ast_parse": true,
+      "bytes": 17127,
+      "functions": [
+        "_rewire_fixture",
+        "assertFinite",
+        "parameters",
+        "test_001_all_required_symbols_exist",
+        "test_002_seeded_rng_reproducible",
+        "test_003_seeded_rng_namespace_separation",
+        "test_004_circular_distance_wrap_and_symmetry",
+        "test_005_circular_distance_invalid_period_fails",
+        "test_006_head_to_normal_is_unit_and_orthogonal",
+        "test_007_reflected_rake_is_involution",
+        "test_008_uncertainty_draws_are_bounded_and_reproducible",
+        "test_009_uncertainty_missing_or_negative_fails",
+        "test_010_posterior_zero_uncertainty_matches_exact_mark",
+        "test_011_mark_permutation_preserves_stratum_multisets",
+        "test_012_singleton_permutation_unchanged_and_reported",
+        "test_013_static_logodds_is_antisymmetric",
+        "test_014_static_field_exact_and_backoff",
+        "test_015_static_field_missing_cohort_fails",
+        "test_016_eval_intensity_positive_and_decays",
+        "test_017_eval_intensity_temporal_violation_fails",
+        "test_018_parent_state_probabilities_close",
+        "test_019_parent_state_self_edge_fails",
+        "test_020_rewiring_preserves_degrees_weights_and_time",
+        "test_021_rewiring_fail_closed_on_impossible_candidate_contract",
+        "test_022_make_rewired_null_is_deterministic",
+        "test_023_simulate_catalog_deterministic_and_stable",
+        "test_024_simulate_catalog_rejects_supercritical",
+        "test_025_nonhelical_simulation_preserves_graph_and_zero_twist",
+        "test_026_score_perfect_candidate_beats_baseline",
+        "test_027_direction_reversal_equivariance",
+        "test_028_moving_block_length_domain_and_reproducibility",
+        "test_029_moving_block_requires_sorted_time",
+        "test_030_public_functions_have_no_io_parameters",
+        "test_031_all_numeric_outputs_are_float64_or_int64",
+        "test_032_no_imputation_on_nonfinite_input",
+        "test_033_static_field_preserves_source_mark_rows",
+        "test_034_parent_probabilities_are_positive",
+        "test_035_reflection_flips_chirality_mark",
+        "test_036_score_weight_scaling_invariant",
+        "test_037_permutation_is_deterministic",
+        "test_038_input_arrays_are_not_mutated",
+        "test_039_parent_rewiring_preserves_edge_count",
+        "test_040_operator_module_contract_ids_are_frozen"
+      ],
+      "git_object": "d364c0c06768945ad952f9c2df328860b6b54cfd",
+      "git_path": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/receipts/RUNTIME_INTEGRATION_SOURCE_CUSTODY_V0_16_3_1.zip",
+      "logical_name": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/receipts/RUNTIME_INTEGRATION_SOURCE_CUSTODY_V0_16_3_1.zip!/construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/test_null_perturbation_operators_v016.py",
+      "member": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/test_null_perturbation_operators_v016.py",
+      "sha256": "1b38fbb25b6622520cd2c8d6dbaf4790a3c3f64014ed2a3c3bcd3263973c6820",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 17127,
+      "functions": [
+        "_rewire_fixture",
+        "assertFinite",
+        "parameters",
+        "test_001_all_required_symbols_exist",
+        "test_002_seeded_rng_reproducible",
+        "test_003_seeded_rng_namespace_separation",
+        "test_004_circular_distance_wrap_and_symmetry",
+        "test_005_circular_distance_invalid_period_fails",
+        "test_006_head_to_normal_is_unit_and_orthogonal",
+        "test_007_reflected_rake_is_involution",
+        "test_008_uncertainty_draws_are_bounded_and_reproducible",
+        "test_009_uncertainty_missing_or_negative_fails",
+        "test_010_posterior_zero_uncertainty_matches_exact_mark",
+        "test_011_mark_permutation_preserves_stratum_multisets",
+        "test_012_singleton_permutation_unchanged_and_reported",
+        "test_013_static_logodds_is_antisymmetric",
+        "test_014_static_field_exact_and_backoff",
+        "test_015_static_field_missing_cohort_fails",
+        "test_016_eval_intensity_positive_and_decays",
+        "test_017_eval_intensity_temporal_violation_fails",
+        "test_018_parent_state_probabilities_close",
+        "test_019_parent_state_self_edge_fails",
+        "test_020_rewiring_preserves_degrees_weights_and_time",
+        "test_021_rewiring_fail_closed_on_impossible_candidate_contract",
+        "test_022_make_rewired_null_is_deterministic",
+        "test_023_simulate_catalog_deterministic_and_stable",
+        "test_024_simulate_catalog_rejects_supercritical",
+        "test_025_nonhelical_simulation_preserves_graph_and_zero_twist",
+        "test_026_score_perfect_candidate_beats_baseline",
+        "test_027_direction_reversal_equivariance",
+        "test_028_moving_block_length_domain_and_reproducibility",
+        "test_029_moving_block_requires_sorted_time",
+        "test_030_public_functions_have_no_io_parameters",
+        "test_031_all_numeric_outputs_are_float64_or_int64",
+        "test_032_no_imputation_on_nonfinite_input",
+        "test_033_static_field_preserves_source_mark_rows",
+        "test_034_parent_probabilities_are_positive",
+        "test_035_reflection_flips_chirality_mark",
+        "test_036_score_weight_scaling_invariant",
+        "test_037_permutation_is_deterministic",
+        "test_038_input_arrays_are_not_mutated",
+        "test_039_parent_rewiring_preserves_edge_count",
+        "test_040_operator_module_contract_ids_are_frozen"
+      ],
+      "git_object": "c1cc83639cab8f4ed0093df19afea24f1b592373",
+      "git_path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/bootstrap/V0_16_CODE_PAYLOAD.zip",
+      "logical_name": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/bootstrap/V0_16_CODE_PAYLOAD.zip!/test_null_perturbation_operators_v016.py",
+      "member": "test_null_perturbation_operators_v016.py",
+      "sha256": "1b38fbb25b6622520cd2c8d6dbaf4790a3c3f64014ed2a3c3bcd3263973c6820",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 17127,
+      "functions": [
+        "_rewire_fixture",
+        "assertFinite",
+        "parameters",
+        "test_001_all_required_symbols_exist",
+        "test_002_seeded_rng_reproducible",
+        "test_003_seeded_rng_namespace_separation",
+        "test_004_circular_distance_wrap_and_symmetry",
+        "test_005_circular_distance_invalid_period_fails",
+        "test_006_head_to_normal_is_unit_and_orthogonal",
+        "test_007_reflected_rake_is_involution",
+        "test_008_uncertainty_draws_are_bounded_and_reproducible",
+        "test_009_uncertainty_missing_or_negative_fails",
+        "test_010_posterior_zero_uncertainty_matches_exact_mark",
+        "test_011_mark_permutation_preserves_stratum_multisets",
+        "test_012_singleton_permutation_unchanged_and_reported",
+        "test_013_static_logodds_is_antisymmetric",
+        "test_014_static_field_exact_and_backoff",
+        "test_015_static_field_missing_cohort_fails",
+        "test_016_eval_intensity_positive_and_decays",
+        "test_017_eval_intensity_temporal_violation_fails",
+        "test_018_parent_state_probabilities_close",
+        "test_019_parent_state_self_edge_fails",
+        "test_020_rewiring_preserves_degrees_weights_and_time",
+        "test_021_rewiring_fail_closed_on_impossible_candidate_contract",
+        "test_022_make_rewired_null_is_deterministic",
+        "test_023_simulate_catalog_deterministic_and_stable",
+        "test_024_simulate_catalog_rejects_supercritical",
+        "test_025_nonhelical_simulation_preserves_graph_and_zero_twist",
+        "test_026_score_perfect_candidate_beats_baseline",
+        "test_027_direction_reversal_equivariance",
+        "test_028_moving_block_length_domain_and_reproducibility",
+        "test_029_moving_block_requires_sorted_time",
+        "test_030_public_functions_have_no_io_parameters",
+        "test_031_all_numeric_outputs_are_float64_or_int64",
+        "test_032_no_imputation_on_nonfinite_input",
+        "test_033_static_field_preserves_source_mark_rows",
+        "test_034_parent_probabilities_are_positive",
+        "test_035_reflection_flips_chirality_mark",
+        "test_036_score_weight_scaling_invariant",
+        "test_037_permutation_is_deterministic",
+        "test_038_input_arrays_are_not_mutated",
+        "test_039_parent_rewiring_preserves_edge_count",
+        "test_040_operator_module_contract_ids_are_frozen"
+      ],
+      "git_object": "06e55e4334724c81e0fbaa88e9a964c2498479a6",
+      "git_path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/test_null_perturbation_operators_v016.py",
+      "logical_name": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/test_null_perturbation_operators_v016.py",
+      "sha256": "1b38fbb25b6622520cd2c8d6dbaf4790a3c3f64014ed2a3c3bcd3263973c6820",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 7254,
+      "functions": [
+        "content_id",
+        "main",
+        "sha256"
+      ],
+      "git_object": "54d43fc9edee8f960c45c94b20acc28f0aade9f0",
+      "git_path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/run_operator_qualification_v016.py",
+      "logical_name": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/run_operator_qualification_v016.py",
+      "sha256": "6449321443df1e82f94455fbc1174b1c89510f66ce56ca6ecfc867b2289f97d3",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 38672,
+      "functions": [
+        "_as_float64",
+        "_as_int64",
+        "_as_object_1d",
+        "_canonical_bytes",
+        "_fold_dip_degrees",
+        "_mechanism_marks",
+        "_normalize_signed_degrees",
+        "_normalize_unsigned_degrees",
+        "_same_length",
+        "_sample_omori_delay",
+        "_scalar_or_array",
+        "_weight_deciles",
+        "allowed",
+        "circular_distance_degrees",
+        "compute_parent_state",
+        "draw_static_fields",
+        "eval_intensity",
+        "head_to_normal",
+        "make_rewired_null",
+        "moving_block_resample",
+        "permute_within_bins",
+        "posterior_mark_expectations",
+        "propagate_mechanism_uncertainty",
+        "reflected_rake",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "simulate_nonhelical_fixed_parent_weights",
+        "static_logodds"
+      ],
+      "git_object": "d364c0c06768945ad952f9c2df328860b6b54cfd",
+      "git_path": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/receipts/RUNTIME_INTEGRATION_SOURCE_CUSTODY_V0_16_3_1.zip",
+      "logical_name": "construct_successors/KCH_HELICAL_V0163_RUNTIME_INTEGRATION_SOURCE_CUSTODY_REPAIR_20261011/receipts/RUNTIME_INTEGRATION_SOURCE_CUSTODY_V0_16_3_1.zip!/construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/null_perturbation_operators_v016.py",
+      "member": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/null_perturbation_operators_v016.py",
+      "sha256": "6a41cdbfc3131c3e42d7bcd41770dd615712e75824cc016e0fa8a1a70d389acb",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 38672,
+      "functions": [
+        "_as_float64",
+        "_as_int64",
+        "_as_object_1d",
+        "_canonical_bytes",
+        "_fold_dip_degrees",
+        "_mechanism_marks",
+        "_normalize_signed_degrees",
+        "_normalize_unsigned_degrees",
+        "_same_length",
+        "_sample_omori_delay",
+        "_scalar_or_array",
+        "_weight_deciles",
+        "allowed",
+        "circular_distance_degrees",
+        "compute_parent_state",
+        "draw_static_fields",
+        "eval_intensity",
+        "head_to_normal",
+        "make_rewired_null",
+        "moving_block_resample",
+        "permute_within_bins",
+        "posterior_mark_expectations",
+        "propagate_mechanism_uncertainty",
+        "reflected_rake",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "simulate_nonhelical_fixed_parent_weights",
+        "static_logodds"
+      ],
+      "git_object": "c1cc83639cab8f4ed0093df19afea24f1b592373",
+      "git_path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/bootstrap/V0_16_CODE_PAYLOAD.zip",
+      "logical_name": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/bootstrap/V0_16_CODE_PAYLOAD.zip!/null_perturbation_operators_v016.py",
+      "member": "null_perturbation_operators_v016.py",
+      "sha256": "6a41cdbfc3131c3e42d7bcd41770dd615712e75824cc016e0fa8a1a70d389acb",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 38672,
+      "functions": [
+        "_as_float64",
+        "_as_int64",
+        "_as_object_1d",
+        "_canonical_bytes",
+        "_fold_dip_degrees",
+        "_mechanism_marks",
+        "_normalize_signed_degrees",
+        "_normalize_unsigned_degrees",
+        "_same_length",
+        "_sample_omori_delay",
+        "_scalar_or_array",
+        "_weight_deciles",
+        "allowed",
+        "circular_distance_degrees",
+        "compute_parent_state",
+        "draw_static_fields",
+        "eval_intensity",
+        "head_to_normal",
+        "make_rewired_null",
+        "moving_block_resample",
+        "permute_within_bins",
+        "posterior_mark_expectations",
+        "propagate_mechanism_uncertainty",
+        "reflected_rake",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "simulate_nonhelical_fixed_parent_weights",
+        "static_logodds"
+      ],
+      "git_object": "daa09b60cf08bbf4ce7cba65d561692051f9a35d",
+      "git_path": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/null_perturbation_operators_v016.py",
+      "logical_name": "construct_successors/KCH_HELICAL_V016_EXPLICIT_NULL_OPERATOR_QUALIFICATION_20261011/null_perturbation_operators_v016.py",
+      "sha256": "6a41cdbfc3131c3e42d7bcd41770dd615712e75824cc016e0fa8a1a70d389acb",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 14991,
+      "functions": [
+        "canonical",
+        "content_id",
+        "definitions",
+        "extract_archive",
+        "git",
+        "main",
+        "safe_member",
+        "sha256_bytes",
+        "utc_now",
+        "validate_authority",
+        "write_json"
+      ],
+      "git_object": "9288e6231d44dd3744a8dfa5253db0f4c61d0977",
+      "git_path": "construct_successors/KCH_HELICAL_V015_HISTORICAL_RUNTIME_QUORUM_20261010/reconstruct_v06_runtime_quorum.py",
+      "logical_name": "construct_successors/KCH_HELICAL_V015_HISTORICAL_RUNTIME_QUORUM_20261010/reconstruct_v06_runtime_quorum.py",
+      "sha256": "6d88e4a0021b5b1b9edfb94573de61186dc0af3a637f5b1f78dc65961e749e59",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    },
+    {
+      "ast_parse": true,
+      "bytes": 10247,
+      "functions": [
+        "__init__",
+        "analyse",
+        "artifacts",
+        "canon",
+        "dedupe",
+        "h",
+        "inspect",
+        "main",
+        "req",
+        "safe",
+        "sh",
+        "source"
+      ],
+      "git_object": "2ec3ea801a47f5eef3893f02f37b5df0f1513fa2",
+      "git_path": "construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012/exhaustive_runtime_transport_quorum_v0165.py",
+      "logical_name": "construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012/exhaustive_runtime_transport_quorum_v0165.py",
+      "sha256": "db340bf657e6ce691bac0f09e0899bb1b0ed0f2a643ff9473f7993e14a08af30",
+      "surface": "git",
+      "symbol_hits": [
+        "compute_parent_state",
+        "eval_intensity",
+        "moving_block_resample",
+        "permute_within_bins",
+        "propagate_mechanism_uncertainty",
+        "rewire_parent_graph",
+        "score_null_metrics",
+        "seeded_rng",
+        "simulate_catalog",
+        "static_logodds"
+      ],
+      "utf8": true
+    }
+  ],
+  "targets": {
+    "runtime": [],
+    "tests": []
+  },
+  "transport_bytes_repaired": false
+}
