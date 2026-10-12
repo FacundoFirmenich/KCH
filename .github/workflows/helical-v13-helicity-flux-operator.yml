@@ -1,0 +1,50 @@
+name: Helical v1.3 helicity-flux operator qualification
+
+on:
+  push:
+    branches:
+      - gate/helical-v13-helicity-flux-operator-20261012
+    paths:
+      - .github/helical_v13/helicity_flux_operator.py
+      - .github/workflows/helical-v13-helicity-flux-operator.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned numerical stack and pinned DAVE4VM implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pandas==2.2.3' 'scipy==1.14.1' 'astropy==6.1.4' 'drms==0.9.0' 'requests==2.32.3'
+          git clone https://github.com/Hypnus1803/pyflowmaps.git "$RUNNER_TEMP/pyflowmaps"
+          git -C "$RUNNER_TEMP/pyflowmaps" checkout c231189ae9134b7578d431a062ccc132565fba1d
+          test "$(git -C "$RUNNER_TEMP/pyflowmaps" rev-parse HEAD)" = "c231189ae9134b7578d431a062ccc132565fba1d"
+          python -m pip install --no-deps "$RUNNER_TEMP/pyflowmaps"
+      - name: Execute locked synthetic and real-field operator qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/helical_v13_operator"
+          mkdir -p "$out"
+          PYTHONUNBUFFERED=1 python .github/helical_v13/helicity_flux_operator.py             --lock transports/KCH_HELICOIDAL_PROGRAM_v1.3.0/HELICITY_FLUX_OPERATOR_QUALIFICATION_LOCK.json             --out "$out" | tee "$out/EXECUTION_STDOUT.log"
+      - name: Upload sealed operator evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v13-helicity-flux-operator
+          path: ${{ runner.temp }}/helical_v13_operator
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
