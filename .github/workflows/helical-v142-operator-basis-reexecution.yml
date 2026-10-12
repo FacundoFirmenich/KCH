@@ -51,6 +51,7 @@ jobs:
             construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_LOCK_V1_4_1.json \
             construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json \
             > "$RUNNER_TEMP/helical-v142/INPUT_SHA256SUMS.txt"
+          python -m py_compile .github/helical_v142/multiscale_operator_basis_v142.py
 
       - name: Execute development-only multiscale operator-basis gate
         id: gate
