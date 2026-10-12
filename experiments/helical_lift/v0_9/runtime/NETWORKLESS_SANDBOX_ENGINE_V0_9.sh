@@ -73,7 +73,7 @@ trap cleanup EXIT INT TERM
 set +e
 unshare --user --map-root-user --mount --net --pid --fork bash -s -- \
   "$root" "$input" "$program" "$support_dir" "$output_dir" "$timeout_seconds" "$memory_mib" "$output_limit_mib" "$python_inside" "$python_prefix" "${program_args[@]}" <<'INNER'
-set -euo pipefail
+set -euxo pipefail
 root=$1; host_input=$2; host_program=$3; host_support=$4; host_output=$5
 timeout_seconds=$6; memory_mib=$7; output_limit_mib=$8; python_inside=$9; python_prefix=${10}
 shift 10
@@ -108,7 +108,7 @@ mount -o remount,ro,bind "$root/app/support"
 mount --bind "$host_output" "$root/out"
 mount -o remount,rw,bind,nosuid,nodev "$root/out"
 chmod 0555 "$root" "$root/in" "$root/app" "$root/tmp"
-mount -o remount,ro "$root"
+mount -o remount,ro,nosuid,nodev,noexec tmpfs "$root"
 
 ulimit -t "$timeout_seconds"
 ulimit -n 96

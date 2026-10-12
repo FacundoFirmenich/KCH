@@ -62,6 +62,26 @@ jobs:
           unshare --user --map-root-user --mount --net --pid --fork true
           printf '%s\n' "USER_MOUNT_NET_PID_NAMESPACES_PASS" > "$RUNNER_TEMP/helical-v09/receipts/USERNS_PREFLIGHT.txt"
 
+      - name: Verify hardened boundary before downloading scientific sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe="$RUNNER_TEMP/helical-v09/receipts/sandbox-preflight"
+          mkdir -p "$probe"
+          set +e
+          bash runtime/RUN_HARDENED_PICKLE_EXTRACTION_V0_9.sh \
+            --input source_lock/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json \
+            --expected-sha256 9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246 \
+            --output-dir "$probe/output" \
+            --memory-mib 8192 --timeout-seconds 60 > "$probe/stdout.txt" 2> "$probe/stderr.txt"
+          rc=$?
+          set -e
+          cat "$probe/stderr.txt"
+          test "$rc" -ne 0
+          grep -q "opcode" "$probe/stderr.txt"
+          test ! -e "$probe/output/blind_columns.npz"
+          printf '%s\n' "REAL_JSON_REJECTED_INSIDE_PICKLE_BOUNDARY_PASS" > "$probe/RESULT.txt"
+
       - name: Execute exact-byte acquisition, sandbox extraction, and blind eligibility
         id: gate
         shell: bash
