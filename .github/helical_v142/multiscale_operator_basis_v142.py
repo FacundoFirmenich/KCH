@@ -16,7 +16,14 @@ from astropy.io import fits
 from scipy.ndimage import binary_erosion, gaussian_filter
 
 ROOT = Path(__file__).resolve().parents[2]
-PARENT_PROTOCOL = ROOT / "construct_successors" / "KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012" / "OPERATOR_BASIS_PROTOCOL_V1_4.json"\nSUCCESSOR_PROTOCOL = ROOT / "construct_successors" / "KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012" / "OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json"\nMASK_SUPPORT_LOCK = ROOT / "construct_successors" / "KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012" / "MASK_SUPPORT_LOCK_V1_4_1.json"\nMASK_SUPPORT = json.loads(MASK_SUPPORT_LOCK.read_text())\nSELECTED_SUPPORT_THRESHOLD = float(MASK_SUPPORT["selected_gaussian_support_threshold"])\nMASK_EROSION_ITERATIONS = int(MASK_SUPPORT["native_mask_erosion_iterations"])\nSCALE_SUPPORT_FLOOR = int(MASK_SUPPORT["support_floor_pixels"])\nOUT = Path(os.environ.get("OUT", "/tmp/helical_v142_operator_basis"))
+PARENT_PROTOCOL = ROOT / "construct_successors" / "KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012" / "OPERATOR_BASIS_PROTOCOL_V1_4.json"
+SUCCESSOR_PROTOCOL = ROOT / "construct_successors" / "KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012" / "OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json"
+MASK_SUPPORT_LOCK = ROOT / "construct_successors" / "KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012" / "MASK_SUPPORT_LOCK_V1_4_1.json"
+MASK_SUPPORT = json.loads(MASK_SUPPORT_LOCK.read_text())
+SELECTED_SUPPORT_THRESHOLD = float(MASK_SUPPORT["selected_gaussian_support_threshold"])
+MASK_EROSION_ITERATIONS = int(MASK_SUPPORT["native_mask_erosion_iterations"])
+SCALE_SUPPORT_FLOOR = int(MASK_SUPPORT["support_floor_pixels"])
+OUT = Path(os.environ.get("OUT", "/tmp/helical_v142_operator_basis"))
 RAW = OUT / "raw"
 SAFE = OUT / "safe"
 RAW.mkdir(parents=True, exist_ok=True)
@@ -442,7 +449,8 @@ def execute_record(client: drms.Client, record: dict[str, Any], protocol: dict[s
 
 
 def main() -> int:
-    protocol = json.loads(PARENT_PROTOCOL.read_text())\n    successor_protocol = json.loads(SUCCESSOR_PROTOCOL.read_text())
+    protocol = json.loads(PARENT_PROTOCOL.read_text())
+    successor_protocol = json.loads(SUCCESSOR_PROTOCOL.read_text())
     client = drms.Client()
     results: list[dict[str, Any]] = []
     support_failures: list[dict[str, str]] = []
@@ -464,7 +472,13 @@ def main() -> int:
         rc = 30
 
     report = {
-        "format": "KCH_HELICAL_V1_4_2_MULTISCALE_OPERATOR_BASIS_RESULT",\n        "parent_protocol_sha256": sha256_file(PARENT_PROTOCOL),\n        "successor_protocol_sha256": sha256_file(SUCCESSOR_PROTOCOL),\n        "mask_support_lock_sha256": sha256_file(MASK_SUPPORT_LOCK),\n        "selected_gaussian_support_threshold": SELECTED_SUPPORT_THRESHOLD,\n        "mask_erosion_iterations": MASK_EROSION_ITERATIONS,\n        "scale_support_floor_pixels": SCALE_SUPPORT_FLOOR,
+        "format": "KCH_HELICAL_V1_4_2_MULTISCALE_OPERATOR_BASIS_RESULT",
+        "parent_protocol_sha256": sha256_file(PARENT_PROTOCOL),
+        "successor_protocol_sha256": sha256_file(SUCCESSOR_PROTOCOL),
+        "mask_support_lock_sha256": sha256_file(MASK_SUPPORT_LOCK),
+        "selected_gaussian_support_threshold": SELECTED_SUPPORT_THRESHOLD,
+        "mask_erosion_iterations": MASK_EROSION_ITERATIONS,
+        "scale_support_floor_pixels": SCALE_SUPPORT_FLOOR,
         "scope": protocol["scope"],
         "records_requested": len(protocol["records"]),
         "records_completed": len(results),
