@@ -1,0 +1,36 @@
+{
+  "format": "KCH_HELICAL_V0_16_5_1_AUTHORITY_LEASE",
+  "lease_id": "helical-v0165-1-promisor-object-safe-enumeration-20261012",
+  "predecessor_failure_run_id": 38189616529,
+  "predecessor_failure_job_id": 114619344855,
+  "predecessor_failure_class": "UNMATERIALIZED_PROMISOR_OBJECT_NOT_FAIL_CLOSED_HANDLED",
+  "authority_ceiling": "CODE_ONLY_EXHAUSTIVE_TRANSPORT_SEARCH_REPAIR",
+  "authorized_operations": [
+    "discriminate_git_object_type_before_blob_read",
+    "record_non_blob_and_unavailable_objects",
+    "execute_predecessor_exhaustive_search",
+    "readdress_search_receipts",
+    "persist_code_only_receipts"
+  ],
+  "forbidden_operations": [
+    "treat_unavailable_object_as_source_candidate",
+    "repair_or_mutate_transport_bytes",
+    "infer_missing_source_bytes",
+    "import_or_execute_candidate_runtime",
+    "read_scientific_array_members",
+    "scientific_data_acquisition",
+    "calibration_job_execution",
+    "sealed_test_access",
+    "scientific_scoring",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "finite": true
+}
