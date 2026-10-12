@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   exact-byte-to-blind:
+    name: Infrastructure and blind input checks (scientific HOLD allowed)
     runs-on: ubuntu-24.04
     timeout-minutes: 180
     env:
@@ -51,6 +52,13 @@ jobs:
               "pip_freeze_sha256": hashlib.sha256(freeze).hexdigest(),
           }, sort_keys=True, indent=2) + "\n")
           PY
+
+      - name: Test fail-closed input and rerun boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -v > "$RUNNER_TEMP/helical-v09/receipts/REGRESSION_TESTS_V0_9_2.txt" 2>&1
+          cat "$RUNNER_TEMP/helical-v09/receipts/REGRESSION_TESTS_V0_9_2.txt"
 
       - name: Establish namespace support on disposable Ubuntu runner
         shell: bash
@@ -170,5 +178,7 @@ jobs:
           case "${GATE_EXIT_CODE:-99}" in
             0)  echo "ELIGIBILITY_PASS; directional-unseal request prepared, no model fit" ;;
             30) echo "LEGITIMATE_NOT_IDENTIFIABLE_OUTCOME; no model fit" ;;
+            31) echo "::warning::SEMANTIC_HOLD: infrastructure completed; scientific eligibility remains BLOCKED, no cohort selection or model fit"
+                echo "Scientific status: SEMANTIC_HOLD (blocked). Infrastructure checks completed." >> "$GITHUB_STEP_SUMMARY" ;;
             *)  echo "Infrastructure/transport gate failed with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
           esac

@@ -12,7 +12,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from common_v09 import content_id, git_blob_sha1, sha256_file, write_json_atomic  # noqa: E402
-from kch_helical_dynamic_v08.eligibility import blind_eligibility, load_fault_index  # noqa: E402
+from blind_semantics_v092 import inspect_blind_inputs  # noqa: E402
 
 ALLOWED = {
     "num", "nc_sc", "ev_bl", "year", "month", "day", "hour", "minute", "second",
@@ -29,6 +29,13 @@ EXPECTED_PROTOCOL_FILE_SHA256 = "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44
 
 def canonical(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+
+
+def verify_receipt_id(receipt: dict[str, Any], prefix: str) -> None:
+    body = dict(receipt)
+    declared = body.pop("receipt_id", None)
+    if declared != content_id(prefix, body):
+        raise SystemExit(f"{prefix} receipt content-address mismatch")
 
 
 def audit_protocol(path: Path) -> tuple[dict[str, Any], dict[str, str]]:
@@ -66,6 +73,9 @@ def main() -> int:
     extraction = json.loads(args.extraction_receipt.read_text(encoding="utf-8"))
     npz_receipt = json.loads(args.safe_npz_receipt.read_text(encoding="utf-8"))
     acquisition = json.loads(args.acquisition_receipt.read_text(encoding="utf-8"))
+    verify_receipt_id(extraction, "h9extract")
+    verify_receipt_id(npz_receipt, "h9npz")
+    verify_receipt_id(acquisition, "h9acq")
     if acquisition.get("outcome") != "EXACT_BYTE_ACQUISITION_PASS" or acquisition.get("all_or_none_pass") is not True:
         raise SystemExit("acquisition receipt is not PASS")
     if acquisition.get("transaction_committed") is not True:
@@ -99,28 +109,40 @@ def main() -> int:
         if any(value.dtype.kind == "O" or value.dtype.hasobject or value.ndim != 1 for value in columns.values()):
             raise SystemExit("unsafe array in safe NPZ")
 
-    if columns["ev_bl"].dtype.kind in "iufb":
+    inspection = inspect_blind_inputs(columns, extraction.get("event_count", 0))
+    if npz_receipt.get("event_count") != extraction.get("event_count"):
+        raise SystemExit("extraction and safe-NPZ event counts differ")
+    if inspection["status"] != "PASS":
+        outcome = (
+            "BLOCKED_UNCERTIFIED_EVENT_TYPE_ENCODING"
+            if inspection["issues"] == ["UNCERTIFIED_EVENT_TYPE_ENCODING"]
+            else "BLOCKED_BLIND_INPUT_SEMANTICS"
+        )
         hold = {
-            "format": "KCH_HELICAL_EVENT_TYPE_ENCODING_HOLD_V0_9_1",
-            "outcome": "BLOCKED_UNCERTIFIED_EVENT_TYPE_ENCODING",
-            "reason": "The locked earthquake-not-blast filter must not treat unexplained numeric categories as earthquake labels.",
+            "format": "KCH_HELICAL_BLIND_INPUT_SEMANTIC_HOLD_V0_9_2",
+            "outcome": outcome,
+            "reason": "Blind inputs must be semantically verified before the locked selection operator is called.",
+            "protocol_id": protocol["protocol_id"],
+            "safe_npz_sha256": extraction["output_sha256"],
             "source_sha256": mechanism_receipt.get("sha256"),
-            "ev_bl_dtype": columns["ev_bl"].dtype.str,
+            "inspection": inspection,
             "scientific_eligibility_executed": False,
             "directional_fields_unsealed": False,
             "model_fitting_performed": False,
             "authority_ceiling": "NONE",
         }
-        hold["receipt_id"] = content_id("h9encodinghold", hold)
-        write_json_atomic(args.output.parent / "EVENT_TYPE_ENCODING_HOLD_V0_9_1.json", hold)
-        raise SystemExit("BLOCKED_UNCERTIFIED_EVENT_TYPE_ENCODING: provider codebook required")
+        hold["receipt_id"] = content_id("h9semantichold", hold)
+        write_json_atomic(args.output.parent / "BLIND_INPUT_SEMANTIC_HOLD_V0_9_2.json", hold)
+        print(json.dumps(hold, ensure_ascii=False, sort_keys=True, indent=2))
+        return 31
 
+    from kch_helical_dynamic_v08.eligibility import blind_eligibility, load_fault_index
     fault_index = load_fault_index(args.fault_geojson, expected_sha256=fault_sha256)
     result = blind_eligibility(columns, fault_index, protocol)
     if result.get("angle_fields_accessed") is not False:
         raise SystemExit("eligibility operator reported angle access")
     result["transport_successor"] = {
-        "runtime_version": "0.9.0",
+        "runtime_version": "0.9.2",
         **lock,
         "safe_npz_sha256": sha256_file(args.safe_npz),
         "extraction_receipt_id": extraction.get("receipt_id"),
