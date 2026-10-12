@@ -1,0 +1,16 @@
+{
+  "format":"KCH_HELICOIDAL_V1_3_NONSEMANTIC_SERIALIZER_REPAIR",
+  "predecessor_run_id":38251084899,
+  "predecessor_artifact_id":11747774946,
+  "predecessor_artifact_sha256":"fb2607fb8a1692af7666ec88e72ecb318f141a1e3ceb16c880c10bb4db3dbe73",
+  "failure_stage":"final canonical JSON serialization after scientific calculations",
+  "failure":"numpy.bool_ not accepted by Python json encoder",
+  "repair":"convert numpy scalar/array objects to native Python scalar/list only at serialization boundary",
+  "scientific_runtime_math_changed":false,
+  "data_selection_changed":false,
+  "thresholds_changed":false,
+  "models_changed":false,
+  "observed_partial_scientific_values_used_to_change_protocol":false,
+  "rerun_requirement":"same locked v1.3 protocol from scratch",
+  "authority_ceiling":"NONE"
+}
