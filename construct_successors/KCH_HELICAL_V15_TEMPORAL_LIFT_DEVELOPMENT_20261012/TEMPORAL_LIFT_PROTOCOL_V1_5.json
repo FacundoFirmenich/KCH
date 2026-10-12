@@ -1,0 +1,162 @@
+{
+  "format": "KCH_HELICAL_V1_5_TEMPORAL_LIFT_DEVELOPMENT_PROTOCOL",
+  "version": "1.5.0",
+  "status": "FROZEN_BEFORE_TEMPORAL_SOURCE_ACCESS",
+  "scope": "DEVELOPMENT_ONLY_DIRECT_FIELD_TEMPORAL_TRANSPORT_RIVAL_GATE",
+  "parent_operator_lock": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json",
+  "data_partition": {
+    "allowed_years": [2011, 2013, 2015],
+    "fresh_2026_holdout_reuse": "FORBIDDEN",
+    "flare_outcomes": "FORBIDDEN",
+    "future_confirmation": "REQUIRED_FOR_ANY_PHYSICAL_OR_TOPOLOGICAL_PROMOTION"
+  },
+  "harp_trajectories": [
+    {
+      "harp": 401,
+      "trajectory_id": "HARP401_DEV_20110309_20110310",
+      "times_tai": [
+        "2011.03.09_11:24:00_TAI",
+        "2011.03.09_17:24:00_TAI",
+        "2011.03.09_23:24:00_TAI",
+        "2011.03.10_05:24:00_TAI",
+        "2011.03.10_11:24:00_TAI"
+      ]
+    },
+    {
+      "harp": 2920,
+      "trajectory_id": "HARP2920_DEV_20130708_20130709",
+      "times_tai": [
+        "2013.07.08_00:00:00_TAI",
+        "2013.07.08_06:00:00_TAI",
+        "2013.07.08_12:00:00_TAI",
+        "2013.07.08_18:00:00_TAI",
+        "2013.07.09_00:00:00_TAI"
+      ]
+    },
+    {
+      "harp": 5249,
+      "trajectory_id": "HARP5249_DEV_20150302_20150303",
+      "times_tai": [
+        "2015.03.02_00:00:00_TAI",
+        "2015.03.02_06:00:00_TAI",
+        "2015.03.02_12:00:00_TAI",
+        "2015.03.02_18:00:00_TAI",
+        "2015.03.03_00:00:00_TAI"
+      ]
+    }
+  ],
+  "snapshot_eligibility": {
+    "series": "hmi.sharp_cea_720s",
+    "exactly_one_record_per_exact_query": true,
+    "QUALITY_equals_zero": true,
+    "required_segments": ["Br", "Bt", "Bp", "conf_disambig", "bitmap"],
+    "mask_and_multiscale_support": "INHERIT_EXACTLY_FROM_V1_4_2_LOCK",
+    "minimum_valid_pixels_each_scale": 1000,
+    "no_timestamp_substitution": true,
+    "no_interpolation": true,
+    "no_imputation": true
+  },
+  "temporal_spacing_hours": 6,
+  "direct_field_fiber": {
+    "sigma_pixels": [0, 1, 2, 4, 8],
+    "per_scale_components": [
+      "HC_SIGNED_MEAN",
+      "HC_NORMALIZED",
+      "ALPHA_WEIGHTED_PER_MM"
+    ],
+    "cross_scale_components": [
+      "SIGNED_HC_LOG_SCALE_INTEGRAL"
+    ],
+    "dimension": 16,
+    "all_components_parity_odd": true,
+    "feature_selection": "FORBIDDEN"
+  },
+  "activity_control": {
+    "sigma_pixels": 2,
+    "components": [
+      "HC_UNSIGNED_MEAN",
+      "MAGNETIC_ENERGY_PROXY",
+      "JZ_RMS",
+      "GRADIENT_ENERGY"
+    ],
+    "transform": "log(max(value,1e-300))",
+    "normalization": "TRAIN_HARPS_ONLY_MEAN_SD",
+    "activity_scalar_q": "MEAN_OF_FOUR_TRAIN_STANDARDIZED_COMPONENTS",
+    "transition_control": "delta_q=q_tplus1-q_t"
+  },
+  "evaluation": {
+    "scheme": "LEAVE_ONE_HARP_OUT",
+    "folds": 3,
+    "test_transitions_per_fold": 4,
+    "expected_total_test_transitions": 12,
+    "fiber_scale": "TRAIN_TRANSITION_TARGET_RMS_PER_COMPONENT_WITH_FLOOR_1E-12",
+    "primary_metric": "MEAN_NORMALIZED_MSE_OVER_COMPONENTS_AND_TRANSITIONS",
+    "secondary_metric": "MEAN_NORMALIZED_MAE_OVER_COMPONENTS_AND_TRANSITIONS",
+    "no_test_refitting": true
+  },
+  "operational_transport_rivals": {
+    "T0_TRIVIAL_IDENTITY": {
+      "prediction": "y=x",
+      "trainable_parameters": 0
+    },
+    "M_MOBIUS_SIGN": {
+      "prediction": "y=-x",
+      "trainable_parameters": 0,
+      "interpretation": "OPERATIONAL_Z2_SIGN_TRANSPORT_RIVAL_NOT_TOPOLOGICAL_PROOF"
+    },
+    "H_HELICAL_TRANSLATION": {
+      "prediction": "y=x+b",
+      "fit": "b=TRAIN_MEAN(y-x)_PER_COMPONENT",
+      "trainable_parameters": 16,
+      "interpretation": "ORIENTED_AFFINE_DRIFT_RIVAL_NOT_LITERAL_HELIX_PROOF"
+    },
+    "L_LEMNISCATIC_ALTERNATING": {
+      "prediction": "y=x+s_k*b",
+      "phase": "s_k=(-1)^k_WITH_k_TRANSITION_INDEX_0_TO_3_WITHIN_EACH_HARP",
+      "fit": "b=TRAIN_MEAN(s_k*(y-x))_PER_COMPONENT",
+      "phase_tuning": "FORBIDDEN",
+      "trainable_parameters": 16,
+      "interpretation": "ALTERNATING_DRIFT_RIVAL_NOT_LEMNISCATE_TOPOLOGY_PROOF"
+    },
+    "G_ACTIVITY_AFFINE": {
+      "prediction": "z_y=a*z_x+b_component+c*delta_q",
+      "z_definition": "fiber_component_divided_by_train_target_RMS",
+      "fit": "JOINT_OLS_WITH_COMMON_a_COMMON_c_AND_COMPONENT_INTERCEPTS",
+      "trainable_parameters": 18,
+      "ridge": 0.0,
+      "interpretation": "GENERIC_NONTOPOLOGICAL_ACTIVITY_CONDITIONED_AFFINE_RIVAL"
+    }
+  },
+  "dominance_rule": {
+    "minimum_total_test_transitions": 12,
+    "global_primary_margin_vs_runner_up": 0.05,
+    "winner_condition": "winner_NMSE <= 0.95 * runner_up_NMSE",
+    "minimum_fold_wins": 2,
+    "ties": "NO_DEVELOPMENT_DOMINANT_LIFT"
+  },
+  "terminal_outcomes": [
+    "DEVELOPMENT_TRIVIAL_RIVAL_DOMINATES",
+    "DEVELOPMENT_MOBIUS_RIVAL_DOMINATES",
+    "DEVELOPMENT_HELICAL_RIVAL_DOMINATES",
+    "DEVELOPMENT_LEMNISCATIC_RIVAL_DOMINATES",
+    "DEVELOPMENT_GENERIC_ACTIVITY_RIVAL_DOMINATES",
+    "NO_DEVELOPMENT_DOMINANT_LIFT",
+    "INSUFFICIENT_TEMPORAL_SUPPORT"
+  ],
+  "source_resilience": {
+    "metadata_query_attempts": 3,
+    "fixed_backoff_seconds": [0, 3, 10],
+    "retry_changes_scientific_specification": false
+  },
+  "interpretation_boundary": {
+    "development_winner_is_confirmation": false,
+    "physical_helicity": "NOT_EVALUATED",
+    "topological_class": "NOT_EVALUATED",
+    "flare_prediction": "NOT_EVALUATED",
+    "universal_ontology": "FORBIDDEN"
+  },
+  "raw_export": "FORBIDDEN",
+  "authority_ceiling": "NONE",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
