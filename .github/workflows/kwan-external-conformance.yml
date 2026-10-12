@@ -36,6 +36,8 @@ jobs:
       DAG_CBOR_VERSION: '10.0.2'
       MULTIFORMATS_VERSION: '14.0.5'
       TUF_VERSION: '7.0.1'
+      SECURESYSTEMSLIB_VERSION: '1.5.1'
+      CRYPTOGRAPHY_VERSION: '50.0.2'
     steps:
       - name: Checkout exact branch
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -101,8 +103,11 @@ jobs:
           npm install --ignore-scripts --no-audit --no-fund \
             "@ipld/dag-cbor@${DAG_CBOR_VERSION}" \
             "multiformats@${MULTIFORMATS_VERSION}"
-          python -m pip install --disable-pip-version-check \
-            "tuf==${TUF_VERSION}" 'securesystemslib[crypto]'
+          python -m venv .venv-external
+          .venv-external/bin/python -m pip install --disable-pip-version-check \
+            "tuf==${TUF_VERSION}" \
+            "securesystemslib[crypto]==${SECURESYSTEMSLIB_VERSION}" \
+            "cryptography==${CRYPTOGRAPHY_VERSION}"
 
       - name: Execute Kwan external conformance gate
         env:
@@ -110,8 +115,10 @@ jobs:
         run: |
           set -euo pipefail
           export BWRAP_BIN="$(command -v bwrap)"
+          export SUDO_BIN="$(command -v sudo)"
           export NODE_BIN="$(command -v node)"
-          python integrations/kwan-external-conformance/kwan_external_conformance.py \
+          integrations/kwan-external-conformance/.venv-external/bin/python \
+            integrations/kwan-external-conformance/kwan_external_conformance_v2.py \
             --output external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json
           sha256sum external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json \
             > external-conformance-evidence/SHA256SUMS.txt
