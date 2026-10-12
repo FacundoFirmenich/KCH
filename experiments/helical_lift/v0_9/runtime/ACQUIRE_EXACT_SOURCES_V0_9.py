@@ -34,7 +34,7 @@ DATASET_ID = "2np9vw5v7w"
 VERSION = 2
 DOI = "10.17632/2np9vw5v7w.2"
 REQUIRED_BASENAME = "focmec_ca_final.pickle"
-SNAPSHOT_URL = f"https://api.data.mendeley.com/datasets/{DATASET_ID}?version={VERSION}"
+SNAPSHOT_URL = f"https://data.mendeley.com/public-api/datasets/{DATASET_ID}/files?folder_id=root&version={VERSION}"
 FAULT_REPOSITORY = "GEMScienceTools/gem-global-active-faults"
 FAULT_COMMIT = "56816508ad92fd6846dad1163b1c8c01376a2cd1"
 FAULT_PATH = "geojson/gem_active_faults_harmonized.geojson"
@@ -335,6 +335,7 @@ def main() -> int:
     receipts_dir.mkdir(parents=True, exist_ok=True)
     attempt_started = utc_now()
     body: dict[str, Any] = {
+        "transport_adapter": "0.9.1-public-versioned-files",
         "format": FORMAT,
         "attempted_at_utc": attempt_started,
         "dataset_id": DATASET_ID,
@@ -398,10 +399,15 @@ def main() -> int:
             raise RuntimeError(f"expected one exact required basename in the public versioned snapshot; observed {len(matches)}")
         match = matches[0]
         file_id = match["file_id"]
-        file_url = (
-            f"https://api.data.mendeley.com/datasets/{DATASET_ID}/files/{file_id}/"
-            f"file_downloaded?version={VERSION}"
-        )
+        details = match["raw"].get("content_details")
+        if not isinstance(details, dict):
+            raise RuntimeError("official file metadata lacks content_details")
+        file_url = details.get("download_url")
+        if not isinstance(file_url, str) or not file_url:
+            raise RuntimeError("official file metadata lacks download_url")
+        public_https_url(file_url)
+        if urllib.parse.urlsplit(file_url).hostname not in {"data.mendeley.com", "api.data.mendeley.com"}:
+            raise RuntimeError("provider download redirect must originate on Mendeley")
         expected_mechanism_bytes = first_positive_integer(match["raw"], {"size", "file_size", "content_length", "bytes"})
         expected_mechanism_sha256 = expected_digest(match["raw"])
 
