@@ -1,0 +1,48 @@
+{
+  "format": "KCH_HELICAL_V1_4_2_MULTISCALE_OPERATOR_BASIS_REEXECUTION_PROTOCOL",
+  "version": "1.4.2",
+  "status": "FROZEN_BEFORE_REEXECUTION",
+  "parent_operator_protocol": "construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json",
+  "mask_support_lock": "construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_LOCK_V1_4_1.json",
+  "lineage": {
+    "v1_4_run_id": 38189559650,
+    "v1_4_outcome": "INSUFFICIENT_DEVELOPMENT_RECORD_SUPPORT",
+    "v1_4_receipt_id": "h14basis:2db987c826bd2edfa6ef00babe7b098a80cd0a68ca598d464e13f6e96ad7b66d",
+    "v1_4_1_run_id": 38189774337,
+    "v1_4_1_receipt_id": "h141mask:05b4b92c1dcc51931c9993dce29cdd2b59160e687031a8c095b5237b5fc82af4"
+  },
+  "immutability": {
+    "records_unchanged": true,
+    "sigma_pixels_unchanged": true,
+    "operators_unchanged": true,
+    "symmetry_signatures_unchanged": true,
+    "metadata_reconciliation_tolerances_unchanged": true,
+    "support_floor_unchanged": true
+  },
+  "sole_method_change": {
+    "old_validity_rule": "binary_erosion native mask by ceil(3*sigma)+2",
+    "new_validity_rule": "binary_erosion native mask by 2 pixels AND gaussian support weight >= 0.75",
+    "selected_gaussian_support_threshold": 0.75,
+    "selection_was_operator_blind": true,
+    "selection_was_outcome_blind": true
+  },
+  "forbidden": [
+    "FLARE_OUTCOME_ACCESS",
+    "2026_HOLDOUT_ACCESS",
+    "OPERATOR_SELECTION_BY_ASSOCIATION_WITH_OUTCOME",
+    "RECORD_SUBSTITUTION",
+    "SCALE_SUBSTITUTION",
+    "OPERATOR_SUBSTITUTION",
+    "FULL_3D_MAGNETIC_HELICITY_CLAIM",
+    "PROMOTION",
+    "CANONICALIZATION"
+  ],
+  "terminal_outcomes": [
+    "MULTISCALE_OPERATOR_BASIS_PASS",
+    "MULTISCALE_OPERATOR_BASIS_NOT_RECONCILED",
+    "INSUFFICIENT_DEVELOPMENT_RECORD_SUPPORT"
+  ],
+  "authority_ceiling": "NONE",
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED"
+}
