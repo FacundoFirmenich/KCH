@@ -51,6 +51,17 @@ jobs:
           }, sort_keys=True, indent=2) + "\n")
           PY
 
+      - name: Establish namespace support on disposable Ubuntu runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          policy=kernel.apparmor_restrict_unprivileged_userns
+          if sysctl -n "$policy" > "$RUNNER_TEMP/helical-v09/receipts/USERNS_POLICY_ORIGINAL.txt" 2>/dev/null; then
+            sudo sysctl -w "$policy=0"
+          fi
+          unshare --user --map-root-user --mount --net --pid --fork true
+          printf '%s\n' "USER_MOUNT_NET_PID_NAMESPACES_PASS" > "$RUNNER_TEMP/helical-v09/receipts/USERNS_PREFLIGHT.txt"
+
       - name: Execute exact-byte acquisition, sandbox extraction, and blind eligibility
         id: gate
         shell: bash
@@ -72,6 +83,18 @@ jobs:
           echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
           # Preserve the scientific/engineering outcome for upload before adjudication.
           exit 0
+
+      - name: Restore original runner namespace policy
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          original="$RUNNER_TEMP/helical-v09/receipts/USERNS_POLICY_ORIGINAL.txt"
+          if [[ -s "$original" ]]; then
+            value=$(cat "$original")
+            [[ "$value" =~ ^[01]$ ]]
+            sudo sysctl -w "kernel.apparmor_restrict_unprivileged_userns=$value"
+          fi
 
       - name: Purge exact sources and cache on every outcome
         if: always()
