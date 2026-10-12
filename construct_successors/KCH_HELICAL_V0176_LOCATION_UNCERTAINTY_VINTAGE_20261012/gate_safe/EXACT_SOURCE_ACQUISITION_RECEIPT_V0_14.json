@@ -1,0 +1,22 @@
+{
+  "authority_ceiling": "EXACT_COMCAT_CSV_LOCATION_UNCERTAINTY_CROSSWALK_ONLY",
+  "credentials_supplied": false,
+  "fault_network": {
+    "bytes": 10622730,
+    "commit": "56816508ad92fd6846dad1163b1c8c01376a2cd1",
+    "git_blob_sha1": "fb164770b529695544fa864abe2cc9dd8aa5793d",
+    "path": "geojson/gem_active_faults_harmonized.geojson",
+    "sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1"
+  },
+  "format": "KCH_HELICAL_V0_14_EXACT_SOURCE_ACQUISITION_RECEIPT",
+  "mechanism": {
+    "bytes": 528904117,
+    "content_id": "a0e8bb96-722c-4f20-91c0-f30a148e5012",
+    "file_id": "c5fd3e24-24ef-4186-8794-c681411cdcc3",
+    "provider_identity_match": true,
+    "sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb"
+  },
+  "metadata_adapter": "MENDELEY_PUBLIC_API_EXACT_IDENTITY",
+  "raw_source_export_authorized": false,
+  "receipt_id": "h143acq:9e33225af262e6b80d7a70424ae5d4212ff38b1710c4b2a48fbc1814e58166d3"
+}

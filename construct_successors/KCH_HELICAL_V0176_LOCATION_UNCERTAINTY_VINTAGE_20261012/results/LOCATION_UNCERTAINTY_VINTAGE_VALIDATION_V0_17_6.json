@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "blind_identity": true,
+    "coverage_threshold_pass": true,
+    "directional_fields_not_accessed": true,
+    "fault_identity": true,
+    "gate_pass": true,
+    "mechanism_identity": true,
+    "no_model_execution": true,
+    "query_plan_count": true,
+    "raw_purged": true,
+    "representation": true,
+    "sealed_test_not_accessed": true,
+    "selected_total": true,
+    "selection_identity": true,
+    "threshold_unchanged": true,
+    "upstream_binding_pass": true,
+    "upstream_validation_pass": true
+  },
+  "format": "KCH_HELICAL_V0_17_6_LOCATION_UNCERTAINTY_VINTAGE_VALIDATION",
+  "scientific_result": null,
+  "status": "PASS",
+  "validation_id": "h176validation:ee9b24603d6ad4990d44ce45f4986e9cd8102347ab6f871ca1c3979c279711db",
+  "vintage_id": "h176vintage:8ef034897c1ae1821a2547af3f0b6b5e237de9b9a2f02426125bd4ddb50ff28f"
+}

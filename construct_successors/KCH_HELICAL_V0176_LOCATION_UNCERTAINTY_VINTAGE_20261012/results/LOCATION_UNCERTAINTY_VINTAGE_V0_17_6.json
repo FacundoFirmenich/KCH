@@ -1,0 +1,59 @@
+{
+  "canonicalization": "BLOCKED",
+  "cohorts": {
+    "BAY_AREA_HAYWARD_CALAVERAS": {
+      "both_errors_count": 37458,
+      "both_errors_fraction": 0.9895648957810478,
+      "both_errors_fraction_delta": 0.0,
+      "catalog_row_count_current": 95343,
+      "catalog_row_count_historical": 95343,
+      "historical_both_errors_fraction": 0.9895648957810478,
+      "matched": 37458,
+      "pass": true,
+      "selected": 37853
+    },
+    "PARKFIELD_CENTRAL_SAF": {
+      "both_errors_count": 21330,
+      "both_errors_fraction": 0.8999240570415998,
+      "both_errors_fraction_delta": 0.0,
+      "catalog_row_count_current": 58372,
+      "catalog_row_count_historical": 58372,
+      "historical_both_errors_fraction": 0.8999240570415998,
+      "matched": 21331,
+      "pass": true,
+      "selected": 23702
+    }
+  },
+  "crosswalk_rows_persisted": false,
+  "crosswalk_rows_sha256": "bd94381c94e585c07d711c2ed6bd75d2abcb2e0d011dbc1fe18c98611f76decc",
+  "directional_fields_accessed": false,
+  "format": "KCH_HELICAL_V0_17_6_LOCATION_UNCERTAINTY_VINTAGE",
+  "gate_id": "h142loccsv:be3ff46ce92ad9a1a555e5a051aa4657692fc066463fd10d7230be915a93c3a5",
+  "github_run_id": "38236593693",
+  "github_sha": "d8853002971954435e328689c8fa18e155066a7a",
+  "historical_response_hash_identity_required": false,
+  "historical_vintage": {
+    "crosswalk_rows_sha256": "bd94381c94e585c07d711c2ed6bd75d2abcb2e0d011dbc1fe18c98611f76decc",
+    "gate_id": "h142loccsv:bf526701f2dcaee32e02e3861dd127b925470b15979ee9fd0ce6418a34bc31cf",
+    "query_receipts_sha256": "59c76f7b2dbabf6fc199f0b71c38bc57d67200cd27ad662574d94ba761899ac8",
+    "query_summary_receipt_id": "h143querysummary:4977ee385b22a0a46e9794cdfe437783dc2652cda5213d0c0df8b6cda29f59a7"
+  },
+  "minimum_both_errors_fraction": 0.8,
+  "next_gate": "REAL_TRAIN_CALIBRATION_RUNTIME_EXECUTION_WITH_CURRENT_LOCATION_VINTAGE_NO_SEALED_TEST_ACCESS",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "query_count": 82,
+  "query_receipts_sha256": "730b2755b24eb6921b9c3978d3e508dbd71a6e0b618c304c542c3943cf88a3f9",
+  "query_summary_receipt_id": "h143querysummary:afb56d1c8bd5716f88fab09c8943611c9ba4e173175013c2c52d1fc8c3b63f98",
+  "raw_rows_persisted": false,
+  "representation": "USGS_FDSN_CSV",
+  "run_receipt_id": "h14run:cdbd05b4951a2e40d6cef87342e42c74589f3433832b5016a5457082dc63a5fe",
+  "scientific_model_executed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "status": "PASS",
+  "upstream_binding_id": "h1752binding:70e47780a528f21209a03e983fbe1d70a0055aae8f0ae82f552050d8f4047135",
+  "upstream_binding_validation_id": "h1752validation:46dbf20746c018d30d3c7a8ef20ef283786bca62579084cb18cea6f62d9cf7bb",
+  "vintage_id": "h176vintage:8ef034897c1ae1821a2547af3f0b6b5e237de9b9a2f02426125bd4ddb50ff28f",
+  "vintage_semantics": "NEW_MUTABLE_OBSERVATION_VINTAGE"
+}
