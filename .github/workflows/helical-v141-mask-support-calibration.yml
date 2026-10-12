@@ -46,8 +46,7 @@ jobs:
           OUT="$RUNNER_TEMP/helical-v141"             python .github/helical_v141/mask_support_calibration.py             > "$RUNNER_TEMP/helical-v141/STDOUT.log"             2> "$RUNNER_TEMP/helical-v141/STDERR.log"
           rc=$?
           set -e
-          printf '%s
-' "$rc" > "$RUNNER_TEMP/helical-v141/EXIT_CODE.txt"
+          echo "$rc" > "$RUNNER_TEMP/helical-v141/EXIT_CODE.txt"
           cat "$RUNNER_TEMP/helical-v141/STDOUT.log"
           if [[ -s "$RUNNER_TEMP/helical-v141/STDERR.log" ]]; then cat "$RUNNER_TEMP/helical-v141/STDERR.log" >&2; fi
           if [[ "$rc" -ne 0 && "$rc" -ne 31 ]]; then exit "$rc"; fi
