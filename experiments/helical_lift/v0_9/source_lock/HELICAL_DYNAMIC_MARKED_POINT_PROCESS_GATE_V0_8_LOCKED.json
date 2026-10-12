@@ -1,0 +1,243 @@
+{
+  "authority_ceiling": "NONE",
+  "blind_eligibility": {
+    "angle_fields_sealed_until_selection_receipt": true,
+    "count_only_fields": [
+      "event_id",
+      "time",
+      "relocated_location",
+      "magnitude",
+      "mechanism_uncertainty",
+      "number_of_polarities",
+      "solution_probability"
+    ],
+    "fault_assignment": {
+      "ambiguous_event_action": "ABSTAIN",
+      "event_cloud_clustering_for_topology": "FORBIDDEN",
+      "maximum_distance_km": 10.0,
+      "minimum_second_to_first_distance_ratio": 1.5
+    },
+    "minimum_eligible_events": 800,
+    "minimum_fault_assignment_coverage": 0.75,
+    "minimum_primary_cohorts_to_execute": 2,
+    "minimum_test_events": 200,
+    "minimum_time_span_years": 8.0,
+    "primary_selection": "TOP_THREE_ELIGIBLE_PRIMARY_COHORTS_BY_COUNT_AFTER_ALL_FILTERS_WITH_LEXICOGRAPHIC_TIEBREAK",
+    "quality_filter": {
+      "earthquake_not_blast": true,
+      "maximum_mechanism_uncertainty_deg": 35.0,
+      "minimum_number_of_polarities": 8,
+      "minimum_solution_probability": 0.8
+    }
+  },
+  "candidate_cohorts": [
+    {
+      "bbox": [
+        35.45,
+        36.25,
+        -121.05,
+        -119.95
+      ],
+      "id": "PARKFIELD_CENTRAL_SAF",
+      "role": "PRIMARY"
+    },
+    {
+      "bbox": [
+        36.85,
+        38.45,
+        -122.75,
+        -121.15
+      ],
+      "id": "BAY_AREA_HAYWARD_CALAVERAS",
+      "role": "PRIMARY"
+    },
+    {
+      "bbox": [
+        39.3,
+        41.6,
+        -126.6,
+        -123.0
+      ],
+      "id": "MENDOCINO_TRIPLE_JUNCTION",
+      "role": "PRIMARY"
+    },
+    {
+      "bbox": [
+        38.0,
+        40.8,
+        -120.5,
+        -117.0
+      ],
+      "id": "NORTHERN_WALKER_LANE",
+      "role": "PRIMARY"
+    },
+    {
+      "bbox": [
+        38.55,
+        39.05,
+        -123.2,
+        -122.45
+      ],
+      "id": "GEYSERS_STRESS_CONTROL",
+      "role": "STRESS_CONTROL_NOT_REPLICATION"
+    }
+  ],
+  "canonicalization": "BLOCKED",
+  "current_gate_state": "LOCKED_AWAITING_BLIND_ELIGIBILITY_AND_EXACT_BYTE_ACQUISITION",
+  "explicit_exclusions": [
+    "CAHUILLA_SWARM_2016_2019",
+    "RIDGECREST_QTM_2019",
+    "CALMEX_BORDER_2012_2020",
+    "INDIO_2026_M4_9",
+    "BRAWLEY_2026_M3_6",
+    "JOHANNESBURG_2026_M4_3",
+    "COSO_JUNCTION_2026_M4_0"
+  ],
+  "firewall": {
+    "current_candidate_angles_inspected_before_lock": false,
+    "effect_threshold_relaxation": "FORBIDDEN",
+    "negative_result_erasure": "FORBIDDEN",
+    "posthoc_cluster_selection": "FORBIDDEN",
+    "same_catalog_stress_model_in_confirmatory_baseline": "FORBIDDEN",
+    "single_cohort_physical_claim": "FORBIDDEN",
+    "v0_7_catalogs_confirmatory_eligible": false
+  },
+  "format": "KCH_HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8",
+  "future_only_split": {
+    "calibration": 0.25,
+    "sealed_test": 0.25,
+    "train": 0.5
+  },
+  "locked_at_utc": "2026-09-27T03:22:11.303310Z",
+  "model_selection": {
+    "baseline_selected_on": "CALIBRATION_MEAN_LOG_SCORE_MINUS_COMPLEXITY_PENALTY",
+    "final_fit": "TRAIN_PLUS_CALIBRATION",
+    "test_access": "ONCE_AFTER_FREEZE"
+  },
+  "models": [
+    "ETAS_HAWKES_ZERO_SIGNED_MARK_DRIFT",
+    "TEMPORAL_SIGNED_DRIFT_RIVAL",
+    "STATIC_FIELD_CURVATURE_REGIME_NETWORK_RIVAL",
+    "DYNAMIC_SIGNED_TWIST_PER_NETWORK_KM_HELICAL_EXTENSION"
+  ],
+  "null_families": {
+    "families": [
+      "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS",
+      "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION",
+      "STATIC_ORIENTATION_FIELD_SURROGATES",
+      "PROPAGATION_DIRECTION_REVERSAL",
+      "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY"
+    ],
+    "multiplicity": "HOLM_BONFERRONI_ACROSS_COHORTS_AND_NULL_FAMILIES",
+    "replicates_each": 199
+  },
+  "observation_model": {
+    "axial_phase": "PROJECTIVE_PRINCIPAL_AXIS_IN_PARALLEL_TRANSPORTED_FAULT_CROSS_SECTION",
+    "minimum_axis_projection": 0.15,
+    "nodal_plane_choice": "ELIMINATED_BY_TENSOR_REPRESENTATION",
+    "orientation_mark": "NORMALIZED_DOUBLE_COUPLE_OR_DEVIATORIC_MOMENT_TENSOR",
+    "uncertainty_propagation_replicates": 64
+  },
+  "ontological_unit": {
+    "event": "MARKED_POINT_EVENT_NOT_MATERIAL_PARTICLE_TRAJECTORY",
+    "physical_helicity_requires": [
+      "SIGNED_ORIENTATION_TRANSPORT",
+      "DIRECTED_PROPAGATION",
+      "OUT_OF_SAMPLE_GAIN",
+      "REPLICATION"
+    ],
+    "state": [
+      "time",
+      "location",
+      "magnitude",
+      "normalized_deviatoric_moment_tensor",
+      "uncertainty",
+      "external_fault_assignment"
+    ]
+  },
+  "outcomes": [
+    "DYNAMIC_HELICAL_TRANSPORT_SUPPORTED_REPLICATED",
+    "LOCAL_DYNAMIC_SIGNAL_NOT_REPLICATED",
+    "NONHELICAL_DYNAMIC_RIVAL_SUFFICIENT",
+    "SIGNED_TRANSPORT_UPPER_BOUND",
+    "NOT_IDENTIFIABLE_MECHANISM_COVERAGE",
+    "NOT_IDENTIFIABLE_FAULT_ASSIGNMENT",
+    "NOT_IDENTIFIABLE_PARENT_GRAPH",
+    "MODEL_MISMATCH",
+    "BLOCKED_EXACT_BYTE_ACQUISITION"
+  ],
+  "parent_graph": {
+    "family": "ETAS_HAWKES_CANDIDATE_PARENT_DISTRIBUTION",
+    "helical_model_may_change_parent_graph": false,
+    "maximum_candidate_parents_per_event": 20,
+    "maximum_network_path_km": 20.0,
+    "maximum_parent_age_days": 30.0,
+    "parameters_fit_on_train_only": [
+      "background_rate",
+      "productivity",
+      "magnitude_scaling",
+      "c",
+      "p",
+      "network_length_scale"
+    ],
+    "parent_graph_resamples": 64
+  },
+  "physical_helicity": "NOT_EVALUATED",
+  "predecessor": {
+    "graph_id": "kbg:55215c9770636f67f97a4d31c0522d426585e6d8b4a008a94eb4de24fced3d68",
+    "outcome": "NONHELICAL_BRANCHING_RIVALS_GENERALIZE",
+    "static_catalogs_confirmatory_eligible": false,
+    "version": "0.7.0"
+  },
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "protocol_sha256": "99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "scientific_execution_performed": false,
+  "scientific_question": "Does signed focal-mechanism orientation transport along directed fault-network triggering paths improve future predictive density beyond ETAS/Hawkes, static orientation-field, curvature, regime, and network rivals?",
+  "scientific_result": null,
+  "sources": {
+    "external_validation_provider": "USGS_ANSS_COMCAT",
+    "fault_network_commit": "56816508ad92fd6846dad1163b1c8c01376a2cd1",
+    "fault_network_path": "geojson/gem_active_faults_harmonized.geojson",
+    "fault_network_repository": "GEMScienceTools/gem-global-active-faults",
+    "mechanism_catalog_doi": "10.17632/2np9vw5v7w.2",
+    "mechanism_required_file": "focmec_ca_final.pickle"
+  },
+  "status": "LOCKED_BEFORE_REAL_MECHANISM_ANGLE_ACCESS",
+  "symmetry_contracts": [
+    "NODAL_PLANE_EXCHANGE_INVARIANCE",
+    "EIGENVECTOR_SIGN_INVARIANCE",
+    "FAULT_COORDINATE_ORDER_EQUIVARIANCE",
+    "PROPAGATION_REVERSAL_FLIPS_CHIRALITY",
+    "RIGID_ROTATION_INVARIANCE"
+  ],
+  "synthetic_qualification": {
+    "adversarial_cases_passed": 5,
+    "adversarial_cases_total": 5,
+    "adversarial_report_id": "h8adv:5d428d3d95b98219afee93218b08b180a5d2e4864204186b4c5ae2b24f702e99",
+    "cheap_screen_null_false_positive_count": 1,
+    "cheap_screen_null_run_count": 240,
+    "power_analysis_id": "h8pow:ca149097f10a306d54dc13358938ca6e6ec647acc2eb280a7e820253e694d98a",
+    "simulation_count": 420,
+    "synthetic_results_are_scientific_evidence": false,
+    "target_power_by_size": {
+      "1600": 1.0,
+      "400": 1.0,
+      "800": 1.0
+    }
+  },
+  "thresholds": {
+    "maximum_helix_minus_baseline_delta_bic": -10.0,
+    "maximum_holm_adjusted_null_p": 0.05,
+    "minimum_fault_assignment_perturbation_pass_fraction": 0.8,
+    "minimum_mechanism_uncertainty_pass_fraction": 0.8,
+    "minimum_moving_block_bootstrap_lower_95": 0.0,
+    "minimum_parent_graph_resample_pass_fraction": 0.8,
+    "minimum_positive_primary_cohorts": 2,
+    "minimum_relative_axial_rmse_improvement": 0.05,
+    "minimum_test_mean_log_score_gain_per_edge": 0.02,
+    "minimum_time_reversal_sign_consistency": 0.8,
+    "minimum_weighted_aggregate_log_score_gain": 0.02
+  },
+  "version": "0.8.0"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kch:helical:v0.9:acquisition-receipt",
+  "type": "object",
+  "required": [
+    "format", "outcome", "all_or_none_pass", "transaction_committed",
+    "source_identities", "source_receipts", "committed_files", "receipt_id",
+    "authority_ceiling", "promotion", "canonicalization"
+  ],
+  "properties": {
+    "format": {"const": "KCH_HELICAL_V0_9_TRANSACTIONAL_EXACT_BYTE_ACQUISITION"},
+    "outcome": {"const": "EXACT_BYTE_ACQUISITION_PASS"},
+    "all_or_none_pass": {"const": true},
+    "transaction_committed": {"const": true},
+    "receipt_id": {"type": "string", "pattern": "^h9acq:[0-9a-f]{64}$"},
+    "authority_ceiling": {"const": "NONE"},
+    "promotion": {"const": "BLOCKED"},
+    "canonicalization": {"const": "BLOCKED"},
+    "source_identities": {"type": "object"},
+    "source_receipts": {"type": "object"},
+    "committed_files": {"type": "object"}
+  },
+  "additionalProperties": true
+}
