@@ -5,7 +5,11 @@
   "scope": "DEVELOPMENT_ONLY_DIRECT_FIELD_TEMPORAL_TRANSPORT_RIVAL_GATE",
   "parent_operator_lock": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json",
   "data_partition": {
-    "allowed_years": [2011, 2013, 2015],
+    "allowed_years": [
+      2011,
+      2013,
+      2015
+    ],
     "fresh_2026_holdout_reuse": "FORBIDDEN",
     "flare_outcomes": "FORBIDDEN",
     "future_confirmation": "REQUIRED_FOR_ANY_PHYSICAL_OR_TOPOLOGICAL_PROMOTION"
@@ -49,7 +53,13 @@
     "series": "hmi.sharp_cea_720s",
     "exactly_one_record_per_exact_query": true,
     "QUALITY_equals_zero": true,
-    "required_segments": ["Br", "Bt", "Bp", "conf_disambig", "bitmap"],
+    "required_segments": [
+      "Br",
+      "Bt",
+      "Bp",
+      "conf_disambig",
+      "bitmap"
+    ],
     "mask_and_multiscale_support": "INHERIT_EXACTLY_FROM_V1_4_2_LOCK",
     "minimum_valid_pixels_each_scale": 1000,
     "no_timestamp_substitution": true,
@@ -58,7 +68,13 @@
   },
   "temporal_spacing_hours": 6,
   "direct_field_fiber": {
-    "sigma_pixels": [0, 1, 2, 4, 8],
+    "sigma_pixels": [
+      0,
+      1,
+      2,
+      4,
+      8
+    ],
     "per_scale_components": [
       "HC_SIGNED_MEAN",
       "HC_NORMALIZED",
@@ -82,7 +98,8 @@
     "transform": "log(max(value,1e-300))",
     "normalization": "TRAIN_HARPS_ONLY_MEAN_SD",
     "activity_scalar_q": "MEAN_OF_FOUR_TRAIN_STANDARDIZED_COMPONENTS",
-    "transition_control": "delta_q=q_tplus1-q_t"
+    "transition_control": "delta_q=q_tplus1-q_t",
+    "normalization_sd_floor": 1e-12
   },
   "evaluation": {
     "scheme": "LEAVE_ONE_HARP_OUT",
@@ -92,7 +109,8 @@
     "fiber_scale": "TRAIN_TRANSITION_TARGET_RMS_PER_COMPONENT_WITH_FLOOR_1E-12",
     "primary_metric": "MEAN_NORMALIZED_MSE_OVER_COMPONENTS_AND_TRANSITIONS",
     "secondary_metric": "MEAN_NORMALIZED_MAE_OVER_COMPONENTS_AND_TRANSITIONS",
-    "no_test_refitting": true
+    "no_test_refitting": true,
+    "fiber_scale_floor": 1e-12
   },
   "operational_transport_rivals": {
     "T0_TRIVIAL_IDENTITY": {
@@ -123,8 +141,13 @@
       "z_definition": "fiber_component_divided_by_train_target_RMS",
       "fit": "JOINT_OLS_WITH_COMMON_a_COMMON_c_AND_COMPONENT_INTERCEPTS",
       "trainable_parameters": 18,
-      "ridge": 0.0,
-      "interpretation": "GENERIC_NONTOPOLOGICAL_ACTIVITY_CONDITIONED_AFFINE_RIVAL"
+      "ridge": 0,
+      "interpretation": "GENERIC_NONTOPOLOGICAL_ACTIVITY_CONDITIONED_AFFINE_RIVAL",
+      "identifiability": {
+        "required_design_rank": 18,
+        "maximum_condition_number": 100000000,
+        "failure_policy": "INSUFFICIENT_TEMPORAL_SUPPORT"
+      }
     }
   },
   "dominance_rule": {
@@ -145,7 +168,11 @@
   ],
   "source_resilience": {
     "metadata_query_attempts": 3,
-    "fixed_backoff_seconds": [0, 3, 10],
+    "fixed_backoff_seconds": [
+      0,
+      3,
+      10
+    ],
     "retry_changes_scientific_specification": false
   },
   "interpretation_boundary": {
