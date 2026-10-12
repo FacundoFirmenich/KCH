@@ -1,0 +1,90 @@
+{
+  "format": "KCH_HELICAL_V1_4_2_MULTISCALE_OPERATOR_BASIS_LOCK",
+  "version": "1.4.2",
+  "status": "FROZEN_DEVELOPMENT_ONLY_OPERATOR_BASIS",
+  "runtime_git_blob_sha1": "b400baaa8306fcf37ed095607c586f52e3d89911",
+  "scientific_run": {
+    "workflow_run_id": 38190001431,
+    "workflow_job_id": 114620502852,
+    "head_sha": "153236d60b801f7e0c9456c3e91efe2ef227684e",
+    "artifact_id": 11721651108,
+    "artifact_sha256": "ffa26eaf79e9241dd2d0c55421ca7d8c4e6657c70c24197c0820b2df02bac309",
+    "outcome": "MULTISCALE_OPERATOR_BASIS_PASS",
+    "receipt_id": "h142basis:e46290e188ab9a021d6ad78ccbafcaa172f3e2750864f8f4a76fb7addd4652fa"
+  },
+  "hardened_ci_probe": {
+    "workflow_run_id": 38190013349,
+    "workflow_job_id": 114620680706,
+    "head_sha": "35b1aceef6b4b075162542a4bbe43595a8c738ff",
+    "same_runtime_git_blob_sha1": "b400baaa8306fcf37ed095607c586f52e3d89911",
+    "py_compile_before_source_access": true,
+    "source_access_result": "DRMS_METADATA_TIMEOUT_ALL_THREE_RECORDS",
+    "records_scientifically_evaluated": 0,
+    "classification": "INFRASTRUCTURE_SOURCE_AVAILABILITY_FAILURE_NOT_SCIENTIFIC_CONTRADICTION"
+  },
+  "mask_support": {
+    "selected_gaussian_support_threshold": 0.75,
+    "native_mask_erosion_iterations": 2,
+    "scale_support_floor_pixels": 1000,
+    "selection_receipt_id": "h141mask:05b4b92c1dcc51931c9993dce29cdd2b59160e687031a8c095b5237b5fc82af4",
+    "selection_operator_blind": true,
+    "selection_outcome_blind": true
+  },
+  "records": [
+    {
+      "id": "HARP401_20110309T232400_TAI",
+      "pass": true,
+      "CMASK_exact": true,
+      "MEANJZH_relative_error": 4.3519836810468156e-05,
+      "MEANALP_relative_error": 8.541769606063355e-06,
+      "symmetry_pass": true,
+      "symmetry_max_relative_error": 5.783749767582757e-15,
+      "cross_scale_descriptive_only": {
+        "ABS_HC_LOG_SCALE_SLOPE": -0.10077667799445772,
+        "HC_SIGN_CHANGE_COUNT": 0,
+        "SIGNED_HC_LOG_SCALE_INTEGRAL": 0.010598439498815688
+      }
+    },
+    {
+      "id": "HARP2920_20130708T120000_TAI",
+      "pass": true,
+      "CMASK_exact": true,
+      "MEANJZH_relative_error": 2.6830691115399944e-05,
+      "MEANALP_relative_error": 3.380208886243126e-05,
+      "symmetry_pass": true,
+      "symmetry_max_relative_error": 6.109423281473661e-16,
+      "cross_scale_descriptive_only": {
+        "ABS_HC_LOG_SCALE_SLOPE": -0.7359452380263375,
+        "HC_SIGN_CHANGE_COUNT": 0,
+        "SIGNED_HC_LOG_SCALE_INTEGRAL": -0.005765345902788786
+      }
+    },
+    {
+      "id": "HARP5249_20150302T120000_TAI",
+      "pass": true,
+      "CMASK_exact": true,
+      "MEANJZH_relative_error": 3.765434363550483e-05,
+      "MEANALP_relative_error": 3.855678829834942e-06,
+      "symmetry_pass": true,
+      "symmetry_max_relative_error": 1.2351426971223379e-14,
+      "cross_scale_descriptive_only": {
+        "ABS_HC_LOG_SCALE_SLOPE": 0.1438179445612902,
+        "HC_SIGN_CHANGE_COUNT": 1,
+        "SIGNED_HC_LOG_SCALE_INTEGRAL": -0.002186475259337338
+      }
+    }
+  ],
+  "interpretation_boundary": {
+    "operator_construct_validity": "SUPPORTED_ON_THREE_DEVELOPMENT_RECORDS",
+    "physical_helicity": "NOT_EVALUATED",
+    "flare_prediction": "NOT_EVALUATED",
+    "topological_lift_class": "NOT_EVALUATED",
+    "universal_ontology": "FORBIDDEN"
+  },
+  "next_material_gate": "DIRECT_FIELD_TEMPORAL_LIFT_DEVELOPMENT_WITH_FROZEN_TOPOLOGICAL_RIVALS",
+  "fresh_2026_holdout_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "authority_ceiling": "NONE"
+}
