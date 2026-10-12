@@ -49,8 +49,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if find "$RUNNER_TEMP/helical-v13" -maxdepth 1 -type f -name '*.fits' | grep -q .; then
-            echo 'raw FITS leaked into result directory' >&2
+          if [[ -d "$RUNNER_TEMP/helical-v13/raw" ]]; then
+            echo 'raw FITS directory survived process exit' >&2
+            rm -rf "$RUNNER_TEMP/helical-v13/raw"
             exit 91
           fi
       - name: Upload safe aggregate receipts only
@@ -58,7 +59,12 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: kch-helical-v13-direct-field-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/helical-v13
+          path: |
+            ${{ runner.temp }}/helical-v13/safe
+            ${{ runner.temp }}/helical-v13/PIP_FREEZE.txt
+            ${{ runner.temp }}/helical-v13/STDOUT.log
+            ${{ runner.temp }}/helical-v13/STDERR.log
+            ${{ runner.temp }}/helical-v13/EXIT_CODE.txt
           if-no-files-found: error
           retention-days: 14
           compression-level: 6
