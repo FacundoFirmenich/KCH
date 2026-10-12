@@ -35,7 +35,7 @@ def json_default(o):
     if isinstance(o,np.generic): return o.item()
     if isinstance(o,np.ndarray): return o.tolist()
     if isinstance(o,(datetime,Path)): return str(o)
-    raise TypeError(f\"Object of type {o.__class__.__name__} is not JSON serializable\")
+    raise TypeError(f"Object of type {o.__class__.__name__} is not JSON serializable")
 
 def write_json(p:Path,o:Any)->None:
     p.parent.mkdir(parents=True,exist_ok=True)
