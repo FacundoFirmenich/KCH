@@ -1,0 +1,134 @@
+{
+  "calibration_executed": false,
+  "divergences": [
+    {
+      "classification": "CONTENT_MISMATCH",
+      "generated": {
+        "bytes": 861,
+        "path": "FREEZE_EXECUTION_RECEIPT_V0_17.json",
+        "sha256": "38132ddf15adf7cae6a39f805eb4da69612ea9ba409829638533c7c5f8579051"
+      },
+      "json_differences": [
+        {
+          "kind": "VALUE",
+          "left": "h17execution:e726b727bc0a082c28bcfc16e3b811a8376590015f9a09593707a099095795fc",
+          "path": "$.execution_receipt_id",
+          "right": "h17execution:ebcf23f0ecec99bde042f66cab5e6b6807d94f16d8fd229c7f6cd0c5a3600c18"
+        },
+        {
+          "kind": "VALUE",
+          "left": "h17freeze:cd3a8bbbcc7eb646df54745f316ddefa43ca701f888b9473cfe54b40ed7de57f",
+          "path": "$.freeze_id",
+          "right": "h17freeze:159c3ba2a4503092b7ae3c91de80251b4f7848ea544ae85ac41d64d84c6523b6"
+        },
+        {
+          "kind": "VALUE",
+          "left": "h17validation:6cdd1c41a713f06c0a7cccdd72a61661972cc863c93a8986a9a3b3784ea6e694",
+          "path": "$.validation_id",
+          "right": "h17validation:8214154d6bde34efad14a8936ef67a2c6915061165627598de02dbb8a8f70b55"
+        }
+      ],
+      "path": "FREEZE_EXECUTION_RECEIPT_V0_17.json",
+      "replay": {
+        "bytes": 861,
+        "path": "FREEZE_EXECUTION_RECEIPT_V0_17.json",
+        "sha256": "f846580cfeaf7205919836fc33070aa46ae45be0d696cdda0101c70baf2c7d43"
+      }
+    },
+    {
+      "classification": "CONTENT_MISMATCH",
+      "generated": {
+        "bytes": 1543,
+        "path": "RUNTIME_FREEZE_RECEIPT_V0_17.json",
+        "sha256": "befe2bc6cd687fc8a1f8cf3b9ad09135cd583a692e7911c9c6bcd1860dd50ae6"
+      },
+      "json_differences": [
+        {
+          "kind": "VALUE",
+          "left": "h17freeze:cd3a8bbbcc7eb646df54745f316ddefa43ca701f888b9473cfe54b40ed7de57f",
+          "path": "$.freeze_id",
+          "right": "h17freeze:159c3ba2a4503092b7ae3c91de80251b4f7848ea544ae85ac41d64d84c6523b6"
+        },
+        {
+          "kind": "VALUE",
+          "left": "h17validation:6cdd1c41a713f06c0a7cccdd72a61661972cc863c93a8986a9a3b3784ea6e694",
+          "path": "$.validation_id",
+          "right": "h17validation:8214154d6bde34efad14a8936ef67a2c6915061165627598de02dbb8a8f70b55"
+        }
+      ],
+      "path": "RUNTIME_FREEZE_RECEIPT_V0_17.json",
+      "replay": {
+        "bytes": 1543,
+        "path": "RUNTIME_FREEZE_RECEIPT_V0_17.json",
+        "sha256": "d48df2c968f6dd3611f203af91c3231e1d7d8f76f31601255c9c228b3d456823"
+      }
+    },
+    {
+      "classification": "CONTENT_MISMATCH",
+      "generated": {
+        "bytes": 9564,
+        "path": "RUNTIME_VALIDATION_REPORT_V0_17.json",
+        "sha256": "afd1a22359d23d7e041973235571730b24b7e625ce2a4d04b0fefd5e49ab123e"
+      },
+      "json_differences": [
+        {
+          "kind": "VALUE",
+          "left": "idden (test_runtime_v017.RuntimeContractTests.test_008_test_access_forbidden) ... ok\ntest_009_promotion_blocked (test_runtime_v017.RuntimeContractTests.test_009_promotion_blocked) ... ok\ntest_010_no_scientific_result (test_runtime_v017.RuntimeContractTests.test_010_no_scientific_result) ... ok\ntest_011_canonical_json_is_order_invariant (test_runtime_v017.RuntimeContractTests.test_011_canonical_json_is_order_invariant) ... ok\ntest_012_content_id_changes_with_content (test_runtime_v017.RuntimeContractTests.test_012_content_id_changes_with_content) ... ok\ntest_013_seed_is_deterministic (test_runtime_v017.RuntimeContractTests.test_013_seed_is_deterministic) ... ok\ntest_014_seed_is_positive_63_bit (test_runtime_v017.RuntimeContractTests.test_014_seed_is_positive_63_bit) ... ok\ntest_015_wrong_cohorts_fail_closed (test_runtime_v017.RuntimeContractTests.test_015_wrong_cohorts_fail_closed) ... ok\n\n----------------------------------------------------------------------\nRan 44 tests in 1.585s\n\nOK\n",
+          "path": "$.checks[18].detail",
+          "right": "idden (test_runtime_v017.RuntimeContractTests.test_008_test_access_forbidden) ... ok\ntest_009_promotion_blocked (test_runtime_v017.RuntimeContractTests.test_009_promotion_blocked) ... ok\ntest_010_no_scientific_result (test_runtime_v017.RuntimeContractTests.test_010_no_scientific_result) ... ok\ntest_011_canonical_json_is_order_invariant (test_runtime_v017.RuntimeContractTests.test_011_canonical_json_is_order_invariant) ... ok\ntest_012_content_id_changes_with_content (test_runtime_v017.RuntimeContractTests.test_012_content_id_changes_with_content) ... ok\ntest_013_seed_is_deterministic (test_runtime_v017.RuntimeContractTests.test_013_seed_is_deterministic) ... ok\ntest_014_seed_is_positive_63_bit (test_runtime_v017.RuntimeContractTests.test_014_seed_is_positive_63_bit) ... ok\ntest_015_wrong_cohorts_fail_closed (test_runtime_v017.RuntimeContractTests.test_015_wrong_cohorts_fail_closed) ... ok\n\n----------------------------------------------------------------------\nRan 44 tests in 1.556s\n\nOK\n"
+        },
+        {
+          "kind": "VALUE",
+          "left": "t (test_runtime_v017.RuntimeContractTests.test_014_seed_is_positive_63_bit) ... ok\ntest_015_wrong_cohorts_fail_closed (test_runtime_v017.RuntimeContractTests.test_015_wrong_cohorts_fail_closed) ... ok\n\n----------------------------------------------------------------------\nRan 44 tests in 1.585s\n\nOK\n",
+          "path": "$.checks[20].detail",
+          "right": "t (test_runtime_v017.RuntimeContractTests.test_014_seed_is_positive_63_bit) ... ok\ntest_015_wrong_cohorts_fail_closed (test_runtime_v017.RuntimeContractTests.test_015_wrong_cohorts_fail_closed) ... ok\n\n----------------------------------------------------------------------\nRan 44 tests in 1.556s\n\nOK\n"
+        },
+        {
+          "kind": "VALUE",
+          "left": "h17validation:6cdd1c41a713f06c0a7cccdd72a61661972cc863c93a8986a9a3b3784ea6e694",
+          "path": "$.validation_id",
+          "right": "h17validation:8214154d6bde34efad14a8936ef67a2c6915061165627598de02dbb8a8f70b55"
+        }
+      ],
+      "path": "RUNTIME_VALIDATION_REPORT_V0_17.json",
+      "replay": {
+        "bytes": 9564,
+        "path": "RUNTIME_VALIDATION_REPORT_V0_17.json",
+        "sha256": "4b0ae37631b7595d8ad8bdfdc1f528b8254e967bbe346cb2d73fb22680ae09b3"
+      }
+    },
+    {
+      "classification": "CONTENT_MISMATCH",
+      "generated": {
+        "bytes": 982,
+        "path": "STATUS_V0_17.json",
+        "sha256": "9340877885b7318d2a6974c6fdd2ad9739e00ea7100bd4ef25a224d61c65624c"
+      },
+      "json_differences": [
+        {
+          "kind": "VALUE",
+          "left": "h17freeze:cd3a8bbbcc7eb646df54745f316ddefa43ca701f888b9473cfe54b40ed7de57f",
+          "path": "$.freeze_id",
+          "right": "h17freeze:159c3ba2a4503092b7ae3c91de80251b4f7848ea544ae85ac41d64d84c6523b6"
+        }
+      ],
+      "path": "STATUS_V0_17.json",
+      "replay": {
+        "bytes": 982,
+        "path": "STATUS_V0_17.json",
+        "sha256": "c3f47272d0cdb1287e740db7212ef15f1601a8cbb51fe85f345cff143cf99433"
+      }
+    }
+  ],
+  "divergent_member_count": 4,
+  "format": "KCH_HELICAL_V0_17_2_1_DOUBLE_FREEZE_DIFFERENCE_REPORT",
+  "generated_member_count": 9,
+  "generated_root": "/home/runner/work/KCH/KCH/construct_successors/KCH_HELICAL_V017_SPEC_DERIVED_NONIDENTICAL_RUNTIME_20261012/generated",
+  "replay_member_count": 9,
+  "replay_root": "/home/runner/work/_temp/v01721/work/generated-replay",
+  "report_id": "h1721diff:4a03714913abd9ed29a993b746f9c4d9e161c2beb04b3d228a20fd71fd9bfd78",
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "status": "DIAGNOSTIC_COMPLETE"
+}
