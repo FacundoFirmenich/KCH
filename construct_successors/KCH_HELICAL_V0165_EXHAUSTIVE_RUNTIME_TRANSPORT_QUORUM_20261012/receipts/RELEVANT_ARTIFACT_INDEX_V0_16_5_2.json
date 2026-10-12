@@ -1,0 +1,680 @@
+{
+  "artifact_count": 44,
+  "artifact_payloads_downloaded": false,
+  "artifacts": [
+    {
+      "bytes": 11072,
+      "digest": "sha256:69f4efb91146e9fbf1685fc4ee44709c3419be6b851e0caf7193e9041e5b4fef",
+      "expired": false,
+      "id": 11594212656,
+      "name": "helical-v08-2-mendeley-public-route-discovery",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "experiment/helical-v08-blind-eligibility-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "fbf935852c50e1fbdedeec0ac9d3faa1bdc5992e",
+        "id": 37880412187,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 5881,
+      "digest": "sha256:5b1234cec266b59379e7c4d108aae8d82665b5ba7b114bb67c7095fac2e5853d",
+      "expired": false,
+      "id": 11593384772,
+      "name": "helical-v08-4-blind-gate",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "experiment/helical-v08-blind-eligibility-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "b8ce11e6e8cbaa75dd7932211770d2971c03ca09",
+        "id": 37880993732,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 8323,
+      "digest": "sha256:bc169bbe63e70b157d5c332fe6aae66abe87faf732a19b3437d715b5a5e01e59",
+      "expired": false,
+      "id": 11594766261,
+      "name": "helical-v08-5-blind-gate",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "experiment/helical-v08-blind-eligibility-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "a619714a6f55ecad362e6b7c72ab180c3d5be80c",
+        "id": 37881303793,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 427,
+      "digest": "sha256:13bfe0ef205b89bb7c330708d08f6237742371c3748c67f4758f125ddd8b82bd",
+      "expired": false,
+      "id": 11595385091,
+      "name": "helical-v08-6-blind-gate",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "experiment/helical-v08-blind-eligibility-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "f86ae7eab09fc4f004c2383b1e0bbd2175462753",
+        "id": 37881661002,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 427,
+      "digest": "sha256:e41e845ad3755384c4a6e9fad381ccf8a4d0bfc396d445a89db2091aedde7f47",
+      "expired": false,
+      "id": 11594781964,
+      "name": "helical-v08-7-blind-gate",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "experiment/helical-v08-blind-eligibility-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "b896afb140f7bf751b462abe1974521c86e44689",
+        "id": 37881774956,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1609,
+      "digest": "sha256:7f5be71eb0c05fc85f354f5eb5da8f8729ae81d60ca46f741fb864900b85aac6",
+      "expired": false,
+      "id": 11574549527,
+      "name": "helical-v08-exact-sources-37835637164",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "93d60f9216f57293ae52fe0b23de5a57d2b26d5b",
+        "id": 37835637164,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 131310,
+      "digest": "sha256:7e42935c56c4767a245da35a4b2b38d31f9519b9f1245dd5fe1b0163832b8fa8",
+      "expired": false,
+      "id": 11575771597,
+      "name": "helical-v08-exact-sources-37835892646",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "9d6897e607bd847ae62928e9a89d9f7f55ec181d",
+        "id": 37835892646,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 136354,
+      "digest": "sha256:923e8e7710b692a863ca5d7ae7d69a68006da24e5691ccb703cf7a9cc18186a4",
+      "expired": false,
+      "id": 11574829230,
+      "name": "helical-v08-exact-sources-37836377349",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "23a6b9a9081b1f581e29525e79dd5ab64335422b",
+        "id": 37836377349,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 156272,
+      "digest": "sha256:e7fb7ee53a2bbc62540a86f6b67e306cd31f6d0397a40d1c9b7eb61b717ec15e",
+      "expired": false,
+      "id": 11575319191,
+      "name": "helical-v08-exact-sources-37836724453",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "3255b3bf0348f8bf89f93a92db2b2e4a7e4c831f",
+        "id": 37836724453,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 539666106,
+      "digest": "sha256:fba13410ffe4b64ad8663cdf53573913cf0d0960cc7378a456388d933666c2c1",
+      "expired": false,
+      "id": 11575982617,
+      "name": "helical-v08-exact-sources-37837328266",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "0bfdf33f8f34a7f26b660b847939d9588d461b68",
+        "id": 37837328266,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 100000176,
+      "digest": "sha256:a70f0068c3850208efdf7ea1060a428326cd03c0c93fe68b9d4c3c327029f38c",
+      "expired": false,
+      "id": 11576321990,
+      "name": "helical-v08-focal-part-000-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 100000176,
+      "digest": "sha256:687817ed8af80909fc6dcf73c439fe2ea1100502fc3f8d1682deaee3a5ebcfee",
+      "expired": false,
+      "id": 11576875580,
+      "name": "helical-v08-focal-part-001-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 100000176,
+      "digest": "sha256:1ce182b6087e61665eb379f73a333fd303a6109e2d6bd45a8356d06454f57c13",
+      "expired": false,
+      "id": 11576451485,
+      "name": "helical-v08-focal-part-002-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 100000176,
+      "digest": "sha256:9908381184dc1e5d701e4db0a27d9c865da936188b5d39d196c9e2dfa179692a",
+      "expired": false,
+      "id": 11576845639,
+      "name": "helical-v08-focal-part-003-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 100000176,
+      "digest": "sha256:78ca41212f0d1860c1fab4ae6daad96231ba0a77879b97cfa5d73008409ba384",
+      "expired": false,
+      "id": 11576815719,
+      "name": "helical-v08-focal-part-004-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 28904293,
+      "digest": "sha256:eba7e8a806b3cc8197b35e25e9bbea612c7188d08e931d004dea7a390993d86e",
+      "expired": false,
+      "id": 11576900598,
+      "name": "helical-v08-focal-part-005-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 853061,
+      "digest": "sha256:3295918cb0a0d1f59ca83ff078715a57df67116a77d3c7fe6aad233a5c4116dd",
+      "expired": false,
+      "id": 11576161260,
+      "name": "helical-v08-public-file-discovery-37837054729",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "ce8d1e9d045c9ffd7bea0faa69ee54e7dcdd02bc",
+        "id": 37837054729,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 10780279,
+      "digest": "sha256:6da69bc5bee9670b5b64add8768dca97d3486d8dc32826915882a66b6c4027fc",
+      "expired": false,
+      "id": 11576406781,
+      "name": "helical-v08-source-evidence-37837804668",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v08-exact-source-gate-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "7785d93768a9dd831d8ca166fd0e8e367d5f35c2",
+        "id": 37837804668,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1745,
+      "digest": "sha256:86368889974aabac94833eae283e8efefff889f725838db913169facc9aca4c1",
+      "expired": false,
+      "id": 11643896422,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37987432029-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "a65da8570896dc526f7b3165c24e08c955b7bc63",
+        "id": 37987432029,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1864,
+      "digest": "sha256:77c768d501db584375cfa84e944dca44d89a27628fee4f63fc6e7646107bf942",
+      "expired": false,
+      "id": 11643946798,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37987748493-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "6c509f0fa9848fb08b4f741b1ac04a28a650f4cd",
+        "id": 37987748493,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1696,
+      "digest": "sha256:ec09e08ce46a3bf139bdf352d3cee30d364614f403d4128bb022c96583dc9e5c",
+      "expired": false,
+      "id": 11643208621,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37987943485-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "ad374166d6db379ad0b5aab3b2cc2a6b365d737c",
+        "id": 37987943485,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1696,
+      "digest": "sha256:fd69d832ddc3a67a567e9e5ec58675bec32a5faee051bfa1bc4eaed2a96f4de0",
+      "expired": false,
+      "id": 11644645471,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37988963077-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "f2d4384e8c3142e84ecf549257489adf09276718",
+        "id": 37988963077,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1696,
+      "digest": "sha256:bcb2d1a0bf64c05aa49f834c1e83d35dcb47e6c3bfa24b5487d2483616e5d5cc",
+      "expired": false,
+      "id": 11644930230,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37989093059-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "1adaca02c974a08d31441262ef9587a48a3f748f",
+        "id": 37989093059,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1696,
+      "digest": "sha256:26434150b89ac29867a354a825ef40de27df11ee602bc351d06a50c7b0f70890",
+      "expired": false,
+      "id": 11645280902,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37990527479-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "415a0d049899e09619a6f11a643fbb1e026790d4",
+        "id": 37990527479,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1696,
+      "digest": "sha256:e4faa8442bcfd05c597199d5d11fec31adfebfa8a4eff0b2da14dadd88d44a1e",
+      "expired": false,
+      "id": 11644977154,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37990558345-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "5c015a422f8b28678e6b50bbc799e5c2ae7a42ea",
+        "id": 37990558345,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1696,
+      "digest": "sha256:93ea3e8bee3a52361228ef2cd81353a643c257f000edabbace04fa160a4b5a24",
+      "expired": false,
+      "id": 11644548154,
+      "name": "kch-helical-v0132-historical-runtime-inspection-37990626907-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "83d0cba07df4b4d21e00649d1f4c16d80bae40bb",
+        "id": 37990626907,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 1307,
+      "digest": "sha256:9c70443534fefc1385582fd12c4f8a8f7448dbef7af80cd388edbf319cddc45c",
+      "expired": false,
+      "id": 11644772691,
+      "name": "kch-helical-v0132-schema-inspection-37990749903-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "40c04a71769e538d8c34f21e6f5e44fb8733fa27",
+        "id": 37990749903,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 7067,
+      "digest": "sha256:19493713bfe3b3128ca1ae46e41bf9e53fd37465a43758f8a2e7e517f47a9d67",
+      "expired": false,
+      "id": 11644464337,
+      "name": "kch-helical-v0132-schema-inspection-37991259050-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "bfea21aa7173ead709f149bdc5a14a661457e274",
+        "id": 37991259050,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 71938,
+      "digest": "sha256:de5add8420dc2a992a75347ca72cb2d35d80d98b62b30b8c9a42d60420031599",
+      "expired": false,
+      "id": 11644651980,
+      "name": "kch-helical-v0132-source-custody-37989910641-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "f262ae5df7b85d98e01dbeb3ad36ca24d36dd79d",
+        "id": 37989910641,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 838,
+      "digest": "sha256:d0bc3ec378e210a97b32f8bb33f86ea625ac6d3bc45e96813bdabc9aa5ec9f39",
+      "expired": false,
+      "id": 11643614915,
+      "name": "kch-helical-v0132-transport-forensics-37989004454-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "f4310fbdacc9fdb36593111a353362bc045725f3",
+        "id": 37989004454,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 47194,
+      "digest": "sha256:46154e0a58faf7c5f5246b1d9bab062cf3b16863179a6f132b96a2c34934c899",
+      "expired": false,
+      "id": 11644675628,
+      "name": "kch-helical-v0132-transport-forensics-v2-37989166554-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0132-calibration-runtime-qualification-20261009",
+        "head_repository_id": 1330337476,
+        "head_sha": "834f20bd2b54d010b2ee720ea563943562f542fc",
+        "id": 37989166554,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 6973,
+      "digest": "sha256:1a92402849761eb056fb087aa5cac8322818b1912f6ff4c40558ecd8bbf6663f",
+      "expired": false,
+      "id": 11650052272,
+      "name": "kch-helical-v015-runtime-quorum-38003323885-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v015-historical-runtime-quorum-20261010",
+        "head_repository_id": 1330337476,
+        "head_sha": "c12ba7b0b1c6be1cde220d5370b588f3fe390773",
+        "id": 38003323885,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 9478,
+      "digest": "sha256:976c829604c948436caf533eaac70c371c3d66deae8a606a2cfa34fc0fbc9b79",
+      "expired": false,
+      "id": 11650077308,
+      "name": "kch-helical-v015-runtime-quorum-38003397727-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v015-historical-runtime-quorum-20261010",
+        "head_repository_id": 1330337476,
+        "head_sha": "02a71bc99b10c0620cc303b7eb1ccf2fdcd51176",
+        "id": 38003397727,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 11474,
+      "digest": "sha256:fa6ea0fdfd283c288cfc4cb41211cf994b678f1aaeb9f1db334588029285662f",
+      "expired": false,
+      "id": 11650560559,
+      "name": "kch-helical-v0151-runtime-quorum-38003565387-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0151-historical-runtime-quorum-20261010",
+        "head_repository_id": 1330337476,
+        "head_sha": "1e849f7a00c41e8c5c17da6197237a9d52e0ed78",
+        "id": 38003565387,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 9810,
+      "digest": "sha256:b08db1a2d3a5d2c99f45c3e41979e8184fcdfe845c8cb2e2d88d1fa34d936670",
+      "expired": false,
+      "id": 11649274968,
+      "name": "kch-helical-v0152-runtime-quorum-38003899554-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0152-large-bundle-runtime-quorum-20261010",
+        "head_repository_id": 1330337476,
+        "head_sha": "27e4c201e4c948709b9adb1c2ba7b2fd23c54880",
+        "id": 38003899554,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 7408,
+      "digest": "sha256:d1be93654c333ae0219991863f26ba247903204178b38f315cede2f1f6c94aa7",
+      "expired": false,
+      "id": 11650063512,
+      "name": "kch-helical-v0153-runtime-quorum-38004037221-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0153-chunkwise-bundle-runtime-quorum-20261010",
+        "head_repository_id": 1330337476,
+        "head_sha": "c360cbc04d2ec53972285a148091a56c5af805a6",
+        "id": 38004037221,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 80421,
+      "digest": "sha256:586346ef3aee8d75acdbc0aacc4e9d9a664b353a1d42e4ad24f75c59769f6135",
+      "expired": false,
+      "id": 11650775833,
+      "name": "kch-helical-v0154-runtime-quorum-38004292842-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0154-locked-single-char-repair-quorum-20261010",
+        "head_repository_id": 1330337476,
+        "head_sha": "b99ef84d6892ec986faf7df71467cf551d905ab0",
+        "id": 38004292842,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 180824,
+      "digest": "sha256:d005fde44b58b1c750b1f1fbb00b6dcb8b35290580df803b5a9a17bd1c7f1d28",
+      "expired": false,
+      "id": 11710669557,
+      "name": "kch-helical-v0163-1-source-custody-38164123238-1",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "helical-v0163-runtime-integration-source-custody-repair-20261011",
+        "head_repository_id": 1330337476,
+        "head_sha": "deeab79136548a4618ef7e83507968b09ed02c9b",
+        "id": 38164123238,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 586714788,
+      "digest": "sha256:57236f9d88b4871d70443b6569fa6d56ace57c3053729218b0455d665bc49d9e",
+      "expired": false,
+      "id": 11567111442,
+      "name": "kch-helical-v08-durable-pretest-freeze-37815311001",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "gate/helical-v08-durable-pretest-freeze-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "db3a8c46bf75a120d541805725d20a85624da3bb",
+        "id": 37815311001,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 667766637,
+      "digest": "sha256:8db78b50f79fe6cf3c28c3142d409f56a52831cc80ff694d2dee1e92c07ea698",
+      "expired": false,
+      "id": 11566699529,
+      "name": "kch-helical-v08-durable-pretest-freeze-37815991537",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "gate/helical-v08-durable-pretest-freeze-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "a59bd619aaf8eba3f8bb48a091ac5edf9c44b369",
+        "id": 37815991537,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 593061546,
+      "digest": "sha256:542e931ebd3f274e47ca241291fe9a39973be5a63ae195b5133edeba373502ae",
+      "expired": false,
+      "id": 11567661935,
+      "name": "kch-helical-v08-durable-pretest-freeze-37816065554",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "gate/helical-v08-durable-pretest-freeze-20261008",
+        "head_repository_id": 1330337476,
+        "head_sha": "8f61b716545c83e2b855ac11b4810dd4ff3748c6",
+        "id": 37816065554,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 84427,
+      "digest": "sha256:6ed15c90db1af21b67a9b861b6b3e1f907a6a63be6a08c9836c3ffa00ed32a46",
+      "expired": false,
+      "id": 11593978890,
+      "name": "kch-helical-v08-frozen-bundle-inspection",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "gate/helical-v08-blind-eligibility-20260927",
+        "head_repository_id": 1330337476,
+        "head_sha": "3e4ca6b4cf4f5858db3794cf0e8977c838569da1",
+        "id": 37880468915,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 2685,
+      "digest": "sha256:b0a03a301fd4079093ffcb2dad1369a37888530164584534497452ff251363c0",
+      "expired": false,
+      "id": 11594966584,
+      "name": "kch-helical-v08-selected-directional-preflight",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "gate/helical-v08-blind-eligibility-20260927",
+        "head_repository_id": 1330337476,
+        "head_sha": "cd93bbee466f207faddea6463b7dee69a589b979",
+        "id": 36328772493,
+        "repository_id": 1330337476
+      }
+    },
+    {
+      "bytes": 12544799,
+      "digest": "sha256:1bf1841cb785e73c687ae5679f56dc19af8affbb9320fcfe94fe1ac92b9a2097",
+      "expired": false,
+      "id": 11703913987,
+      "name": "kch-helical-v10-source-probe",
+      "predecessor_downloaded": false,
+      "workflow_run": {
+        "head_branch": "gate/helical-v10-mhd-census-seismic-post2021-review-20261011",
+        "head_repository_id": 1330337476,
+        "head_sha": "20e97875587b35e0a0c069a9dd2a982490a7063f",
+        "id": 38144756962,
+        "repository_id": 1330337476
+      }
+    }
+  ],
+  "calibration_executed": false,
+  "canonicalization": "BLOCKED",
+  "format": "KCH_HELICAL_V0_16_5_2_RELEVANT_ARTIFACT_INDEX",
+  "github_run_id": "38190083969",
+  "github_sha": "69ab186dad639c51c88ce769666b4e1d96b3b3ac",
+  "index_id": "h1652artifactindex:ed54d1e8beaa21a9ba56889a72037af91df04291cb42e7549cfdd9383a9822c2",
+  "predecessor_receipt_id": "h1651transport:a45d1b835cca51a25d736cba638c01ac0b094c49c4af41491cde3c2f04f7b08b",
+  "promotion": "BLOCKED",
+  "records_modified": false,
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "status": "PASS",
+  "unexpired_artifact_count": 44
+}
