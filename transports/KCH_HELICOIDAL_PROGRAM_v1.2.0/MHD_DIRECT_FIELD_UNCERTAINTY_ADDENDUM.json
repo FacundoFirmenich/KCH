@@ -1,0 +1,26 @@
+{
+  "format":"KCH_HELICAL_V1_2_DIRECT_FIELD_UNCERTAINTY_ADDENDUM",
+  "parent_lock_id":"mhd12lock:0efc8bb5ffc366d3c46197c378372c1da278da8c647a5be14280e8837c025515",
+  "applies_before_16_record_acquisition":true,
+  "keyword_uncertainties_to_query":["ERRMIH","ERRALP"],
+  "monte_carlo":{
+    "draws_per_record":64,
+    "seed_rule":"SHA256('KCH_MHD12_MC|' + HARPNUM + '|' + T_REC) first 64 bits",
+    "field_errors":["br_err","bt_err","bp_err"],
+    "distribution":"independent pixelwise Gaussian using reported 1-sigma component errors",
+    "known_limitation":"component-error cross-correlations are not included in this gate"
+  },
+  "signed_informative_definition":{
+    "MEANJZH":"abs(keyword_MEANJZH) >= 2*keyword_ERRMIH",
+    "MEANALP":"abs(keyword_MEANALP) >= 2*keyword_ERRALP"
+  },
+  "uncertainty_gates":{
+    "minimum_fraction_signed_informative_records_with_sign_stability_ge_0_80":0.80,
+    "minimum_sign_stability_per_informative_record":0.80,
+    "minimum_informative_records_each_quantity":6
+  },
+  "mask_reconstruction_diagnostic":"derived cmask pixel count must equal keyword CMASK; mismatch is fail-closed implementation error",
+  "coordinate_sign_control":"reversing exactly one horizontal basis orientation must reverse the sign of MEANJZH and MEANALP while preserving unsigned magnitude within numerical tolerance",
+  "posthoc_rescue":"FORBIDDEN",
+  "authority_ceiling":"NONE"
+}
