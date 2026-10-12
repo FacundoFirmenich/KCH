@@ -173,6 +173,8 @@ def normalize(root: Mapping[str, Any]) -> tuple[dict[str, np.ndarray], dict[str,
             continue
         if name in {"nc_sc", "ev_bl"}:
             converted[name] = safe_category(root[name], name)
+        elif name == "time_utc" and np.asarray(root[name]).dtype.kind in "iuf":
+            converted[name] = safe_float(root[name], name)
         elif name in TEXT_FIELDS:
             converted[name] = safe_text(root[name], name)
         elif name in IDENTIFIER_FIELDS:
