@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "all_records_have_hashes": true,
+    "all_records_have_operator_diagnostics": true,
+    "all_records_pass": true,
+    "all_records_structural_fixture_only": true,
+    "double_execution_result_identity": true,
+    "first_pass_all_jobs_executed": true,
+    "historical_identity_not_transferred": true,
+    "job_census_6376": true,
+    "job_ledger_identity": true,
+    "no_scientific_data_access": true,
+    "no_scientific_execution": true,
+    "no_scientific_result": true,
+    "no_sealed_test_access": true,
+    "numpy_version_frozen": true,
+    "operator_call_census_replay_identity": true,
+    "operator_qualification_pass": true,
+    "operator_source_identity": true,
+    "predecessor_double_freeze_pass": true,
+    "runtime_qualification_pass": true,
+    "runtime_source_identity": true,
+    "second_pass_all_jobs_executed": true
+  },
+  "format": "KCH_HELICAL_V0_17_4_FULL_RUNTIME_QUALIFICATION_VALIDATION",
+  "receipt_id": "h174qual:facc39da5ce123fe2e4a5f4ea9b83bd912e6a4f57d96829e4421703ec53f8b1d",
+  "status": "PASS",
+  "validation_id": "h174validation:f17a63f0bab469484497a84880bd9318ef3667b439f6c07f4a92e25746c1ee7a"
+}

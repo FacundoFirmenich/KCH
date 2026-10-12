@@ -1,0 +1,39 @@
+{
+  "event_fixture_size": 12,
+  "format": "KCH_HELICAL_V0_17_4_STRUCTURAL_FIXTURE_CONTRACT",
+  "holm_fixture_p_values": [
+    0.001,
+    0.01,
+    0.02,
+    0.2,
+    0.8
+  ],
+  "location_fixture": "TWO_REFERENCE_LINES_DETERMINISTIC_NEAREST_ASSIGNMENT",
+  "magnitude_values": [
+    2.0,
+    2.1,
+    2.5
+  ],
+  "mark_fixture_columns": 2,
+  "operator_parameter_fixture": {
+    "background_rate_per_day": 0.2,
+    "branching_ratio": 0.2,
+    "c_days": 0.1,
+    "magnitude_reference": 2.0,
+    "magnitude_scaling": 0.3,
+    "network_scale_km": 1.5,
+    "p": 1.1,
+    "productivity": 0.44
+  },
+  "purpose": "SOFTWARE_RUNTIME_QUALIFICATION_ONLY",
+  "quality_labels": [
+    "Q"
+  ],
+  "scientific_calibration_data": false,
+  "scientific_observation": false,
+  "sealed_test_data": false,
+  "time_support_days": [
+    0.0,
+    11.0
+  ]
+}
