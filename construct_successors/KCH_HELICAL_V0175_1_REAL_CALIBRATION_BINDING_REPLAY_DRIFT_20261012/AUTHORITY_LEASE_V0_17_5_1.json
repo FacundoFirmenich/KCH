@@ -1,0 +1,41 @@
+{
+  "format": "KCH_HELICAL_V0_17_5_1_AUTHORITY_LEASE",
+  "authority_id": "kch-helical-v0175-1-real-calibration-binding-replay-drift-20261012",
+  "predecessor_failed_run_id": 38234598069,
+  "predecessor_failed_job_id": 114762061031,
+  "predecessor_failure_class": "NUMERICAL_PARENT_REFIT_IDENTITY_DRIFT_PLUS_BOOLEAN_CHECK_BUG",
+  "authority_ceiling": "REAL_INPUT_IDENTITY_PLUS_DIAGNOSTIC_REFIT_REPLAY_NO_TEST_SCORING",
+  "authorized_operations": [
+    "reacquire_exact_public_source_bytes",
+    "reconstruct_historical_selection_and_directional_observability_ephemerally",
+    "recompute_topology",
+    "rerun_train_only_parent_fit_diagnostically",
+    "persist_safe_aggregate_replay_receipts_before_adjudication",
+    "compare_replay_parameters_to_historical_frozen_lock_under_predeclared_tolerance",
+    "bind_exact_real_train_calibration_lineage_to_historical_frozen_parent_lock",
+    "purge_all_row_level_and_parent_edge_artifacts",
+    "emit_append_only_drift_and_binding_receipts"
+  ],
+  "forbidden_operations": [
+    "relax_tolerance_after_observing_replay_values",
+    "replace_historical_frozen_parent_lock_with_replay_fit",
+    "score_sealed_test_values",
+    "export_sealed_test_rows",
+    "execute_v017_null_runtime_on_real_rows",
+    "update_scientific_parameters_from_calibration",
+    "produce_scientific_result",
+    "transfer_historical_v013_identity",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "partitioning_enclave_directional_access": "TEMPORARY_REQUIRED_FOR_OBSERVABILITY_PARTITION_ONLY",
+  "partitioning_enclave_sealed_test_scoring": false,
+  "v017_runtime_sealed_test_access": false,
+  "v017_runtime_executed_in_this_gate": false,
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "finite": true
+}
