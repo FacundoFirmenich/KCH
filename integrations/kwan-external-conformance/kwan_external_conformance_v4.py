@@ -16,6 +16,9 @@ from typing import Any
 import kwan_external_conformance_v3 as predecessor
 
 
+base = predecessor.predecessor.base
+
+
 def enclosure(arguments: list[str], readonly_binds: list[tuple[str, str]] | None = None):
     command = [
         os.environ["SUDO_BIN"],
@@ -44,7 +47,7 @@ def enclosure(arguments: list[str], readonly_binds: list[tuple[str, str]] | None
     for source, destination in readonly_binds or []:
         command.extend(["--ro-bind", source, destination])
     command.extend(["--chdir", "/tmp", *arguments])
-    return predecessor.base.run(command)
+    return base.run(command)
 
 
 def wasmtime_enforcement(tmp: pathlib.Path, wasmtime: str, _bwrap: str) -> dict[str, Any]:
@@ -56,7 +59,7 @@ def wasmtime_enforcement(tmp: pathlib.Path, wasmtime: str, _bwrap: str) -> dict[
         "local.get 0 local.get 1 i32.add))\n",
         encoding="utf-8",
     )
-    direct = predecessor.base.run(
+    direct = base.run(
         [wasmtime, "run", "--invoke", "add", str(module), "17", "25"]
     )
     isolated = enclosure(
