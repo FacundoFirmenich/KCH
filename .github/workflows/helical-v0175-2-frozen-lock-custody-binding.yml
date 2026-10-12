@@ -1,0 +1,101 @@
+name: KCH Helical v0.17.5.2 frozen-lock custody binding
+
+on:
+  push:
+    branches:
+      - helical-v0175-2-frozen-lock-custody-binding-20261012
+    paths:
+      - ".github/workflows/helical-v0175-2-frozen-lock-custody-binding.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0175-2-frozen-lock-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0175_2_FROZEN_LOCK_CUSTODY_BINDING_20261012
+  ADJ: construct_successors/KCH_HELICAL_V0175_2_FROZEN_LOCK_CUSTODY_BINDING_20261012/adjudicate_frozen_lock_binding_v0175_2.py
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+
+jobs:
+  frozen-lock-custody-binding:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout complete lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0175-2-frozen-lock-custody-binding-20261012
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify finite authority and compile adjudicator
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_17_5_2.json" >/dev/null
+          python -m json.tool "$ROOT/FAILURE_RECEIPT_V0_17_5_1.json" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v01752/pycache"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v01752/pycache" python -m py_compile "$ADJ"
+
+      - name: Adjudicate immutable lock custody and exact input binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/results"; mkdir -p "$ROOT/results"
+          python "$ADJ" --repo-root "$GITHUB_WORKSPACE" --root "$ROOT" --output "$ROOT/results"
+
+      - name: Enforce no-data no-test boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find "$ROOT" -type f \( -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o -name '*.sqlite' -o -name '*.db' \) | grep -q .; then
+            echo "row/scientific payload crossed v0.17.5.2 boundary" >&2; exit 91
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json,sys
+          root=Path(sys.argv[1]);out=root/'results'
+          b=json.loads((out/'FROZEN_LOCK_REAL_INPUT_BINDING_V0_17_5_2.json').read_text())
+          v=json.loads((out/'FROZEN_LOCK_BINDING_VALIDATION_V0_17_5_2.json').read_text())
+          o=json.loads((out/'OPTIMIZER_REPLAY_BOUNDARY_V0_17_5_2.json').read_text())
+          assert b['status']=='PASS' and v['status']=='PASS'
+          assert v['binding_id']==b['binding_id']
+          assert b['historical_frozen_parent_lock']['authoritative'] is True
+          assert b['historical_frozen_parent_lock']['refit_authorized'] is False
+          assert b['v017_runtime_domain']['executed_in_this_gate'] is False
+          assert b['v017_runtime_domain']['sealed_test_accessed'] is False
+          assert b['scientific_result'] is None
+          assert o['parameter_point_replay_within_v0_17_5_1_tolerance'] is False
+          assert o['interpretation'].startswith('HISTORICAL_POINT_OPTIMUM_NOT_REPRODUCIBLE')
+          PY
+
+      - name: Persist binding receipts append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0175-2-frozen-lock"
+          git config user.email "kch-helical-v0175-2-frozen-lock@users.noreply.github.com"
+          git add "$ROOT/results"
+          if git diff --cached --quiet; then echo "No custody-binding delta"; else
+            git commit -m "record v0.17.5.2 frozen historical lock custody binding [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload binding receipts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0175-2-frozen-lock-binding-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}/results
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
