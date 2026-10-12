@@ -1,0 +1,18 @@
+{
+  "format": "KCH_HELICAL_V0_17_5_1_FAILURE_RECEIPT",
+  "github_run_id": 38235716542,
+  "github_job_id": 114765763333,
+  "result_commit": "704f726eec87c21f1195bc84ff0c7a5498e50161",
+  "diagnostic_id": "h1751drift:394a7f50dba6ab82b625743c6d5c03f8dd69ad0b2164d2fea26733e749371b54",
+  "validation_id": "h1751validation:e37c5a80c355256508f62219cbfbbd0e14216e22770b88ab33d9c9c0e70f2b1b",
+  "outcome": "NUMERICAL_REPLAY_TOLERANCE_FAIL_CLOSED",
+  "exact_input_identity_pass": true,
+  "cohort_split_identity_pass": true,
+  "parameter_tolerance_pass": false,
+  "calibration_metric_tolerance_pass": false,
+  "threshold_relaxed_after_observation": false,
+  "historical_lock_remains_authoritative": true,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
