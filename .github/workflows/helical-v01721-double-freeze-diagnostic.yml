@@ -1,0 +1,132 @@
+name: KCH Helical v0.17.2.1 double-freeze diagnostic
+
+on:
+  push:
+    branches:
+      - helical-v01721-double-freeze-diagnostic-20261012
+    paths:
+      - ".github/workflows/helical-v01721-double-freeze-diagnostic.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v01721-double-freeze-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V017_SPEC_DERIVED_NONIDENTICAL_RUNTIME_20261012
+  LINEAGE: construct_successors/KCH_HELICAL_V01721_DOUBLE_FREEZE_DIAGNOSTIC_20261012
+  DIAGNOSTIC: construct_successors/KCH_HELICAL_V01721_DOUBLE_FREEZE_DIAGNOSTIC_20261012/diagnose_double_freeze_v01721.py
+  BOOTSTRAP: .github/helical_v0172/bootstrap_v0172.py
+  MANIFEST: .github/helical_v0172/TEXT_CHUNK_MANIFEST_V0_17_2.json
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+
+jobs:
+  diagnose-double-freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout complete successor lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v01721-double-freeze-diagnostic-20261012
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify finite diagnostic authority and programs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$LINEAGE/AUTHORITY_LEASE_V0_17_2_1.json" >/dev/null
+          python -m json.tool "$LINEAGE/FAILURE_RECEIPT_V0_17_2_RUN1.json" >/dev/null
+          python -m json.tool "$MANIFEST" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v01721/pycache" "$RUNNER_TEMP/v01721/work"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v01721/pycache" python -m py_compile "$DIAGNOSTIC" "$BOOTSTRAP"
+
+      - name: Reproduce and diagnose double-freeze divergence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/generated" "$ROOT/release" "$LINEAGE/DOUBLE_FREEZE_DIFFERENCE_REPORT_V0_17_2_1.json" "$LINEAGE/DOUBLE_FREEZE_DIAGNOSTIC_RECEIPT_V0_17_2_1.json" "$RUNNER_TEMP/v01721/work"
+          mkdir -p "$RUNNER_TEMP/v01721/work"
+          python "$DIAGNOSTIC" \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --bootstrap "$BOOTSTRAP" \
+            --manifest "$MANIFEST" \
+            --root "$ROOT" \
+            --work "$RUNNER_TEMP/v01721/work" \
+            --lineage "$LINEAGE"
+
+      - name: Enforce diagnostic-only terminal boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$LINEAGE" <<'PY'
+          from pathlib import Path
+          import json, sys
+          lineage=Path(sys.argv[1])
+          report=json.loads((lineage/'DOUBLE_FREEZE_DIFFERENCE_REPORT_V0_17_2_1.json').read_text())
+          receipt=json.loads((lineage/'DOUBLE_FREEZE_DIAGNOSTIC_RECEIPT_V0_17_2_1.json').read_text())
+          assert report['status']=='DIAGNOSTIC_COMPLETE'
+          assert report['divergent_member_count'] >= 1
+          assert report['scientific_data_accessed'] is False
+          assert report['calibration_executed'] is False
+          assert report['sealed_test_accessed'] is False
+          assert report['scientific_result'] is None
+          assert receipt['status']=='PASS'
+          assert receipt['difference_report_id']==report['report_id']
+          assert receipt['unit_test_runs_completed']==2
+          assert receipt['unit_tests_each']==44
+          assert receipt['freeze_runs_completed']==2
+          assert receipt['freeze_accepted'] is False
+          assert receipt['release_built'] is False
+          assert receipt['scientific_data_accessed'] is False
+          assert receipt['calibration_executed'] is False
+          assert receipt['sealed_test_accessed'] is False
+          assert receipt['scientific_result'] is None
+          assert receipt['promotion']=='BLOCKED'
+          assert receipt['canonicalization']=='BLOCKED'
+          PY
+          if find "$LINEAGE" -type f \( \
+              -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o \
+              -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o \
+              -name '*.sqlite' -o -name '*.db' -o -name '*.pyc' -o -name '*.zip' \
+            \) | grep -q .; then
+            echo "forbidden payload persisted across diagnostic boundary" >&2
+            exit 91
+          fi
+
+      - name: Persist diagnostic evidence append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v01721-diagnostic"
+          git config user.email "kch-helical-v01721-diagnostic@users.noreply.github.com"
+          git add "$LINEAGE/DOUBLE_FREEZE_DIFFERENCE_REPORT_V0_17_2_1.json" "$LINEAGE/DOUBLE_FREEZE_DIAGNOSTIC_RECEIPT_V0_17_2_1.json"
+          if git diff --cached --quiet; then
+            echo "No diagnostic delta"
+          else
+            git commit -m "record v0.17.2.1 double-freeze diagnostic [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload diagnostic receipts only
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v01721-double-freeze-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.LINEAGE }}/DOUBLE_FREEZE_DIFFERENCE_REPORT_V0_17_2_1.json
+            ${{ env.LINEAGE }}/DOUBLE_FREEZE_DIAGNOSTIC_RECEIPT_V0_17_2_1.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
