@@ -1,0 +1,109 @@
+name: KCH Helical v1.4.2 multiscale operator-basis reexecution
+
+on:
+  push:
+    branches:
+      - gate/helical-v142-operator-basis-reexecution-20261012
+    paths:
+      - .github/helical_v142/multiscale_operator_basis_v142.py
+      - construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json
+      - .github/workflows/helical-v142-operator-basis-reexecution.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kch-helical-v142-operator-basis-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  operator-basis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact successor
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          fetch-depth: 1
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install \
+            numpy==2.1.3 \
+            scipy==1.14.1 \
+            astropy==7.1.0 \
+            drms==0.9.0 \
+            pandas==2.2.3 \
+            requests==2.32.3
+          mkdir -p "$RUNNER_TEMP/helical-v142"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v142/PIP_FREEZE.txt"
+          sha256sum \
+            .github/helical_v142/multiscale_operator_basis_v142.py \
+            construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json \
+            construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_LOCK_V1_4_1.json \
+            construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json \
+            > "$RUNNER_TEMP/helical-v142/INPUT_SHA256SUMS.txt"
+
+      - name: Execute development-only multiscale operator-basis gate
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          OUT="$RUNNER_TEMP/helical-v142" \
+            python .github/helical_v142/multiscale_operator_basis_v142.py \
+            > "$RUNNER_TEMP/helical-v142/STDOUT.log" \
+            2> "$RUNNER_TEMP/helical-v142/STDERR.log"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-v142/EXIT_CODE.txt"
+          cat "$RUNNER_TEMP/helical-v142/STDOUT.log"
+          if [[ -s "$RUNNER_TEMP/helical-v142/STDERR.log" ]]; then cat "$RUNNER_TEMP/helical-v142/STDERR.log" >&2; fi
+          if [[ "$rc" -ne 0 && "$rc" -ne 30 && "$rc" -ne 31 ]]; then exit "$rc"; fi
+
+      - name: Enforce raw-segment purge
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d "$RUNNER_TEMP/helical-v142/raw" ]]; then
+            echo 'raw FITS directory survived process exit' >&2
+            rm -rf "$RUNNER_TEMP/helical-v142/raw"
+            exit 91
+          fi
+
+      - name: Upload safe aggregate receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v142-operator-basis-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-v142/safe
+            ${{ runner.temp }}/helical-v142/PIP_FREEZE.txt
+            ${{ runner.temp }}/helical-v142/INPUT_SHA256SUMS.txt
+            ${{ runner.temp }}/helical-v142/STDOUT.log
+            ${{ runner.temp }}/helical-v142/STDERR.log
+            ${{ runner.temp }}/helical-v142/EXIT_CODE.txt
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rc=$(cat "$RUNNER_TEMP/helical-v142/EXIT_CODE.txt")
+          case "$rc" in
+            0) echo 'MULTISCALE_OPERATOR_BASIS_PASS' ;;
+            30) echo 'MULTISCALE_OPERATOR_BASIS_NOT_RECONCILED' >&2; exit 30 ;;
+            31) echo 'INSUFFICIENT_DEVELOPMENT_RECORD_SUPPORT' >&2; exit 31 ;;
+            *) echo "MULTISCALE_OPERATOR_GATE_FAILED_CLOSED:$rc" >&2; exit "$rc" ;;
+          esac
