@@ -1,0 +1,34 @@
+{
+  "format":"KCH_HELICOIDAL_V1_3_OPERATOR_NUMERICAL_ADDENDUM",
+  "parent_lock":"HELICITY_FLUX_OPERATOR_QUALIFICATION_LOCK.json",
+  "applies_before_sequence_field_acquisition":true,
+  "edge_guard_pixels":12,
+  "edge_guard_rule":"all induction-residual, velocity-coverage and helicity-flux integration masks are eroded from the crop boundary by 12 pixels; high-confidence/50G requirements still apply",
+  "DAVE4VM_preprocessing":{
+    "Bx":"Bp",
+    "By":"-Bt",
+    "Bz":"Br",
+    "spatial_derivative":"pyflowmaps.math_tools.odiff divided by CEA metric pixel size in km",
+    "time_derivative":"(Bz_stop-Bz_start)/delta_t_seconds",
+    "nonfinite_inside_crop":"zero-filled only for solver convolution; never admitted to integration mask"
+  },
+  "velocity_perpendicularization":"v_perp = v - (v dot B) B / |B|^2 using midpoint B; pixels with |B|^2=0 are excluded",
+  "induction_residual":"dBz/dt + d(vx*Bz-vz*Bx)/dx + d(vy*Bz-vz*By)/dy",
+  "potential_vector":{
+    "kernel":"Ap(x)=(1/2pi) zhat x integral[Bz(x') (x-x')/|x-x'|^2 dS']",
+    "singular_self_term":"zero",
+    "implementation":"scipy.signal.fftconvolve with explicit full-convolution center extraction",
+    "curl_test_region":"edge-guarded high-confidence midpoint pixels"
+  },
+  "symmetric_relative_difference":"2*abs(a-b)/(abs(a)+abs(b)+1e-30)",
+  "time_reversal":"rerun DAVE4VM with start/stop swapped and same positive delta_t",
+  "parity_control":{
+    "reflection":"x -> -x",
+    "magnetic_field_axial_transform":"(Bx,By,Bz)->(+Bx,-By,-Bz) after x-array reversal",
+    "velocity_polar_transform":"(vx,vy,vz)->(-vx,+vy,+vz) after x-array reversal",
+    "expected":"helicity injection rate changes sign"
+  },
+  "synthetic_interpolation":"scipy.ndimage.shift order=3 mode=nearest",
+  "posthoc_rescue":"FORBIDDEN",
+  "authority_ceiling":"NONE"
+}
