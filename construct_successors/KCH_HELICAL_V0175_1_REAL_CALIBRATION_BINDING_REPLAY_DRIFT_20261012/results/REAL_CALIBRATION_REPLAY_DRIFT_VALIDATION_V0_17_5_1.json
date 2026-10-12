@@ -1,0 +1,13 @@
+{
+  "calibration_metric_tolerance_pass": false,
+  "cohort_split_identity_pass": true,
+  "diagnostic_id": "h1751drift:394a7f50dba6ab82b625743c6d5c03f8dd69ad0b2164d2fea26733e749371b54",
+  "exact_input_identity_pass": true,
+  "format": "KCH_HELICAL_V0_17_5_1_REPLAY_DRIFT_VALIDATION",
+  "historical_lock_remains_authoritative": true,
+  "parameter_tolerance_pass": false,
+  "scientific_result": null,
+  "status": "FAIL_CLOSED",
+  "threshold_relaxed_after_observation": false,
+  "validation_id": "h1751validation:e37c5a80c355256508f62219cbfbbd0e14216e22770b88ab33d9c9c0e70f2b1b"
+}

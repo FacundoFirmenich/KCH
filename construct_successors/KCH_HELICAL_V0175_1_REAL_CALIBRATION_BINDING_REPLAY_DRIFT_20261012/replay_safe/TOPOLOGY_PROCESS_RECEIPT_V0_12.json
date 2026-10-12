@@ -1,0 +1,11 @@
+{
+  "accepted_returncodes": [
+    0
+  ],
+  "format": "KCH_HELICAL_V0_12_PROCESS_EXECUTION_RECEIPT",
+  "label": "EXACT_INTERSECTION_TOPOLOGY_LOCK",
+  "receipt_id": "h12process:076d7dd23a795a180d7ab72b408718a16eb3c3a67dee6aec473c9676b568627d",
+  "returncode": 0,
+  "stderr_tail": "",
+  "stdout_tail": "{\n  \"authority_ceiling\": \"FINITE_PARENT_GRAPH_LOCK_ONLY\",\n  \"axis_observable_count\": 60577,\n  \"canonicalization\": \"BLOCKED\",\n  \"cohorts\": [\n    {\n      \"axis_observable_events\": 37280,\n      \"cohort_code\": 0,\n      \"cohort_id\": \"BAY_AREA_HAYWARD_CALAVERAS\",\n      \"multiline_component_event_fraction_not_computed\": true,\n      \"selected_fault_line_count\": 55,\n      \"touched_component_count\": 31\n    },\n    {\n      \"axis_observable_events\": 23297,\n      \"cohort_code\": 1,\n      \"cohort_id\": \"PARKFIELD_CENTRAL_SAF\",\n      \"multiline_component_event_fraction_not_computed\": true,\n      \"selected_fault_line_count\": 11,\n      \"touched_component_count\": 10\n    }\n  ],\n  \"component_count\": 39,\n  \"exact_intersection_pair_count\": 28,\n  \"exact_intersection_point_count\": 30,\n  \"fault_geojson_sha256\": \"37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1\",\n  \"format\": \"KCH_HELICAL_V0_12_EXACT_TOPOLOGY_LOCK_RESULT\",\n  \"gate_id\": \"h12topo:a5dbc9bfce8a564517cb9572f543d4c17931c668dfd82021e14209360e72fbb4\",\n  \"largest_component_line_count\": 8,\n  \"location_operator_executed\": false,\n  \"location_operator_id\": \"h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5\",\n  \"next_material_gate\": \"ETAS_HAWKES_PARENT_GRAPH_TRAIN_ONLY_CALIBRATION_LOCK\",\n  \"outcome\": \"EXACT_INTERSECTION_TOPOLOGY_LOCK_PASS\",\n  \"promotion\": \"BLOCKED\",\n  \"protocol_id\": \"h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f\",\n  \"scientific_dynamic_model_execution_performed\": false,\n  \"sealed_test_scored\": false,\n  \"selected_event_count\": 61555,\n  \"selected_fault_line_count\": 66\n}\n"
+}
