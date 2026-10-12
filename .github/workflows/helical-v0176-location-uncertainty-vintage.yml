@@ -1,0 +1,197 @@
+name: KCH Helical v0.17.6 current location-uncertainty vintage
+
+on:
+  push:
+    branches:
+      - helical-v0176-location-uncertainty-vintage-20261012
+    paths:
+      - ".github/workflows/helical-v0176-location-uncertainty-vintage.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0176-location-vintage-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  V10: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009
+  V11: construct_successors/KCH_HELICAL_V011_DIRECTIONAL_PRETEST_20261009
+  V14: construct_successors/KCH_HELICAL_V014_LOCATION_UNCERTAINTY_CROSSWALK_20261010
+  V142: construct_successors/KCH_HELICAL_V0142_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010
+  V143: construct_successors/KCH_HELICAL_V0143_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010
+  V1752: construct_successors/KCH_HELICAL_V0175_2_FROZEN_LOCK_CUSTODY_BINDING_20261012
+  ROOT: construct_successors/KCH_HELICAL_V0176_LOCATION_UNCERTAINTY_VINTAGE_20261012
+  PROTOCOL: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/protocol/HELICAL_DYNAMIC_MARKED_POINT_PROCESS_GATE_V0_8_LOCKED.json
+  ELIGIBILITY: construct_successors/KCH_HELICAL_V010_REMOTE_GATE_20261009/results/run-37919577887-1/BLIND_ELIGIBILITY_RESULT_V0_10.json
+  HIST: construct_successors/KCH_HELICAL_V0143_CSV_LOCATION_UNCERTAINTY_CROSSWALK_20261010/results/run-38002212598-1
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+
+jobs:
+  current-location-uncertainty-vintage:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - name: Checkout complete lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0176-location-uncertainty-vintage-20261012
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned host geometry stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --no-cache-dir numpy==2.1.3 pyproj==3.7.0 shapely==2.0.6
+          mkdir -p "$RUNNER_TEMP/v0176/control"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/v0176/control/PIP_FREEZE.txt"
+          python - <<'PY'
+          import hashlib,json,os,pathlib,platform,subprocess,sys
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])/'v0176'/'control'
+          freeze=(root/'PIP_FREEZE.txt').read_bytes()
+          body={'python':sys.version,'platform':platform.platform(),'pip_freeze_sha256':hashlib.sha256(freeze).hexdigest(),
+          'docker_version':subprocess.check_output(['docker','--version'],text=True).strip(),
+          'github_run_id':os.environ['GITHUB_RUN_ID'],'github_run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+          'github_sha':os.environ['GITHUB_SHA'],'github_ref':os.environ['GITHUB_REF']}
+          (root/'RUNTIME_ENVIRONMENT.json').write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          PY
+
+      - name: Verify fresh vintage authority and immutable upstream binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_17_6.json" >/dev/null
+          python -m json.tool "$V1752/results/FROZEN_LOCK_REAL_INPUT_BINDING_V0_17_5_2.json" >/dev/null
+          python -m json.tool "$V1752/results/FROZEN_LOCK_BINDING_VALIDATION_V0_17_5_2.json" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v0176/pycache"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v0176/pycache" python -m py_compile             "$ROOT/adjudicate_location_vintage_v0176.py"             "$V143/helical_v0143_location_uncertainty_gate.py"             "$V142/comcat_csv_location_uncertainty_crosswalk_v0142.py"             "$V14/helical_v014_location_uncertainty_gate.py"             "$V11/extract_blind_v011.py" "$V11/helical_v011_directional_pretest.py"             "$V11/helical_v011_directional_pretest_core.py"             "$V10/helical_remote_gate.py" "$V10/helical_public_acquisition.py" "$V10/helical_geometry_adapter.py"
+          python - "$ROOT/AUTHORITY_LEASE_V0_17_6.json" "$V1752/results/FROZEN_LOCK_REAL_INPUT_BINDING_V0_17_5_2.json" <<'PY'
+          import json,sys
+          lease=json.load(open(sys.argv[1])); binding=json.load(open(sys.argv[2]))
+          assert lease['v0175_2_binding_id']==binding['binding_id']
+          assert binding['status']=='PASS'
+          assert lease['vintage_semantics']=='NEW_OBSERVATION_VINTAGE_DO_NOT_REQUIRE_HISTORICAL_RESPONSE_HASH_IDENTITY'
+          assert lease['coverage_threshold_changed'] is False
+          assert lease['sealed_test_access_authorized'] is False
+          assert lease['scientific_model_fit_authorized'] is False
+          assert lease['null_runtime_execution_authorized'] is False
+          PY
+
+      - name: Freeze networkless blind extraction image
+        shell: bash
+        run: |
+          set -euo pipefail
+          ctx="$RUNNER_TEMP/v0176/image"; mkdir -p "$ctx"
+          base="docker.io/library/python@sha256:0a310eeecf4e1f5a0743f9a6520c90c88d089c903ca5fd283f501e3a805f5f89"
+          docker pull "$base"
+          python -m pip download --only-binary=:all: --no-deps --dest "$ctx" numpy==2.1.3
+          wheel=$(find "$ctx" -maxdepth 1 -name 'numpy-*.whl' -type f -print -quit)
+          test -n "$wheel"
+          test "$(sha256sum "$wheel" | awk '{print $1}')" = "bc6f24b3d1ecc1eebfbf5d6051faa49af40b03be1aaa781ebdadcbc090b4539b"
+          cp "$V11/extract_blind_v011.py" "$ctx/extractor.py"
+          wheel_name=$(basename "$wheel")
+          cat > "$ctx/Dockerfile" <<EOF
+          FROM $base
+          ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONHASHSEED=0
+          COPY $wheel_name /wheels/$wheel_name
+          RUN pip install --no-cache-dir --no-index /wheels/$wheel_name && rm -rf /wheels
+          COPY extractor.py /app/extractor.py
+          ENTRYPOINT ["python", "/app/extractor.py"]
+          EOF
+          docker build --pull=false --network=none -t kch-helical-v0176-blind:locked "$ctx"
+          rm -rf "$ctx"
+
+      - name: Execute current public FDSN CSV vintage gate
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          rm -rf "$RUNNER_TEMP/v0176/work"; mkdir -p "$RUNNER_TEMP/v0176/work"
+          PYTHONPATH="$GITHUB_WORKSPACE/$V10:$GITHUB_WORKSPACE/$V11:$GITHUB_WORKSPACE/$V14:$GITHUB_WORKSPACE/$V142:$GITHUB_WORKSPACE/$V143"           python "$V143/helical_v0143_location_uncertainty_gate.py"             --protocol "$PROTOCOL"             --authority "$ROOT/AUTHORITY_LEASE_V0_17_6.json"             --eligibility-result "$ELIGIBILITY"             --crosswalk-runtime "$V142/comcat_csv_location_uncertainty_crosswalk_v0142.py"             --workspace "$RUNNER_TEMP/v0176/work"             --blind-image kch-helical-v0176-blind:locked             --timeout 240             > "$RUNNER_TEMP/v0176/control/GATE_STDOUT.txt"             2> "$RUNNER_TEMP/v0176/control/GATE_STDERR.txt"
+          rc=$?
+          set -e
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/v0176/control/GATE_EXIT_CODE.txt"
+          tail -c 16000 "$RUNNER_TEMP/v0176/control/GATE_STDOUT.txt" || true
+          tail -c 16000 "$RUNNER_TEMP/v0176/control/GATE_STDERR.txt" >&2 || true
+          exit 0
+
+      - name: Prove purge and persist safe current-vintage receipts
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/v0176/work"
+          test ! -e "$work/raw"; test ! -e "$work/blind"; test ! -e "$work/selection"; test ! -e "$work/crosswalk"
+          rm -rf "$ROOT/gate_safe"; mkdir -p "$ROOT/gate_safe"
+          cp -a "$work/results/." "$ROOT/gate_safe/"
+          cp -a "$RUNNER_TEMP/v0176/control/." "$ROOT/gate_safe/"
+          if find "$ROOT/gate_safe" -type f \( -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o -name '*.csv' -o -name '*.geojson' -o -name '*.parquet' \) | grep -q .; then
+            echo "raw/row-level location-vintage payload escaped purge" >&2; exit 91
+          fi
+
+      - name: Bind current vintage if frozen coverage gate passes
+        id: bind
+        shell: bash
+        run: |
+          set +e
+          rm -rf "$ROOT/results"; mkdir -p "$ROOT/results"
+          if [[ "${{ steps.gate.outputs.gate_exit_code }}" == "0" ]]; then
+            python "$ROOT/adjudicate_location_vintage_v0176.py"               --repo-root "$GITHUB_WORKSPACE"               --gate-results "$ROOT/gate_safe"               --binding-root "$V1752"               --historical-results "$HIST"               --output "$ROOT/results"
+            rc=$?
+          else
+            rc="${{ steps.gate.outputs.gate_exit_code }}"
+          fi
+          set -e
+          echo "binding_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Persist vintage receipts append-only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0176-location-vintage"
+          git config user.email "kch-helical-v0176-location-vintage@users.noreply.github.com"
+          git add "$ROOT/gate_safe" "$ROOT/results"
+          if git diff --cached --quiet; then echo "No location-vintage delta"; else
+            git commit -m "record v0.17.6 current ComCat location-uncertainty vintage [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload current vintage receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0176-location-vintage-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.ROOT }}/gate_safe
+            ${{ env.ROOT }}/results
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Final vintage adjudication
+        if: always()
+        shell: bash
+        env:
+          GATE_RC: ${{ steps.gate.outputs.gate_exit_code }}
+          BIND_RC: ${{ steps.bind.outputs.binding_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_RC:-99}" in
+            0) test "${BIND_RC:-99}" = "0"; echo "V0_17_6_LOCATION_UNCERTAINTY_VINTAGE_PASS" ;;
+            30) echo "V0_17_6_NOT_IDENTIFIABLE_LOCATION_UNCERTAINTY_COVERAGE" >&2; exit 30 ;;
+            *) echo "V0_17_6_FAIL_CLOSED gate=${GATE_RC:-99} bind=${BIND_RC:-99}" >&2; exit "${GATE_RC:-99}" ;;
+          esac
