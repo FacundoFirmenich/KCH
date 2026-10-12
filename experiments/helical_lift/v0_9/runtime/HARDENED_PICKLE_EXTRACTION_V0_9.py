@@ -127,6 +127,42 @@ def safe_float(value: Any, name: str) -> np.ndarray:
     return numeric.astype("<f8", copy=False)
 
 
+
+def blind_schema_audit(root: Mapping[str, Any], source_sha256: str) -> dict[str, Any]:
+    fields: dict[str, Any] = {}
+    for name in ALLOWED:
+        if name not in root:
+            fields[name] = {"present": False}
+            continue
+        value = np.asarray(root[name])
+        meta: dict[str, Any] = {"present": True, "dtype": value.dtype.str, "shape": list(value.shape), "size": int(value.size)}
+        if value.dtype.kind in "iuf":
+            meta["nonfinite_count"] = int(np.count_nonzero(~np.isfinite(value)))
+        if name in {"nc_sc", "ev_bl"} and value.dtype.kind in "iufUS":
+            unique, counts = np.unique(value, return_counts=True)
+            meta["category_count"] = int(len(unique))
+            if len(unique) <= 32:
+                meta["categories"] = [
+                    {"value": (None if isinstance(v.item(), float) and not math.isfinite(v.item()) else v.item()), "count": int(n)}
+                    for v, n in zip(unique, counts)
+                ]
+        fields[name] = meta
+    body = {"format": "KCH_HELICAL_BLIND_SCHEMA_AUDIT_V0_9_1", "source_sha256": source_sha256, "fields": fields,
+            "directional_fields_summarized": False, "rows_removed": 0, "imputation_performed": False,
+            "scientific_eligibility_executed": False, "authority_ceiling": "NONE"}
+    body["receipt_id"] = content_id("h9schema", body)
+    return body
+
+
+def safe_category(value: Any, name: str) -> np.ndarray:
+    array = one_dimensional(value, name)
+    if array.dtype.kind in "iu":
+        return safe_int(array, name)
+    if array.dtype.kind == "f":
+        return safe_float(array, name)
+    return safe_text(value, name)
+
+
 def normalize(root: Mapping[str, Any]) -> tuple[dict[str, np.ndarray], dict[str, Any]]:
     missing = [name for name in REQUIRED_EVENT_FIELDS if name not in root]
     if missing:
@@ -135,7 +171,9 @@ def normalize(root: Mapping[str, Any]) -> tuple[dict[str, np.ndarray], dict[str,
     for name in ALLOWED:
         if name not in root:
             continue
-        if name in TEXT_FIELDS:
+        if name in {"nc_sc", "ev_bl"}:
+            converted[name] = safe_category(root[name], name)
+        elif name in TEXT_FIELDS:
             converted[name] = safe_text(root[name], name)
         elif name in IDENTIFIER_FIELDS:
             converted[name] = safe_identifier(root[name], name)
@@ -207,6 +245,7 @@ def main() -> int:
     # Intentionally the single pickle deserialization boundary in the entire runtime.
     with args.input.open("rb") as handle:
         root = mapping(pickle.load(handle))
+    write_json_atomic(args.output_dir / "BLIND_SOURCE_SCHEMA_AUDIT_V0_9_1.json", blind_schema_audit(root, observed))
     arrays, normalization = normalize(root)
 
     output = args.output_dir / "blind_columns.npz"

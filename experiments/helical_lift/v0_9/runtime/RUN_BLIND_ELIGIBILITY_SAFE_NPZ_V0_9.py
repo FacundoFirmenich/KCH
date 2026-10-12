@@ -99,6 +99,22 @@ def main() -> int:
         if any(value.dtype.kind == "O" or value.dtype.hasobject or value.ndim != 1 for value in columns.values()):
             raise SystemExit("unsafe array in safe NPZ")
 
+    if columns["ev_bl"].dtype.kind in "iufb":
+        hold = {
+            "format": "KCH_HELICAL_EVENT_TYPE_ENCODING_HOLD_V0_9_1",
+            "outcome": "BLOCKED_UNCERTIFIED_EVENT_TYPE_ENCODING",
+            "reason": "The locked earthquake-not-blast filter must not treat unexplained numeric categories as earthquake labels.",
+            "source_sha256": mechanism_receipt.get("sha256"),
+            "ev_bl_dtype": columns["ev_bl"].dtype.str,
+            "scientific_eligibility_executed": False,
+            "directional_fields_unsealed": False,
+            "model_fitting_performed": False,
+            "authority_ceiling": "NONE",
+        }
+        hold["receipt_id"] = content_id("h9encodinghold", hold)
+        write_json_atomic(args.output.parent / "EVENT_TYPE_ENCODING_HOLD_V0_9_1.json", hold)
+        raise SystemExit("BLOCKED_UNCERTIFIED_EVENT_TYPE_ENCODING: provider codebook required")
+
     fault_index = load_fault_index(args.fault_geojson, expected_sha256=fault_sha256)
     result = blind_eligibility(columns, fault_index, protocol)
     if result.get("angle_fields_accessed") is not False:
