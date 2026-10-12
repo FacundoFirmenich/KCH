@@ -1,0 +1,42 @@
+{
+  "format": "KCH_HELICAL_V0_17_5_2_AUTHORITY_LEASE",
+  "lease_id": "helical-v0175-2-frozen-lock-custody-binding-20261012",
+  "predecessor_result_commit": "704f726eec87c21f1195bc84ff0c7a5498e50161",
+  "predecessor_diagnostic_id": "h1751drift:394a7f50dba6ab82b625743c6d5c03f8dd69ad0b2164d2fea26733e749371b54",
+  "predecessor_validation_id": "h1751validation:e37c5a80c355256508f62219cbfbbd0e14216e22770b88ab33d9c9c0e70f2b1b",
+  "authority_ceiling": "FROZEN_HISTORICAL_LOCK_CUSTODY_AND_REAL_INPUT_BINDING_ONLY",
+  "authorized_operations": [
+    "verify_exact_input_identity_from_persisted_replay_receipts",
+    "verify_exact_cohort_partition_identity",
+    "verify_historical_parent_lock_and_calibration_custody",
+    "verify_two_current_replays_converged_to_same_diagnostic_lock_ids",
+    "verify_declared_python_package_freeze_identity",
+    "record_historical_optimizer_replay_nonreproducibility_boundary",
+    "bind_exact_real_train_calibration_lineage_to_historical_frozen_lock",
+    "emit_append_only_binding_receipts"
+  ],
+  "forbidden_operations": [
+    "reclassify_v0_17_5_1_as_pass",
+    "relax_v0_17_5_1_tolerance",
+    "refit_or_replace_historical_parent_lock",
+    "claim_current_replay_parameter_equivalence",
+    "access_row_level_scientific_data",
+    "access_sealed_test_values",
+    "score_sealed_test",
+    "execute_v017_runtime_on_real_rows",
+    "produce_scientific_result",
+    "transfer_historical_v013_identity",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "historical_parent_lock_authority": "FROZEN_PRIOR_ARTIFACT_ONLY",
+  "optimizer_replay_status": "NONREPRODUCIBLE_TO_PREDECLARED_POINT_TOLERANCE",
+  "scientific_data_accessed_in_this_gate": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "finite": true
+}
