@@ -1,0 +1,70 @@
+{
+  "authority_ceiling": "NONE",
+  "canonicalization": "BLOCKED",
+  "derived_fields": {
+    "current_helicity_proxy": "Br * jz_star times SHARP metric conversion factor",
+    "jz_star": "d(By)/dx - d(Bx)/dy using central finite differences on the CEA grid, prior to cmask aggregation",
+    "mean_alpha": "sum(jz_star*Br)/sum(Br^2) times metric conversion factor",
+    "pixel_signed_helicity": "Br*jz_star"
+  },
+  "format": "KCH_HELICAL_V1_2_DIRECT_VECTOR_FIELD_OBSERVABILITY_LOCK",
+  "lock_id": "mhd12lock:0efc8bb5ffc366d3c46197c378372c1da278da8c647a5be14280e8837c025515",
+  "locked_at_utc": "2026-10-12T00:36:18Z",
+  "observability_gates": {
+    "all_16_records_required": true,
+    "hemisphere_balance_required": true,
+    "median_relative_abs_error_MEANALP_max": 0.15,
+    "median_relative_abs_error_MEANJZH_max": 0.15,
+    "minimum_valid_cmask_pixels_per_record": 100,
+    "record_level_MEANALP_spearman_abs_min": 0.9,
+    "record_level_MEANJZH_sign_agreement_fraction": 0.875,
+    "record_level_MEANJZH_spearman_abs_min": 0.9,
+    "sign_flip_test": "negating one horizontal coordinate orientation must flip reconstructed signed helicity; if not, implementation invalid"
+  },
+  "promotion": "BLOCKED",
+  "scope": {
+    "coronal_relative_magnetic_helicity": "NOT_MEASURED",
+    "flare_prediction": "NOT_IN_THIS_GATE",
+    "physical_helicity_claim": "NOT_AUTHORIZED_BY_THIS_GATE_ALONE",
+    "scientific_claim": "observability and computational reconstruction of signed current-helicity proxies from direct vector fields"
+  },
+  "selection": {
+    "algorithm": "eligible NOAA_AR have >=20 TRAIN windows and |median LAT_FWT|>=5 deg; within each hemisphere sort by SHA256(seed|NOAA_AR), select first 8; snapshot is TRAIN row with minimum |LON_FWT|, then earliest time, then HARPNUM",
+    "helicity_keywords_used_for_selection": false,
+    "hemisphere_quota": {"N": 8, "S": 8},
+    "outcome_labels_used": false,
+    "records": [
+      {"HARPNUM":5970,"LAT_FWT":17.909082,"LON_FWT":-0.585674,"NOAA_AR":12424,"T_REC":"2015.09.23_00:00:00_TAI","hemisphere":"N","origin_utc":"2015-09-22 23:59:24+00:00","selection_hash":"0b51a7dee2dadfb68052e54594e0bd9fdfbdcc62f4ea4f62620ec21b56305ee4","train_window_count":20},
+      {"HARPNUM":241,"LAT_FWT":38.823143,"LON_FWT":-0.862364,"NOAA_AR":11120,"T_REC":"2010.11.05_12:00:00_TAI","hemisphere":"N","origin_utc":"2010-11-05 11:59:26+00:00","selection_hash":"1d2cfaaf7bb3c4677400cb26be8a363342bb9c0fb87500f4d9ab8693f9327764","train_window_count":21},
+      {"HARPNUM":224,"LAT_FWT":18.219011,"LON_FWT":-0.854104,"NOAA_AR":11119,"T_REC":"2010.10.23_06:00:00_TAI","hemisphere":"N","origin_utc":"2010-10-23 05:59:26+00:00","selection_hash":"39064e07a5afa384276ffbf88e0f7ca05348f4d7a519bf85b2e90fbe96c2cfeb","train_window_count":34},
+      {"HARPNUM":5249,"LAT_FWT":7.35359,"LON_FWT":1.871356,"NOAA_AR":12293,"T_REC":"2015.03.02_12:00:00_TAI","hemisphere":"N","origin_utc":"2015-03-02 11:59:25+00:00","selection_hash":"45a9310dfa7e24142c0f5cb69c70c9dfdc461645fa9a57cf5a67a6ef9d23b43d","train_window_count":23},
+      {"HARPNUM":5127,"LAT_FWT":7.263843,"LON_FWT":-1.179518,"NOAA_AR":12277,"T_REC":"2015.02.03_12:00:00_TAI","hemisphere":"N","origin_utc":"2015-02-03 11:59:25+00:00","selection_hash":"4930eb348c040d02bcbeeedb859820c97d3c8751392c1577c206732c074f3f2a","train_window_count":20},
+      {"HARPNUM":3068,"LAT_FWT":22.094362,"LON_FWT":1.700048,"NOAA_AR":11825,"T_REC":"2013.08.17_12:00:00_TAI","hemisphere":"N","origin_utc":"2013-08-17 11:59:25+00:00","selection_hash":"51e77a2deb75440be7f4b753f74fde8b8198a8f7193be0f1f765c2b5f625e64f","train_window_count":20},
+      {"HARPNUM":226,"LAT_FWT":21.115129,"LON_FWT":-1.357809,"NOAA_AR":11117,"T_REC":"2010.10.25_18:00:00_TAI","hemisphere":"N","origin_utc":"2010-10-25 17:59:26+00:00","selection_hash":"71ec65ba756d160e57685f379b4cc36746622c7124463a7a2042afb880ab5c40","train_window_count":35},
+      {"HARPNUM":3604,"LAT_FWT":15.757404,"LON_FWT":2.211101,"NOAA_AR":11950,"T_REC":"2014.01.13_12:00:00_TAI","hemisphere":"N","origin_utc":"2014-01-13 11:59:25+00:00","selection_hash":"777d1ae56e1038a118b4f9ebb829e103fd944295aee0a2e175b507d8632c9d9d","train_window_count":20},
+      {"HARPNUM":3912,"LAT_FWT":-13.170865,"LON_FWT":-2.523653,"NOAA_AR":12021,"T_REC":"2014.04.01_12:00:00_TAI","hemisphere":"S","origin_utc":"2014-04-01 11:59:25+00:00","selection_hash":"0cd369a0b43f6e93ed35e3de52c17b89fbf61569de4dba7f1ae9de7e2fb9a4f1","train_window_count":20},
+      {"HARPNUM":2832,"LAT_FWT":-12.378126,"LON_FWT":-2.195109,"NOAA_AR":11768,"T_REC":"2013.06.10_12:00:00_TAI","hemisphere":"S","origin_utc":"2013-06-10 11:59:25+00:00","selection_hash":"1d5cd53d7c8774468a147a65f20e015279c6eeefda23e5f5c7f625ad8c7684c0","train_window_count":21},
+      {"HARPNUM":5559,"LAT_FWT":-10.684429,"LON_FWT":-2.086902,"NOAA_AR":12348,"T_REC":"2015.05.19_12:00:00_TAI","hemisphere":"S","origin_utc":"2015-05-19 11:59:25+00:00","selection_hash":"29a75b5ad1fb5cb2c35b04bf714f6b023cc8b5658cf0c3449ad24037f2da48c0","train_window_count":20},
+      {"HARPNUM":2166,"LAT_FWT":-20.922625,"LON_FWT":3.127169,"NOAA_AR":11602,"T_REC":"2012.11.04_12:00:00_TAI","hemisphere":"S","origin_utc":"2012-11-04 11:59:25+00:00","selection_hash":"389ac5dec7f1b51a0fa53a65728fba35c64c7765ab382ff4cff4e87fb3ea5ab5","train_window_count":20},
+      {"HARPNUM":5144,"LAT_FWT":-9.104262,"LON_FWT":-0.722789,"NOAA_AR":12280,"T_REC":"2015.02.07_00:00:00_TAI","hemisphere":"S","origin_utc":"2015-02-06 23:59:25+00:00","selection_hash":"616772cf05c1d2cd7f6d05941c7382c3135dcc47fe4aa94b210a747507f5bf40","train_window_count":20},
+      {"HARPNUM":1951,"LAT_FWT":-20.977894,"LON_FWT":-0.428513,"NOAA_AR":11552,"T_REC":"2012.08.26_12:00:00_TAI","hemisphere":"S","origin_utc":"2012-08-26 11:59:25+00:00","selection_hash":"6363ec51793e7bde6c3e4698e9d61b4da38197c1c37af32724133a2e0b541c5b","train_window_count":20},
+      {"HARPNUM":5758,"LAT_FWT":-20.035868,"LON_FWT":-2.968574,"NOAA_AR":12384,"T_REC":"2015.07.14_00:00:00_TAI","hemisphere":"S","origin_utc":"2015-07-13 23:59:24+00:00","selection_hash":"6b66a39f8906642761fbf5be8c8d393213c601ae7dce8f99c7dda9dbaf22b61c","train_window_count":20},
+      {"HARPNUM":5022,"LAT_FWT":-14.977912,"LON_FWT":-3.123919,"NOAA_AR":12255,"T_REC":"2015.01.07_12:00:00_TAI","hemisphere":"S","origin_utc":"2015-01-07 11:59:25+00:00","selection_hash":"7570e3bc47974a53eedb9bc8bce4ba540a272dade579c42f7ccd7a91ca4c5a4d","train_window_count":20}
+    ],
+    "seed": "KCH_HELICAL_V12_DIRECT_FIELD_OBSERVABILITY",
+    "source": "v1.0 MHD census TRAIN rows only"
+  },
+  "source_contract": {
+    "all_or_none": true,
+    "coordinate_convention": {
+      "Bx": "Bp phi/westward component per SHARP convention",
+      "By": "-Bt because Btheta is southward and analysis y is northward",
+      "Bz": "Br radial outward"
+    },
+    "mask": "bitmap>=33 AND conf_disambig==90 AND finite Br/Bt/Bp",
+    "segments": ["Br","Bt","Bp","br_err","bt_err","bp_err","conf_disambig","bitmap"],
+    "series": "hmi.sharp_cea_720s",
+    "transport": "DRMS path resolution then exact JSOC1 HTTPS entity body"
+  },
+  "version": "1.2.0"
+}
