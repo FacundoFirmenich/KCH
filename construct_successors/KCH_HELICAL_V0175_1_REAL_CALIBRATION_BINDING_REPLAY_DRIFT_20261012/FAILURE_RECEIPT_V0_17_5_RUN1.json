@@ -1,0 +1,30 @@
+{
+  "format": "KCH_HELICAL_V0_17_5_FAILURE_RECEIPT",
+  "github_run_id": 38234598069,
+  "github_job_id": 114762061031,
+  "head_sha": "9bf7ce0fcf814f17ecf4fc8a3cc2c835d56b872d",
+  "failed_step": "Adjudicate content-addressed real calibration binding",
+  "failure_class": "NUMERICAL_PARENT_REFIT_IDENTITY_DRIFT_PLUS_BOOLEAN_CHECK_BUG",
+  "regeneration_enclave_exit_code": 0,
+  "regeneration_outcome": "PARENT_GRAPH_LOCK_PASS",
+  "regenerated_parent_graph_lock_id": "h8parent:81d84e63e147e32f8bede456cfa20cd6deac41fee81d68f69d6d37851bbb77c7",
+  "historical_parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "regenerated_parent_graph_gate_id": "h8pg:201e99ed5f378b41ec57a304a997b970fb73ae9b7ed6eabe5d905111ec7f8d1b",
+  "historical_parent_graph_gate_id": "h8pg:5690829352b8163faf63bc3cecc0a6efb34fe024894b90e5dd961e2c7eb732ba",
+  "location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "purge_boundary_pass": true,
+  "sealed_test_scored": false,
+  "dynamic_helical_model_executed": false,
+  "null_family_executed": false,
+  "scientific_result": null,
+  "boolean_check_bug": {
+    "v017_runtime_sealed_test_accessed": "FALSE_VALUE_WAS_ERRONEOUSLY_PLACED_IN_ALL_TRUE_CHECK_MAP",
+    "historical_v013_identity_transfer": "FALSE_VALUE_WAS_ERRONEOUSLY_PLACED_IN_ALL_TRUE_CHECK_MAP"
+  },
+  "numeric_replay_values_persisted": false,
+  "threshold_relaxed_after_observation": false,
+  "predecessor_mutated": false,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "successor": "V0_17_5_1_NUMERICAL_REPLAY_DRIFT_DIAGNOSTIC_AND_FROZEN_LOCK_BINDING"
+}
