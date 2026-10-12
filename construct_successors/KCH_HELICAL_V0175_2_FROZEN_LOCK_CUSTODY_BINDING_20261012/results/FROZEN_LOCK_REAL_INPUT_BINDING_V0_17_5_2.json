@@ -1,0 +1,44 @@
+{
+  "binding_id": "h1752binding:70e47780a528f21209a03e983fbe1d70a0055aae8f0ae82f552050d8f4047135",
+  "boundary_id": "h1752boundary:43f9e4e797e1b0e788c84a36943e3fc6b854327395aaced77a9eba1a114f0958",
+  "canonicalization": "BLOCKED",
+  "format": "KCH_HELICAL_V0_17_5_2_FROZEN_LOCK_REAL_INPUT_BINDING",
+  "historical_frozen_parent_lock": {
+    "authoritative": true,
+    "calibration_file_sha256": "ebdcc1b8bf7969628b2b865dd4dd70ace725b841ab87096660bacd6d3db92d0a",
+    "gate_id": "h8pg:5690829352b8163faf63bc3cecc0a6efb34fe024894b90e5dd961e2c7eb732ba",
+    "lock_file_sha256": "4734449ba2b03643559deb57ab4fc285f82d066aabe44730ef4ca13fd8e7f267",
+    "lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+    "refit_authorized": false
+  },
+  "historical_v013_identity_transfer": false,
+  "location_uncertainty": {
+    "next_gate": "REFRESH_AND_BIND_LOCATION_UNCERTAINTY_VINTAGE_NO_RUNTIME_TEST_ACCESS",
+    "status": "MUTABLE_OBSERVATION_VINTAGE_REQUIRES_REFRESH"
+  },
+  "next_gate": "REFRESH_AND_BIND_LOCATION_UNCERTAINTY_VINTAGE_NO_RUNTIME_TEST_ACCESS",
+  "partitioning_enclave_prior_gate": {
+    "future_test_rows_temporarily_present_for_observability_partitioning": true,
+    "rows_purged": true,
+    "sealed_test_scored": false
+  },
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "runtime_admitted_train_plus_calibration_event_count": 45432,
+  "scientific_model_executed": false,
+  "scientific_result": null,
+  "sealed_test_event_count": 15145,
+  "source_identity": {
+    "fault_sha256": "37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+    "mechanism_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+    "selected_directional_sha256": "008faaff16f46c97c6b91ba55545609beeda58e79192fdd2b595871604c18c9b",
+    "selected_indices_sha256": "64079a3ccaff3389ef8814225afdb850a1c17950cfa6bf7e75af908de48a6e28"
+  },
+  "status": "PASS",
+  "v017_runtime_domain": {
+    "executed_in_this_gate": false,
+    "row_values_received": false,
+    "sealed_test_accessed": false,
+    "sealed_test_values_received": false
+  }
+}

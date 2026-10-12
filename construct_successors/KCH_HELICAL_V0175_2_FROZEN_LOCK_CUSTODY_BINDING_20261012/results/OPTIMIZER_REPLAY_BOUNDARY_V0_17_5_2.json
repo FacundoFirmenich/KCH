@@ -1,0 +1,17 @@
+{
+  "boundary_id": "h1752boundary:43f9e4e797e1b0e788c84a36943e3fc6b854327395aaced77a9eba1a114f0958",
+  "current_replay_gate_id": "h8pg:201e99ed5f378b41ec57a304a997b970fb73ae9b7ed6eabe5d905111ec7f8d1b",
+  "current_replay_lock_id": "h8parent:81d84e63e147e32f8bede456cfa20cd6deac41fee81d68f69d6d37851bbb77c7",
+  "declared_package_freeze_identical": true,
+  "format": "KCH_HELICAL_V0_17_5_2_OPTIMIZER_REPLAY_BOUNDARY",
+  "historical_calibration_file_sha256": "ebdcc1b8bf7969628b2b865dd4dd70ace725b841ab87096660bacd6d3db92d0a",
+  "historical_lock_file_sha256": "4734449ba2b03643559deb57ab4fc285f82d066aabe44730ef4ca13fd8e7f267",
+  "historical_parent_gate_id": "h8pg:5690829352b8163faf63bc3cecc0a6efb34fe024894b90e5dd961e2c7eb732ba",
+  "historical_parent_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "historical_point_replay_tolerance": "FAIL_CLOSED_V0_17_5_1",
+  "interpretation": "HISTORICAL_POINT_OPTIMUM_NOT_REPRODUCIBLE_TO_PREDECLARED_TOLERANCE; DO_NOT_REFIT_OR_REPLACE_FROZEN_LOCK",
+  "objective_replay_within_v0_17_5_1_objective_tolerance": true,
+  "parameter_point_replay_within_v0_17_5_1_tolerance": false,
+  "scientific_claim": null,
+  "two_current_replays_same_lock_and_gate": true
+}

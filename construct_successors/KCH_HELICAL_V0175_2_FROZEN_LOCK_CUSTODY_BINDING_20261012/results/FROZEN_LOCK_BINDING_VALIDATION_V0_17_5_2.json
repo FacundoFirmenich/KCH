@@ -1,0 +1,27 @@
+{
+  "binding_id": "h1752binding:70e47780a528f21209a03e983fbe1d70a0055aae8f0ae82f552050d8f4047135",
+  "boundary_id": "h1752boundary:43f9e4e797e1b0e788c84a36943e3fc6b854327395aaced77a9eba1a114f0958",
+  "checks": {
+    "authority_ceiling": true,
+    "current_replay_differs_from_historical": true,
+    "directional_identity": true,
+    "exact_cohort_split_identity": true,
+    "exact_input_identity": true,
+    "fault_identity": true,
+    "historical_lock_custody": true,
+    "mechanism_identity": true,
+    "no_row_access_this_gate": true,
+    "no_scientific_result": true,
+    "no_sealed_test_access_this_gate": true,
+    "pip_freeze_exact_identity": true,
+    "preflight_count_identity": true,
+    "selection_identity": true,
+    "two_current_replays_same_lock_and_gate": true,
+    "v0175_1_remains_fail_closed": true,
+    "v0175_1_threshold_not_relaxed": true
+  },
+  "format": "KCH_HELICAL_V0_17_5_2_FROZEN_LOCK_BINDING_VALIDATION",
+  "scientific_result": null,
+  "status": "PASS",
+  "validation_id": "h1752validation:46dbf20746c018d30d3c7a8ef20ef283786bca62579084cb18cea6f62d9cf7bb"
+}
