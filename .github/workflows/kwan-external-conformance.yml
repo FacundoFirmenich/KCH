@@ -7,6 +7,12 @@ on:
     paths:
       - 'integrations/kwan-external-conformance/**'
       - '.github/workflows/kwan-external-conformance.yml'
+  pull_request:
+    branches:
+      - feat/kch-composed-runtime-20261008
+    paths:
+      - 'integrations/kwan-external-conformance/**'
+      - '.github/workflows/kwan-external-conformance.yml'
   workflow_dispatch:
 
 permissions:
