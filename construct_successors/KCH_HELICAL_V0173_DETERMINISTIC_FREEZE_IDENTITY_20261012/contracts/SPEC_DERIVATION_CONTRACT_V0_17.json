@@ -1,0 +1,79 @@
+{
+  "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+  "calibration_executed": false,
+  "canonicalization": "BLOCKED",
+  "derivation_contract_id": "h17derive:120fe469c3dbf967bfd3c4b1571d71737b91a70ed50f3098623735b3b64e9ce5",
+  "format": "KCH_HELICAL_V0_17_SPEC_DERIVATION_CONTRACT",
+  "inputs": {
+    "artifact_index_id": "h1652artifactindex:470ebe0395062f98b457f9e50dc3e4b153fe46df1e310b3e38cd6dfc3b7567c6",
+    "connector_artifact_adjudication_id": "h166artifactaudit:f4960c9a17b083a4d9854b53fd382ffe2a4aa655d84a85b21de4b48b3e38e64c",
+    "exact_compiler_receipt_id": "h1642compiler:d8d43599d722118390dd35b36d87a7ec269cac3844952d4943bb93b9b338573a",
+    "exact_compiler_sha256": "5a22e574d2a75a6a3a3bb929b2ac46008f0cad27fd3c39c790c33ee3529a6134",
+    "git_and_actions_search_receipt_id": "h1651transport:a45d1b835cca51a25d736cba638c01ac0b094c49c4af41491cde3c2f04f7b08b",
+    "historical_freeze_id": "h13nullfreeze:1bc0b66c7030de5784f2a5c882b8b9e1069c628fef5919558c4415413cbea6d7",
+    "historical_ledger_id": "h13nullledger:6abcf3c64273d25a52d75fd423b6b825ee0b1a1b800aaf5d38acf98795179c2a",
+    "historical_ledger_sha256": "ed9436709cc2eb61794e9d5235f99d261c2fd3642a22699a02e43783daa03d22",
+    "historical_runtime_contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
+    "operator_contract_git_blob_sha1": "ee3c3b34867963f662ec1d7f4d6a53d750f37059",
+    "operator_runner_git_blob_sha1": "54d43fc9edee8f960c45c94b20acc28f0aade9f0",
+    "operator_source_git_blob_sha1": "daa09b60cf08bbf4ce7cba65d561692051f9a35d",
+    "operator_test_git_blob_sha1": "06e55e4334724c81e0fbaa88e9a964c2498479a6",
+    "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f"
+  },
+  "lineage_semantics": "NEW_SPECIFICATION_DERIVED_SUCCESSOR_NOT_BYTE_IDENTICAL_TO_LOST_V0_8_4_RUNTIME",
+  "new_identity_requirements": {
+    "contract_prefix": "h17nullspec:",
+    "freeze_prefix": "h17freeze:",
+    "job_prefix": "h17job:",
+    "ledger_prefix": "h17nullledger:",
+    "new_contract_id_must_differ_from_historical": true,
+    "new_ledger_sha256_must_differ_from_historical": true
+  },
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "recoverability_adjudication": {
+    "byte_identity_claim_for_v0_17": "FORBIDDEN",
+    "historical_compiler": "RECOVERED_EXACTLY_FROM_INDEPENDENT_TRANSPORT",
+    "historical_hash_reuse": "FORBIDDEN",
+    "historical_null_runtime": "NOT_RECOVERABLE_FROM_AVAILABLE_INDEPENDENT_TRANSPORTS",
+    "historical_null_runtime_tests": "NOT_RECOVERABLE_FROM_AVAILABLE_INDEPENDENT_TRANSPORTS"
+  },
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "semantic_invariants": {
+    "allowed_partitions": [
+      "TRAIN",
+      "CALIBRATION"
+    ],
+    "cohorts": [
+      "BAY_AREA_HAYWARD_CALAVERAS",
+      "PARKFIELD_CENTRAL_SAF"
+    ],
+    "job_count": 6376,
+    "location_perturbations_each_cohort": 64,
+    "mechanism_uncertainty_each_cohort": 64,
+    "moving_block_bootstrap_each_cohort": 1999,
+    "null_families": [
+      "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS",
+      "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION",
+      "STATIC_ORIENTATION_FIELD_SURROGATES",
+      "PROPAGATION_DIRECTION_REVERSAL",
+      "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY"
+    ],
+    "null_replicates_each_family_cohort": 199,
+    "parent_graph_resamples_each_cohort": 64,
+    "sealed_test_access": "FORBIDDEN",
+    "stage_counts": {
+      "HOLM_MULTIPLICITY_AGGREGATION": 1,
+      "LOCATION_AND_FAULT_ASSIGNMENT_PERTURBATION": 128,
+      "MECHANISM_UNCERTAINTY_PROPAGATION": 128,
+      "MOVING_BLOCK_BOOTSTRAP_TRAIN_PLUS_CALIBRATION": 3998,
+      "NULL_CALIBRATION_REPLICATE": 1990,
+      "OBSERVED_CALIBRATION_SCORE": 2,
+      "PARENT_GRAPH_RESAMPLE": 128,
+      "RUNTIME_QUALIFICATION_ADJUDICATION": 1
+    }
+  },
+  "version": "0.17.0"
+}

@@ -1,0 +1,22 @@
+{
+  "calibration_executed": false,
+  "canonicalization": "BLOCKED",
+  "format": "KCH_HELICAL_V0_17_3_DETERMINISTIC_FREEZE_PATCH_RECEIPT",
+  "job_schedule_changed": false,
+  "null_operator_semantics_changed": false,
+  "original_bytes": 20540,
+  "original_sha256": "f55856ef2b062eb4fb9f8cd079d302ed973cd6090f8eefb773fef6b3c0f83265",
+  "patched_bytes": 20669,
+  "patched_sha256": "f1425bc8d3d9df2d0cc6343dc4bd09785b0eaa81b6ac7770ad59a1e49c14f68a",
+  "promotion": "BLOCKED",
+  "receipt_id": "h173patch:b81f0faec4a31d0de6aa9cf487df29123c63a046c13d851c50779b121d3ece46",
+  "replacement_count": 1,
+  "runtime_module_changed": false,
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "scientific_thresholds_changed": false,
+  "sealed_test_accessed": false,
+  "seed_derivation_changed": false,
+  "status": "PASS",
+  "target": "freeze_runtime_v017.py"
+}

@@ -1,0 +1,313 @@
+{
+  "all_pass": true,
+  "calibration_executed": false,
+  "canonicalization": "BLOCKED",
+  "check_count": 37,
+  "checks": [
+    {
+      "detail": null,
+      "name": "derivation_format",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "derivation_protocol_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "historical_contract_reference_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "historical_ledger_reference_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "historical_ledger_sha_reference_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "historical_freeze_reference_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "artifact_audit_id_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "artifact_search_negative",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "artifact_target_hits_zero",
+      "pass": true
+    },
+    {
+      "detail": "ee3c3b34867963f662ec1d7f4d6a53d750f37059",
+      "name": "git_blob::operator_contract_git_blob_sha1",
+      "pass": true
+    },
+    {
+      "detail": "daa09b60cf08bbf4ce7cba65d561692051f9a35d",
+      "name": "git_blob::operator_source_git_blob_sha1",
+      "pass": true
+    },
+    {
+      "detail": "06e55e4334724c81e0fbaa88e9a964c2498479a6",
+      "name": "git_blob::operator_test_git_blob_sha1",
+      "pass": true
+    },
+    {
+      "detail": "54d43fc9edee8f960c45c94b20acc28f0aade9f0",
+      "name": "git_blob::operator_runner_git_blob_sha1",
+      "pass": true
+    },
+    {
+      "detail": [
+        "__future__",
+        "collections",
+        "hashlib",
+        "json",
+        "typing"
+      ],
+      "name": "runtime_import_allowlist",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_no_os_import",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_no_pathlib_import",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_no_subprocess_import",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_no_socket_import",
+      "pass": true
+    },
+    {
+      "detail": {
+        "matched": true
+      },
+      "name": "unittest_count_parse",
+      "pass": true
+    },
+    {
+      "detail": 44,
+      "name": "unittest_minimum_44",
+      "pass": true
+    },
+    {
+      "detail": {
+        "matched": true
+      },
+      "name": "unittest_ok",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "ledger_repeatability",
+      "pass": true
+    },
+    {
+      "detail": {
+        "job_count": 6376,
+        "job_id_unique_count": 6376,
+        "null_family_counts": {
+          "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS": 398,
+          "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY": 398,
+          "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION": 398,
+          "PROPAGATION_DIRECTION_REVERSAL": 398,
+          "STATIC_ORIENTATION_FIELD_SURROGATES": 398
+        },
+        "scientific_result": null,
+        "sealed_test_accessed": false,
+        "seed_unique_count": 6376,
+        "stage_counts": {
+          "HOLM_MULTIPLICITY_AGGREGATION": 1,
+          "LOCATION_AND_FAULT_ASSIGNMENT_PERTURBATION": 128,
+          "MECHANISM_UNCERTAINTY_PROPAGATION": 128,
+          "MOVING_BLOCK_BOOTSTRAP_TRAIN_PLUS_CALIBRATION": 3998,
+          "NULL_CALIBRATION_REPLICATE": 1990,
+          "OBSERVED_CALIBRATION_SCORE": 2,
+          "PARENT_GRAPH_RESAMPLE": 128,
+          "RUNTIME_QUALIFICATION_ADJUDICATION": 1
+        }
+      },
+      "name": "job_count_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "job_ids_unique",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "seeds_unique",
+      "pass": true
+    },
+    {
+      "detail": {
+        "HOLM_MULTIPLICITY_AGGREGATION": 1,
+        "LOCATION_AND_FAULT_ASSIGNMENT_PERTURBATION": 128,
+        "MECHANISM_UNCERTAINTY_PROPAGATION": 128,
+        "MOVING_BLOCK_BOOTSTRAP_TRAIN_PLUS_CALIBRATION": 3998,
+        "NULL_CALIBRATION_REPLICATE": 1990,
+        "OBSERVED_CALIBRATION_SCORE": 2,
+        "PARENT_GRAPH_RESAMPLE": 128,
+        "RUNTIME_QUALIFICATION_ADJUDICATION": 1
+      },
+      "name": "stage_counts_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "null_family_set_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "null_family_counts_exact",
+      "pass": true
+    },
+    {
+      "detail": "h17nullspec:20fbec42c3b9e1c6ec1ed8ef1a1f418907dee6a41fbba73259911f3a359e315d",
+      "name": "contract_identity_new",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "contract_prefix_new",
+      "pass": true
+    },
+    {
+      "detail": "2d4e219af4d6099b1cf207c46d04b137a1710cc624c07eee260a6436b09ccb3e",
+      "name": "ledger_sha_new",
+      "pass": true
+    },
+    {
+      "detail": {
+        "canonicalization": "BLOCKED",
+        "job_count": 6376,
+        "outcome": "RUNTIME_QUALIFICATION_NOT_EXECUTED",
+        "promotion": "BLOCKED",
+        "reason": "ONE_OR_MORE_JOBS_NOT_RUN",
+        "scientific_result": null,
+        "sealed_test_accessed": false,
+        "status_counts": {
+          "NOT_RUN": 6376
+        }
+      },
+      "name": "not_run_adjudicates_not_executed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "canonicalization": "BLOCKED",
+        "job_count": 6376,
+        "outcome": "RUNTIME_QUALIFICATION_PASS",
+        "promotion": "BLOCKED",
+        "reason": "ALL_EXPECTED_JOBS_PASS",
+        "scientific_result": null,
+        "sealed_test_accessed": false,
+        "status_counts": {
+          "PASS": 6376
+        }
+      },
+      "name": "structural_pass_adjudicates_pass",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": 6376,
+        "observed": 6375,
+        "outcome": "RUNTIME_QUALIFICATION_FAIL_CLOSED",
+        "reason": "RESULT_CARDINALITY_MISMATCH",
+        "scientific_result": null,
+        "sealed_test_accessed": false
+      },
+      "name": "missing_record_fails_closed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": 338011178216566584,
+        "field": "seed",
+        "job_id": "h17job:47543f59b13c4764d2a7c9a4d3358de98c4f64f0ea258fe2b85ca60451da5d40",
+        "observed": 338011178216566585,
+        "outcome": "RUNTIME_QUALIFICATION_FAIL_CLOSED",
+        "reason": "RESULT_IDENTITY_MISMATCH",
+        "scientific_result": null,
+        "sealed_test_accessed": false
+      },
+      "name": "tampered_identity_fails_closed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "job_id": "h17job:47543f59b13c4764d2a7c9a4d3358de98c4f64f0ea258fe2b85ca60451da5d40",
+        "outcome": "RUNTIME_QUALIFICATION_FAIL_CLOSED",
+        "reason": "SEALED_TEST_FIREWALL_VIOLATION",
+        "scientific_result": null,
+        "sealed_test_accessed": true
+      },
+      "name": "sealed_test_violation_fails_closed",
+      "pass": true
+    },
+    {
+      "detail": "h17nullledger:d524bca6e35f07bbfaabaa947c43a11d2d2317e04ac640d0d3d9243baade2e29",
+      "name": "ledger_id_new",
+      "pass": true
+    }
+  ],
+  "format": "KCH_HELICAL_V0_17_RUNTIME_VALIDATION_REPORT",
+  "not_run_qualification_outcome": {
+    "canonicalization": "BLOCKED",
+    "job_count": 6376,
+    "outcome": "RUNTIME_QUALIFICATION_NOT_EXECUTED",
+    "promotion": "BLOCKED",
+    "reason": "ONE_OR_MORE_JOBS_NOT_RUN",
+    "scientific_result": null,
+    "sealed_test_accessed": false,
+    "status_counts": {
+      "NOT_RUN": 6376
+    }
+  },
+  "pass_count": 37,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "structural_fixture_is_scientific_execution": false,
+  "structural_fixture_qualification_outcome": {
+    "canonicalization": "BLOCKED",
+    "job_count": 6376,
+    "outcome": "RUNTIME_QUALIFICATION_PASS",
+    "promotion": "BLOCKED",
+    "reason": "ALL_EXPECTED_JOBS_PASS",
+    "scientific_result": null,
+    "sealed_test_accessed": false,
+    "status_counts": {
+      "PASS": 6376
+    }
+  },
+  "unittest_count": 44,
+  "validation_id": "h17validation:1724b258ee151aebb737c7e29f4ff2117a1c95fcc3ba633c04bda868124158e5"
+}

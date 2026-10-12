@@ -1,0 +1,124 @@
+{
+  "calibration_executed": false,
+  "chunk_count": 9,
+  "chunks": [
+    {
+      "bytes": 1880,
+      "git_blob_sha1": "058a866a54a03fd8ae47d5f152e898682d9788a0",
+      "index": 0,
+      "path": ".github/helical_v0172/text_chunks/chunk_00.b64",
+      "sha256": "9860b33aca177da773fa355dadaa91d2f607c3b3a744990e736b7eb7501b9550"
+    },
+    {
+      "bytes": 1880,
+      "git_blob_sha1": "dd4b9e85219e4cdbf59dd654d6b36f7b10120870",
+      "index": 1,
+      "path": ".github/helical_v0172/text_chunks/chunk_01.b64",
+      "sha256": "15926ce4aacb9276d01f3cd95e87856643172a9ffb8293157a1842c5a6c9fd58"
+    },
+    {
+      "bytes": 1880,
+      "git_blob_sha1": "8137bb6abac2c0e9a812415a2cc491b5f3418a5d",
+      "index": 2,
+      "path": ".github/helical_v0172/text_chunks/chunk_02.b64",
+      "sha256": "8a322b854decbd881dbd5b7368d62f77b11682d31be30064534e189c28f221f4"
+    },
+    {
+      "bytes": 1880,
+      "git_blob_sha1": "2d8133c6f9b0ee57a3c99d297c0721f47826aba5",
+      "index": 3,
+      "path": ".github/helical_v0172/text_chunks/chunk_03.b64",
+      "sha256": "3ebc7c5e013c55765a1f56f8aa8cc51031b22d2b21bf90e2d003f4c1c45b89da"
+    },
+    {
+      "bytes": 1880,
+      "git_blob_sha1": "6b1c255d347c51f13d8ceb515345ee9b86a6efd8",
+      "index": 4,
+      "path": ".github/helical_v0172/text_chunks/chunk_04.b64",
+      "sha256": "303cbfc62fc3ed4ba0a22055bc0eaa0ce411823d3f753de0c941a38ffcf60c2a"
+    },
+    {
+      "bytes": 3288,
+      "git_blob_sha1": "24782b644a9209c4c5a3358a95cf8bdd6062554f",
+      "index": 5,
+      "path": ".github/helical_v0172/text_chunks/chunk_05.b64",
+      "sha256": "865f2f0ac2dad76618c42c5d312f974a9a1d79ebffa8bcbc7631b00259741b71"
+    },
+    {
+      "bytes": 3288,
+      "git_blob_sha1": "2aa1016a711b99b365449495a1924bfb77b0f4de",
+      "index": 6,
+      "path": ".github/helical_v0172/text_chunks/chunk_06.b64",
+      "sha256": "d4b3e05da8ab93d6a6c3e20ca3001935926c20be8948654d496fbcd446675345"
+    },
+    {
+      "bytes": 3288,
+      "git_blob_sha1": "830a22f5f7d491af2c709df42b96a41162417d90",
+      "index": 7,
+      "path": ".github/helical_v0172/text_chunks/chunk_07.b64",
+      "sha256": "013adf20c94c4314007adce49a8ffffcedbc07bbc31272f4b3b65eecc8d51d18"
+    },
+    {
+      "bytes": 3284,
+      "git_blob_sha1": "e368ba64e46566ac322c9e8190211dec284f7ee7",
+      "index": 8,
+      "path": ".github/helical_v0172/text_chunks/chunk_08.b64",
+      "sha256": "5d862f2a9dc3c2fc5ecd1f5699b70487ab44bedcafb406f5a17f18ff30e53af6"
+    }
+  ],
+  "concatenated_base64_sha256": "027a1fc795a3bb4e2753d8441469e4194d7d6c556f5182eb286bcbfacd0e17c6",
+  "decoded_gzip_sha256": "84870f2753f3079131009c02996c1a282a49be5497b2a9b9e9a20c6a0619ec77",
+  "decompressed_tar_sha256": "647bf14003fa8210c05a3335fbfa546e9a585d2c10518df3fe1a462a82efea2e",
+  "format": "KCH_HELICAL_V0_17_3_TEXT_CAPSULE_MATERIALIZATION_RECEIPT",
+  "manifest_git_blob_sha1": "281ea228c4b076e986c70e3052f7a43438e8071d",
+  "manifest_path": ".github/helical_v0172/TEXT_CHUNK_MANIFEST_V0_17_2.json",
+  "materialized_member_count": 8,
+  "materialized_members": [
+    {
+      "bytes": 1891,
+      "path": "AUTHORITY_LEASE_V0_17.json",
+      "sha256": "08f5230044571308e440411b3b49e48ceb073bbf9d095214eae7e55fe2b8ea8d"
+    },
+    {
+      "bytes": 1398,
+      "path": "README.md",
+      "sha256": "831a77904de6ce8730f94585faaf08b3cd203a6111573b302f711a845cca3b06"
+    },
+    {
+      "bytes": 9937,
+      "path": "contracts/CONNECTOR_ARTIFACT_SURFACE_ADJUDICATION_V0_16_6.json",
+      "sha256": "d7a16d7eb5437849268e074c77f432b84adf66f94387484143f866271a0eee83"
+    },
+    {
+      "bytes": 3932,
+      "path": "contracts/SPEC_DERIVATION_CONTRACT_V0_17.json",
+      "sha256": "4f15da784813af91b50dbb76a59cc09436498172cde719112830b0cd64bb4fb3"
+    },
+    {
+      "bytes": 20540,
+      "path": "freeze_runtime_v017.py",
+      "sha256": "f55856ef2b062eb4fb9f8cd079d302ed973cd6090f8eefb773fef6b3c0f83265"
+    },
+    {
+      "bytes": 655,
+      "path": "src/kch_helical_null_v017/__init__.py",
+      "sha256": "534f047d7398bb227e8822d9ac6c94444e50b87997b076e7f6567d7ba4c6e011"
+    },
+    {
+      "bytes": 25709,
+      "path": "src/kch_helical_null_v017/runtime.py",
+      "sha256": "23bb0b2431ae3ea1d9912858350b27ad9efe6163b0634fc2c2b92889de630e11"
+    },
+    {
+      "bytes": 12098,
+      "path": "tests/test_runtime_v017.py",
+      "sha256": "2b1b04b2d828e4a368e7d7b0a7d55025a3d56eb20dde80ed8b7de4a39ff80f77"
+    }
+  ],
+  "receipt_id": "h173transport:1787355861ce1ad7875e6dc9cc4886298cc47a8c8edd4f50f5079c0d6d258446",
+  "scientific_data_included": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "source_bytes_modified": false,
+  "status": "PASS"
+}

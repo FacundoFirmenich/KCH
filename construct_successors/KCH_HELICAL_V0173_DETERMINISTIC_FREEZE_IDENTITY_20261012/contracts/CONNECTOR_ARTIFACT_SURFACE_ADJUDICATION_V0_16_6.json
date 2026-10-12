@@ -1,0 +1,281 @@
+{
+  "adjudication_id": "h166artifactaudit:f4960c9a17b083a4d9854b53fd382ffe2a4aa655d84a85b21de4b48b3e38e64c",
+  "candidate_source_executed": false,
+  "canonicalization": "BLOCKED",
+  "conclusion": "RUNTIME_SOURCE_NOT_RECOVERABLE_FROM_AVAILABLE_INDEPENDENT_TRANSPORTS",
+  "connector_downloads_inspected": [
+    {
+      "bytes": 1609,
+      "exact_target_hits": [],
+      "local_filename": "helical-v08-exact-sources-37835637164.zip",
+      "member_count": 2,
+      "python_member_count": 0,
+      "sha256": "7f5be71eb0c05fc85f354f5eb5da8f8729ae81d60ca46f741fb864900b85aac6",
+      "target_hit": false
+    },
+    {
+      "bytes": 131310,
+      "exact_target_hits": [],
+      "local_filename": "helical-v08-exact-sources-37835892646.zip",
+      "member_count": 3,
+      "python_member_count": 0,
+      "sha256": "7e42935c56c4767a245da35a4b2b38d31f9519b9f1245dd5fe1b0163832b8fa8",
+      "target_hit": false
+    },
+    {
+      "bytes": 136354,
+      "exact_target_hits": [],
+      "local_filename": "helical-v08-exact-sources-37836377349.zip",
+      "member_count": 4,
+      "python_member_count": 0,
+      "sha256": "923e8e7710b692a863ca5d7ae7d69a68006da24e5691ccb703cf7a9cc18186a4",
+      "target_hit": false
+    },
+    {
+      "bytes": 156272,
+      "exact_target_hits": [],
+      "local_filename": "helical-v08-exact-sources-37836724453.zip",
+      "member_count": 4,
+      "python_member_count": 0,
+      "sha256": "e7fb7ee53a2bbc62540a86f6b67e306cd31f6d0397a40d1c9b7eb61b717ec15e",
+      "target_hit": false
+    },
+    {
+      "bytes": 10780279,
+      "exact_target_hits": [],
+      "local_filename": "helical-v08-source-evidence-37837804668.zip",
+      "member_count": 8,
+      "python_member_count": 0,
+      "sha256": "6da69bc5bee9670b5b64add8768dca97d3486d8dc32826915882a66b6c4027fc",
+      "target_hit": false
+    },
+    {
+      "bytes": 1745,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37987432029-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "86368889974aabac94833eae283e8efefff889f725838db913169facc9aca4c1",
+      "target_hit": false
+    },
+    {
+      "bytes": 1864,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37987748493-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "77c768d501db584375cfa84e944dca44d89a27628fee4f63fc6e7646107bf942",
+      "target_hit": false
+    },
+    {
+      "bytes": 1696,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37987943485-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "ec09e08ce46a3bf139bdf352d3cee30d364614f403d4128bb022c96583dc9e5c",
+      "target_hit": false
+    },
+    {
+      "bytes": 1696,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37988963077-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "fd69d832ddc3a67a567e9e5ec58675bec32a5faee051bfa1bc4eaed2a96f4de0",
+      "target_hit": false
+    },
+    {
+      "bytes": 1696,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37989093059-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "bcb2d1a0bf64c05aa49f834c1e83d35dcb47e6c3bfa24b5487d2483616e5d5cc",
+      "target_hit": false
+    },
+    {
+      "bytes": 1696,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37990527479-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "26434150b89ac29867a354a825ef40de27df11ee602bc351d06a50c7b0f70890",
+      "target_hit": false
+    },
+    {
+      "bytes": 1696,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37990558345-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "e4faa8442bcfd05c597199d5d11fec31adfebfa8a4eff0b2da14dadd88d44a1e",
+      "target_hit": false
+    },
+    {
+      "bytes": 1696,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-historical-runtime-inspection-37990626907-1.zip",
+      "member_count": 6,
+      "python_member_count": 0,
+      "sha256": "93ea3e8bee3a52361228ef2cd81353a643c257f000edabbace04fa160a4b5a24",
+      "target_hit": false
+    },
+    {
+      "bytes": 1307,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-schema-inspection-37990749903-1.zip",
+      "member_count": 3,
+      "python_member_count": 0,
+      "sha256": "9c70443534fefc1385582fd12c4f8a8f7448dbef7af80cd388edbf319cddc45c",
+      "target_hit": false
+    },
+    {
+      "bytes": 7067,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-schema-inspection-37991259050-1.zip",
+      "member_count": 12,
+      "python_member_count": 0,
+      "sha256": "19493713bfe3b3128ca1ae46e41bf9e53fd37465a43758f8a2e7e517f47a9d67",
+      "target_hit": false
+    },
+    {
+      "bytes": 71938,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-source-custody-37989910641-1.zip",
+      "member_count": 21,
+      "python_member_count": 15,
+      "sha256": "de5add8420dc2a992a75347ca72cb2d35d80d98b62b30b8c9a42d60420031599",
+      "target_hit": false
+    },
+    {
+      "bytes": 47194,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0132-transport-forensics-v2-37989166554-1.zip",
+      "member_count": 8,
+      "python_member_count": 2,
+      "sha256": "46154e0a58faf7c5f5246b1d9bab062cf3b16863179a6f132b96a2c34934c899",
+      "target_hit": false
+    },
+    {
+      "bytes": 9478,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v015-runtime-quorum-38003397727-1.zip",
+      "member_count": 9,
+      "python_member_count": 1,
+      "sha256": "976c829604c948436caf533eaac70c371c3d66deae8a606a2cfa34fc0fbc9b79",
+      "target_hit": false
+    },
+    {
+      "bytes": 11474,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0151-runtime-quorum-38003565387-1.zip",
+      "member_count": 9,
+      "python_member_count": 1,
+      "sha256": "fa6ea0fdfd283c288cfc4cb41211cf994b678f1aaeb9f1db334588029285662f",
+      "target_hit": false
+    },
+    {
+      "bytes": 9810,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0152-runtime-quorum-38003899554-1.zip",
+      "member_count": 9,
+      "python_member_count": 1,
+      "sha256": "b08db1a2d3a5d2c99f45c3e41979e8184fcdfe845c8cb2e2d88d1fa34d936670",
+      "target_hit": false
+    },
+    {
+      "bytes": 7408,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0153-runtime-quorum-38004037221-1.zip",
+      "member_count": 9,
+      "python_member_count": 1,
+      "sha256": "d1be93654c333ae0219991863f26ba247903204178b38f315cede2f1f6c94aa7",
+      "target_hit": false
+    },
+    {
+      "bytes": 80421,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v0154-runtime-quorum-38004292842-1.zip",
+      "member_count": 16,
+      "python_member_count": 4,
+      "sha256": "586346ef3aee8d75acdbc0aacc4e9d9a664b353a1d42e4ad24f75c59769f6135",
+      "target_hit": false
+    },
+    {
+      "bytes": 84427,
+      "exact_target_hits": [],
+      "local_filename": "kch-helical-v08-frozen-bundle-inspection.zip",
+      "member_count": 13,
+      "python_member_count": 5,
+      "sha256": "6ed15c90db1af21b67a9b861b6b3e1f907a6a63be6a08c9836c3ffa00ed32a46",
+      "target_hit": false
+    }
+  ],
+  "downloaded_artifact_count": 23,
+  "downloaded_artifact_target_hit_count": 0,
+  "format": "KCH_HELICAL_V0_16_6_CONNECTOR_ARTIFACT_SURFACE_ADJUDICATION",
+  "large_artifact_adjudication": {
+    "download_decision": "NOT_REQUIRED_FOR_SOURCE_RECOVERY",
+    "durable_pretest_artifact_ids": [
+      11567111442,
+      11567763743,
+      11567304288
+    ],
+    "full_artifact_construction": [
+      "copy work/artifact to full/upstream",
+      "copy stage to full/stage",
+      "copy .github/helical_v08/protocol.json to full/PROTOCOL.json"
+    ],
+    "runtime_source_tree_copied": false,
+    "upload_root": "${RUNNER_TEMP}/helical_v083/full_artifact",
+    "workflow_git_blob_sha1": "f8f1d51e74d8a5c2ddcf3292431edc509bfa6009",
+    "workflow_path": ".github/workflows/helical-v08-durable-pretest-freeze.yml"
+  },
+  "missing_source_bytes_inferred": false,
+  "predecessor_artifact_index_id": "h1652artifactindex:470ebe0395062f98b457f9e50dc3e4b153fe46df1e310b3e38cd6dfc3b7567c6",
+  "predecessor_search_receipt_id": "h1651transport:a45d1b835cca51a25d736cba638c01ac0b094c49c4af41491cde3c2f04f7b08b",
+  "promotion": "BLOCKED",
+  "recorded_date": "2026-10-12",
+  "scientific_data_accessed": false,
+  "scientific_payload_members_read": false,
+  "scientific_raw_artifacts": {
+    "focal_part_artifacts": "EXCLUDED_WITHOUT_CONTENT_READ",
+    "large_exact_source_bundle_artifact_id": 11575972025,
+    "reason": "scientific catalogue transport is outside code-source recovery authority"
+  },
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "target_paths": [
+    "src/kch_helical_dynamic_v08/null_runtime.py",
+    "tests_v0_8_4/test_null_runtime.py"
+  ],
+  "transport_bytes_repaired": false,
+  "unavailable_connector_artifacts": [
+    {
+      "artifact_id": 11594222426,
+      "name": "directional-eligibility-source-37855405726",
+      "outcome": "NOT_FOUND_AT_DOWNLOAD_TIME"
+    },
+    {
+      "artifact_id": 11593301939,
+      "name": "helical-v08-blind-gate-37852800151",
+      "outcome": "NOT_FOUND_AT_DOWNLOAD_TIME"
+    },
+    {
+      "artifact_id": 11594781920,
+      "name": "helical-v08-blind-gate",
+      "outcome": "NOT_DOWNLOADED"
+    },
+    {
+      "artifact_id": 11595307062,
+      "name": "helical-v08-blind-gate",
+      "outcome": "NOT_DOWNLOADED"
+    },
+    {
+      "artifact_id": 11594759812,
+      "name": "helical-v08-blind-gate",
+      "outcome": "NOT_DOWNLOADED"
+    }
+  ]
+}

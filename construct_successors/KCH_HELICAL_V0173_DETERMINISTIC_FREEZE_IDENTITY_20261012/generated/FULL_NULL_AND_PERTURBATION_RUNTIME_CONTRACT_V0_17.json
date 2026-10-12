@@ -1,0 +1,120 @@
+{
+  "allowed_partitions": [
+    "TRAIN",
+    "CALIBRATION"
+  ],
+  "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+  "canonicalization": "BLOCKED",
+  "cohorts": [
+    "BAY_AREA_HAYWARD_CALAVERAS",
+    "PARKFIELD_CENTRAL_SAF"
+  ],
+  "contract_id": "h17nullspec:20fbec42c3b9e1c6ec1ed8ef1a1f418907dee6a41fbba73259911f3a359e315d",
+  "derivation_basis": {
+    "historical_freeze_id": "h13nullfreeze:1bc0b66c7030de5784f2a5c882b8b9e1069c628fef5919558c4415413cbea6d7",
+    "historical_identity_transfer": "FORBIDDEN",
+    "historical_ledger_id": "h13nullledger:6abcf3c64273d25a52d75fd423b6b825ee0b1a1b800aaf5d38acf98795179c2a",
+    "historical_ledger_sha256": "ed9436709cc2eb61794e9d5235f99d261c2fd3642a22699a02e43783daa03d22",
+    "historical_runtime_contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
+    "historical_source_recoverability": "NOT_RECOVERABLE_FROM_AVAILABLE_INDEPENDENT_TRANSPORTS",
+    "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f"
+  },
+  "format": "KCH_HELICAL_V0_17_SPEC_DERIVED_NONIDENTICAL_RUNTIME_CONTRACT",
+  "job_census": {
+    "HOLM_MULTIPLICITY_AGGREGATION": 1,
+    "LOCATION_AND_FAULT_ASSIGNMENT_PERTURBATION": 128,
+    "MECHANISM_UNCERTAINTY_PROPAGATION": 128,
+    "MOVING_BLOCK_BOOTSTRAP_TRAIN_PLUS_CALIBRATION": 3998,
+    "NULL_CALIBRATION_REPLICATE": 1990,
+    "OBSERVED_CALIBRATION_SCORE": 2,
+    "PARENT_GRAPH_RESAMPLE": 128,
+    "RUNTIME_QUALIFICATION_ADJUDICATION": 1
+  },
+  "job_count": 6376,
+  "job_id_derivation": "SHA256_OF_CANONICAL_JOB_BODY_INCLUDING_SEED",
+  "lineage_semantics": "NEW_SUCCESSOR_NOT_HISTORICAL_RUNTIME_IDENTITY",
+  "location_operator_id": "h12locop:6b3fcf56d1f427d107e5e5dbb264aba02f871c93708a5796074fd0916d89b1b5",
+  "null_families": [
+    "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS",
+    "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION",
+    "STATIC_ORIENTATION_FIELD_SURROGATES",
+    "PROPAGATION_DIRECTION_REVERSAL",
+    "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY"
+  ],
+  "operator_bindings": {
+    "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS": [
+      "permute_within_bins"
+    ],
+    "MECHANISM_UNCERTAINTY_PROPAGATION": [
+      "propagate_mechanism_uncertainty",
+      "posterior_mark_expectations"
+    ],
+    "MOVING_BLOCK_BOOTSTRAP_TRAIN_PLUS_CALIBRATION": [
+      "moving_block_resample"
+    ],
+    "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY": [
+      "simulate_nonhelical_fixed_parent_weights",
+      "simulate_catalog"
+    ],
+    "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION": [
+      "rewire_parent_graph",
+      "make_rewired_null"
+    ],
+    "PARENT_GRAPH_RESAMPLE": [
+      "compute_parent_state",
+      "eval_intensity"
+    ],
+    "PROPAGATION_DIRECTION_REVERSAL": [
+      "reflected_rake",
+      "head_to_normal",
+      "score_null_metrics"
+    ],
+    "STATIC_ORIENTATION_FIELD_SURROGATES": [
+      "draw_static_fields",
+      "static_logodds"
+    ]
+  },
+  "parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "publication": "BLOCKED",
+  "qualification_result_contract": {
+    "pass_requires_nonempty_input_hashes": true,
+    "pass_requires_nonempty_operator_diagnostics": true,
+    "pass_requires_output_sha256": true,
+    "required_fields": [
+      "job_id",
+      "seed",
+      "runtime_contract_id",
+      "protocol_id",
+      "stage",
+      "cohort",
+      "family",
+      "replicate",
+      "status",
+      "input_hashes",
+      "output_sha256",
+      "operator_diagnostics",
+      "sealed_test_accessed",
+      "scientific_result"
+    ],
+    "scientific_result": null,
+    "sealed_test_accessed": false
+  },
+  "qualification_semantics": {
+    "all_expected_jobs_pass": "RUNTIME_QUALIFICATION_PASS",
+    "missing_extra_duplicate_identity_mismatch_or_fail_closed": "RUNTIME_QUALIFICATION_FAIL_CLOSED",
+    "one_or_more_not_run_and_none_fail_closed": "RUNTIME_QUALIFICATION_NOT_EXECUTED"
+  },
+  "replicates": {
+    "LOCATION_PERTURBATION_EACH_COHORT": 64,
+    "MECHANISM_UNCERTAINTY_EACH_COHORT": 64,
+    "MOVING_BLOCK_BOOTSTRAP_EACH_COHORT": 1999,
+    "NULL_CALIBRATION_REPLICATE_EACH_FAMILY_COHORT": 199,
+    "PARENT_GRAPH_RESAMPLE_EACH_COHORT": 64
+  },
+  "scientific_result": null,
+  "sealed_test_access": "FORBIDDEN",
+  "seed_derivation": "LOW_63_BITS_SHA256_OF_CANONICAL_JOB_IDENTITY_NONZERO",
+  "version": "0.17.0"
+}

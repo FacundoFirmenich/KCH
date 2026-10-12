@@ -1,0 +1,17 @@
+{
+  "byte_identity_claim": "FORBIDDEN",
+  "contract_ids_distinct": true,
+  "format": "KCH_HELICAL_V0_17_NONIDENTITY_PROOF",
+  "historical_hash_reuse": false,
+  "historical_ledger_id": "h13nullledger:6abcf3c64273d25a52d75fd423b6b825ee0b1a1b800aaf5d38acf98795179c2a",
+  "historical_ledger_sha256": "ed9436709cc2eb61794e9d5235f99d261c2fd3642a22699a02e43783daa03d22",
+  "historical_runtime_contract_id": "h13nullspec:bc68343eee99c797c27795b9c5e73b7bec63764f678ab4c195572281acf79dff",
+  "ledger_bytes_distinct": true,
+  "ledger_ids_distinct": true,
+  "proof_id": "h17nonidentity:649426f006739c53d8ad5c7dd9406fe47058dcfaa10e129c948aa756279e57f4",
+  "scientific_result": null,
+  "semantic_derivation_claim": "EXPLICIT",
+  "successor_ledger_id": "h17nullledger:d524bca6e35f07bbfaabaa947c43a11d2d2317e04ac640d0d3d9243baade2e29",
+  "successor_ledger_sha256": "2d4e219af4d6099b1cf207c46d04b137a1710cc624c07eee260a6436b09ccb3e",
+  "successor_runtime_contract_id": "h17nullspec:20fbec42c3b9e1c6ec1ed8ef1a1f418907dee6a41fbba73259911f3a359e315d"
+}

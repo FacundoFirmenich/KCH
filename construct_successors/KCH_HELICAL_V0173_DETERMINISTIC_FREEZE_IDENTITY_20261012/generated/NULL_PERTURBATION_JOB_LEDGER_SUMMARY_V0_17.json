@@ -1,0 +1,36 @@
+{
+  "authority_ceiling": "SOFTWARE_CANDIDATE_LOCAL_SHADOW",
+  "canonicalization": "BLOCKED",
+  "derivation_contract_id": "h17derive:120fe469c3dbf967bfd3c4b1571d71737b91a70ed50f3098623735b3b64e9ce5",
+  "format": "KCH_HELICAL_V0_17_NULL_PERTURBATION_JOB_LEDGER_SUMMARY",
+  "historical_identity_transferred": false,
+  "historical_ledger_id_reference": "h13nullledger:6abcf3c64273d25a52d75fd423b6b825ee0b1a1b800aaf5d38acf98795179c2a",
+  "historical_ledger_sha256_reference": "ed9436709cc2eb61794e9d5235f99d261c2fd3642a22699a02e43783daa03d22",
+  "job_count": 6376,
+  "job_id_unique_count": 6376,
+  "ledger_id": "h17nullledger:d524bca6e35f07bbfaabaa947c43a11d2d2317e04ac640d0d3d9243baade2e29",
+  "ledger_sha256": "2d4e219af4d6099b1cf207c46d04b137a1710cc624c07eee260a6436b09ccb3e",
+  "null_family_counts": {
+    "MARK_PERMUTATION_WITHIN_FAULT_TIME_MAGNITUDE_QUALITY_BLOCKS": 398,
+    "NONHELICAL_HAWKES_SIMULATIONS_MATCHED_TO_NETWORK_RATE_MAGNITUDE_UNCERTAINTY": 398,
+    "PARENT_EDGE_REWIRING_PRESERVING_ETAS_WEIGHT_DISTRIBUTION": 398,
+    "PROPAGATION_DIRECTION_REVERSAL": 398,
+    "STATIC_ORIENTATION_FIELD_SURROGATES": 398
+  },
+  "promotion": "BLOCKED",
+  "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+  "runtime_contract_id": "h17nullspec:20fbec42c3b9e1c6ec1ed8ef1a1f418907dee6a41fbba73259911f3a359e315d",
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "seed_unique_count": 6376,
+  "stage_counts": {
+    "HOLM_MULTIPLICITY_AGGREGATION": 1,
+    "LOCATION_AND_FAULT_ASSIGNMENT_PERTURBATION": 128,
+    "MECHANISM_UNCERTAINTY_PROPAGATION": 128,
+    "MOVING_BLOCK_BOOTSTRAP_TRAIN_PLUS_CALIBRATION": 3998,
+    "NULL_CALIBRATION_REPLICATE": 1990,
+    "OBSERVED_CALIBRATION_SCORE": 2,
+    "PARENT_GRAPH_RESAMPLE": 128,
+    "RUNTIME_QUALIFICATION_ADJUDICATION": 1
+  }
+}

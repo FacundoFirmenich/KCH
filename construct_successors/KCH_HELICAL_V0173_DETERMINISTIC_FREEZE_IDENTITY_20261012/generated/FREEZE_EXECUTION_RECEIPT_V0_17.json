@@ -1,0 +1,18 @@
+{
+  "calibration_executed": false,
+  "canonicalization": "BLOCKED",
+  "execution_receipt_id": "h17execution:2201587f1159ca26ed5071c9ad3bb169de404fcaa6eb2450089cfb193e2fffad",
+  "format": "KCH_HELICAL_V0_17_FREEZE_EXECUTION_RECEIPT",
+  "freeze_id": "h17freeze:7cb22d6301e0f2c88ef2a98113cf52738249e993f18bb23bdc86f29f5d4ca7cb",
+  "github_run_attempt": "LOCAL",
+  "github_run_id": "LOCAL",
+  "github_sha": "LOCAL",
+  "ledger_id": "h17nullledger:d524bca6e35f07bbfaabaa947c43a11d2d2317e04ac640d0d3d9243baade2e29",
+  "promotion": "BLOCKED",
+  "runtime_contract_id": "h17nullspec:20fbec42c3b9e1c6ec1ed8ef1a1f418907dee6a41fbba73259911f3a359e315d",
+  "scientific_data_accessed": false,
+  "scientific_result": null,
+  "sealed_test_accessed": false,
+  "status": "PASS",
+  "validation_id": "h17validation:1724b258ee151aebb737c7e29f4ff2117a1c95fcc3ba633c04bda868124158e5"
+}

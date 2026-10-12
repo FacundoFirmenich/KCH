@@ -1,0 +1,128 @@
+{
+  "format": "KCH_HELICAL_V0_17_3_RELEASE_MANIFEST",
+  "manifest_id": "h173manifest:30cf0fe87482238e1e723287c1ac4b5d236b8dc0fdf65788d60963a50b5a7139",
+  "member_count": 24,
+  "member_tree_sha256": "4e12dc6f64b91ca28a450a660ce2b1a7d42674fc09facba6fe7f8bfaf46176f8",
+  "members": [
+    {
+      "bytes": 1891,
+      "path": "AUTHORITY_LEASE_V0_17.json",
+      "sha256": "08f5230044571308e440411b3b49e48ceb073bbf9d095214eae7e55fe2b8ea8d"
+    },
+    {
+      "bytes": 2011,
+      "path": "AUTHORITY_LEASE_V0_17_3.json",
+      "sha256": "344e6b0941c215ce30bff0daed211f0954a802550ab3a4581ab30f07f9a0e138"
+    },
+    {
+      "bytes": 2651,
+      "path": "DOUBLE_FREEZE_CANONICAL_IDENTITY_CONTRACT_V0_17_3.json",
+      "sha256": "cde459c4156f6755c84ca36d324a7122edb87fe6e6f326ba5d269a7b68c3fc2f"
+    },
+    {
+      "bytes": 1398,
+      "path": "README.md",
+      "sha256": "831a77904de6ce8730f94585faaf08b3cd203a6111573b302f711a845cca3b06"
+    },
+    {
+      "bytes": 9937,
+      "path": "contracts/CONNECTOR_ARTIFACT_SURFACE_ADJUDICATION_V0_16_6.json",
+      "sha256": "d7a16d7eb5437849268e074c77f432b84adf66f94387484143f866271a0eee83"
+    },
+    {
+      "bytes": 3932,
+      "path": "contracts/SPEC_DERIVATION_CONTRACT_V0_17.json",
+      "sha256": "4f15da784813af91b50dbb76a59cc09436498172cde719112830b0cd64bb4fb3"
+    },
+    {
+      "bytes": 17252,
+      "path": "execute_deterministic_freeze_v0173.py",
+      "sha256": "94d157e7c94cc74de45486f66ab62728427e21b8e7696d4bc45cd789f8f51d29"
+    },
+    {
+      "bytes": 20669,
+      "path": "freeze_runtime_v017.py",
+      "sha256": "f1425bc8d3d9df2d0cc6343dc4bd09785b0eaa81b6ac7770ad59a1e49c14f68a"
+    },
+    {
+      "bytes": 861,
+      "path": "generated/FREEZE_EXECUTION_RECEIPT_V0_17.json",
+      "sha256": "d63f0cddbe510e5bafcf7b3c910e8df1b5f62107b70e87c8eaf7b54c353a6b35"
+    },
+    {
+      "bytes": 4528,
+      "path": "generated/FULL_NULL_AND_PERTURBATION_RUNTIME_CONTRACT_V0_17.json",
+      "sha256": "9ddc4e7d04a112f998f5385d4196e80d55bf61b1da03538b2878ca4d878878f9"
+    },
+    {
+      "bytes": 1033,
+      "path": "generated/NONIDENTITY_PROOF_V0_17.json",
+      "sha256": "674a6e3da1380ed76f754d29843215393458d65604fac285f728f9ca55252d65"
+    },
+    {
+      "bytes": 1817,
+      "path": "generated/NULL_PERTURBATION_JOB_LEDGER_SUMMARY_V0_17.json",
+      "sha256": "6a1c3e9c227317bf74f149c286d5da67fccfcd8c83ab398b2183f808114107bf"
+    },
+    {
+      "bytes": 6956371,
+      "path": "generated/NULL_PERTURBATION_JOB_LEDGER_V0_17.jsonl",
+      "sha256": "2d4e219af4d6099b1cf207c46d04b137a1710cc624c07eee260a6436b09ccb3e"
+    },
+    {
+      "bytes": 1543,
+      "path": "generated/RUNTIME_FREEZE_RECEIPT_V0_17.json",
+      "sha256": "84d86032ea5297bfa62a3a17874964fd9baec79c97a2d14c239f53d891c99c6b"
+    },
+    {
+      "bytes": 1850,
+      "path": "generated/RUNTIME_SOURCE_MANIFEST_V0_17.json",
+      "sha256": "13ad0bcfd224fbb51ab7415ff8ee583ab324f9fc7f92912cfd3f9804967b2ef7"
+    },
+    {
+      "bytes": 8306,
+      "path": "generated/RUNTIME_VALIDATION_REPORT_V0_17.json",
+      "sha256": "68ce7113cc7a818a49aecec8a625702b09615aa96bc922f568440df6ae0cef00"
+    },
+    {
+      "bytes": 982,
+      "path": "generated/STATUS_V0_17.json",
+      "sha256": "065e765ba63fa14cb593b79b9633cb0c5bac11e1b1807f43026e0bde54c03b23"
+    },
+    {
+      "bytes": 6859,
+      "path": "materialize_text_capsule_v0173.py",
+      "sha256": "ba79a1893b77e1fe7c9a9f54668285b0c3e5e2b7b508f800eb937a770e9552d8"
+    },
+    {
+      "bytes": 4015,
+      "path": "patch_deterministic_freeze_v0173.py",
+      "sha256": "e7e773d3831d89d16c143b60e67ed58e8da17d9f4000eb57156325c5de192647"
+    },
+    {
+      "bytes": 862,
+      "path": "receipts/DETERMINISTIC_FREEZE_PATCH_RECEIPT_V0_17_3.json",
+      "sha256": "1bd8a6e90a0d60e8d336771e43978bedf118a62be7e12e6763a3f071a73222f4"
+    },
+    {
+      "bytes": 4641,
+      "path": "receipts/TEXT_CAPSULE_MATERIALIZATION_RECEIPT_V0_17_3.json",
+      "sha256": "06a7dc85cbf9f4eab8e57f5414ec68dd69dfe8037993ca45b4362ef4776562ae"
+    },
+    {
+      "bytes": 655,
+      "path": "src/kch_helical_null_v017/__init__.py",
+      "sha256": "534f047d7398bb227e8822d9ac6c94444e50b87997b076e7f6567d7ba4c6e011"
+    },
+    {
+      "bytes": 25709,
+      "path": "src/kch_helical_null_v017/runtime.py",
+      "sha256": "23bb0b2431ae3ea1d9912858350b27ad9efe6163b0634fc2c2b92889de630e11"
+    },
+    {
+      "bytes": 12098,
+      "path": "tests/test_runtime_v017.py",
+      "sha256": "2b1b04b2d828e4a368e7d7b0a7d55025a3d56eb20dde80ed8b7de4a39ff80f77"
+    }
+  ]
+}

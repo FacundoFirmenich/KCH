@@ -1,0 +1,41 @@
+{
+  "files": [
+    {
+      "bytes": 25709,
+      "path": "construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/src/kch_helical_null_v017/runtime.py",
+      "role": "V0_17_SPEC_DERIVED_RUNTIME",
+      "sha256": "23bb0b2431ae3ea1d9912858350b27ad9efe6163b0634fc2c2b92889de630e11"
+    },
+    {
+      "bytes": 655,
+      "path": "construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/src/kch_helical_null_v017/__init__.py",
+      "role": "V0_17_PACKAGE_INIT",
+      "sha256": "534f047d7398bb227e8822d9ac6c94444e50b87997b076e7f6567d7ba4c6e011"
+    },
+    {
+      "bytes": 12098,
+      "path": "construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/tests/test_runtime_v017.py",
+      "role": "V0_17_STRUCTURAL_AND_ADVERSARIAL_TESTS",
+      "sha256": "2b1b04b2d828e4a368e7d7b0a7d55025a3d56eb20dde80ed8b7de4a39ff80f77"
+    },
+    {
+      "bytes": 20669,
+      "path": "construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/freeze_runtime_v017.py",
+      "role": "V0_17_FREEZE_COMPILER",
+      "sha256": "f1425bc8d3d9df2d0cc6343dc4bd09785b0eaa81b6ac7770ad59a1e49c14f68a"
+    },
+    {
+      "bytes": 3932,
+      "path": "construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/contracts/SPEC_DERIVATION_CONTRACT_V0_17.json",
+      "role": "V0_17_DERIVATION_CONTRACT",
+      "sha256": "4f15da784813af91b50dbb76a59cc09436498172cde719112830b0cd64bb4fb3"
+    },
+    {
+      "bytes": 9937,
+      "path": "construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/contracts/CONNECTOR_ARTIFACT_SURFACE_ADJUDICATION_V0_16_6.json",
+      "role": "V0_16_6_ARTIFACT_SURFACE_ADJUDICATION",
+      "sha256": "d7a16d7eb5437849268e074c77f432b84adf66f94387484143f866271a0eee83"
+    }
+  ],
+  "format": "KCH_HELICAL_V0_17_SOURCE_MANIFEST"
+}
