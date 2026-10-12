@@ -1,0 +1,14 @@
+{
+  "format":"KCH_HELICOIDAL_V1_3_NONSEMANTIC_SERIALIZER_REPAIR_V2",
+  "predecessor_run_id":38252050099,
+  "predecessor_artifact_id":11749255839,
+  "predecessor_artifact_sha256":"906ed40b5737ee0f8492e08fccbf6b8dc03d22ffb8f7ec1995ea3be1c2c62dd9",
+  "failure":"first repair updated canonical serializer call but did not inject helper because textual patch target did not match existing default=str writer",
+  "repair":"explicitly add json_default helper and route both pretty and canonical encoders through it",
+  "scientific_math_changed":false,
+  "data_selection_changed":false,
+  "thresholds_changed":false,
+  "partial_results_used_to_change_protocol":false,
+  "rerun_requirement":"same locked protocol from scratch",
+  "authority_ceiling":"NONE"
+}
