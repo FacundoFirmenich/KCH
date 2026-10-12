@@ -1,0 +1,40 @@
+{
+  "format": "KCH_HELICAL_V0_17_5_1_NUMERICAL_REPLAY_TOLERANCE_CONTRACT",
+  "frozen_before_second_replay_values_observed": true,
+  "purpose": "DIAGNOSTIC_REPLAY_ONLY_NOT_PARAMETER_UPDATE",
+  "historical_lock_remains_authoritative": true,
+  "historical_parent_graph_lock_id": "h8parent:f61e9b60c455e75e53f16b9579cd085b68de20d810f05165504f91ab09d400cb",
+  "historical_parent_graph_gate_id": "h8pg:5690829352b8163faf63bc3cecc0a6efb34fe024894b90e5dd961e2c7eb732ba",
+  "historical_ephemeral_parent_edge_sha256": "ebe90e7eba499856f706c9d59b6cc0756b2e1a3d32de3f5b58c5901952db838f",
+  "float_acceptance": {
+    "absolute_tolerance": 1e-10,
+    "relative_tolerance": 1e-8,
+    "rule": "abs(observed-reference) <= max(absolute_tolerance, relative_tolerance*abs(reference))"
+  },
+  "objective_acceptance": {
+    "absolute_tolerance": 1e-8,
+    "relative_tolerance": 1e-8,
+    "rule": "abs(observed-reference) <= max(absolute_tolerance, relative_tolerance*abs(reference))"
+  },
+  "integer_fields_require_exact_identity": true,
+  "boolean_fields_require_exact_identity": true,
+  "string_fields_require_exact_identity": true,
+  "calibration_metric_float_acceptance": {
+    "absolute_tolerance": 1e-10,
+    "relative_tolerance": 1e-8
+  },
+  "ephemeral_edge_archive_sha256_required_equal": false,
+  "edge_sha_nonidentity_interpretation": "EXPECTED_POSSIBLE_CASCADE_FROM_FLOAT_REPLAY; RECORD_ONLY; HISTORICAL_FROZEN_LOCK_REMAINS_AUTHORITATIVE",
+  "historical_content_id_required_equal": false,
+  "content_id_nonidentity_interpretation": "CONTENT_IDS_INCLUDE_FLOAT_VALUES; NUMERICAL_TOLERANCE_GOVERNS_DIAGNOSTIC_EQUIVALENCE",
+  "immutable_input_identities_require_exact_equality": true,
+  "cohort_split_counts_require_exact_equality": true,
+  "candidate_edge_counts_require_exact_equality": true,
+  "parent_top20_edge_counts_require_exact_equality": true,
+  "runtime_binding_uses": "HISTORICAL_FROZEN_PARENT_PARAMETER_LOCK",
+  "diagnostic_refit_may_update_historical_lock": false,
+  "if_tolerance_fails": "FAIL_CLOSED_AND_OPEN_ENVIRONMENTAL_REPRODUCIBILITY_SUCCESSOR_WITHOUT_RELAXING_THIS_CONTRACT",
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
