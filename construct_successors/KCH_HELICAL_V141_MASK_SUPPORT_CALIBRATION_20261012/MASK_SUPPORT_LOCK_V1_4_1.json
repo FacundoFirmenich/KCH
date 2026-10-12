@@ -1,0 +1,31 @@
+{
+  "format": "KCH_HELICAL_V1_4_1_MASK_SUPPORT_LOCK",
+  "version": "1.4.1",
+  "status": "FROZEN_AFTER_MASK_ONLY_CALIBRATION",
+  "parent_protocol": "construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_CALIBRATION_PROTOCOL_V1_4_1.json",
+  "workflow_run_id": 38189774337,
+  "workflow_job_id": 114619828148,
+  "artifact_id": 11721565991,
+  "artifact_sha256": "456d77b98c3ecdae2b2093bd3c28085536c4c56ec0f025a35081d13c10f7431c",
+  "result_receipt_id": "h141mask:05b4b92c1dcc51931c9993dce29cdd2b59160e687031a8c095b5237b5fc82af4",
+  "selection_rule": "CHOOSE_HIGHEST_CANDIDATE_THRESHOLD_WITH_AT_LEAST_SUPPORT_FLOOR_PIXELS_FOR_EVERY_RECORD_AND_EVERY_SIGMA",
+  "selected_gaussian_support_threshold": 0.75,
+  "native_mask_erosion_iterations": 2,
+  "support_floor_pixels": 1000,
+  "threshold_min_support": {
+    "0.5": 3363,
+    "0.75": 1464,
+    "0.9": 675,
+    "0.95": 355,
+    "0.99": 0
+  },
+  "operator_values_accessed": false,
+  "flare_outcomes_accessed": false,
+  "fresh_2026_holdout_accessed": false,
+  "next_material_gate": "V1_4_2_REEXECUTE_FROZEN_MULTISCALE_OPERATOR_BASIS_WITH_MASK_SUPPORT_0_75",
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "authority_ceiling": "NONE"
+}
