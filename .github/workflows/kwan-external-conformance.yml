@@ -118,7 +118,7 @@ jobs:
           export SUDO_BIN="$(command -v sudo)"
           export NODE_BIN="$(command -v node)"
           integrations/kwan-external-conformance/.venv-external/bin/python \
-            integrations/kwan-external-conformance/kwan_external_conformance_v3.py \
+            integrations/kwan-external-conformance/kwan_external_conformance_v4.py \
             --output external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json
           sha256sum external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json \
             > external-conformance-evidence/SHA256SUMS.txt
