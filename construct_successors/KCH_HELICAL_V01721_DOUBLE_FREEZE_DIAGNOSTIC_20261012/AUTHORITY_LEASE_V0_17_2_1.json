@@ -1,0 +1,38 @@
+{
+  "format": "KCH_HELICAL_V0_17_2_1_AUTHORITY_LEASE",
+  "lease_id": "helical-v01721-double-freeze-diagnostic-20261012",
+  "predecessor_failure_run_id": 38191524484,
+  "predecessor_failure_job_id": 114625098990,
+  "predecessor_failure_class": "DOUBLE_FREEZE_BYTE_IDENTITY_MISMATCH",
+  "authority_ceiling": "DOUBLE_FREEZE_DIAGNOSTIC_ONLY",
+  "authorized_operations": [
+    "repeat_text_capsule_verification",
+    "repeat_safe_source_materialization",
+    "repeat_structural_and_adversarial_tests",
+    "repeat_two_runtime_freezes",
+    "compare_output_members_by_path_byte_count_and_sha256",
+    "emit_content_addressed_difference_report",
+    "persist_append_only_diagnostic_receipt"
+  ],
+  "forbidden_operations": [
+    "treat_mismatched_freeze_as_pass",
+    "build_or_publish_release",
+    "alter_runtime_contract_or_job_ledger",
+    "scientific_data_acquisition",
+    "calibration_job_execution",
+    "sealed_test_access",
+    "scientific_scoring",
+    "scientific_interpretation",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "finite": true
+}
