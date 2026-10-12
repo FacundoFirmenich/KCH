@@ -1,0 +1,118 @@
+name: KCH Helical v0.9 exact bytes to blind eligibility
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "experiments/helical_lift/v0_9/**"
+      - ".github/workflows/helical-v09-blind.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-byte-to-blind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+    defaults:
+      run:
+        working-directory: experiments/helical_lift/v0_9
+    steps:
+      - name: Checkout immutable workflow dependency
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+
+      - name: Install Python 3.11 using immutable action commit
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.11"
+
+      - name: Install frozen runtime dependency versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements-runtime.txt
+          mkdir -p "$RUNNER_TEMP/helical-v09/receipts"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v09/receipts/PIP_FREEZE.txt"
+          python - <<'PY'
+          import hashlib, json, pathlib, platform, sys
+          p = pathlib.Path("${{ runner.temp }}/helical-v09/receipts/RUNTIME_ENVIRONMENT.json")
+          freeze = pathlib.Path("${{ runner.temp }}/helical-v09/receipts/PIP_FREEZE.txt").read_bytes()
+          p.write_text(json.dumps({
+              "python": sys.version,
+              "platform": platform.platform(),
+              "pip_freeze_sha256": hashlib.sha256(freeze).hexdigest(),
+          }, sort_keys=True, indent=2) + "\n")
+          PY
+
+      - name: Execute exact-byte acquisition, sandbox extraction, and blind eligibility
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          python runtime/RUN_EXACT_BYTE_TO_BLIND_GATE_V0_9.py \
+            --workspace "$RUNNER_TEMP/helical-v09" \
+            --execute-network \
+            --network-timeout-seconds 600 \
+            --sandbox-timeout-seconds 5400 \
+            --sandbox-memory-mib 8192 \
+            --purge-raw-after-gate
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-v09/receipts/GATE_EXIT_CODE.txt"
+          echo "gate_exit_code=$rc" >> "$GITHUB_OUTPUT"
+          # Preserve the scientific/engineering outcome for upload before adjudication.
+          exit 0
+
+      - name: Verify raw sources are absent from the export surface
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e "$RUNNER_TEMP/helical-v09/exact_sources"
+          test ! -e "$RUNNER_TEMP/helical-v09/cache/focmec_ca_final.pickle"
+
+      - name: Build deterministic non-raw result archive
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/helical-v09"
+          paths=()
+          for candidate in receipts blind eligibility; do
+            [[ -e "$candidate" ]] && paths+=("$candidate")
+          done
+          test ${#paths[@]} -gt 0
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -czf helical-v09-result-without-raw-sources.tar.gz "${paths[@]}"
+          sha256sum helical-v09-result-without-raw-sources.tar.gz \
+            > helical-v09-result-without-raw-sources.tar.gz.sha256
+
+      - name: Upload receipts and safe derived artifacts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kch-helical-v09-result-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-v09/helical-v09-result-without-raw-sources.tar.gz
+            ${{ runner.temp }}/helical-v09/helical-v09-result-without-raw-sources.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Adjudicate workflow infrastructure status after evidence upload
+        if: always()
+        shell: bash
+        env:
+          GATE_EXIT_CODE: ${{ steps.gate.outputs.gate_exit_code }}
+        run: |
+          set -euo pipefail
+          case "${GATE_EXIT_CODE:-99}" in
+            0)  echo "ELIGIBILITY_PASS; directional-unseal request prepared, no model fit" ;;
+            30) echo "LEGITIMATE_NOT_IDENTIFIABLE_OUTCOME; no model fit" ;;
+            *)  echo "Infrastructure/transport gate failed with exit ${GATE_EXIT_CODE:-99}" >&2; exit "${GATE_EXIT_CODE:-99}" ;;
+          esac

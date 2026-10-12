@@ -1,0 +1,32 @@
+{
+  "format": "KCH_HELICAL_V0_9_EXACT_SOURCE_IDENTITIES",
+  "scientific_protocol": {
+    "version": "0.8.0",
+    "protocol_id": "h8p:99c4816147023000b8fd3b1c386a0b1b35fb232b33782875477f3b46f7a1542f",
+    "protocol_file_sha256": "9c988d22a0d0453e645677a8788bc4064b57991e1ec1a44001d5098d12388246",
+    "changed_by_v0_9_transport_successor": false
+  },
+  "mechanism_catalog": {
+    "provider": "Mendeley Data / Digital Commons Data",
+    "dataset_id": "2np9vw5v7w",
+    "version": 2,
+    "doi": "10.17632/2np9vw5v7w.2",
+    "required_basename": "focmec_ca_final.pickle",
+    "exact_sha256": null,
+    "exact_bytes": null,
+    "hash_state": "TO_BE_OBSERVED_FROM_OFFICIAL_RESPONSE_ENTITY_BODY"
+  },
+  "fault_network": {
+    "repository": "GEMScienceTools/gem-global-active-faults",
+    "commit": "56816508ad92fd6846dad1163b1c8c01376a2cd1",
+    "path": "geojson/gem_active_faults_harmonized.geojson",
+    "git_blob_sha1": "fb164770b529695544fa864abe2cc9dd8aa5793d",
+    "bytes": 10622730,
+    "sha256": null,
+    "sha256_state": "TO_BE_OBSERVED_FROM_EXACT_GIT_BLOB_BYTES"
+  },
+  "all_or_none": true,
+  "authority_ceiling": "NONE",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
