@@ -1,0 +1,66 @@
+{
+  "format": "KCH_HELICAL_V0_17_3_DOUBLE_FREEZE_CANONICAL_IDENTITY_CONTRACT",
+  "predecessor_diagnostic_report_id": "h1721diff:4a03714913abd9ed29a993b746f9c4d9e161c2beb04b3d228a20fd71fd9bfd78",
+  "diagnosed_divergent_members": [
+    "FREEZE_EXECUTION_RECEIPT_V0_17.json",
+    "RUNTIME_FREEZE_RECEIPT_V0_17.json",
+    "RUNTIME_VALIDATION_REPORT_V0_17.json",
+    "STATUS_V0_17.json"
+  ],
+  "root_cause": {
+    "member": "RUNTIME_VALIDATION_REPORT_V0_17.json",
+    "fields": [
+      "$.checks[18].detail",
+      "$.checks[20].detail"
+    ],
+    "volatile_value_class": "UNITTEST_WALL_CLOCK_DURATION_EMBEDDED_IN_PASSING_LOG_TAIL",
+    "observed_examples": [
+      "Ran 44 tests in 1.585s",
+      "Ran 44 tests in 1.556s"
+    ],
+    "cascading_identifiers": [
+      "validation_id",
+      "freeze_id",
+      "execution_receipt_id"
+    ]
+  },
+  "authorized_source_patch": {
+    "path": "freeze_runtime_v017.py",
+    "expected_original_sha256": "f55856ef2b062eb4fb9f8cd079d302ed973cd6090f8eefb773fef6b3c0f83265",
+    "expected_patched_sha256": "f1425bc8d3d9df2d0cc6343dc4bd09785b0eaa81b6ac7770ad59a1e49c14f68a",
+    "replacement_count": 1,
+    "semantic_change": "PASSING_UNITTEST_ASSERTIONS_RECORD_STABLE_MATCHED_BOOLEANS_INSTEAD_OF_RAW_LOG_TAILS",
+    "test_count_parsing_unchanged": true,
+    "minimum_test_count_unchanged": 44,
+    "unittest_ok_condition_unchanged": true,
+    "runtime_module_changed": false,
+    "job_schedule_changed": false,
+    "seed_derivation_changed": false,
+    "null_operator_semantics_changed": false,
+    "scientific_thresholds_changed": false
+  },
+  "required_byte_identical_outputs_after_patch": [
+    "FREEZE_EXECUTION_RECEIPT_V0_17.json",
+    "FULL_NULL_AND_PERTURBATION_RUNTIME_CONTRACT_V0_17.json",
+    "NONIDENTITY_PROOF_V0_17.json",
+    "NULL_PERTURBATION_JOB_LEDGER_SUMMARY_V0_17.json",
+    "NULL_PERTURBATION_JOB_LEDGER_V0_17.jsonl",
+    "RUNTIME_FREEZE_RECEIPT_V0_17.json",
+    "RUNTIME_SOURCE_MANIFEST_V0_17.json",
+    "RUNTIME_VALIDATION_REPORT_V0_17.json",
+    "STATUS_V0_17.json"
+  ],
+  "required_semantic_identities_preserved": {
+    "runtime_contract_id": "h17nullspec:20fbec42c3b9e1c6ec1ed8ef1a1f418907dee6a41fbba73259911f3a359e315d",
+    "job_ledger_id": "h17nullledger:d524bca6e35f07bbfaabaa947c43a11d2d2317e04ac640d0d3d9243baade2e29",
+    "job_ledger_sha256": "2d4e219af4d6099b1cf207c46d04b137a1710cc624c07eee260a6436b09ccb3e",
+    "scheduled_job_count": 6376
+  },
+  "historical_v0_13_identity_transfer": false,
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
