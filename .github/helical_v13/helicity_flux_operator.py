@@ -31,9 +31,15 @@ def sha256_file(p:Path)->str:
         for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
     return h.hexdigest()
 
+def json_default(o):
+    if isinstance(o,np.generic): return o.item()
+    if isinstance(o,np.ndarray): return o.tolist()
+    if isinstance(o,(datetime,Path)): return str(o)
+    raise TypeError(f\"Object of type {o.__class__.__name__} is not JSON serializable\")
+
 def write_json(p:Path,o:Any)->None:
     p.parent.mkdir(parents=True,exist_ok=True)
-    p.write_text(json.dumps(o,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False,default=str)+"\n",encoding="utf-8")
+    p.write_text(json.dumps(o,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False,default=json_default)+"\n",encoding="utf-8")
 
 def parse_trec(s:str)->datetime:
     return datetime.strptime(s,"%Y.%m.%d_%H:%M:%S_TAI")
