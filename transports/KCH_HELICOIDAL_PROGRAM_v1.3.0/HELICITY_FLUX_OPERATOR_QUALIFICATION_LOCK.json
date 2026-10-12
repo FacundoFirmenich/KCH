@@ -1,0 +1,97 @@
+{
+  "format":"KCH_HELICOIDAL_V1_3_HELICITY_FLUX_OPERATOR_QUALIFICATION_LOCK",
+  "version":"1.3.0",
+  "status":"LOCKED_BEFORE_SEQUENCE_FIELD_ACQUISITION",
+  "locked_at_utc":"2026-10-12T12:58:00Z",
+  "parent":{
+    "v1_2_observability_result":"mhd12obs:dd8da2c143403a12f2c3b4007cc28ca50a0cda0f07971c27a1935d57fea4685e",
+    "v1_2_hemispheric_result":"mhd12hsrres:c0b089a39d3a6d8a3d559bd551fb484a4f47fc99d38c9477d46c5d16850557c6"
+  },
+  "scientific_scope":"operator qualification only; no population, flare, CME or coronal-helicity claim",
+  "velocity_operator":{
+    "algorithm":"DAVE4VM",
+    "implementation_repository":"Hypnus1803/pyflowmaps",
+    "implementation_commit":"c231189ae9134b7578d431a062ccc132565fba1d",
+    "implementation_license":"MIT",
+    "api":"pyflowmaps.dave4vm.pydave4vm + pyflowmaps.math_tools.odiff",
+    "flowDAVE_wrapper":"NOT_USED",
+    "reason_wrapper_not_used":"core operator is frozen directly to avoid wrapper-level unit/API ambiguity",
+    "primary_window_pixels":19,
+    "sensitivity_window_pixels":13,
+    "primary_centered_interval_seconds":1440,
+    "sensitivity_interval_seconds":720,
+    "cadence_comparison":"24-minute centered estimate versus arithmetic mean of the adjacent left/right 12-minute estimates"
+  },
+  "helicity_flux_operator":{
+    "quantity":"relative magnetic helicity injection rate across the photospheric plane",
+    "formula":"dH/dt = 2 integral[(Ap dot Bh) v_perp_n - (Ap dot v_perp_h) Bn] dS",
+    "reference_field":"potential field matching observed Br on the analysis plane",
+    "vector_potential_gauge":"planar Coulomb gauge Ap.n=0; div_h Ap=0",
+    "Ap_solver":"open-plane Green-kernel convolution by zero-padded FFT",
+    "field_units":"Gauss",
+    "velocity_units":"cm/s after DAVE4VM km/s conversion",
+    "distance_units":"cm",
+    "flux_units":"Mx^2/s"
+  },
+  "boundary_and_mask":{
+    "sequence_frames":"T_REC-12min, T_REC, T_REC+12min",
+    "crop":"union high-confidence bitmap bounding box across three frames plus 24-pixel margin; no downsampling",
+    "high_confidence_mask":"bitmap>=33 AND conf_disambig==90 AND finite Br/Bt/Bp",
+    "integration_field_threshold_G":50.0,
+    "integration_mask":"high-confidence midpoint mask AND abs(Br)>=50G",
+    "velocity_solver_masking":"no target-based pixel pruning; nonfinite input replaced only outside the union confidence crop by zero after exact mask receipt",
+    "maximum_unsigned_flux_imbalance_fraction":0.35
+  },
+  "real_data_panel":{
+    "selection":"first two north and first two south records in the already-frozen v1.2 TRAIN-only observability panel; no helicity/outcome values used",
+    "all_or_none":true,
+    "records":[
+      {"NOAA_AR":12424,"HARPNUM":5970,"T_REC":"2015.09.23_00:00:00_TAI","hemisphere":"N"},
+      {"NOAA_AR":11120,"HARPNUM":241,"T_REC":"2010.11.05_12:00:00_TAI","hemisphere":"N"},
+      {"NOAA_AR":12021,"HARPNUM":3912,"T_REC":"2014.04.01_12:00:00_TAI","hemisphere":"S"},
+      {"NOAA_AR":11768,"HARPNUM":2832,"T_REC":"2013.06.10_12:00:00_TAI","hemisphere":"S"}
+    ]
+  },
+  "synthetic_qualification":{
+    "required":true,
+    "grid":[96,96],
+    "pixel_size_km":365.0,
+    "cadence_seconds":720,
+    "true_velocity_km_s":[0.22,-0.14,0.0],
+    "field":"deterministic multi-scale signed Gaussian + sinusoidal vector-field texture transported by constant horizontal translation",
+    "primary_window_pixels":19,
+    "median_horizontal_velocity_absolute_error_km_s_max":0.08,
+    "velocity_signs_must_match":true
+  },
+  "qualification_gates":{
+    "all_four_real_regions_required":true,
+    "minimum_integration_pixels_each":500,
+    "minimum_velocity_solution_fraction_each":0.50,
+    "minimum_induction_residual_reduction_fraction_each":0.20,
+    "time_reversal_relative_antisymmetry_max_each":0.25,
+    "window_13_19_same_sign_min_regions":3,
+    "window_13_19_median_symmetric_relative_difference_max":0.50,
+    "cadence_12_24_same_sign_min_regions":3,
+    "cadence_12_24_median_symmetric_relative_difference_max":0.50,
+    "parity_relative_antisymmetry_max_each":1e-6,
+    "Ap_curl_correlation_min_each":0.90,
+    "Ap_curl_normalized_rmse_max_each":0.35
+  },
+  "allowed_outcomes":[
+    "HELICITY_FLUX_OPERATOR_QUALIFIED",
+    "SYNTHETIC_DAVE4VM_RECOVERY_FAILED",
+    "POTENTIAL_VECTOR_OPERATOR_FAILED",
+    "REAL_DATA_VELOCITY_OPERATOR_FAILED",
+    "HELICITY_FLUX_TIME_REVERSAL_FAILED",
+    "HELICITY_FLUX_WINDOW_UNSTABLE",
+    "HELICITY_FLUX_CADENCE_UNSTABLE",
+    "NOT_IDENTIFIABLE_BOUNDARY_OR_FLUX_BALANCE",
+    "TRANSPORT_OR_RUNTIME_FAILED"
+  ],
+  "posthoc_velocity_method_shopping":"FORBIDDEN",
+  "posthoc_window_selection":"FORBIDDEN",
+  "posthoc_boundary_selection":"FORBIDDEN",
+  "promotion":"BLOCKED",
+  "canonicalization":"BLOCKED",
+  "authority_ceiling":"NONE"
+}
