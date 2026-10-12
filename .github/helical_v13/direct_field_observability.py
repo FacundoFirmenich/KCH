@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import atexit
 import hashlib
 import json
 import math
 import os
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -14,6 +16,11 @@ from astropy.io import fits
 
 OUT = Path(os.environ.get("OUT", "/tmp/helical_v13_direct_field"))
 OUT.mkdir(parents=True, exist_ok=True)
+RAW = OUT / "raw"
+SAFE = OUT / "safe"
+RAW.mkdir(parents=True, exist_ok=True)
+SAFE.mkdir(parents=True, exist_ok=True)
+atexit.register(lambda: shutil.rmtree(RAW, ignore_errors=True))
 
 QUERY = os.environ.get(
     "SHARP_QUERY", "hmi.sharp_cea_720s[5249][2015.03.02_12:00:00_TAI]"
@@ -57,7 +64,7 @@ def segment_candidates(raw: str) -> list[str]:
 
 def download_segment(name: str, raw: str) -> dict[str, Any]:
     attempts: list[dict[str, Any]] = []
-    target = OUT / f"{name}.fits"
+    target = RAW / f"{name}.fits"
     for i, url in enumerate(segment_candidates(raw)):
         try:
             with requests.get(
@@ -97,10 +104,35 @@ def download_segment(name: str, raw: str) -> dict[str, Any]:
 
 
 def load_fits_array(path: Path) -> tuple[np.ndarray, dict[str, Any]]:
+    # JSOC may deliver tiled-compressed FITS with an empty PrimaryHDU and the
+    # image in an ImageHDU/CompImageHDU extension. Select the first actual 2-D
+    # image rather than assuming HDU 0 carries data.
     with fits.open(path, memmap=False) as hdul:
-        data = np.asarray(hdul[0].data, dtype=np.float64)
-        header = hdul[0].header
+        chosen = None
+        for index, hdu in enumerate(hdul):
+            if hdu.data is None:
+                continue
+            candidate = np.asarray(hdu.data)
+            if candidate.ndim == 2:
+                chosen = (index, hdu, np.asarray(candidate, dtype=np.float64))
+                break
+        if chosen is None:
+            summary = [
+                {
+                    "index": i,
+                    "type": type(hdu).__name__,
+                    "name": getattr(hdu, "name", None),
+                    "shape": None if hdu.data is None else list(np.asarray(hdu.data).shape),
+                }
+                for i, hdu in enumerate(hdul)
+            ]
+            raise RuntimeError(f"no 2-D image HDU in {path}: {summary}")
+        index, hdu, data = chosen
+        header = hdu.header
         meta = {
+            "hdu_index": index,
+            "hdu_type": type(hdu).__name__,
+            "hdu_name": getattr(hdu, "name", None),
             "shape": list(data.shape),
             "bitpix": int(header.get("BITPIX", 0)),
             "bunit": header.get("BUNIT"),
@@ -113,8 +145,6 @@ def load_fits_array(path: Path) -> tuple[np.ndarray, dict[str, Any]]:
             "cdelt1": header.get("CDELT1"),
             "cdelt2": header.get("CDELT2"),
         }
-    if data.ndim != 2:
-        raise RuntimeError(f"expected 2-D FITS array at {path}, got {data.shape}")
     return data, meta
 
 
@@ -324,7 +354,7 @@ def main() -> int:
     }
     canonical = json.dumps(report, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     report["receipt_id"] = "h13field:" + hashlib.sha256(canonical).hexdigest()
-    out = OUT / "DIRECT_FIELD_OBSERVABILITY_PROBE_V1_3.json"
+    out = SAFE / "DIRECT_FIELD_OBSERVABILITY_PROBE_V1_3.json"
     out.write_text(json.dumps(report, sort_keys=True, indent=2, allow_nan=False) + "\n")
     print(json.dumps({
         "outcome": report["outcome"],
@@ -339,9 +369,7 @@ def main() -> int:
         "symmetry_tests": symmetry,
     }, sort_keys=True, indent=2))
 
-    # Raw FITS are ephemeral by policy; leave only the aggregate receipt for artifact export.
-    for name in SEGMENTS:
-        Path(downloads[name]["path"]).unlink(missing_ok=True)
+    # RAW is purged by the registered exit handler on success or exception.
     return 0 if adapter_supported else 30
 
 
