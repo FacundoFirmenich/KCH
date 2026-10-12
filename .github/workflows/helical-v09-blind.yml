@@ -38,6 +38,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --disable-pip-version-check -r requirements-runtime.txt
+          PYTHONPATH=runtime python -c "from kch_helical_dynamic_v08.eligibility import blind_eligibility"
           mkdir -p "$RUNNER_TEMP/helical-v09/receipts"
           python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-v09/receipts/PIP_FREEZE.txt"
           python - <<'PY'
