@@ -73,6 +73,13 @@ jobs:
           # Preserve the scientific/engineering outcome for upload before adjudication.
           exit 0
 
+      - name: Purge exact sources and cache on every outcome
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf -- "$RUNNER_TEMP/helical-v09/exact_sources" "$RUNNER_TEMP/helical-v09/cache"
+
       - name: Verify raw sources are absent from the export surface
         if: always()
         shell: bash
