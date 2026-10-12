@@ -1,0 +1,134 @@
+name: Kwan external conformance SHADOW
+
+on:
+  push:
+    branches:
+      - shadow/kwan-external-conformance-v0.12.0
+    paths:
+      - 'integrations/kwan-external-conformance/**'
+      - '.github/workflows/kwan-external-conformance.yml'
+  pull_request:
+    branches:
+      - feat/kch-composed-runtime-20261008
+    paths:
+      - 'integrations/kwan-external-conformance/**'
+      - '.github/workflows/kwan-external-conformance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  external-conformance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OPA_VERSION: '1.21.2'
+      OPA_SHA256: '6cfd797fba23e1ce91f0fabd57c92a8a15d47502c5ac4d603aa31c21e4df5314'
+      CEDAR_VERSION: '4.13.0'
+      CEDAR_SHA256: '23d358ef38edad8ade629a09f6a7359ecbd1761c9ff82e9fd0a5c5bce36b8c79'
+      WASMTIME_VERSION: '49.0.2'
+      WASMTIME_SHA256: 'a4d6e9e3a5a60f527cf7793d674c48930c80c2e8977995b8a275cad3254b9322'
+      ORAS_VERSION: '1.3.4'
+      ORAS_SHA256: 'f27adb935022d94df8dc77719c322dda592c78a0d57a6f7dcdd8d900b248c454'
+      COSIGN_VERSION: 'v3.1.3'
+      COSIGN_SHA256: '4629c757b7618056f8ddd7e2625ae9fdd94c0372a65049520bc7d9df9efc7f71'
+      DAG_CBOR_VERSION: '10.0.2'
+      MULTIFORMATS_VERSION: '14.0.5'
+      TUF_VERSION: '7.0.1'
+      SECURESYSTEMSLIB_VERSION: '1.5.1'
+      CRYPTOGRAPHY_VERSION: '50.0.2'
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Initialise evidence and install host enforcement dependency
+        run: |
+          set -euo pipefail
+          mkdir -p external-conformance-evidence
+          printf '%s\n' 'SHADOW attempt: no authority, no promotion' > external-conformance-evidence/ATTEMPT.txt
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends bubblewrap xz-utils
+
+      - name: Install pinned official external engines
+        run: |
+          set -euo pipefail
+          mkdir -p .tools/cedar .tools/wasmtime .tools/oras .tools/cosign
+          curl --proto '=https' --tlsv1.2 -fL \
+            "https://github.com/open-policy-agent/opa/releases/download/v${OPA_VERSION}/opa_linux_amd64" \
+            -o .tools/opa
+          echo "${OPA_SHA256}  .tools/opa" | sha256sum -c -
+          chmod 0755 .tools/opa
+
+          curl --proto '=https' --tlsv1.2 -fL \
+            "https://github.com/cedar-policy/cedar/releases/download/cedar-policy-cli-v${CEDAR_VERSION}/cedar-policy-cli-x86_64-unknown-linux-gnu.tar.xz" \
+            -o .tools/cedar.tar.xz
+          echo "${CEDAR_SHA256}  .tools/cedar.tar.xz" | sha256sum -c -
+          tar -xJf .tools/cedar.tar.xz -C .tools/cedar
+          CEDAR_BIN="$(find .tools/cedar -type f -name cedar -perm -111 -print -quit)"
+          test -n "${CEDAR_BIN}"
+          printf '%s\n' "CEDAR_BIN=${GITHUB_WORKSPACE}/${CEDAR_BIN}" >> "${GITHUB_ENV}"
+
+          curl --proto '=https' --tlsv1.2 -fL \
+            "https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VERSION}/wasmtime-v${WASMTIME_VERSION}-x86_64-linux.tar.xz" \
+            -o .tools/wasmtime.tar.xz
+          echo "${WASMTIME_SHA256}  .tools/wasmtime.tar.xz" | sha256sum -c -
+          tar -xJf .tools/wasmtime.tar.xz -C .tools/wasmtime
+          WASMTIME_BIN="$(find .tools/wasmtime -type f -name wasmtime -perm -111 -print -quit)"
+          test -n "${WASMTIME_BIN}"
+          printf '%s\n' "WASMTIME_BIN=${GITHUB_WORKSPACE}/${WASMTIME_BIN}" >> "${GITHUB_ENV}"
+
+          curl --proto '=https' --tlsv1.2 -fL \
+            "https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz" \
+            -o .tools/oras.tar.gz
+          echo "${ORAS_SHA256}  .tools/oras.tar.gz" | sha256sum -c -
+          tar -xzf .tools/oras.tar.gz -C .tools/oras oras
+          chmod 0755 .tools/oras/oras
+          printf '%s\n' "ORAS_BIN=${GITHUB_WORKSPACE}/.tools/oras/oras" >> "${GITHUB_ENV}"
+
+          curl --proto '=https' --tlsv1.2 -fL \
+            "https://github.com/sigstore/cosign/releases/download/${COSIGN_VERSION}/cosign-linux-amd64" \
+            -o .tools/cosign/cosign
+          echo "${COSIGN_SHA256}  .tools/cosign/cosign" | sha256sum -c -
+          chmod 0755 .tools/cosign/cosign
+          printf '%s\n' "COSIGN_BIN=${GITHUB_WORKSPACE}/.tools/cosign/cosign" >> "${GITHUB_ENV}"
+
+      - name: Install pinned external codec and TUF libraries
+        working-directory: integrations/kwan-external-conformance
+        run: |
+          set -euo pipefail
+          npm init -y >/dev/null
+          npm install --ignore-scripts --no-audit --no-fund \
+            "@ipld/dag-cbor@${DAG_CBOR_VERSION}" \
+            "multiformats@${MULTIFORMATS_VERSION}"
+          python -m venv .venv-external
+          .venv-external/bin/python -m pip install --disable-pip-version-check \
+            "tuf==${TUF_VERSION}" \
+            "securesystemslib[crypto]==${SECURESYSTEMSLIB_VERSION}" \
+            "cryptography==${CRYPTOGRAPHY_VERSION}"
+
+      - name: Execute Kwan external conformance gate
+        env:
+          OPA_BIN: ${{ github.workspace }}/.tools/opa
+        run: |
+          set -euo pipefail
+          export BWRAP_BIN="$(command -v bwrap)"
+          export SUDO_BIN="$(command -v sudo)"
+          export NODE_BIN="$(command -v node)"
+          integrations/kwan-external-conformance/.venv-external/bin/python \
+            integrations/kwan-external-conformance/kwan_external_conformance_v4.py \
+            --output external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json
+          sha256sum external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json \
+            > external-conformance-evidence/SHA256SUMS.txt
+          cp integrations/kwan-external-conformance/README.md external-conformance-evidence/
+
+      - name: Upload immutable SHADOW evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kwan-external-conformance-v0.12.0
+          path: external-conformance-evidence
+          if-no-files-found: error
+          retention-days: 30
