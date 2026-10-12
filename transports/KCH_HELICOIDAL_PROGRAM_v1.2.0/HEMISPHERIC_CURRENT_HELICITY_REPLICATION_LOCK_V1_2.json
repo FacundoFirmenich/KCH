@@ -1,0 +1,107 @@
+{
+  "allowed_outcomes": [
+    "HEMISPHERIC_CURRENT_HELICITY_SIGN_PREFERENCE_REPLICATED",
+    "HEMISPHERIC_SIGN_PREFERENCE_NOT_REPLICATED",
+    "DIRECT_FIELD_RECONSTRUCTION_GATE_FAILED",
+    "INSUFFICIENT_DIRECTIONAL_STABILITY"
+  ],
+  "authority_ceiling": "NONE",
+  "canonicalization": "BLOCKED",
+  "claim": "statistical hemispheric sign preference of photospheric vertical current-helicity proxy",
+  "expected_direction": "reconstructed_MEANJZH * LAT_FWT < 0 (negative north, positive south)",
+  "format": "KCH_HELICOIDAL_V1_2_HEMISPHERIC_CURRENT_HELICITY_REPLICATION_LOCK",
+  "lock_id": "mhd12hsr:bd663f9c6349a295f02ed4e035f9a66562ee201253a354851de87a219e5971ab",
+  "locked_at_utc": "2026-10-12T00:43:30Z",
+  "parent_observability_lock_id": "mhd12lock:0efc8bb5ffc366d3c46197c378372c1da278da8c647a5be14280e8837c025515",
+  "parent_observability_result_id": "mhd12obs:dd8da2c143403a12f2c3b4007cc28ca50a0cda0f07971c27a1935d57fea4685e",
+  "posthoc_rescue": "FORBIDDEN",
+  "primary_adjudication": {
+    "alternative": "greater",
+    "exact_binomial_null_p": 0.5,
+    "maximum_one_sided_p": 0.05,
+    "minimum_robust_compliant_each_hemisphere": 9,
+    "minimum_robust_compliant_regions": 22,
+    "required_reconstruction_gate": "PASS",
+    "total_regions": 32
+  },
+  "promotion": "BLOCKED",
+  "reconstruction_gate": {
+    "MEANALP_spearman_abs_min": 0.9,
+    "MEANJZH_sign_agreement_fraction_min": 0.875,
+    "MEANJZH_spearman_abs_min": 0.9,
+    "all_32_records_required": true,
+    "median_relative_abs_error_MEANALP_max": 0.15,
+    "median_relative_abs_error_MEANJZH_max": 0.15,
+    "minimum_valid_cmask_pixels": 100,
+    "parity_sign_flip_required": true
+  },
+  "scope": {
+    "coronal_relative_magnetic_helicity": "NOT_CLAIMED",
+    "flare_prediction": "NOT_EVALUATED",
+    "full_3D_current_helicity": "NOT_CLAIMED",
+    "universal_hemispheric_rule": "NOT_CLAIMED"
+  },
+  "secondary_support": {
+    "MEANALP_expected_direction": "reconstructed_MEANALP * LAT_FWT < 0",
+    "interpretation": "supportive only; not independent because alpha and current helicity are algebraically related"
+  },
+  "selection": {
+    "algorithm": "within each hemisphere sort eligible NOAA_AR ascending by SHA256(seed|integer NOAA_AR), select first 16; snapshot=min |LON_FWT| then earliest origin_utc then HARPNUM",
+    "eligibility": "NOAA_AR has >=8 CALIBRATION windows and |median LAT_FWT|>=5 deg",
+    "flare_labels_used": false,
+    "helicity_values_used": false,
+    "hemisphere_quota": {"N": 16, "S": 16},
+    "records": [
+      {"HARPNUM":7450,"LAT_FWT":28.818111,"LON_FWT":-2.304988,"NOAA_AR":12773,"T_REC":"2020.09.28_12:00:00_TAI","calibration_window_count":18,"hemisphere":"N","origin_utc":"2020-09-28 11:59:23+00:00","selection_hash":"06f74b3f71f24b9d7d5e042de82bff4f95a32ff68e1e18164c35062ad2eb7049"},
+      {"HARPNUM":7248,"LAT_FWT":11.451505,"LON_FWT":2.822984,"NOAA_AR":12704,"T_REC":"2018.04.17_00:00:00_TAI","calibration_window_count":15,"hemisphere":"N","origin_utc":"2018-04-16 23:59:23+00:00","selection_hash":"124c51f30d4f94605896d9b1ec54af4e361205231f09ed222cb8f7753a0644d2"},
+      {"HARPNUM":7260,"LAT_FWT":17.280512,"LON_FWT":0.886667,"NOAA_AR":12710,"T_REC":"2018.05.27_00:00:00_TAI","calibration_window_count":16,"hemisphere":"N","origin_utc":"2018-05-26 23:59:23+00:00","selection_hash":"1407e550d41d25cbc26ba665d46b23c4189a13e47f816c936ec20413d38cff28"},
+      {"HARPNUM":7432,"LAT_FWT":27.581219,"LON_FWT":-0.028292,"NOAA_AR":12768,"T_REC":"2020.08.04_00:00:00_TAI","calibration_window_count":21,"hemisphere":"N","origin_utc":"2020-08-03 23:59:23+00:00","selection_hash":"1aaa93668a1d299ae25427b8837b06d46ead3f80dd80fa139f14c20013f0a023"},
+      {"HARPNUM":7262,"LAT_FWT":15.017597,"LON_FWT":-3.332915,"NOAA_AR":12712,"T_REC":"2018.05.30_00:00:00_TAI","calibration_window_count":17,"hemisphere":"N","origin_utc":"2018-05-29 23:59:23+00:00","selection_hash":"1ac3c96784bc9bf90c12b60c439fff673d91ff6693e4f8f8eef28984cda7e2a8"},
+      {"HARPNUM":7003,"LAT_FWT":13.128726,"LON_FWT":2.065054,"NOAA_AR":12655,"T_REC":"2017.05.08_00:00:00_TAI","calibration_window_count":15,"hemisphere":"N","origin_utc":"2017-05-07 23:59:23+00:00","selection_hash":"1f944ae826d6643b0679034d8309873cfa393e78e7e915f42b0c225f9f154ac0"},
+      {"HARPNUM":7419,"LAT_FWT":34.369823,"LON_FWT":0.394834,"NOAA_AR":12764,"T_REC":"2020.06.05_12:00:00_TAI","calibration_window_count":19,"hemisphere":"N","origin_utc":"2020-06-05 11:59:23+00:00","selection_hash":"208851109427a8892e4e13e3dcdb42eb01f2d7409c0c579a01629b434d3bf8ff"},
+      {"HARPNUM":6972,"LAT_FWT":12.628219,"LON_FWT":3.042953,"NOAA_AR":12644,"T_REC":"2017.03.29_12:00:00_TAI","calibration_window_count":16,"hemisphere":"N","origin_utc":"2017-03-29 11:59:23+00:00","selection_hash":"246a0960efa1f574aeb2b567e06e96ac0be3cec7e7aff3ef5ea7abf80e726da8"},
+      {"HARPNUM":7122,"LAT_FWT":17.054615,"LON_FWT":1.948852,"NOAA_AR":12677,"T_REC":"2017.09.09_00:00:00_TAI","calibration_window_count":18,"hemisphere":"N","origin_utc":"2017-09-08 23:59:23+00:00","selection_hash":"29f006451bdbcb281319986e2f9f95b7d9938151daa2ab8ade7ff21a98284022"},
+      {"HARPNUM":7412,"LAT_FWT":28.406099,"LON_FWT":-2.573216,"NOAA_AR":12759,"T_REC":"2020.04.05_00:00:00_TAI","calibration_window_count":17,"hemisphere":"N","origin_utc":"2020-04-04 23:59:23+00:00","selection_hash":"2ccf67cab96b36094c6d3f1131d6518f6eb888c86650a6db5a2c1d021e09dcff"},
+      {"HARPNUM":6999,"LAT_FWT":11.391159,"LON_FWT":-2.24593,"NOAA_AR":12654,"T_REC":"2017.05.03_00:00:00_TAI","calibration_window_count":17,"hemisphere":"N","origin_utc":"2017-05-02 23:59:23+00:00","selection_hash":"2d13ccc266bfe065b26bc043d8cabb0c77f84c4b95d3af2b2decba738f1daf57"},
+      {"HARPNUM":7110,"LAT_FWT":7.18498,"LON_FWT":4.709207,"NOAA_AR":12672,"T_REC":"2017.08.27_00:00:00_TAI","calibration_window_count":9,"hemisphere":"N","origin_utc":"2017-08-26 23:59:23+00:00","selection_hash":"3002a10169503c9ab1409b936b6f96755e73d683056052354a7dfb774bdb9ec2"},
+      {"HARPNUM":7353,"LAT_FWT":6.230126,"LON_FWT":-3.245208,"NOAA_AR":12738,"T_REC":"2019.04.13_12:00:00_TAI","calibration_window_count":18,"hemisphere":"N","origin_utc":"2019-04-13 11:59:23+00:00","selection_hash":"373e36f7939205ade6d410c06c19d80a683de71ce92e43297fd8b62611ff0bce"},
+      {"HARPNUM":7466,"LAT_FWT":20.208235,"LON_FWT":1.963585,"NOAA_AR":12780,"T_REC":"2020.11.07_12:00:00_TAI","calibration_window_count":19,"hemisphere":"N","origin_utc":"2020-11-07 11:59:23+00:00","selection_hash":"3742d072abee04e813500aa235518dcf2083b30a02426fe3a5a9d38719a319e4"},
+      {"HARPNUM":7081,"LAT_FWT":13.35013,"LON_FWT":-1.718296,"NOAA_AR":12666,"T_REC":"2017.07.12_12:00:00_TAI","calibration_window_count":10,"hemisphere":"N","origin_utc":"2017-07-12 11:59:23+00:00","selection_hash":"3a32e281b38efbb82cac1d22c5310e01a3cb10b394a5f48092fa9dc3f3f7e844"},
+      {"HARPNUM":7326,"LAT_FWT":8.358028,"LON_FWT":2.800995,"NOAA_AR":12730,"T_REC":"2018.12.13_12:00:00_TAI","calibration_window_count":10,"hemisphere":"N","origin_utc":"2018-12-13 11:59:23+00:00","selection_hash":"3b92a70de384a519ff864a6f81bf9bd8d07ba29cdd8cb877ec5e675b56003570"},
+      {"HARPNUM":7468,"LAT_FWT":-22.848528,"LON_FWT":1.604784,"NOAA_AR":12781,"T_REC":"2020.11.09_12:00:00_TAI","calibration_window_count":18,"hemisphere":"S","origin_utc":"2020-11-09 11:59:23+00:00","selection_hash":"031481cc8ba747e8888918d1d85ed3170dd69161008f6a3745b266b9e451f19d"},
+      {"HARPNUM":6994,"LAT_FWT":-10.473564,"LON_FWT":0.586359,"NOAA_AR":12653,"T_REC":"2017.04.28_00:00:00_TAI","calibration_window_count":18,"hemisphere":"S","origin_utc":"2017-04-27 23:59:23+00:00","selection_hash":"050be775ef34e50900d6c7858dd243f8e1ade317302eddffa52fbda38fba420c"},
+      {"HARPNUM":7472,"LAT_FWT":-21.780935,"LON_FWT":1.726092,"NOAA_AR":12783,"T_REC":"2020.11.23_12:00:00_TAI","calibration_window_count":20,"hemisphere":"S","origin_utc":"2020-11-23 11:59:23+00:00","selection_hash":"1685644463b735cb5d29f2d29c05e81d3672d5835bbcda4762bb992a948743dd"},
+      {"HARPNUM":7454,"LAT_FWT":-12.79311,"LON_FWT":-0.22047,"NOAA_AR":12776,"T_REC":"2020.10.20_00:00:00_TAI","calibration_window_count":16,"hemisphere":"S","origin_utc":"2020-10-19 23:59:23+00:00","selection_hash":"1de174d9d3a53312163519bcefa774aef32e74e3b362461b161c4acf19bf0ec0"},
+      {"HARPNUM":7386,"LAT_FWT":-28.069082,"LON_FWT":1.277935,"NOAA_AR":12750,"T_REC":"2019.11.04_00:00:00_TAI","calibration_window_count":11,"hemisphere":"S","origin_utc":"2019-11-03 23:59:23+00:00","selection_hash":"23f585c4aa89c2c37c6e40295be0f1c6667a68480ab2e08391f4db04f35e149e"},
+      {"HARPNUM":7169,"LAT_FWT":-11.638869,"LON_FWT":-2.284951,"NOAA_AR":12685,"T_REC":"2017.10.27_12:00:00_TAI","calibration_window_count":19,"hemisphere":"S","origin_utc":"2017-10-27 11:59:23+00:00","selection_hash":"25452f1fd7477231c86498c67a788ce4d798391d1ba849ab3e3ac3d9e5713812"},
+      {"HARPNUM":7235,"LAT_FWT":-9.519274,"LON_FWT":-0.879029,"NOAA_AR":12697,"T_REC":"2018.02.03_12:00:00_TAI","calibration_window_count":12,"hemisphere":"S","origin_utc":"2018-02-03 11:59:23+00:00","selection_hash":"2c3b3c2b17ef4d06579160eda5d9b4b59406bf3c8742f5f5227d289662c81878"},
+      {"HARPNUM":7115,"LAT_FWT":-9.062139,"LON_FWT":2.200054,"NOAA_AR":12673,"T_REC":"2017.09.04_00:00:00_TAI","calibration_window_count":18,"hemisphere":"S","origin_utc":"2017-09-03 23:59:23+00:00","selection_hash":"30ab925291988f2d94aef9e5b108dcb3f32822ba256a4563cf0c88c524b563ab"},
+      {"HARPNUM":7487,"LAT_FWT":-28.109762,"LON_FWT":-5.737295,"NOAA_AR":12789,"T_REC":"2020.12.03_00:00:00_TAI","calibration_window_count":17,"hemisphere":"S","origin_utc":"2020-12-02 23:59:23+00:00","selection_hash":"311ee2620a9a93bdfd9b15b00c78dea5105a677df2d8a13bdb9bae95aa1dcbe6"},
+      {"HARPNUM":7246,"LAT_FWT":-8.148761,"LON_FWT":1.767075,"NOAA_AR":12703,"T_REC":"2018.04.05_00:00:00_TAI","calibration_window_count":14,"hemisphere":"S","origin_utc":"2018-04-04 23:59:23+00:00","selection_hash":"367f7a69efab05511d6bf3566225434ac7152dfc8f06ae63207d9b7f35527a9e"},
+      {"HARPNUM":7410,"LAT_FWT":-32.013371,"LON_FWT":-2.127741,"NOAA_AR":12758,"T_REC":"2020.03.11_00:00:00_TAI","calibration_window_count":15,"hemisphere":"S","origin_utc":"2020-03-10 23:59:23+00:00","selection_hash":"38ed609070973d06aa9816507161da43fe555f998150eb5060b62200c6edc348"},
+      {"HARPNUM":7290,"LAT_FWT":-6.565214,"LON_FWT":2.20224,"NOAA_AR":12717,"T_REC":"2018.08.04_12:00:00_TAI","calibration_window_count":17,"hemisphere":"S","origin_utc":"2018-08-04 11:59:23+00:00","selection_hash":"391a222bdd7a1c7e6d2eaf3aaa3560f327c95f3afa8559c0ef3ccaf85f51c3d9"},
+      {"HARPNUM":7299,"LAT_FWT":-6.851012,"LON_FWT":2.030956,"NOAA_AR":12719,"T_REC":"2018.08.23_12:00:00_TAI","calibration_window_count":12,"hemisphere":"S","origin_utc":"2018-08-23 11:59:23+00:00","selection_hash":"3f07ed6b9700e29d524f2f100ea840e481cdf759a1310e4aafc58bcd8f7d3eb3"},
+      {"HARPNUM":7498,"LAT_FWT":-17.794661,"LON_FWT":0.342796,"NOAA_AR":12791,"T_REC":"2020.12.09_12:00:00_TAI","calibration_window_count":16,"hemisphere":"S","origin_utc":"2020-12-09 11:59:23+00:00","selection_hash":"487b11395795172a71b917d7fcfa63075e0da619418928df6cd7b8e6343ce464"},
+      {"HARPNUM":7431,"LAT_FWT":-20.742062,"LON_FWT":-1.17954,"NOAA_AR":12767,"T_REC":"2020.07.27_12:00:00_TAI","calibration_window_count":18,"hemisphere":"S","origin_utc":"2020-07-27 11:59:23+00:00","selection_hash":"4977167901607cc605a0e8625cba54b67832f8ca2de1349f581cd27c6feefd97"},
+      {"HARPNUM":7254,"LAT_FWT":-10.320761,"LON_FWT":0.903238,"NOAA_AR":12708,"T_REC":"2018.05.09_00:00:00_TAI","calibration_window_count":18,"hemisphere":"S","origin_utc":"2018-05-08 23:59:23+00:00","selection_hash":"55cc5eb5685ba395edeb77b6e99b11e6eda860fbfa1743d62dfc3eadcaf41f9a"}
+    ],
+    "seed": "KCH_HELICOIDAL_V12_HEMISPHERIC_SIGN_REPLICATION",
+    "source": "v1.0 MHD census CALIBRATION rows only"
+  },
+  "source_contract": {
+    "all_or_none": true,
+    "coordinate_convention": {"Bx":"Bp","By":"-Bt","Bz":"Br"},
+    "exact_entity_body": true,
+    "keys": ["HARPNUM","T_REC","NOAA_AR","QUALITY","CMASK","MEANJZH","MEANALP","ERRMIH","ERRALP","CDELT1","RSUN_REF"],
+    "mask": "bitmap>=33 AND conf_disambig==90 AND finite Br/Bt/Bp",
+    "segments": ["Br","Bt","Bp","br_err","bt_err","bp_err","conf_disambig","bitmap"],
+    "series": "hmi.sharp_cea_720s"
+  },
+  "uncertainty": {
+    "keyword_informative_definition": "abs(keyword) >= 2*keyword_sigma",
+    "minimum_sign_stability": 0.8,
+    "monte_carlo_draws_per_record": 64,
+    "primary_robust_sign": "reconstructed sign is HSR-compliant AND MC sign stability >=0.80"
+  },
+  "version": "1.2.0"
+}

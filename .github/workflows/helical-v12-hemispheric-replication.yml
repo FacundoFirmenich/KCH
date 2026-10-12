@@ -1,0 +1,45 @@
+name: Helical v1.2 hemispheric current-helicity replication
+
+on:
+  push:
+    branches:
+      - gate/helical-v12-theory-mhd-direct-field-20261012
+    paths:
+      - .github/helical_v12/hemispheric_replication.py
+      - .github/workflows/helical-v12-hemispheric-replication.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  replicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.1.3' 'pandas==2.2.3' 'scipy==1.14.1' 'astropy==6.1.4' 'drms==0.9.0' 'requests==2.32.3'
+      - name: Execute locked direct-field hemispheric replication
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/helical_v12_hsr"
+          mkdir -p "$out"
+          PYTHONUNBUFFERED=1 python .github/helical_v12/hemispheric_replication.py             --lock transports/KCH_HELICOIDAL_PROGRAM_v1.2.0/HEMISPHERIC_CURRENT_HELICITY_REPLICATION_LOCK_V1_2.json             --out "$out" | tee "$out/EXECUTION_STDOUT.log"
+          find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v12-hemispheric-current-helicity
+          path: ${{ runner.temp }}/helical_v12_hsr
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
