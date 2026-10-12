@@ -1,0 +1,133 @@
+name: KCH Helical v0.16.5.1 exhaustive runtime transport quorum repair
+
+on:
+  push:
+    branches:
+      - helical-v0165-1-exhaustive-runtime-transport-quorum-repair-20261012
+    paths:
+      - ".github/workflows/helical-v0165-1-exhaustive-runtime-transport-quorum-repair.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: kch-helical-v0165-1-transport-quorum-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012
+  PREDECESSOR_SCANNER: construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012/exhaustive_runtime_transport_quorum_v0165.py
+  SCANNER: construct_successors/KCH_HELICAL_V0165_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_20261012/exhaustive_runtime_transport_quorum_v0165_1.py
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+
+jobs:
+  exhaustive-code-transport-quorum-repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout all refs and complete object lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0165-1-exhaustive-runtime-transport-quorum-repair-20261012
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify finite successor authority and scanners
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_16_5.json" >/dev/null
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_16_5_1.json" >/dev/null
+          python -m json.tool "$ROOT/FAILURE_RECEIPT_V0_16_5_RUN1.json" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v0165_1/pycache"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v0165_1/pycache" python -m py_compile "$PREDECESSOR_SCANNER" "$SCANNER"
+
+      - name: Exhaust Git history and unexpired Actions artifacts safely
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/receipts" "$RUNNER_TEMP/v0165_1/work"
+          mkdir -p "$ROOT/receipts" "$RUNNER_TEMP/v0165_1/work"
+          python "$SCANNER" \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --output "$ROOT/receipts" \
+            --owner "${GITHUB_REPOSITORY_OWNER}" \
+            --repo "${GITHUB_REPOSITORY#*/}" \
+            --cap 52428800 \
+            --total-cap 1073741824
+
+      - name: Prove search-only successor boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json, sys
+          root=Path(sys.argv[1])
+          receipt=json.loads((root/'receipts/EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_RECEIPT_V0_16_5.json').read_text())
+          validation=json.loads((root/'receipts/EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM_VALIDATION_V0_16_5.json').read_text())
+          inventory=json.loads((root/'receipts/EXHAUSTIVE_RUNTIME_TRANSPORT_SEARCH_INVENTORY_V0_16_5.json').read_text())
+          assert receipt['format']=='KCH_HELICAL_V0_16_5_1_EXHAUSTIVE_RUNTIME_TRANSPORT_QUORUM'
+          assert receipt['search_protocol_status']=='PASS'
+          assert receipt['git_object_type_discrimination']=='PASS'
+          assert receipt['predecessor_failed_run_id']==38189616529
+          assert validation['format']=='KCH_HELICAL_V0_16_5_1_VALIDATION'
+          assert validation['status']=='PASS'
+          assert validation['receipt_id']==receipt['receipt_id']
+          assert validation['inventory_id']==inventory['inventory_id']
+          assert inventory['object_type_guard']['non_blob_rows_do_not_reduce_blob_search'] is True
+          assert receipt['transport_bytes_repaired'] is False
+          assert receipt['missing_source_bytes_inferred'] is False
+          assert receipt['candidate_source_imported'] is False
+          assert receipt['candidate_source_executed'] is False
+          assert receipt['scientific_payload_members_read'] is False
+          assert receipt['scientific_data_accessed'] is False
+          assert receipt['calibration_executed'] is False
+          assert receipt['sealed_test_accessed'] is False
+          assert receipt['scientific_result'] is None
+          assert receipt['historical_v0_13_ledger_identity_transferred'] is False
+          assert receipt['promotion']=='BLOCKED'
+          assert receipt['canonicalization']=='BLOCKED'
+          PY
+          if find "$ROOT/receipts" -type f \( \
+              -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o \
+              -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o \
+              -name '*.sqlite' -o -name '*.db' -o -name '*.pyc' \
+            \) | grep -q .; then
+            echo "forbidden payload persisted across v0.16.5.1 boundary" >&2
+            exit 91
+          fi
+
+      - name: Persist exhaustive successor receipts append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0165-1-transport-quorum"
+          git config user.email "kch-helical-v0165-1-transport-quorum@users.noreply.github.com"
+          git add "$ROOT/receipts"
+          if git diff --cached --quiet; then
+            echo "No search receipt delta"
+          else
+            git commit -m "record v0.16.5.1 exhaustive runtime transport quorum [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload exhaustive code-transport search receipts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0165-1-runtime-transport-quorum-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}/receipts
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
