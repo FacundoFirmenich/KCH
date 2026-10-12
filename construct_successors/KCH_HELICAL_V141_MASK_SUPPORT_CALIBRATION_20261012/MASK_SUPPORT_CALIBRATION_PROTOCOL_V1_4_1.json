@@ -1,0 +1,32 @@
+{
+  "format": "KCH_HELICAL_V1_4_1_MASK_SUPPORT_CALIBRATION_PROTOCOL",
+  "version": "1.4.1",
+  "status": "FROZEN_BEFORE_SUPPORT_EXECUTION",
+  "parent_operator_protocol": "construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json",
+  "parent_run": {
+    "workflow_run_id": 38189559650,
+    "result_receipt_id": "h14basis:2db987c826bd2edfa6ef00babe7b098a80cd0a68ca598d464e13f6e96ad7b66d",
+    "outcome": "INSUFFICIENT_DEVELOPMENT_RECORD_SUPPORT",
+    "failure_class": "MASK_GEOMETRY_SUPPORT_ONLY"
+  },
+  "repair_scope": "MASK_SUPPORT_GEOMETRY_ONLY",
+  "forbidden_inputs": [
+    "CURRENT_HELICITY_OPERATOR_VALUES",
+    "CROSS_SCALE_OPERATOR_VALUES",
+    "FLARE_OUTCOMES",
+    "2026_HOLDOUT",
+    "MODEL_SCORES"
+  ],
+  "candidate_gaussian_support_thresholds": [0.50, 0.75, 0.90, 0.95, 0.99],
+  "native_mask_erosion_iterations": 2,
+  "support_floor_pixels": 1000,
+  "selection_rule": "CHOOSE_HIGHEST_CANDIDATE_THRESHOLD_WITH_AT_LEAST_SUPPORT_FLOOR_PIXELS_FOR_EVERY_RECORD_AND_EVERY_SIGMA",
+  "fallback_if_none": "MASK_SUPPORT_CALIBRATION_FAIL",
+  "records_and_scales": "INHERIT_EXACTLY_FROM_PARENT_V1_4_PROTOCOL",
+  "post_selection_rule": "SELECTED_THRESHOLD_MUST_BE_FROZEN_IN_A_NEW_V1_4_2_SUCCESSOR_BEFORE_ANY_OPERATOR_REEXECUTION",
+  "authority_ceiling": "NONE",
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
