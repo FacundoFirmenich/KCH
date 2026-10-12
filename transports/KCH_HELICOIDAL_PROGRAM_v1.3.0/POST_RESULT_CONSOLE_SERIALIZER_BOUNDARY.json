@@ -1,0 +1,13 @@
+{
+  "format":"KCH_HELICOIDAL_V1_3_POST_RESULT_CONSOLE_SERIALIZER_BOUNDARY",
+  "scientific_run_id":38252410832,
+  "scientific_artifact_id":11748886859,
+  "scientific_artifact_sha256":"7afc716aaf6f09815d2ee774080c7e13d4fd415d49f8161ded83e4c706feba04",
+  "scientific_files_written_before_failure":["HELICITY_FLUX_OPERATOR_RESULT.json","HELICITY_FLUX_OPERATOR_METRICS.csv","EXACT_SEGMENT_TRANSPORT.csv"],
+  "failure_after_scientific_write":"stdout pretty-print used json.dumps without numpy scalar converter",
+  "scientific_reexecution_required":false,
+  "remedy":"extract and validate already-written scientific files from immutable artifact",
+  "scientific_math_changed":false,
+  "thresholds_changed":false,
+  "authority_ceiling":"NONE"
+}
