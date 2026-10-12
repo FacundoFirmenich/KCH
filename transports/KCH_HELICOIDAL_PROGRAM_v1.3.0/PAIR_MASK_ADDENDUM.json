@@ -1,0 +1,12 @@
+{
+  "format":"KCH_HELICOIDAL_V1_3_PAIR_MASK_ADDENDUM",
+  "parent_lock":"HELICITY_FLUX_OPERATOR_QUALIFICATION_LOCK.json",
+  "applies_before_sequence_field_acquisition":true,
+  "pair_mask_rule":{
+    "12_minute_pair":"intersection of endpoint high-confidence masks, finite midpoint averaged field, abs(midpoint Br)>=50G and 12-pixel edge guard",
+    "24_minute_centered_pair":"intersection of both endpoint high-confidence masks AND the actual central-frame high-confidence mask, finite midpoint averaged field, abs(actual central Br)>=50G and 12-pixel edge guard"
+  },
+  "flux_balance_mask":"same pair mask before the 50G threshold, with edge guard",
+  "posthoc_rescue":"FORBIDDEN",
+  "authority_ceiling":"NONE"
+}
