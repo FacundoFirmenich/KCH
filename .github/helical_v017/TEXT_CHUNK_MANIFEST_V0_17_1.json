@@ -1,0 +1,47 @@
+{
+  "format": "KCH_HELICAL_V0_17_1_TEXT_CHUNK_MANIFEST",
+  "predecessor_failed_run_id": 38190755052,
+  "predecessor_failed_job_id": 114622812370,
+  "transport": "UTF8_BASE64_TEXT_CHUNKS",
+  "chunks": [
+    {
+      "path": ".github/helical_v017/text_chunks/chunk_00.b64",
+      "bytes": 5637,
+      "sha256": "b6def6b454971721348cfe8852566530123334789106fef3b31f2a97a3b6de89",
+      "git_blob_sha1": "92c19e20c28d875a2e0f6ac5b0986a2cb750ecd8"
+    },
+    {
+      "path": ".github/helical_v017/text_chunks/chunk_01.b64",
+      "bytes": 5637,
+      "sha256": "b5a591b390e497c707372dd3b9b98657778df28a4e533dbc7201f09c5a8f78b8",
+      "git_blob_sha1": "778b9c56c4c3c007e6eef78929d2573bb952c75c"
+    },
+    {
+      "path": ".github/helical_v017/text_chunks/chunk_02.b64",
+      "bytes": 5637,
+      "sha256": "00d5637e4583d1f6e7432f98cd0b94dc7190200074696e8d7059e85a72fca3c1",
+      "git_blob_sha1": "945d0516c14ff7e6519c1b910acd4e20ea0c501f"
+    },
+    {
+      "path": ".github/helical_v017/text_chunks/chunk_03.b64",
+      "bytes": 5637,
+      "sha256": "90e7fb3196114f4075c6ef185d56e369e230b9799faa6c5753ce2cd1927fe738",
+      "git_blob_sha1": "a7d1b702a7fba22c23e0480e165033e9f268c90f"
+    }
+  ],
+  "chunk_count": 4,
+  "chunk_bytes_total": 22548,
+  "concatenated_base64_sha256": "027a1fc795a3bb4e2753d8441469e4194d7d6c556f5182eb286bcbfacd0e17c6",
+  "decoded_gzip_bytes": 16909,
+  "decoded_gzip_sha256": "84870f2753f3079131009c02996c1a282a49be5497b2a9b9e9a20c6a0619ec77",
+  "decompressed_tar_bytes": 92160,
+  "decompressed_tar_sha256": "647bf14003fa8210c05a3335fbfa546e9a585d2c10518df3fe1a462a82efea2e",
+  "source_member_count": 8,
+  "source_bytes_modified": false,
+  "scientific_data_included": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED"
+}
