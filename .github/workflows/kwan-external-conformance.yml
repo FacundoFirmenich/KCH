@@ -40,9 +40,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install host enforcement dependency
+      - name: Initialise evidence and install host enforcement dependency
         run: |
           set -euo pipefail
+          mkdir -p external-conformance-evidence
+          printf '%s\n' 'SHADOW attempt: no authority, no promotion' > external-conformance-evidence/ATTEMPT.txt
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends bubblewrap xz-utils
 
@@ -61,7 +63,9 @@ jobs:
             -o .tools/cedar.tar.xz
           echo "${CEDAR_SHA256}  .tools/cedar.tar.xz" | sha256sum -c -
           tar -xJf .tools/cedar.tar.xz -C .tools/cedar
-          test -x .tools/cedar/cedar
+          CEDAR_BIN="$(find .tools/cedar -type f -name cedar -perm -111 -print -quit)"
+          test -n "${CEDAR_BIN}"
+          printf '%s\n' "CEDAR_BIN=${GITHUB_WORKSPACE}/${CEDAR_BIN}" >> "${GITHUB_ENV}"
 
           curl --proto '=https' --tlsv1.2 -fL \
             "https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VERSION}/wasmtime-v${WASMTIME_VERSION}-x86_64-linux.tar.xz" \
@@ -96,14 +100,12 @@ jobs:
       - name: Execute Kwan external conformance gate
         env:
           OPA_BIN: ${{ github.workspace }}/.tools/opa
-          CEDAR_BIN: ${{ github.workspace }}/.tools/cedar/cedar
         run: |
           set -euo pipefail
           export ORAS_BIN="$(command -v oras)"
           export COSIGN_BIN="$(command -v cosign)"
           export BWRAP_BIN="$(command -v bwrap)"
           export NODE_BIN="$(command -v node)"
-          mkdir -p external-conformance-evidence
           python integrations/kwan-external-conformance/kwan_external_conformance.py \
             --output external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json
           sha256sum external-conformance-evidence/KWAN_EXTERNAL_CONFORMANCE_REPORT.json \
