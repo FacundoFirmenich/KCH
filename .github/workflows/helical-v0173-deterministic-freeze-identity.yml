@@ -1,0 +1,119 @@
+name: KCH Helical v0.17.3 deterministic freeze identity
+
+on:
+  push:
+    branches:
+      - helical-v0173-deterministic-freeze-identity-20261012
+    paths:
+      - ".github/workflows/helical-v0173-deterministic-freeze-identity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0173-deterministic-freeze-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012
+  MANIFEST: .github/helical_v0172/TEXT_CHUNK_MANIFEST_V0_17_2.json
+  EXECUTOR: construct_successors/KCH_HELICAL_V0173_DETERMINISTIC_FREEZE_IDENTITY_20261012/execute_deterministic_freeze_v0173.py
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+
+jobs:
+  deterministic-freeze-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - name: Checkout complete lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0173-deterministic-freeze-identity-20261012
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify finite authority and executor
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_17_3.json" >/dev/null
+          python -m json.tool "$ROOT/DOUBLE_FREEZE_CANONICAL_IDENTITY_CONTRACT_V0_17_3.json" >/dev/null
+          python -m json.tool "$MANIFEST" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v0173/pycache"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v0173/pycache" python -m py_compile             "$ROOT/materialize_text_capsule_v0173.py"             "$ROOT/patch_deterministic_freeze_v0173.py"             "$EXECUTOR"
+
+      - name: Execute normalized deterministic double freeze
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/generated" "$ROOT/release" "$ROOT/receipts" "$RUNNER_TEMP/v0173/work"
+          mkdir -p "$ROOT/receipts" "$RUNNER_TEMP/v0173/work"
+          python "$EXECUTOR"             --repo-root "$GITHUB_WORKSPACE"             --root "$ROOT"             --work "$RUNNER_TEMP/v0173/work"             --manifest "$MANIFEST"
+
+      - name: Enforce no-science boundary and PASS receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find "$ROOT" -type f \(               -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o               -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o               -name '*.sqlite' -o -name '*.db' -o -name '*.h5' -o -name '*.hdf5'             \) | grep -q .; then
+            echo "scientific/raw payload crossed v0.17.3 boundary" >&2
+            exit 91
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json, sys
+          root=Path(sys.argv[1])
+          receipt=json.loads((root/'receipts/DETERMINISTIC_FREEZE_RECEIPT_V0_17_3.json').read_text())
+          validation=json.loads((root/'receipts/DETERMINISTIC_FREEZE_VALIDATION_V0_17_3.json').read_text())
+          release=json.loads((root/'release/RELEASE_RECEIPT_V0_17_3.json').read_text())
+          assert receipt['status']=='PASS'
+          assert validation['status']=='PASS'
+          assert validation['receipt_id']==receipt['receipt_id']
+          assert receipt['double_freeze_identity']=='PASS'
+          assert receipt['byte_identical_output_count']==9
+          assert receipt['scheduled_job_count']==6376
+          assert receipt['calibration_runtime_qualification_executed'] is False
+          assert receipt['scientific_data_accessed'] is False
+          assert receipt['sealed_test_accessed'] is False
+          assert receipt['scientific_result'] is None
+          assert receipt['historical_v0_13_identity_transfer'] is False
+          assert receipt['promotion']=='BLOCKED'
+          assert receipt['canonicalization']=='BLOCKED'
+          assert release['status']=='PASS'
+          assert release['double_freeze_identity']=='PASS'
+          assert release['scientific_result'] is None
+          PY
+
+      - name: Persist deterministic freeze append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0173-deterministic-freeze"
+          git config user.email "kch-helical-v0173-deterministic-freeze@users.noreply.github.com"
+          git add "$ROOT"
+          if git diff --cached --quiet; then
+            echo "No deterministic-freeze delta"
+          else
+            git commit -m "record v0.17.3 deterministic double-freeze identity [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload frozen v0.17.3 release
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0173-deterministic-runtime-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.ROOT }}/generated
+            ${{ env.ROOT }}/receipts
+            ${{ env.ROOT }}/release
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
