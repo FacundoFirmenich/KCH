@@ -5,7 +5,7 @@ The v3 predecessor proved every control except execution inside the enclosure:
 a capability-free process could not traverse the runner's private home to reach
 Wasmtime. This successor copies only the already hash-pinned executable and
 fixed module into a short-lived host staging directory, then binds those exact
-files read-only into an otherwise authority-free `/sandbox` tmpfs.
+files read-only into `/tmp/sandbox` inside the private tmpfs.
 """
 from __future__ import annotations
 
@@ -40,11 +40,11 @@ def enclosure(arguments: list[str], readonly_binds: list[tuple[str, str]] | None
         "--chmod",
         "1777",
         "/tmp",
-        "--tmpfs",
-        "/sandbox",
+        "--dir",
+        "/tmp/sandbox",
         "--chmod",
         "0755",
-        "/sandbox",
+        "/tmp/sandbox",
         "--proc",
         "/proc",
         "--dev",
@@ -79,10 +79,18 @@ def wasmtime_enforcement(tmp: pathlib.Path, wasmtime: str, _bwrap: str) -> dict[
     os.chmod(staged_module, 0o644)
     try:
         isolated = enclosure(
-            ["/sandbox/wasmtime", "run", "--invoke", "add", "/sandbox/add.wat", "17", "25"],
             [
-                (str(staged_wasmtime), "/sandbox/wasmtime"),
-                (str(staged_module), "/sandbox/add.wat"),
+                "/tmp/sandbox/wasmtime",
+                "run",
+                "--invoke",
+                "add",
+                "/tmp/sandbox/add.wat",
+                "17",
+                "25",
+            ],
+            [
+                (str(staged_wasmtime), "/tmp/sandbox/wasmtime"),
+                (str(staged_module), "/tmp/sandbox/add.wat"),
             ],
         )
     finally:
