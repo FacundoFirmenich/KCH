@@ -1,0 +1,140 @@
+name: KCH Helical v0.17.4 full runtime qualification
+
+on:
+  push:
+    branches:
+      - helical-v0174-calibration-runtime-qualification-20261012
+    paths:
+      - ".github/workflows/helical-v0174-calibration-runtime-qualification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v0174-runtime-qualification-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V0174_CALIBRATION_RUNTIME_QUALIFICATION_20261012
+  RUNNER: construct_successors/KCH_HELICAL_V0174_CALIBRATION_RUNTIME_QUALIFICATION_20261012/run_full_runtime_qualification_v0174.py
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+
+jobs:
+  full-runtime-qualification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout complete lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v0174-calibration-runtime-qualification-20261012
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install frozen numerical dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir "numpy==2.1.3"
+          python - <<'PY'
+          import numpy as np
+          assert np.__version__ == "2.1.3", np.__version__
+          PY
+
+      - name: Verify finite authority and compile qualification runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool "$ROOT/AUTHORITY_LEASE_V0_17_4.json" >/dev/null
+          mkdir -p "$RUNNER_TEMP/v0174/pycache"
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v0174/pycache" python -m py_compile "$RUNNER"
+
+      - name: Execute all 6376 qualification jobs twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/results"
+          mkdir -p "$ROOT/results"
+          python "$RUNNER"             --repo-root "$GITHUB_WORKSPACE"             --root "$ROOT"             --output "$ROOT/results"
+
+      - name: Enforce qualification firewall and result contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find "$ROOT" -type f \(               -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o               -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o               -name '*.sqlite' -o -name '*.db' -o -name '*.h5' -o -name '*.hdf5'             \) | grep -q .; then
+            echo "scientific/raw payload crossed v0.17.4 boundary" >&2
+            exit 91
+          fi
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json, sys
+          root=Path(sys.argv[1])
+          out=root/'results'
+          receipt=json.loads((out/'FULL_RUNTIME_QUALIFICATION_RECEIPT_V0_17_4.json').read_text())
+          validation=json.loads((out/'FULL_RUNTIME_QUALIFICATION_VALIDATION_V0_17_4.json').read_text())
+          summary=json.loads((out/'QUALIFICATION_SUMMARY_V0_17_4.json').read_text())
+          assert receipt['status']=='PASS'
+          assert validation['status']=='PASS'
+          assert validation['receipt_id']==receipt['receipt_id']
+          assert receipt['scheduled_job_count']==6376
+          assert receipt['executed_job_count_each_pass']==6376
+          assert receipt['qualification_pass_count']==2
+          assert receipt['status_pass_count']==6376
+          assert receipt['status_not_run_count']==0
+          assert receipt['result_ledger_double_execution_identity']=='PASS'
+          assert receipt['qualification_adjudication']['outcome']=='RUNTIME_QUALIFICATION_PASS'
+          assert receipt['structural_fixture_only_count']==6376
+          assert receipt['scientific_execution_true_count']==0
+          assert receipt['scientific_data_accessed'] is False
+          assert receipt['calibration_scientific_data_accessed'] is False
+          assert receipt['sealed_test_accessed'] is False
+          assert receipt['sealed_test_access_count']==0
+          assert receipt['scientific_result'] is None
+          assert receipt['scientific_result_count']==0
+          assert receipt['historical_v0_13_identity_transfer'] is False
+          assert receipt['promotion']=='BLOCKED'
+          assert receipt['canonicalization']=='BLOCKED'
+          assert summary['executed_jobs_total_across_two_passes']==12752
+          assert summary['qualification_outcome']=='RUNTIME_QUALIFICATION_PASS'
+          rows=(out/'QUALIFICATION_RESULTS_V0_17_4.jsonl').read_text().splitlines()
+          assert len(rows)==6376, len(rows)
+          for line in rows:
+              row=json.loads(line)
+              assert row['status']=='PASS'
+              assert row['sealed_test_accessed'] is False
+              assert row['scientific_result'] is None
+              assert row['operator_diagnostics']['structural_fixture_only'] is True
+              assert row['operator_diagnostics']['scientific_execution'] is False
+          PY
+
+      - name: Persist qualification receipts and result ledger append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v0174-runtime-qualification"
+          git config user.email "kch-helical-v0174-runtime-qualification@users.noreply.github.com"
+          git add "$ROOT/results"
+          if git diff --cached --quiet; then
+            echo "No qualification delta"
+          else
+            git commit -m "record v0.17.4 full 6376-job runtime qualification [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload v0.17.4 qualification artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v0174-runtime-qualification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.ROOT }}/results
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
