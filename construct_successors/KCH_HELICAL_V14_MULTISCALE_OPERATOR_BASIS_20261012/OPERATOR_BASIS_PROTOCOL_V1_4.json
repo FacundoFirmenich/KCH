@@ -1,0 +1,148 @@
+{
+  "format": "KCH_HELICAL_V1_4_MULTISCALE_OPERATOR_BASIS_PROTOCOL",
+  "version": "1.4.0",
+  "status": "FROZEN_BEFORE_OPERATOR_EXECUTION",
+  "scope": "DEVELOPMENT_ONLY_OPERATOR_PHYSICS_AND_REPRODUCIBILITY",
+  "parent_lock_id": "h13fieldlock:b26429390692573bab416729ca6cd16298ebf6bc2e62aaa57905b98c6463bf0f",
+  "records": [
+    {
+      "id": "HARP401_20110309T232400_TAI",
+      "query": "hmi.sharp_cea_720s[401][2011.03.09_23:24:00_TAI]",
+      "selection_basis": "EXACT_TIMESTAMP_PUBLISHED_IN_BOBRA_ET_AL_2014"
+    },
+    {
+      "id": "HARP2920_20130708T120000_TAI",
+      "query": "hmi.sharp_cea_720s[2920][2013.07.08_12:00:00_TAI]",
+      "selection_basis": "DETERMINISTIC_MID_DISK_PASSAGE_DEVELOPMENT_SNAPSHOT"
+    },
+    {
+      "id": "HARP5249_20150302T120000_TAI",
+      "query": "hmi.sharp_cea_720s[5249][2015.03.02_12:00:00_TAI]",
+      "selection_basis": "PREVIOUSLY_LOCKED_DIRECT_FIELD_ADAPTER_RECORD"
+    }
+  ],
+  "record_eligibility": {
+    "exactly_one_record_per_query": true,
+    "quality_equals_zero": true,
+    "required_segments": ["Br", "Bt", "Bp", "conf_disambig", "bitmap"],
+    "mask": "bitmap>=33 AND conf_disambig==90 AND finite(Br,Bt,Bp)",
+    "minimum_mask_pixels": 1000,
+    "no_record_substitution_after_execution": true
+  },
+  "coordinate_convention": {
+    "x": "+phi/westward",
+    "y": "-theta/northward",
+    "z": "+r/outward",
+    "Bx": "Bp",
+    "By": "-Bt",
+    "Bz": "Br"
+  },
+  "scale_space": {
+    "method": "MASK_NORMALIZED_GAUSSIAN",
+    "sigma_pixels": [0, 1, 2, 4, 8],
+    "boundary_mode": "reflect",
+    "validity_rule": "binary_erosion of native high-confidence mask by ceil(3*sigma)+2 pixels",
+    "derivative": "numpy.gradient second-order edges on CEA grid",
+    "physical_scale": "derived per record from CDELT1 and RSUN_REF"
+  },
+  "operators": {
+    "HC_SIGNED_MEAN": {
+      "formula": "mean(Bz * (dBy/dx-dBx/dy))",
+      "parity_signature": -1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "PSEUDOSCALAR"
+    },
+    "HC_NORMALIZED": {
+      "formula": "sum(Bz*Jz)/sqrt(sum(Bz^2)*sum(Jz^2))",
+      "parity_signature": -1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "PSEUDOSCALAR"
+    },
+    "ALPHA_WEIGHTED_PER_MM": {
+      "formula": "1e6*sum(Bz*Jz)/sum(Bz^2)",
+      "parity_signature": -1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "PSEUDOSCALAR"
+    },
+    "HC_UNSIGNED_MEAN": {
+      "formula": "mean(abs(Bz*Jz))",
+      "parity_signature": 1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "SCALAR_CONTROL"
+    },
+    "MAGNETIC_ENERGY_PROXY": {
+      "formula": "mean(Bx^2+By^2+Bz^2)",
+      "parity_signature": 1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "SCALAR_CONTROL"
+    },
+    "JZ_RMS": {
+      "formula": "sqrt(mean(Jz^2))",
+      "parity_signature": 1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "SCALAR_CONTROL"
+    },
+    "GRADIENT_ENERGY": {
+      "formula": "mean(sum_components((dB/dx)^2+(dB/dy)^2))",
+      "parity_signature": 1,
+      "global_field_reversal_signature": 1,
+      "proper_rotation_pi_signature": 1,
+      "class": "SCALAR_CONTROL"
+    }
+  },
+  "cross_scale_derived": {
+    "SIGNED_HC_LOG_SCALE_INTEGRAL": {
+      "source": "HC_SIGNED_MEAN",
+      "transform": "trapezoid over log1p(sigma_pixels)",
+      "parity_signature": -1
+    },
+    "ABS_HC_LOG_SCALE_SLOPE": {
+      "source": "abs(HC_SIGNED_MEAN)",
+      "transform": "OLS slope vs log1p(sigma_pixels) for sigma>0",
+      "parity_signature": 1
+    },
+    "HC_SIGN_CHANGE_COUNT": {
+      "source": "HC_SIGNED_MEAN",
+      "transform": "number of sign changes across ordered scales",
+      "parity_signature": 1
+    }
+  },
+  "symmetry_tests": {
+    "improper_x_reflection": "axial-vector transform B' = det(R) R B with R=diag(-1,1,1)",
+    "global_field_reversal": "B'=-B",
+    "proper_rotation_pi_about_z": "R=diag(-1,-1,1)",
+    "relative_tolerance": 1e-9,
+    "zero_absolute_tolerance": 1e-15,
+    "all_records_all_scales_all_operators_must_pass": true
+  },
+  "native_metadata_reconciliation": {
+    "CMASK_exact": true,
+    "MEANJZH_sign_match": true,
+    "MEANALP_sign_match": true,
+    "MEANJZH_relative_tolerance": 0.005,
+    "MEANALP_relative_tolerance": 0.005
+  },
+  "forbidden": [
+    "FLARE_OUTCOME_ACCESS",
+    "2026_HOLDOUT_ACCESS",
+    "OPERATOR_SELECTION_BY_ASSOCIATION_WITH_OUTCOME",
+    "POSTHOC_RECORD_SUBSTITUTION",
+    "FULL_3D_MAGNETIC_HELICITY_CLAIM",
+    "PROMOTION",
+    "CANONICALIZATION"
+  ],
+  "terminal_outcomes": [
+    "MULTISCALE_OPERATOR_BASIS_PASS",
+    "MULTISCALE_OPERATOR_BASIS_NOT_RECONCILED",
+    "INSUFFICIENT_DEVELOPMENT_RECORD_SUPPORT"
+  ],
+  "authority_ceiling": "NONE",
+  "scientific_result": null,
+  "physical_helicity": "NOT_EVALUATED"
+}
