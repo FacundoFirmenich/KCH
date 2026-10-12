@@ -1,0 +1,22 @@
+{
+  "format": "KCH_HELICAL_V0_16_5_FAILURE_RECEIPT",
+  "github_run_id": 38189616529,
+  "github_job_id": 114619344855,
+  "head_sha": "718945bd77eedb8fa498535b2b3c24a3d4faa2ce",
+  "failed_step": "Exhaust Git history and unexpired Actions artifacts",
+  "failure_class": "UNMATERIALIZED_PROMISOR_OBJECT_NOT_FAIL_CLOSED_HANDLED",
+  "terminal_error": "git cat-file blob 870a7eef1bab9b90839905dae926fefb0fee770f returned exit 128",
+  "git_checkout_completed": true,
+  "artifact_search_started": false,
+  "runtime_candidate_adjudicated": false,
+  "test_candidate_adjudicated": false,
+  "scientific_payload_read": false,
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "predecessor_mutated": false,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "successor": "V0_16_5_1_PROMISOR_OBJECT_SAFE_ENUMERATION"
+}
