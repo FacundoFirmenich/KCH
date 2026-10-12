@@ -1,0 +1,87 @@
+name: Helical v1.3 direct-field observability gate
+
+on:
+  push:
+    branches:
+      - gate/helical-v13-direct-field-observability-20261012
+    paths:
+      - .github/helical_v13/direct_field_observability.py
+      - .github/workflows/helical-v13-direct-field-observability.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kch-helical-v13-direct-field-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  direct-field-observability:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OUT: ${{ runner.temp }}/helical_v13_direct_field
+      SHARP_QUERY: hmi.sharp_cea_720s[5249][2015.03.02_12:00:00_TAI]
+    steps:
+      - name: Checkout exact successor
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          fetch-depth: 1
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - name: Install pinned scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install \
+            'numpy==2.1.3' \
+            'astropy==7.1.0' \
+            'drms==0.9.0' \
+            'pandas==2.2.3' \
+            'requests==2.32.3'
+          mkdir -p "$OUT"
+          python -m pip freeze --all | LC_ALL=C sort > "$OUT/PIP_FREEZE.txt"
+      - name: Execute development-only direct-field adapter gate
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          python .github/helical_v13/direct_field_observability.py \
+            > "$OUT/STDOUT.log" 2> "$OUT/STDERR.log"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$OUT/EXIT_CODE.txt"
+          cat "$OUT/STDOUT.log"
+          if [[ -s "$OUT/STDERR.log" ]]; then cat "$OUT/STDERR.log" >&2; fi
+          if [[ "$rc" -ne 0 && "$rc" -ne 30 ]]; then exit "$rc"; fi
+      - name: Enforce raw-segment purge
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find "$OUT" -maxdepth 1 -type f -name '*.fits' | grep -q .; then
+            echo 'raw FITS leaked into result directory' >&2
+            exit 91
+          fi
+      - name: Upload safe aggregate receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v13-direct-field-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/helical_v13_direct_field
+          retention-days: 14
+          compression-level: 6
+      - name: Adjudicate
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rc=$(cat "$OUT/EXIT_CODE.txt")
+          case "$rc" in
+            0) echo 'DIRECT_FIELD_ADAPTER_OBSERVABILITY_PASS' ;;
+            30) echo 'DIRECT_FIELD_ADAPTER_NOT_YET_RECONCILED' >&2; exit 30 ;;
+            *) echo "DIRECT_FIELD_GATE_FAILED_CLOSED:$rc" >&2; exit "$rc" ;;
+          esac
