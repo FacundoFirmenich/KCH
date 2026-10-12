@@ -1,0 +1,68 @@
+name: Helical v1.3 sealed result extraction
+
+on:
+  push:
+    branches:
+      - gate/helical-v13-helicity-flux-operator-20261012
+    paths:
+      - .github/workflows/helical-v13-result-extract.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recover immutable completed scientific artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          in="$RUNNER_TEMP/input"; out="$RUNNER_TEMP/result"
+          mkdir -p "$in" "$out"
+          gh run download 38252410832 --repo "$GITHUB_REPOSITORY" --name kch-helical-v13-helicity-flux-operator --dir "$in"
+          test -f "$in/HELICITY_FLUX_OPERATOR_RESULT.json"
+          test -f "$in/HELICITY_FLUX_OPERATOR_METRICS.csv"
+          cp "$in/HELICITY_FLUX_OPERATOR_RESULT.json" "$out/"
+          cp "$in/HELICITY_FLUX_OPERATOR_METRICS.csv" "$out/"
+          cp "$in/EXACT_SEGMENT_TRANSPORT.csv" "$out/"
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          out=Path(os.environ["RUNNER_TEMP"])/"result"
+          result=json.loads((out/"HELICITY_FLUX_OPERATOR_RESULT.json").read_text())
+          files={}
+          for p in sorted(out.glob("*")):
+              if p.is_file():
+                  files[p.name]={"bytes":p.stat().st_size,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()}
+          receipt={
+            "format":"KCH_HELICOIDAL_V1_3_RESULT_EXTRACTION_RECEIPT",
+            "source_run_id":38252410832,
+            "source_artifact_id":11748886859,
+            "source_artifact_sha256":"7afc716aaf6f09815d2ee774080c7e13d4fd415d49f8161ded83e4c706feba04",
+            "result_id":result.get("result_id"),
+            "outcome":result.get("outcome"),
+            "synthetic_pass":result.get("synthetic_pass"),
+            "aggregate":result.get("aggregate"),
+            "regions":result.get("regions"),
+            "files":files,
+            "scientific_reexecution":False,
+            "authority_ceiling":"NONE"
+          }
+          (out/"RESULT_EXTRACTION_RECEIPT.json").write_text(json.dumps(receipt,indent=2,sort_keys=True)+"\n")
+          print(json.dumps(receipt,indent=2,sort_keys=True))
+          PY
+          sha256sum "$out"/* > "$out/SHA256SUMS.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v13-canonical-result
+          path: ${{ runner.temp }}/result
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
