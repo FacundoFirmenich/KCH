@@ -1,0 +1,78 @@
+{
+  "adapter_contract": {
+    "coordinate_convention": {
+      "Bx": "Bp",
+      "By": "-Bt",
+      "Bz": "Br",
+      "x": "+phi/westward",
+      "y": "-theta/northward",
+      "z": "+r/outward"
+    },
+    "development_only": true,
+    "fresh_2026_holdout_accessed": false,
+    "mask": "bitmap>=33 AND conf_disambig==90 AND finite(Br,Bt,Bp)",
+    "pixel_scale_m": 364424.74781641597,
+    "query": "hmi.sharp_cea_720s[5249][2015.03.02_12:00:00_TAI]",
+    "raw_fits_exported": false,
+    "raw_state": [
+      "Br",
+      "Bt",
+      "Bp",
+      "conf_disambig",
+      "bitmap"
+    ]
+  },
+  "adjudication": {
+    "authority_ceiling": "NONE",
+    "canonicalization": "BLOCKED",
+    "outcome": "DIRECT_FIELD_ADAPTER_OBSERVABILITY_PASS",
+    "physical_helicity": "NOT_EVALUATED",
+    "promotion": "BLOCKED",
+    "scientific_result": null,
+    "universal_claim": "FORBIDDEN"
+  },
+  "format": "KCH_HELICAL_V1_3_DIRECT_FIELD_ADAPTER_LOCK",
+  "frozen_blobs": {
+    "adapter_git_blob_sha1": "c0d232fbe13a5e4bdd51c01c86a6c416e7612bfe",
+    "adapter_sha256": "ca25885786bac6a738224fa318c5f3a79c9f836efba1fed75e7f5bed09192552",
+    "theory_axioms_git_blob_sha1": "14023333c5b74c5ad271df56fa662a5b58531990",
+    "theory_axioms_sha256": "9a5b47b7538ca028416fc6b0f383b2d27257495e7af0bd3da0b0e00bcb9a2a37",
+    "theory_git_blob_sha1": "d03302a28ca336d35eda919fd917e0e8e5d354e8",
+    "theory_sha256": "a82aefff38470215313da3ad94f09a4f1d8209c37d31c6ed4db28b9025701da0",
+    "workflow_git_blob_sha1": "eec6b473b20009a29206188de9ceacf9c0b13e4a",
+    "workflow_sha256": "623c05a249fdca9b40ec318a2ec18d5e5e30b57e1914a7c36a2dd2e671cf82a3"
+  },
+  "lock_id": "h13fieldlock:b26429390692573bab416729ca6cd16298ebf6bc2e62aaa57905b98c6463bf0f",
+  "next_material_gate": "DIRECT_FIELD_MULTISCALE_OPERATOR_BASIS_DEVELOPMENT_ONLY",
+  "reconciliation": {
+    "MEANALP_keyword_per_Mm": -0.01020409,
+    "MEANALP_recomputed_per_Mm": -0.01020405065630621,
+    "MEANALP_relative_difference": 3.855678829834942e-06,
+    "MEANJZH_keyword_G2_per_m": -0.00253907,
+    "MEANJZH_recomputed_G2_per_m": -0.0025389743929857054,
+    "MEANJZH_relative_difference": 3.765434363550483e-05,
+    "cmask_exact_match": true,
+    "cmask_keyword": 27954,
+    "computed_mask_count": 27954
+  },
+  "source": {
+    "adapter_receipt_id": "h13field:500b6e46c31dad3befcf388f40c6c5d479329b83b9f00fc884c23acde585b2a1",
+    "artifact_id": 11721066163,
+    "artifact_sha256": "8963e61ad058d951f7a3f246bfd51f61e543bc2c5c6453624e460c6dfb9d6021",
+    "branch": "gate/helical-v13-direct-field-observability-20261012",
+    "commit": "563267c509e79ef90f4b0bca24cea5e8a25785c5",
+    "workflow_job_id": 114618242265,
+    "workflow_run_id": 38189250113
+  },
+  "status": "FROZEN_DEVELOPMENT_ONLY_ADAPTER",
+  "symmetry": {
+    "field_reversal_energy_relative_invariance": 0.0,
+    "field_reversal_helicity_relative_invariance": 0.0,
+    "proper_pi_rotation_energy_relative_invariance": 1.7138555110161686e-16,
+    "proper_pi_rotation_helicity_relative_invariance": 1.708094694425866e-16,
+    "x_parity_energy_relative_invariance": 1.7138555110161686e-16,
+    "x_parity_helicity_relative_antisymmetry": 5.124284083277597e-16,
+    "x_parity_helicity_sign_flip": true
+  },
+  "version": "1.3.0"
+}
