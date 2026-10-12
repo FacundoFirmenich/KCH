@@ -1,0 +1,52 @@
+{
+  "format": "KCH_HELICAL_LIFT_THEORY_AXIOMS_V0_1",
+  "status": "FORMAL_RESEARCH_SPECIFICATION_NOT_PHYSICAL_CLAIM",
+  "objects": {
+    "total_state_space": "E",
+    "observable_base": "B",
+    "projection": "pi:E->B",
+    "fiber": "F_b=pi^{-1}(b)",
+    "trajectory": "X_t in E",
+    "projected_state": "Y_t=pi(X_t)",
+    "observation_kernel": "O(.|Y_t,X_t,eta_t)",
+    "declared_transport": "P_gamma",
+    "holonomy": "H_gamma"
+  },
+  "axioms": [
+    "OBSERVATION_DOES_NOT_IMPLY_STATE_INJECTTIVITY",
+    "TRANSPORT_OPERATOR_MUST_BE_DECLARED_BEFORE_HOLONOMY_INTERPRETATION",
+    "GAUGE_DEPENDENT_RAW_FIBER_COORDINATES_ARE_NOT_PHYSICAL_OBSERVABLES",
+    "IDENTIFIABILITY_PRECEDES_PARAMETER_INTERPRETATION",
+    "FUTURE_ONLY_CONFIRMATION_PRECEDES_PROMOTION",
+    "DOMAIN_RESULT_DOES_NOT_LICENSE_UNIVERSAL_ONTOLOGY"
+  ],
+  "candidate_classes": [
+    "TRIVIAL_CYLINDER",
+    "MOBIUS_Z2",
+    "HELICAL_AFFINE_DRIFT",
+    "LEMNISCATIC_ALTERNATING_LIFT",
+    "GENERIC_AFFINE_HOLONOMY"
+  ],
+  "required_terminal_outcomes": [
+    "HELICAL_LIFT_SUPPORTED_WITHIN_SCOPE",
+    "LEMNISCATIC_LIFT_SUPPORTED_WITHIN_SCOPE",
+    "GENERIC_NONTRIVIAL_HOLONOMY_RIVAL_SUFFICIENT",
+    "TRIVIAL_HOLONOMY_RIVAL_SUFFICIENT",
+    "UPPER_BOUND_BELOW_MATERIALITY",
+    "NOT_IDENTIFIABLE",
+    "INSUFFICIENT_SUPPORT"
+  ],
+  "mhd_bridge": {
+    "first_gate": "DIRECT_FIELD_ADAPTER_OBSERVABILITY",
+    "development_period": "2010-2025_ONLY",
+    "2026_holdout_reuse_for_model_selection": "FORBIDDEN",
+    "primary_raw_state": "hmi.sharp_cea_720s::{Br,Bt,Bp,conf_disambig,bitmap}"
+  },
+  "governance": {
+    "authority_ceiling": "NONE",
+    "physical_helicity": "NOT_EVALUATED_BY_THEORY",
+    "promotion": "BLOCKED",
+    "canonicalization": "BLOCKED",
+    "retrospective_rewrite": "FORBIDDEN"
+  }
+}
