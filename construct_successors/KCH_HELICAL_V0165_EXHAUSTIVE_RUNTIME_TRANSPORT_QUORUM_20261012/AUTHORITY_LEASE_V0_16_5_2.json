@@ -1,0 +1,35 @@
+{
+  "format": "KCH_HELICAL_V0_16_5_2_AUTHORITY_LEASE",
+  "lease_id": "helical-v0165-2-artifact-index-extraction-20261012",
+  "predecessor_branch": "helical-v0165-1-exhaustive-runtime-transport-quorum-repair-20261012",
+  "predecessor_commit": "e38478798692787bb3a68d15a89b6b3f46f7ae06",
+  "predecessor_receipt_id": "h1651transport:a45d1b835cca51a25d736cba638c01ac0b094c49c4af41491cde3c2f04f7b08b",
+  "authority_ceiling": "RECEIPT_COMPACTION_ONLY",
+  "authorized_operations": [
+    "read_persisted_search_inventory",
+    "select_records_marked_relevant",
+    "emit_compact_artifact_index",
+    "verify_count_against_predecessor_receipt",
+    "persist_content_addressed_index"
+  ],
+  "forbidden_operations": [
+    "download_artifact_payloads",
+    "alter_artifact_records",
+    "infer_missing_artifact_records",
+    "scientific_data_access",
+    "candidate_source_execution",
+    "calibration_job_execution",
+    "sealed_test_access",
+    "scientific_scoring",
+    "publication",
+    "promotion",
+    "canonicalization"
+  ],
+  "scientific_data_accessed": false,
+  "calibration_executed": false,
+  "sealed_test_accessed": false,
+  "scientific_result": null,
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "finite": true
+}
