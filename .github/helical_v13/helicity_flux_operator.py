@@ -343,7 +343,7 @@ def main()->int:
         report["completed_at_utc"]=datetime.utcnow().isoformat()+"Z"
         report["scientific_claim"]="OPERATOR_QUALIFICATION_ONLY"
         report["helicity_injection_population_claim"]="NOT_EVALUATED"
-        canon=json.dumps(report,sort_keys=True,separators=(",",":"),allow_nan=False).encode()
+        canon=json.dumps(report,sort_keys=True,separators=(",",":"),allow_nan=False,default=json_default).encode()
         report["result_id"]="mhd13op:"+hashlib.sha256(canon).hexdigest()
         write_json(out/"HELICITY_FLUX_OPERATOR_RESULT.json",report)
         pd.DataFrame(report["regions"]).to_csv(out/"HELICITY_FLUX_OPERATOR_METRICS.csv",index=False)
