@@ -1,0 +1,10 @@
+{
+  "format":"KCH_HELICAL_V1_1_NCEDC_FPFIT_SOLUTION_SELECTION",
+  "parent":"NCEDC_FPFIT_SEMANTICS.json",
+  "rule":"for repeated event identifiers in a monthly FPFIT file, select the first physical record in provider byte order; later confidence-suite/alternative records are not used in the primary analysis",
+  "event_ordering_rewritten":false,
+  "outcome_values_used_to_select":false,
+  "scientific_model_changed":false,
+  "use_role":"official focal-mechanism materialization and ComCat cross-source audit",
+  "authority_ceiling":"NONE"
+}

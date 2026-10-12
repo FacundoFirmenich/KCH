@@ -1,0 +1,48 @@
+name: Helical v1.0 official-source probe
+
+on:
+  push:
+    branches:
+      - gate/helical-v10-mhd-census-seismic-post2021-review-20261011
+    paths:
+      - .github/helical_v10/v10_source_probe.py
+      - .github/workflows/helical-v10-source-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned probe dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'drms==0.9.0' 'pandas==2.2.3' 'requests==2.32.3'
+      - name: Probe official JSOC, NOAA/NCEI and USGS sources
+        shell: bash
+        env:
+          V10_OUT: ${{ runner.temp }}/helical_v10_probe
+        run: |
+          set -euo pipefail
+          PYTHONUNBUFFERED=1 python .github/helical_v10/v10_source_probe.py \
+            | tee "$RUNNER_TEMP/helical_v10_probe_stdout.log"
+          cp "$RUNNER_TEMP/helical_v10_probe_stdout.log" "$V10_OUT/EXECUTION_STDOUT.log"
+      - name: Upload sealed probe artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v10-source-probe
+          path: ${{ runner.temp }}/helical_v10_probe
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error

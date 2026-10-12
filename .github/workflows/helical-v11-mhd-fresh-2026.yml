@@ -1,0 +1,45 @@
+name: Helical v1.1 fresh-2026 MHD source acquisition
+
+on:
+  push:
+    branches:
+      - gate/helical-v10-mhd-census-seismic-post2021-review-20261011
+    paths:
+      - .github/helical_v10/mhd_fresh_2026_acquire.py
+      - .github/workflows/helical-v11-mhd-fresh-2026.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned acquisition dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install 'drms==0.9.0' 'pandas==2.2.3' 'requests==2.32.3'
+      - name: Acquire untouched 2026 SHARP/GOES bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/helical_v11_mhd_2026"
+          mkdir -p "$out"
+          PYTHONUNBUFFERED=1 python .github/helical_v10/mhd_fresh_2026_acquire.py --out "$out" | tee "$out/EXECUTION_STDOUT.log"
+      - name: Upload exact source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-mhd-fresh-2026
+          path: ${{ runner.temp }}/helical_v11_mhd_2026
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error

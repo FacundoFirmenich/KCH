@@ -1,0 +1,18 @@
+{
+  "directional_fields_accessed": false,
+  "files": {
+    "BAY_AREA_BLIND_EVENTS_WITH_FULL_NETWORK_SUPPORT.csv.gz": {"bytes":400349,"sha256":"9dbf20f29e31e1a71f918419902f66d7c136ff0bb68da43e710b391f6b9bacf0"},
+    "FAULT_ENDPOINT_JUNCTIONS.csv": {"bytes":4874,"sha256":"753c5a44a50bcc8af4a76249739b630e326aae9792bd316d1bcac50ee9cb2c56"},
+    "FAULT_SEGMENTS.json": {"bytes":166494,"sha256":"52a1fbc7679498fe0e539f350e08d4cdb15377a4b418fe1b44e6bca87169d899"},
+    "FULL_NETWORK_GRAPH_POLICY_LOCK.json": {"bytes":1074,"sha256":"86b932cdab3cf69e67c84d0b45ee25ad2a0303e35e73a19f2e3401202955c50b"},
+    "FULL_NETWORK_PARENT_GRAPH.csv.gz": {"bytes":3441093,"sha256":"41ceafc972cfddd53d42e72878b9784179537fd0ff08c959a5f429353429af44"},
+    "FULL_NETWORK_SUPPORT_SUMMARY.csv": {"bytes":276,"sha256":"039f74171f7ba7c2b87d3da48d0b74606dd0b9c3f4bb8d1f82f53b09b3e0387d"},
+    "PARKFIELD_CENTRAL_SAF_BLIND_EVENTS_WITH_FULL_NETWORK_SUPPORT.csv.gz": {"bytes":144634,"sha256":"990f3480327ace53494d7cfb35035c3eb6e496706d5e331d33944fe165d5d980"}
+  },
+  "freeze_id": "fgf:570a56355d7b5fca2957aadb91b2ebd3c63a0d520581a0fc2c8fafff1b4d7c2e",
+  "policy_id": "fgp:ce4d3b9d34d9dce512723c3020d59a437e856c484fb8d7b404e41d7e0d7e22de",
+  "summaries": [
+    {"assigned_events":5346,"calibration":1336,"median_test_parent_count":9.0,"region":"BAY_AREA","test":1337,"test_children_with_parent":1212,"test_parent_support_fraction":0.906507105459985,"train":2673,"unique_fault_segments":60},
+    {"assigned_events":1903,"calibration":476,"median_test_parent_count":7.0,"region":"PARKFIELD_CENTRAL_SAF","test":476,"test_children_with_parent":425,"test_parent_support_fraction":0.8928571428571429,"train":951,"unique_fault_segments":19}
+  ]
+}

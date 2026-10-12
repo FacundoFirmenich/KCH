@@ -1,0 +1,10 @@
+{
+  "directional_values_read_by_materializer": false,
+  "edge_rows": 69104,
+  "file_sha256": "b8227cd8629b47d19d928d8d5367549097b83af760fa37e786f0c68a8daf8e38",
+  "format": "KCH_HELICAL_V1_1_ROUTE_ORIENTATION_MATERIALIZATION",
+  "materialization_id": "fgr:509311f37e5061afc8da493b67281d95091c5934166ccbaab363c8477ef419a5",
+  "parent_freeze_id": "fgf:570a56355d7b5fca2957aadb91b2ebd3c63a0d520581a0fc2c8fafff1b4d7c2e",
+  "parent_policy_id": "fgp:ce4d3b9d34d9dce512723c3020d59a437e856c484fb8d7b404e41d7e0d7e22de",
+  "rule": "deterministic materialization of already-frozen Dijkstra shortest path; no directional product values used"
+}

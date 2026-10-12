@@ -1,0 +1,88 @@
+name: Helical v1.1 NCEDC selected mechanism bulk audit v2
+
+on:
+  push:
+    branches:
+      - gate/helical-v10-mhd-census-seismic-post2021-review-20261011
+    paths:
+      - .github/workflows/helical-v11-ncedc-selected-bulk-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  bulk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install parser dependency
+        run: python -m pip install 'pandas==2.2.3'
+      - name: Recover sealed blind selected event IDs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          in="$RUNNER_TEMP/preflight"; mkdir -p "$in"
+          gh run download 38145986840 --repo "$GITHUB_REPOSITORY" --name kch-helical-v10-seismic-fault-preflight-v2 --dir "$in"
+      - name: Download official NCEDC monthly FPFIT archive and extract selected events
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/ncedc_bulk"; mkdir -p "$out/monthly"
+          python - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          import pandas as pd
+          root=Path(os.environ['RUNNER_TEMP']); inp=root/'preflight'; out=root/'ncedc_bulk'; monthly=out/'monthly'
+          selected={}; wanted=set()
+          for reg in ['BAY_AREA','PARKFIELD_CENTRAL_SAF']:
+              d=pd.read_csv(inp/'assigned'/f'{reg}.csv.gz',low_memory=False); d=d[d.reason=='ASSIGNED'].copy()
+              ids={str(x).replace('nc','') for x in d.event_id.astype(str)}
+              selected[reg]=ids; wanted |= ids
+          receipts=[]; rows=[]
+          for year in range(2022,2027):
+              last=10 if year==2026 else 12
+              for month in range(1,last+1):
+                  key=f'mechanism/{year}/{year}.{month:02d}.mech'; path=monthly/f'{year}.{month:02d}.mech'
+                  p=subprocess.run(['aws','s3','cp','--no-sign-request',f's3://ncedc-pds/{key}',str(path)],capture_output=True,text=True)
+                  if p.returncode!=0:
+                      receipts.append({'key':key,'status':'MISSING_OR_ERROR','stderr':p.stderr[-500:]}); continue
+                  body=path.read_bytes(); h=hashlib.sha256(body).hexdigest(); n=0; hit=0
+                  for raw in body.decode('ascii',errors='strict').splitlines():
+                      n+=1
+                      if len(raw)<141: continue
+                      evid=raw[131:141].strip()
+                      if evid not in wanted: continue
+                      try:
+                          dip_direction=float(raw[83:86].strip()); dip=float(raw[87:89].strip()); rake=float(raw[89:93].strip())
+                      except Exception: continue
+                      strike=(dip_direction-90.0)%360.0
+                      hit+=1
+                      rows.append({'event_id_numeric':evid,'date':raw[0:8].strip(),'hhmm':raw[9:13].strip(),'seconds':raw[14:19].strip(),'dip_direction':dip_direction,'strike':strike,'dip':dip,'rake':rake,'source_key':key,'source_sha256':h,'raw_line':raw})
+                  receipts.append({'key':key,'status':'PASS','bytes':len(body),'sha256':h,'lines':n,'selected_hits':hit})
+          allf=pd.DataFrame(rows)
+          allf.to_csv(out/'NCEDC_SELECTED_FPFIT.csv.gz',index=False,compression='gzip')
+          byreg=[]
+          for reg,ids in selected.items():
+              sub=allf[allf.event_id_numeric.astype(str).isin(ids)].copy()
+              sub.to_csv(out/f'{reg}_NCEDC_FPFIT.csv.gz',index=False,compression='gzip')
+              byreg.append({'region':reg,'selected_assigned_ids':len(ids),'fpfit_matches':int(sub.event_id_numeric.nunique()),'coverage':float(sub.event_id_numeric.nunique()/max(len(ids),1))})
+          report={'format':'KCH_HELICAL_V1_1_NCEDC_FPFIT_BULK_AUDIT','graph_freeze_id':'fgf:570a56355d7b5fca2957aadb91b2ebd3c63a0d520581a0fc2c8fafff1b4d7c2e','source':'s3://ncedc-pds/mechanism/YYYY/YYYY.MM.mech','source_format':'FPFIT','first_angular_field_semantics':'dip_direction; strike=(dip_direction-90) mod 360','directional_values_accessed_after_graph_and_model_lock':True,'cohorts':byreg,'monthly_receipts':receipts,'scientific_model_changed':False,'authority_ceiling':'NONE'}
+          (out/'BULK_AUDIT_REPORT.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(report,indent=2,sort_keys=True))
+          PY
+          find "$out" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/SHA256SUMS.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kch-helical-v11-ncedc-selected-bulk-v2
+          path: ${{ runner.temp }}/ncedc_bulk
+          retention-days: 7
+          compression-level: 0

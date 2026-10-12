@@ -1,0 +1,22 @@
+{
+  "format":"KCH_HELICAL_V1_1_FULL_NETWORK_GRAPH_LOCK_INDEX",
+  "version":"1.1.0",
+  "policy_id":"fgp:ce4d3b9d34d9dce512723c3020d59a437e856c484fb8d7b404e41d7e0d7e22de",
+  "freeze_id":"fgf:570a56355d7b5fca2957aadb91b2ebd3c63a0d520581a0fc2c8fafff1b4d7c2e",
+  "fault_source_sha256":"37babb516edfac22b5ae91744495d8546b3ae4676b4d4f68cc77da8222df20e1",
+  "directional_fields_accessed_at_lock":false,
+  "fault_line_count":625,
+  "endpoint_nodes":1250,
+  "graph_edges":837,
+  "junctions":212,
+  "junction_rule":"endpoint_to_endpoint_distance_le_2km",
+  "parent_graph_policy":{"max_age_days":30,"max_network_path_km":20,"max_parents":20,"alpha":1.0,"c_days":0.01,"p":1.1,"ell_km":10.0},
+  "support":{
+    "BAY_AREA":{"assigned_events":5346,"test_events":1337,"test_children_with_parent":1212,"test_parent_support_fraction":0.906507105459985},
+    "PARKFIELD_CENTRAL_SAF":{"assigned_events":1903,"test_events":476,"test_children_with_parent":425,"test_parent_support_fraction":0.8928571428571429}
+  },
+  "directional_acquisition":"AUTHORIZED_AFTER_THIS_LOCK",
+  "scientific_execution":"NOT_YET_PERFORMED",
+  "terminal_rule":"NEGATIVE_FINAL_POST2021_FULL_NETWORK_GATE_CLOSES_SEISMIC_HELICAL_PROGRAM",
+  "authority_ceiling":"NONE"
+}

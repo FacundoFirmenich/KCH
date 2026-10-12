@@ -1,0 +1,45 @@
+{
+  "format":"KCH_HELICAL_V1_1_TERMINAL_DYNAMIC_NUMERICAL_CONVENTION_ADDENDUM",
+  "parent_lock":"SEISMIC_TERMINAL_DYNAMIC_MODEL_LOCK.json",
+  "applies_before_directional_artifact_access":true,
+  "moment_tensor_basis":"NORTH_EAST_DOWN",
+  "double_couple_from_nodal_plane":{
+    "strike":"degrees_clockwise_from_north",
+    "dip":"degrees_down_from_horizontal",
+    "rake":"standard_seismological_rake",
+    "formula":"Aki-Richards symmetric double-couple tensor convention; P axis = eigenvector of minimum eigenvalue",
+    "nodal_plane_equivalence_gate":"when NP2 exists, |dot(P1,P2)| >= 0.995 else event abstains"
+  },
+  "moment_tensor_fallback":{
+    "first_choice":"nodal-plane-1 strike/dip/rake if present",
+    "second_choice":"tensor components if a complete six-component symmetric tensor is present",
+    "otherwise":"ABSTAIN_EVENT"
+  },
+  "local_frame":{
+    "canonical_fault_tangent":"finite-difference tangent of immutable GEM polyline at snapped along-fault coordinate",
+    "path_oriented_tangent":"canonical tangent multiplied by frozen edge tangent sign",
+    "e1":"DOWN=(0,0,1)",
+    "e2":"cross(path_oriented_tangent,e1)",
+    "axial_angle":"atan2(dot(P,e2),dot(P,e1)) modulo pi"
+  },
+  "static_field_residualization":{
+    "segment_mean":"arg(mean(exp(2i*psi)))/2 on TRAIN only under canonical tangent",
+    "edge_orientation":"multiply canonical axial angle and segment mean by frozen tangent sign before child-minus-parent difference"
+  },
+  "signed_tangent_turn":"atan2(N_parent*E_child-E_parent*N_child, N_parent*N_child+E_parent*E_child)",
+  "axial_wrap":"((angle + pi/2) mod pi) - pi/2",
+  "optimization":{
+    "algorithm":"scipy.optimize.minimize L-BFGS-B",
+    "initial_beta":"all zeros",
+    "l2":1e-6,
+    "ftol":1e-12,
+    "gtol":1e-8,
+    "maxiter":2000
+  },
+  "concentration":{
+    "resultant":"mean cos(2*residual) under normalized TRAIN parent weights",
+    "kappa_inverse":"standard circular resultant approximation; kappa capped at 500"
+  },
+  "posthoc_rescue":"FORBIDDEN",
+  "authority_ceiling":"NONE"
+}

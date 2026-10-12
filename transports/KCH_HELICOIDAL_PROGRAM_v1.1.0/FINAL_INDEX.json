@@ -1,0 +1,81 @@
+{
+  "format": "KCH_HELICOIDAL_PROGRAM_V1_1_FINAL_INDEX",
+  "version": "1.1.0",
+  "mhd": {
+    "result_id": "mhd11:7aa4c7e5d948d42d3a7e88d48027d33072dadf7e712b334050b4cc3de1d91902",
+    "outcome": "INSUFFICIENT_FRESH_CONFIRMATORY_POWER_OR_UPPER_BOUND_ONLY",
+    "fresh_windows": 1506,
+    "fresh_active_regions": 98,
+    "physical_helicity": "NOT_DEMONSTRATED",
+    "fresh_source_run_id": 38172875867,
+    "fresh_source_artifact_id": 11714830931,
+    "fresh_source_artifact_sha256": "a9eaca3e69f2851ecc70ee46e4a7116ef4c8a33531c833e6cb6525573ea3abff",
+    "largest_bootstrap_upper_97_5_logscore_gain_lt": 0.001,
+    "material_logscore_gain": 0.01,
+    "largest_bootstrap_upper_97_5_brier_improvement": 0.0265,
+    "material_brier_improvement": 0.05
+  },
+  "seismic": {
+    "result_id": "s11:bd48f84da1f4fa00f74ab9524ed3e474d1133da9d196fb0b8d06a5a1bcf73902",
+    "outcome": "SEISMIC_HELICAL_PROGRAM_CLOSED_WITH_UPPER_BOUNDS",
+    "positive_primary_cohorts": 0,
+    "required_positive_primary_cohorts": 2,
+    "graph_policy_id": "fgp:ce4d3b9d34d9dce512723c3020d59a437e856c484fb8d7b404e41d7e0d7e22de",
+    "graph_freeze_id": "fgf:570a56355d7b5fca2957aadb91b2ebd3c63a0d520581a0fc2c8fafff1b4d7c2e",
+    "route_materialization_id": "fgr:509311f37e5061afc8da493b67281d95091c5934166ccbaab363c8477ef419a5",
+    "ncedc_fpfit_artifact_run_id": 38173840839,
+    "ncedc_fpfit_artifact_id": 11714798476,
+    "ncedc_fpfit_artifact_sha256": "7c2b8790d928c794cdb3143d764ba077c496af411a08b8c5dc882e699dd48c78",
+    "bay_area": {
+      "valid_mechanisms": 5293,
+      "test_children": 1196,
+      "logscore_gain": 0.0002271834653888344,
+      "rmse_improvement": 0.000491267118036263,
+      "delta_bic_h_minus_b": 6.543315085300492,
+      "bootstrap_lower_95": -0.0006447817560523506,
+      "bootstrap_upper_95": 0.0011865738697892268
+    },
+    "parkfield": {
+      "valid_mechanisms": 1878,
+      "test_children": 421,
+      "logscore_gain": -0.0006114888323578276,
+      "rmse_improvement": 0.0001356907366361663,
+      "delta_bic_h_minus_b": 6.557506430527383,
+      "bootstrap_lower_95": -0.0014395838703262105,
+      "bootstrap_upper_95": 0.0000558902806907732
+    },
+    "exact_replay": {
+      "result_json_sha256": "482350d867778297380cc08340fa7c697480d8e2de5132b07632f9433fd24044",
+      "metrics_sha256": "9224c9daa5af81cbaeef90bb564dfa5c63b68df8e6efedf43edba7ce6814640c"
+    }
+  },
+  "kwanblocks": {
+    "graph_id": "kbg:dcc39aa93b0d079a6f0e6edfdec6bda096bb9e2c22a11a9f7708eb3cafa10c5d",
+    "ledger_head": "93c9e45e15fb3237fc5af5e57c6cd1ce8e2e1ae183122d223b0ce2d73027cdbc",
+    "validation_id": "h11val:45f6d02c04dfd99c042146614cff3679f2b32f456156a1b3ac9ca467b62e2556",
+    "validation": "54/54 PASS",
+    "sqlite_integrity": "ok",
+    "foreign_key_errors": 0
+  },
+  "release": {
+    "full_package": {
+      "name": "KCH_HELICOIDAL_PROGRAM_v1_1_0.zip",
+      "bytes": 9495754,
+      "sha256": "233229da492b468aedace11f5bd1dd5940eaa8679b39db49f81498a1d85fc161"
+    },
+    "evidence_bundle": {
+      "name": "KCH_HELICOIDAL_PROGRAM_v1_1_0_EVIDENCE.zip",
+      "bytes": 4269791,
+      "sha256": "a99df3eda34f667e757bbcda9357ba47b5058c50c2b5e9b504db1eb43c53c488"
+    },
+    "deterministic_rebuild": "PASS",
+    "zip_crc": "PASS",
+    "delivery_id": "h11delivery:965b827768cacc483ee9aa16ee00fc9922924d7251af44f3e5c5705bf50a37d0"
+  },
+  "physical_helicity": "NOT_DEMONSTRATED",
+  "universal_absence_of_helicity": "NOT_ESTABLISHED",
+  "promotion": "BLOCKED",
+  "canonicalization": "BLOCKED",
+  "merge": "NOT_PERFORMED",
+  "authority_ceiling": "NONE"
+}
