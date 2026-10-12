@@ -5,7 +5,8 @@ The v3 predecessor proved every control except execution inside the enclosure:
 a capability-free process could not traverse the runner's private home to reach
 Wasmtime. This successor copies only the already hash-pinned executable and
 fixed module into a short-lived host staging directory, then binds those exact
-files read-only into `/tmp/sandbox` inside the private tmpfs.
+files read-only into `/tmp/sandbox` inside the private tmpfs. Runtime cache and
+home paths are also confined to that private tmpfs.
 """
 from __future__ import annotations
 
@@ -45,6 +46,17 @@ def enclosure(arguments: list[str], readonly_binds: list[tuple[str, str]] | None
         "--chmod",
         "0755",
         "/tmp/sandbox",
+        "--dir",
+        "/tmp/.cache",
+        "--chmod",
+        "0700",
+        "/tmp/.cache",
+        "--setenv",
+        "HOME",
+        "/tmp",
+        "--setenv",
+        "XDG_CACHE_HOME",
+        "/tmp/.cache",
         "--proc",
         "/proc",
         "--dev",
@@ -145,6 +157,8 @@ def wasmtime_enforcement(tmp: pathlib.Path, wasmtime: str, _bwrap: str) -> dict[
             "capabilities_dropped": cap_eff == "0000000000000000",
             "operator_bound_read_only": True,
             "module_bound_read_only": True,
+            "home_confined_to_private_tmpfs": True,
+            "cache_confined_to_private_tmpfs": True,
             "host_staging_removed": not staging.exists(),
             "cgroup_v2_present": (cgroup / "cgroup.controllers").exists(),
             "cgroup_v2_writable": os.access(cgroup, os.W_OK),
