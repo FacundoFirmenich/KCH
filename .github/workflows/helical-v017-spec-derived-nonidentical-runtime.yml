@@ -1,0 +1,221 @@
+name: KCH Helical v0.17 specification-derived nonidentical runtime
+
+on:
+  push:
+    branches:
+      - helical-v017-spec-derived-nonidentical-runtime-20261012
+    paths:
+      - ".github/workflows/helical-v017-spec-derived-nonidentical-runtime.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kch-helical-v017-runtime-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ROOT: construct_successors/KCH_HELICAL_V017_SPEC_DERIVED_NONIDENTICAL_RUNTIME_20261012
+  BUNDLE: .github/helical_v017/source_bundle.tar.gz
+  BUNDLE_SHA256: 84870f2753f3079131009c02996c1a282a49be5497b2a9b9e9a20c6a0619ec77
+  TAR_SHA256: 647bf14003fa8210c05a3335fbfa546e9a585d2c10518df3fe1a462a82efea2e
+  PYTHONNOUSERSITE: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONHASHSEED: "0"
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+
+jobs:
+  freeze-spec-derived-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout complete successor lineage
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          ref: helical-v017-spec-derived-nonidentical-runtime-20261012
+          fetch-depth: 0
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Verify and safely materialize exact source capsule
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "$BUNDLE_SHA256  $BUNDLE" | sha256sum -c -
+          rm -rf "$ROOT" "$RUNNER_TEMP/v017"
+          mkdir -p "$ROOT" "$RUNNER_TEMP/v017/extract" "$RUNNER_TEMP/v017/pycache"
+          python - "$BUNDLE" "$ROOT" "$TAR_SHA256" <<'PY'
+          from pathlib import Path, PurePosixPath
+          import gzip, hashlib, io, os, stat, sys, tarfile
+          bundle=Path(sys.argv[1]); root=Path(sys.argv[2]); expected_tar=sys.argv[3]
+          compressed=bundle.read_bytes(); raw=gzip.decompress(compressed)
+          observed=hashlib.sha256(raw).hexdigest()
+          if observed != expected_tar:
+              raise SystemExit(f"TAR SHA-256 mismatch: {observed}")
+          allowed={
+            'AUTHORITY_LEASE_V0_17.json',
+            'README.md',
+            'contracts/CONNECTOR_ARTIFACT_SURFACE_ADJUDICATION_V0_16_6.json',
+            'contracts/SPEC_DERIVATION_CONTRACT_V0_17.json',
+            'freeze_runtime_v017.py',
+            'src/kch_helical_null_v017/__init__.py',
+            'src/kch_helical_null_v017/runtime.py',
+            'tests/test_runtime_v017.py',
+          }
+          with tarfile.open(fileobj=io.BytesIO(raw), mode='r:') as tf:
+              members=tf.getmembers()
+              names={m.name for m in members}
+              if names != allowed:
+                  raise SystemExit(f"capsule membership mismatch: {sorted(names ^ allowed)}")
+              for member in members:
+                  p=PurePosixPath(member.name)
+                  if p.is_absolute() or '..' in p.parts or not member.isfile() or member.issym() or member.islnk():
+                      raise SystemExit(f"unsafe capsule member: {member.name}")
+                  src=tf.extractfile(member)
+                  if src is None:
+                      raise SystemExit(f"unreadable member: {member.name}")
+                  data=src.read()
+                  target=root/member.name
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  fd=os.open(target, os.O_WRONLY|os.O_CREAT|os.O_EXCL, 0o644)
+                  with os.fdopen(fd,'wb') as out: out.write(data)
+          for path in root.rglob('*'):
+              if path.is_symlink(): raise SystemExit(f"symlink materialized: {path}")
+          print(f"materialized={len(allowed)} tar_sha256={observed}")
+          PY
+          PYTHONPYCACHEPREFIX="$RUNNER_TEMP/v017/pycache" python -m py_compile \
+            "$ROOT/src/kch_helical_null_v017/__init__.py" \
+            "$ROOT/src/kch_helical_null_v017/runtime.py" \
+            "$ROOT/tests/test_runtime_v017.py" \
+            "$ROOT/freeze_runtime_v017.py"
+
+      - name: Run structural and adversarial tests twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/generated" "$ROOT/release" "$RUNNER_TEMP/v017/generated_replay"
+          mkdir -p "$ROOT/generated" "$RUNNER_TEMP/v017/generated_replay"
+          PYTHONPATH="$ROOT/src" python -m unittest discover -s "$ROOT/tests" -v 2>&1 | tee "$RUNNER_TEMP/v017/unittest-a.log"
+          PYTHONPATH="$ROOT/src" python -m unittest discover -s "$ROOT/tests" -v 2>&1 | tee "$RUNNER_TEMP/v017/unittest-b.log"
+          grep -Eq '^Ran 44 tests' "$RUNNER_TEMP/v017/unittest-a.log"
+          grep -Eq '^Ran 44 tests' "$RUNNER_TEMP/v017/unittest-b.log"
+          grep -Eq '^OK$' "$RUNNER_TEMP/v017/unittest-a.log"
+          grep -Eq '^OK$' "$RUNNER_TEMP/v017/unittest-b.log"
+
+      - name: Freeze runtime twice and prove deterministic identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python "$ROOT/freeze_runtime_v017.py" \
+            --repo-root "$GITHUB_WORKSPACE" --root "$ROOT" \
+            --unittest-log "$RUNNER_TEMP/v017/unittest-a.log" \
+            --output "$ROOT/generated" | tee "$RUNNER_TEMP/v017/freeze-a.stdout"
+          python "$ROOT/freeze_runtime_v017.py" \
+            --repo-root "$GITHUB_WORKSPACE" --root "$ROOT" \
+            --unittest-log "$RUNNER_TEMP/v017/unittest-b.log" \
+            --output "$RUNNER_TEMP/v017/generated_replay" | tee "$RUNNER_TEMP/v017/freeze-b.stdout"
+          diff -qr "$ROOT/generated" "$RUNNER_TEMP/v017/generated_replay"
+
+      - name: Enforce nonidentity test firewall and no-science boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import json, sys
+          root=Path(sys.argv[1]); g=root/'generated'
+          status=json.loads((g/'STATUS_V0_17.json').read_text())
+          proof=json.loads((g/'NONIDENTITY_PROOF_V0_17.json').read_text())
+          validation=json.loads((g/'RUNTIME_VALIDATION_REPORT_V0_17.json').read_text())
+          summary=json.loads((g/'NULL_PERTURBATION_JOB_LEDGER_SUMMARY_V0_17.json').read_text())
+          freeze=json.loads((g/'RUNTIME_FREEZE_RECEIPT_V0_17.json').read_text())
+          assert status['state']=='SPECIFICATION_DERIVED_NONIDENTICAL_RUNTIME_FROZEN'
+          assert status['scheduled_job_count']==6376
+          assert status['historical_identity_transferred'] is False
+          assert status['calibration_runtime_qualification_executed'] is False
+          assert status['scientific_data_accessed'] is False
+          assert status['sealed_test_accessed'] is False
+          assert status['scientific_result'] is None
+          assert proof['contract_ids_distinct'] is True
+          assert proof['ledger_ids_distinct'] is True
+          assert proof['ledger_bytes_distinct'] is True
+          assert proof['byte_identity_claim']=='FORBIDDEN'
+          assert proof['historical_hash_reuse'] is False
+          assert validation['all_pass'] is True and validation['unittest_count']>=44
+          assert validation['structural_fixture_is_scientific_execution'] is False
+          assert summary['job_count']==6376
+          assert summary['job_id_unique_count']==6376
+          assert summary['seed_unique_count']==6376
+          assert summary['historical_identity_transferred'] is False
+          assert summary['runtime_contract_id'].startswith('h17nullspec:')
+          assert summary['ledger_id'].startswith('h17nullledger:')
+          assert freeze['historical_ledger_hash_reused'] is False
+          assert freeze['calibration_runtime_qualification_executed'] is False
+          assert freeze['sealed_test_accessed'] is False
+          assert freeze['scientific_result'] is None
+          assert freeze['promotion']=='BLOCKED' and freeze['canonicalization']=='BLOCKED'
+          PY
+          ! grep -F 'h13nullledger:6abcf3c64273d25a52d75fd423b6b825ee0b1a1b800aaf5d38acf98795179c2a' "$ROOT/generated/NULL_PERTURBATION_JOB_LEDGER_V0_17.jsonl"
+          ! grep -R --line-number '"TEST"' "$ROOT/generated/NULL_PERTURBATION_JOB_LEDGER_V0_17.jsonl"
+          ! find "$ROOT" -type f \( -name '*.pickle' -o -name '*.pkl' -o -name '*.npz' -o -name '*.npy' -o -name '*.csv' -o -name '*.parquet' -o -name '*.geojson' -o -name '*.fits' -o -name '*.sqlite' -o -name '*.db' \) | grep -q .
+
+      - name: Build deterministic independently verified release
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ROOT/release"
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib, json, stat, sys, zipfile
+          root=Path(sys.argv[1]).resolve(); release=root/'release'
+          archive=release/'KCH_HELICAL_V017_SPEC_DERIVED_NONIDENTICAL_RUNTIME.zip'
+          include=[root/'README.md',root/'AUTHORITY_LEASE_V0_17.json',root/'contracts/SPEC_DERIVATION_CONTRACT_V0_17.json',root/'contracts/CONNECTOR_ARTIFACT_SURFACE_ADJUDICATION_V0_16_6.json',root/'src/kch_helical_null_v017/__init__.py',root/'src/kch_helical_null_v017/runtime.py',root/'tests/test_runtime_v017.py',root/'freeze_runtime_v017.py']+sorted((root/'generated').glob('*'))
+          rows=[]
+          for p in include:
+              data=p.read_bytes(); rel=p.relative_to(root).as_posix()
+              rows.append({'path':rel,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          rows.sort(key=lambda r:r['path'])
+          with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as zf:
+              for row in rows:
+                  info=zipfile.ZipInfo(row['path'],(1980,1,1,0,0,0)); info.compress_type=zipfile.ZIP_DEFLATED; info.external_attr=(stat.S_IFREG|0o644)<<16
+                  zf.writestr(info,(root/row['path']).read_bytes())
+          with zipfile.ZipFile(archive) as zf:
+              assert zf.testzip() is None
+              assert zf.namelist()==[r['path'] for r in rows]
+              for r in rows: assert hashlib.sha256(zf.read(r['path'])).hexdigest()==r['sha256']
+          def c(v): return json.dumps(v,sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode()
+          manifest={'format':'KCH_HELICAL_V0_17_RELEASE_MANIFEST','members':rows,'member_count':len(rows),'member_tree_sha256':hashlib.sha256(c(rows)).hexdigest()}
+          manifest['manifest_id']='h17manifest:'+hashlib.sha256(c(manifest)).hexdigest()
+          (release/'RELEASE_MANIFEST_V0_17.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          body={'format':'KCH_HELICAL_V0_17_RELEASE_RECEIPT','archive_name':archive.name,'archive_bytes':archive.stat().st_size,'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'manifest_id':manifest['manifest_id'],'member_count':len(rows),'zip_crc':'PASS','member_hash_identity':'PASS','scientific_data_included':False,'calibration_executed':False,'sealed_test_accessed':False,'scientific_result':None,'promotion':'BLOCKED','canonicalization':'BLOCKED','status':'PASS'}
+          body['receipt_id']='h17release:'+hashlib.sha256(c(body)).hexdigest()
+          (release/'RELEASE_RECEIPT_V0_17.json').write_text(json.dumps(body,sort_keys=True,indent=2)+'\n')
+          (release/(archive.name+'.sha256')).write_text(body['archive_sha256']+'  '+archive.name+'\n')
+          print(json.dumps({'release_receipt_id':body['receipt_id'],'manifest_id':manifest['manifest_id'],'archive_sha256':body['archive_sha256'],'member_count':len(rows)},sort_keys=True))
+          PY
+
+      - name: Persist source freeze ledger and release append-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "kch-helical-v017-runtime"
+          git config user.email "kch-helical-v017-runtime@users.noreply.github.com"
+          git add "$ROOT"
+          git commit -m "record v0.17 specification-derived nonidentical runtime freeze [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Upload frozen v0.17 release
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-helical-v017-spec-derived-runtime-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.ROOT }}/generated
+            ${{ env.ROOT }}/release
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
