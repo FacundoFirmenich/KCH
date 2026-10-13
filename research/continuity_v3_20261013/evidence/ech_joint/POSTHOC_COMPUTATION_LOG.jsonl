@@ -1,0 +1,24 @@
+{"route": "S05P1", "J": 6, "R": 6, "A": 7, "lower": "6", "gap": 0}
+{"route": "S05P2", "J": 6, "R": 6, "A": 7, "lower": "6", "gap": 0}
+{"route": "S06P1", "J": 7, "R": 7, "A": 8, "lower": "7", "gap": 0}
+{"route": "S06P2", "J": 7, "R": 7, "A": 9, "lower": "7", "gap": 0}
+{"route": "S07P1", "J": 8, "R": 8, "A": 9, "lower": "8", "gap": 0}
+{"route": "S07P2", "J": 8, "R": 8, "A": 10, "lower": "8", "gap": 0}
+{"route": "S08P1", "J": 9, "R": 9, "A": 10, "lower": "9", "gap": 0}
+{"route": "S08P2", "J": 9, "R": 9, "A": 10, "lower": "9", "gap": 0}
+{"route": "S10P2", "J": 8, "R": 8, "A": 10, "lower": "269/35", "gap": 0}
+{"route": "S13P1", "J": 10, "R": 10, "A": 11, "lower": "10", "gap": 0}
+{"route": "S13P2", "J": 10, "R": 10, "A": 12, "lower": "10", "gap": 0}
+{
+  "schema": "ECH_POSTHOC_LOCAL_TIE_RESULT_V1",
+  "phase": "POST_HOC_DIRECTED_INTERPRETATION_AUDIT",
+  "routes": 11,
+  "exact_optima_certified": 11,
+  "local_minimum_tie_suffices": 11,
+  "strict_anticipation_required_for_full_joint_optimum": 0,
+  "protocol_sha256": "3b9f6476168cde70dc28afbfe8130e5e8582a7eb305f46cc2c69e01c41b5f187",
+  "certificates_sha256": "44369f886b912d165da207abf95274ee51a68c61f7465498448f8585092afed8",
+  "script_sha256": "570f84c71c1dca01bc6c4a692c19fbf9e6c1a9ab82e665fdb82ac36885235727",
+  "permission_granted": false,
+  "result_sha256": "39270a3a2d1bf4e7eaf61026c60a698845b56c83e0ce9b3545efe34005509bcb"
+}

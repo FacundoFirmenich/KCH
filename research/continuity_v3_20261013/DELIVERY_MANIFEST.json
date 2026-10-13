@@ -1,0 +1,251 @@
+{
+  "format": "KCH_CONTINUITY_V3_DELIVERY_MANIFEST",
+  "parent_commit": "05a338419267dc81124c31dce18fb8902fc8b0ca",
+  "files": [
+    {
+      "path": "research/continuity_v3_20261013/CLAIM_EVIDENCE_REGISTRY.json",
+      "bytes": 36587,
+      "sha256": "ba69e9629712a13411b543068b7a2e6cbd809aa425360226066665ace02ecef8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/CORPUS_VERIFICATION.json",
+      "bytes": 15420,
+      "sha256": "0c4f01114ece0ec8e3bdea2b4b8ae3e36a5097786702a2177bb406be779747c1"
+    },
+    {
+      "path": "research/continuity_v3_20261013/README_ES.md",
+      "bytes": 14505,
+      "sha256": "a6f6215e3d36f9227908f5c331dac029247288950718428b6fe886bb1d103b5e"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/COMPUTATION_LOG.jsonl",
+      "bytes": 6709,
+      "sha256": "8568cda671453cc7b44a6935f3b2fac7154b11e1f9a4ef7daf7e92d046a57a4b"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/DELIVERY_MANIFEST.json",
+      "bytes": 3766,
+      "sha256": "3912a7a4a50f6f675f2c3e2d1376df4f154cbf6bc44891400308fb49f6dc2aa1"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/DICTAMEN_ES.md",
+      "bytes": 18411,
+      "sha256": "6d64cd5528d1ad125ab831e7963a29888d47a507bcabc49a9bbc77d847367bc4"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/ECH_JOINT_ROUTE_RESULT.json",
+      "bytes": 1688,
+      "sha256": "78c298b1571a7f1fcd890b752c95e5373ce23948eeaa823783732f3f6ebb3975"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/JOINT_ROUTE_CERTIFICATES.json",
+      "bytes": 162738,
+      "sha256": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/JOINT_ROUTE_COMPARISON.csv",
+      "bytes": 4869,
+      "sha256": "01a4fbb8331b52e45f08d12fa6d0821b2e12ad8afd28a5c31994630eec699eef"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/JOINT_SQUARE_COMPARISON.json",
+      "bytes": 7566,
+      "sha256": "9fa4654acf5a5c70537748f8cb1e876426e409e87c8912dafb34081e59a8cddf"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/LOCAL_MINIMUM_LOOKAHEAD_CATALOG.json",
+      "bytes": 70501,
+      "sha256": "85e190980d26982c07b3b7dbb25278ada23cc41ec84656a4a2f7162baa529fe8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/POSTHOC_COMPUTATION_LOG.jsonl",
+      "bytes": 1388,
+      "sha256": "ef407d4cde83af9eb7b2d7d59f5afbc527f110f871386b4fc2a4e10536e491ae"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/POSTHOC_LOCAL_TIE_CERTIFICATES.json",
+      "bytes": 29707,
+      "sha256": "44369f886b912d165da207abf95274ee51a68c61f7465498448f8585092afed8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/POSTHOC_LOCAL_TIE_COMPARISON.csv",
+      "bytes": 743,
+      "sha256": "7a2eeb1e0a466d5be7bc5ef4737b758ed21bba76edf1f261a80c95f496a67b1b"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/POSTHOC_LOCAL_TIE_RESULT.json",
+      "bytes": 634,
+      "sha256": "244f4485c6e51bd1ec8015ffb5e0e35a2d4976d22655fc4b234e3e965c406dc8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/PROTOCOL_FIXED_TWO_STAGE.json",
+      "bytes": 15500,
+      "sha256": "e4054024e5789f8a82d3ef8bb5c2ee312f291d1954bda28efff4583e53d81db8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/PROTOCOL_POSTHOC_LOCAL_TIE_AUDIT.json",
+      "bytes": 6603,
+      "sha256": "3b9f6476168cde70dc28afbfe8130e5e8582a7eb305f46cc2c69e01c41b5f187"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/README_ES.md",
+      "bytes": 4667,
+      "sha256": "67e6aa7fe2fe2e40883bce4879d90a00a2212ab717945068edd641da44108fff"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/SHA256SUMS.txt",
+      "bytes": 1977,
+      "sha256": "2e8851f550db130bfd777a54ff465dc2783c67e690c290a350dc578b527f8571"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/SOLVER_FREE_JOINT_CHECK.json",
+      "bytes": 1107,
+      "sha256": "39bb02d271751e3ec9a24f6678e73403882341e27679a301884fb87daeef8a68"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/SOLVER_FREE_POSTHOC_TIE_CHECK.json",
+      "bytes": 686,
+      "sha256": "c225837f4fbadbaafa1245c04acc1c495aad289844fd4a7bb0561c53fa2002ed"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/check_joint_certificates.py",
+      "bytes": 13612,
+      "sha256": "f2d4c9dfe494eb680cda08bef4256b1dc154514c2f83e1aa18a98c315579b6c8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/check_posthoc_local_ties.py",
+      "bytes": 8643,
+      "sha256": "64dbcc08c168b76a1b8192f77b7ca168d93dbf4fc3ad5773763101211388810c"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/solve_joint_routes.py",
+      "bytes": 13825,
+      "sha256": "a18863bb4b68768ab8c072f7ac56c3435ee912efcc12d9380c027a69ab7ea4e6"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/solve_posthoc_local_ties.py",
+      "bytes": 6513,
+      "sha256": "570f84c71c1dca01bc6c4a692c19fbf9e6c1a9ab82e665fdb82ac36885235727"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/quotient/COCIENTE_DE_PLANIFICACION_ES.md",
+      "bytes": 9082,
+      "sha256": "9b650a3e210bb039c99e78ab5b4bc8cfeec30ec79d4e4790903fe09cd3b8d923"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/quotient/results/PLANNING_PATTERN_PARTITION.json",
+      "bytes": 2087929,
+      "sha256": "4389163d2435d4460276743d2975469a707d81d6be37cd27a8a15790fedda985"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/quotient/results/PLANNING_QUOTIENT_VERIFICATION.json",
+      "bytes": 78817,
+      "sha256": "05d4a23209834cbb7571bb06cf521e697fe6547ccb77875764221507f5b92cce"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/quotient/verify_planning_quotient.py",
+      "bytes": 7103,
+      "sha256": "6d29705c15a1a35f82597c2dd0151dc7bc28c2273b3fc2634946f0cd7d91d08a"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/AGGREGATES_ALL_1200.csv",
+      "bytes": 342871,
+      "sha256": "0134b1566888444615b6ec026a8c8945d32b6dc2c3fc99467533fac450dd1952"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/CELLS_ALL_960.csv",
+      "bytes": 317312,
+      "sha256": "e0cec861b31fd56da6d90949ac58a451fc599e3ccaaca49a970dcc055d1464d8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/DELIVERY_MANIFEST.json",
+      "bytes": 2736,
+      "sha256": "755035d9aec77043720e5de7fee89535e737204102377ece435fdcff688998a0"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/DICTAMEN_SOLAR_LOCAL_ES.md",
+      "bytes": 24080,
+      "sha256": "8e0740347099f3dde68918292a28bc137e35b2f0aeb62c77af9b9a04dc7c6bf0"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/EXECUTION_ENVIRONMENT.json",
+      "bytes": 272,
+      "sha256": "26b308f8c874786ab980e026b176074a3082bd59468f1d4bd1bd321f08c7d9a2"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/PRECALCULATION_SCOPE_ES.md",
+      "bytes": 2287,
+      "sha256": "f515613274476a884232e1a89a6c6c3ec851c469ca0a88e94096b697b4daf0d0"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/REEXECUTED_V2_60_CHECKS.json",
+      "bytes": 8549,
+      "sha256": "7b00e26ec718f141c6afaba4950a18a114dea8727378ca71a32a1ea2a36f9c1d"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/SNAPSHOT_COVERAGE_ALL_15.csv",
+      "bytes": 951,
+      "sha256": "ada2953a0150b89147e183de3f7ced9e61c377bb94a4721b3d7f1f63d8d9e715"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/SOLAR_LOCAL_DIAGNOSTIC.json",
+      "bytes": 129073,
+      "sha256": "55e2fe706e94df5ff402f14eaf41ebd74ac2089dcfd3679d70a435ccacbc9797"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/SOLAR_LOCAL_VERIFICATION.json",
+      "bytes": 809,
+      "sha256": "2d1fc1edcfafff567a0adee6b28ed1e050efa820ac47a5b8eeff4f4ff4ebe18a"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_HARP_CONTRIBUTIONS_ALL_192.csv",
+      "bytes": 36282,
+      "sha256": "29bf51233dcd5ac07982c390d171530c45dfc3a1a432afaec96bea3586e1deca"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_PARAMETERS_H_L_ALL_96.csv",
+      "bytes": 27001,
+      "sha256": "d7211f573ae98e9a0b84a81efd80a9812b32a9a8e5131060229c800c456ab076"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_SNAPSHOT_DERIVATIVES_ALL_60.csv",
+      "bytes": 4849,
+      "sha256": "5ecf4f6d43b2ae72ae6228b5e5451d0ae94e1145ccd0120929819cfeba9e38c4"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_TRANSITION_INFLUENCE_ALL_768.csv",
+      "bytes": 167984,
+      "sha256": "4f0a0136b3ed7455e09e93f295709052d688f06bac16d1eac7f045acc1953712"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRANSITIONS_ALL_12.csv",
+      "bytes": 2512,
+      "sha256": "92d187ffec1dedae3f64c3cc549d1ea96480b29c452f43871e12ad09b2601332"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/diagnose_solar_v16.py",
+      "bytes": 15251,
+      "sha256": "bcf44573f2cc14b2986086fe2e7688f795bd49ab8ff16fd1b97d7a266554f7cb"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/verify_solar_local.py",
+      "bytes": 13107,
+      "sha256": "0327f4eef22f2ef61a4e5fb0c8df675a21ee5a410381d9546f76915a60d67522"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/write_dictamen.py",
+      "bytes": 17167,
+      "sha256": "ab6d162b4f6f4710dbf7fd5a984189892678fae2c9334c3c3a52bff4b12a6cee"
+    },
+    {
+      "path": "research/continuity_v3_20261013/tools/verify_continuity_v3.py",
+      "bytes": 6098,
+      "sha256": "c993da697d00a3d44503185e975e7962c58b338260777efbb3fdd943fecbd887"
+    },
+    {
+      "path": ".github/workflows/helical-planning-continuity.yml",
+      "bytes": 2995,
+      "sha256": "65454f93ff5b31ce49cfba5353663aa4944d6a67990bc982891eeb0bff5db37a"
+    }
+  ]
+}

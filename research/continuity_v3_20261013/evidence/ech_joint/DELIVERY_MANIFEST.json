@@ -1,0 +1,123 @@
+{
+  "catalog": {
+    "both_stages_locally_minimal": 46,
+    "joint_optimal_for_fixed_route": 46,
+    "plans": 46
+  },
+  "explicit_posterior_scope": {
+    "R_equals_J": 11,
+    "certified_restricted_optima": 11,
+    "routes": 11,
+    "strict_overacquisition_required": 0
+  },
+  "files": [
+    {
+      "bytes": 6709,
+      "name": "COMPUTATION_LOG.jsonl",
+      "sha256": "8568cda671453cc7b44a6935f3b2fac7154b11e1f9a4ef7daf7e92d046a57a4b"
+    },
+    {
+      "bytes": 18411,
+      "name": "DICTAMEN_ES.md",
+      "sha256": "6d64cd5528d1ad125ab831e7963a29888d47a507bcabc49a9bbc77d847367bc4"
+    },
+    {
+      "bytes": 1688,
+      "name": "ECH_JOINT_ROUTE_RESULT.json",
+      "sha256": "78c298b1571a7f1fcd890b752c95e5373ce23948eeaa823783732f3f6ebb3975"
+    },
+    {
+      "bytes": 162738,
+      "name": "JOINT_ROUTE_CERTIFICATES.json",
+      "sha256": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0"
+    },
+    {
+      "bytes": 4869,
+      "name": "JOINT_ROUTE_COMPARISON.csv",
+      "sha256": "01a4fbb8331b52e45f08d12fa6d0821b2e12ad8afd28a5c31994630eec699eef"
+    },
+    {
+      "bytes": 7566,
+      "name": "JOINT_SQUARE_COMPARISON.json",
+      "sha256": "9fa4654acf5a5c70537748f8cb1e876426e409e87c8912dafb34081e59a8cddf"
+    },
+    {
+      "bytes": 70501,
+      "name": "LOCAL_MINIMUM_LOOKAHEAD_CATALOG.json",
+      "sha256": "85e190980d26982c07b3b7dbb25278ada23cc41ec84656a4a2f7162baa529fe8"
+    },
+    {
+      "bytes": 1388,
+      "name": "POSTHOC_COMPUTATION_LOG.jsonl",
+      "sha256": "ef407d4cde83af9eb7b2d7d59f5afbc527f110f871386b4fc2a4e10536e491ae"
+    },
+    {
+      "bytes": 29707,
+      "name": "POSTHOC_LOCAL_TIE_CERTIFICATES.json",
+      "sha256": "44369f886b912d165da207abf95274ee51a68c61f7465498448f8585092afed8"
+    },
+    {
+      "bytes": 743,
+      "name": "POSTHOC_LOCAL_TIE_COMPARISON.csv",
+      "sha256": "7a2eeb1e0a466d5be7bc5ef4737b758ed21bba76edf1f261a80c95f496a67b1b"
+    },
+    {
+      "bytes": 634,
+      "name": "POSTHOC_LOCAL_TIE_RESULT.json",
+      "sha256": "244f4485c6e51bd1ec8015ffb5e0e35a2d4976d22655fc4b234e3e965c406dc8"
+    },
+    {
+      "bytes": 15500,
+      "name": "PROTOCOL_FIXED_TWO_STAGE.json",
+      "sha256": "e4054024e5789f8a82d3ef8bb5c2ee312f291d1954bda28efff4583e53d81db8"
+    },
+    {
+      "bytes": 6603,
+      "name": "PROTOCOL_POSTHOC_LOCAL_TIE_AUDIT.json",
+      "sha256": "3b9f6476168cde70dc28afbfe8130e5e8582a7eb305f46cc2c69e01c41b5f187"
+    },
+    {
+      "bytes": 4667,
+      "name": "README_ES.md",
+      "sha256": "67e6aa7fe2fe2e40883bce4879d90a00a2212ab717945068edd641da44108fff"
+    },
+    {
+      "bytes": 1107,
+      "name": "SOLVER_FREE_JOINT_CHECK.json",
+      "sha256": "39bb02d271751e3ec9a24f6678e73403882341e27679a301884fb87daeef8a68"
+    },
+    {
+      "bytes": 686,
+      "name": "SOLVER_FREE_POSTHOC_TIE_CHECK.json",
+      "sha256": "c225837f4fbadbaafa1245c04acc1c495aad289844fd4a7bb0561c53fa2002ed"
+    },
+    {
+      "bytes": 13612,
+      "name": "check_joint_certificates.py",
+      "sha256": "f2d4c9dfe494eb680cda08bef4256b1dc154514c2f83e1aa18a98c315579b6c8"
+    },
+    {
+      "bytes": 8643,
+      "name": "check_posthoc_local_ties.py",
+      "sha256": "64dbcc08c168b76a1b8192f77b7ca168d93dbf4fc3ad5773763101211388810c"
+    },
+    {
+      "bytes": 13825,
+      "name": "solve_joint_routes.py",
+      "sha256": "a18863bb4b68768ab8c072f7ac56c3435ee912efcc12d9380c027a69ab7ea4e6"
+    },
+    {
+      "bytes": 6513,
+      "name": "solve_posthoc_local_ties.py",
+      "sha256": "570f84c71c1dca01bc6c4a692c19fbf9e6c1a9ab82e665fdb82ac36885235727"
+    }
+  ],
+  "permission_granted": false,
+  "primary_scope": {
+    "certified_optima": 46,
+    "cost_noncommuting_squares": 13,
+    "improved_vs_archived": 11,
+    "routes": 46
+  },
+  "schema": "ECH_JOINT_FIXED_ROUTE_DELIVERY_V1"
+}

@@ -1,0 +1,17 @@
+{
+  "analytic_snapshot_derivative_rows_verified": 60,
+  "diagnostic_sha256": "55e2fe706e94df5ff402f14eaf41ebd74ac2089dcfd3679d70a435ccacbc9797",
+  "exhaustive_aggregate_rows_verified": 1200,
+  "format": "KCH_SOLAR_LOCAL_STDLIB_VERIFICATION_V1",
+  "frozen_prediction_cells_verified": 960,
+  "independent_from_diagnostic_module": true,
+  "max_absolute_float_difference": 2.842170943040401e-14,
+  "new_observations": 0,
+  "numeric_comparisons_passed": 43924,
+  "original_replay_numeric_checks": 60,
+  "outcome_preserved": "NO_DEVELOPMENT_DOMINANT_LIFT",
+  "production_or_diagnostic_imports": false,
+  "source_result_receipt": "h16lift:45a23c0386388b58ec19935f369ebacf71777047ac54bdb0eb366ca94a3c7ac4",
+  "status": "PASS",
+  "verifier_sha256": "0327f4eef22f2ef61a4e5fb0c8df675a21ee5a410381d9546f76915a60d67522"
+}

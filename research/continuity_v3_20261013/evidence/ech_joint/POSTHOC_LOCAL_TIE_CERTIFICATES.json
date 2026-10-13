@@ -1,0 +1,1404 @@
+[
+  {
+    "certificate_sha256": "ddb9e5a4beab24ed3de7bf01193561190a9d8ea4e29a0b58dbc4fc16952a8ce8",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "exact_dual_lower_bound": "6",
+    "first_budget_dual_weight": "0",
+    "first_cost": 1,
+    "first_witness": [
+      "EXACT:071"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:4e0",
+      "EXACT:806"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          56
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 6,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 7,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "first_stage_budget": 1,
+      "intermediate": "MODE__EXACT__d1",
+      "original_first_bridge_problem_id": "f08de32b39c1268651dc288314288778afc85e0f2b0c75de617f5a6569c8dd3e",
+      "route_id": "S05P1",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05",
+      "unrestricted_joint_optimum": 6
+    },
+    "second_cost": 5,
+    "second_witness": [
+      "EXACT:04b",
+      "EXACT:056",
+      "EXACT:125",
+      "EXACT:28d",
+      "EXACT:94a"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "0db7727561f681e2e19e3fefce69e88779c30e60671658551a7e66a931a2452d",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "exact_dual_lower_bound": "6",
+    "first_budget_dual_weight": "0",
+    "first_cost": 6,
+    "first_witness": [
+      "EXACT:04b",
+      "EXACT:05c",
+      "EXACT:071",
+      "EXACT:0a5",
+      "EXACT:340",
+      "EXACT:64d"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:4e0",
+      "EXACT:806"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          55,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 6,
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 7,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d2",
+      "first_stage_budget": 6,
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "original_first_bridge_problem_id": "61faf9dacef51cc1de34e3f1aec0716d2feee6dff170660402aba4d0b6855ccb",
+      "route_id": "S05P2",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05",
+      "unrestricted_joint_optimum": 6
+    },
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "e67e4726ecdb05ab3db68bea36b135ff94e8f3b37c06ec6c6e821e6ef0769d4d",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "LP_INTEGER_WITNESS",
+    "exact_dual_lower_bound": "7",
+    "first_budget_dual_weight": "0",
+    "first_cost": 1,
+    "first_witness": [
+      "EXACT:074"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a8",
+      "EXACT:0ce",
+      "EXACT:403",
+      "EXACT:4bd",
+      "EXACT:b0d"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 7,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d3",
+      "first_stage_budget": 1,
+      "intermediate": "MODE__EXACT__d2",
+      "original_first_bridge_problem_id": "852d89d53eee59e6aac9b905c1a2dcdc869516e656333d973ab5010862358fe1",
+      "route_id": "S06P1",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06",
+      "unrestricted_joint_optimum": 7
+    },
+    "second_cost": 6,
+    "second_witness": [
+      "EXACT:00e",
+      "EXACT:05a",
+      "EXACT:065",
+      "EXACT:08b",
+      "EXACT:186",
+      "EXACT:890"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "76c53724bdfa36ebf5e15e7f8a49caa3c6c0fca5b292c76443374ff51453cd46",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "LP_INTEGER_WITNESS",
+    "exact_dual_lower_bound": "7",
+    "first_budget_dual_weight": "0",
+    "first_cost": 7,
+    "first_witness": [
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:065",
+      "EXACT:074",
+      "EXACT:0c2",
+      "EXACT:24a",
+      "EXACT:518"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a8",
+      "EXACT:0ce",
+      "EXACT:403",
+      "EXACT:4bd",
+      "EXACT:b0d"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 7,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 9,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d3",
+      "first_stage_budget": 7,
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "original_first_bridge_problem_id": "99daf0abc2f0aaedd3421b50d810f8639840fc726d06fdb56e9a936829693f31",
+      "route_id": "S06P2",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06",
+      "unrestricted_joint_optimum": 7
+    },
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "ba66f5f53634c5fceaf9e97325963b19c4dfab278e939ac2807c7c8fbd282046",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "LP_INTEGER_WITNESS",
+    "exact_dual_lower_bound": "8",
+    "first_budget_dual_weight": "0",
+    "first_cost": 2,
+    "first_witness": [
+      "EXACT:053",
+      "EXACT:071"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:025",
+      "EXACT:02d",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:05e",
+      "EXACT:070",
+      "EXACT:074",
+      "EXACT:078",
+      "EXACT:10b",
+      "EXACT:14a",
+      "EXACT:2e2",
+      "EXACT:2ed",
+      "EXACT:409",
+      "EXACT:425",
+      "EXACT:4e2",
+      "EXACT:4f2",
+      "EXACT:e8b"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 8,
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 9,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d4",
+      "first_stage_budget": 2,
+      "intermediate": "MODE__EXACT__d3",
+      "original_first_bridge_problem_id": "ce43bbdc268e1d5052960229df07dac883270fd62c3e8bc6eb8f69ac1406fb7b",
+      "route_id": "S07P1",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07",
+      "unrestricted_joint_optimum": 8
+    },
+    "second_cost": 6,
+    "second_witness": [
+      "EXACT:00b",
+      "EXACT:035",
+      "EXACT:08c",
+      "EXACT:0ca",
+      "EXACT:186",
+      "EXACT:20e"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "a0b0c9439f7f640ded6f752e97ee3142b41af9f9fc5db61fc23e38e9175f8c80",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "LP_INTEGER_WITNESS",
+    "exact_dual_lower_bound": "8",
+    "first_budget_dual_weight": "0",
+    "first_cost": 7,
+    "first_witness": [
+      "EXACT:00b",
+      "EXACT:02e",
+      "EXACT:05a",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:1c7",
+      "EXACT:288"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:025",
+      "EXACT:02d",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:05e",
+      "EXACT:070",
+      "EXACT:074",
+      "EXACT:078",
+      "EXACT:10b",
+      "EXACT:14a",
+      "EXACT:2e2",
+      "EXACT:2ed",
+      "EXACT:409",
+      "EXACT:425",
+      "EXACT:4e2",
+      "EXACT:4f2",
+      "EXACT:e8b"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 8,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d4",
+      "first_stage_budget": 7,
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "original_first_bridge_problem_id": "2debd8622892f3bdc5b1bea2e9eec5bb323470e9da4382b4eef0cf64493cd1a1",
+      "route_id": "S07P2",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07",
+      "unrestricted_joint_optimum": 8
+    },
+    "second_cost": 1,
+    "second_witness": [
+      "EXACT:035"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "d1b1c3e244e9caca7aa94b16b385bffe63281b553ef4fe49ce56d1f7d478a9b1",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 9,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "LP_INTEGER_WITNESS",
+    "exact_dual_lower_bound": "9",
+    "first_budget_dual_weight": "0",
+    "first_cost": 3,
+    "first_witness": [
+      "EXACT:053",
+      "EXACT:071",
+      "EXACT:0d4"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00e",
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:04f",
+      "EXACT:05a",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a5",
+      "EXACT:14a",
+      "EXACT:1cd",
+      "EXACT:20b",
+      "EXACT:225",
+      "EXACT:270",
+      "EXACT:2cd",
+      "EXACT:2dd",
+      "EXACT:470",
+      "EXACT:4fc",
+      "EXACT:9ab",
+      "EXACT:9de",
+      "EXACT:9f6",
+      "EXACT:d8b"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 4,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 9,
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 10,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d5",
+      "first_stage_budget": 3,
+      "intermediate": "MODE__EXACT__d4",
+      "original_first_bridge_problem_id": "c0bd6db3843154aa206554159577409151b4d121d600db021f2a3393a3ae8faa",
+      "route_id": "S08P1",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08",
+      "unrestricted_joint_optimum": 9
+    },
+    "second_cost": 6,
+    "second_witness": [
+      "EXACT:01b",
+      "EXACT:04a",
+      "EXACT:065",
+      "EXACT:08e",
+      "EXACT:0c2",
+      "EXACT:1c2"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "cfae40454853fc35e409f867e6ddd2157fad3a3e662ab913425a281ebbb8afc8",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 9,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "exact_dual_lower_bound": "9",
+    "first_budget_dual_weight": "0",
+    "first_cost": 7,
+    "first_witness": [
+      "EXACT:01b",
+      "EXACT:02e",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:183",
+      "EXACT:24a",
+      "EXACT:286"
+    ],
+    "inherited_coordinates": [
+      "EXACT:00e",
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:04f",
+      "EXACT:05a",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a5",
+      "EXACT:14a",
+      "EXACT:1cd",
+      "EXACT:20b",
+      "EXACT:225",
+      "EXACT:270",
+      "EXACT:2cd",
+      "EXACT:2dd",
+      "EXACT:470",
+      "EXACT:4fc",
+      "EXACT:9ab",
+      "EXACT:9de",
+      "EXACT:9f6",
+      "EXACT:d8b"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 4,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 9,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d5",
+      "first_stage_budget": 7,
+      "intermediate": "ACTIONABLE__EXACT__d5",
+      "original_first_bridge_problem_id": "31b2d8d5388f34da680a7e01dc65d1e377875697265c052baf87a46be8e830c4",
+      "route_id": "S08P2",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08",
+      "unrestricted_joint_optimum": 9
+    },
+    "second_cost": 2,
+    "second_witness": [
+      "EXACT:051",
+      "EXACT:05c"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "723a74e12d553320411e1b5d04e41e3e57f5996db95c2a8e326a34d990f40893",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "exact_dual_lower_bound": "269/35",
+    "first_budget_dual_weight": "16/35",
+    "first_cost": 6,
+    "first_witness": [
+      "MODE:00f",
+      "MODE:025",
+      "MODE:05a",
+      "MODE:071",
+      "MODE:103",
+      "MODE:245"
+    ],
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "16/35"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "16/35"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "24/35"
+      },
+      {
+        "classes": [
+          0,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/7"
+      },
+      {
+        "classes": [
+          2,
+          5
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/7"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "4/7"
+      },
+      {
+        "classes": [
+          14,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "12/35"
+      },
+      {
+        "classes": [
+          15,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/35"
+      },
+      {
+        "classes": [
+          30,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/35"
+      },
+      {
+        "classes": [
+          44,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/7"
+      },
+      {
+        "classes": [
+          45,
+          53
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "11/35"
+      },
+      {
+        "classes": [
+          45,
+          59
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/7"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/35"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "9/35"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "18/35"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/35"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "17/35"
+      },
+      {
+        "classes": [
+          2,
+          5
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/35"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "27/35"
+      },
+      {
+        "classes": [
+          14,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/35"
+      },
+      {
+        "classes": [
+          44,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/35"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "27/35"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/35"
+      }
+    ],
+    "restricted_joint_cost": 8,
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 10,
+      "archived_second_cost": 4,
+      "destination": "MODE__MODE__d2",
+      "first_stage_budget": 6,
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "original_first_bridge_problem_id": "423e14ad57155ccc839d1f6b278466534050575dbb5ccc57749ac9f51c0a1225",
+      "route_id": "S10P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10",
+      "unrestricted_joint_optimum": 8
+    },
+    "second_cost": 2,
+    "second_witness": [
+      "MODE:029",
+      "MODE:031"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "2b679008eda22db90be1a38c18de8538a7efc10b52f7fab92b60dde1c6c5239e",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 10,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "exact_dual_lower_bound": "10",
+    "first_budget_dual_weight": "0",
+    "first_cost": 3,
+    "first_witness": [
+      "MODE:029",
+      "MODE:031",
+      "MODE:071"
+    ],
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 10,
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 11,
+      "archived_second_cost": 8,
+      "destination": "MODE__MODE__d3",
+      "first_stage_budget": 3,
+      "intermediate": "MODE__MODE__d2",
+      "original_first_bridge_problem_id": "f9a6c3cf02c74f8d9b90fa5e5a24095ba8872daf6f078cdcbaa375ba42750b1f",
+      "route_id": "S13P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13",
+      "unrestricted_joint_optimum": 10
+    },
+    "second_cost": 7,
+    "second_witness": [
+      "MODE:019",
+      "MODE:01b",
+      "MODE:035",
+      "MODE:04a",
+      "MODE:40e",
+      "MODE:424",
+      "MODE:e00"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "certificate_sha256": "0c4a1f5ad1b4b770de5d6ae1ea7553a01008af47e21be86330ee4d13ebf4df66",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 10,
+    "classification": "LOCAL_MINIMUM_TIE_SUFFICES",
+    "diagnostic_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "exact_dual_lower_bound": "10",
+    "first_budget_dual_weight": "0",
+    "first_cost": 7,
+    "first_witness": [
+      "MODE:01b",
+      "MODE:035",
+      "MODE:071",
+      "MODE:092",
+      "MODE:0ca",
+      "MODE:10e",
+      "MODE:418"
+    ],
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "restricted_joint_cost": 10,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 12,
+      "archived_second_cost": 5,
+      "destination": "MODE__MODE__d3",
+      "first_stage_budget": 7,
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "original_first_bridge_problem_id": "b5da3be892da3bfa562fe97f23b7dabc420c8aa3892fae14f13158588ccfd4c9",
+      "route_id": "S13P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13",
+      "unrestricted_joint_optimum": 10
+    },
+    "second_cost": 3,
+    "second_witness": [
+      "MODE:019",
+      "MODE:029",
+      "MODE:031"
+    ],
+    "status": "EXACT_OPTIMUM"
+  }
+]

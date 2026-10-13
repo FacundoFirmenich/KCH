@@ -1,0 +1,74 @@
+{
+  "editorial_revision": "Precisión del alcance del coeficiente b de H y reparación de cabecera Markdown; resultados numéricos intactos.",
+  "files": {
+    "AGGREGATES_ALL_1200.csv": {
+      "bytes": 342871,
+      "sha256": "0134b1566888444615b6ec026a8c8945d32b6dc2c3fc99467533fac450dd1952"
+    },
+    "CELLS_ALL_960.csv": {
+      "bytes": 317312,
+      "sha256": "e0cec861b31fd56da6d90949ac58a451fc599e3ccaaca49a970dcc055d1464d8"
+    },
+    "DICTAMEN_SOLAR_LOCAL_ES.md": {
+      "bytes": 24080,
+      "sha256": "8e0740347099f3dde68918292a28bc137e35b2f0aeb62c77af9b9a04dc7c6bf0"
+    },
+    "EXECUTION_ENVIRONMENT.json": {
+      "bytes": 272,
+      "sha256": "26b308f8c874786ab980e026b176074a3082bd59468f1d4bd1bd321f08c7d9a2"
+    },
+    "PRECALCULATION_SCOPE_ES.md": {
+      "bytes": 2287,
+      "sha256": "f515613274476a884232e1a89a6c6c3ec851c469ca0a88e94096b697b4daf0d0"
+    },
+    "REEXECUTED_V2_60_CHECKS.json": {
+      "bytes": 8549,
+      "sha256": "7b00e26ec718f141c6afaba4950a18a114dea8727378ca71a32a1ea2a36f9c1d"
+    },
+    "SNAPSHOT_COVERAGE_ALL_15.csv": {
+      "bytes": 951,
+      "sha256": "ada2953a0150b89147e183de3f7ced9e61c377bb94a4721b3d7f1f63d8d9e715"
+    },
+    "SOLAR_LOCAL_DIAGNOSTIC.json": {
+      "bytes": 129073,
+      "sha256": "55e2fe706e94df5ff402f14eaf41ebd74ac2089dcfd3679d70a435ccacbc9797"
+    },
+    "SOLAR_LOCAL_VERIFICATION.json": {
+      "bytes": 809,
+      "sha256": "2d1fc1edcfafff567a0adee6b28ed1e050efa820ac47a5b8eeff4f4ff4ebe18a"
+    },
+    "TRAIN_HARP_CONTRIBUTIONS_ALL_192.csv": {
+      "bytes": 36282,
+      "sha256": "29bf51233dcd5ac07982c390d171530c45dfc3a1a432afaec96bea3586e1deca"
+    },
+    "TRAIN_PARAMETERS_H_L_ALL_96.csv": {
+      "bytes": 27001,
+      "sha256": "d7211f573ae98e9a0b84a81efd80a9812b32a9a8e5131060229c800c456ab076"
+    },
+    "TRAIN_SNAPSHOT_DERIVATIVES_ALL_60.csv": {
+      "bytes": 4849,
+      "sha256": "5ecf4f6d43b2ae72ae6228b5e5451d0ae94e1145ccd0120929819cfeba9e38c4"
+    },
+    "TRAIN_TRANSITION_INFLUENCE_ALL_768.csv": {
+      "bytes": 167984,
+      "sha256": "4f0a0136b3ed7455e09e93f295709052d688f06bac16d1eac7f045acc1953712"
+    },
+    "TRANSITIONS_ALL_12.csv": {
+      "bytes": 2512,
+      "sha256": "92d187ffec1dedae3f64c3cc549d1ea96480b29c452f43871e12ad09b2601332"
+    },
+    "diagnose_solar_v16.py": {
+      "bytes": 15251,
+      "sha256": "bcf44573f2cc14b2986086fe2e7688f795bd49ab8ff16fd1b97d7a266554f7cb"
+    },
+    "verify_solar_local.py": {
+      "bytes": 13107,
+      "sha256": "0327f4eef22f2ef61a4e5fb0c8df675a21ee5a410381d9546f76915a60d67522"
+    },
+    "write_dictamen.py": {
+      "bytes": 17167,
+      "sha256": "ab6d162b4f6f4710dbf7fd5a984189892678fae2c9334c3c3a52bff4b12a6cee"
+    }
+  },
+  "format": "KCH_SOLAR_LOCAL_DIAGNOSTIC_DELIVERY_V1"
+}
