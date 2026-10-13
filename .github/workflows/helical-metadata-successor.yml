@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
-      OUT: ${{ runner.temp }}/helical-v16
+      OUT: /tmp/helical-v16
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
         with:
@@ -54,9 +54,9 @@ jobs:
         with:
           name: solar-v16-metadata-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            ${{ runner.temp }}/helical-v16/metadata
-            ${{ runner.temp }}/helical-v16/METADATA_*.log
-            ${{ runner.temp }}/helical-v16/METADATA_EXIT_CODE.txt
+            /tmp/helical-v16/metadata
+            /tmp/helical-v16/METADATA_*.log
+            /tmp/helical-v16/METADATA_EXIT_CODE.txt
           if-no-files-found: error
           retention-days: 30
       - name: Execute once on frozen selected windows
@@ -84,10 +84,10 @@ jobs:
         with:
           name: solar-v16-result-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            ${{ runner.temp }}/helical-v16/safe
-            ${{ runner.temp }}/helical-v16/*.log
-            ${{ runner.temp }}/helical-v16/*EXIT_CODE.txt
-            ${{ runner.temp }}/helical-v16/PIP_FREEZE.txt
+            /tmp/helical-v16/safe
+            /tmp/helical-v16/*.log
+            /tmp/helical-v16/*EXIT_CODE.txt
+            /tmp/helical-v16/PIP_FREEZE.txt
           if-no-files-found: error
           retention-days: 30
       - name: Adjudicate
