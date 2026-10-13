@@ -1,0 +1,132 @@
+{
+  "claim_count": 29,
+  "domains": [
+    "bayme",
+    "ceh",
+    "cuantoritmica",
+    "ech",
+    "formal",
+    "galactic_mhd",
+    "kch_fabric",
+    "physical_bench",
+    "pluriverse",
+    "runtime",
+    "seismic",
+    "solar"
+  ],
+  "effective_reservations": {
+    "BAYME_CEH": [],
+    "BAYME_OPERATIONS": [
+      "NO_CURRENT_OPERATIONAL_STATE_CHECK",
+      "REPORT_RECOVERED_NOT_RAW_LEDGER_REPLAY"
+    ],
+    "CEH_PROGRAM": [
+      "NO_COMPLETE_CEH_EMPIRICAL_BENCHMARK"
+    ],
+    "CUANTORITMICA": [
+      "UNITS_BASE_ROUNDING_AND_SEARCH_BUDGET_NOT_UNIVERSALLY_FIXED"
+    ],
+    "ECH": [
+      "ATLAS_GENERATOR_AND_204_ENTRY_CACHE_MISSING"
+    ],
+    "IDENTIFIABILITY": [],
+    "KCH_FABRIC": [
+      "HISTORICAL_ALPHA_SCOPE"
+    ],
+    "M31_RESPONSE": [
+      "CENTRAL_FIELD_MODEL_NOT_FULL_POSTERIOR"
+    ],
+    "M33_2D": [
+      "ARCHIVED_TRANSCRIPTION_NOT_INDEPENDENTLY_REFETCHED",
+      "COEFFICIENT_PRODUCTS_NOT_SEPARATE_FACTORS",
+      "COVARIANCE_SENSITIVITY_NOT_PUBLISHED_FULL_COVARIANCE"
+    ],
+    "M33_RADIAL": [
+      "ARCHIVED_TRANSCRIPTION_NOT_INDEPENDENTLY_REFETCHED",
+      "COEFFICIENT_PRODUCTS_NOT_SEPARATE_FACTORS",
+      "COVARIANCE_SENSITIVITY_NOT_PUBLISHED_FULL_COVARIANCE"
+    ],
+    "OBSERVATION_QUOTIENT": [],
+    "PARITY_BRIDGES": [],
+    "PHYSICAL_BENCH": [
+      "CURRENT_HARDWARE_AND_SUPPLIER_STATUS_NOT_REVERIFIED"
+    ],
+    "PLURIVERSE": [
+      "NO_COMPARABLE_CLOSED_LATENT_RIVAL",
+      "NO_EMPIRICAL_COSMOLOGICAL_DISCRIMINATION"
+    ],
+    "RETURN_TRANSPORT": [],
+    "RUNTIME_CUSTODY": [],
+    "SEISMIC_BLIND_V09": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_DESIGN_V09A": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_DYNAMIC_V082": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_LOCAL": [],
+    "SEISMIC_MEMBERSHIP": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_PILOT_GLOBAL": [
+      "INDIO_PILOT_TO_TEST_OVERLAP_NOT_QUANTIFIED"
+    ],
+    "SEISMIC_TERMINAL_V11": [
+      "MODEL_SOURCE_GRAPH_CONDITIONAL",
+      "SAME_GEOGRAPHY_TEMPORAL_REPLICATION"
+    ],
+    "SOLAR_BASIS": [],
+    "SOLAR_DIRECT": [],
+    "SOLAR_FLUX": [
+      "ORIGINAL_SAFE_RESULT_NOT_REEXECUTED_IN_THIS_CONTINUITY"
+    ],
+    "SOLAR_FORECAST": [],
+    "SOLAR_HEMISPHERE": [],
+    "SOLAR_TEMPORAL": [
+      "ENDPOINT_ACTIVITY_IS_NOT_EX_ANTE",
+      "FIXED_GRID_QUALITY_FAILURE"
+    ]
+  },
+  "format": "KCH_INTEGRAL_CORPUS_VERIFICATION_V1",
+  "frozen_solar_inputs_unchanged": true,
+  "historical_membership_rows": 61555,
+  "new_authority_granted": false,
+  "nonangular_crosswalk": true,
+  "solar_eligible_snapshots": 6,
+  "solar_model_scores_produced": 0,
+  "solar_result_identity_valid": true,
+  "source_hash_checks": [
+    {
+      "id": "P1V5",
+      "sha256_matches": true
+    },
+    {
+      "id": "P2V5",
+      "sha256_matches": true
+    },
+    {
+      "id": "MEMBERSHIP",
+      "sha256_matches": true
+    },
+    {
+      "id": "SOLAR15",
+      "sha256_matches": true
+    },
+    {
+      "id": "ECHRECOVERY",
+      "sha256_matches": true
+    },
+    {
+      "id": "M33_REPLAY",
+      "sha256_matches": true
+    },
+    {
+      "id": "BAYME_ARITHMETIC",
+      "sha256_matches": true
+    }
+  ],
+  "status": "PASS",
+  "synthetic_observations_created": false
+}

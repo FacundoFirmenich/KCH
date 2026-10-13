@@ -1,0 +1,66 @@
+DICTAMEN M33 — VERIFICACIÓN RADIAL DETERMINISTA
+13 de octubre de 2026
+
+RESULTADO
+
+PASS_DETERMINISTIC_RADIAL_REPLAY. La rama M33 ya contenía una auditoría radial real y ejecutada. Reducir su estado a un protocolo 2D pendiente de FITS omite ese resultado anterior. Esta revisión recuperó y regeneró sus números deterministas a partir de las tablas preservadas, sin nuevos datos observacionales, simulaciones científicas ni remuestreo.
+
+DATOS Y PROCEDENCIA
+
+Se parsearon 396 registros H-alfa de la transcripción pública Kam et al. (2015), Table A1, VizieR J/MNRAS/449/4048, incorporada en m33_empirical_pilot.py. Se leyeron 102 bins H I de Koch et al. (2018), Table C1 corregida, CSV con SHA-256 f8e26eb579e512986f07dd02b8e607d9ead7e42ec94279c6992df99bd9da4ecf. Se reconstruyeron los 28 bins comunes y se compararon todas sus columnas numéricas con el producto CSV histórico.
+
+La procedencia pública es la documentada en el archivo recuperado. Esta operación no volvió a descargar las tablas primarias ni verificó la transcripción H-alfa contra la publicación en línea. Sí verificó la identidad de todos los 142 archivos enumerados en SHA256SUMS.txt: 142 coincidencias, cero discrepancias. El hash del archivo contenedor comunicado por la recuperación es 59d7011fa5288a483aa5197b29eac9f57048c5ce03bc1090857e8a85b6a0764b; este subencargo verificó su contenido materializado, no recalculó el hash del contenedor.
+
+REGENERACIÓN NUMÉRICA
+
+66 comparaciones numéricas/de integridad aprobaron; ninguna falló. Se usaron copias exactas de los tres módulos científicos y del CSV H I. Se llamaron sólo funciones deterministas: lectura, deproyección a inclinación común, agregación, covarianzas, estadísticos de anillo, respuesta geométrica central, norma mínima, contrastes de referencias y leave-one-bin-out.
+
+Escenario primario: inclination_plus_corr3_L0p5.
+Medias de anillo 1–3 / 3–5 kpc: [-2.745511046068306, -1.3078672795449826] km/s.
+Errores estándar bajo ese escenario: [3.3232212491851354, 3.884041402803687] km/s.
+Chi-cuadrado para medias nulas: 0.8176597943726727, 2 grados de libertad.
+p de ese contraste: 0.6644272436537919.
+Norma mínima del coeficiente para reproducir los estimadores puntuales: 289.9970493373486.
+Rango de la respuesta de dos anillos: 2.
+Envolventes para norma del coeficiente <=1: [0.030327953547135945, 0.02583733218392703] km/s.
+Dispersión entre referencias neutrales: [0.6404582199709212, 0.4567006835142635] km/s.
+Razón dispersión/envolvente natural: [21.11775260323833, 17.67599999346563].
+Leave-one-bin-out: 28 omisiones deterministas, con concordancia de extremos y dispersión respecto al registro histórico.
+
+OCHO ESCENARIOS DE COVARIANZA
+
+published_diagonal: p=0.0001530753816665455; chi2=17.569160134546; errores=[0.7569478633861201, 0.6225508172173911]; mínimo autovalor=2.168213446723821.
+inclination_only: p=0.1387030828119677; chi2=3.950839450868366; errores=[2.7270893931619367, 3.384277423264019]; mínimo autovalor=2.200465213780737.
+inclination_plus_unc1: p=0.1977595921019471; chi2=3.24140633461245; errores=[2.749912100103627, 3.402695060920762]; mínimo autovalor=3.200465213780737.
+inclination_plus_corr2_L0p5: p=0.5286080292113634; chi2=1.275016174696981; errores=[3.01819078764496, 3.624527231436853]; mínimo autovalor=4.644420756813946.
+inclination_plus_corr3_L0p5: p=0.6644272436537919; chi2=0.8176597943726727; errores=[3.3232212491851354, 3.884041402803687]; mínimo autovalor=5.951773995512065.
+inclination_plus_corr5_L0p5: p=0.8008336849903905; chi2=0.4442039753839689; errores=[4.15134144107057, 4.617492123863802]; mínimo autovalor=9.923097614043202.
+inclination_plus_corr3_L0p25: p=0.5985683905338681; chi2=1.026428981229117; errores=[3.1171768919055096, 3.708833184528555]; mínimo autovalor=7.915590973188568.
+inclination_plus_corr3_L1p0: p=0.7044916278761837; chi2=0.700557662990319; errores=[3.5647721770028338, 4.092320163850526]; mínimo autovalor=4.82043461478374.
+
+INTERPRETACIÓN QUE LOS RESULTADOS PERMITEN
+
+El escenario primario no muestra una discrepancia radial significativa; p=0,664427 no demuestra que el efecto sea exactamente cero. La alternativa que usa solamente errores diagonales publicados produce p=0,000153075, pero ese resultado no es robusto a la inclusión declarada de incertidumbre de inclinación y covarianza. Los ocho escenarios son supuestos de sensibilidad, no covarianzas observadas y calibradas experimentalmente. No corresponde elegir un escenario por producir el resultado preferido.
+
+La norma 289,997 es una exigencia para ajustar exactamente el vector puntual de residuos con la normalización histórica de respuesta (escala de conducción 0,1 kpc, escala de helicidad 1 kpc, velocidad de Alfvén 20 km/s y geometría magnética central). No es una cota inferior estadística del coeficiente verdadero ni una exclusión calibrada: los residuos son inciertos y compatibles con cero bajo el escenario primario. Las referencias Brandt y Corbelli/Sellwood son sensibilidades de referencia, no nuevas observaciones independientes. Su dispersión supera aproximadamente 18–21 veces la respuesta denominada natural bajo esa normalización.
+
+Por tanto, se recupera un resultado científico radial existente: ausencia de detección robusta en ese contraste y diagnóstico de escala/naturalidad condicionado a modelos y covarianzas declarados. No se recupera una medición directa de helicidad, una validación universal de ausencia física ni la inferencia espacial 2D pendiente.
+
+OPERACIONES EXCLUIDAS Y ESTADO HISTÓRICO
+
+No se invocó main() de los módulos científicos porque incluye bootstrap. No se recalculó el moving-block bootstrap de 20.000 remuestreos guardado históricamente: esos percentiles conservan estado histórico citado, sin nueva verificación numérica aquí. No se ejecutaron benchmarks JAX, generadores, pruebas de campos sintéticos, nuevas simulaciones ni ajuste FITS 2D. No se adquirieron FITS ni se modificaron preregistro, grilla de 75 ejecuciones, umbrales o sensibilidad 2D.
+
+Se activó un bloqueo de llamadas aleatorias para importación y ejecución de los módulos de análisis, después de inicializar bibliotecas. No registró intentos de muestreo en el replay científico. Una primera tentativa del wrapper se detuvo durante inicialización de SciPy porque esa biblioteca genera ejemplos documentales al importarse; se corrigió el orden de inicialización sin cambiar módulos científicos, datos ni funciones ejecutadas. Esos ejemplos internos de biblioteca no son observaciones, evidencia ni simulaciones del experimento.
+
+ARTEFACTOS
+
+M33_RADIAL_VERIFICATION.json: huellas, versiones, 66 comprobaciones, 142 verificaciones de archivos, resultados regenerados y límites.
+M33_REPLAY_COMMON_BINS_28.csv: los 28 bins observacionales derivados y regenerados.
+verify_m33_radial_deterministic.py: ejecutor explícito sin llamada a main() original ni remuestreo.
+source_exact_copies/: copias byte a byte de los módulos y CSV que ejecutó la comprobación.
+
+REPRODUCCIÓN
+
+python verify_m33_radial_deterministic.py --source RUTA_ARCHIVO_MHD_V4_3 --output RUTA_AUDITORIA
+
+Las huellas originales de PREREGISTRATION_M33_2D.md, m33_2d_run_manifest.json y DATA_MANIFEST.yml están registradas en el JSON y no se modificaron.

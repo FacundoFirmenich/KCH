@@ -1,0 +1,19 @@
+{
+  "format": "BAYME_HISTORICAL_REPORT_ARITHMETIC_CHECK",
+  "source_library_id": "libfile_4c75907fde508191a91d579b9d256a51",
+  "n_rows": 15,
+  "bayme": {
+    "mae": 0.96396,
+    "rmse": 1.2353536605631064
+  },
+  "persistence": {
+    "mae": 1.1509066666666667,
+    "rmse": 1.4901930389494287
+  },
+  "bayme_wins": 8,
+  "rounded_table_values_only": true,
+  "raw_freeze_and_outcome_ledgers_replayed": false,
+  "coverage_and_interval_width_not_recomputed": true,
+  "ceh_hypothesis_test": false,
+  "new_forecasts_created": false
+}

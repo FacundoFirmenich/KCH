@@ -1,0 +1,35 @@
+RECUPERACIÓN ACOTADA DE INPUTS ECH — 13 OCTUBRE 2026
+
+Se recuperaron los tres archivos originales vinculados por SHA-256 en SOURCE_BINDING.json del atlas ECH_HELICAL_EVIDENCE_MIGRATION_2026-10-12.zip:
+
+1. cas_constitutional_kernel_v1.json, 712.699 bytes.
+   SHA-256 82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138.
+2. compiled_distance_codebooks.json, 12.896 bytes, 28 contratos.
+   SHA-256 9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b.
+3. adjacent_contract_migrations.csv, 14.195 bytes, 96 transiciones dirigidas.
+   SHA-256 818beed9111f102a863ad619a6209b27f44026b5adb335ea715814c8d1e3d91d.
+
+La coincidencia de los tres digests es exacta. Se conservaron copias en results/recovered_inputs, sin reconstruir ni sustituir los datos. También se recuperó el paquete predecesor ECH_EVIDENCE_CARRYING_CONTRACT_MIGRATIONS_2026-10-08.zip para comprobar sus contenidos.
+
+Esto permite superar la mera lectura del informe. Se recalculó el conjunto de nuevas coordenadas de evidencia de cada uno de los 96 bucles usando los codebooks originales y las sondas de los puentes archivados. Coinciden las 96 diferencias publicadas: 34 son no vacías y 62 vacías. Esta comprobación utiliza las elecciones del solver ya archivadas; no vuelve a resolver su optimalidad.
+
+Para los 23 cuadrados se verificaron las identidades aritméticas de costes, las cardinalidades y disjunción de las diferencias de conjuntos, y la concordancia de las banderas publicadas: 17 no conmutan en coste y 22 no conmutan en evidencia. Eso valida la consistencia interna de esas filas; no constituye una regeneración independiente de los caminos completos.
+
+Siguen sin recuperarse el generador original del atlas y la caché de 204 entradas del solver. SOURCE_BINDING sólo declara el número de entradas: no publica nombre de archivo ni hash para esa caché, ni identifica el generador. Las búsquedas focalizadas de sus nombres y de los inputs en Library y en el checkout KCH indicado no los localizaron. Esto no demuestra que no existan en otro lugar.
+
+El archivo helical_evidence_state_runtime.py aplica un delta que ya recibe calculado; no genera el atlas. evidence_migration_compiler.py consulta una fila del CSV de adyacencias; tampoco resuelve el puente ni regenera los 23 cuadrados. El TEST_LOG original contiene una declaración de seis grupos PASS, sin los seis procedimientos de prueba correspondientes. Las pruebas del paquete predecesor verifican tablas y un contraejemplo; no suministran el generador ausente.
+
+Estado corregido de reproducibilidad:
+- Inputs vinculados por hash: recuperados 3/3.
+- Integridad del atlas archivado: verificados sus diez hashes internos.
+- Diferencias de coordenadas de los 96 bucles: recalculadas a partir de dos inputs originales.
+- Contabilidad de 23 cuadrados: comprobada contra sus filas publicadas.
+- Optimalidad de puentes, evaluación del kernel sobre destinos, cadenas completas de recibos y hashes de los estados completos: no recomputados.
+- Replay numérico integral del atlas: todavía no establecido.
+
+La recuperación permite continuar desde inputs reales y preservados. El siguiente paso concreto es recuperar generador/caché o escribir y declarar una implementación independiente que evalúe el kernel original y vuelva a resolver los problemas finitos; esta auditoría acotada no hizo esa implementación ni fabricó sus inputs.
+
+Comprobaciones reproducibles:
+python3 audit_ech_recovery.py --source-dir source --output-dir results
+
+Evidencia estructurada: results/ECH_INPUT_RECOVERY_AUDIT.json.

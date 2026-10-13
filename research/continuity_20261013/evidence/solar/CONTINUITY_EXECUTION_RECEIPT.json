@@ -1,0 +1,104 @@
+{
+  "authority_ceiling": "NONE",
+  "complete_snapshot_count": 6,
+  "execution_commit": "c31fb9be4f6ddbdce36b25a975246ceffb79dcda",
+  "format": "KCH_INTEGRAL_CONTINUITY_EXECUTION_V1",
+  "frozen_parent": "60105a141c1790fcd2152fb0ba511835b4620793",
+  "independent_units": "THREE_DEVELOPMENT_HARPS_NOT_192_INDEPENDENT_COMPONENT_TRANSITIONS",
+  "input_checks": [
+    {
+      "actual_sha256": "6dea1d7637554fc7087d3ff8045471ffee5f34ec943adf8604a3f04a702be291",
+      "expected_sha256": "6dea1d7637554fc7087d3ff8045471ffee5f34ec943adf8604a3f04a702be291",
+      "path": ".github/helical_v142/multiscale_operator_basis_v142.py"
+    },
+    {
+      "actual_sha256": "f89976728c7a719553408fa5ca4a46fcac1d221ef97fe6350246cd573ae11679",
+      "expected_sha256": "f89976728c7a719553408fa5ca4a46fcac1d221ef97fe6350246cd573ae11679",
+      "path": ".github/helical_v15/temporal_lift_development.py"
+    },
+    {
+      "actual_sha256": "b86a9b0ac4db96f871797f228a907ce4d8a1707cba9fee50887bd586ec28f688",
+      "expected_sha256": "b86a9b0ac4db96f871797f228a907ce4d8a1707cba9fee50887bd586ec28f688",
+      "path": "construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_LOCK_V1_4_1.json"
+    },
+    {
+      "actual_sha256": "71c09003bf571ee1e07510a784ca0cba7da4930322306baae58d9c2cafa31541",
+      "expected_sha256": "71c09003bf571ee1e07510a784ca0cba7da4930322306baae58d9c2cafa31541",
+      "path": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json"
+    },
+    {
+      "actual_sha256": "ef4d59a3e7d433291114a93a7034e636319a838bd30ff9c419f1035363015663",
+      "expected_sha256": "ef4d59a3e7d433291114a93a7034e636319a838bd30ff9c419f1035363015663",
+      "path": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json"
+    },
+    {
+      "actual_sha256": "67d1e032b3351c2ff99626c0b9974cec9e2f3a9b1afa64a0e9abcd9b05d6ba0e",
+      "expected_sha256": "67d1e032b3351c2ff99626c0b9974cec9e2f3a9b1afa64a0e9abcd9b05d6ba0e",
+      "path": "construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json"
+    },
+    {
+      "actual_sha256": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e",
+      "expected_sha256": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e",
+      "path": "construct_successors/KCH_HELICAL_V15_TEMPORAL_LIFT_DEVELOPMENT_20261012/TEMPORAL_LIFT_PROTOCOL_V1_5.json"
+    }
+  ],
+  "inputs_match": true,
+  "interpretation": "CONDITIONAL_TRANSITION_COMPARISON_WITH_ENDPOINT_ACTIVITY_NOT_EX_ANTE_FORECAST",
+  "outcome": "INSUFFICIENT_TEMPORAL_SUPPORT",
+  "raw_directory_absent": true,
+  "result_content_hash_valid": true,
+  "result_receipt_id": "h15lift:6f499ba1d20621358cee323fb4cb5f94b07aed4c608192b35132926b189dd8a0",
+  "result_sha256": "7387e280062da88dbb35d0b70a71490a4d7abfa7a72f8068f06292c8253c875b",
+  "run_attempt": "1",
+  "run_id": "38381823297",
+  "runtime_exit_code": 31,
+  "scientific_confirmation": false,
+  "scientific_runtime_modified": false,
+  "snapshot_identity_checks": [
+    {
+      "actual_harp": 401,
+      "actual_time": "2011.03.09_11:24:00_TAI",
+      "harp": 401,
+      "match": true,
+      "requested": "2011.03.09_11:24:00_TAI"
+    },
+    {
+      "actual_harp": 401,
+      "actual_time": "2011.03.09_17:24:00_TAI",
+      "harp": 401,
+      "match": true,
+      "requested": "2011.03.09_17:24:00_TAI"
+    },
+    {
+      "actual_harp": 401,
+      "actual_time": "2011.03.09_23:24:00_TAI",
+      "harp": 401,
+      "match": true,
+      "requested": "2011.03.09_23:24:00_TAI"
+    },
+    {
+      "actual_harp": 401,
+      "actual_time": "2011.03.10_05:24:00_TAI",
+      "harp": 401,
+      "match": true,
+      "requested": "2011.03.10_05:24:00_TAI"
+    },
+    {
+      "actual_harp": 401,
+      "actual_time": "2011.03.10_11:24:00_TAI",
+      "harp": 401,
+      "match": true,
+      "requested": "2011.03.10_11:24:00_TAI"
+    },
+    {
+      "actual_harp": 5249,
+      "actual_time": "2015.03.02_00:00:00_TAI",
+      "harp": 5249,
+      "match": true,
+      "requested": "2015.03.02_00:00:00_TAI"
+    }
+  ],
+  "socket_default_timeout_seconds": 90,
+  "status": "VALID_RECEIPT_INSUFFICIENT_SUPPORT_NOT_SCIENTIFIC_NULL",
+  "wrapper_exit_code": 31
+}
