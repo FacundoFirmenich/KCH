@@ -1,0 +1,9 @@
+{
+  "file": "SELECTED_MEMBERSHIP_ALL_61555.csv.gz",
+  "compression": "gzip, mtime=0",
+  "uncompressed_bytes": 3792310,
+  "uncompressed_sha256": "2b1c2a07701d6226756f7cad1984ba584fc4590a0c2df8f75c1f5ecbd87d1095",
+  "compressed_sha256": "e0793358ac78aee59ecb826b224079ad64bc7604f3d4fbfcf81d2fe2f94723ae",
+  "rows": 61555,
+  "angular_values": false
+}

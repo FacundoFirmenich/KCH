@@ -1,0 +1,141 @@
+{
+  "format": "KCH_INTEGRAL_CONTINUITY_DELIVERY_V1",
+  "parent_scientific_commit": "60105a141c1790fcd2152fb0ba511835b4620793",
+  "solar_execution_commit": "c31fb9be4f6ddbdce36b25a975246ceffb79dcda",
+  "files": [
+    {
+      "path": "CLAIM_EVIDENCE_REGISTRY.json",
+      "bytes": 24719,
+      "sha256": "a804ec04210ee04e122a52aa5809ff1cf6337b4061365b73b7775de7753d790a"
+    },
+    {
+      "path": "CORPUS_VERIFICATION.json",
+      "bytes": 3266,
+      "sha256": "6b30466bd7baa69e7bdceb452b30afdbb90d6e51ccb728bb04afd8f6138e1d0d"
+    },
+    {
+      "path": "README_ES.md",
+      "bytes": 7226,
+      "sha256": "33aab9a934f54946f4ed8485b9d8cdf3743a3fbad34178844fa8a1019264c55f"
+    },
+    {
+      "path": "SOLAR_PREEXECUTION_SCOPE.md",
+      "bytes": 2057,
+      "sha256": "8919c131bdc64df00f82f270db601dbd9842f5474f4893b70367ee2e419ef74d"
+    },
+    {
+      "path": "evidence/bayme/HISTORICAL_REPORT_ARITHMETIC_CHECK.json",
+      "bytes": 525,
+      "sha256": "075f7c0c403f5d7ef4728a08c1b3b22a3245f8a9e80300b9b8638feeca26adee"
+    },
+    {
+      "path": "evidence/ech/DICTAMEN_RECUPERACION_ECH.txt",
+      "bytes": 3564,
+      "sha256": "eec1aca9391ee56bd40b6ad1751b675b6fedcb8ca60506c90719b4fac61dda0c"
+    },
+    {
+      "path": "evidence/ech/ECH_INPUT_RECOVERY_AUDIT.json",
+      "bytes": 6237,
+      "sha256": "0e8212efe480785761753b215e56b2a10c5bef049ab44960c1eddaee04582f6e"
+    },
+    {
+      "path": "evidence/m33/DICTAMEN_M33_RADIAL_ES.txt",
+      "bytes": 7296,
+      "sha256": "eac6689d3308d0b4d2729617fcf35a0031c03abbfe043b02410a695bf99d4f42"
+    },
+    {
+      "path": "evidence/m33/M33_RADIAL_VERIFICATION.json",
+      "bytes": 56534,
+      "sha256": "0dbdc75eade85f1ced260b8d364cc2fe5def50ee17b26691bfab60e1f54053cb"
+    },
+    {
+      "path": "evidence/m33/M33_REPLAY_COMMON_BINS_28.csv",
+      "bytes": 5205,
+      "sha256": "c110904d0eee7cb057039225ee9cd6de7e33b223fd1cf4fddc2c897ce34546f6"
+    },
+    {
+      "path": "evidence/seismic/CATEGORY_COUNTS_BY_COHORT_AND_PARTITION.csv",
+      "bytes": 892,
+      "sha256": "50cbdd513725c5fb7be5dbc563a2fb2fcfbe22d7c6da0d53f7cf168e4318590f"
+    },
+    {
+      "path": "evidence/seismic/COMPRESSED_CROSSWALK.json",
+      "bytes": 348,
+      "sha256": "7aa6ef9f3a461062233807a5fe4af9f627b0af8cfeb75c0c17c020af594127e9"
+    },
+    {
+      "path": "evidence/seismic/HISTORICAL_MEMBERSHIP_AUDIT.json",
+      "bytes": 10823,
+      "sha256": "e0ea6a496fd02392e382febf682dbc80e2188641f05f9c5371596cb5c837c68a"
+    },
+    {
+      "path": "evidence/seismic/SELECTED_KNOWN_CATALOG_EXCEPTIONS.csv",
+      "bytes": 6589,
+      "sha256": "5bf57c484d82d53f213939891945a15eaaf25035547cd7a353586155588efc57"
+    },
+    {
+      "path": "evidence/seismic/SELECTED_MEMBERSHIP_ALL_61555.csv.gz",
+      "bytes": 395099,
+      "sha256": "e0793358ac78aee59ecb826b224079ad64bc7604f3d4fbfcf81d2fe2f94723ae"
+    },
+    {
+      "path": "evidence/solar/CONTINUITY_EXECUTION_RECEIPT.json",
+      "bytes": 4295,
+      "sha256": "cb38ef76e10c79a60c3c1f6b13f7129a43c36b0e96f88e11dbf7503923aa22b6"
+    },
+    {
+      "path": "evidence/solar/PIP_FREEZE.txt",
+      "bytes": 341,
+      "sha256": "2dceefccb8cac5624d0e69f308e1a3dc23f3cfbab565acd6c67ffb6d459b5389"
+    },
+    {
+      "path": "evidence/solar/TEMPORAL_LIFT_DEVELOPMENT_RESULT_V1_5.json",
+      "bytes": 42531,
+      "sha256": "7387e280062da88dbb35d0b70a71490a4d7abfa7a72f8068f06292c8253c875b"
+    },
+    {
+      "path": "papers/CHANGELOG_EMPIRICAL_V5.md",
+      "bytes": 1128,
+      "sha256": "1442d72d43b19de893ec158edfb5a1a67e2c77920539f7f9ec347fb71033b97d"
+    },
+    {
+      "path": "papers/CHANGELOG_FORMAL_V5.md",
+      "bytes": 18880,
+      "sha256": "5ee8eb79f4e694bacb1ccceb42a157392b422212f5a14460388b5740a4e9fc10"
+    },
+    {
+      "path": "papers/PAPER_1_PROJECTED_RECURRENCE_HELICAL_LIFTS_V5.md",
+      "bytes": 46260,
+      "sha256": "c561f4dc0d0dd7259eca0c8be1bcef2c0a10305348805b00491c589dded5cc2b"
+    },
+    {
+      "path": "papers/PAPER_2_FAIL_CLOSED_HELICAL_TESTS_CALIFORNIA_V5.md",
+      "bytes": 38476,
+      "sha256": "2a11ed91da8d1c78050a2500b12982bacf9c0cfb1e39253caa11844776736122"
+    },
+    {
+      "path": "tools/audit_ech_recovery.py",
+      "bytes": 8257,
+      "sha256": "057431ccb4f1ad3e7314083e3579d7f6e81b63a2cd1e967c61a100a5dcf2a769"
+    },
+    {
+      "path": "tools/audit_historical_membership.py",
+      "bytes": 15179,
+      "sha256": "35c0489b90b722cd7e12ec9fad3684df73eb32563b402c511f1eeb2e42734e0d"
+    },
+    {
+      "path": "tools/verify_integral_registry.py",
+      "bytes": 3780,
+      "sha256": "0a39f9810a822ebe6be2179b2f52f582e54d29624fcc82c93d50f9d4b7da1b66"
+    },
+    {
+      "path": "tools/verify_m33_radial_deterministic.py",
+      "bytes": 9944,
+      "sha256": "69280425c90c47f828b1dce9a89550ad811af8d1f4263af3781372ef377f802e"
+    }
+  ],
+  "raw_directional_files_included": false,
+  "raw_solar_fits_included": false,
+  "new_synthetic_observations": false,
+  "canonical_merge": false
+}

@@ -1,0 +1,157 @@
+{
+  "archive_manifest_checks": [
+    {
+      "member": "HELICAL_LIFT_THEOREM.md",
+      "sha256": "2327d2946ef933993225334ab37ab5543d28c51a2a5d8d9350d6b8ed85fd506c",
+      "verified": true
+    },
+    {
+      "member": "KCH_HELICAL_MIGRATION_CONTRACT.md",
+      "sha256": "bed66596559027d44708b4431db81479cf182bd839f5116bf5b0a812c1204413",
+      "verified": true
+    },
+    {
+      "member": "SCIENTIFIC_REPORT.md",
+      "sha256": "161f82eddd7985efb8e27b7c2fd946b9bd2ce23c08bcf41bb3ce3d9492d08e85",
+      "verified": true
+    },
+    {
+      "member": "SOURCE_BINDING.json",
+      "sha256": "e1ad58e027edab3b6da27f3c105b2d65aba30a1fabed48076a14b1f8914c3f5a",
+      "verified": true
+    },
+    {
+      "member": "TEST_LOG.txt",
+      "sha256": "002297c9cba6dd6d65cb2e560c1f8f8cf220eef19552b94f4c5bff94f9f68c3b",
+      "verified": true
+    },
+    {
+      "member": "helical_evidence_state_runtime.py",
+      "sha256": "7180e630609c4c3d664502403ab3269f643a93ff17b11752d9f235b5aee67ce4",
+      "verified": true
+    },
+    {
+      "member": "loop_monodromy_summary.csv",
+      "sha256": "f089777622f709d71921e6da6f9defbd79fc74c3450b0e23ae9cad1cddddad2a",
+      "verified": true
+    },
+    {
+      "member": "migration_square_noncommutativity.csv",
+      "sha256": "124ad5fa0094a6b09099c314b5c03e77a77fc360832bdae47c44748a6731d743",
+      "verified": true
+    },
+    {
+      "member": "migration_square_summary.csv",
+      "sha256": "5a751ccd0b91718b78e57f211eb067c82d894503cdebfe0a0c69dd044f7d7478",
+      "verified": true
+    },
+    {
+      "member": "two_edge_loop_monodromy.csv",
+      "sha256": "0bfc8d0223f444ab3cb15abbe280896218f10ce2efdc89bf9231077e70e921c4",
+      "verified": true
+    }
+  ],
+  "audit_script_sha256": "057431ccb4f1ad3e7314083e3579d7f6e81b63a2cd1e967c61a100a5dcf2a769",
+  "bounded_search": {
+    "evidence_migration_compiler_role": "CSV lookup; not a bridge solver or atlas generator",
+    "helical_evidence_state_runtime_role": "apply a supplied transition delta; not a numerical atlas generator",
+    "library_named_search_terms": [
+      "codebooks",
+      "bridge_solver_cache",
+      "adjacent_migrations",
+      "bridge",
+      "migration",
+      "kernel",
+      "bridge_solver",
+      "helical_evidence",
+      "solver_cache"
+    ],
+    "predecessor_archive_contains_generator_or_solver_cache": false,
+    "predecessor_archive_recovered": "ECH_EVIDENCE_CARRYING_CONTRACT_MIGRATIONS_2026-10-08.zip",
+    "repo_base_commit": "60105a141c1790fcd2152fb0ba511835b4620793",
+    "repo_exact_source_hash_or_named_input_matches": 0,
+    "scope_limit": "Known Library names and this KCH checkout only; no claim of global nonexistence"
+  },
+  "format": "ECH_ORIGINAL_INPUT_RECOVERY_AND_BOUNDED_REPLAY_V0_1",
+  "missing_for_original_replay": [
+    {
+      "filename_in_binding": null,
+      "hash_in_binding": null,
+      "item": "bridge solver cache",
+      "recovered": false,
+      "reported_entries": 204
+    },
+    {
+      "filename_in_binding": null,
+      "hash_in_binding": null,
+      "item": "original atlas generator and serialization rules",
+      "recovered": false
+    }
+  ],
+  "observed_counts": {
+    "cost_noncommuting": 17,
+    "evidence_noncommuting": 22,
+    "loops": 96,
+    "positive_evidence_delta": 34,
+    "squares": 23,
+    "zero_evidence_delta": 62
+  },
+  "original_atlas_archive": {
+    "bytes": 13942,
+    "library_file_id": "libfile_0e0c7a091c8c8191b8e03651fe4305bc",
+    "name": "ECH_HELICAL_EVIDENCE_MIGRATION_2026-10-12.zip",
+    "sha256": "a201aafbeda966e5d600e803cd19ea9ff16e6a21bbf9ad21b7f51f27e272504e"
+  },
+  "receipt_sha256": "15a2293f4406232ce5c392c95f5f045906bff4ace87e98cadac732bf582c8551",
+  "recovered_exact_inputs": [
+    {
+      "bytes": 712699,
+      "exact_binding_match": true,
+      "library_file_id": "libfile_0c288d1c9bd08191832299344cf98ec6",
+      "name": "cas_constitutional_kernel_v1.json",
+      "sha256": "82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138",
+      "source_binding_key": "kernel_sha256"
+    },
+    {
+      "bytes": 12896,
+      "exact_binding_match": true,
+      "library_file_id": "libfile_551f0315b7588191b7b53ad0344cec2b",
+      "name": "compiled_distance_codebooks.json",
+      "sha256": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b",
+      "source_binding_key": "codebooks_sha256"
+    },
+    {
+      "bytes": 14195,
+      "exact_binding_match": true,
+      "library_file_id": "libfile_49b4e1668c80819180a3e562679b959e",
+      "name": "adjacent_contract_migrations.csv",
+      "sha256": "818beed9111f102a863ad619a6209b27f44026b5adb335ea715814c8d1e3d91d",
+      "source_binding_key": "adjacent_migrations_sha256"
+    }
+  ],
+  "safety": {
+    "missing_inputs_reconstructed": false,
+    "permission_granted": false,
+    "remote_mutations": false,
+    "synthetic_input_created": false
+  },
+  "source_binding": {
+    "adjacent_migrations_sha256": "818beed9111f102a863ad619a6209b27f44026b5adb335ea715814c8d1e3d91d",
+    "bridge_solver_cache_entries": 204,
+    "codebooks_sha256": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b",
+    "kernel_sha256": "82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138",
+    "permission_granted": false
+  },
+  "status": "THREE_HASH_BOUND_INPUTS_RECOVERED_FULL_ATLAS_REPLAY_NOT_ESTABLISHED",
+  "verification_levels": {
+    "bridge_optimality": "NOT_RECOMPUTED: solver choices inherited from the frozen adjacent table",
+    "complete_numerical_atlas_regeneration": "NOT_PERFORMED: original generator and 204-entry cache not recovered",
+    "destination_claim_satisfaction": "NOT_RECOMPUTED: original kernel recovered but not evaluated by this audit",
+    "exact_input_byte_recovery": "3/3 source-binding digests matched",
+    "finite_family": "28 codebooks and 96 distinct directed adjacent transitions recovered",
+    "full_state_ledger_hash_replay": "NOT_ESTABLISHED: original atlas serialization/generator absent",
+    "loop_genealogy": "Published receipt-count and return flags checked; full per-step receipt chains are not supplied",
+    "square_results": "23/23 arithmetic and set-difference identities checked on published rows",
+    "two_edge_coordinate_deltas": "96/96 recomputed from original codebooks and archived bridge probe choices"
+  }
+}

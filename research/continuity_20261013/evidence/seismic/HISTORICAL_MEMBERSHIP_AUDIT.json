@@ -1,0 +1,317 @@
+{
+  "audit_script_sha256": "35c0489b90b722cd7e12ec9fad3684df73eb32563b402c511f1eeb2e42734e0d",
+  "boundary": {
+    "all_code_1_records_may_be_called_blasts": false,
+    "angular_values_decoded": false,
+    "authority_ceiling": "NONE",
+    "axis_observable_is_an_existing_boolean_preflight_output": true,
+    "historical_archive_bytes_hashed_for_integrity_only": true,
+    "historical_archive_contains_previously_opened_directional_values": true,
+    "new_dataset_selected": false,
+    "numeric_event_code_semantics_certified": false,
+    "old_scientific_metrics_changed": false,
+    "pickle_executed": false,
+    "post_2021_terminal_source_implicated_by_this_audit": false,
+    "scientific_models_rerun": false,
+    "sealed_directional_fields_opened": false,
+    "source_labels_replaced": false,
+    "synthetic_records_created": false
+  },
+  "category_counts": [
+    {
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "ev_bl_code_0": 34479,
+      "ev_bl_code_1": 3374,
+      "ev_bl_code_1_fraction": 0.08913428261960743,
+      "n": 37853,
+      "stage": "selected"
+    },
+    {
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "ev_bl_code_0": 33912,
+      "ev_bl_code_1": 3368,
+      "ev_bl_code_1_fraction": 0.09034334763948498,
+      "n": 37280,
+      "stage": "observable"
+    },
+    {
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "ev_bl_code_0": 567,
+      "ev_bl_code_1": 6,
+      "ev_bl_code_1_fraction": 0.010471204188481676,
+      "n": 573,
+      "stage": "not_observable"
+    },
+    {
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "ev_bl_code_0": 16957,
+      "ev_bl_code_1": 1683,
+      "ev_bl_code_1_fraction": 0.09028969957081545,
+      "n": 18640,
+      "stage": "train"
+    },
+    {
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "ev_bl_code_0": 8345,
+      "ev_bl_code_1": 975,
+      "ev_bl_code_1_fraction": 0.1046137339055794,
+      "n": 9320,
+      "stage": "calibration"
+    },
+    {
+      "cohort": "BAY_AREA_HAYWARD_CALAVERAS",
+      "ev_bl_code_0": 8610,
+      "ev_bl_code_1": 710,
+      "ev_bl_code_1_fraction": 0.07618025751072961,
+      "n": 9320,
+      "stage": "test"
+    },
+    {
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "ev_bl_code_0": 23563,
+      "ev_bl_code_1": 139,
+      "ev_bl_code_1_fraction": 0.005864484009788204,
+      "n": 23702,
+      "stage": "selected"
+    },
+    {
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "ev_bl_code_0": 23159,
+      "ev_bl_code_1": 138,
+      "ev_bl_code_1_fraction": 0.005923509464737949,
+      "n": 23297,
+      "stage": "observable"
+    },
+    {
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "ev_bl_code_0": 404,
+      "ev_bl_code_1": 1,
+      "ev_bl_code_1_fraction": 0.0024691358024691358,
+      "n": 405,
+      "stage": "not_observable"
+    },
+    {
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "ev_bl_code_0": 11608,
+      "ev_bl_code_1": 40,
+      "ev_bl_code_1_fraction": 0.003434065934065934,
+      "n": 11648,
+      "stage": "train"
+    },
+    {
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "ev_bl_code_0": 5787,
+      "ev_bl_code_1": 37,
+      "ev_bl_code_1_fraction": 0.006353021978021978,
+      "n": 5824,
+      "stage": "calibration"
+    },
+    {
+      "cohort": "PARKFIELD_CENTRAL_SAF",
+      "ev_bl_code_0": 5764,
+      "ev_bl_code_1": 61,
+      "ev_bl_code_1_fraction": 0.010472103004291846,
+      "n": 5825,
+      "stage": "test"
+    }
+  ],
+  "format": "KCH_HELICAL_HISTORICAL_MEMBERSHIP_AUDIT_V0_1",
+  "historical_test_code_1_count": 771,
+  "identity_checks": {
+    "all_61555_global_indices_valid_unique": true,
+    "all_selected_evid_nc_sc_ev_bl_agree_with_independent_blind_extract": true,
+    "historical_stage_counts_match_published_preflight": true,
+    "numeric_text_representations_compared_exactly_after_integrality_check": true,
+    "same_original_catalog_sha256": "cc13d9e4335bb20579d224c52ea2936d3251719c381c830c23b2abfd0a1eedeb",
+    "selected_and_preflight_global_indices_and_cohorts_identical": true
+  },
+  "known_catalog_exceptions": {
+    "LABEL_CONTRADICTIONS_ALL_2438.csv": {
+      "by_cohort": {
+        "BAY_AREA_HAYWARD_CALAVERAS": 16,
+        "PARKFIELD_CENTRAL_SAF": 1
+      },
+      "by_cohort_and_partition": {
+        "BAY_AREA_HAYWARD_CALAVERAS|calibration": 13,
+        "BAY_AREA_HAYWARD_CALAVERAS|not_observable": 1,
+        "BAY_AREA_HAYWARD_CALAVERAS|train": 2,
+        "PARKFIELD_CENTRAL_SAF|test": 1
+      },
+      "by_partition": {
+        "calibration": 13,
+        "not_observable": 1,
+        "test": 1,
+        "train": 2
+      },
+      "observable": 16,
+      "selected": 17,
+      "source_types_json": {
+        "\"qb\"": 17
+      }
+    },
+    "UNSUPPORTED_SOURCE_TYPES_ALL_1370.csv": {
+      "by_cohort": {
+        "BAY_AREA_HAYWARD_CALAVERAS": 1
+      },
+      "by_cohort_and_partition": {
+        "BAY_AREA_HAYWARD_CALAVERAS|train": 1
+      },
+      "by_partition": {
+        "train": 1
+      },
+      "observable": 1,
+      "selected": 1,
+      "source_types_json": {
+        "\"\\u0019\"": 1
+      }
+    }
+  },
+  "limitations": [
+    "The 17 qb matches are row-level external-catalog labels under the earlier candidate network mapping and <=1 second origin agreement; they do not certify the entire numeric codebook.",
+    "Counterpart CSVs and their immutable producer-path references were verified against the prior evidence archive; the 82 annual producer catalogs were not downloaded again during this audit.",
+    "The 3513 numeric-code-1 rows are counted as codes, never automatically relabeled blasts.",
+    "This audit quantifies membership; it does not estimate how corrected membership would change fitted metrics.",
+    "Partition membership is reconstructed from the published Boolean observability mask and stable chronological split; no directions or scientific models are recomputed."
+  ],
+  "next_requirement": "Version-specific producer codebook plus an explicit event-membership disposition; retain old metrics as historical and qualify their cohort interpretation until then.",
+  "npz_arrays_decoded": [
+    {
+      "archive_member": "evidence/selected_directional_columns.npz",
+      "dtype": "int64",
+      "npy_member": "global_index.npy",
+      "sha256_npy_bytes": "be58c5b3edc49c9aff8296083eb2841fcf4306811b0a5e6f9003dcbc4db7036b",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/selected_directional_columns.npz",
+      "dtype": "int16",
+      "npy_member": "cohort_code.npy",
+      "sha256_npy_bytes": "6489140fea3fc8e65cbabf87890fc19b9cbd8252385e206b821524478f43e37b",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/selected_directional_columns.npz",
+      "dtype": "<U3",
+      "npy_member": "nc_sc.npy",
+      "sha256_npy_bytes": "a03eab7d1baf3a5ef01fbc411f20a7c475b09a3f4d15fb6492ffb4d8dcc14396",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/selected_directional_columns.npz",
+      "dtype": "<U3",
+      "npy_member": "ev_bl.npy",
+      "sha256_npy_bytes": "46318243e85ad206076c1495f15f5271630a3243da616b0b1cc4f2bd0fea20f2",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/selected_directional_columns.npz",
+      "dtype": "<U10",
+      "npy_member": "evid.npy",
+      "sha256_npy_bytes": "f42205de1afaa4a707ac040da54c8fcd8d61dd1decf66c3984183e84caa563f0",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/selected_directional_columns.npz",
+      "dtype": "float64",
+      "npy_member": "event_time_epoch.npy",
+      "sha256_npy_bytes": "01f3514fd4ba58f3e3b39aa77e31b6c432715e64471d7d187a5b4ca7f4252e8d",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/directional_preflight_arrays.npz",
+      "dtype": "int64",
+      "npy_member": "global_index.npy",
+      "sha256_npy_bytes": "be58c5b3edc49c9aff8296083eb2841fcf4306811b0a5e6f9003dcbc4db7036b",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/directional_preflight_arrays.npz",
+      "dtype": "int16",
+      "npy_member": "cohort_code.npy",
+      "sha256_npy_bytes": "6489140fea3fc8e65cbabf87890fc19b9cbd8252385e206b821524478f43e37b",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "evidence/directional_preflight_arrays.npz",
+      "dtype": "bool",
+      "npy_member": "axis_observable.npy",
+      "sha256_npy_bytes": "638ed897e299e2167e1718aa5fc20e2955a69302b60fed0100e91ec1a8eb7796",
+      "shape": [
+        61555
+      ]
+    },
+    {
+      "archive_member": "remote-run9/expanded/blind/blind_columns.npz",
+      "dtype": "float64",
+      "npy_member": "nc_sc.npy",
+      "sha256_npy_bytes": "93007bcf29e8340f8cca0a6ebf34a012c0450cf725327898f5899efa9d8cd763",
+      "shape": [
+        1574113
+      ]
+    },
+    {
+      "archive_member": "remote-run9/expanded/blind/blind_columns.npz",
+      "dtype": "float64",
+      "npy_member": "ev_bl.npy",
+      "sha256_npy_bytes": "689c278b635d6d8660323557d4d445d6503995b9016ede1739d175bfd65544b3",
+      "shape": [
+        1574113
+      ]
+    },
+    {
+      "archive_member": "remote-run9/expanded/blind/blind_columns.npz",
+      "dtype": "<U8",
+      "npy_member": "evid.npy",
+      "sha256_npy_bytes": "6bf81dfbf53d2e77e84f912f2fcb485d28db7af9a3c8a4a61f07ae44af67708b",
+      "shape": [
+        1574113
+      ]
+    }
+  ],
+  "observable_code_1_count": 3506,
+  "observable_event_count": 60577,
+  "original_sources": [
+    {
+      "bytes": 5111806,
+      "name": "KCH_KWANBLOCKS_HELICAL_LIFT_v0_8_2_EVIDENCE.zip",
+      "sha256": "48e949cd1625a0f5969567fcd9da7f00f3488be3b6d7d9299e3f53032babcf69"
+    },
+    {
+      "bytes": 41351953,
+      "name": "KCH_HELICAL_CONTINUATION_20261012.zip",
+      "sha256": "71d4be4b3bdfd9ab7303439c6e2f3e665804caf967afdab7b117b3fcbbc4c592"
+    }
+  ],
+  "outcome": "RETROSPECTIVE_MEMBERSHIP_RESERVATION_MATERIALLY_CONFIRMED",
+  "output_sha256": {
+    "CATEGORY_COUNTS_BY_COHORT_AND_PARTITION.csv": "50cbdd513725c5fb7be5dbc563a2fb2fcfbe22d7c6da0d53f7cf168e4318590f",
+    "SELECTED_KNOWN_CATALOG_EXCEPTIONS.csv": "5bf57c484d82d53f213939891945a15eaaf25035547cd7a353586155588efc57",
+    "SELECTED_MEMBERSHIP_ALL_61555.csv": "2b1c2a07701d6226756f7cad1984ba584fc4590a0c2df8f75c1f5ecbd87d1095"
+  },
+  "receipt_id": "hcontinuitymembership:ab63c91ad2697577daa98a8863d7f68af0f24a095c9407ccdea7f69395171ead",
+  "record_scope": "REAL_EXISTING_V0_8_1_SELECTION_AND_V0_8_2_PREFLIGHT",
+  "selected_code_1_count": 3513,
+  "selected_event_count": 61555,
+  "source_receipt_ids": [
+    "h8select:840dbd71528f30a2936505d1ffddaaccb6236670a77ea157bb7ab295242a1486",
+    "h8unblind:9fa86f5f03a7314c1287065482e35b6ef85aeece3968abf6266966907758c057",
+    "h8preflight:f36e2e0e01626cfc679bed6c0d261aa7bda7a156510e296377f7503fae850186",
+    "h9extract:ae6073569e8d4d228026fa7d7cc36e07aa9ed7de01e08965fd336e03a105df7c"
+  ]
+}

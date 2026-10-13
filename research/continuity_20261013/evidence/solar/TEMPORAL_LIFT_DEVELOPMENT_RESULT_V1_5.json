@@ -1,0 +1,1322 @@
+{
+  "authority_ceiling": "NONE",
+  "canonicalization": "BLOCKED",
+  "development_only": true,
+  "dominance_rule_pass": false,
+  "fiber_names": [
+    "HC_SIGNED_MEAN@sigma=0.0",
+    "HC_NORMALIZED@sigma=0.0",
+    "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+    "HC_SIGNED_MEAN@sigma=1.0",
+    "HC_NORMALIZED@sigma=1.0",
+    "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+    "HC_SIGNED_MEAN@sigma=2.0",
+    "HC_NORMALIZED@sigma=2.0",
+    "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+    "HC_SIGNED_MEAN@sigma=4.0",
+    "HC_NORMALIZED@sigma=4.0",
+    "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+    "HC_SIGNED_MEAN@sigma=8.0",
+    "HC_NORMALIZED@sigma=8.0",
+    "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+    "SIGNED_HC_LOG_SCALE_INTEGRAL"
+  ],
+  "flare_outcomes_accessed": false,
+  "fold_results": [],
+  "format": "KCH_HELICAL_V1_5_TEMPORAL_LIFT_DEVELOPMENT_RESULT",
+  "fresh_2026_holdout_accessed": false,
+  "global_primary_margin_fraction": null,
+  "global_scores": {},
+  "global_winner": null,
+  "numerical_failures": [],
+  "operator_runtime_git_blob_sha1_expected": "b400baaa8306fcf37ed095607c586f52e3d89911",
+  "operator_runtime_sha256": "6dea1d7637554fc7087d3ff8045471ffee5f34ec943adf8604a3f04a702be291",
+  "outcome": "INSUFFICIENT_TEMPORAL_SUPPORT",
+  "parent_operator_protocol_sha256": "67d1e032b3351c2ff99626c0b9974cec9e2f3a9b1afa64a0e9abcd9b05d6ba0e",
+  "physical_helicity": "NOT_EVALUATED",
+  "promotion": "BLOCKED",
+  "protocol_sha256": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e",
+  "receipt_id": "h15lift:6f499ba1d20621358cee323fb4cb5f94b07aed4c608192b35132926b189dd8a0",
+  "runner_up": null,
+  "scientific_confirmation": false,
+  "scope": "DEVELOPMENT_ONLY_DIRECT_FIELD_TEMPORAL_TRANSPORT_RIVAL_GATE",
+  "source_failures": [
+    {
+      "error": "hmi.sharp_cea_720s[2920][2013.07.08_00:00:00_TAI]: QUALITY=70656 != 0",
+      "error_type": "RuntimeError",
+      "harp": 2920,
+      "time_tai": "2013.07.08_00:00:00_TAI",
+      "trajectory_id": "HARP2920_DEV_20130708_20130709"
+    },
+    {
+      "error": "hmi.sharp_cea_720s[5249][2015.03.02_06:00:00_TAI]: QUALITY=66560 != 0",
+      "error_type": "RuntimeError",
+      "harp": 5249,
+      "time_tai": "2015.03.02_06:00:00_TAI",
+      "trajectory_id": "HARP5249_DEV_20150302_20150303"
+    }
+  ],
+  "topological_class": "NOT_EVALUATED",
+  "trajectories": [
+    {
+      "harp": 401,
+      "snapshots": [
+        {
+          "activity_control_log": [
+            -3.3359271061278055,
+            13.834975014651507,
+            -9.222450663902142,
+            -16.245751519110073
+          ],
+          "activity_control_names": [
+            "HC_UNSIGNED_MEAN",
+            "MAGNETIC_ENERGY_PROXY",
+            "JZ_RMS",
+            "GRADIENT_ENERGY"
+          ],
+          "activity_control_raw": [
+            0.035581583011354445,
+            1019655.1242955745,
+            9.879627425391169e-05,
+            8.801562168192516e-08
+          ],
+          "fiber": [
+            0.00028398529965329794,
+            0.002236562291860921,
+            0.0005156044196316156,
+            0.0007860727049298324,
+            0.008115931444498922,
+            0.0014665874627980474,
+            0.001428262779278067,
+            0.020211927805609684,
+            0.0027918269301234434,
+            0.002604139442171708,
+            0.05691015718839752,
+            0.00552687811110251,
+            0.003982155715092265,
+            0.1384046032082631,
+            0.009514662694202449,
+            0.003785367155000558
+          ],
+          "fiber_names": [
+            "HC_SIGNED_MEAN@sigma=0.0",
+            "HC_NORMALIZED@sigma=0.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+            "HC_SIGNED_MEAN@sigma=1.0",
+            "HC_NORMALIZED@sigma=1.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+            "HC_SIGNED_MEAN@sigma=2.0",
+            "HC_NORMALIZED@sigma=2.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+            "HC_SIGNED_MEAN@sigma=4.0",
+            "HC_NORMALIZED@sigma=4.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+            "HC_SIGNED_MEAN@sigma=8.0",
+            "HC_NORMALIZED@sigma=8.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+            "SIGNED_HC_LOG_SCALE_INTEGRAL"
+          ],
+          "fits_metadata": {
+            "Bp": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Br": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Bt": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "bitmap": {
+              "bunit": null,
+              "hdu_index": 0,
+              "hdu_name": "PRIMARY",
+              "hdu_type": "PrimaryHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "conf_disambig": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            }
+          },
+          "harp": 401,
+          "mask_pixels": 50489,
+          "metadata_attempts": [
+            {
+              "attempt": 1,
+              "delay_before_seconds": 0,
+              "result_rows": 1,
+              "success": true
+            }
+          ],
+          "native_reconciliation": {
+            "CMASK_exact": true,
+            "MEANALP_keyword": -0.00358439,
+            "MEANALP_recomputed": -0.003584373857606773,
+            "MEANALP_relative_error": 4.503525907281868e-06,
+            "MEANALP_sign_match": true,
+            "MEANJZH_keyword": -0.00160394,
+            "MEANJZH_recomputed": -0.001603771976689196,
+            "MEANJZH_relative_error": 0.00010475660610999665,
+            "MEANJZH_sign_match": true,
+            "cmask_keyword": 50489,
+            "computed_mask_count": 50489,
+            "pass": true
+          },
+          "pixel_scale_m": 364424.74781641597,
+          "query": "hmi.sharp_cea_720s[401][2011.03.09_11:24:00_TAI]",
+          "record": {
+            "CMASK": 50489,
+            "HARPNUM": 401,
+            "MEANALP": -0.00358439,
+            "MEANJZH": -0.00160394,
+            "NOAA_AR": 11166,
+            "QUALITY": 0,
+            "T_REC": "2011.03.09_11:24:00_TAI"
+          },
+          "requested_time_tai": "2011.03.09_11:24:00_TAI",
+          "source_receipts": {
+            "Bp": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "518400",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 518400,
+              "sha256": "98188e15bf6045e9fcf94b8b103e9059316cdc897fd7638314109db8b12a76a4"
+            },
+            "Br": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "483840",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 483840,
+              "sha256": "e0a7bae82800e5a5190f4a62c8427978853c27898162ac4fa23c5f8042397781"
+            },
+            "Bt": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "512640",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 512640,
+              "sha256": "bdba0c3cfc5f9e01bbdfbaddab6b2b3a1414b575e25b413ab67174c5e2660c7b"
+            },
+            "bitmap": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "285120",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 285120,
+              "sha256": "966c38dc68601517a78adc56f5a1101a549599623f42012dd4cfc72ca71c31d8"
+            },
+            "conf_disambig": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "51840",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 51840,
+              "sha256": "b433d5d09514a2e8a9c6893e6b561241b58558f4860db25746fdb028a87a02b3"
+            }
+          },
+          "trajectory_id": "HARP401_DEV_20110309_20110310"
+        },
+        {
+          "activity_control_log": [
+            -3.063777775468057,
+            13.967467004902476,
+            -9.038753759683633,
+            -16.020143914653488
+          ],
+          "activity_control_names": [
+            "HC_UNSIGNED_MEAN",
+            "MAGNETIC_ENERGY_PROXY",
+            "JZ_RMS",
+            "GRADIENT_ENERGY"
+          ],
+          "activity_control_raw": [
+            0.046710898195228646,
+            1164109.5347935064,
+            0.00011871869632640368,
+            1.1029095533334571e-07
+          ],
+          "fiber": [
+            0.001996202961035828,
+            0.012267578438440088,
+            0.003064297737581276,
+            0.0025337668079378904,
+            0.020246144455863865,
+            0.004003663495685422,
+            0.003070798620241808,
+            0.033349790257681894,
+            0.005104733979041892,
+            0.004211418131096063,
+            0.07185194609412154,
+            0.007634568194477441,
+            0.005128195852763291,
+            0.1496545434694654,
+            0.010428745563791895,
+            0.0073110174850346404
+          ],
+          "fiber_names": [
+            "HC_SIGNED_MEAN@sigma=0.0",
+            "HC_NORMALIZED@sigma=0.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+            "HC_SIGNED_MEAN@sigma=1.0",
+            "HC_NORMALIZED@sigma=1.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+            "HC_SIGNED_MEAN@sigma=2.0",
+            "HC_NORMALIZED@sigma=2.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+            "HC_SIGNED_MEAN@sigma=4.0",
+            "HC_NORMALIZED@sigma=4.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+            "HC_SIGNED_MEAN@sigma=8.0",
+            "HC_NORMALIZED@sigma=8.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+            "SIGNED_HC_LOG_SCALE_INTEGRAL"
+          ],
+          "fits_metadata": {
+            "Bp": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Br": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Bt": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "bitmap": {
+              "bunit": null,
+              "hdu_index": 0,
+              "hdu_name": "PRIMARY",
+              "hdu_type": "PrimaryHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "conf_disambig": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            }
+          },
+          "harp": 401,
+          "mask_pixels": 47891,
+          "metadata_attempts": [
+            {
+              "attempt": 1,
+              "delay_before_seconds": 0,
+              "result_rows": 1,
+              "success": true
+            }
+          ],
+          "native_reconciliation": {
+            "CMASK_exact": true,
+            "MEANALP_keyword": 0.00127728,
+            "MEANALP_recomputed": 0.0012772706209759688,
+            "MEANALP_relative_error": 7.342966327791145e-06,
+            "MEANALP_sign_match": true,
+            "MEANJZH_keyword": 0.00066461,
+            "MEANJZH_recomputed": 0.0006645775121248258,
+            "MEANJZH_relative_error": 4.888261563059442e-05,
+            "MEANJZH_sign_match": true,
+            "cmask_keyword": 47891,
+            "computed_mask_count": 47891,
+            "pass": true
+          },
+          "pixel_scale_m": 364424.74781641597,
+          "query": "hmi.sharp_cea_720s[401][2011.03.09_17:24:00_TAI]",
+          "record": {
+            "CMASK": 47891,
+            "HARPNUM": 401,
+            "MEANALP": 0.00127728,
+            "MEANJZH": 0.00066461,
+            "NOAA_AR": 11166,
+            "QUALITY": 0,
+            "T_REC": "2011.03.09_17:24:00_TAI"
+          },
+          "requested_time_tai": "2011.03.09_17:24:00_TAI",
+          "source_receipts": {
+            "Bp": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "527040",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 527040,
+              "sha256": "1b0673f8fcc311cb34ff2b8ce513baa1fe27835521746c80c42bf452eb8b000d"
+            },
+            "Br": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "492480",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 492480,
+              "sha256": "40e6184a2388629f8d459e5d3b3e89a3d18794df3070ebb56e5b75b04aa3f30a"
+            },
+            "Bt": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "524160",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 524160,
+              "sha256": "8e50779810bc8e4516a97016171316660b2addc6be3ed90c5063313324ffe052"
+            },
+            "bitmap": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "285120",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 285120,
+              "sha256": "1a361428a879daeba5a8cdcffc41f6dc033cd650e8df62954c573524d6894c39"
+            },
+            "conf_disambig": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "54720",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 54720,
+              "sha256": "51fede46aa628245ebd4c512172d9dc0080f5bc2bbf44212ae93d573e09d8e05"
+            }
+          },
+          "trajectory_id": "HARP401_DEV_20110309_20110310"
+        },
+        {
+          "activity_control_log": [
+            -3.007950217074318,
+            13.936139046961621,
+            -8.958685948265702,
+            -16.0147811235816
+          ],
+          "activity_control_names": [
+            "HC_UNSIGNED_MEAN",
+            "MAGNETIC_ENERGY_PROXY",
+            "JZ_RMS",
+            "GRADIENT_ENERGY"
+          ],
+          "activity_control_raw": [
+            0.049392819624959235,
+            1128205.693671533,
+            0.00012861514970158785,
+            1.1088401148068957e-07
+          ],
+          "fiber": [
+            0.005060879443368707,
+            0.028911348504149434,
+            0.007921493093758237,
+            0.005168547975015664,
+            0.03854576956457921,
+            0.008356232718198738,
+            0.004926120116537914,
+            0.05004954513595262,
+            0.008411617725784259,
+            0.004412719998687762,
+            0.07125763336998772,
+            0.008269520588362805,
+            0.004506886417595745,
+            0.12811201215466944,
+            0.009582403586732144,
+            0.010598439498815688
+          ],
+          "fiber_names": [
+            "HC_SIGNED_MEAN@sigma=0.0",
+            "HC_NORMALIZED@sigma=0.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+            "HC_SIGNED_MEAN@sigma=1.0",
+            "HC_NORMALIZED@sigma=1.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+            "HC_SIGNED_MEAN@sigma=2.0",
+            "HC_NORMALIZED@sigma=2.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+            "HC_SIGNED_MEAN@sigma=4.0",
+            "HC_NORMALIZED@sigma=4.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+            "HC_SIGNED_MEAN@sigma=8.0",
+            "HC_NORMALIZED@sigma=8.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+            "SIGNED_HC_LOG_SCALE_INTEGRAL"
+          ],
+          "fits_metadata": {
+            "Bp": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Br": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Bt": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "bitmap": {
+              "bunit": null,
+              "hdu_index": 0,
+              "hdu_name": "PRIMARY",
+              "hdu_type": "PrimaryHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "conf_disambig": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            }
+          },
+          "harp": 401,
+          "mask_pixels": 51073,
+          "metadata_attempts": [
+            {
+              "attempt": 1,
+              "delay_before_seconds": 0,
+              "result_rows": 1,
+              "success": true
+            }
+          ],
+          "native_reconciliation": {
+            "CMASK_exact": true,
+            "MEANALP_keyword": 0.00575156,
+            "MEANALP_recomputed": 0.005751510871499605,
+            "MEANALP_relative_error": 8.541769606063355e-06,
+            "MEANALP_sign_match": true,
+            "MEANJZH_keyword": 0.00291783,
+            "MEANJZH_recomputed": 0.0029177030165145595,
+            "MEANJZH_relative_error": 4.3519836810468156e-05,
+            "MEANJZH_sign_match": true,
+            "cmask_keyword": 51073,
+            "computed_mask_count": 51073,
+            "pass": true
+          },
+          "pixel_scale_m": 364424.74781641597,
+          "query": "hmi.sharp_cea_720s[401][2011.03.09_23:24:00_TAI]",
+          "record": {
+            "CMASK": 51073,
+            "HARPNUM": 401,
+            "MEANALP": 0.00575156,
+            "MEANJZH": 0.00291783,
+            "NOAA_AR": 11166,
+            "QUALITY": 0,
+            "T_REC": "2011.03.09_23:24:00_TAI"
+          },
+          "requested_time_tai": "2011.03.09_23:24:00_TAI",
+          "source_receipts": {
+            "Bp": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "518400",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 518400,
+              "sha256": "a609c35766a7084abb6bb560bc608e71dae717e6c9419cc70ef1a4e818896401"
+            },
+            "Br": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "486720",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 486720,
+              "sha256": "b51cbb61cb085ae10baf8889f7bbc5166fd3059e50bdf2cf8f1d497fc33598ed"
+            },
+            "Bt": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "515520",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 515520,
+              "sha256": "f03f9c28fd33ee39a8c6c096b6b0ecf3c8b45f89efba36a4982e67e55bc17430"
+            },
+            "bitmap": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "285120",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 285120,
+              "sha256": "fc427f013ee41802d62c9dd8018e73a2cfb740da669c80f21114a53ad9601902"
+            },
+            "conf_disambig": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "57600",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 57600,
+              "sha256": "aa7b6386cf00df1e247f7b6184ea4ab6c7e3178ff46d87957fda545be1a0e96f"
+            }
+          },
+          "trajectory_id": "HARP401_DEV_20110309_20110310"
+        },
+        {
+          "activity_control_log": [
+            -3.071974381905378,
+            13.899840305727688,
+            -9.059166517913862,
+            -16.093527147777216
+          ],
+          "activity_control_names": [
+            "HC_UNSIGNED_MEAN",
+            "MAGNETIC_ENERGY_PROXY",
+            "JZ_RMS",
+            "GRADIENT_ENERGY"
+          ],
+          "activity_control_raw": [
+            0.046329592188836054,
+            1087987.5961413789,
+            0.00011631988673522347,
+            1.0248727957492874e-07
+          ],
+          "fiber": [
+            0.0024385940437614165,
+            0.015470416030865892,
+            0.003975666177734109,
+            0.002613295063231835,
+            0.02202924666291967,
+            0.0043944621799429364,
+            0.0026806094183109857,
+            0.030683816707031564,
+            0.00475218305785291,
+            0.0027128055412284956,
+            0.04739004371515849,
+            0.00525039651380932,
+            0.0032783325958715506,
+            0.09675568481610874,
+            0.007174164300903453,
+            0.005962400954723221
+          ],
+          "fiber_names": [
+            "HC_SIGNED_MEAN@sigma=0.0",
+            "HC_NORMALIZED@sigma=0.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+            "HC_SIGNED_MEAN@sigma=1.0",
+            "HC_NORMALIZED@sigma=1.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+            "HC_SIGNED_MEAN@sigma=2.0",
+            "HC_NORMALIZED@sigma=2.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+            "HC_SIGNED_MEAN@sigma=4.0",
+            "HC_NORMALIZED@sigma=4.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+            "HC_SIGNED_MEAN@sigma=8.0",
+            "HC_NORMALIZED@sigma=8.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+            "SIGNED_HC_LOG_SCALE_INTEGRAL"
+          ],
+          "fits_metadata": {
+            "Bp": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Br": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Bt": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "bitmap": {
+              "bunit": null,
+              "hdu_index": 0,
+              "hdu_name": "PRIMARY",
+              "hdu_type": "PrimaryHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "conf_disambig": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            }
+          },
+          "harp": 401,
+          "mask_pixels": 53398,
+          "metadata_attempts": [
+            {
+              "attempt": 1,
+              "delay_before_seconds": 0,
+              "result_rows": 1,
+              "success": true
+            }
+          ],
+          "native_reconciliation": {
+            "CMASK_exact": true,
+            "MEANALP_keyword": 0.0016369,
+            "MEANALP_recomputed": 0.001636898351309623,
+            "MEANALP_relative_error": 1.0072028694050723e-06,
+            "MEANALP_sign_match": true,
+            "MEANJZH_keyword": 0.00081015,
+            "MEANJZH_recomputed": 0.0008101133903166236,
+            "MEANJZH_relative_error": 4.518877167981306e-05,
+            "MEANJZH_sign_match": true,
+            "cmask_keyword": 53398,
+            "computed_mask_count": 53398,
+            "pass": true
+          },
+          "pixel_scale_m": 364424.74781641597,
+          "query": "hmi.sharp_cea_720s[401][2011.03.10_05:24:00_TAI]",
+          "record": {
+            "CMASK": 53398,
+            "HARPNUM": 401,
+            "MEANALP": 0.0016369,
+            "MEANJZH": 0.00081015,
+            "NOAA_AR": 11166,
+            "QUALITY": 0,
+            "T_REC": "2011.03.10_05:24:00_TAI"
+          },
+          "requested_time_tai": "2011.03.10_05:24:00_TAI",
+          "source_receipts": {
+            "Bp": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "527040",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 527040,
+              "sha256": "345041508a837d310a5ce8c4b603df4d3d2bfd534343666f27a459b4d88c007b"
+            },
+            "Br": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "495360",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 495360,
+              "sha256": "ec9f583d2a19a418693be11363a7755577dad7e43accf978cd11434fd9d25d49"
+            },
+            "Bt": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "524160",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 524160,
+              "sha256": "e7cdad28d168238f6b6b3839444d198c5f4d949dbac7974a4c9f1a63ce97c8e3"
+            },
+            "bitmap": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "285120",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 285120,
+              "sha256": "4040c6f8604c2fdaa7a6f52b9d9d5fa6902e1c2e2d1e66a944d3140cb4c39b89"
+            },
+            "conf_disambig": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "57600",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 57600,
+              "sha256": "061f4bab708d111f7fa9a284923f1120be77d353053632f448560ce2a8aaa74e"
+            }
+          },
+          "trajectory_id": "HARP401_DEV_20110309_20110310"
+        },
+        {
+          "activity_control_log": [
+            -3.1678745912496096,
+            13.839873773535095,
+            -9.105564869233312,
+            -16.165811433792964
+          ],
+          "activity_control_names": [
+            "HC_UNSIGNED_MEAN",
+            "MAGNETIC_ENERGY_PROXY",
+            "JZ_RMS",
+            "GRADIENT_ENERGY"
+          ],
+          "activity_control_raw": [
+            0.04209296765796359,
+            1024662.4236563331,
+            0.00011104612868574844,
+            9.534047225611076e-08
+          ],
+          "fiber": [
+            -0.0007020424996825874,
+            -0.004585456845554595,
+            -0.001224866861581016,
+            -0.00023417782256684427,
+            -0.0021116403793962784,
+            -0.0004218007320615182,
+            0.00028114461914978953,
+            0.0034879553555750287,
+            0.0005336037886184294,
+            0.0011777148157009272,
+            0.022161175137618977,
+            0.002436218957144052,
+            0.00241499438930576,
+            0.0748304293232271,
+            0.005485711397410275,
+            0.0011135371314362121
+          ],
+          "fiber_names": [
+            "HC_SIGNED_MEAN@sigma=0.0",
+            "HC_NORMALIZED@sigma=0.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+            "HC_SIGNED_MEAN@sigma=1.0",
+            "HC_NORMALIZED@sigma=1.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+            "HC_SIGNED_MEAN@sigma=2.0",
+            "HC_NORMALIZED@sigma=2.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+            "HC_SIGNED_MEAN@sigma=4.0",
+            "HC_NORMALIZED@sigma=4.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+            "HC_SIGNED_MEAN@sigma=8.0",
+            "HC_NORMALIZED@sigma=8.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+            "SIGNED_HC_LOG_SCALE_INTEGRAL"
+          ],
+          "fits_metadata": {
+            "Bp": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Br": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "Bt": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "bitmap": {
+              "bunit": null,
+              "hdu_index": 0,
+              "hdu_name": "PRIMARY",
+              "hdu_type": "PrimaryHDU",
+              "shape": [
+                382,
+                733
+              ]
+            },
+            "conf_disambig": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                382,
+                733
+              ]
+            }
+          },
+          "harp": 401,
+          "mask_pixels": 53900,
+          "metadata_attempts": [
+            {
+              "attempt": 1,
+              "delay_before_seconds": 0,
+              "result_rows": 1,
+              "success": true
+            }
+          ],
+          "native_reconciliation": {
+            "CMASK_exact": true,
+            "MEANALP_keyword": -0.00191551,
+            "MEANALP_recomputed": -0.001915409600596887,
+            "MEANALP_relative_error": 5.24139279424644e-05,
+            "MEANALP_sign_match": true,
+            "MEANJZH_keyword": -0.00088993,
+            "MEANJZH_recomputed": -0.0008898777652032068,
+            "MEANJZH_relative_error": 5.869539940589435e-05,
+            "MEANJZH_sign_match": true,
+            "cmask_keyword": 53900,
+            "computed_mask_count": 53900,
+            "pass": true
+          },
+          "pixel_scale_m": 364424.74781641597,
+          "query": "hmi.sharp_cea_720s[401][2011.03.10_11:24:00_TAI]",
+          "record": {
+            "CMASK": 53900,
+            "HARPNUM": 401,
+            "MEANALP": -0.00191551,
+            "MEANJZH": -0.00088993,
+            "NOAA_AR": 11166,
+            "QUALITY": 0,
+            "T_REC": "2011.03.10_11:24:00_TAI"
+          },
+          "requested_time_tai": "2011.03.10_11:24:00_TAI",
+          "source_receipts": {
+            "Bp": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "518400",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 518400,
+              "sha256": "d02c0ced7b277c748eb08006ec3485c94755d0a8416d5cdc80677efe2eb36ce5"
+            },
+            "Br": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "492480",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 492480,
+              "sha256": "58e10163e35f789991f972327fb98f65d09c41c915fbdc94c6b67e38c3ee05df"
+            },
+            "Bt": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "518400",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 518400,
+              "sha256": "d49e24b3dd09d47858e45370d674fe43fd4e6d703dbeeace8608186cc34404ce"
+            },
+            "bitmap": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "285120",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 285120,
+              "sha256": "cde7fc676072a8a96bcec83185c09a44c582f4dd99faa0568deb89aeebedae0c"
+            },
+            "conf_disambig": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "57600",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 57600,
+              "sha256": "d86476605d115946fe9ff22370baa2b6cc473065948cb66499aefddf8af07284"
+            }
+          },
+          "trajectory_id": "HARP401_DEV_20110309_20110310"
+        }
+      ],
+      "trajectory_id": "HARP401_DEV_20110309_20110310"
+    },
+    {
+      "harp": 2920,
+      "snapshots": [],
+      "trajectory_id": "HARP2920_DEV_20130708_20130709"
+    },
+    {
+      "harp": 5249,
+      "snapshots": [
+        {
+          "activity_control_log": [
+            -3.5968581567460522,
+            13.499221463476411,
+            -9.832913552295894,
+            -15.942926945357538
+          ],
+          "activity_control_names": [
+            "HC_UNSIGNED_MEAN",
+            "MAGNETIC_ENERGY_PROXY",
+            "JZ_RMS",
+            "GRADIENT_ENERGY"
+          ],
+          "activity_control_raw": [
+            0.027409704300360334,
+            728848.7135621192,
+            5.365619889623598e-05,
+            1.191447203474338e-07
+          ],
+          "fiber": [
+            -0.0005220957908973639,
+            -0.004675455314251405,
+            -0.000849578467984303,
+            0.0007947348467903069,
+            0.011969451485890868,
+            0.0013810422182032197,
+            0.0017486160450729342,
+            0.045474206981996126,
+            0.0034046746388579387,
+            0.001992774200397244,
+            0.0804995319195348,
+            0.004018330255222344,
+            0.0010703028770375318,
+            0.0882360297243059,
+            0.002375862999920317,
+            0.002465926451403429
+          ],
+          "fiber_names": [
+            "HC_SIGNED_MEAN@sigma=0.0",
+            "HC_NORMALIZED@sigma=0.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=0.0",
+            "HC_SIGNED_MEAN@sigma=1.0",
+            "HC_NORMALIZED@sigma=1.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=1.0",
+            "HC_SIGNED_MEAN@sigma=2.0",
+            "HC_NORMALIZED@sigma=2.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=2.0",
+            "HC_SIGNED_MEAN@sigma=4.0",
+            "HC_NORMALIZED@sigma=4.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=4.0",
+            "HC_SIGNED_MEAN@sigma=8.0",
+            "HC_NORMALIZED@sigma=8.0",
+            "ALPHA_WEIGHTED_PER_MM@sigma=8.0",
+            "SIGNED_HC_LOG_SCALE_INTEGRAL"
+          ],
+          "fits_metadata": {
+            "Bp": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                770,
+                1518
+              ]
+            },
+            "Br": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                770,
+                1518
+              ]
+            },
+            "Bt": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                770,
+                1518
+              ]
+            },
+            "bitmap": {
+              "bunit": null,
+              "hdu_index": 0,
+              "hdu_name": "PRIMARY",
+              "hdu_type": "PrimaryHDU",
+              "shape": [
+                770,
+                1518
+              ]
+            },
+            "conf_disambig": {
+              "bunit": null,
+              "hdu_index": 1,
+              "hdu_name": "COMPRESSED_IMAGE",
+              "hdu_type": "CompImageHDU",
+              "shape": [
+                770,
+                1518
+              ]
+            }
+          },
+          "harp": 5249,
+          "mask_pixels": 27039,
+          "metadata_attempts": [
+            {
+              "attempt": 1,
+              "delay_before_seconds": 0,
+              "result_rows": 1,
+              "success": true
+            }
+          ],
+          "native_reconciliation": {
+            "CMASK_exact": true,
+            "MEANALP_keyword": -0.01672187,
+            "MEANALP_recomputed": -0.016721810767819888,
+            "MEANALP_relative_error": 3.542198337393609e-06,
+            "MEANALP_sign_match": true,
+            "MEANJZH_keyword": -0.00486013,
+            "MEANJZH_recomputed": -0.004860109989582126,
+            "MEANJZH_relative_error": 4.117259800439483e-06,
+            "MEANJZH_sign_match": true,
+            "cmask_keyword": 27039,
+            "computed_mask_count": 27039,
+            "pass": true
+          },
+          "pixel_scale_m": 364424.74781641597,
+          "query": "hmi.sharp_cea_720s[5249][2015.03.02_00:00:00_TAI]",
+          "record": {
+            "CMASK": 27039,
+            "HARPNUM": 5249,
+            "MEANALP": -0.01672187,
+            "MEANJZH": -0.00486013,
+            "NOAA_AR": 12293,
+            "QUALITY": 0,
+            "T_REC": "2015.03.02_00:00:00_TAI"
+          },
+          "requested_time_tai": "2015.03.02_00:00:00_TAI",
+          "source_receipts": {
+            "Bp": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "2162880",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 2162880,
+              "sha256": "229e4440d97b2a11791ee848b457b1c338847b20d2805b83cccc100121c3ba37"
+            },
+            "Br": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "2007360",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 2007360,
+              "sha256": "ba630c6b210576bfc1f21b607dd1f6b228624e8966e9e265b858221be88304a6"
+            },
+            "Bt": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "2160000",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 2160000,
+              "sha256": "cc6e730380c5980e12046b7299c4a053faace2252ceae9d632d1d37a128ea359"
+            },
+            "bitmap": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "1172160",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 1172160,
+              "sha256": "9e5c8b990bf6a7c094876e3aca58f1c3b3a54e622e181d02826050515d79c5ba"
+            },
+            "conf_disambig": {
+              "attempts": [
+                {
+                  "candidate": 0,
+                  "content_length": "178560",
+                  "content_type": "application/fits",
+                  "status": 200
+                }
+              ],
+              "bytes": 178560,
+              "sha256": "f987224ff8be33ae89cd04b117510379f0e97e9bf21ebe0a2a97703ae14837eb"
+            }
+          },
+          "trajectory_id": "HARP5249_DEV_20150302_20150303"
+        }
+      ],
+      "trajectory_id": "HARP5249_DEV_20150302_20150303"
+    }
+  ],
+  "universal_ontology": "FORBIDDEN"
+}
