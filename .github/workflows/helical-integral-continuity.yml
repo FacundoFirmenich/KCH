@@ -1,0 +1,101 @@
+name: KCH integral continuity - frozen solar v1.5
+
+on:
+  push:
+    branches:
+      - continuity/helical-integral-20261013
+    paths:
+      - .github/helical_continuity/**
+      - .github/workflows/helical-integral-continuity.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kch-integral-solar-v15-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  temporal-lift:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact successor
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          fetch-depth: 1
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned scientific stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install \
+            numpy==2.1.3 \
+            scipy==1.14.1 \
+            astropy==7.1.0 \
+            drms==0.9.0 \
+            pandas==2.2.3 \
+            requests==2.32.3
+          mkdir -p "$RUNNER_TEMP/helical-integral-solar-v15"
+          python -m pip freeze --all | LC_ALL=C sort > "$RUNNER_TEMP/helical-integral-solar-v15/PIP_FREEZE.txt"
+          python -m py_compile .github/helical_continuity/run_frozen_solar.py .github/helical_v15/temporal_lift_development.py
+
+      - name: Execute unchanged development-only temporal gate
+        id: gate
+        shell: bash
+        run: |
+          set +e
+          OUT="$RUNNER_TEMP/helical-integral-solar-v15" \
+            python .github/helical_continuity/run_frozen_solar.py \
+            > "$RUNNER_TEMP/helical-integral-solar-v15/STDOUT.log" \
+            2> "$RUNNER_TEMP/helical-integral-solar-v15/STDERR.log"
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > "$RUNNER_TEMP/helical-integral-solar-v15/EXIT_CODE.txt"
+          cat "$RUNNER_TEMP/helical-integral-solar-v15/STDOUT.log"
+          if [[ -s "$RUNNER_TEMP/helical-integral-solar-v15/STDERR.log" ]]; then cat "$RUNNER_TEMP/helical-integral-solar-v15/STDERR.log" >&2; fi
+          if [[ "$rc" -ne 0 && "$rc" -ne 30 && "$rc" -ne 31 ]]; then exit "$rc"; fi
+
+      - name: Enforce raw-segment purge
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d "$RUNNER_TEMP/helical-integral-solar-v15/raw" ]]; then
+            echo 'raw FITS directory survived process exit' >&2
+            rm -rf "$RUNNER_TEMP/helical-integral-solar-v15/raw"
+            exit 91
+          fi
+
+      - name: Upload safe aggregate receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-integral-solar-v15-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/helical-integral-solar-v15/safe
+            ${{ runner.temp }}/helical-integral-solar-v15/PIP_FREEZE.txt
+            ${{ runner.temp }}/helical-integral-solar-v15/STDOUT.log
+            ${{ runner.temp }}/helical-integral-solar-v15/STDERR.log
+            ${{ runner.temp }}/helical-integral-solar-v15/EXIT_CODE.txt
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
+
+      - name: Adjudicate
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rc=$(cat "$RUNNER_TEMP/helical-integral-solar-v15/EXIT_CODE.txt")
+          case "$rc" in
+            0) echo 'VALID_DEVELOPMENT_RESULT_NO_CONFIRMATION' ;;
+            31) echo 'INSUFFICIENT_TEMPORAL_SUPPORT_NOT_SCIENTIFIC_NULL' >&2; exit 31 ;;
+            *) echo "CONTINUITY_RUNTIME_FAILED_CLOSED:$rc" >&2; exit "$rc" ;;
+          esac
