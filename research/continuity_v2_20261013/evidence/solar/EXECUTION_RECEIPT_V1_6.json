@@ -1,0 +1,103 @@
+{
+  "authority_ceiling": "NONE",
+  "content_and_identity_valid": true,
+  "execution_commit": "7b82281d24fb4d1ab0de7cddd1e788ed27bce6cb",
+  "format": "KCH_SOLAR_V16_EXECUTION_V1",
+  "interpretation": "CONDITIONAL_TRANSITION_RECONSTRUCTION_NOT_EX_ANTE_FORECAST",
+  "metadata_artifact_id": "11808097356",
+  "metadata_sha256_before": {
+    "METADATA_SELECTION.json": "1aab630a4a9ce60689d0dfd6f431de889c00d8ca6394819072adbe4bb730e68c",
+    "SELECTED_PROTOCOL_V1_6.json": "0feccf5ff2774dc4810a01e588ce11c21679d48ae52f5dfbc71699629ca08d4c"
+  },
+  "metadata_unchanged": true,
+  "outcome": "NO_DEVELOPMENT_DOMINANT_LIFT",
+  "raw_directory_absent": true,
+  "result_receipt_id": "h16lift:45a23c0386388b58ec19935f369ebacf71777047ac54bdb0eb366ca94a3c7ac4",
+  "result_sha256": "f70febf57e5abe59b61207fd338acd57e369d6d466fb7e59d6bcd4d515f875a6",
+  "run_id": "38390362532",
+  "runtime_exit_code": 0,
+  "scientific_confirmation": false,
+  "snapshot_count": 15,
+  "source_checks": [
+    {
+      "actual": "6dea1d7637554fc7087d3ff8045471ffee5f34ec943adf8604a3f04a702be291",
+      "expected": "6dea1d7637554fc7087d3ff8045471ffee5f34ec943adf8604a3f04a702be291",
+      "path": ".github/helical_v142/multiscale_operator_basis_v142.py"
+    },
+    {
+      "actual": "f89976728c7a719553408fa5ca4a46fcac1d221ef97fe6350246cd573ae11679",
+      "expected": "f89976728c7a719553408fa5ca4a46fcac1d221ef97fe6350246cd573ae11679",
+      "path": ".github/helical_v15/temporal_lift_development.py"
+    },
+    {
+      "actual": "f8cc7787090b32390dcc73e947807b9606a7f129f1876c952c85140385de660f",
+      "expected": "f8cc7787090b32390dcc73e947807b9606a7f129f1876c952c85140385de660f",
+      "path": ".github/helical_v16/TEMPORAL_PROTOCOL_V1_6.json"
+    },
+    {
+      "actual": "349fa5f340f0c0db11d3c9cc1ffd338951f4384af61d4385bfb9c7c06ed7aaec",
+      "expected": "349fa5f340f0c0db11d3c9cc1ffd338951f4384af61d4385bfb9c7c06ed7aaec",
+      "path": ".github/helical_v16/run_successor.py"
+    },
+    {
+      "actual": "58acb4ccc0dc46d0b12add1dccebd0f944976a16f68e250354c318b0ddd465cb",
+      "expected": "58acb4ccc0dc46d0b12add1dccebd0f944976a16f68e250354c318b0ddd465cb",
+      "path": ".github/helical_v16/select_metadata.py"
+    },
+    {
+      "actual": "e56a0b39f2a4d04c2d88dd5119e9cc1154f3c368ce1b793b65380d596f3674c1",
+      "expected": "e56a0b39f2a4d04c2d88dd5119e9cc1154f3c368ce1b793b65380d596f3674c1",
+      "path": ".github/helical_v16/temporal_lift_development.py"
+    },
+    {
+      "actual": "41258f316921a9127f083056e4e809c9269513245bfa64bea139ac1b59c6b83b",
+      "expected": "41258f316921a9127f083056e4e809c9269513245bfa64bea139ac1b59c6b83b",
+      "path": ".github/workflows/helical-metadata-successor.yml"
+    },
+    {
+      "actual": "b86a9b0ac4db96f871797f228a907ce4d8a1707cba9fee50887bd586ec28f688",
+      "expected": "b86a9b0ac4db96f871797f228a907ce4d8a1707cba9fee50887bd586ec28f688",
+      "path": "construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_LOCK_V1_4_1.json"
+    },
+    {
+      "actual": "71c09003bf571ee1e07510a784ca0cba7da4930322306baae58d9c2cafa31541",
+      "expected": "71c09003bf571ee1e07510a784ca0cba7da4930322306baae58d9c2cafa31541",
+      "path": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json"
+    },
+    {
+      "actual": "ef4d59a3e7d433291114a93a7034e636319a838bd30ff9c419f1035363015663",
+      "expected": "ef4d59a3e7d433291114a93a7034e636319a838bd30ff9c419f1035363015663",
+      "path": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json"
+    },
+    {
+      "actual": "67d1e032b3351c2ff99626c0b9974cec9e2f3a9b1afa64a0e9abcd9b05d6ba0e",
+      "expected": "67d1e032b3351c2ff99626c0b9974cec9e2f3a9b1afa64a0e9abcd9b05d6ba0e",
+      "path": "construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json"
+    },
+    {
+      "actual": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e",
+      "expected": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e",
+      "path": "construct_successors/KCH_HELICAL_V15_TEMPORAL_LIFT_DEVELOPMENT_20261012/TEMPORAL_LIFT_PROTOCOL_V1_5.json"
+    }
+  ],
+  "status": "VALID_DEVELOPMENT_RESULT_NO_CONFIRMATION",
+  "unchanged_runtime_functions": [
+    "sha256_file",
+    "canonical_hash",
+    "py_scalar",
+    "query_exact_with_retry",
+    "snapshot_query",
+    "build_transition_rows",
+    "train_activity_normalizer",
+    "q_value",
+    "attach_delta_q",
+    "train_rms_scale",
+    "fit_helical",
+    "fit_lemniscatic",
+    "fit_generic_activity",
+    "predict_model",
+    "score_rows",
+    "unique_winner"
+  ],
+  "wrapper_exit_code": 0
+}

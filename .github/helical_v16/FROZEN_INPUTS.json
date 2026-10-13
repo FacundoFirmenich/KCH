@@ -1,0 +1,19 @@
+{
+  "format": "KCH_V16_INPUT_BINDING_V1",
+  "parent_commit": "11ff8d30bcd7f6d30cd0295e9b49fa3f4a64050d",
+  "protocol_path": "construct_successors/KCH_HELICAL_V15_TEMPORAL_LIFT_DEVELOPMENT_20261012/TEMPORAL_LIFT_PROTOCOL_V1_5.json",
+  "sha256": {
+    ".github/helical_v142/multiscale_operator_basis_v142.py": "6dea1d7637554fc7087d3ff8045471ffee5f34ec943adf8604a3f04a702be291",
+    ".github/helical_v15/temporal_lift_development.py": "f89976728c7a719553408fa5ca4a46fcac1d221ef97fe6350246cd573ae11679",
+    ".github/helical_v16/TEMPORAL_PROTOCOL_V1_6.json": "f8cc7787090b32390dcc73e947807b9606a7f129f1876c952c85140385de660f",
+    ".github/helical_v16/run_successor.py": "349fa5f340f0c0db11d3c9cc1ffd338951f4384af61d4385bfb9c7c06ed7aaec",
+    ".github/helical_v16/select_metadata.py": "58acb4ccc0dc46d0b12add1dccebd0f944976a16f68e250354c318b0ddd465cb",
+    ".github/helical_v16/temporal_lift_development.py": "e56a0b39f2a4d04c2d88dd5119e9cc1154f3c368ce1b793b65380d596f3674c1",
+    ".github/workflows/helical-metadata-successor.yml": "41258f316921a9127f083056e4e809c9269513245bfa64bea139ac1b59c6b83b",
+    "construct_successors/KCH_HELICAL_V141_MASK_SUPPORT_CALIBRATION_20261012/MASK_SUPPORT_LOCK_V1_4_1.json": "b86a9b0ac4db96f871797f228a907ce4d8a1707cba9fee50887bd586ec28f688",
+    "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json": "71c09003bf571ee1e07510a784ca0cba7da4930322306baae58d9c2cafa31541",
+    "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/OPERATOR_BASIS_REEXECUTION_PROTOCOL_V1_4_2.json": "ef4d59a3e7d433291114a93a7034e636319a838bd30ff9c419f1035363015663",
+    "construct_successors/KCH_HELICAL_V14_MULTISCALE_OPERATOR_BASIS_20261012/OPERATOR_BASIS_PROTOCOL_V1_4.json": "67d1e032b3351c2ff99626c0b9974cec9e2f3a9b1afa64a0e9abcd9b05d6ba0e",
+    "construct_successors/KCH_HELICAL_V15_TEMPORAL_LIFT_DEVELOPMENT_20261012/TEMPORAL_LIFT_PROTOCOL_V1_5.json": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e"
+  }
+}

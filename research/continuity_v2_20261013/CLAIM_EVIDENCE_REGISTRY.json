@@ -1,0 +1,751 @@
+{
+  "format": "KCH_INTEGRAL_CLAIM_EVIDENCE_REGISTRY_V2",
+  "date": "2026-10-13",
+  "role": "Auditable cross-domain claim boundaries, not a new empirical meta-analysis",
+  "required_domains": [
+    "bayme",
+    "ceh",
+    "cuantoritmica",
+    "ech",
+    "formal",
+    "galactic_mhd",
+    "kch_fabric",
+    "physical_bench",
+    "pluriverse",
+    "runtime",
+    "seismic",
+    "solar"
+  ],
+  "sources": [
+    {
+      "id": "P1V5",
+      "title": "Paper 1 completo corregido",
+      "uri": "../continuity_20261013/papers/PAPER_1_PROJECTED_RECURRENCE_HELICAL_LIFTS_V5.md",
+      "local_path": "../continuity_20261013/papers/PAPER_1_PROJECTED_RECURRENCE_HELICAL_LIFTS_V5.md",
+      "sha256": "c561f4dc0d0dd7259eca0c8be1bcef2c0a10305348805b00491c589dded5cc2b"
+    },
+    {
+      "id": "P2V5",
+      "title": "Paper 2 completo corregido",
+      "uri": "../continuity_20261013/papers/PAPER_2_FAIL_CLOSED_HELICAL_TESTS_CALIFORNIA_V5.md",
+      "local_path": "../continuity_20261013/papers/PAPER_2_FAIL_CLOSED_HELICAL_TESTS_CALIFORNIA_V5.md",
+      "sha256": "2a11ed91da8d1c78050a2500b12982bacf9c0cfb1e39253caa11844776736122"
+    },
+    {
+      "id": "ORIGINAL_SCOPE",
+      "title": "Framework original, 18 septiembre 2026",
+      "uri": "https://chatgpt.com/api/library/files/libfile_9e6ab899efcc8191ad5f8bf5bb07e102/download"
+    },
+    {
+      "id": "RECAP",
+      "title": "Recapitulación integral anterior; estado documental de ramas históricas",
+      "uri": "https://chatgpt.com/api/library/files/libfile_c5a38d7a60f08191a88310ed3f5982f5/download"
+    },
+    {
+      "id": "MEMBERSHIP",
+      "title": "Auditoría real de 61.555 pertenencias",
+      "uri": "../continuity_20261013/evidence/seismic/HISTORICAL_MEMBERSHIP_AUDIT.json",
+      "local_path": "../continuity_20261013/evidence/seismic/HISTORICAL_MEMBERSHIP_AUDIT.json",
+      "sha256": "e0ea6a496fd02392e382febf682dbc80e2188641f05f9c5371596cb5c837c68a"
+    },
+    {
+      "id": "SOLAR15",
+      "title": "Primera ejecución v1.5; run 38381823297",
+      "uri": "https://github.com/FacundoFirmenich/KCH/actions/runs/38381823297",
+      "local_path": "../continuity_20261013/evidence/solar/TEMPORAL_LIFT_DEVELOPMENT_RESULT_V1_5.json",
+      "sha256": "7387e280062da88dbb35d0b70a71490a4d7abfa7a72f8068f06292c8253c875b"
+    },
+    {
+      "id": "SOLAR142",
+      "title": "Lock multiescala sobre tres registros de desarrollo",
+      "uri": "https://github.com/FacundoFirmenich/KCH/blob/60105a141c1790fcd2152fb0ba511835b4620793/construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json"
+    },
+    {
+      "id": "SOLAR12",
+      "title": "Evidencia v1.2 directa y panel hemisférico",
+      "uri": "archive:KCH_HELICOIDAL_PROGRAM_v1_2_0_EVIDENCE.zip",
+      "archive_sha256": "72db2d28be039436cc03f621375c0411124b4b12ebc2eee11b1434812d89fde7"
+    },
+    {
+      "id": "SEISMIC11",
+      "title": "Evidencia terminal post-2021",
+      "uri": "https://chatgpt.com/api/library/files/libfile_abdd9dff2d34819193b340b0734ebb3b/download"
+    },
+    {
+      "id": "BLIND09",
+      "title": "Continuación ciega histórica; científica HOLD",
+      "uri": "https://github.com/FacundoFirmenich/KCH/tree/156b849f4ea577a7dd943f2b16ef5444a182ac71"
+    },
+    {
+      "id": "RUNTIME0176",
+      "title": "Runtime de custodia e incertidumbre",
+      "uri": "https://github.com/FacundoFirmenich/KCH/tree/7d9ff0c5c24511c2350001c4f3fd71c97730cfcd"
+    },
+    {
+      "id": "ECHRECOVERY",
+      "title": "Recuperación exacta y recomputación parcial ECH",
+      "uri": "../continuity_20261013/evidence/ech/ECH_INPUT_RECOVERY_AUDIT.json",
+      "local_path": "../continuity_20261013/evidence/ech/ECH_INPUT_RECOVERY_AUDIT.json",
+      "sha256": "0e8212efe480785761753b215e56b2a10c5bef049ab44960c1eddaee04582f6e"
+    },
+    {
+      "id": "ECHORIGINAL",
+      "title": "Atlas original ECH del 12 octubre",
+      "uri": "https://chatgpt.com/api/library/files/libfile_0e0c7a091c8c8191b8e03651fe4305bc/download"
+    },
+    {
+      "id": "MHD43",
+      "title": "Manuscrito galáctico completo PreCodex v4.3, leído en esta continuidad",
+      "uri": "https://chatgpt.com/api/library/files/libfile_943ef8e7dee08191aa413f7e0abbafe6/download"
+    },
+    {
+      "id": "MHD43ARCHIVE",
+      "title": "Archivo reproducible galáctico recuperado",
+      "uri": "https://chatgpt.com/api/library/files/libfile_17d69e525ba8819180ccc66efa7641b7/download",
+      "archive_sha256": "59d7011fa5288a483aa5197b29eac9f57048c5ce03bc1090857e8a85b6a0764b"
+    },
+    {
+      "id": "BAYME_OUTCOME",
+      "title": "Resultado prospectivo Galicia-xurelo del 6 agosto, informe histórico",
+      "uri": "https://chatgpt.com/api/library/files/libfile_4c75907fde508191a91d579b9d256a51/download"
+    },
+    {
+      "id": "CHP01",
+      "title": "Pluriverse v0.1",
+      "uri": "https://chatgpt.com/api/library/files/libfile_488eddaff2548191a4d261337fae29f4/download"
+    },
+    {
+      "id": "CHP017",
+      "title": "Banco físico Pluriverse v0.17, estado 27 septiembre",
+      "uri": "https://chatgpt.com/api/library/files/libfile_e368ee9102f881918c27e98c83747e19/download"
+    },
+    {
+      "id": "M33_REPLAY",
+      "title": "Replay radial determinista de esta continuidad",
+      "uri": "../continuity_20261013/evidence/m33/M33_RADIAL_VERIFICATION.json",
+      "local_path": "../continuity_20261013/evidence/m33/M33_RADIAL_VERIFICATION.json",
+      "sha256": "0dbdc75eade85f1ced260b8d364cc2fe5def50ee17b26691bfab60e1f54053cb"
+    },
+    {
+      "id": "BAYME_ARITHMETIC",
+      "title": "Comprobación aritmética de la tabla histórica publicada",
+      "uri": "../continuity_20261013/evidence/bayme/HISTORICAL_REPORT_ARITHMETIC_CHECK.json",
+      "local_path": "../continuity_20261013/evidence/bayme/HISTORICAL_REPORT_ARITHMETIC_CHECK.json",
+      "sha256": "075f7c0c403f5d7ef4728a08c1b3b22a3245f8a9e80300b9b8638feeca26adee"
+    },
+    {
+      "id": "SOLAR16",
+      "title": "Solar v1.6 completed run 38390362532",
+      "uri": "evidence/solar/TEMPORAL_LIFT_DEVELOPMENT_RESULT_V1_6.json",
+      "local_path": "evidence/solar/TEMPORAL_LIFT_DEVELOPMENT_RESULT_V1_6.json",
+      "sha256": "f70febf57e5abe59b61207fd338acd57e369d6d466fb7e59d6bcd4d515f875a6"
+    },
+    {
+      "id": "SOLAR16_REPLAY",
+      "title": "Independent selection and aggregate replay",
+      "uri": "evidence/solar/INDEPENDENT_REPLAY.json",
+      "local_path": "evidence/solar/INDEPENDENT_REPLAY.json",
+      "sha256": "7b00e26ec718f141c6afaba4950a18a114dea8727378ca71a32a1ea2a36f9c1d"
+    },
+    {
+      "id": "ECH_EXACT",
+      "title": "Independent finite bridge exact certification",
+      "uri": "evidence/ech/results/ECH_EXACT_SUCCESSOR_RESULT.json",
+      "local_path": "evidence/ech/results/ECH_EXACT_SUCCESSOR_RESULT.json",
+      "sha256": "77fd88608876c15626b156c554a995c193d73947251fa3c75207b29662900a08"
+    },
+    {
+      "id": "ECH_CERT_CHECK",
+      "title": "Solver-free exact certificate verification",
+      "uri": "evidence/ech/results/SOLVER_FREE_CERTIFICATE_CHECK.json",
+      "local_path": "evidence/ech/results/SOLVER_FREE_CERTIFICATE_CHECK.json",
+      "sha256": "087d339e3bc58411d76274700207f29b8bf3c4a90036f801644b433dc0f2b74b"
+    },
+    {
+      "id": "ECH_TIE",
+      "title": "Four optimal tie-invariant path witnesses",
+      "uri": "evidence/ech/results/TIE_INVARIANT_PATH_WITNESSES.json",
+      "local_path": "evidence/ech/results/TIE_INVARIANT_PATH_WITNESSES.json",
+      "sha256": "a1a99bb6fc097acea43d52f0e88e3118e9d2af6b1e8ce4f6b3a3d9311a737fde"
+    }
+  ],
+  "claims": [
+    {
+      "id": "OBSERVATION_QUOTIENT",
+      "domain": "formal",
+      "statement": "Recurrencia observada no implica retorno del estado; la diferencia relevante depende de la tarea.",
+      "status": "CORRECTED_ANALYTIC_ARGUMENT",
+      "sources": [
+        "P1V5",
+        "ORIGINAL_SCOPE"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Toda recurrencia es una hélice literal."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "RETURN_TRANSPORT",
+      "domain": "formal",
+      "statement": "M≠I no implica M(f0)≠f0; monodromía necesita transporte invertible compatible y homotópicamente invariante.",
+      "status": "CORRECTED_ANALYTIC_ARGUMENT",
+      "sources": [
+        "P1V5"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Un fibrado provee automáticamente transporte.",
+        "Un ledger irreversible define automáticamente un grupo de monodromía."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "IDENTIFIABILITY",
+      "domain": "formal",
+      "statement": "Fisher eficiente mide sensibilidad regular de primer orden; singularidad no equivale a no identificación universal.",
+      "status": "CORRECTED_ANALYTIC_ARGUMENT",
+      "sources": [
+        "P1V5"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "I=0 en un punto excluye toda estimación."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "PARITY_BRIDGES",
+      "domain": "formal",
+      "statement": "Inversión del camino, paridad espacial y helicidad física requieren contratos y puentes distintos; no hay R3⇒R2⇒R1 universal.",
+      "status": "CORRECTED_ANALYTIC_ARGUMENT",
+      "sources": [
+        "P1V5"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Paridad física implica retorno temporal no trivial.",
+        "Más recibos equivalen a más verdad."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "CEH_PROGRAM",
+      "domain": "ceh",
+      "statement": "Estado CEH conserva fase, vuelta, fibra, amplitud, quiralidad, escala/régimen, observador, incertidumbre y linaje; GF y comparación completa de rivales siguen incompletos.",
+      "status": "PARTIAL_IMPLEMENTATION",
+      "sources": [
+        "ORIGINAL_SCOPE",
+        "RECAP"
+      ],
+      "depends_on": [
+        "OBSERVATION_QUOTIENT"
+      ],
+      "reservations": [
+        "NO_COMPLETE_CEH_EMPIRICAL_BENCHMARK"
+      ],
+      "next_admissible_action": "Vincular cada componente y rival a una implementación y a un observable real antes de extender el alcance.",
+      "prohibited_inferences": [],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_PILOT_GLOBAL",
+      "domain": "seismic",
+      "statement": "Piloto +1, 81% y global +0, 225% de RMSE no alcanzan 10%; cuatro catálogos globales no certifican independencia total del piloto Indio.",
+      "status": "HISTORICAL_NEGATIVE_WITH_EXPOSURE_RESERVATION",
+      "sources": [
+        "P2V5"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "INDIO_PILOT_TO_TEST_OVERLAP_NOT_QUANTIFIED"
+      ],
+      "next_admissible_action": "Cruzar IDs y particiones del piloto y catálogo global si se recuperan ambos, sin nuevo ajuste.",
+      "prohibited_inferences": [],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_LOCAL",
+      "domain": "seismic",
+      "statement": "Tres cohortes locales/piecewise: 0/3, ganancia ponderada1, 133% frente a5%.",
+      "status": "HISTORICAL_NEGATIVE",
+      "sources": [
+        "P2V5"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_MEMBERSHIP",
+      "domain": "seismic",
+      "statement": "61.555 índices coinciden con fuente ciega; 3.513 code1 no certificados; 17 code0 con contrapartes qb, 16 observables, uno en testParkfield.",
+      "status": "RETROSPECTIVE_MEMBERSHIP_AUDIT_COMPLETED",
+      "sources": [
+        "MEMBERSHIP"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+      ],
+      "next_admissible_action": "Resolver diccionario primario de versión y discrepancias entre catálogos como obligaciones separadas.",
+      "prohibited_inferences": [
+        "Llamar explosiones a los3.513code1.",
+        "Inferir cambio de métricas sin sensibilidad explícita."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_DYNAMIC_V082",
+      "domain": "seismic",
+      "statement": "v0.8.2: 0/2; +0, 001143 nats y +0, 1424%RMSE ponderados, resultados históricos condicionales a la selección efectiva.",
+      "status": "HISTORICAL_CONDITIONAL_NEGATIVE",
+      "sources": [
+        "P2V5",
+        "MEMBERSHIP"
+      ],
+      "depends_on": [
+        "SEISMIC_MEMBERSHIP"
+      ],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Cohorte exclusivamente de terremotos ya certificada.",
+        "Confirmación reparada excluyendo retrospectivamente casos."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_DESIGN_V09A",
+      "domain": "seismic",
+      "statement": "Modelo jerárquico y GO/NO-GO usan tests ya abiertos; sólo diseño, hereda reserva de pertenencia.",
+      "status": "EXPLORATORY_DESIGN_ONLY",
+      "sources": [
+        "P2V5"
+      ],
+      "depends_on": [
+        "SEISMIC_DYNAMIC_V082"
+      ],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Nueva confirmación independiente."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_BLIND_V09",
+      "domain": "seismic",
+      "statement": "Continuación ciega: ejecución técnica reparada y cobertura forense; semántica científica permanece HOLD.",
+      "status": "SCIENTIFIC_HOLD",
+      "sources": [
+        "BLIND09",
+        "MEMBERSHIP"
+      ],
+      "depends_on": [
+        "SEISMIC_MEMBERSHIP"
+      ],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "PASS de infraestructura implica elegibilidad científica."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SEISMIC_TERMINAL_V11",
+      "domain": "seismic",
+      "statement": "Terminal post-2021 separado: 0/2; cierre de clase bajo regla previa; cotas superiores predictivas≈0, 001187 y0, 0000559 nats/niño.",
+      "status": "TERMINAL_NEGATIVE_CLOSED",
+      "sources": [
+        "SEISMIC11",
+        "P2V5"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "MODEL_SOURCE_GRAPH_CONDITIONAL",
+        "SAME_GEOGRAPHY_TEMPORAL_REPLICATION"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Cota sobre helicidad física.",
+        "Ausencia universal de helicidad.",
+        "Reapertura confirmatoria del mismo test."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_FORECAST",
+      "domain": "solar",
+      "statement": "Predicción solar v1.1: 98 regiones/1506 ventanas; no confirmación material; límites de potencia documentados.",
+      "status": "HISTORICAL_INSUFFICIENT_POWER_OR_UPPER_BOUNDS",
+      "sources": [
+        "RECAP"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_DIRECT",
+      "domain": "solar",
+      "statement": "v1.2 reconstruye proxy vertical de helicidad de corriente en16 registros; acuerdo con índices del mismo campo califica el cálculo.",
+      "status": "COMPUTATIONAL_RECONCILIATION_WITH_OBSERVED_FIELDS",
+      "sources": [
+        "SOLAR12",
+        "P1V5"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Validación de instrumento independiente.",
+        "Helicidad magnética volumétrica/coronal medida."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_HEMISPHERE",
+      "domain": "solar",
+      "statement": "Panel32 regiones: 15 signos esperados, p≈0, 7017; criterio hemisférico no replicado.",
+      "status": "HISTORICAL_NEGATIVE",
+      "sources": [
+        "SOLAR12",
+        "P1V5"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Fracaso de toda física helicoidal."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_FLUX",
+      "domain": "solar",
+      "statement": "DAVE4 VM/flujo v1.3: balance, inducción o soporte no admisibles; flujo no identificado bajo la frontera usada.",
+      "status": "BOUNDARY_OR_FLUX_NOT_IDENTIFIABLE",
+      "sources": [
+        "RECAP"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "ORIGINAL_SAFE_RESULT_NOT_REEXECUTED_IN_THIS_CONTINUITY"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_BASIS",
+      "domain": "solar",
+      "statement": "Base multiescala v1.4.2 reconcilia tres registros reales de desarrollo; una reversión con escala es descriptiva.",
+      "status": "DEVELOPMENT_OPERATOR_QUALIFICATION",
+      "sources": [
+        "SOLAR142"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Ganador temporal establecido.",
+        "Detección topológica."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_TEMPORAL",
+      "domain": "solar",
+      "statement": "v1.5 ejecutado: 6 registros elegibles, 1 trayectoria completa; flags70656 y66560 impiden el soporte3×5; 0 comparaciones.",
+      "status": "INSUFFICIENT_TEMPORAL_SUPPORT",
+      "sources": [
+        "SOLAR15"
+      ],
+      "depends_on": [
+        "SOLAR_BASIS"
+      ],
+      "reservations": [
+        "FIXED_GRID_QUALITY_FAILURE",
+        "ENDPOINT_ACTIVITY_IS_NOT_EX_ANTE"
+      ],
+      "next_admissible_action": "Sucesor v1.6 ya completado y registrado separadamente en SOLAR_TEMPORAL_V16; preservar el fallo de soporte de v1.5.",
+      "prohibited_inferences": [
+        "Cambiar fechas del lock v1.5 para rescatar resultado.",
+        "Fallo de soporte equivale a resultado nulo.",
+        "delta_qusa sólo información disponible al comienzo."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "M31_RESPONSE",
+      "domain": "galactic_mhd",
+      "statement": "M31: geometría horizontal reduce respuesta radial a una combinación; 0, 015–0, 026 km/s por coeficiente bajo escalas declaradas.",
+      "status": "HISTORICAL_GEOMETRY_RESPONSE",
+      "sources": [
+        "MHD43",
+        "MHD43ARCHIVE"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "CENTRAL_FIELD_MODEL_NOT_FULL_POSTERIOR"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Detección de helicidad."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "M33_RADIAL",
+      "domain": "galactic_mhd",
+      "statement": "Auditoría radial regenerada desde tablas archivadas: 396 Hα + 102 H I, 28 bins; p=0, 664427 bajo covarianza primaria; norma mínima puntual 289, 997. 66 comparaciones y 142 hashes concordantes.",
+      "status": "PASS_DETERMINISTIC_RADIAL_REPLAY",
+      "sources": [
+        "MHD43",
+        "MHD43ARCHIVE",
+        "M33_REPLAY"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "COVARIANCE_SENSITIVITY_NOT_PUBLISHED_FULL_COVARIANCE",
+        "COEFFICIENT_PRODUCTS_NOT_SEPARATE_FACTORS",
+        "ARCHIVED_TRANSCRIPTION_NOT_INDEPENDENTLY_REFETCHED"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "M33 no tiene ningún resultado empírico.",
+        "Norma290 equivale a una estimación física significativa.",
+        "Alternativa demostrada a materia oscura."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "M33_2D",
+      "domain": "galactic_mhd",
+      "statement": "Preregistro2 D y75 sensibilidades existen; FITS no adjudicados;≈2, 58 áreas geométricas de haz no equivalen al rango exacto.",
+      "status": "FROZEN_PROTOCOL_NOT_EXECUTED",
+      "sources": [
+        "MHD43",
+        "MHD43ARCHIVE"
+      ],
+      "depends_on": [
+        "M33_RADIAL"
+      ],
+      "reservations": [],
+      "next_admissible_action": "Adquisición exacta de mapas y preflight común de haces/covarianza, sin modificar75 sensibilidades tras píxeles.",
+      "prohibited_inferences": [
+        "Resultados solares completan la rama M33."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "BAYME_OPERATIONS",
+      "domain": "bayme",
+      "statement": "Informe6 agosto: 15 lonjas, 8 ganadas frente a7 persistencia; MAE0, 9640 vs1, 1509; 93 episodios acumulados y aprendizaje future-only.",
+      "status": "HISTORICAL_PROSPECTIVE_REPORT_RECOVERED",
+      "sources": [
+        "BAYME_OUTCOME",
+        "BAYME_ARITHMETIC"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "REPORT_RECOVERED_NOT_RAW_LEDGER_REPLAY",
+        "NO_CURRENT_OPERATIONAL_STATE_CHECK"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Superioridad global o autoridad local consolidada."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "BAYME_CEH",
+      "domain": "bayme",
+      "statement": "Prueba específica fase vs fase+fibra/régimen con vintages sigue sin recuperación empírica CEH; BayME sí tiene trabajo prospectivo.",
+      "status": "HYPOTHESIS_SPECIFIC_GAP",
+      "sources": [
+        "ORIGINAL_SCOPE",
+        "BAYME_OUTCOME"
+      ],
+      "depends_on": [
+        "OBSERVATION_QUOTIENT"
+      ],
+      "reservations": [],
+      "next_admissible_action": "Recuperar freezes/outcomes originales y construir comparación ex ante registrada; no reinterpretar victorias locales como test de CEH.",
+      "prohibited_inferences": [],
+      "new_authority_granted": false
+    },
+    {
+      "id": "CUANTORITMICA",
+      "domain": "cuantoritmica",
+      "statement": "Programa de intervalos, paquetes, marcas ydependencia; las pruebas sísmicas cubren una especialización, no todo el programa.",
+      "status": "RESEARCH_AGENDA_PARTIALLY_SPECIALIZED",
+      "sources": [
+        "ORIGINAL_SCOPE",
+        "RECAP"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "UNITS_BASE_ROUNDING_AND_SEARCH_BUDGET_NOT_UNIVERSALLY_FIXED"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Semejanzas de mantisas invariantes a representación."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "ECH",
+      "domain": "ech",
+      "statement": "204 problemas finitos certificados con pruebas racionales exactas: satisfacción y optimalidad local de 96 adyacencias, 96 bucles y 23 cuadrados; 238 hashes de conjuntos coinciden. Cuatro cuadrados tienen costes y conjuntos no conmutativos invariantes ante desempates óptimos.",
+      "status": "INDEPENDENT_EXACT_FINITE_CERTIFICATION",
+      "sources": [
+        "ECHRECOVERY",
+        "ECHORIGINAL",
+        "ECH_EXACT",
+        "ECH_CERT_CHECK",
+        "ECH_TIE"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "ORIGINAL_GENERATOR_AND_CACHE_NOT_RECOVERED",
+        "HISTORICAL_RECEIPT_CHAINS_NOT_VERIFIED",
+        "ALL_23_SQUARE_COUNTS_NOT_PROVED_TIE_INVARIANT",
+        "LOCAL_NOT_GLOBAL_PATH_OPTIMALITY",
+        "FINITE_KERNEL_NOT_PHYSICAL_VALIDATION"
+      ],
+      "next_admissible_action": "Mantener certificados como prueba del problema finito; cualquier afirmación sobre políticas globales, despliegue real o recibos históricos requiere evidencia separada.",
+      "prohibited_inferences": [
+        "Identidad binaria con generador/caché históricos.",
+        "Linaje no retornante demuestra hélice literal.",
+        "Optimalidad local prueba optimalidad global del planificador.",
+        "El resultado finito confirma física o cosmología."
+      ],
+      "new_authority_granted": false,
+      "previous_status": "EXACT_INPUT_RECOVERY_AND_PARTIAL_REPLAY"
+    },
+    {
+      "id": "KCH_FABRIC",
+      "domain": "kch_fabric",
+      "statement": "KwanBlocks preserva dependencias; CreaLabs compone y Sweetbox ejecuta con lease propio; el alpha no equivale a aislamiento kernel/red.",
+      "status": "COMPUTATIONAL_ARCHITECTURE_QUALIFIED_SCOPE",
+      "sources": [
+        "RECAP",
+        "ORIGINAL_SCOPE"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "HISTORICAL_ALPHA_SCOPE"
+      ],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Importar o componer concede autoridad."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "RUNTIME_CUSTODY",
+      "domain": "runtime",
+      "statement": "v0.17.x califica ejecución/custodia; 12.752 jobs técnicos no sonobservaciones; test direccional permanece sellado y scientific_result=null.",
+      "status": "RUNTIME_QUALIFICATION_ONLY",
+      "sources": [
+        "RUNTIME0176",
+        "RECAP"
+      ],
+      "depends_on": [],
+      "reservations": [],
+      "next_admissible_action": "",
+      "prohibited_inferences": [
+        "Cobertura de incertidumbres confirma hipótesis."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "PLURIVERSE",
+      "domain": "pluriverse",
+      "statement": "No-clausura, genealogía plural yacoplamientosD0–D5 siguen como programa formal; A0 no prueba otrosuniversos; sinvalidacióncosmológica.",
+      "status": "FORMALLY_ARTICULATED_PHYSICALLY_OPEN",
+      "sources": [
+        "CHP01",
+        "RECAP"
+      ],
+      "depends_on": [
+        "PARITY_BRIDGES"
+      ],
+      "reservations": [
+        "NO_EMPIRICAL_COSMOLOGICAL_DISCRIMINATION",
+        "NO_COMPARABLE_CLOSED_LATENT_RIVAL"
+      ],
+      "next_admissible_action": "Declarar observables y rivales de complejidad comparable antes de atribuir externalidad.",
+      "prohibited_inferences": [
+        "Confirmación solar/sísmica/computacional confirma cosmología."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "PHYSICAL_BENCH",
+      "domain": "physical_bench",
+      "statement": "Paquete27 septiembre registra banco dual, firmware/metrología; sinprimerartículo, flash ni datos físicos entonces.",
+      "status": "HISTORICAL_PREPARATION_NO_PHYSICAL_DATA",
+      "sources": [
+        "CHP017",
+        "RECAP"
+      ],
+      "depends_on": [],
+      "reservations": [
+        "CURRENT_HARDWARE_AND_SUPPLIER_STATUS_NOT_REVERIFIED"
+      ],
+      "next_admissible_action": "Recuperar registros actuales de recepción/calibración antes de afirmar disponibilidad física; adquisiciones y mensajes requieren autorización específica.",
+      "prohibited_inferences": [
+        "Firmware reproducible implica experimento físico ejecutado.",
+        "Banco valida cosmología."
+      ],
+      "new_authority_granted": false
+    },
+    {
+      "id": "SOLAR_TEMPORAL_V16",
+      "domain": "solar",
+      "statement": "v1.6 completa 15 registros y 12 transiciones; NO_DEVELOPMENT_DOMINANT_LIFT. L supera a T0 en 0.192178% pero gana sólo 1/3 folds; H tiene 4.468379% más NMSE que T0. Selección por metadatos y 60 controles numéricos reproducidos.",
+      "status": "COMPLETED_DEVELOPMENT_NO_DOMINANT_LIFT",
+      "sources": [
+        "SOLAR16",
+        "SOLAR16_REPLAY"
+      ],
+      "depends_on": [
+        "SOLAR_BASIS"
+      ],
+      "reservations": [
+        "THREE_HISTORICAL_DEVELOPMENT_HARPS",
+        "SOME_SOURCE_FIELDS_PREVIOUSLY_OBSERVED",
+        "QUALITY_SELECTED_LOCAL_WINDOWS",
+        "ENDPOINT_ACTIVITY_IS_NOT_EX_ANTE"
+      ],
+      "next_admissible_action": "Conservar este resultado; cualquier extensión exige nueva pregunta y protocolo previo a nuevos resultados. No ampliar ventanas ni ajustar rivales retrospectivamente para fabricar dominancia.",
+      "prohibited_inferences": [
+        "Refutación universal de toda estructura helicoidal.",
+        "Mejor NMSE puntual equivale a dominancia prereglada.",
+        "12×16 componentes equivalen a 192 unidades independientes.",
+        "Comparación condicional equivale a pronóstico prospectivo."
+      ],
+      "new_authority_granted": false
+    }
+  ],
+  "reservation_policy": "Reservations propagate along explicit depends_on edges only. Shared vocabulary, geography or version number creates no automatic dependency.",
+  "universal_confirmation": false,
+  "new_authority_granted": false,
+  "parent_registry_sha256": "a804ec04210ee04e122a52aa5809ff1cf6337b4061365b73b7775de7753d790a",
+  "update_scope": "Solar v1.6 completed development comparison; independent exact ECH certification; remaining ten domains retained."
+}

@@ -1,0 +1,14 @@
+{
+  "bridge_applications_covered": 380,
+  "certificate_count": 204,
+  "checker_sha256": "9f35b4d622215734f21422a492637f166b1e755addf48a7c5da60bac2de80621",
+  "exact_integer_dual_inequalities_checked": 264145,
+  "optimizer_imported": false,
+  "permission_granted": false,
+  "positive_cost_certificates": 66,
+  "result_sha256_checked": "3aeaf7a8827bc80f1287b273502e250fe398a47aad46760cab555fcda8f3b287",
+  "schema": "ECH_SOLVER_FREE_CERTIFICATE_CHECK_V1",
+  "status": "PASS",
+  "third_party_libraries_imported": false,
+  "zero_cost_certificates": 138
+}

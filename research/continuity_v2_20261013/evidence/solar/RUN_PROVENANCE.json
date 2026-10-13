@@ -1,0 +1,130 @@
+{
+  "format": "KCH_SOLAR_V16_RUN_PROVENANCE_V1",
+  "run_id": 38390362532,
+  "job_id": 115272372385,
+  "execution_commit": "7b82281d24fb4d1ab0de7cddd1e788ed27bce6cb",
+  "original_protocol_freeze_commit": "3328788851c832ec06c905e19693aef7c2a13c9e",
+  "preexecution_configuration_failure": {
+    "run_id": 38390266856,
+    "jobs": 0,
+    "source_access": false,
+    "repair": "Use fixed temporary path instead of unavailable runner context in job env; protocol and scientific runtime unchanged."
+  },
+  "metadata_artifact": {
+    "id": 11808097356,
+    "sha256": "9b6d92e3f20cbde63b793f12703c56445e20785bf4ca3ddfeb2f778893c634d8",
+    "created_at": "2026-10-13T11:28:15Z"
+  },
+  "result_artifact": {
+    "id": 11808212438,
+    "sha256": "fe8645dd87f3124c6a53de1803a9afb4e42bb87b4c5c71246e01b3ed52540d57",
+    "created_at": "2026-10-13T11:29:22Z"
+  },
+  "job_steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-10-13T11:27:44Z",
+      "completed_at": "2026-10-13T11:27:45Z"
+    },
+    {
+      "name": "Run actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-10-13T11:27:45Z",
+      "completed_at": "2026-10-13T11:27:49Z"
+    },
+    {
+      "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-10-13T11:27:49Z",
+      "completed_at": "2026-10-13T11:27:49Z"
+    },
+    {
+      "name": "Install pinned scientific stack and check frozen code",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-10-13T11:27:49Z",
+      "completed_at": "2026-10-13T11:28:07Z"
+    },
+    {
+      "name": "Select by metadata only",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-10-13T11:28:07Z",
+      "completed_at": "2026-10-13T11:28:14Z"
+    },
+    {
+      "name": "Freeze metadata artifact before any FITS body access",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-10-13T11:28:14Z",
+      "completed_at": "2026-10-13T11:28:15Z"
+    },
+    {
+      "name": "Execute once on frozen selected windows",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-10-13T11:28:15Z",
+      "completed_at": "2026-10-13T11:29:21Z"
+    },
+    {
+      "name": "Purge guard",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-10-13T11:29:21Z",
+      "completed_at": "2026-10-13T11:29:21Z"
+    },
+    {
+      "name": "Upload safe receipts",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-10-13T11:29:21Z",
+      "completed_at": "2026-10-13T11:29:22Z"
+    },
+    {
+      "name": "Adjudicate",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-10-13T11:29:22Z",
+      "completed_at": "2026-10-13T11:29:22Z"
+    },
+    {
+      "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 19,
+      "started_at": "2026-10-13T11:29:22Z",
+      "completed_at": "2026-10-13T11:29:22Z"
+    },
+    {
+      "name": "Post Run actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20,
+      "started_at": "2026-10-13T11:29:22Z",
+      "completed_at": "2026-10-13T11:29:22Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21,
+      "started_at": "2026-10-13T11:29:22Z",
+      "completed_at": "2026-10-13T11:29:22Z"
+    }
+  ],
+  "conclusion": "success"
+}

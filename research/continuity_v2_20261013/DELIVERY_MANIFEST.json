@@ -1,0 +1,187 @@
+{
+  "files": [
+    {
+      "bytes": 2029,
+      "path": ".github/helical_v16/FROZEN_INPUTS.json",
+      "sha256": "f21061c4d1135551d17a9a032cd9e418cc4dbfb889056b6eb7cf799a4acc3f4c"
+    },
+    {
+      "bytes": 7931,
+      "path": ".github/helical_v16/TEMPORAL_PROTOCOL_V1_6.json",
+      "sha256": "f8cc7787090b32390dcc73e947807b9606a7f129f1876c952c85140385de660f"
+    },
+    {
+      "bytes": 5091,
+      "path": ".github/helical_v16/run_successor.py",
+      "sha256": "349fa5f340f0c0db11d3c9cc1ffd338951f4384af61d4385bfb9c7c06ed7aaec"
+    },
+    {
+      "bytes": 5465,
+      "path": ".github/helical_v16/select_metadata.py",
+      "sha256": "58acb4ccc0dc46d0b12add1dccebd0f944976a16f68e250354c318b0ddd465cb"
+    },
+    {
+      "bytes": 26125,
+      "path": ".github/helical_v16/temporal_lift_development.py",
+      "sha256": "e56a0b39f2a4d04c2d88dd5119e9cc1154f3c368ce1b793b65380d596f3674c1"
+    },
+    {
+      "bytes": 3692,
+      "path": ".github/workflows/helical-metadata-successor.yml",
+      "sha256": "41258f316921a9127f083056e4e809c9269513245bfa64bea139ac1b59c6b83b"
+    },
+    {
+      "bytes": 28766,
+      "path": "research/continuity_v2_20261013/CLAIM_EVIDENCE_REGISTRY.json",
+      "sha256": "0df41690f278b5c320a3f63937e1a5aa316dc5bf885eb55f5ea14285279aad10"
+    },
+    {
+      "bytes": 4171,
+      "path": "research/continuity_v2_20261013/CORPUS_VERIFICATION.json",
+      "sha256": "83e33978c78952f2873a413c2ca64a50385187c4c3eaba7894e63a563fc1d5d1"
+    },
+    {
+      "bytes": 3528,
+      "path": "research/continuity_v2_20261013/PREEXECUTION_SCOPE_ES.md",
+      "sha256": "aa73c7765177eb8cfdb49756268d0c3b6c743485344a676c7ab588d4651e0b5d"
+    },
+    {
+      "bytes": 8304,
+      "path": "research/continuity_v2_20261013/README_ES.md",
+      "sha256": "02a87934e99e08592beec3324fd17c6fa1387ee73f9924be659e1c19123d079a"
+    },
+    {
+      "bytes": 9255,
+      "path": "research/continuity_v2_20261013/evidence/ech/DICTAMEN_ES.md",
+      "sha256": "546fc44c9b675b812916a6fe075b0cf541c62069676606eca49d00cf7018c94d"
+    },
+    {
+      "bytes": 3340,
+      "path": "research/continuity_v2_20261013/evidence/ech/README_ES.md",
+      "sha256": "c05074078bcc7c86c48829f16d67802b0792cdce25d053616f1024bbd497cece"
+    },
+    {
+      "bytes": 1712,
+      "path": "research/continuity_v2_20261013/evidence/ech/SHA256SUMS.txt",
+      "sha256": "ede076f9ceaaf3e6550d22722d1e59e6c0d98b742833fd4114089b442824480e"
+    },
+    {
+      "bytes": 14195,
+      "path": "research/continuity_v2_20261013/evidence/ech/inputs/adjacent_contract_migrations.csv",
+      "sha256": "818beed9111f102a863ad619a6209b27f44026b5adb335ea715814c8d1e3d91d"
+    },
+    {
+      "bytes": 712699,
+      "path": "research/continuity_v2_20261013/evidence/ech/inputs/cas_constitutional_kernel_v1.json",
+      "sha256": "82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138"
+    },
+    {
+      "bytes": 12896,
+      "path": "research/continuity_v2_20261013/evidence/ech/inputs/compiled_distance_codebooks.json",
+      "sha256": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b"
+    },
+    {
+      "bytes": 4254,
+      "path": "research/continuity_v2_20261013/evidence/ech/results/ECH_EXACT_SUCCESSOR_RESULT.json",
+      "sha256": "77fd88608876c15626b156c554a995c193d73947251fa3c75207b29662900a08"
+    },
+    {
+      "bytes": 270899,
+      "path": "research/continuity_v2_20261013/evidence/ech/results/EXACT_BRIDGE_CERTIFICATES.json",
+      "sha256": "aaf4b8a0da82db4677dc032816d9c9c43bdcc7698a70a29c611b3a49139b97d9"
+    },
+    {
+      "bytes": 276508,
+      "path": "research/continuity_v2_20261013/evidence/ech/results/FINITE_ATLAS_REPLAY_DETAIL.json",
+      "sha256": "dec586c672132e706633ea72305736d13309a76a18bc8528efe927d172230eb6"
+    },
+    {
+      "bytes": 551,
+      "path": "research/continuity_v2_20261013/evidence/ech/results/SOLVER_FREE_CERTIFICATE_CHECK.json",
+      "sha256": "087d339e3bc58411d76274700207f29b8bf3c4a90036f801644b433dc0f2b74b"
+    },
+    {
+      "bytes": 7311,
+      "path": "research/continuity_v2_20261013/evidence/ech/results/TIE_INVARIANT_PATH_WITNESSES.json",
+      "sha256": "a1a99bb6fc097acea43d52f0e88e3118e9d2af6b1e8ce4f6b3a3d9311a737fde"
+    },
+    {
+      "bytes": 5117,
+      "path": "research/continuity_v2_20261013/evidence/ech/results/original_sensor_semantics.py",
+      "sha256": "8f579feb5b5bc5279ce0cc57612480ceb9fb38550f8f440bfcb29c87d0fcd1ea"
+    },
+    {
+      "bytes": 24518,
+      "path": "research/continuity_v2_20261013/evidence/ech/source_archives/ECH_EVIDENCE_CARRYING_CONTRACT_MIGRATIONS_2026-10-08.zip",
+      "sha256": "fe3f8e1fc7a6f20cdfded9656be78752ec7aa8414eb74c70a6fe1f49be0996d1"
+    },
+    {
+      "bytes": 13942,
+      "path": "research/continuity_v2_20261013/evidence/ech/source_archives/ECH_HELICAL_EVIDENCE_MIGRATION_2026-10-12.zip",
+      "sha256": "a201aafbeda966e5d600e803cd19ea9ff16e6a21bbf9ad21b7f51f27e272504e"
+    },
+    {
+      "bytes": 67232,
+      "path": "research/continuity_v2_20261013/evidence/ech/source_archives/ECH_ROBUST_SUCCESSIVE_REFINEMENT_2026-09-28.zip",
+      "sha256": "a951daaf32d3d2df1661cd3b78fbf176d5da6eb9ef4dfec3726c10d398d0db39"
+    },
+    {
+      "bytes": 6168,
+      "path": "research/continuity_v2_20261013/evidence/ech/tools/check_ech_certificates.py",
+      "sha256": "9f35b4d622215734f21422a492637f166b1e755addf48a7c5da60bac2de80621"
+    },
+    {
+      "bytes": 21366,
+      "path": "research/continuity_v2_20261013/evidence/ech/tools/verify_ech_finite_bridges.py",
+      "sha256": "2b37d30db3d0e4d8781e59908ef1bf8a6f0f698ee002cce190689090324fc47a"
+    },
+    {
+      "bytes": 4719,
+      "path": "research/continuity_v2_20261013/evidence/solar/EXECUTION_RECEIPT_V1_6.json",
+      "sha256": "c974f7e1e0994aa24729662b1127e5fd55debbc11288daee6ec366527a94c916"
+    },
+    {
+      "bytes": 8549,
+      "path": "research/continuity_v2_20261013/evidence/solar/INDEPENDENT_REPLAY.json",
+      "sha256": "7b00e26ec718f141c6afaba4950a18a114dea8727378ca71a32a1ea2a36f9c1d"
+    },
+    {
+      "bytes": 336723,
+      "path": "research/continuity_v2_20261013/evidence/solar/METADATA_SELECTION.json",
+      "sha256": "1aab630a4a9ce60689d0dfd6f431de889c00d8ca6394819072adbe4bb730e68c"
+    },
+    {
+      "bytes": 341,
+      "path": "research/continuity_v2_20261013/evidence/solar/PIP_FREEZE.txt",
+      "sha256": "2dceefccb8cac5624d0e69f308e1a3dc23f3cfbab565acd6c67ffb6d459b5389"
+    },
+    {
+      "bytes": 3980,
+      "path": "research/continuity_v2_20261013/evidence/solar/RUN_PROVENANCE.json",
+      "sha256": "5d9c92f44a0b82cff59ef6d1b87fca753d7d3710417000fbd8d406a3fd3bf978"
+    },
+    {
+      "bytes": 9053,
+      "path": "research/continuity_v2_20261013/evidence/solar/SELECTED_PROTOCOL_V1_6.json",
+      "sha256": "0feccf5ff2774dc4810a01e588ce11c21679d48ae52f5dfbc71699629ca08d4c"
+    },
+    {
+      "bytes": 131780,
+      "path": "research/continuity_v2_20261013/evidence/solar/TEMPORAL_LIFT_DEVELOPMENT_RESULT_V1_6.json",
+      "sha256": "f70febf57e5abe59b61207fd338acd57e369d6d466fb7e59d6bcd4d515f875a6"
+    },
+    {
+      "bytes": 5199,
+      "path": "research/continuity_v2_20261013/tools/verify_continuity_v2.py",
+      "sha256": "a2aa8c3fc08312dc26491ae3b8358ad81ae2c0cf513d0f68d9759adde211aa56"
+    },
+    {
+      "bytes": 8213,
+      "path": "research/continuity_v2_20261013/tools/verify_solar_v16.py",
+      "sha256": "3dba12aec155f43b8787a146574f2070c72879fba1b167cf000505851e8e201e"
+    }
+  ],
+  "format": "KCH_CONTINUITY_V2_DELIVERY_MANIFEST",
+  "parent_commit": "11ff8d30bcd7f6d30cd0295e9b49fa3f4a64050d",
+  "solar_execution_commit": "7b82281d24fb4d1ab0de7cddd1e788ed27bce6cb"
+}
