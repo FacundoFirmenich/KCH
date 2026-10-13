@@ -1,0 +1,233 @@
+{
+  "schema": "ECH_TIE_INVARIANT_PATH_COST_WITNESSES_V1",
+  "case_count": 4,
+  "cases": [
+    {
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate_1": "ACTIONABLE__MODE__d1",
+      "intermediate_2": "ACTIONABLE__ACTIONABLE__d2",
+      "path1_cost": 5,
+      "path2_cost": 10,
+      "path1": [
+        {
+          "cost": 0,
+          "final_minimum_distance": 1,
+          "problem_id": "af281fd0a318b3dfc35c622db97bbf00cd884300d9bf1cf3f2c3ca3c1e0ba0dd",
+          "witness": []
+        },
+        {
+          "cost": 5,
+          "final_minimum_distance": 2,
+          "problem_id": "916dcfc7e771a312c226a96c834704c11e697ebd9fccb29bffd55c189ae3dabe",
+          "witness": [
+            "MODE:00b",
+            "MODE:065",
+            "MODE:072",
+            "MODE:10e",
+            "MODE:24a"
+          ]
+        }
+      ],
+      "path2": [
+        {
+          "cost": 10,
+          "final_minimum_distance": 2,
+          "problem_id": "539f07017c9d26db7028e6da7ebd1b50d877e2904293d03c56a1ebfa07e4e587",
+          "witness": [
+            "ACTIONABLE:00f",
+            "ACTIONABLE:02d",
+            "ACTIONABLE:04c",
+            "ACTIONABLE:072",
+            "ACTIONABLE:0ca",
+            "ACTIONABLE:290",
+            "ACTIONABLE:3a0",
+            "ACTIONABLE:80a",
+            "ACTIONABLE:8e0",
+            "ACTIONABLE:c01"
+          ]
+        },
+        {
+          "cost": 0,
+          "final_minimum_distance": 2,
+          "problem_id": "3644860f57ee3854dafdcc9afd19d801e0998998cd6f8e9e69f50f8774f80576",
+          "witness": []
+        }
+      ]
+    },
+    {
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate_1": "ACTIONABLE__MODE__d2",
+      "intermediate_2": "ACTIONABLE__ACTIONABLE__d3",
+      "path1_cost": 5,
+      "path2_cost": 13,
+      "path1": [
+        {
+          "cost": 0,
+          "final_minimum_distance": 2,
+          "problem_id": "2382856067deeeffb1bde7b25b7d072b120573a471abd35d888a037f37db09d8",
+          "witness": []
+        },
+        {
+          "cost": 5,
+          "final_minimum_distance": 3,
+          "problem_id": "ea4abcd1aa7d1c3227d6c9ca5072d4fe0f5c4bb0eccc8db35d6ad8f90c4b134d",
+          "witness": [
+            "MODE:025",
+            "MODE:04b",
+            "MODE:072",
+            "MODE:10e",
+            "MODE:441"
+          ]
+        }
+      ],
+      "path2": [
+        {
+          "cost": 13,
+          "final_minimum_distance": 3,
+          "problem_id": "79f91a54b0253b24b96ca444d14259f22904006634957513a885820d3ad867f6",
+          "witness": [
+            "ACTIONABLE:00b",
+            "ACTIONABLE:00e",
+            "ACTIONABLE:027",
+            "ACTIONABLE:045",
+            "ACTIONABLE:047",
+            "ACTIONABLE:05a",
+            "ACTIONABLE:070",
+            "ACTIONABLE:3a0",
+            "ACTIONABLE:4e0",
+            "ACTIONABLE:590",
+            "ACTIONABLE:828",
+            "ACTIONABLE:842",
+            "ACTIONABLE:e00"
+          ]
+        },
+        {
+          "cost": 0,
+          "final_minimum_distance": 3,
+          "problem_id": "60bfacf9e9bfbb911cd76d71915931e5a1aac03bebbe7935efa158502a024b9c",
+          "witness": []
+        }
+      ]
+    },
+    {
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate_1": "ACTIONABLE__MODE__d3",
+      "intermediate_2": "ACTIONABLE__ACTIONABLE__d4",
+      "path1_cost": 5,
+      "path2_cost": 14,
+      "path1": [
+        {
+          "cost": 0,
+          "final_minimum_distance": 3,
+          "problem_id": "65cbd776281a5953ac8a98d9e1d77137a228b0efd55c5c0cfd9d2acd6d0b846e",
+          "witness": []
+        },
+        {
+          "cost": 5,
+          "final_minimum_distance": 4,
+          "problem_id": "635fee82ba13dbc6ba082356b122419eb9e8c399d5509848f51b1723028a8bc9",
+          "witness": [
+            "MODE:04b",
+            "MODE:072",
+            "MODE:08e",
+            "MODE:141",
+            "MODE:225"
+          ]
+        }
+      ],
+      "path2": [
+        {
+          "cost": 14,
+          "final_minimum_distance": 4,
+          "problem_id": "6c20b882597902aca21d1e11fdcc32b88ab3eae202a17324d01cd42cb32a9ca7",
+          "witness": [
+            "ACTIONABLE:00e",
+            "ACTIONABLE:01b",
+            "ACTIONABLE:045",
+            "ACTIONABLE:047",
+            "ACTIONABLE:070",
+            "ACTIONABLE:0ca",
+            "ACTIONABLE:0e1",
+            "ACTIONABLE:142",
+            "ACTIONABLE:225",
+            "ACTIONABLE:290",
+            "ACTIONABLE:2a0",
+            "ACTIONABLE:580",
+            "ACTIONABLE:a02",
+            "ACTIONABLE:a4f"
+          ]
+        },
+        {
+          "cost": 0,
+          "final_minimum_distance": 4,
+          "problem_id": "3470d42d5ebc5bc52a38af16ac28d2779c3ef75a970ebca672fe4fdba9c311e4",
+          "witness": []
+        }
+      ]
+    },
+    {
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate_1": "ACTIONABLE__MODE__d4",
+      "intermediate_2": "ACTIONABLE__ACTIONABLE__d5",
+      "path1_cost": 5,
+      "path2_cost": 15,
+      "path1": [
+        {
+          "cost": 0,
+          "final_minimum_distance": 4,
+          "problem_id": "508b105d9e56e32141eafeca46537a764277c01d2f9d75ccdb2c2ad7ad28164a",
+          "witness": []
+        },
+        {
+          "cost": 5,
+          "final_minimum_distance": 5,
+          "problem_id": "a36ad86f6ba2a584fa919521231d8529744a2152b7b2566de9dae84abfebc86b",
+          "witness": [
+            "MODE:01e",
+            "MODE:04b",
+            "MODE:070",
+            "MODE:0a5",
+            "MODE:105"
+          ]
+        }
+      ],
+      "path2": [
+        {
+          "cost": 15,
+          "final_minimum_distance": 5,
+          "problem_id": "fc9575457909580a0eb0d09f47ee6105f5ad41e7b24acb18b28a29cd6516c130",
+          "witness": [
+            "ACTIONABLE:00e",
+            "ACTIONABLE:052",
+            "ACTIONABLE:071",
+            "ACTIONABLE:0ce",
+            "ACTIONABLE:14a",
+            "ACTIONABLE:183",
+            "ACTIONABLE:1a0",
+            "ACTIONABLE:1e1",
+            "ACTIONABLE:203",
+            "ACTIONABLE:20b",
+            "ACTIONABLE:225",
+            "ACTIONABLE:444",
+            "ACTIONABLE:828",
+            "ACTIONABLE:910",
+            "ACTIONABLE:e00"
+          ]
+        },
+        {
+          "cost": 0,
+          "final_minimum_distance": 5,
+          "problem_id": "ab5d6b0e309038d18fb960965c512dcadbdd10920aa86e7a835b8311e97e8bec",
+          "witness": []
+        }
+      ]
+    }
+  ],
+  "argument": "The sensor-first leg is uniquely zero evidence and zero cost, so its second-leg certified minimum is fixed by the inherited ledger. The distance-first leg has its certified minimum independently of optimal witness identity; every feasible such witness already satisfies the final target and distance, so its sensor-rebinding second leg has zero cost. All bridge costs are therefore invariant under optimal tie selection within these four squares. Since the nonzero deltas occur at different sensor types, the two final coordinate sets differ for every such optimal choice.",
+  "scope": "The four listed squares only. No tie-invariance claim for all 23 squares or global path optimum.",
+  "permission_granted": false
+}

@@ -1,0 +1,349 @@
+{
+  "development_only": true,
+  "dominance_verified": false,
+  "endpoint_activity_used": true,
+  "fold_wins_recomputed": {
+    "G_ACTIVITY_AFFINE": 0,
+    "H_HELICAL_TRANSLATION": 0,
+    "L_LEMNISCATIC_ALTERNATING": 1,
+    "M_MOBIUS_SIGN": 0,
+    "T0_TRIVIAL_IDENTITY": 2
+  },
+  "format": "KCH_INDEPENDENT_SOLAR_V16_REPLAY_V1",
+  "global_scores_recomputed": {
+    "G_ACTIVITY_AFFINE": 1.0715226060599863,
+    "H_HELICAL_TRANSLATION": 0.6217514654481611,
+    "L_LEMNISCATIC_ALTERNATING": 0.5940138065700311,
+    "M_MOBIUS_SIGN": 5.594851754134079,
+    "T0_TRIVIAL_IDENTITY": 0.5951575698830139
+  },
+  "interpretation": "CONDITIONAL_TRANSITION_RECONSTRUCTION_NOT_EX_ANTE_FORECAST",
+  "metadata_selection_verified": [
+    {
+      "eligible_candidates": 43,
+      "harp": 401,
+      "selected_offset_minutes": 0,
+      "selection_verified": true
+    },
+    {
+      "eligible_candidates": 56,
+      "harp": 2920,
+      "selected_offset_minutes": -12,
+      "selection_verified": true
+    },
+    {
+      "eligible_candidates": 22,
+      "harp": 5249,
+      "selected_offset_minutes": -12,
+      "selection_verified": true
+    }
+  ],
+  "metadata_sha256": "1aab630a4a9ce60689d0dfd6f431de889c00d8ca6394819072adbe4bb730e68c",
+  "numeric_checks": [
+    {
+      "label": "401:activity_train_mean",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:activity_train_sd",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:fiber_train_rms_scale",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:helical_b",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:lemniscatic_b",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:generic_common_a",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:generic_common_c",
+      "max_abs_difference": 2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "label": "401:generic_component_intercepts",
+      "max_abs_difference": 1.3877787807814457e-16,
+      "pass": true
+    },
+    {
+      "label": "401:T0_TRIVIAL_IDENTITY:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:T0_TRIVIAL_IDENTITY:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:M_MOBIUS_SIGN:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:M_MOBIUS_SIGN:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:H_HELICAL_TRANSLATION:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:H_HELICAL_TRANSLATION:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:L_LEMNISCATIC_ALTERNATING:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:L_LEMNISCATIC_ALTERNATING:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "401:G_ACTIVITY_AFFINE:metrics",
+      "max_abs_difference": 2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "label": "401:G_ACTIVITY_AFFINE:transitions",
+      "max_abs_difference": 4.440892098500626e-16,
+      "pass": true
+    },
+    {
+      "label": "2920:activity_train_mean",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:activity_train_sd",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:fiber_train_rms_scale",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:helical_b",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:lemniscatic_b",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:generic_common_a",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:generic_common_c",
+      "max_abs_difference": 2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "label": "2920:generic_component_intercepts",
+      "max_abs_difference": 2.7755575615628914e-16,
+      "pass": true
+    },
+    {
+      "label": "2920:T0_TRIVIAL_IDENTITY:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:T0_TRIVIAL_IDENTITY:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:M_MOBIUS_SIGN:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:M_MOBIUS_SIGN:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:H_HELICAL_TRANSLATION:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:H_HELICAL_TRANSLATION:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:L_LEMNISCATIC_ALTERNATING:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:L_LEMNISCATIC_ALTERNATING:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "2920:G_ACTIVITY_AFFINE:metrics",
+      "max_abs_difference": 1.1102230246251565e-16,
+      "pass": true
+    },
+    {
+      "label": "2920:G_ACTIVITY_AFFINE:transitions",
+      "max_abs_difference": 2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "label": "5249:activity_train_mean",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:activity_train_sd",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:fiber_train_rms_scale",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:helical_b",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:lemniscatic_b",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:generic_common_a",
+      "max_abs_difference": 5.551115123125783e-16,
+      "pass": true
+    },
+    {
+      "label": "5249:generic_common_c",
+      "max_abs_difference": 5.551115123125783e-17,
+      "pass": true
+    },
+    {
+      "label": "5249:generic_component_intercepts",
+      "max_abs_difference": 1.8735013540549517e-16,
+      "pass": true
+    },
+    {
+      "label": "5249:T0_TRIVIAL_IDENTITY:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:T0_TRIVIAL_IDENTITY:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:M_MOBIUS_SIGN:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:M_MOBIUS_SIGN:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:H_HELICAL_TRANSLATION:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:H_HELICAL_TRANSLATION:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:L_LEMNISCATIC_ALTERNATING:metrics",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:L_LEMNISCATIC_ALTERNATING:transitions",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "5249:G_ACTIVITY_AFFINE:metrics",
+      "max_abs_difference": 6.661338147750939e-16,
+      "pass": true
+    },
+    {
+      "label": "5249:G_ACTIVITY_AFFINE:transitions",
+      "max_abs_difference": 1.7763568394002505e-15,
+      "pass": true
+    },
+    {
+      "label": "G_ACTIVITY_AFFINE:global",
+      "max_abs_difference": 4.440892098500626e-16,
+      "pass": true
+    },
+    {
+      "label": "H_HELICAL_TRANSLATION:global",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "L_LEMNISCATIC_ALTERNATING:global",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "M_MOBIUS_SIGN:global",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "T0_TRIVIAL_IDENTITY:global",
+      "max_abs_difference": 0.0,
+      "pass": true
+    },
+    {
+      "label": "global_margin",
+      "max_abs_difference": 0.0,
+      "pass": true
+    }
+  ],
+  "replay_script_sha256": "3dba12aec155f43b8787a146574f2070c72879fba1b167cf000505851e8e201e",
+  "reported_outcome": "NO_DEVELOPMENT_DOMINANT_LIFT",
+  "result_sha256": "f70febf57e5abe59b61207fd338acd57e369d6d466fb7e59d6bcd4d515f875a6",
+  "scientific_confirmation": false,
+  "status": "FULL_SELECTION_AND_AGGREGATE_REPLAY_PASS"
+}

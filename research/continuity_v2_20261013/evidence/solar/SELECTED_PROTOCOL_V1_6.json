@@ -1,0 +1,328 @@
+{
+  "activity_control": {
+    "activity_scalar_q": "MEAN_OF_FOUR_TRAIN_STANDARDIZED_COMPONENTS",
+    "components": [
+      "HC_UNSIGNED_MEAN",
+      "MAGNETIC_ENERGY_PROXY",
+      "JZ_RMS",
+      "GRADIENT_ENERGY"
+    ],
+    "normalization": "TRAIN_HARPS_ONLY_MEAN_SD",
+    "normalization_sd_floor": 1e-12,
+    "sigma_pixels": 2,
+    "transform": "log(max(value,1e-300))",
+    "transition_control": "delta_q=q_tplus1-q_t"
+  },
+  "authority_ceiling": "NONE",
+  "canonicalization": "BLOCKED",
+  "data_partition": {
+    "allowed_years": [
+      2011,
+      2013,
+      2015
+    ],
+    "flare_outcomes": "FORBIDDEN",
+    "fresh_2026_holdout_reuse": "FORBIDDEN",
+    "future_confirmation": "REQUIRED_FOR_ANY_PHYSICAL_OR_TOPOLOGICAL_PROMOTION"
+  },
+  "direct_field_fiber": {
+    "all_components_parity_odd": true,
+    "cross_scale_components": [
+      "SIGNED_HC_LOG_SCALE_INTEGRAL"
+    ],
+    "dimension": 16,
+    "feature_selection": "FORBIDDEN",
+    "per_scale_components": [
+      "HC_SIGNED_MEAN",
+      "HC_NORMALIZED",
+      "ALPHA_WEIGHTED_PER_MM"
+    ],
+    "sigma_pixels": [
+      0,
+      1,
+      2,
+      4,
+      8
+    ]
+  },
+  "dominance_rule": {
+    "global_primary_margin_vs_runner_up": 0.05,
+    "minimum_fold_wins": 2,
+    "minimum_total_test_transitions": 12,
+    "ties": "NO_DEVELOPMENT_DOMINANT_LIFT",
+    "winner_condition": "winner_NMSE <= 0.95 * runner_up_NMSE"
+  },
+  "evaluation": {
+    "expected_total_test_transitions": 12,
+    "fiber_scale": "TRAIN_TRANSITION_TARGET_RMS_PER_COMPONENT_WITH_FLOOR_1E-12",
+    "fiber_scale_floor": 1e-12,
+    "folds": 3,
+    "no_test_refitting": true,
+    "primary_metric": "MEAN_NORMALIZED_MSE_OVER_COMPONENTS_AND_TRANSITIONS",
+    "scheme": "LEAVE_ONE_HARP_OUT",
+    "secondary_metric": "MEAN_NORMALIZED_MAE_OVER_COMPONENTS_AND_TRANSITIONS",
+    "test_transitions_per_fold": 4,
+    "tie_tolerance_relative": 1e-12
+  },
+  "format": "KCH_HELICAL_V1_6_METADATA_SELECTED_TEMPORAL_PROTOCOL",
+  "harp_trajectories": [
+    {
+      "harp": 401,
+      "start_offset_minutes": 0,
+      "times_tai": [
+        "2011.03.09_11:24:00_TAI",
+        "2011.03.09_17:24:00_TAI",
+        "2011.03.09_23:24:00_TAI",
+        "2011.03.10_05:24:00_TAI",
+        "2011.03.10_11:24:00_TAI"
+      ],
+      "trajectory_id": "HARP401_DEV_20110309_20110310_V16"
+    },
+    {
+      "harp": 2920,
+      "start_offset_minutes": -12,
+      "times_tai": [
+        "2013.07.07_23:48:00_TAI",
+        "2013.07.08_05:48:00_TAI",
+        "2013.07.08_11:48:00_TAI",
+        "2013.07.08_17:48:00_TAI",
+        "2013.07.08_23:48:00_TAI"
+      ],
+      "trajectory_id": "HARP2920_DEV_20130708_20130709_V16"
+    },
+    {
+      "harp": 5249,
+      "start_offset_minutes": -12,
+      "times_tai": [
+        "2015.03.01_23:48:00_TAI",
+        "2015.03.02_05:48:00_TAI",
+        "2015.03.02_11:48:00_TAI",
+        "2015.03.02_17:48:00_TAI",
+        "2015.03.02_23:48:00_TAI"
+      ],
+      "trajectory_id": "HARP5249_DEV_20150302_20150303_V16"
+    }
+  ],
+  "interpretation_boundary": {
+    "development_winner_is_confirmation": false,
+    "endpoint_activity_control": "CONDITIONAL_TRANSITION_COMPARISON_NOT_EX_ANTE_FORECAST",
+    "flare_prediction": "NOT_EVALUATED",
+    "independent_units": "THREE_DEVELOPMENT_HARPS",
+    "original_six_snapshots_previously_observed": true,
+    "physical_helicity": "NOT_EVALUATED",
+    "selection_changes_estimand": "QUALITY_AND_SUPPORT_ELIGIBLE_WINDOWS_WITHIN_FIXED_NEIGHBORHOOD",
+    "successor_is_independent_confirmation": false,
+    "topological_class": "NOT_EVALUATED",
+    "universal_ontology": "FORBIDDEN"
+  },
+  "metadata_selection": {
+    "all_three_trajectories_required": true,
+    "allowed_keys": [
+      "HARPNUM",
+      "T_REC",
+      "QUALITY",
+      "CMASK"
+    ],
+    "candidate_start_offsets_minutes": [
+      -360,
+      -348,
+      -336,
+      -324,
+      -312,
+      -300,
+      -288,
+      -276,
+      -264,
+      -252,
+      -240,
+      -228,
+      -216,
+      -204,
+      -192,
+      -180,
+      -168,
+      -156,
+      -144,
+      -132,
+      -120,
+      -108,
+      -96,
+      -84,
+      -72,
+      -60,
+      -48,
+      -36,
+      -24,
+      -12,
+      0,
+      12,
+      24,
+      36,
+      48,
+      60,
+      72,
+      84,
+      96,
+      108,
+      120,
+      132,
+      144,
+      156,
+      168,
+      180,
+      192,
+      204,
+      216,
+      228,
+      240,
+      252,
+      264,
+      276,
+      288,
+      300,
+      312,
+      324,
+      336,
+      348,
+      360
+    ],
+    "freeze_and_upload_before_field_access": true,
+    "maximum_abs_offset_minutes": 360,
+    "minimum_cmask": 1000,
+    "no_candidate_after_field_failure": true,
+    "ordering": "ABS_OFFSET_ASCENDING_THEN_SIGNED_OFFSET_ASCENDING",
+    "quality_equals": 0,
+    "segment_paths_must_exist": true,
+    "segments": [
+      "Br",
+      "Bt",
+      "Bp",
+      "conf_disambig",
+      "bitmap"
+    ],
+    "snapshots_per_candidate": 5,
+    "spacing_minutes": 360
+  },
+  "metadata_selection_receipt": "h16meta:d35380bcdc80707e7d168762b22410fb3adfb4f9357e8cb6b26e9272970f5230",
+  "operational_transport_rivals": {
+    "G_ACTIVITY_AFFINE": {
+      "fit": "JOINT_OLS_WITH_COMMON_a_COMMON_c_AND_COMPONENT_INTERCEPTS",
+      "identifiability": {
+        "failure_policy": "INSUFFICIENT_TEMPORAL_SUPPORT",
+        "maximum_condition_number": 100000000,
+        "required_design_rank": 18
+      },
+      "interpretation": "GENERIC_NONTOPOLOGICAL_ACTIVITY_CONDITIONED_AFFINE_RIVAL",
+      "prediction": "z_y=a*z_x+b_component+c*delta_q",
+      "ridge": 0,
+      "trainable_parameters": 18,
+      "z_definition": "fiber_component_divided_by_train_target_RMS"
+    },
+    "H_HELICAL_TRANSLATION": {
+      "fit": "b=TRAIN_MEAN(y-x)_PER_COMPONENT",
+      "interpretation": "ORIENTED_AFFINE_DRIFT_RIVAL_NOT_LITERAL_HELIX_PROOF",
+      "prediction": "y=x+b",
+      "trainable_parameters": 16
+    },
+    "L_LEMNISCATIC_ALTERNATING": {
+      "fit": "b=TRAIN_MEAN(s_k*(y-x))_PER_COMPONENT",
+      "interpretation": "ALTERNATING_DRIFT_RIVAL_NOT_LEMNISCATE_TOPOLOGY_PROOF",
+      "phase": "s_k=(-1)^k_WITH_k_TRANSITION_INDEX_0_TO_3_WITHIN_EACH_HARP",
+      "phase_tuning": "FORBIDDEN",
+      "prediction": "y=x+s_k*b",
+      "trainable_parameters": 16
+    },
+    "M_MOBIUS_SIGN": {
+      "interpretation": "OPERATIONAL_Z2_SIGN_TRANSPORT_RIVAL_NOT_TOPOLOGICAL_PROOF",
+      "prediction": "y=-x",
+      "trainable_parameters": 0
+    },
+    "T0_TRIVIAL_IDENTITY": {
+      "prediction": "y=x",
+      "trainable_parameters": 0
+    }
+  },
+  "original_trajectories": [
+    {
+      "harp": 401,
+      "times_tai": [
+        "2011.03.09_11:24:00_TAI",
+        "2011.03.09_17:24:00_TAI",
+        "2011.03.09_23:24:00_TAI",
+        "2011.03.10_05:24:00_TAI",
+        "2011.03.10_11:24:00_TAI"
+      ],
+      "trajectory_id": "HARP401_DEV_20110309_20110310"
+    },
+    {
+      "harp": 2920,
+      "times_tai": [
+        "2013.07.08_00:00:00_TAI",
+        "2013.07.08_06:00:00_TAI",
+        "2013.07.08_12:00:00_TAI",
+        "2013.07.08_18:00:00_TAI",
+        "2013.07.09_00:00:00_TAI"
+      ],
+      "trajectory_id": "HARP2920_DEV_20130708_20130709"
+    },
+    {
+      "harp": 5249,
+      "times_tai": [
+        "2015.03.02_00:00:00_TAI",
+        "2015.03.02_06:00:00_TAI",
+        "2015.03.02_12:00:00_TAI",
+        "2015.03.02_18:00:00_TAI",
+        "2015.03.03_00:00:00_TAI"
+      ],
+      "trajectory_id": "HARP5249_DEV_20150302_20150303"
+    }
+  ],
+  "parent_operator_lock": "construct_successors/KCH_HELICAL_V142_OPERATOR_BASIS_REEXECUTION_20261012/MULTISCALE_OPERATOR_BASIS_LOCK_V1_4_2.json",
+  "predecessor": {
+    "commit": "11ff8d30bcd7f6d30cd0295e9b49fa3f4a64050d",
+    "outcome": "INSUFFICIENT_TEMPORAL_SUPPORT",
+    "protocol_sha256": "3f6f7b13a5eb3eed82a3d345116ae5f32f205a12d296ac204d3a916859054b8e",
+    "result_receipt_id": "h15lift:6f499ba1d20621358cee323fb4cb5f94b07aed4c608192b35132926b189dd8a0"
+  },
+  "promotion": "BLOCKED",
+  "raw_export": "FORBIDDEN",
+  "scope": "DEVELOPMENT_ONLY_DIRECT_FIELD_TEMPORAL_TRANSPORT_RIVAL_GATE",
+  "snapshot_eligibility": {
+    "QUALITY_equals_zero": true,
+    "exactly_one_record_per_exact_query": true,
+    "mask_and_multiscale_support": "INHERIT_EXACTLY_FROM_V1_4_2_LOCK",
+    "minimum_valid_pixels_each_scale": 1000,
+    "no_imputation": true,
+    "no_interpolation": true,
+    "no_timestamp_substitution": true,
+    "required_segments": [
+      "Br",
+      "Bt",
+      "Bp",
+      "conf_disambig",
+      "bitmap"
+    ],
+    "series": "hmi.sharp_cea_720s"
+  },
+  "source_resilience": {
+    "fixed_backoff_seconds": [
+      0,
+      3,
+      10
+    ],
+    "metadata_query_attempts": 3,
+    "retry_changes_scientific_specification": false
+  },
+  "status": "METADATA_SELECTED_BEFORE_FIELD_ACCESS",
+  "temporal_spacing_hours": 6,
+  "terminal_outcomes": [
+    "DEVELOPMENT_TRIVIAL_RIVAL_DOMINATES",
+    "DEVELOPMENT_MOBIUS_RIVAL_DOMINATES",
+    "DEVELOPMENT_HELICAL_RIVAL_DOMINATES",
+    "DEVELOPMENT_LEMNISCATIC_RIVAL_DOMINATES",
+    "DEVELOPMENT_GENERIC_ACTIVITY_RIVAL_DOMINATES",
+    "NO_DEVELOPMENT_DOMINANT_LIFT",
+    "INSUFFICIENT_TEMPORAL_SUPPORT"
+  ],
+  "version": "1.6.0"
+}

@@ -1,0 +1,104 @@
+{
+  "atlas_sha256": "a201aafbeda966e5d600e803cd19ea9ff16e6a21bbf9ad21b7f51f27e272504e",
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14",
+    "scipy": "1.17.0"
+  },
+  "exactness": {
+    "arithmetic": "Integer feasibility and Fraction rational dual inequality checks; float LP proposes dual weights only",
+    "historic_full_state_hashes_verified": false,
+    "historic_receipt_chains_reconstructed": false,
+    "ledger_serialization": "UTF-8 of sorted sensor:mask coordinates joined with LF, with no trailing LF; independently identified and matched against 238 archived digests",
+    "lower_bound": "ceil(b dot y); all remaining admissible destination-sensor coordinates checked",
+    "optimal_probe_identity": "NOT_CLAIMED_UNIQUE; optimal costs do not determine a unique bridge",
+    "original_generator_recovered": false,
+    "original_solver_cache_recovered": false,
+    "upper_bound": "Archived distinct-coordinate witness, evaluated independently on every relevant class pair"
+  },
+  "inputs": [
+    {
+      "bytes": 712699,
+      "name": "cas_constitutional_kernel_v1.json",
+      "sha256": "82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138"
+    },
+    {
+      "bytes": 12896,
+      "name": "compiled_distance_codebooks.json",
+      "sha256": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b"
+    },
+    {
+      "bytes": 14195,
+      "name": "adjacent_contract_migrations.csv",
+      "sha256": "818beed9111f102a863ad619a6209b27f44026b5adb335ea715814c8d1e3d91d"
+    }
+  ],
+  "kernel": {
+    "admissible_masks": 4017,
+    "functional_classes": 65,
+    "jurisdictions": 90,
+    "nodes": 12423,
+    "projected_classes": {
+      "ACTIONABLE": 46,
+      "EXACT": 65,
+      "MODE": 63
+    },
+    "structural_hashes_matched": 90
+  },
+  "output_hashes": {
+    "EXACT_BRIDGE_CERTIFICATES.json": "aaf4b8a0da82db4677dc032816d9c9c43bdcc7698a70a29c611b3a49139b97d9",
+    "FINITE_ATLAS_REPLAY_DETAIL.json": "dec586c672132e706633ea72305736d13309a76a18bc8528efe927d172230eb6"
+  },
+  "permission_granted": false,
+  "predecessor_archive_sha256": "fe3f8e1fc7a6f20cdfded9656be78752ec7aa8414eb74c70a6fe1f49be0996d1",
+  "recovered_common_coordinates": [
+    {
+      "coordinates": [
+        "MODE:031"
+      ],
+      "destination": "MODE__MODE__d3",
+      "source": "ACTIONABLE__MODE__d2"
+    },
+    {
+      "coordinates": [
+        "EXACT:08e"
+      ],
+      "destination": "EXACT__EXACT__d5",
+      "source": "MODE__EXACT__d4"
+    }
+  ],
+  "result_sha256": "3aeaf7a8827bc80f1287b273502e250fe398a47aad46760cab555fcda8f3b287",
+  "schema": "ECH_INDEPENDENT_FINITE_BRIDGE_VERIFICATION_V1",
+  "scientific_boundaries": [
+    "Exact computational audit conditional on frozen finite kernel; no new physical or observational validation.",
+    "The 23 squares reproduce archived optimal local witnesses; noncommutativity counts are not proved invariant under alternative optimal tie selections.",
+    "Append-only genealogy implies nonreturn of the full state, not a geometrical helix.",
+    "No observational readings, synthetic samples, missing receipt values, authority or permissions are manufactured."
+  ],
+  "script_sha256": "2b37d30db3d0e4d8781e59908ef1bf8a6f0f698ee002cce190689090324fc47a",
+  "sensor_semantics_primary_source": {
+    "archive": "ECH_ROBUST_SUCCESSIVE_REFINEMENT_2026-09-28.zip",
+    "archive_sha256": "a951daaf32d3d2df1661cd3b78fbf176d5da6eb9ef4dfec3726c10d398d0db39",
+    "member": "successive_refinement_decoder.py",
+    "member_sha256": "8f579feb5b5bc5279ce0cc57612480ceb9fb38550f8f440bfcb29c87d0fcd1ea"
+  },
+  "status": "ALL_ARCHIVED_BRIDGE_COSTS_AND_EVIDENCE_SETS_VERIFIED_WITH_EXACT_CERTIFICATES",
+  "verified": {
+    "adjacent_transitions": 96,
+    "archive_ledger_hashes_matched": 238,
+    "codebooks": 28,
+    "cost_noncommuting_squares": 17,
+    "direct_claim_combinations": 784,
+    "direct_satisfied": 353,
+    "distinct_claim_profiles": 21,
+    "evidence_noncommuting_squares": 22,
+    "maximum_square_cost_difference": 10,
+    "maximum_square_symmetric_difference": 20,
+    "positive_cost_rational_certificates": 66,
+    "positive_evidence_loops": 34,
+    "squares": 23,
+    "two_edge_loops": 96,
+    "unique_bridge_problems_certified": 204,
+    "zero_cost_integer_certificates": 138
+  }
+}
