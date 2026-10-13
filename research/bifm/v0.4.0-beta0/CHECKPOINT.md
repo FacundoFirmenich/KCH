@@ -1,0 +1,31 @@
+# BIFM v0.4.0-beta0 protocol checkpoint
+
+- Date: 2026-10-13
+- Release: `BIFM_SSEC_CTEC_v0_4_0_BETA0`
+- Aggregate protocol-index SHA-256: `7607bd01b5f8ee596de0ca3f19233e197a9392d0fc21b52c176e7655230f6706`
+- Status: development checkpoint; not the final confirmatory preregistration.
+- Confirmatory human/model runs executed under this checkpoint: **none**.
+- Human gold annotations completed: **0**.
+
+This checkpoint binds the provenance audit, multidimensional annotation ontology, blinded reviewer packets, document-level acquisition registry and OSF-ready protocol. The definitive confirmatory seal remains open until the 40-item human pilot is completed and any predeclared instrument corrections are frozen.
+
+## Bound file hashes
+
+```text
+65f3f5e22bf8f3cb799da0034dac475bf535e7a1789c2b177c66d38ee2ee0469  preregistration/OSF_READY_PREREGISTRATION.md
+3c277121655136ded291991c8f548b1de63f884c50b9ed75333edcb4c5bb8969  preregistration/PREREGISTRATION_CHANGELOG.md
+85cc14323d9c9acb6c71301e3328fa773678f4d45e25724fd9900359d8efd63c  corpus/CODEBOOK.md
+d49938550075913ab7c85a6593fb01796cf68b1c459c98ea82420bf638130e6c  corpus/annotation_schema.json
+03c7a70a4a966c69516645385a1fcef58c20d27a989c8a5c963e47887b686aeb  corpus/GOLD_CORPUS_CONSTRUCTION_PROTOCOL.md
+4174acd1cea34cd680ed1ffd27b04be1af3b389e81fed0d23b4510896537c7fb  corpus/PROVENANCE_SCHEMA.md
+16d05a3b63bb87bedbb3c5c2a82c05fc704d89d6116b40eaf636d1bc243114d7  corpus/source_verification_ledger.csv
+ad976ceb47b638f0559758e0ead6afcaa6cc824f4d1ce22b98d882f659eecce9  corpus/silver_claims_verified.csv
+361d8915244c5942049a7694275aecca002fb1bc40d835666b2c8f3814bbdfe1  corpus/acquisition_registry.csv
+04453e81a4215f48213e5233ac8ae17e7d1088d9857f3e48ffcc9ac2b92efe66  tools/make_blind_packets.py
+3a949d4f503f5605017483e3f163c48985301ffb6efc27a4ca281b1908198c27  tools/score_annotations.py
+66fde8e7759749e6d73a2a5928146483966ebb1ce290024ecc82ebfc868009b9  tools/validate_annotations.py
+6fa8237ebfeeacdb1db3364bb5d58f808a1fe6baf8d32e50653b1145856e1200  tools/build_reviewer_packages.py
+cfaaaf09c6d7e6e4f4d44212f0ef4d68012f4b87e57dbf7d243ffc795d3478ab  src/bifm3/annotation.py
+1b60db84ccb0342ca7215b2330fcb875143dc3d157bf1552de7a4f6d2478e4bc  dist/BIFM_REVIEWER_A_PACKET_v0_4_0_BETA0.zip
+c641b606fe1c67e39cf09143426f591452a013181b4654bc483c894e77f5eeb2  dist/BIFM_REVIEWER_B_PACKET_v0_4_0_BETA0.zip
+```
