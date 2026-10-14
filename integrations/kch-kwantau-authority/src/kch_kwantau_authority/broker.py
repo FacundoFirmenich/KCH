@@ -118,13 +118,25 @@ class AuthorityBroker:
     def __init__(self, database_path: str | os.PathLike[str] | None = None) -> None:
         self.database_path = Path(database_path) if database_path else default_database_path()
 
-    def connect(self) -> sqlite3.Connection:
-        if not self.database_path.is_file():
+    def connect(self, *, readonly: bool = False) -> sqlite3.Connection:
+        database_path = self.database_path.resolve()
+        if not database_path.is_file():
             raise AuthorityError(
                 "AUTHORITY_DB_MISSING",
-                f"KCH Native database does not exist: {self.database_path}",
+                f"KCH Native database does not exist: {database_path}",
             )
-        db = sqlite3.connect(self.database_path, timeout=10)
+        if readonly:
+            db = sqlite3.connect(
+                database_path.as_uri() + "?mode=ro",
+                uri=True,
+                timeout=10,
+            )
+            db.row_factory = sqlite3.Row
+            db.execute("PRAGMA query_only=ON")
+            db.execute("PRAGMA busy_timeout=10000")
+            self._require_predecessor_schema(db)
+            return db
+        db = sqlite3.connect(database_path, timeout=10)
         db.row_factory = sqlite3.Row
         db.execute("PRAGMA journal_mode=WAL")
         db.execute("PRAGMA synchronous=FULL")
@@ -209,6 +221,13 @@ class AuthorityBroker:
             )
             if row["previous_hash"] != previous:
                 return False, count, previous
+            if row["payload_json"] is not None:
+                try:
+                    stored_payload = canonical(json.loads(row["payload_json"]))
+                except (TypeError, ValueError, json.JSONDecodeError):
+                    return False, count, previous
+                if sha256_text(stored_payload) != row["payload_sha256"]:
+                    return False, count, previous
             expected = sha256_text(material)
             if row["event_hash"] != expected:
                 return False, count, previous
@@ -388,15 +407,22 @@ class AuthorityBroker:
 
     def verify(self, params: Mapping[str, Any]) -> dict[str, Any]:
         prepared = PreparedInput.from_params(params)
-        db = self.connect()
+        db = self.connect(readonly=True)
         try:
             valid, _, generation = self.verify_chain(db)
             if not valid:
                 raise AuthorityError("LEDGER_CHAIN_INVALID", "KCH event chain is invalid")
-            claim = db.execute(
-                "SELECT * FROM authority_claims WHERE envelope_hash=?",
-                (prepared.envelope_hash,),
-            ).fetchone()
+            has_claim_table = db.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' AND name='authority_claims'"
+            ).fetchone() is not None
+            claim = (
+                db.execute(
+                    "SELECT * FROM authority_claims WHERE envelope_hash=?",
+                    (prepared.envelope_hash,),
+                ).fetchone()
+                if has_claim_table
+                else None
+            )
             if claim:
                 active = (
                     self._claim_matches(claim, prepared)
@@ -416,7 +442,7 @@ class AuthorityBroker:
                     "SELECT * FROM authority_claims WHERE proposal_id=?",
                     (authorization["id"],),
                 ).fetchone()
-                if authorization
+                if authorization and has_claim_table
                 else None
             )
             available = authorization is not None and prior_claim is None
