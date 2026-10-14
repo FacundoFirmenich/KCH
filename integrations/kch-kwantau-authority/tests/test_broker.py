@@ -124,7 +124,10 @@ class BrokerCase(unittest.TestCase):
         self.assertTrue(result["active"])
         self.assertEqual(result["status"], "AUTHORIZED_AVAILABLE")
         with sqlite3.connect(self.db_path) as db:
-            self.assertEqual(db.execute("SELECT COUNT(*) FROM authority_claims").fetchone()[0], 0)
+            table = db.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' AND name='authority_claims'"
+            ).fetchone()
+            self.assertIsNone(table)
 
     def test_prepare_replay_and_commit_consumes_exact_authorization(self):
         first = self.broker.prepare(self.params())
@@ -243,6 +246,18 @@ class BrokerCase(unittest.TestCase):
         prepared = self.broker.prepare(self.params())
         with sqlite3.connect(self.db_path) as db:
             db.execute("UPDATE events SET event_hash=? WHERE id=1", ("0" * 64,))
+            db.commit()
+        with self.assertRaises(AuthorityError) as caught:
+            self.broker.status({"claimId": prepared["claimId"]})
+        self.assertEqual(caught.exception.code, "LEDGER_CHAIN_INVALID")
+
+    def test_tampered_exact_payload_is_detected_when_persisted(self):
+        prepared = self.broker.prepare(self.params())
+        with sqlite3.connect(self.db_path) as db:
+            db.execute(
+                "UPDATE events SET payload_json=? WHERE id=1",
+                ('{"tampered":true}',),
+            )
             db.commit()
         with self.assertRaises(AuthorityError) as caught:
             self.broker.status({"claimId": prepared["claimId"]})
