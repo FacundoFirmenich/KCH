@@ -1,0 +1,23 @@
+name: BIFM v0.7 independent Lean proof core
+
+on:
+  push:
+    branches:
+      - bifm/v0.7.0-alpha0-independent-proof-core
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: research/bifm/v0.7.0-alpha0/lean
+          test: false
+          nanoda: true
+          nanoda-allow-sorry: false
