@@ -23,11 +23,11 @@ jobs:
 
       - name: Install OPA v1.21.2 with upstream checksum
         run: |
-          curl -L -o opa https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64
-          curl -L -o opa.sha256 https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64.sha256
-          sha256sum -c opa.sha256
-          chmod +x opa
-          sudo mv opa /usr/local/bin/opa
+          curl -L -o opa_linux_amd64 https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64
+          curl -L -o opa_linux_amd64.sha256 https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64.sha256
+          sha256sum -c opa_linux_amd64.sha256
+          chmod +x opa_linux_amd64
+          sudo mv opa_linux_amd64 /usr/local/bin/opa
           opa version
 
       - name: Install Cedar CLI v4.13.0 with upstream checksum
