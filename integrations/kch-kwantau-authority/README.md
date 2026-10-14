@@ -35,7 +35,11 @@ No side effect is executed and the predecessor authorization is not yet consumed
 
 ### commit
 
-After KwanTau obtains a remote run/receipt, `kch.authority.commit` atomically requires the PREPARED claim, binds run ID and receipt hash, consumes the predecessor authorization, marks the original proposal `CONSUMED`, marks the claim `COMMITTED`, and appends a KCH event.
+`kch.authority.commit` is called **before** KwanTau dispatches the remote side effect. It atomically consumes the predecessor authorization, binds one KwanTau dispatch identity, marks the original proposal `CONSUMED`, marks the claim `COMMITTED`, and appends a KCH event. Only after this commit may KwanTau call the remote executor.
+
+### receipt
+
+After Gateway acceptance, `kch.authority.receipt` attaches the remote `runId` and acceptance/receipt hash to the already-consumed claim. Receipt binding can also resolve an `IN_DOUBT` claim after external reconciliation.
 
 ### abort
 
@@ -43,7 +47,7 @@ After KwanTau obtains a remote run/receipt, `kch.authority.commit` atomically re
 
 ### indoubt
 
-If dispatch may have occurred but no terminal proof exists, `indoubt` permanently prevents silent reuse. Recovery must reconcile the same claim.
+If dispatch may have occurred but the remote run/receipt is uncertain, `indoubt` moves an already COMMITTED claim to `IN_DOUBT`. The underlying user authorization remains consumed. Recovery must reconcile the same claim; it can never mint a second attempt.
 
 ## Shadow verification
 
