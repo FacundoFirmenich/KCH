@@ -1,0 +1,26 @@
+name: BIFM v0.6 dual-gate reproducibility
+
+on:
+  push:
+    branches:
+      - bifm/v0.6.0-alpha0-dual-certification-core
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reproduce finite audit and benchmark invariants
+        run: |
+          python research/bifm/v0.6.0-alpha0/reproduce.py | tee bifm_v060_receipt.json
+      - name: Hash reproducibility sources
+        run: |
+          sha256sum research/bifm/v0.6.0-alpha0/formal_core.py research/bifm/v0.6.0-alpha0/reproduce.py bifm_v060_receipt.json
