@@ -1,0 +1,207 @@
+name: CSC-KCH v12 cross-runner transparent quorum
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/csc_kch_v12_transparency/**'
+      - '.github/workflows/csc-kch-v12-transparent-quorum.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  v11-conformance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install OPA v1.21.2 with upstream checksum
+        run: |
+          curl -L -o opa_linux_amd64 https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64
+          curl -L -o opa_linux_amd64.sha256 https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64.sha256
+          sha256sum -c opa_linux_amd64.sha256
+          chmod +x opa_linux_amd64
+          sudo mv opa_linux_amd64 /usr/local/bin/opa
+      - name: Install Cedar CLI v4.13.0 with upstream checksum
+        run: |
+          ASSET=cedar-policy-cli-x86_64-unknown-linux-gnu.tar.xz
+          BASE=https://github.com/cedar-policy/cedar/releases/download/cedar-policy-cli-v4.13.0
+          curl -L -o "$ASSET" "$BASE/$ASSET"
+          curl -L -o "$ASSET.sha256" "$BASE/$ASSET.sha256"
+          sha256sum -c "$ASSET.sha256"
+          tar -xJf "$ASSET"
+          CEDAR_BIN=$(find . -type f -name cedar -perm -111 | head -n1)
+          test -n "$CEDAR_BIN"
+          sudo install -m 0755 "$CEDAR_BIN" /usr/local/bin/cedar
+      - name: Install TLA+ TLC v1.7.4 with release checksum
+        run: |
+          curl -L -o tla2tools.jar https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+          echo 'bee4a54f3ee3d4afc347c3240ec2d9e93b075104  tla2tools.jar' | sha1sum -c -
+      - name: Re-run v11 semantic and formal gates
+        working-directory: research/csc_kch_v11_external
+        run: |
+          python generate_vectors.py
+          python run_conformance.py \
+            --vectors PORTABLE_SUPPORT_VECTORS.json \
+            --rego policy.rego \
+            --cedar-policy policy.cedar \
+            --opa /usr/local/bin/opa \
+            --cedar /usr/local/bin/cedar \
+            --output EXTERNAL_CONFORMANCE_RESULT.json
+          java -cp "$GITHUB_WORKSPACE/tla2tools.jar" tlc2.TLC -config PCGT.cfg PCGT.tla | tee TLC_OUTPUT.txt
+          grep -q 'Model checking completed. No error has been found.' TLC_OUTPUT.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v11-semantic-gate
+          path: |
+            research/csc_kch_v11_external/PORTABLE_SUPPORT_VECTORS.json
+            research/csc_kch_v11_external/EXTERNAL_CONFORMANCE_RESULT.json
+            research/csc_kch_v11_external/TLC_OUTPUT.txt
+
+  prepare:
+    needs: v11-conformance
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: v11-semantic-gate
+          path: research/csc_kch_v12_transparency/input
+      - name: Verify pinned v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: echo "d674e36244b40d21354ed92b2fc5f3941fa675b5fc48ae820663ec89442776d3  v12_payload.zip" | sha256sum -c -
+      - name: Unpack reviewed v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: unzip -q v12_payload.zip
+      - name: Prepare transition, reservation and Merkle checkpoint
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          mkdir -p evidence
+          python v12_transparent_quorum.py prepare \
+            --vectors input/PORTABLE_SUPPORT_VECTORS.json \
+            --output evidence/PREPARED_BUNDLE.json \
+            --commit "$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v12-prepared-bundle
+          path: research/csc_kch_v12_transparency/evidence/PREPARED_BUNDLE.json
+
+  witness:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - witness_id: w1
+            trust_domain: domain-alpha
+            online: true
+          - witness_id: w2
+            trust_domain: domain-beta
+            online: true
+          - witness_id: w3
+            trust_domain: domain-gamma
+            online: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: v12-prepared-bundle
+          path: research/csc_kch_v12_transparency/evidence
+      - name: Verify pinned v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: echo "d674e36244b40d21354ed92b2fc5f3941fa675b5fc48ae820663ec89442776d3  v12_payload.zip" | sha256sum -c -
+      - name: Unpack reviewed v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: unzip -q v12_payload.zip
+      - name: Produce independently signed witness position
+        if: matrix.online == true
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          python v12_transparent_quorum.py witness \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --witness-id '${{ matrix.witness_id }}' \
+            --trust-domain '${{ matrix.trust_domain }}' \
+            --antirollback-floor 7 \
+            --output 'evidence/VOTE_${{ matrix.witness_id }}.json'
+      - name: Record deliberate witness outage
+        if: matrix.online != true
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          python v12_transparent_quorum.py witness \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --witness-id '${{ matrix.witness_id }}' \
+            --trust-domain '${{ matrix.trust_domain }}' \
+            --offline \
+            --output 'evidence/OFFLINE_${{ matrix.witness_id }}.json'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: witness-${{ matrix.witness_id }}
+          path: research/csc_kch_v12_transparency/evidence/*.json
+
+  aggregate:
+    needs: [v11-conformance, prepare, witness]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: v12-prepared-bundle
+          path: research/csc_kch_v12_transparency/evidence
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: witness-*
+          merge-multiple: true
+          path: research/csc_kch_v12_transparency/evidence
+      - name: Verify pinned v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: echo "d674e36244b40d21354ed92b2fc5f3941fa675b5fc48ae820663ec89442776d3  v12_payload.zip" | sha256sum -c -
+      - name: Unpack reviewed v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: unzip -q v12_payload.zip
+      - name: Run self-tests
+        working-directory: research/csc_kch_v12_transparency
+        run: python v12_transparent_quorum.py selftest
+      - name: Aggregate quorum and execute non-idempotent effect exactly once
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          rm -f evidence/effect_state.sqlite*
+          python v12_transparent_quorum.py aggregate \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --votes evidence \
+            --state-db evidence/effect_state.sqlite \
+            --output evidence/V12_AGGREGATE_RESULT.json \
+            --quorum 2
+      - name: Run constitutional red-team
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          python v12_transparent_quorum.py redteam \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --votes evidence \
+            --output evidence/V12_REDTEAM_RESULT.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: csc-kch-v12-cross-runner-transparent-quorum
+          path: |
+            research/csc_kch_v12_transparency/evidence/PREPARED_BUNDLE.json
+            research/csc_kch_v12_transparency/evidence/VOTE_w1.json
+            research/csc_kch_v12_transparency/evidence/VOTE_w2.json
+            research/csc_kch_v12_transparency/evidence/OFFLINE_w3.json
+            research/csc_kch_v12_transparency/evidence/V12_AGGREGATE_RESULT.json
+            research/csc_kch_v12_transparency/evidence/V12_REDTEAM_RESULT.json
