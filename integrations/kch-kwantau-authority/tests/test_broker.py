@@ -141,6 +141,11 @@ class BrokerCase(unittest.TestCase):
         )
         self.assertEqual(committed["status"], "COMMITTED")
         with sqlite3.connect(self.db_path) as db:
+            proposal_status = db.execute(
+                "SELECT status FROM proposals WHERE id='proposal-1'"
+            ).fetchone()[0]
+        self.assertEqual(proposal_status, "CONSUMED")
+        with sqlite3.connect(self.db_path) as db:
             consumed = db.execute(
                 "SELECT consumed_at,consumed_tool_use_id FROM authorizations "
                 "WHERE proposal_id='proposal-1'"
@@ -154,6 +159,9 @@ class BrokerCase(unittest.TestCase):
 
     def test_one_authorization_cannot_be_rebound_to_another_envelope(self):
         self.broker.prepare(self.params())
+        shadow = self.broker.verify(self.params(envelopeHash="d" * 64))
+        self.assertFalse(shadow["active"])
+        self.assertEqual(shadow["reason"], "authorization is already claimed")
         with self.assertRaises(AuthorityError) as caught:
             self.broker.prepare(self.params(envelopeHash="d" * 64))
         self.assertEqual(caught.exception.code, "AUTHORITY_CLAIM_CONFLICT")
