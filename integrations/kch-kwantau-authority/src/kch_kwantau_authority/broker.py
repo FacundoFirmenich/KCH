@@ -172,6 +172,7 @@ class AuthorityBroker:
               status TEXT NOT NULL CHECK(
                 status IN ('PREPARED','COMMITTED','ABORTED','IN_DOUBT','EXPIRED')
               ),
+              dispatch_id TEXT,
               run_id TEXT,
               receipt_hash TEXT,
               completed_at TEXT,
@@ -181,6 +182,9 @@ class AuthorityBroker:
               ON authority_claims(status, expires_at);
             """
         )
+        claim_columns = {row[1] for row in db.execute("PRAGMA table_info(authority_claims)")}
+        if "dispatch_id" not in claim_columns:
+            db.execute("ALTER TABLE authority_claims ADD COLUMN dispatch_id TEXT")
         db.commit()
 
     @staticmethod
@@ -571,6 +575,100 @@ class AuthorityBroker:
             db.close()
 
     def commit(self, params: Mapping[str, Any]) -> dict[str, Any]:
+        """Consume KCH authority before KwanTau is allowed to dispatch."""
+        claim_id = _required_string(params, "claimId")
+        envelope_hash = _required_hash(params, "envelopeHash")
+        dispatch_id = _required_string(params, "dispatchId")
+        db = self.connect()
+        try:
+            db.execute("BEGIN IMMEDIATE")
+            valid, _, _ = self.verify_chain(db)
+            if not valid:
+                raise AuthorityError("LEDGER_CHAIN_INVALID", "KCH event chain is invalid")
+            claim = db.execute(
+                "SELECT * FROM authority_claims WHERE claim_id=?",
+                (claim_id,),
+            ).fetchone()
+            if not claim:
+                raise AuthorityError("AUTHORITY_CLAIM_UNKNOWN", "Unknown authority claim")
+            if claim["envelope_hash"] != envelope_hash:
+                raise AuthorityError("AUTHORITY_CLAIM_CONFLICT", "Envelope hash mismatch")
+            if claim["status"] == "COMMITTED":
+                if claim["dispatch_id"] != dispatch_id:
+                    raise AuthorityError(
+                        "AUTHORITY_CLAIM_CONFLICT",
+                        "Committed dispatch identity differs",
+                    )
+                db.commit()
+                return self._claim_response(
+                    claim,
+                    generation=self.verify_chain(db)[2],
+                    active=False,
+                    attestation_level="KCH_AUTHORIZATION_COMMITTED",
+                )
+            if claim["status"] != "PREPARED":
+                raise AuthorityError(
+                    "AUTHORITY_CLAIM_TERMINAL",
+                    f"Cannot commit claim in state {claim['status']}",
+                )
+            if self._is_expired(claim):
+                claim = self._expire_prepared_if_needed(db, claim)
+                raise AuthorityError(
+                    "AUTHORITY_CLAIM_TERMINAL",
+                    f"Cannot commit claim in state {claim['status']}",
+                )
+            consumed = db.execute(
+                "UPDATE authorizations SET consumed_at=?,consumed_tool_use_id=? "
+                "WHERE proposal_id=? AND consumed_at IS NULL",
+                (utc_now(), dispatch_id, claim["proposal_id"]),
+            ).rowcount
+            if consumed != 1:
+                raise AuthorityError(
+                    "AUTHORITY_CONSUMPTION_CONFLICT",
+                    "Underlying KCH authorization is no longer consumable.",
+                )
+            committed_at = utc_now()
+            db.execute(
+                "UPDATE proposals SET status='CONSUMED' "
+                "WHERE id=? AND status='AUTHORIZED'",
+                (claim["proposal_id"],),
+            )
+            db.execute(
+                "UPDATE authority_claims SET status='COMMITTED',dispatch_id=?,"
+                "completed_at=?,reason=NULL WHERE claim_id=?",
+                (dispatch_id, committed_at, claim_id),
+            )
+            generation = self._append_event(
+                db,
+                "KWANTAU_AUTHORITY_COMMITTED",
+                {
+                    "session_id": claim["session_id"],
+                    "claim_id": claim_id,
+                    "proposal_id": claim["proposal_id"],
+                    "envelope_hash": envelope_hash,
+                    "dispatch_id": dispatch_id,
+                },
+            )
+            db.commit()
+            committed = db.execute(
+                "SELECT * FROM authority_claims WHERE claim_id=?",
+                (claim_id,),
+            ).fetchone()
+            return self._claim_response(
+                committed,
+                generation=generation,
+                active=False,
+                attestation_level="KCH_AUTHORIZATION_COMMITTED",
+            )
+        except Exception:
+            if db.in_transaction:
+                db.rollback()
+            raise
+        finally:
+            db.close()
+
+    def receipt(self, params: Mapping[str, Any]) -> dict[str, Any]:
+        """Attach the remote run/receipt after authority was already consumed."""
         claim_id = _required_string(params, "claimId")
         envelope_hash = _required_hash(params, "envelopeHash")
         run_id = _required_string(params, "runId")
@@ -589,64 +687,49 @@ class AuthorityBroker:
                 raise AuthorityError("AUTHORITY_CLAIM_UNKNOWN", "Unknown authority claim")
             if claim["envelope_hash"] != envelope_hash:
                 raise AuthorityError("AUTHORITY_CLAIM_CONFLICT", "Envelope hash mismatch")
-            if claim["status"] == "COMMITTED":
+            if claim["status"] not in {"COMMITTED", "IN_DOUBT"}:
+                raise AuthorityError(
+                    "AUTHORITY_CLAIM_TERMINAL",
+                    f"Cannot attach receipt in state {claim['status']}",
+                )
+            if claim["run_id"] is not None:
                 if claim["run_id"] != run_id or claim["receipt_hash"] != receipt_hash:
-                    raise AuthorityError("AUTHORITY_CLAIM_CONFLICT", "Committed receipt differs")
+                    raise AuthorityError("AUTHORITY_CLAIM_CONFLICT", "Receipt differs")
                 db.commit()
                 return self._claim_response(
                     claim,
                     generation=self.verify_chain(db)[2],
                     active=False,
-                    attestation_level="KCH_AUTHORIZATION_COMMITTED",
+                    attestation_level="KCH_AUTHORIZATION_RECEIPTED",
                 )
-            if claim["status"] not in {"PREPARED", "IN_DOUBT"}:
-                raise AuthorityError(
-                    "AUTHORITY_CLAIM_TERMINAL",
-                    f"Cannot commit claim in state {claim['status']}",
-                )
-            consumed = db.execute(
-                "UPDATE authorizations SET consumed_at=?,consumed_tool_use_id=? "
-                "WHERE proposal_id=? AND consumed_at IS NULL",
-                (utc_now(), run_id, claim["proposal_id"]),
-            ).rowcount
-            if consumed != 1:
-                raise AuthorityError(
-                    "AUTHORITY_CONSUMPTION_CONFLICT",
-                    "Underlying KCH authorization is no longer consumable.",
-                )
-            completed = utc_now()
-            db.execute(
-                "UPDATE proposals SET status='CONSUMED' "
-                "WHERE id=? AND status IN ('AUTHORIZED','IN_DOUBT')",
-                (claim["proposal_id"],),
-            )
             db.execute(
                 "UPDATE authority_claims SET status='COMMITTED',run_id=?,receipt_hash=?,"
-                "completed_at=?,reason=NULL WHERE claim_id=?",
-                (run_id, receipt_hash, completed, claim_id),
+                "reason=NULL WHERE claim_id=?",
+                (run_id, receipt_hash, claim_id),
             )
             generation = self._append_event(
                 db,
-                "KWANTAU_AUTHORITY_COMMITTED",
+                "KWANTAU_AUTHORITY_RECEIPTED",
                 {
                     "session_id": claim["session_id"],
                     "claim_id": claim_id,
                     "proposal_id": claim["proposal_id"],
                     "envelope_hash": envelope_hash,
+                    "dispatch_id": claim["dispatch_id"],
                     "run_id": run_id,
                     "receipt_hash": receipt_hash,
                 },
             )
             db.commit()
-            committed = db.execute(
+            receipted = db.execute(
                 "SELECT * FROM authority_claims WHERE claim_id=?",
                 (claim_id,),
             ).fetchone()
             return self._claim_response(
-                committed,
+                receipted,
                 generation=generation,
                 active=False,
-                attestation_level="KCH_AUTHORIZATION_COMMITTED",
+                attestation_level="KCH_AUTHORIZATION_RECEIPTED",
             )
         except Exception:
             if db.in_transaction:
@@ -689,7 +772,8 @@ class AuthorityBroker:
                     active=False,
                     attestation_level=f"KCH_AUTHORIZATION_{status}",
                 )
-            if claim["status"] != "PREPARED":
+            expected_source = "PREPARED" if status == "ABORTED" else "COMMITTED"
+            if claim["status"] != expected_source:
                 raise AuthorityError(
                     "AUTHORITY_CLAIM_TERMINAL",
                     f"Cannot enter {status} from {claim['status']}",
@@ -699,10 +783,12 @@ class AuthorityBroker:
                 "UPDATE authority_claims SET status=?,completed_at=?,reason=? WHERE claim_id=?",
                 (status, completed, reason, claim_id),
             )
-            db.execute(
-                "UPDATE proposals SET status=? WHERE id=? AND status='AUTHORIZED'",
-                (status, claim["proposal_id"]),
-            )
+            if status == "ABORTED":
+                db.execute(
+                    "UPDATE proposals SET status='ABORTED' "
+                    "WHERE id=? AND status='AUTHORIZED'",
+                    (claim["proposal_id"],),
+                )
             generation = self._append_event(
                 db,
                 event_name,
