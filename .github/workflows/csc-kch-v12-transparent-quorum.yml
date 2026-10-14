@@ -6,6 +6,12 @@ on:
     paths:
       - 'research/csc_kch_v12_transparency/**'
       - '.github/workflows/csc-kch-v12-transparent-quorum.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'research/csc_kch_v12_transparency/**'
+      - '.github/workflows/csc-kch-v12-transparent-quorum.yml'
 
 permissions:
   contents: read
