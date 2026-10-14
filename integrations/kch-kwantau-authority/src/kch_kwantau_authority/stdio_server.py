@@ -12,6 +12,7 @@ METHODS = {
     "kch.authority.verify": "verify",
     "kch.authority.prepare": "prepare",
     "kch.authority.commit": "commit",
+    "kch.authority.receipt": "receipt",
     "kch.authority.abort": "abort",
     "kch.authority.indoubt": "indoubt",
     "kch.authority.status": "status",
