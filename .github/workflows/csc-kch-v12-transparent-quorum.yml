@@ -92,4 +92,116 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: v12-prepared-bundle
-          path: research/csc_kch_v12_transparency/evidence/PREPARED_BUNDLEKšœÛÛ‚‚ˆÚ]™\ÜÎ‚ˆ™YYÎˆ™\\™Bˆ[œË[ÛˆX[KLŒˆ[Y[İ][Z[]\ÎˆLˆİ˜]YŞN‚ˆ˜Z[Y˜\İˆ˜[ÙBˆX]š^‚ˆ[˜ÛYN‚ˆHÚ]™\Ü×ÚYˆÌBˆ\İÙÛXZ[ˆÛXZ[‹X[BˆÛ›[™NˆYBˆHÚ]™\Ü×ÚYˆÌ‚ˆ\İÙÛXZ[ˆÛXZ[‹X™]BˆÛ›[™NˆYBˆHÚ]™\Ü×ÚYˆÌÂˆ\İÙÛXZ[ˆÛXZ[‹YØ[[XBˆÛ›[™Nˆ˜[ÙBˆİ\Î‚ˆH\Ù\ÎˆXİ[ÛœËØÚXÚÛİ]ˆH\Ù\ÎˆXİ[ÛœËÜÙ]\\]ÛBˆÚ]‚ˆ]Û‹]™\œÚ[Ûˆ	ÌËŒLÉÂˆH\Ù\ÎˆXİ[ÛœËÙİÛ›ØYX\Y˜XİˆÚ]‚ˆ˜[YNˆŒL‹\™\\™YX[™Bˆ]ˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞKÙ]šY[˜ÙBˆH˜[YNˆ™\šYH[›™YŒLˆ™\ÙX\˜Ú^[ØYˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆXÚÈ™ÍLÍŒŒLÍMYL˜Œ™˜ÍYŒÎMY˜MÍXY˜ÍYNŒŒÙXÎMÍÍ™ÈŒL—Ü^[ØYš\ˆÚLMœİ[HXÈBˆH˜[YNˆ[œXÚÈ™]šY]ÙYŒLˆ™\ÙX\˜Ú^[ØYˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆ[š\\HŒL—Ü^[ØYš\ˆH˜[YNˆ›ÙXÙH[™\[™[HÚYÛ™YÚ]™\ÜÈÜÚ][Û‚ˆYˆX]š^›Û›[™HOHYBˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆˆ]ÛˆŒL—İ˜[œÜ\™[Ü][Ü[KœHÚ]™\ÜÈˆK\™\\™Y]šY[˜ÙKÔ‘TT‘QĞ•S‘KšœÛÛˆˆK]Ú]™\ÜËZY	ÉŞÈX]š^Ú]™\Ü×ÚY_IÈˆK]\İYÛXZ[ˆ	ÉŞÈX]š^\İÙÛXZ[ˆ_IÈˆKX[\›Û˜XÚËY›ÛÜˆÈˆK[İ]]	Ù]šY[˜ÙKÕ“ÕWÉŞÈX]š^Ú]™\Ü×ÚY_KšœÛÛ‰ÂˆH˜[YNˆ™XÛÜ™[X™\˜]HÚ]™\ÜÈİ]YÙBˆYˆX]š^›Û›[™HOHYBˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆˆ]ÛˆŒL—İ˜[œÜ\™[Ü][Ü[KœHÚ]™\ÜÈˆK\™\\™Y]šY[˜ÙKÔ‘TT‘QĞ•S‘KšœÛÛˆˆK]Ú]™\ÜËZY	ÉŞÈX]š^Ú]™\Ü×ÚY_IÈˆK]\İYÛXZ[ˆ	ÉŞÈX]š^\İÙÛXZ[ˆ_IÈˆK[Ù™›[™HˆK[İ]]	Ù]šY[˜ÙKÓÑ‘“S‘WÉŞÈX]š^Ú]™\Ü×ÚY_KšœÛÛ‰ÂˆH\Ù\ÎˆXİ[ÛœËİ\ØYX\Y˜XİˆÚ]‚ˆ˜[YNˆÚ]™\ÜËIŞÈX]š^Ú]™\Ü×ÚY_Bˆ]ˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞKÙ]šY[˜ÙKÊ‹šœÛÛ‚‚ˆYÙÜ™YØ]N‚ˆ™YYÎˆİŒLKXÛÛ™›Ü›X[˜ÙK™\\™KÚ]™\Ü×Bˆ[œË[ÛˆX[KLŒˆ[Y[İ][Z[]\ÎˆMBˆİ\Î‚ˆH\Ù\ÎˆXİ[ÛœËØÚXÚÛİ]ˆH\Ù\ÎˆXİ[ÛœËÜÙ]\\]ÛBˆÚ]‚ˆ]Û‹]™\œÚ[Ûˆ	ÌËŒLÉÂˆH\Ù\ÎˆXİ[ÛœËÙİÛ›ØYX\Y˜XİˆÚ]‚ˆ˜[YNˆŒL‹\™\\™YX[™Bˆ]ˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞKÙ]šY[˜ÙBˆH\Ù\ÎˆXİ[ÛœËÙİÛ›ØYX\Y˜XİˆÚ]‚ˆ]\›ˆÚ]™\ÜËJ‚ˆY\™ÙK[][\NˆYBˆ]ˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞKÙ]šY[˜ÙBˆH˜[YNˆ™\šYH[›™YŒLˆ™\ÙX\˜Ú^[ØYˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆXÚÈ™ÍLÍŒŒLÍMYL˜Œ™˜ÍYŒÎMY˜MÍXY˜ÍYNŒŒÙXÎMÍÍ™ÈŒL—Ü^[ØYš\ˆÚLMœİ[HXÈBˆH˜[YNˆ[œXÚÈ™]šY]ÙYŒLˆ™\ÙX\˜Ú^[ØYˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆ[š\\HŒL—Ü^[ØYš\ˆH˜[YNˆ[ˆÙ[‹]\İÂˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆ]ÛˆŒL—İ˜[œÜ\™[Ü][Ü[KœHÙ[\İˆH˜[YNˆYÙÜ™YØ]H][Ü[H[™^Xİ]H›Û‹ZY[\İ[Y™™Xİ^XİHÛ˜ÙBˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆˆ›HYˆ]šY[˜ÙKÙY™™XİÜİ]KœÜ[]J‚ˆ]ÛˆŒL—İ˜[œÜ\™[Ü][Ü[KœHYÙÜ™YØ]HˆK\™\\™Y]šY[˜ÙKÔ‘TT‘QĞ•S‘KšœÛÛˆˆK]›İ\È]šY[˜ÙHˆK\İ]KYˆ]šY[˜ÙKÙY™™XİÜİ]KœÜ[]HˆK[İ]]]šY[˜ÙKÕŒL—ĞQÑÔ‘QĞUWÔ‘TÕSšœÛÛˆˆK\][Ü[H‚ˆH˜[YNˆ[ˆÛÛœİ]][Û˜[™Y]X[BˆÛÜšÚ[™ËY\™XİÜNˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞBˆ[ˆˆ]ÛˆŒL—İ˜[œÜ\™[Ü][Ü[KœH™YX[HˆK\™\\™Y]šY[˜ÙKÔ‘TT‘QĞ•S‘KšœÛÛˆˆK]›İ\È]šY[˜ÙHˆK[İ]]]šY[˜ÙKÕŒL—Ô‘QPSWÔ‘TÕSšœÛÛ‚ˆH\Ù\ÎˆXİ[ÛœËİ\ØYX\Y˜XİˆÚ]‚ˆ˜[YNˆÜØËZØÚ]ŒL‹XÜ›ÜÜË\[›™\‹]˜[œÜ\™[\][Ü[Bˆ]ˆˆ™\ÙX\˜ÚØÜØ×ÚØÚİŒL—İ˜[œÜ\™[˜ŞKÙ]šY[˜ÙKÔ‘TT‘QĞ•S‘Ræ§6öà ¢&W6V&6‚ö765ö¶6…÷c%÷G&ç7&Væ7’öWf–FVæ6RõdõDU÷sæ§6öà¢&W6V&6‚ö765ö¶6…÷c%÷G&ç7&Væ7’öWf–FVæ6RõdõDU÷s"æ§6öà¢&W6V&6‚ö765ö¶6…÷c%÷G&ç7&Væ7’öWf–FVæ6RôôddÄ”äU÷s2æ§6öà¢&W6V&6‚ö765ö¶6…÷c%÷G&ç7&Væ7’öWf–FVæ6Rõc%ôtu$TtDUõ$U5TÅBæ§6öà¢&W6V&6‚ö765ö¶6…÷c%÷G&ç7&Væ7’öWf–FVæ6Rõc%õ$TEDTÕõ$U5TÅBæ§6öà 
+          path: research/csc_kch_v12_transparency/evidence/PREPARED_BUNDLE.json
+
+  witness:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - witness_id: w1
+            trust_domain: domain-alpha
+            online: true
+          - witness_id: w2
+            trust_domain: domain-beta
+            online: true
+          - witness_id: w3
+            trust_domain: domain-gamma
+            online: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: v12-prepared-bundle
+          path: research/csc_kch_v12_transparency/evidence
+      - name: Verify pinned v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: echo "d674e36244b40d21354ed92b2fc5f3941fa675b5fc48ae820663ec89442776d3  v12_payload.zip" | sha256sum -c -
+      - name: Unpack reviewed v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: unzip -q v12_payload.zip
+      - name: Produce independently signed witness position
+        if: matrix.online == true
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          python v12_transparent_quorum.py witness \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --witness-id '${{ matrix.witness_id }}' \
+            --trust-domain '${{ matrix.trust_domain }}' \
+            --antirollback-floor 7 \
+            --output 'evidence/VOTE_${{ matrix.witness_id }}.json'
+      - name: Record deliberate witness outage
+        if: matrix.online != true
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          python v12_transparent_quorum.py witness \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --witness-id '${{ matrix.witness_id }}' \
+            --trust-domain '${{ matrix.trust_domain }}' \
+            --offline \
+            --output 'evidence/OFFLINE_${{ matrix.witness_id }}.json'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: witness-${{ matrix.witness_id }}
+          path: research/csc_kch_v12_transparency/evidence/*.json
+
+  aggregate:
+    needs: [v11-conformance, prepare, witness]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: v12-prepared-bundle
+          path: research/csc_kch_v12_transparency/evidence
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: witness-*
+          merge-multiple: true
+          path: research/csc_kch_v12_transparency/evidence
+      - name: Verify pinned v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: echo "d674e36244b40d21354ed92b2fc5f3941fa675b5fc48ae820663ec89442776d3  v12_payload.zip" | sha256sum -c -
+      - name: Unpack reviewed v12 research payload
+        working-directory: research/csc_kch_v12_transparency
+        run: unzip -q v12_payload.zip
+      - name: Run self-tests
+        working-directory: research/csc_kch_v12_transparency
+        run: python v12_transparent_quorum.py selftest
+      - name: Aggregate quorum and execute non-idempotent effect exactly once
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          rm -f evidence/effect_state.sqlite*
+          python v12_transparent_quorum.py aggregate \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --votes evidence \
+            --state-db evidence/effect_state.sqlite \
+            --output evidence/V12_AGGREGATE_RESULT.json \
+            --quorum 2
+      - name: Run constitutional red-team
+        working-directory: research/csc_kch_v12_transparency
+        run: |
+          python v12_transparent_quorum.py redteam \
+            --prepared evidence/PREPARED_BUNDLE.json \
+            --votes evidence \
+            --output evidence/V12_REDTEAM_RESULT.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: csc-kch-v12-cross-runner-transparent-quorum
+          path: |
+            research/csc_kch_v12_transparency/evidence/PREPARED_BUNDLE.json
+            research/csc_kch_v12_transparency/evidence/VOTE_w1.json
+            research/csc_kch_v12_transparency/evidence/VOTE_w2.json
+            research/csc_kch_v12_transparency/evidence/OFFLINE_w3.json
+            research/csc_kch_v12_transparency/evidence/V12_AGGREGATE_RESULT.json
+            research/csc_kch_v12_transparency/evidence/V12_REDTEAM_RESULT.json
