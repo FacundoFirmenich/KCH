@@ -135,16 +135,10 @@ class BrokerCase(unittest.TestCase):
             {
                 "claimId": first["claimId"],
                 "envelopeHash": "a" * 64,
-                "runId": "run-1",
-                "receiptHash": "c" * 64,
+                "dispatchId": "dispatch-1",
             }
         )
         self.assertEqual(committed["status"], "COMMITTED")
-        with sqlite3.connect(self.db_path) as db:
-            proposal_status = db.execute(
-                "SELECT status FROM proposals WHERE id='proposal-1'"
-            ).fetchone()[0]
-        self.assertEqual(proposal_status, "CONSUMED")
         with sqlite3.connect(self.db_path) as db:
             consumed = db.execute(
                 "SELECT consumed_at,consumed_tool_use_id FROM authorizations "
@@ -153,9 +147,31 @@ class BrokerCase(unittest.TestCase):
             status = db.execute(
                 "SELECT status FROM proposals WHERE id='proposal-1'"
             ).fetchone()[0]
+            dispatch_id = db.execute(
+                "SELECT dispatch_id FROM authority_claims WHERE claim_id=?",
+                (first["claimId"],),
+            ).fetchone()[0]
         self.assertIsNotNone(consumed[0])
-        self.assertEqual(consumed[1], "run-1")
+        self.assertEqual(consumed[1], "dispatch-1")
         self.assertEqual(status, "CONSUMED")
+        self.assertEqual(dispatch_id, "dispatch-1")
+
+        receipted = self.broker.receipt(
+            {
+                "claimId": first["claimId"],
+                "envelopeHash": "a" * 64,
+                "runId": "run-1",
+                "receiptHash": "c" * 64,
+            }
+        )
+        self.assertEqual(receipted["status"], "COMMITTED")
+        with sqlite3.connect(self.db_path) as db:
+            run_id, receipt_hash = db.execute(
+                "SELECT run_id,receipt_hash FROM authority_claims WHERE claim_id=?",
+                (first["claimId"],),
+            ).fetchone()
+        self.assertEqual(run_id, "run-1")
+        self.assertEqual(receipt_hash, "c" * 64)
 
     def test_one_authorization_cannot_be_rebound_to_another_envelope(self):
         self.broker.prepare(self.params())
@@ -180,8 +196,16 @@ class BrokerCase(unittest.TestCase):
             self.broker.prepare(self.params(envelopeHash="e" * 64))
         self.assertEqual(caught.exception.code, "AUTHORITY_DENIED")
 
-    def test_indoubt_can_only_resolve_by_same_claim_commit(self):
+    def test_indoubt_can_only_follow_consumed_authority_and_resolve_by_receipt(self):
         prepared = self.broker.prepare(self.params())
+        committed = self.broker.commit(
+            {
+                "claimId": prepared["claimId"],
+                "envelopeHash": "a" * 64,
+                "dispatchId": "dispatch-indoubt",
+            }
+        )
+        self.assertEqual(committed["status"], "COMMITTED")
         uncertain = self.broker.indoubt(
             {
                 "claimId": prepared["claimId"],
@@ -190,7 +214,7 @@ class BrokerCase(unittest.TestCase):
             }
         )
         self.assertEqual(uncertain["status"], "IN_DOUBT")
-        committed = self.broker.commit(
+        recovered = self.broker.receipt(
             {
                 "claimId": prepared["claimId"],
                 "envelopeHash": "a" * 64,
@@ -198,7 +222,7 @@ class BrokerCase(unittest.TestCase):
                 "receiptHash": "f" * 64,
             }
         )
-        self.assertEqual(committed["status"], "COMMITTED")
+        self.assertEqual(recovered["status"], "COMMITTED")
 
     def test_expired_prepare_is_terminal_and_requires_new_user_authority(self):
         prepared = self.broker.prepare(self.params())
