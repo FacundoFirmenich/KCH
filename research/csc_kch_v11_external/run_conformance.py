@@ -27,7 +27,15 @@ def opa_decision(opa: str, policy: Path, payload: dict[str, Any]) -> dict[str, A
 def cedar_decision(cedar: str, policy: Path, request: dict[str, Any], directory: Path) -> bool:
     request_path = directory / "request.json"
     request_path.write_text(json.dumps(request), encoding="utf-8")
-    result = run([cedar, "authorize", "--policies", str(policy), "--request-json", str(request_path)])
+    entities_path = directory / "entities.json"
+    if not entities_path.exists():
+        entities_path.write_text("[]", encoding="utf-8")
+    result = run([
+        cedar, "authorize",
+        "--entities", str(entities_path),
+        "--policies", str(policy),
+        "--request-json", str(request_path),
+    ])
     stdout = result.stdout.upper()
     if "ALLOW" in stdout:
         return True
