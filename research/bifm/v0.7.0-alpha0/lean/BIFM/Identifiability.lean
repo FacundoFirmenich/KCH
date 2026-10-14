@@ -1,8 +1,8 @@
 namespace BIFM
 
-universe u v w
+universe u v w x
 
-variable {M : Type u} {Y : Type v} {Q : Type w}
+variable {M : Type u} {Y : Type v} {Q : Type w} {X : Type x}
 
 def Identifiable (O : M → Y) (q : M → Q) : Prop :=
   ∀ a b, O a = O b → q a = q b
@@ -43,8 +43,15 @@ theorem identifiable_iff_factors_through_image (O : M → Y) (q : M → Q) :
       _ = q b := hg b
 
 theorem identifiable_monotone_under_probe
-    (O : M → Y) (P : M → Q) (target : M → w')
-    [sorry] := by
-  sorry
+    (O : M → Y) (P : M → Q) (target : M → X) :
+    Identifiable O target → Identifiable (fun m => (O m, P m)) target := by
+  intro h a b hPair
+  exact h a b (congrArg Prod.fst hPair)
+
+theorem collision_blocks_factorization (O : M → Y) (q : M → Q) :
+    Collision O q → ¬ (∃ g : ObsImage O → Q, ∀ m : M, g ⟨O m, ⟨m, rfl⟩⟩ = q m) := by
+  intro hCollision hFactor
+  have hIdent : Identifiable O q := (identifiable_iff_factors_through_image O q).2 hFactor
+  exact ((identifiable_iff_no_collision O q).1 hIdent) hCollision
 
 end BIFM
