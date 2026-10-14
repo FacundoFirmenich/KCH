@@ -407,11 +407,20 @@ class AuthorityBroker:
                     reason=None if active else "claim is not active",
                 )
             authorization = self._exact_authorization(db, prepared)
+            prior_claim = (
+                db.execute(
+                    "SELECT * FROM authority_claims WHERE proposal_id=?",
+                    (authorization["id"],),
+                ).fetchone()
+                if authorization
+                else None
+            )
+            available = authorization is not None and prior_claim is None
             return {
-                "active": authorization is not None,
-                "claimId": None,
+                "active": available,
+                "claimId": prior_claim["claim_id"] if prior_claim else None,
                 "proposalId": authorization["id"] if authorization else None,
-                "status": "AUTHORIZED_AVAILABLE" if authorization else "DENIED",
+                "status": "AUTHORIZED_AVAILABLE" if available else "DENIED",
                 "envelopeHash": prepared.envelope_hash,
                 "leaseId": prepared.lease_id,
                 "reservationId": prepared.reservation_id,
@@ -425,7 +434,17 @@ class AuthorityBroker:
                 "generation": generation,
                 "verifiedAtUnix": datetime.now(UTC).timestamp(),
                 "attestationLevel": "KCH_AUTHORIZATION_AVAILABLE_READ_ONLY",
-                **({} if authorization else {"reason": "no exact unconsumed KCH authorization"}),
+                **(
+                    {}
+                    if available
+                    else {
+                        "reason": (
+                            "authorization is already claimed"
+                            if prior_claim
+                            else "no exact unconsumed KCH authorization"
+                        )
+                    }
+                ),
             }
         finally:
             db.close()
@@ -598,7 +617,7 @@ class AuthorityBroker:
             completed = utc_now()
             db.execute(
                 "UPDATE proposals SET status='CONSUMED' "
-                "WHERE id=? AND status='AUTHORIZED'",
+                "WHERE id=? AND status IN ('AUTHORIZED','IN_DOUBT')",
                 (claim["proposal_id"],),
             )
             db.execute(
