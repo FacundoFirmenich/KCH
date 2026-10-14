@@ -1,0 +1,80 @@
+name: CSC-KCH v11 external conformance
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/csc_kch_v11_external/**'
+      - '.github/workflows/csc-kch-v11-external-conformance.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install OPA v1.21.2 with upstream checksum
+        run: |
+          curl -L -o opa https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64
+          curl -L -o opa.sha256 https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64.sha256
+          sha256sum -c opa.sha256
+          chmod +x opa
+          sudo mv opa /usr/local/bin/opa
+          opa version
+
+      - name: Install Cedar CLI v4.13.0 with upstream checksum
+        run: |
+          ASSET=cedar-policy-cli-x86_64-unknown-linux-gnu.tar.xz
+          BASE=https://github.com/cedar-policy/cedar/releases/download/cedar-policy-cli-v4.13.0
+          curl -L -o "$ASSET" "$BASE/$ASSET"
+          curl -L -o "$ASSET.sha256" "$BASE/$ASSET.sha256"
+          sha256sum -c "$ASSET.sha256"
+          tar -xJf "$ASSET"
+          CEDAR_BIN=$(find . -type f -name cedar -perm -111 | head -n1)
+          test -n "$CEDAR_BIN"
+          sudo install -m 0755 "$CEDAR_BIN" /usr/local/bin/cedar
+          cedar language-version
+
+      - name: Install TLA+ TLC v1.7.4 with release checksum
+        run: |
+          curl -L -o tla2tools.jar https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+          echo 'bee4a54f3ee3d4afc347c3240ec2d9e93b075104  tla2tools.jar' | sha1sum -c -
+          java -version
+
+      - name: Generate the 3,456 portable vectors
+        working-directory: research/csc_kch_v11_external
+        run: |
+          python generate_vectors.py
+
+      - name: Run OPA and Cedar semantic conformance
+        working-directory: research/csc_kch_v11_external
+        run: |
+          python run_conformance.py \
+            --vectors PORTABLE_SUPPORT_VECTORS.json \
+            --rego policy.rego \
+            --cedar-policy policy.cedar \
+            --opa /usr/local/bin/opa \
+            --cedar /usr/local/bin/cedar \
+            --output EXTERNAL_CONFORMANCE_RESULT.json
+
+      - name: Run TLC model checker
+        working-directory: research/csc_kch_v11_external
+        run: |
+          java -cp "$GITHUB_WORKSPACE/tla2tools.jar" tlc2.TLC -config PCGT.cfg PCGT.tla | tee TLC_OUTPUT.txt
+          grep -q 'Model checking completed. No error has been found.' TLC_OUTPUT.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: csc-kch-v11-external-conformance
+          path: |
+            research/csc_kch_v11_external/EXTERNAL_CONFORMANCE_RESULT.json
+            research/csc_kch_v11_external/TLC_OUTPUT.txt
+            research/csc_kch_v11_external/PORTABLE_SUPPORT_VECTORS.json
