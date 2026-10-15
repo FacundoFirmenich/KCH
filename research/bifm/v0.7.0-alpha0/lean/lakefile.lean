@@ -1,6 +1,6 @@
 import Lake
 open Lake DSL
 
-package "bifm_certiclaim" where
+package "BIFM" where
 
 lean_lib BIFM where
