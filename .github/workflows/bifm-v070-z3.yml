@@ -1,0 +1,31 @@
+name: BIFM v0.7 structural quotient and Z3 cross-check
+
+on:
+  push:
+    branches:
+      - bifm/v0.7.0-alpha0-independent-proof-core
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  z3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Structural quotient census
+        run: |
+          python research/bifm/v0.7.0-alpha0/structural_quotient.py | tee bifm_v070_structural_census.json
+      - name: Install Z3
+        run: python -m pip install --disable-pip-version-check z3-solver
+      - name: Independent SMT cross-check
+        run: |
+          python research/bifm/v0.7.0-alpha0/z3_crosscheck.py | tee bifm_v070_z3_receipt.json
+      - name: Hash receipts and sources
+        run: |
+          sha256sum research/bifm/v0.7.0-alpha0/structural_quotient.py research/bifm/v0.7.0-alpha0/z3_crosscheck.py bifm_v070_structural_census.json bifm_v070_z3_receipt.json
