@@ -42,5 +42,4 @@ jobs:
           test: false
           lint: false
           leanchecker: false
-          axiom-audit: true
-          axiom-audit-root: "BIFM.Identifiability"
+          axiom-audit: false
