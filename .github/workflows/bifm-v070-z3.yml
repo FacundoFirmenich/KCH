@@ -28,14 +28,17 @@ jobs:
           p="research/bifm/v0.7.0-alpha0/state_lattice.py"
           spec=importlib.util.spec_from_file_location("state_lattice",p)
           m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-          assert len(m.V06_TO_AXES)==6
-          assert len(m.AXES_TO_V06)==6
+          assert len(m.V06_TO_AXES)==6 and len(m.AXES_TO_V06)==6
           for s in m.V06_TO_AXES.values(): s.validate()
           print("PASS: six legacy coarse states map bijectively into orthogonal axes")
           PY
       - name: Structural quotient census
         run: |
           python research/bifm/v0.7.0-alpha0/structural_quotient.py | tee bifm_v070_structural_census.json
+      - name: Generate structurally unique certificate benchmark
+        run: |
+          python research/bifm/v0.7.0-alpha0/generate_structural_benchmark.py bifm_v070_structural_benchmark.jsonl | tee bifm_v070_structural_benchmark_summary.json
+          test "$(wc -l < bifm_v070_structural_benchmark.jsonl)" -eq 1347
       - name: Install Z3
         run: python -m pip install --disable-pip-version-check z3-solver
       - name: Independent SMT cross-check
@@ -43,4 +46,4 @@ jobs:
           python research/bifm/v0.7.0-alpha0/z3_crosscheck.py | tee bifm_v070_z3_receipt.json
       - name: Hash receipts and sources
         run: |
-          sha256sum research/bifm/v0.7.0-alpha0/*.py bifm_v070_v06_diversity.json bifm_v070_structural_census.json bifm_v070_z3_receipt.json
+          sha256sum research/bifm/v0.7.0-alpha0/*.py bifm_v070_v06_diversity.json bifm_v070_structural_census.json bifm_v070_structural_benchmark.jsonl bifm_v070_structural_benchmark_summary.json bifm_v070_z3_receipt.json
