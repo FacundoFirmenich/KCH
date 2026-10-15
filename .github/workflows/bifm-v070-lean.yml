@@ -12,21 +12,18 @@ permissions:
 jobs:
   lean:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - name: Install Lean environment
-        uses: leanprover/lean-action@v1
-        with:
-          lake-package-directory: research/bifm/v0.7.0-alpha0/lean
-          auto-config: false
-          build: false
-          test: false
-          lint: false
-          nanoda: false
+      - name: Install Lean via elan
+        run: |
+          curl "https://elan.lean-lang.org/elan-init.sh" -sSf | sh -s -- -y --default-toolchain leanprover/lean4:stable
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Create Lake manifest
         working-directory: research/bifm/v0.7.0-alpha0/lean
-        run: lake update
+        run: |
+          lake --version
+          lake update
       - name: Build proofs with Lean kernel
         working-directory: research/bifm/v0.7.0-alpha0/lean
         run: lake build
@@ -36,3 +33,13 @@ jobs:
             echo "Found forbidden proof placeholder"
             exit 1
           fi
+      - name: Independent Lean environment check with nanoda
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: research/bifm/v0.7.0-alpha0/lean
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          nanoda: true
+          nanoda-allow-sorry: false
