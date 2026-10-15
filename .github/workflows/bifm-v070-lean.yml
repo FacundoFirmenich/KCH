@@ -33,7 +33,7 @@ jobs:
             echo "Found forbidden proof placeholder"
             exit 1
           fi
-      - name: Independent Lean environment check with nanoda
+      - name: Lean environment verification and axiom audit
         uses: leanprover/lean-action@v1
         with:
           lake-package-directory: research/bifm/v0.7.0-alpha0/lean
@@ -41,5 +41,5 @@ jobs:
           build: false
           test: false
           lint: false
-          nanoda: true
-          nanoda-allow-sorry: false
+          leanchecker: true
+          axiom-audit: true
