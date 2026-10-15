@@ -1,0 +1,35 @@
+{
+  "host": "openclaw",
+  "boundary": "ORIGINAL_CLIENT_COMPONENT_TO_KCH_SUBPROCESS",
+  "executed_at": "2026-10-09T00:54:22.013Z",
+  "upstream_commit": "c9a0c00b8691bda5bd7a38ee494b5edd8ecb9254",
+  "source_sha256": "bdb1e2c8b827eb675b73dd2a29f6251a551d9ec1afae729b6707f43bad32ad53",
+  "compiled_process_owner_sha256": "af3218073e7ec7b8271d2d12160d6065267fba80eea13dea0e0437fa8d7f91a4",
+  "model_inference": false,
+  "user_host_activated": false,
+  "checks": [
+    "original_config_schema_and_launch_resolver",
+    "original_client_discovery",
+    "real_repository_bytes_equal",
+    "out_of_workspace_read_denied",
+    "disabled_write_denied_without_effect",
+    "real_file_memory_ingest",
+    "first_client_closed",
+    "new_client_process_same_session_exact_memory",
+    "restarted_client_closed"
+  ],
+  "catalog": [
+    "memory_fold",
+    "memory_ingest",
+    "memory_recall",
+    "memory_search",
+    "memory_unfold",
+    "memory_view",
+    "read_file"
+  ],
+  "read_sha256": "e87c0e0cbdd0b75f0ce1f0c7afadea79681aef83a6f28b0e9144c7aec35b2ee6",
+  "journal": true,
+  "bound_session": "openclaw-original-client",
+  "durable_calls": 5,
+  "status": "PASS"
+}

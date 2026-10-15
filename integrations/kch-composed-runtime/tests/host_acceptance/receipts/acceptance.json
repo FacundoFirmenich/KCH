@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "hosts": {
+    "qwenpaw": {
+      "host": "qwenpaw",
+      "boundary": "ORIGINAL_CLIENT_COMPONENT_TO_KCH_SUBPROCESS",
+      "executed_at": "2026-10-09T00:54:21.521816+00:00",
+      "upstream_commit": "7147731d582fdd106af6ca7e3a3a5dc650183755",
+      "source_sha256": "5edd7037724af11a98eb9112e136333cab84aabd8cc292c70b5c10dfab2c980f",
+      "mcp_package": "1.30.0",
+      "model_inference": false,
+      "user_host_activated": false,
+      "checks": [
+        "original_client_discovery",
+        "real_repository_bytes_equal",
+        "out_of_workspace_read_denied",
+        "disabled_write_denied_without_effect",
+        "real_file_memory_ingest",
+        "first_client_closed",
+        "new_client_process_same_session_exact_memory",
+        "restarted_client_closed"
+      ],
+      "catalog": [
+        "memory_fold",
+        "memory_ingest",
+        "memory_recall",
+        "memory_search",
+        "memory_unfold",
+        "memory_view",
+        "read_file"
+      ],
+      "read_sha256": "e87c0e0cbdd0b75f0ce1f0c7afadea79681aef83a6f28b0e9144c7aec35b2ee6",
+      "journal": true,
+      "bound_session": "qwenpaw-original-client",
+      "durable_calls": 5,
+      "status": "PASS"
+    },
+    "openclaw": {
+      "host": "openclaw",
+      "boundary": "ORIGINAL_CLIENT_COMPONENT_TO_KCH_SUBPROCESS",
+      "executed_at": "2026-10-09T00:54:22.013Z",
+      "upstream_commit": "c9a0c00b8691bda5bd7a38ee494b5edd8ecb9254",
+      "source_sha256": "bdb1e2c8b827eb675b73dd2a29f6251a551d9ec1afae729b6707f43bad32ad53",
+      "compiled_process_owner_sha256": "af3218073e7ec7b8271d2d12160d6065267fba80eea13dea0e0437fa8d7f91a4",
+      "model_inference": false,
+      "user_host_activated": false,
+      "checks": [
+        "original_config_schema_and_launch_resolver",
+        "original_client_discovery",
+        "real_repository_bytes_equal",
+        "out_of_workspace_read_denied",
+        "disabled_write_denied_without_effect",
+        "real_file_memory_ingest",
+        "first_client_closed",
+        "new_client_process_same_session_exact_memory",
+        "restarted_client_closed"
+      ],
+      "catalog": [
+        "memory_fold",
+        "memory_ingest",
+        "memory_recall",
+        "memory_search",
+        "memory_unfold",
+        "memory_view",
+        "read_file"
+      ],
+      "read_sha256": "e87c0e0cbdd0b75f0ce1f0c7afadea79681aef83a6f28b0e9144c7aec35b2ee6",
+      "journal": true,
+      "bound_session": "openclaw-original-client",
+      "durable_calls": 5,
+      "status": "PASS"
+    }
+  },
+  "dependency_locks": {
+    "requirements-qwenpaw.txt": "b01dbe79f7a320d64c220382e08ab02156924662880f0d0cd76834b5c1f60347",
+    "node/package-lock.json": "5ec17c362d651b13b13562adffa67b38b6c2249430b080d1107f2d368bf727ed"
+  },
+  "boundary": "ORIGINAL_CLIENT_COMPONENTS_NOT_COMPLETE_HOST_APPLICATIONS"
+}

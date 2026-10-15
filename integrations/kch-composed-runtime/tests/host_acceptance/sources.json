@@ -1,0 +1,29 @@
+{
+  "qwenpaw": {
+    "repository": "https://github.com/agentscope-ai/QwenPaw.git",
+    "commit": "7147731d582fdd106af6ca7e3a3a5dc650183755",
+    "commit_metadata": "2026-10-08T19:10:22+08:00 fix(chats): resolve a DST-aware process timezone for transcript timestamps (#8050)",
+    "tracked_source_clean": true,
+    "files": {
+      "src/qwenpaw/drivers/handlers/mcp_stateful_client.py": "5edd7037724af11a98eb9112e136333cab84aabd8cc292c70b5c10dfab2c980f",
+      "src/qwenpaw/drivers/handlers/mcp_streamable_http.py": "576d007552da3cf4905620b14ee058086f4232c37cd6c7ce6738d3a9f7a1e7f8",
+      "src/qwenpaw/drivers/adapters/mcp_legacy_config.py": "eb26d17e609c387ffaecd854434409d4bab71cf88d3e885d9fac8fc6aa394e18",
+      "console/src/pages/Agent/MCP/index.tsx": "92cffc82fa18b7b5af1f57759916e2ea06fd23013e9dc175ec875e6842d38986",
+      "pyproject.toml": "3c5302c4e7191b8d7485cad4660c050388c0eb2c8247e3bec0a7b5104b171108"
+    }
+  },
+  "openclaw": {
+    "repository": "https://github.com/openclaw/openclaw.git",
+    "commit": "c9a0c00b8691bda5bd7a38ee494b5edd8ecb9254",
+    "commit_metadata": "2026-10-08T17:30:23-07:00 refactor: simplify async persistence bookkeeping and fixtures (#167526)",
+    "tracked_source_clean": true,
+    "files": {
+      "src/agents/mcp-stdio-client.ts": "bdb1e2c8b827eb675b73dd2a29f6251a551d9ec1afae729b6707f43bad32ad53",
+      "src/agents/mcp-stdio-transport.ts": "754daf0af9e19682d51a2284b164d47f059fb92b373ad8bd0c5def454f803158",
+      "src/config/zod-schema.mcp-server.ts": "66aefe9d3d60ec678039f478a7a1c2f2bcc4e96b59e8669075dc8a5ba33331c6",
+      "src/process/supervisor/service-child-group-anchor.ts": "90063e2dd684e9a89072ce86b25abe4d12686631069f404efd00292fc1743a3c",
+      "src/process/supervisor/linux-child-subreaper.ts": "a9a8257dcac426b659aea500150bb31d2a58be450ab0fefe2a84ffde14f77197",
+      "package.json": "9598a416868a227fec058a1085908484f6feea6aa9210099e23a3443f7e43035"
+    }
+  }
+}

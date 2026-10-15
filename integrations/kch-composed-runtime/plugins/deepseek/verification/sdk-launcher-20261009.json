@@ -1,0 +1,41 @@
+{
+  "gate": "PASS",
+  "upstream_commit": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+  "profile": "sdk",
+  "launcher": "pnpm --silent dsh",
+  "upstream_package_version": "0.2.1-alpha.1",
+  "sdk_handshake": {
+    "serverInfo": {
+      "name": "deepseek-harness-sdk-runtime",
+      "version": "0.0.1"
+    }
+  },
+  "positive_exit": 0,
+  "disabled_locks_exit": 1,
+  "native_ledger_valid": true,
+  "native_events": 4,
+  "native_tool_receipts": 2,
+  "source_sha256": "e87c0e0cbdd0b75f0ce1f0c7afadea79681aef83a6f28b0e9144c7aec35b2ee6",
+  "assertions": [
+    "SDK initialization and clean shutdown",
+    "KCH plugin active",
+    "real protected-file read",
+    "real overwrite denied",
+    "original file unchanged",
+    "native receipts and hash chain",
+    "same generated patch fails startup after locks disabled",
+    "no policy self-enablement"
+  ],
+  "inference": {
+    "session_prompts_sent": 0,
+    "model_adapter_substituted": false,
+    "paid_model_calls_performed": false,
+    "model_quality_measured": false
+  },
+  "limits": [
+    "No model turn",
+    "Source launcher, not published npm/wheel artifact",
+    "sdk profile only; headless dependency emitted but not boot-tested",
+    "Tool boundary does not confine trusted same-process plugins"
+  ]
+}
