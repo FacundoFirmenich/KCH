@@ -12,12 +12,27 @@ permissions:
 jobs:
   lean:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
+      - name: Install Lean environment
+        uses: leanprover/lean-action@v1
         with:
           lake-package-directory: research/bifm/v0.7.0-alpha0/lean
+          auto-config: false
+          build: false
           test: false
-          nanoda: true
-          nanoda-allow-sorry: false
+          lint: false
+          nanoda: false
+      - name: Create Lake manifest
+        working-directory: research/bifm/v0.7.0-alpha0/lean
+        run: lake update
+      - name: Build proofs with Lean kernel
+        working-directory: research/bifm/v0.7.0-alpha0/lean
+        run: lake build
+      - name: Reject sorry placeholders
+        run: |
+          if grep -R -n -E '(^|[^A-Za-z])(sorry|admit)([^A-Za-z]|$)' research/bifm/v0.7.0-alpha0/lean/BIFM; then
+            echo "Found forbidden proof placeholder"
+            exit 1
+          fi
