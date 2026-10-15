@@ -18,6 +18,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Audit v0.6 structural repetition
+        run: |
+          python research/bifm/v0.7.0-alpha0/audit_v06_diversity.py | tee bifm_v070_v06_diversity.json
+      - name: Check certificate state lattice
+        run: |
+          python - <<'PY'
+          import importlib.util
+          p="research/bifm/v0.7.0-alpha0/state_lattice.py"
+          spec=importlib.util.spec_from_file_location("state_lattice",p)
+          m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          assert len(m.V06_TO_AXES)==6
+          assert len(m.AXES_TO_V06)==6
+          for s in m.V06_TO_AXES.values(): s.validate()
+          print("PASS: six legacy coarse states map bijectively into orthogonal axes")
+          PY
       - name: Structural quotient census
         run: |
           python research/bifm/v0.7.0-alpha0/structural_quotient.py | tee bifm_v070_structural_census.json
@@ -28,4 +43,4 @@ jobs:
           python research/bifm/v0.7.0-alpha0/z3_crosscheck.py | tee bifm_v070_z3_receipt.json
       - name: Hash receipts and sources
         run: |
-          sha256sum research/bifm/v0.7.0-alpha0/structural_quotient.py research/bifm/v0.7.0-alpha0/z3_crosscheck.py bifm_v070_structural_census.json bifm_v070_z3_receipt.json
+          sha256sum research/bifm/v0.7.0-alpha0/*.py bifm_v070_v06_diversity.json bifm_v070_structural_census.json bifm_v070_z3_receipt.json
