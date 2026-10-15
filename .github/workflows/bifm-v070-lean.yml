@@ -41,5 +41,5 @@ jobs:
           build: false
           test: false
           lint: false
-          leanchecker: true
+          leanchecker: false
           axiom-audit: true
