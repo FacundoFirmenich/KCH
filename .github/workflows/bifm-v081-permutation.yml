@@ -1,0 +1,48 @@
+name: BIFM v0.8.1 permutation-invariant mechanistic collision
+
+on:
+  push:
+    branches:
+      - bifm/v0.8.1-alpha0-permutation-invariant-mechanistic
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mechanistic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v081_results
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore frozen Qwen cache
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache
+          key: bifm-qwen3-0.6b-c1899de289a04d12100db370d81485cdf75e47ca
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Execute permutation-invariant mechanistic gate
+        run: |
+          python research/bifm/v0.8.1-alpha0/permutation_mechanistic.py | tee bifm_v081_full_run.txt
+      - name: Integrity receipts
+        run: |
+          sha256sum research/bifm/v0.8.1-alpha0/permutation_mechanistic.py bifm_v081_results/permutation_mechanistic_receipt.json bifm_v081_results/observation_items.csv bifm_v081_results/counterfactual_items.csv bifm_v081_full_run.txt | tee bifm_v081_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.8.1-permutation-mechanistic
+          path: |
+            bifm_v081_results/
+            bifm_v081_full_run.txt
+            bifm_v081_sha256.txt
+          if-no-files-found: error
