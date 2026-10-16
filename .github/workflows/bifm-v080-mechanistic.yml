@@ -1,0 +1,56 @@
+name: BIFM v0.8 open-weight mechanistic collision
+
+on:
+  push:
+    branches:
+      - bifm/v0.8.0-alpha0-openweight-mechanistic-collision
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mechanistic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v080_results
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache frozen Qwen weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache
+          key: bifm-qwen3-0.6b-c1899de289a04d12100db370d81485cdf75e47ca
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate pandas pyarrow huggingface_hub
+          python - <<'PY'
+          import torch, transformers, pandas, pyarrow, huggingface_hub
+          print("torch",torch.__version__)
+          print("transformers",transformers.__version__)
+          print("pandas",pandas.__version__)
+          print("pyarrow",pyarrow.__version__)
+          print("huggingface_hub",huggingface_hub.__version__)
+          PY
+      - name: Execute real open-weight collision gate
+        run: |
+          python research/bifm/v0.8.0-alpha0/mechanistic_collision.py | tee bifm_v080_full_run.txt
+      - name: Integrity receipts
+        run: |
+          sha256sum research/bifm/v0.8.0-alpha0/mechanistic_collision.py bifm_v080_results/mechanistic_gate_receipt.json bifm_v080_results/observation_items.csv bifm_v080_results/counterfactual_items.csv bifm_v080_full_run.txt | tee bifm_v080_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.8-mechanistic-collision
+          path: |
+            bifm_v080_results/
+            bifm_v080_full_run.txt
+            bifm_v080_sha256.txt
+          if-no-files-found: error
