@@ -24,7 +24,7 @@ LAYER_INDEX=14
 POOL_SIZE=96
 OBS_N=12
 CF_N=12
-BATCH=4
+BATCH=8
 EPS_GRID=(0.02,0.05,0.10,0.20,0.35,0.50,0.75,1.00)
 OUT=Path(os.environ.get("BIFM_OUT","bifm_v081_results"))
 OUT.mkdir(parents=True,exist_ok=True)
