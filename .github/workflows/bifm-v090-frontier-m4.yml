@@ -1,0 +1,85 @@
+name: BIFM v0.9 frontier and inter-model replication
+
+on:
+  push:
+    branches:
+      - bifm/v0.9.0-alpha0-frontier-and-intermodel
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  olmo-m4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-olmo
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v090_olmo_results
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache OLMo weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache-olmo
+          key: bifm-olmo2-0425-1b-instruct-v090
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.50,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Execute OLMo M4 replication
+        run: |
+          python research/bifm/v0.9.0-alpha0/olmo_m4_replication.py | tee bifm_v090_olmo_full_run.txt
+      - name: Hash OLMo receipts
+        run: |
+          sha256sum research/bifm/v0.9.0-alpha0/olmo_m4_replication.py bifm_v090_olmo_results/olmo_m4_receipt.json bifm_v090_olmo_results/observation_items.csv bifm_v090_olmo_results/counterfactual_items.csv bifm_v090_olmo_full_run.txt | tee bifm_v090_olmo_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.9-OLMo-M4
+          path: |
+            bifm_v090_olmo_results/
+            bifm_v090_olmo_full_run.txt
+            bifm_v090_olmo_sha256.txt
+          if-no-files-found: error
+
+  qwen-frontier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-qwen
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v090_frontier_results
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache Qwen weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache-qwen
+          key: bifm-qwen3-0.6b-c1899de289a04d12100db370d81485cdf75e47ca
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Map Qwen invisibility frontier
+        run: |
+          python research/bifm/v0.9.0-alpha0/qwen_invisibility_frontier.py | tee bifm_v090_frontier_full_run.txt
+      - name: Hash frontier receipts
+        run: |
+          sha256sum research/bifm/v0.9.0-alpha0/qwen_invisibility_frontier.py bifm_v090_frontier_results/qwen_invisibility_frontier.json bifm_v090_frontier_results/observation_order.csv bifm_v090_frontier_full_run.txt | tee bifm_v090_frontier_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.9-Qwen-frontier
+          path: |
+            bifm_v090_frontier_results/
+            bifm_v090_frontier_full_run.txt
+            bifm_v090_frontier_sha256.txt
+          if-no-files-found: error
