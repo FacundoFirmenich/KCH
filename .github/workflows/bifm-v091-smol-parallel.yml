@@ -1,0 +1,56 @@
+name: BIFM v0.9.1 SmolLM2 parallel layer replication
+
+on:
+  push:
+    branches:
+      - bifm/v0.9.1-alpha0-smol-parallel-replication
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  layer:
+    strategy:
+      fail-fast: false
+      matrix:
+        layer: [8, 16, 24]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      MODEL_ID: HuggingFaceTB/SmolLM2-360M-Instruct
+      MODEL_REVISION: a10cc1512eabd3dde888204e902eca88bddb4951
+      MODEL_TAG: smollm2_360m_L${{ matrix.layer }}
+      LAYER_SPEC: ${{ matrix.layer }}
+      BATCH: "16"
+      BIFM_OUT: bifm_v091_smollm2_L${{ matrix.layer }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache@v4
+        with:
+          path: .hf-cache
+          key: bifm-smollm2-360m-a10cc1512eabd3dde888204e902eca88bddb4951
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Execute layer frontier
+        run: |
+          python research/bifm/v0.9.0-alpha0/identifiability_frontier.py | tee bifm_v091_L${{ matrix.layer }}_full_run.txt
+      - name: Integrity receipts
+        run: |
+          sha256sum research/bifm/v0.9.0-alpha0/identifiability_frontier.py bifm_v091_smollm2_L${{ matrix.layer }}/frontier_receipt.json bifm_v091_L${{ matrix.layer }}_full_run.txt | tee bifm_v091_L${{ matrix.layer }}_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.9.1-Smollm2-L${{ matrix.layer }}
+          path: |
+            bifm_v091_smollm2_L${{ matrix.layer }}/
+            bifm_v091_L${{ matrix.layer }}_full_run.txt
+            bifm_v091_L${{ matrix.layer }}_sha256.txt
+          if-no-files-found: error
