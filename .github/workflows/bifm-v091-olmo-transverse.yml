@@ -1,0 +1,44 @@
+name: BIFM v0.9.1 OLMo transverse non-gauge replication
+
+on:
+  push:
+    branches:
+      - bifm/v0.9.1-alpha0-olmo-transverse
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  olmo-transverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-olmo
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v091_olmo_transverse
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - uses: actions/cache@v4
+        with:
+          path: .hf-cache-olmo
+          key: bifm-olmo2-0425-1b-instruct-v090
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.50,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Execute transverse OLMo gate
+        run: python research/bifm/v0.9.1-alpha0/olmo_transverse.py | tee bifm_v091_full_run.txt
+      - name: Hash receipts
+        run: sha256sum research/bifm/v0.9.1-alpha0/olmo_transverse.py bifm_v091_olmo_transverse/olmo_transverse_receipt.json bifm_v091_full_run.txt | tee bifm_v091_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.9.1-OLMo-transverse
+          path: |
+            bifm_v091_olmo_transverse/
+            bifm_v091_full_run.txt
+            bifm_v091_sha256.txt
+          if-no-files-found: error
