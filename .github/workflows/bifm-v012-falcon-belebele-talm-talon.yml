@@ -50,17 +50,32 @@ jobs:
           key: bifm-falcon3-1b-instruct-v012
       - name: Install CPU runtime
         run: |
+          set -euo pipefail
           python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
-          python -m pip install --disable-pip-version-check "transformers>=4.48,<5" accelerate numpy pandas huggingface_hub
+          python -m pip install --disable-pip-version-check "transformers>=4.48,<5" accelerate numpy pandas pyarrow huggingface_hub
       - name: Execute multilingual collector
         run: |
+          set -euo pipefail
           PYTHONPATH=research/bifm/v0.12.0-alpha0 \
-          python research/bifm/v0.12.0-alpha0/falcon_belebele_collect.py | tee bifm_v012_${{ matrix.language }}_full_run.txt
+          python research/bifm/v0.12.0-alpha0/run_falcon_belebele_parquet.py | tee bifm_v012_${{ matrix.language }}_full_run.txt
+          test -s bifm_v012_${{ matrix.language }}/${{ matrix.language }}_item_records.csv
+          test -s bifm_v012_${{ matrix.language }}/${{ matrix.language }}_receipt.json
+          python - <<'PY'
+          import json, os
+          lang=os.environ['BIFM_LANG']
+          p=f'bifm_v012_{lang}/{lang}_receipt.json'
+          r=json.load(open(p,encoding='utf-8'))
+          assert r['status']=='PASS', r
+          assert r['records']==96, r['records']
+          print('PASS receipt',lang,r['model']['revision'],r['dataset']['revision'])
+          PY
       - name: Hash language receipts
         run: |
+          set -euo pipefail
           sha256sum \
             research/bifm/v0.12.0-alpha0/talm_talon_ops.py \
             research/bifm/v0.12.0-alpha0/falcon_belebele_collect.py \
+            research/bifm/v0.12.0-alpha0/run_falcon_belebele_parquet.py \
             bifm_v012_${{ matrix.language }}/${{ matrix.language }}_item_records.csv \
             bifm_v012_${{ matrix.language }}/${{ matrix.language }}_receipt.json \
             bifm_v012_${{ matrix.language }}_full_run.txt | tee bifm_v012_${{ matrix.language }}_sha256.txt
@@ -95,9 +110,24 @@ jobs:
         run: python -m pip install --disable-pip-version-check numpy pandas scipy scikit-learn
       - name: Execute future-only sensor actuator audit
         run: |
+          set -euo pipefail
           python research/bifm/v0.12.0-alpha0/summarize_sensor_actuator.py | tee bifm_v012_summary_full_run.txt
+          test -s bifm_v012_summary/sensor_actuator_summary.json
+          test -s bifm_v012_summary/development_selected_policies.csv
+          test -s bifm_v012_summary/confirmatory_local_results.jsonl
+          test -s bifm_v012_summary/parallel_confirmatory_items.csv
+          test -s bifm_v012_summary/cross_language_item_summary.csv
+          python - <<'PY'
+          import json
+          r=json.load(open('bifm_v012_summary/sensor_actuator_summary.json',encoding='utf-8'))
+          assert r['status']=='PASS', r
+          assert r['confirmatory_n_per_language']==64, r
+          assert r['parallel_item_summary']['n_parallel_items']==64, r
+          print('PASS multilingual summary')
+          PY
       - name: Hash summary receipts
         run: |
+          set -euo pipefail
           sha256sum \
             research/bifm/v0.12.0-alpha0/summarize_sensor_actuator.py \
             bifm_v012_summary/sensor_actuator_summary.json \
