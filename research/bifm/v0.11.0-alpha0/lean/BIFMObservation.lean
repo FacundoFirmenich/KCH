@@ -1,1 +1,2 @@
 import BIFMObservation.ObservationLattice
+import BIFMObservation.InterventionQuotient
