@@ -1,9 +1,6 @@
 name: BIFM v0.11 Bayesian multijurisdictional real-data audit
 
 on:
-  push:
-    branches:
-      - bifm/v0.11.0-alpha0-bayesian-multisample
   workflow_dispatch:
 
 permissions:
