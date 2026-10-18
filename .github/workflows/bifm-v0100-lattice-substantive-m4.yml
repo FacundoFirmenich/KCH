@@ -1,0 +1,85 @@
+name: BIFM v0.10 observation lattice and substantive OLMo M4
+
+on:
+  push:
+    branches:
+      - bifm/v0.10.0-alpha0-observation-lattice-substantive-m4
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qwen-observation-lattice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-qwen
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v0100_lattice_results
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache Qwen weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache-qwen
+          key: bifm-qwen3-0.6b-c1899de289a04d12100db370d81485cdf75e47ca
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Execute observation-lattice frontier
+        run: |
+          python research/bifm/v0.10.0-alpha0/qwen_observation_lattice.py | tee bifm_v0100_lattice_full_run.txt
+      - name: Hash Qwen lattice receipts
+        run: |
+          sha256sum research/bifm/v0.10.0-alpha0/qwen_observation_lattice.py bifm_v0100_lattice_results/qwen_observation_lattice.json bifm_v0100_lattice_results/observation_order.csv bifm_v0100_lattice_full_run.txt | tee bifm_v0100_lattice_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.10-Qwen-observation-lattice
+          path: |
+            bifm_v0100_lattice_results/
+            bifm_v0100_lattice_full_run.txt
+            bifm_v0100_lattice_sha256.txt
+          if-no-files-found: error
+
+  olmo-substantive-m4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-olmo
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_OUT: bifm_v0100_olmo_results
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache OLMo weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache-olmo
+          key: bifm-olmo2-0425-1b-instruct-v0100
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.50,<5" accelerate pandas pyarrow huggingface_hub
+      - name: Execute substantive OLMo selection and replication
+        run: |
+          python research/bifm/v0.10.0-alpha0/olmo_substantive_m4.py | tee bifm_v0100_olmo_full_run.txt
+      - name: Hash OLMo receipts
+        run: |
+          sha256sum research/bifm/v0.10.0-alpha0/olmo_substantive_m4.py bifm_v0100_olmo_results/olmo_substantive_m4.json bifm_v0100_olmo_results/development_candidates.csv bifm_v0100_olmo_full_run.txt | tee bifm_v0100_olmo_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.10-OLMo-substantive-M4
+          path: |
+            bifm_v0100_olmo_results/
+            bifm_v0100_olmo_full_run.txt
+            bifm_v0100_olmo_sha256.txt
+          if-no-files-found: error
