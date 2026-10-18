@@ -1,9 +1,6 @@
 name: BIFM v0.10 observation lattice and substantive OLMo M4
 
 on:
-  push:
-    branches:
-      - bifm/v0.10.0-alpha0-observation-lattice-substantive-m4
   workflow_dispatch:
 
 permissions:
