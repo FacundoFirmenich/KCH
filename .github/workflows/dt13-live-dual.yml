@@ -1,0 +1,109 @@
+name: DT13 real WORK-SHADOW inference
+on:
+  push:
+    branches: ['research/dt13-live-dual-20261018']
+    paths:
+      - 'experiments/dt13_live/**'
+      - '.github/workflows/dt13-live-dual.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dt13-live-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  inference:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Record and install public model runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dt13_artifacts/system "$RUNNER_TEMP/dt13-runtime"
+          cp experiments/dt13_live/live_dual.py dt13_artifacts/system/
+          cp .github/workflows/dt13-live-dual.yml dt13_artifacts/system/
+          python -u - <<'PY'
+          import hashlib,json,os,platform,tarfile,time
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          base=Path(os.environ['RUNNER_TEMP'])/'dt13-runtime'
+          receipt={'run_id':os.environ.get('GITHUB_RUN_ID'),'commit':os.environ.get('GITHUB_SHA'),'platform':platform.platform(),'cpu_count':os.cpu_count(),'llama_tag':'b11429','model_repo':'Qwen/Qwen2.5-Coder-7B-Instruct-GGUF','model_file':'qwen2.5-coder-7b-instruct-q4_k_m.gguf','started_unix':time.time()}
+          dest=Path('dt13_artifacts/system/runtime_receipt.json')
+          def save():dest.write_text(json.dumps(receipt,indent=2))
+          def get(url):
+              with urlopen(Request(url,headers={'User-Agent':'KCH-DT13-research'}),timeout=90) as r:return json.load(r)
+          def download(url,path,expected,max_bytes):
+              h=hashlib.sha256();count=0
+              with urlopen(Request(url,headers={'User-Agent':'KCH-DT13-research'}),timeout=120) as r,path.open('wb') as f:
+                  while True:
+                      b=r.read(4*1024*1024)
+                      if not b:break
+                      count+=len(b)
+                      if count>max_bytes:raise RuntimeError('DOWNLOAD_BUDGET_EXCEEDED')
+                      h.update(b);f.write(b)
+              result={'bytes':count,'sha256':h.hexdigest(),'url':url}
+              if expected and h.hexdigest()!=expected:raise RuntimeError('DOWNLOAD_HASH_MISMATCH')
+              return result
+          save()
+          try:
+              release=get('https://api.github.com/repos/ggml-org/llama.cpp/releases/tags/b11429')
+              assets=[a for a in release['assets'] if a['name'].endswith('bin-ubuntu-x64.tar.gz')]
+              if len(assets)!=1:raise RuntimeError('CPU_BINARY_ASSET_NOT_UNIQUE')
+              asset=assets[0];expected=(asset.get('digest') or '').removeprefix('sha256:') or None
+              archive=base/'llama.tar.gz'
+              receipt['llama_release_id']=release['id']
+              receipt['llama_archive']=download(asset['browser_download_url'],archive,expected,200000000)
+              with tarfile.open(archive) as t:t.extractall(base/'bin',filter='data')
+              candidates=list((base/'bin').rglob('llama-server'))
+              if len(candidates)!=1:raise RuntimeError('SERVER_BINARY_NOT_UNIQUE')
+              server=candidates[0];server.chmod(server.stat().st_mode|0o100)
+              receipt['server_sha256']=hashlib.sha256(server.read_bytes()).hexdigest()
+              info=get('https://huggingface.co/api/models/'+receipt['model_repo']+'?blobs=true')
+              receipt['model_revision']=info['sha']
+              target=next(s for s in info['siblings'] if s['rfilename']==receipt['model_file'])
+              expected=target.get('lfs',{}).get('sha256')
+              if not expected:raise RuntimeError('MODEL_SOURCE_HASH_MISSING')
+              url='https://huggingface.co/'+receipt['model_repo']+'/resolve/'+info['sha']+'/'+receipt['model_file']
+              receipt['model']=download(url,base/'model.gguf',expected,5000000000)
+              (base/'server-path.txt').write_text(str(server))
+              receipt['status']='READY';save()
+              print(json.dumps(receipt),flush=True)
+          except Exception as exc:
+              receipt['status']='FAILED';receipt['error']=repr(exc);save();raise
+          PY
+      - name: Run real concurrent episode and HHC
+        shell: bash
+        run: |
+          set -euo pipefail
+          SERVER="$(cat "$RUNNER_TEMP/dt13-runtime/server-path.txt")"
+          export LD_LIBRARY_PATH="$(dirname "$SERVER"):${LD_LIBRARY_PATH:-}"
+          "$SERVER" -m "$RUNNER_TEMP/dt13-runtime/model.gguf" --host 127.0.0.1 --port 8765 --alias kch-dt13-qwen7b --parallel 2 --ctx-size 16384 --threads 4 --threads-batch 4 --no-context-shift --slots >dt13_artifacts/system/llama-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          python - <<'PY'
+          import time,json
+          from urllib.request import urlopen
+          for _ in range(120):
+              try:
+                  with urlopen('http://127.0.0.1:8765/health',timeout=2) as r:
+                      if r.status==200:break
+              except Exception:time.sleep(1)
+          else:raise SystemExit('SERVER_STARTUP_FAILED')
+          print('LLAMA_SERVER_READY',flush=True)
+          PY
+          python -u experiments/dt13_live/live_dual.py --source README.md --out dt13_artifacts/episode --hhc 2>&1 | tee dt13_artifacts/system/experiment.log
+      - name: Preserve every result including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-dt13-live-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dt13_artifacts/
+          if-no-files-found: error
+          retention-days: 14
