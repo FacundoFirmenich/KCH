@@ -1,0 +1,132 @@
+name: BIFM v0.11.1 sharded real-data multisample audit
+
+on:
+  push:
+    branches:
+      - bifm/v0.11.1-alpha0-sharded-multisample
+    paths:
+      - .github/workflows/bifm-v0111-sharded-multisample.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect-shard:
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        layer: [4, 14, 24]
+        eidx: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-qwen
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_LAYER: ${{ matrix.layer }}
+      BIFM_EIDX: ${{ matrix.eidx }}
+      BIFM_OUT: bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore frozen Qwen cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .hf-cache-qwen
+          key: bifm-qwen3-0.6b-c1899de289a04d12100db370d81485cdf75e47ca
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate numpy pandas pyarrow huggingface_hub
+      - name: Execute frozen shard
+        run: |
+          python research/bifm/v0.11.1-alpha0/collect_qwen_shard.py | tee bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}_full_run.txt
+      - name: Hash shard
+        run: |
+          sha256sum \
+            research/bifm/v0.11.1-alpha0/collect_qwen_shard.py \
+            bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}/qwen_L${{ matrix.layer }}_E${{ matrix.eidx }}.npz \
+            bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}/qwen_L${{ matrix.layer }}_E${{ matrix.eidx }}_receipt.json \
+            bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}_full_run.txt \
+            | tee bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.11.1-Qwen-L${{ matrix.layer }}-E${{ matrix.eidx }}
+          path: |
+            bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}/
+            bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}_full_run.txt
+            bifm_v0111_L${{ matrix.layer }}_E${{ matrix.eidx }}_sha256.txt
+          if-no-files-found: error
+
+  assemble-and-summarize:
+    needs: collect-shard
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BIFM_SHARDS: shard_artifacts
+      BIFM_ASSEMBLED: assembled_layers
+      BIFM_INPUT: assembled_layers
+      BIFM_OUT: bifm_v0111_summary
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download all 30 shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: BIFM-v0.11.1-Qwen-L*-E*
+          path: shard_artifacts
+          merge-multiple: false
+      - name: Install assembly and summary runtime
+        run: python -m pip install --disable-pip-version-check numpy pandas scipy
+      - name: Strictly assemble shards
+        run: |
+          python research/bifm/v0.11.1-alpha0/assemble_shards.py | tee bifm_v0111_assembly_run.txt
+      - name: Exact audit and NumPy-safe local hierarchical Bayes
+        run: |
+          python research/bifm/v0.11.0-alpha0/run_summary_numpy_safe.py | tee bifm_v0111_summary_full_run.txt
+      - name: Dependence-preserving Bayesian block bootstrap
+        env:
+          BIFM_INPUT: bifm_v0111_summary
+          BIFM_OUT: bifm_v0111_bootstrap
+        run: |
+          python research/bifm/v0.11.0-alpha0/bayesian_block_bootstrap.py | tee bifm_v0111_bootstrap_full_run.txt
+      - name: Hash final receipts
+        run: |
+          sha256sum \
+            research/bifm/v0.11.1-alpha0/collect_qwen_shard.py \
+            research/bifm/v0.11.1-alpha0/assemble_shards.py \
+            research/bifm/v0.11.0-alpha0/summarize_bayesian_multisample.py \
+            research/bifm/v0.11.0-alpha0/run_summary_numpy_safe.py \
+            research/bifm/v0.11.0-alpha0/bayesian_block_bootstrap.py \
+            assembled_layers/SHARD_ASSEMBLY_MANIFEST.json \
+            bifm_v0111_summary/bayesian_multisample_summary.json \
+            bifm_v0111_summary/exact_sample_cells.csv \
+            bifm_v0111_summary/cell_counts.csv \
+            bifm_v0111_summary/hierarchical_posterior.csv \
+            bifm_v0111_summary/eig_rank.csv \
+            bifm_v0111_summary/frontier_samples.csv \
+            bifm_v0111_bootstrap/bayesian_bootstrap_summary.json \
+            bifm_v0111_bootstrap/bayesian_bootstrap_cells.csv \
+            bifm_v0111_bootstrap/bayesian_bootstrap_frontiers.csv \
+            bifm_v0111_assembly_run.txt \
+            bifm_v0111_summary_full_run.txt \
+            bifm_v0111_bootstrap_full_run.txt \
+            | tee bifm_v0111_final_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.11.1-final-sharded-multisample
+          path: |
+            assembled_layers/
+            bifm_v0111_summary/
+            bifm_v0111_bootstrap/
+            bifm_v0111_assembly_run.txt
+            bifm_v0111_summary_full_run.txt
+            bifm_v0111_bootstrap_full_run.txt
+            bifm_v0111_final_sha256.txt
+          if-no-files-found: error
