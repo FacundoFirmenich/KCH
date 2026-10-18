@@ -1,0 +1,87 @@
+name: BIFM v0.11 summary from frozen collectors
+
+on:
+  push:
+    branches:
+      - bifm/v0.11.0-alpha0-bayesian-multisample
+    paths:
+      - .github/workflows/bifm-v011-summary-from-frozen-run.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  summarize-frozen-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      SOURCE_RUN_ID: "39091246907"
+      BIFM_INPUT: layer_artifacts
+      BIFM_OUT: bifm_v011_summary
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Wait for three frozen layer artifacts
+        run: |
+          for i in $(seq 1 180); do
+            count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}/artifacts?per_page=100" --jq '[.artifacts[] | select(.name | startswith("BIFM-v0.11-Qwen-layer-"))] | length')
+            echo "layer artifacts available: ${count}/3"
+            if [ "${count}" -eq 3 ]; then
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "Timed out waiting for frozen layer artifacts"
+          exit 1
+      - name: Download frozen layer artifacts
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 39091246907
+          pattern: BIFM-v0.11-Qwen-layer-*
+          path: layer_artifacts
+          merge-multiple: false
+      - name: Install exact-summary runtime
+        run: python -m pip install --disable-pip-version-check numpy pandas scipy
+      - name: Exact audit and NumPy-safe local hierarchical Bayes
+        run: |
+          python research/bifm/v0.11.0-alpha0/run_summary_numpy_safe.py | tee bifm_v011_summary_full_run.txt
+      - name: Dependence-preserving Bayesian block bootstrap
+        env:
+          BIFM_INPUT: bifm_v011_summary
+          BIFM_OUT: bifm_v011_bootstrap
+        run: |
+          python research/bifm/v0.11.0-alpha0/bayesian_block_bootstrap.py | tee bifm_v011_bootstrap_full_run.txt
+      - name: Hash final receipts
+        run: |
+          sha256sum \
+            research/bifm/v0.11.0-alpha0/summarize_bayesian_multisample.py \
+            research/bifm/v0.11.0-alpha0/run_summary_numpy_safe.py \
+            research/bifm/v0.11.0-alpha0/bayesian_block_bootstrap.py \
+            bifm_v011_summary/bayesian_multisample_summary.json \
+            bifm_v011_summary/exact_sample_cells.csv \
+            bifm_v011_summary/cell_counts.csv \
+            bifm_v011_summary/hierarchical_posterior.csv \
+            bifm_v011_summary/eig_rank.csv \
+            bifm_v011_summary/frontier_samples.csv \
+            bifm_v011_bootstrap/bayesian_bootstrap_summary.json \
+            bifm_v011_bootstrap/bayesian_bootstrap_cells.csv \
+            bifm_v011_bootstrap/bayesian_bootstrap_frontiers.csv \
+            bifm_v011_summary_full_run.txt \
+            bifm_v011_bootstrap_full_run.txt | tee bifm_v011_final_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.11-final-multisample-analysis
+          path: |
+            bifm_v011_summary/
+            bifm_v011_bootstrap/
+            bifm_v011_summary_full_run.txt
+            bifm_v011_bootstrap_full_run.txt
+            bifm_v011_final_sha256.txt
+          if-no-files-found: error
