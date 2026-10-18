@@ -1,0 +1,35 @@
+name: BIFM v0.11.1 jurisdictional identifiability proofs
+
+on:
+  push:
+    branches:
+      - bifm/v0.11.1-alpha0-sharded-multisample
+    paths:
+      - research/bifm/v0.11.1-alpha0/lean/**
+      - .github/workflows/bifm-v0111-jurisdiction-lean.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean
+        run: |
+          curl "https://elan.lean-lang.org/elan-init.sh" -sSf | sh -s -- -y --default-toolchain leanprover/lean4:stable
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build jurisdictional proofs
+        working-directory: research/bifm/v0.11.1-alpha0/lean
+        run: |
+          lake update
+          lake build
+      - name: Reject proof placeholders
+        run: |
+          if grep -R -n -E '(^|[^A-Za-z])(sorry|admit)([^A-Za-z]|$)' research/bifm/v0.11.1-alpha0/lean/BIFMJurisdiction; then
+            echo "Found forbidden proof placeholder"
+            exit 1
+          fi
