@@ -1,0 +1,88 @@
+name: BIFM v0.11 Bayesian multijurisdictional real-data audit
+
+on:
+  push:
+    branches:
+      - bifm/v0.11.0-alpha0-bayesian-multisample
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect-layer:
+    strategy:
+      fail-fast: false
+      matrix:
+        layer: [4, 14, 24]
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-qwen
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_LAYER: ${{ matrix.layer }}
+      BIFM_OUT: bifm_v011_layer_${{ matrix.layer }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache frozen Qwen weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache-qwen
+          key: bifm-qwen3-0.6b-c1899de289a04d12100db370d81485cdf75e47ca
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.51,<5" accelerate numpy pandas pyarrow huggingface_hub
+      - name: Collect layer signatures and realized effects
+        run: |
+          python research/bifm/v0.11.0-alpha0/collect_qwen_layer.py | tee bifm_v011_layer_${{ matrix.layer }}_full_run.txt
+      - name: Hash layer receipts
+        run: |
+          sha256sum research/bifm/v0.11.0-alpha0/collect_qwen_layer.py bifm_v011_layer_${{ matrix.layer }}/qwen_layer_${{ matrix.layer }}.npz bifm_v011_layer_${{ matrix.layer }}/qwen_layer_${{ matrix.layer }}_receipt.json bifm_v011_layer_${{ matrix.layer }}_full_run.txt | tee bifm_v011_layer_${{ matrix.layer }}_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.11-Qwen-layer-${{ matrix.layer }}
+          path: |
+            bifm_v011_layer_${{ matrix.layer }}/
+            bifm_v011_layer_${{ matrix.layer }}_full_run.txt
+            bifm_v011_layer_${{ matrix.layer }}_sha256.txt
+          if-no-files-found: error
+
+  summarize:
+    needs: collect-layer
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BIFM_INPUT: layer_artifacts
+      BIFM_OUT: bifm_v011_summary
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download all layer artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: BIFM-v0.11-Qwen-layer-*
+          path: layer_artifacts
+          merge-multiple: false
+      - name: Install summary runtime
+        run: python -m pip install --disable-pip-version-check numpy pandas scipy
+      - name: Exact audit and local hierarchical Bayesian summary
+        run: |
+          python research/bifm/v0.11.0-alpha0/summarize_bayesian_multisample.py | tee bifm_v011_summary_full_run.txt
+      - name: Hash summary receipts
+        run: |
+          sha256sum research/bifm/v0.11.0-alpha0/summarize_bayesian_multisample.py bifm_v011_summary/bayesian_multisample_summary.json bifm_v011_summary/exact_sample_cells.csv bifm_v011_summary/cell_counts.csv bifm_v011_summary/hierarchical_posterior.csv bifm_v011_summary/eig_rank.csv bifm_v011_summary/frontier_samples.csv bifm_v011_summary_full_run.txt | tee bifm_v011_summary_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.11-Bayesian-multisample-summary
+          path: |
+            bifm_v011_summary/
+            bifm_v011_summary_full_run.txt
+            bifm_v011_summary_sha256.txt
+          if-no-files-found: error
