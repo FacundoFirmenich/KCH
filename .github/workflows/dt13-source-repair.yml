@@ -1,0 +1,74 @@
+name: DT13 repair observed source-status error
+on:
+  push:
+    branches: ['research/dt13-live-dual-20261018']
+    paths:
+      - 'experiments/dt13_repair/**'
+      - '.github/workflows/dt13-source-repair.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reuse and verify identical public runtime acquisition
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dt13_artifacts/system "$RUNNER_TEMP/dt13-runtime"
+          cp experiments/dt13_live/live_dual.py dt13_artifacts/system/
+          cp experiments/dt13_repair/repair.py dt13_artifacts/system/
+          cp experiments/dt13_repair/prior_evidence.json dt13_artifacts/system/
+          cp .github/workflows/dt13-live-dual.yml dt13_artifacts/system/
+          cp .github/workflows/dt13-source-repair.yml dt13_artifacts/system/
+          python -u - <<'PY'
+          from pathlib import Path
+          import json
+          lines=Path('.github/workflows/dt13-live-dual.yml').read_text().splitlines()
+          start=lines.index("          python -u - <<'PY'")+1
+          end=lines.index('          PY',start)
+          body='\n'.join(line[10:] for line in lines[start:end])
+          Path('dt13_artifacts/system/bootstrap.py').write_text(body)
+          exec(compile(body,'dt13_prior_bootstrap.py','exec'),{'__name__':'__main__'})
+          receipt=json.loads(Path('dt13_artifacts/system/runtime_receipt.json').read_text())
+          assert receipt['model_revision']=='13fb94bfda8c8cf22497dc57b78f391a9acb426a'
+          assert receipt['model']['sha256']=='509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c'
+          assert receipt['server_sha256']=='5faf410bbbc00a1b94b09ee01623699f255365628dfa73b1ee552d9e52a2231d'
+          PY
+      - name: Real reflective repair and typed evidence gate
+        timeout-minutes: 18
+        shell: bash
+        run: |
+          set -euo pipefail
+          SERVER="$(cat "$RUNNER_TEMP/dt13-runtime/server-path.txt")"
+          export LD_LIBRARY_PATH="$(dirname "$SERVER"):${LD_LIBRARY_PATH:-}"
+          "$SERVER" -m "$RUNNER_TEMP/dt13-runtime/model.gguf" --host 127.0.0.1 --port 8765 --alias kch-dt13-qwen7b --parallel 2 --ctx-size 16384 --threads 4 --threads-batch 4 --no-context-shift --slots >dt13_artifacts/system/llama-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          python - <<'PY'
+          import time
+          from urllib.request import urlopen
+          for _ in range(120):
+              try:
+                  with urlopen('http://127.0.0.1:8765/health',timeout=2) as r:
+                      if r.status==200:break
+              except Exception:time.sleep(1)
+          else:raise SystemExit('SERVER_STARTUP_FAILED')
+          PY
+          python -u experiments/dt13_repair/repair.py --out dt13_artifacts/episode 2>&1 | tee dt13_artifacts/system/experiment.log
+      - name: Preserve repair including rejection or truncation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kch-dt13-repair-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dt13_artifacts/
+          if-no-files-found: error
+          retention-days: 14
