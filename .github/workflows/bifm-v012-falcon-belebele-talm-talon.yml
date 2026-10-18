@@ -1,0 +1,116 @@
+name: BIFM v0.12 Falcon Belebele TALM TALON
+
+on:
+  push:
+    branches:
+      - bifm/v0.12.0-alpha0-falcon-belebele-talm-talon
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  operator-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install CPU torch
+        run: python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Execute TALM/TALON invariant tests
+        working-directory: research/bifm/v0.12.0-alpha0
+        run: python test_talm_talon_ops.py
+
+  collect-language:
+    needs: operator-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [eng_Latn, fra_Latn, spa_Latn, por_Latn]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache-falcon
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      BIFM_LANG: ${{ matrix.language }}
+      BIFM_OUT: bifm_v012_${{ matrix.language }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache Falcon3 weights
+        uses: actions/cache@v4
+        with:
+          path: .hf-cache-falcon
+          key: bifm-falcon3-1b-instruct-v012
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check "transformers>=4.48,<5" accelerate numpy pandas huggingface_hub
+      - name: Execute multilingual collector
+        run: |
+          PYTHONPATH=research/bifm/v0.12.0-alpha0 \
+          python research/bifm/v0.12.0-alpha0/falcon_belebele_collect.py | tee bifm_v012_${{ matrix.language }}_full_run.txt
+      - name: Hash language receipts
+        run: |
+          sha256sum \
+            research/bifm/v0.12.0-alpha0/talm_talon_ops.py \
+            research/bifm/v0.12.0-alpha0/falcon_belebele_collect.py \
+            bifm_v012_${{ matrix.language }}/${{ matrix.language }}_item_records.csv \
+            bifm_v012_${{ matrix.language }}/${{ matrix.language }}_receipt.json \
+            bifm_v012_${{ matrix.language }}_full_run.txt | tee bifm_v012_${{ matrix.language }}_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.12-${{ matrix.language }}
+          path: |
+            bifm_v012_${{ matrix.language }}/
+            bifm_v012_${{ matrix.language }}_full_run.txt
+            bifm_v012_${{ matrix.language }}_sha256.txt
+          if-no-files-found: error
+
+  summarize:
+    needs: collect-language
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BIFM_INPUT: language_artifacts
+      BIFM_OUT: bifm_v012_summary
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download language artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: BIFM-v0.12-*
+          path: language_artifacts
+          merge-multiple: false
+      - name: Install summary runtime
+        run: python -m pip install --disable-pip-version-check numpy pandas scipy scikit-learn
+      - name: Execute future-only sensor actuator audit
+        run: |
+          python research/bifm/v0.12.0-alpha0/summarize_sensor_actuator.py | tee bifm_v012_summary_full_run.txt
+      - name: Hash summary receipts
+        run: |
+          sha256sum \
+            research/bifm/v0.12.0-alpha0/summarize_sensor_actuator.py \
+            bifm_v012_summary/sensor_actuator_summary.json \
+            bifm_v012_summary/development_selected_policies.csv \
+            bifm_v012_summary/confirmatory_local_results.jsonl \
+            bifm_v012_summary/parallel_confirmatory_items.csv \
+            bifm_v012_summary/cross_language_item_summary.csv \
+            bifm_v012_summary_full_run.txt | tee bifm_v012_summary_sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BIFM-v0.12-multilingual-summary
+          path: |
+            bifm_v012_summary/
+            bifm_v012_summary_full_run.txt
+            bifm_v012_summary_sha256.txt
+          if-no-files-found: error
