@@ -1,0 +1,359 @@
+{
+  "format": "KCH_PHYSICAL_PRIMARY_SOURCES_V1",
+  "date": "2026-10-20",
+  "scope": "Fuentes primarias pertinentes a los dos contratos. Revisión focalizada, no exhaustiva; no claims de prioridad universal.",
+  "source_registry": {
+    "path": "research/continuity_v4_20261020/literature/solar_mhd_sources.json",
+    "sha256": "de31f0c6e1f8d8a1d24be7e10ef24a449920482398dd07fa7f35cbf79193835f"
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "title": "The Helioseismic and Magnetic Imager (HMI) Vector Magnetic Field Pipeline: SHARPs – Space-weather HMI Active Region Patches",
+      "authors": [
+        "M. G. Bobra",
+        "X. Sun",
+        "J. T. Hoeksema",
+        "M. Turmon",
+        "Y. Liu",
+        "K. Hayashi",
+        "G. Barnes",
+        "K. D. Leka"
+      ],
+      "year": 2014,
+      "url": "https://arxiv.org/abs/1404.1879",
+      "full_text_url": "https://arxiv.org/pdf/1404.1879",
+      "doi": "10.1007/s11207-014-0529-3",
+      "doi_verification": "Metadatos primarios de arXiv/paper.",
+      "read_depth": "Texto completo accesible; lectura focal de resumen, introducción, tabla 3 y discusión de MEANJZH, no auditoría línea por línea de todo el artículo.",
+      "read_sections": "Tabla 3, p.7; discusión de contribución vertical p.12; definición de HARP y productos definitivos/NRT.",
+      "web_refs": [
+        "turn62view0",
+        "turn67view0"
+      ],
+      "claims_supported": [
+        "MEANJZH es contribución Bz Jz a helicidad de corriente.",
+        "HMI no determina gradientes verticales necesarios para los otros términos.",
+        "Un HARP puede contener más de una región NOAA; el producto y su latencia importan para pronóstico."
+      ],
+      "limits": "No demuestra equivalencia entre el proxy y helicidad magnética volumétrica; no verifica nuestros magnetogramas.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S02",
+      "title": "Tracking Vector Magnetograms with the Magnetic Induction Equation",
+      "authors": [
+        "Peter W. Schuck"
+      ],
+      "year": 2008,
+      "url": "https://arxiv.org/abs/0803.3472",
+      "full_text_url": "https://arxiv.org/pdf/0803.3472",
+      "doi": "10.1086/589434",
+      "doi_verification": "DOI relacionado en ficha primaria arXiv abierta, turn90view3.",
+      "read_depth": "Resumen y fragmentos metodológicos/resultados del PDF, con verificación del benchmark reportado; no reproducción del algoritmo.",
+      "read_sections": "Resumen; resultados ANMHD y contraste DAVE/DAVE4VM.",
+      "web_refs": [
+        "turn62view1",
+        "turn67view2",
+        "turn90view3"
+      ],
+      "claims_supported": [
+        "DAVE4VM incorpora campos horizontales a una estimación afín local.",
+        "Su recuperación aproximada de 95% de tasa de helicidad y 75% de potencia corresponde al test ANMHD de la publicación.",
+        "Tracking exclusivamente longitudinal puede perder contribución de emergencia."
+      ],
+      "limits": "Los porcentajes no son garantía de precisión para datos solares propios; no se generaron datos nuevos.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S03",
+      "title": "Surface Flows From Magnetograms",
+      "authors": [
+        "Brian T. Welsch",
+        "George H. Fisher"
+      ],
+      "year": 2008,
+      "year_note": "Preprint de 2007; contribución publicada en ASP Conference Series 383 en 2008.",
+      "url": "https://arxiv.org/abs/0710.0546",
+      "full_text_url": "https://arxiv.org/pdf/0710.0546",
+      "doi": "10.48550/arXiv.0710.0546",
+      "doi_verification": "DOI de arXiv; no se atribuye DOI editorial.",
+      "read_depth": "Resumen y pasajes de texto completo sobre espacio nulo y potenciales de Helmholtz.",
+      "read_sections": "Resumen y discusión de null flows alrededor de p.8.",
+      "web_refs": [
+        "turn60view2",
+        "turn62view2",
+        "turn67view1"
+      ],
+      "claims_supported": [
+        "La evolución normal del campo no determina todos los flujos.",
+        "Flujos compatibles con el mismo Bz pueden transportar energía o helicidad."
+      ],
+      "limits": "Establece una limitación estructural; no prueba qué componente falta en la ejecución propia.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S04",
+      "title": "The topological properties of magnetic helicity",
+      "authors": [
+        "Mitchell A. Berger",
+        "George B. Field"
+      ],
+      "year": 1984,
+      "url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/topological-properties-of-magnetic-helicity/CBF3020A84DF9DFA4894162430595777",
+      "doi": "10.1017/S0022112084002019",
+      "doi_verification": "Ficha y resumen del editor Cambridge.",
+      "read_depth": "Resumen primario y metadatos del editor; no texto completo.",
+      "read_sections": "Resumen sobre volúmenes abiertos, helicidad relativa y flujo.",
+      "web_refs": [
+        "turn64search0",
+        "turn64search1"
+      ],
+      "claims_supported": [
+        "La helicidad magnética en regiones abiertas exige tratamiento de referencia y gauge.",
+        "Helicidad relativa volumétrica y un proxy fotosférico no son el mismo objeto."
+      ],
+      "limits": "No se reconstruyó la demostración ni se verificaron todas sus hipótesis técnicas.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S06",
+      "title": "A Comparison of Flare Forecasting Methods. II. Benchmarks, Metrics and Performance Results for Operational Solar Flare Forecasting Systems",
+      "authors": [
+        "K. D. Leka",
+        "Sung-Hong Park",
+        "Kanya Kusano",
+        "Jesse Andries",
+        "Graham Barnes",
+        "Suzy Bingham",
+        "D. Shaun Bloomfield",
+        "Aoife E. McCloskey",
+        "Veronique Delouille",
+        "David Falconer",
+        "Peter T. Gallagher",
+        "Manolis K. Georgoulis",
+        "Yuki Kubo",
+        "Kangjin Lee",
+        "Sangwoo Lee",
+        "Vasily Lobzin",
+        "JunChul Mun",
+        "Sophie A. Murray",
+        "Tarek A. M. Hamad Nageem",
+        "Rami Qahwaji",
+        "Michael Sharpe",
+        "Rob Steenburgh",
+        "Graham Steward",
+        "Michael Terkildsen"
+      ],
+      "year": 2019,
+      "url": "https://arxiv.org/abs/1907.02905",
+      "full_text_url": "https://arxiv.org/pdf/1907.02905",
+      "doi": "10.3847/1538-4365/ab2e12",
+      "doi_verification": "Metadatos editoriales/autorales recuperados.",
+      "read_depth": "Resumen, introducción y metodología del PDF hasta métricas; no reanálisis de todas las tablas de resultados.",
+      "read_sections": "Pp.1–6: contratos operacionales, separación entrenamiento/prueba, definiciones de eventos y métricas.",
+      "web_refs": [
+        "turn60view0",
+        "turn94view1",
+        "turn96search49"
+      ],
+      "claims_supported": [
+        "Pronóstico operacional utiliza información previa a emisión.",
+        "El entrenamiento no debe solaparse con intervalo de prueba.",
+        "Rango entre métodos depende de evento y métrica; no existe vencedor único en esa comparación."
+      ],
+      "limits": "Su objetivo son fulguraciones, no reconstruir componentes del campo; la recomendación propia de agrupar regiones es inferencia metodológica adicional.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S07",
+      "title": "Towards a Robust Estimate of the Solar Photospheric Poynting Flux and Helicity Flux",
+      "authors": [
+        "Jiayi Liu",
+        "Xudong Sun",
+        "Peter W. Schuck",
+        "Lars K. S. Daldorff"
+      ],
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2604.16098",
+      "full_text_url": "https://arxiv.org/html/2604.16098v1",
+      "doi": "10.48550/arXiv.2604.16098",
+      "doi_verification": "DOI arXiv verificado. DOI editorial ae6101 apareció en resultado secundario, pero no se toma como verificado primario en esta ficha.",
+      "publication_status_read": "La ficha del preprint declara aceptación en ApJ.",
+      "read_depth": "Texto HTML: resumen, introducción y métodos, con lectura focal de restricciones y evaluación de derivadas locales; no reproducción de resultados.",
+      "read_sections": "Secciones I–II, especialmente discusión de derivadas del ajuste DAVE4VM, HTML líneas 105–111.",
+      "web_refs": [
+        "turn50view0",
+        "turn54view0"
+      ],
+      "claims_supported": [
+        "Comparación PDFI/DAVE4VM/DAVE4VMwDV en NOAA 12673 muestra discrepancias de flujo, incluidas de signo.",
+        "Componentes no inductivos y tratamiento Doppler afectan inferencia.",
+        "La evaluación de inducción debe respetar derivadas del ajuste local, no diferenciar sin más el mosaico final."
+      ],
+      "limits": "No diagnostica por sí sola un error del gate v1.3 propio; su código original no fue inspeccionado.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato.",
+      "contract_direct_check": {
+        "url": "https://arxiv.org/html/2604.16098v1",
+        "web_refs": [
+          "turn106view0",
+          "turn107view1"
+        ],
+        "read_sections": "Métodos y discusión local de derivadas, especialmente párrafos 105–111.",
+        "supports": "Necesidad de distinguir derivadas internas de ventana de derivadas del mosaico; no confirma error propio."
+      }
+    },
+    {
+      "id": "S08",
+      "title": "Are rotation curves in NGC 6946 and the Milky Way magnetically supported?",
+      "authors": [
+        "Eduardo Battaner",
+        "Estrella Florido"
+      ],
+      "year": 2005,
+      "year_note": "Año del preprint consultado; metadatos de aceptación y DOI editorial relacionado no se reconciliaron, por lo que se cita el preprint.",
+      "url": "https://arxiv.org/abs/astro-ph/0503657",
+      "doi": "10.48550/arXiv.astro-ph/0503657",
+      "doi_verification": "DOI del preprint verificado en ficha primaria; DOI editorial relacionado 10.1002/asna.200610658 no usado para atribuir fecha o revista.",
+      "read_depth": "Resumen completo y metadatos primarios.",
+      "read_sections": "Resumen: perfil crítico Bphi y propuesta de soporte magnético.",
+      "web_refs": [
+        "turn92academia16",
+        "turn94view0"
+      ],
+      "claims_supported": [
+        "Hay antecedentes explícitos favorables al soporte magnético de curvas de rotación.",
+        "La propuesta depende de perfil azimutal radial y régimen espacial."
+      ],
+      "limits": "No establece evidencia nueva de M33 ni valida el kernel del proyecto. Se incluye para confrontar ambas posiciones, no como consenso.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S09",
+      "title": "High-resolution radio continuum survey of M33: III. Magnetic fields",
+      "authors": [
+        "F. S. Tabatabaei",
+        "M. Krause",
+        "A. Fletcher",
+        "R. Beck"
+      ],
+      "year": 2008,
+      "url": "https://arxiv.org/abs/0809.0419",
+      "doi": "10.1051/0004-6361:200810590",
+      "doi_verification": "DOI relacionado en ficha primaria arXiv.",
+      "read_depth": "Resumen completo y metadatos primarios.",
+      "read_sections": "Resumen: modelo tridimensional, resolución, modos y deformación del disco.",
+      "web_refs": [
+        "turn60view1"
+      ],
+      "claims_supported": [
+        "Modelo de campo regular M33 con resolución de 0,7 kpc a 3,6/6,2 cm.",
+        "Interpretación de componente vertical puede depender de deformación del disco.",
+        "Estructura magnética varía entre anillos."
+      ],
+      "limits": "No verifica el modelo 2D propio; los números de campo no implican medición directa de helicidad.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S10",
+      "title": "Kinematics and Mass Modeling of Messier 33: Halpha observations",
+      "authors": [
+        "Zacharie Sie Kam",
+        "Claude Carignan",
+        "Laurent Chemin",
+        "Philippe Amram",
+        "Benoit Epinat"
+      ],
+      "year": 2015,
+      "url": "https://arxiv.org/abs/1503.02538",
+      "doi": "10.1093/mnras/stv517",
+      "doi_verification": "DOI relacionado en ficha arXiv, turn90view1.",
+      "read_depth": "Resumen completo y metadatos primarios; tabla VizieR localizada pero no descargada ni cotejada fila por fila.",
+      "read_sections": "Resumen: observaciones Fabry–Perot, resolución y comparación cinemática Hα/H I.",
+      "web_refs": [
+        "turn86view1",
+        "turn90view1",
+        "turn51search24"
+      ],
+      "claims_supported": [
+        "Mapa Hα de alta resolución angular y diferencias cinemáticas por radio.",
+        "Hα y H I son observables distintos; discrepancias requieren explicación propia."
+      ],
+      "limits": "No acredita la exactitud de las 396 filas transcritas del archivo del proyecto.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S11",
+      "title": "Kinematics of the Atomic ISM in M33 on 80 pc scales",
+      "authors": [
+        "Eric W. Koch",
+        "Erik W. Rosolowsky",
+        "Felix J. Lockman",
+        "Amanda A. Kepley",
+        "Adam Leroy",
+        "Andreas Schruba",
+        "Jonathan Braine",
+        "Julianne Dalcanton",
+        "Megan C. Johnson",
+        "Snežana Stanimirović"
+      ],
+      "year": 2018,
+      "url": "https://arxiv.org/abs/1806.11218",
+      "doi": "10.1093/mnras/sty1674",
+      "doi_verification": "DOI relacionado en ficha primaria arXiv.",
+      "read_depth": "Resumen completo y metadatos primarios; sin recalcular cubos H I.",
+      "read_sections": "Resumen: VLA+GBT, resolución, perfiles no gaussianos y componentes cinemáticas.",
+      "web_refs": [
+        "turn50view2"
+      ],
+      "claims_supported": [
+        "Observaciones H I a 80 pc muestran perfiles complejos y anchuras dependientes del procedimiento.",
+        "Existen componentes cinemáticas que deben considerarse al comparar trazadores."
+      ],
+      "limits": "No es estimación de la covarianza del residuo de los dos anillos propios.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato."
+    },
+    {
+      "id": "S12",
+      "title": "Do magnetic fields influence gas rotation in galaxies?",
+      "authors": [
+        "Detlef Elstner",
+        "Rainer Beck",
+        "Oliver Gressel"
+      ],
+      "year": 2014,
+      "url": "https://arxiv.org/abs/1407.6998",
+      "full_text_url": "https://arxiv.org/html/1407.6998v2",
+      "doi": "10.1051/0004-6361/201423960",
+      "doi_verification": "DOI y referencia A&A 568 A104 en ficha primaria, turn90view2.",
+      "read_depth": "Texto completo accesible; lectura de resumen, introducción y derivación de fuerza radial hasta ecuaciones iniciales de rotación; no reproducción numérica.",
+      "read_sections": "HTML líneas 31–163, ecuaciones 1–18 y resumen.",
+      "web_refs": [
+        "turn72view2",
+        "turn90view2"
+      ],
+      "claims_supported": [
+        "Respuesta de rotación depende de la fuerza de Lorentz y del perfil del campo.",
+        "Separación entre campo regular y turbulento y comparación con gravedad bajo hipótesis explícitas.",
+        "La influencia magnética no constituye una explicación universal de curvas exteriores planas en su análisis."
+      ],
+      "limits": "Sus amplitudes y galaxias no son directamente comparables con el kernel normalizado de M33.",
+      "read_provenance": "Profundidad heredada de la revisión focalizada del 20-10-2026, incorporada con procedencia; no se afirma relectura íntegra en este contrato.",
+      "contract_direct_check": {
+        "url": "https://arxiv.org/pdf/1407.6998",
+        "web_refs": [
+          "turn107view0",
+          "turn108view0"
+        ],
+        "read_sections": "Páginas 1–3; ecuaciones 1–6 y discusión de presión, geometría, Reynolds y perfiles.",
+        "supports": "Signo y unidades de fuerza radial y contribución a velocidad cuadrática; no equivalencia del kernel propio.",
+        "access_note": "El HTML solicitado devolvió error; el PDF primario fue accesible."
+      }
+    }
+  ],
+  "unresolved_lead_ids": [
+    "L01"
+  ],
+  "unresolved_lead_note": "El trabajo de Kim et al. 2026 consta en el registro bibliográfico general sin texto completo revisado; no se usa para comparar desempeño.",
+  "mechanism_derivation_note": "Las ecuaciones estándar del contrato M33 se derivan bajo hipótesis explícitas. La nulidad usa exclusivamente K archivada; no se atribuye ese resultado a los artículos."
+}

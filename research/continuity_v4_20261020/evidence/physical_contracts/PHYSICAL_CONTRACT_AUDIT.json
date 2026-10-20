@@ -39,6 +39,19 @@
           2920,
           5249
         ],
+        "train_time_ranges_tai": [
+          {
+            "harp": 2920,
+            "start": "2013.07.07_23:48:00_TAI",
+            "end": "2013.07.08_23:48:00_TAI"
+          },
+          {
+            "harp": 5249,
+            "start": "2015.03.01_23:48:00_TAI",
+            "end": "2015.03.02_23:48:00_TAI"
+          }
+        ],
+        "source_join": "fold_results[].held_out_trajectory/train_trajectories -> trajectories[].trajectory_id -> snapshots[].requested_time_tai",
         "chronological_fit_before_test_start": false,
         "retrospective_development": true,
         "prospective_validation": false
@@ -55,6 +68,19 @@
         "train_harps_after_test_start": [
           5249
         ],
+        "train_time_ranges_tai": [
+          {
+            "harp": 401,
+            "start": "2011.03.09_11:24:00_TAI",
+            "end": "2011.03.10_11:24:00_TAI"
+          },
+          {
+            "harp": 5249,
+            "start": "2015.03.01_23:48:00_TAI",
+            "end": "2015.03.02_23:48:00_TAI"
+          }
+        ],
+        "source_join": "fold_results[].held_out_trajectory/train_trajectories -> trajectories[].trajectory_id -> snapshots[].requested_time_tai",
         "chronological_fit_before_test_start": false,
         "retrospective_development": true,
         "prospective_validation": false
@@ -69,6 +95,19 @@
         "test_end_tai": "2015.03.02_23:48:00_TAI",
         "max_train_time_tai": "2013.07.08_23:48:00_TAI",
         "train_harps_after_test_start": [],
+        "train_time_ranges_tai": [
+          {
+            "harp": 2920,
+            "start": "2013.07.07_23:48:00_TAI",
+            "end": "2013.07.08_23:48:00_TAI"
+          },
+          {
+            "harp": 401,
+            "start": "2011.03.09_11:24:00_TAI",
+            "end": "2011.03.10_11:24:00_TAI"
+          }
+        ],
+        "source_join": "fold_results[].held_out_trajectory/train_trajectories -> trajectories[].trajectory_id -> snapshots[].requested_time_tai",
         "chronological_fit_before_test_start": true,
         "retrospective_development": true,
         "prospective_validation": false
@@ -146,6 +185,9 @@
     "matrix_rows": 2,
     "matrix_columns": 3,
     "rank_archived": 2,
+    "rank_dimension_upper_bound": 2,
+    "nullity_lower_bound_from_dimensions": 1,
+    "nullity_at_archived_numerical_rank": 1,
     "nullity": 1,
     "unit_null_direction_eta": [
       0.33333333333333803,
@@ -156,9 +198,23 @@
       -2.6020852139652106e-18,
       -1.734723475976807e-18
     ],
+    "rank_check": {
+      "method": "Count archived singular values above max(m,n)*binary64_epsilon*sigma_max; no new SVD or refit.",
+      "binary64_epsilon": 2.220446049250313e-16,
+      "tolerance": 2.6474643971234344e-17,
+      "rank_at_tolerance": 2,
+      "singular_values_archived": [
+        0.039743732241205844,
+        0.0027907433201859225
+      ],
+      "kernel_check_absolute_tolerance": 1e-15,
+      "kernel_check_max_absolute_residual": 2.6020852139652106e-18
+    },
     "nonzero_singular_value_ratio": 14.241271117172493,
     "interpretation": "With this fixed two-ring operator, eta and eta+t*n have the same predicted two-ring vector. This is a structural ambiguity, not a parameter fit or physical amplitude estimate.",
     "nuisance_adjusted_rank_computed": false,
+    "nuisance_information_condition": "A^T (I - B B^+) A with A=Sigma^(-1/2)K, B=Sigma^(-1/2)N, positive-definite Sigma; N and Sigma must be justified from measurement, not chosen by significance.",
+    "additional_response_condition": "A new response row k must satisfy k*n != 0 and retain independent information after instrument projection and nuisance adjustment.",
     "physical_lorentz_kernel_equivalence_proved": false,
     "historical_deterministic_primary": {
       "scenario": "inclination_plus_corr3_L0p5",

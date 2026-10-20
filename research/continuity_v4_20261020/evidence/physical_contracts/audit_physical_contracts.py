@@ -1,6 +1,6 @@
 """Deterministic documentary/operator audit; no fitting, sampling or data acquisition."""
 from pathlib import Path
-import argparse, csv, hashlib, io, json, math, re, zipfile
+import argparse, csv, hashlib, io, json, math, re, sys, zipfile
 
 PATTERN=re.compile(r'dave\s*4\s*vm|dave4vm|inducti|helicity.?flux|v1[._]3',re.I)
 CODE_EXT={'.py','.ipynb','.pro','.m','.f','.f90','.c','.cpp','.jl','.r'}
@@ -36,7 +36,9 @@ def main():
     code_matches=[x for x in matches if x.get('code_extension')]
     search={'format':'KCH_PHYSICAL_SOURCE_SEARCH_V1','date':'2026-10-20','roots':[str(p.relative_to(repo))for p in roots],
       'method':'Name inventory first, then full UTF-8 text scan, including every ZIP member and nested ZIP up to depth four.',
-      'pattern':PATTERN.pattern,'files_on_disk':len(files),'total_items_including_archive_members':len(inventory),
+      'pattern':PATTERN.pattern,'pattern_serialization_note':'JSON escapes a single regular-expression backslash as two characters; the Python raw string contains a single backslash before s.',
+      'pattern_examples':{s:bool(PATTERN.search(s))for s in ['DAVE4VM','DAVE 4 VM','induction','helicity flux','v1.3']},
+      'files_on_disk':len(files),'total_items_including_archive_members':len(inventory),
       'archives':archives,'inventory':inventory,'matches':matches,'code_matches':code_matches,'skipped':skips,
       'scope_limit':'Absence is limited to the recovered v1/v2/v3 research corpus; remote references and unmaterialized source archives are not bytes searched.'}
     write(out/'DAVE_SOURCE_SEARCH.json',search)
@@ -51,6 +53,8 @@ def main():
         future=[t['harp']for t in tr if max(s['requested_time_tai']for s in t['snapshots'])>test_times[0]]
         folds.append({'held_out_harp':f['held_out_harp'],'train_harps':[t['harp']for t in tr],'test_start_tai':test_times[0],
           'test_end_tai':test_times[-1],'max_train_time_tai':max(train_times),'train_harps_after_test_start':future,
+          'train_time_ranges_tai':[{'harp':t['harp'],'start':min(s['requested_time_tai']for s in t['snapshots']),'end':max(s['requested_time_tai']for s in t['snapshots'])}for t in tr],
+          'source_join':'fold_results[].held_out_trajectory/train_trajectories -> trajectories[].trajectory_id -> snapshots[].requested_time_tai',
           'chronological_fit_before_test_start':not future,'retrospective_development':True,'prospective_validation':False})
     model_contracts=[]
     for model,definition in protocol['operational_transport_rivals'].items():
@@ -74,15 +78,19 @@ def main():
     residual=[sum(x*y for x,y in zip(row,n))for row in matrix]
     assert max(abs(x)for x in residual)<1e-15
     singular=m33['deterministic_primary']['natural_response']['singular_values']
+    rank_tolerance=3*sys.float_info.epsilon*singular[0]
     result_out={'format':'KCH_PHYSICAL_CONTRACT_AUDIT_V1','date':'2026-10-20','source_files':{k:{'path':str(p.relative_to(repo)),'sha256':sha(p.read_bytes())}for k,p in paths.items()},
       'new_observations':False,'new_model_fits':False,'synthetic_data':False,'scientific_result_changed':False,
       'solar':{'historical_outcome':result['outcome'],'folds':folds,'folds_with_future_training_sources':sum(not f['chronological_fit_before_test_start']for f in folds),'models':model_contracts,
        'window_selection_uses_complete_future_metadata':True,'note':'Selection conditioned on all five snapshots satisfying quality/support; not an online eligibility policy.',
        'local_wins':{m:sum(x['descriptive_gain']for x in local if x['model']==m)for m in ['H_HELICAL_TRANSLATION','L_LEMNISCATIC_ALTERNATING','G_ACTIVITY_AFFINE','M_MOBIUS_SIGN']}},
       'm33':{'operator_source':'deterministic_primary.natural_response.response_matrix_kms_per_eta','matrix_rows':2,'matrix_columns':3,
-       'rank_archived':2,'nullity':1,'unit_null_direction_eta':n,'K_times_null_direction_kms_per_eta':residual,
+       'rank_archived':2,'rank_dimension_upper_bound':2,'nullity_lower_bound_from_dimensions':1,
+       'nullity_at_archived_numerical_rank':1,'nullity':1,'unit_null_direction_eta':n,'K_times_null_direction_kms_per_eta':residual,
+       'rank_check':{'method':'Count archived singular values above max(m,n)*binary64_epsilon*sigma_max; no new SVD or refit.','binary64_epsilon':sys.float_info.epsilon,'tolerance':rank_tolerance,'rank_at_tolerance':sum(s>rank_tolerance for s in singular),'singular_values_archived':singular,'kernel_check_absolute_tolerance':1e-15,'kernel_check_max_absolute_residual':max(abs(x)for x in residual)},
        'nonzero_singular_value_ratio':singular[0]/singular[1],'interpretation':'With this fixed two-ring operator, eta and eta+t*n have the same predicted two-ring vector. This is a structural ambiguity, not a parameter fit or physical amplitude estimate.',
-       'nuisance_adjusted_rank_computed':False,'physical_lorentz_kernel_equivalence_proved':False,
+       'nuisance_adjusted_rank_computed':False,'nuisance_information_condition':'A^T (I - B B^+) A with A=Sigma^(-1/2)K, B=Sigma^(-1/2)N, positive-definite Sigma; N and Sigma must be justified from measurement, not chosen by significance.',
+       'additional_response_condition':'A new response row k must satisfy k*n != 0 and retain independent information after instrument projection and nuisance adjustment.','physical_lorentz_kernel_equivalence_proved':False,
        'historical_deterministic_primary':m33['deterministic_primary'],'historical_covariance_scenarios':m33['covariance_scenarios']}}
     write(out/'PHYSICAL_CONTRACT_AUDIT.json',result_out)
     print(json.dumps({'files_searched':len(files),'archives':len(archives),'code_matches':len(code_matches),'future_training_folds':result_out['solar']['folds_with_future_training_sources'],'local_wins':result_out['solar']['local_wins'],'M33_null_direction':n,'max_null_residual':max(abs(x)for x in residual)},ensure_ascii=False))

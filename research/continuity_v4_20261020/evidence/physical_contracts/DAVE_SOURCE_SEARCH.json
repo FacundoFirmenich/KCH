@@ -8,6 +8,14 @@
   ],
   "method": "Name inventory first, then full UTF-8 text scan, including every ZIP member and nested ZIP up to depth four.",
   "pattern": "dave\\s*4\\s*vm|dave4vm|inducti|helicity.?flux|v1[._]3",
+  "pattern_serialization_note": "JSON escapes a single regular-expression backslash as two characters; the Python raw string contains a single backslash before s.",
+  "pattern_examples": {
+    "DAVE4VM": true,
+    "DAVE 4 VM": true,
+    "induction": true,
+    "helicity flux": true,
+    "v1.3": true
+  },
   "files_on_disk": 108,
   "total_items_including_archive_members": 159,
   "archives": [

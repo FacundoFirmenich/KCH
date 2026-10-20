@@ -1,0 +1,142 @@
+{
+  "format": "KCH_PHYSICAL_CORRECTIONS_STATUS_V1",
+  "date": "2026-10-20",
+  "scope": "Correcciones interpretativas y algebraicas materializadas. No nueva adquisición, experimento, ajuste, simulación o reescritura de resultados históricos.",
+  "method_exclusion": "HHC no aplicado por instrucción expresa del usuario.",
+  "status": "DOCUMENTED_AND_VERIFIED_WITH_MATERIAL_BLOCKS",
+  "implemented": [
+    {
+      "id": "SOLAR_CONTRACT",
+      "status": "IMPLEMENTED",
+      "evidence": "SOLAR_OPERATIONAL_CONTRACT_ES.md",
+      "result": "Contrato canónico PREDICT/TRACK/RECONSTRUCT y definición operacional de H/L/G/M; separación proxy, helicidad y flujo."
+    },
+    {
+      "id": "SOLAR_LOHO_CHRONOLOGY",
+      "status": "IMPLEMENTED",
+      "evidence": "PHYSICAL_CONTRACT_AUDIT.json#/solar/folds",
+      "result": "Dos de tres folds usan regiones de entrenamiento posteriores al inicio del test; válido como transferencia retrospectiva, no replay cronológico de pronóstico."
+    },
+    {
+      "id": "SOLAR_LOCAL_PRESERVATION",
+      "status": "IMPLEMENTED",
+      "evidence": "SOLAR_LOCAL_PRESERVED.csv",
+      "result": "48 contrastes de 12 transiciones preservados, incluidos positivos y adversos; H/L/G/M mejoran 4/7/5/0."
+    },
+    {
+      "id": "M33_RADIAL_IDENTIFIABILITY",
+      "status": "IMPLEMENTED",
+      "evidence": "M33_IDENTIFIABILITY_CONTRACT_ES.md",
+      "result": "Rango <=2 por dimensión; rango numérico archivado 2 y núcleo aproximado comprobado sobre K real. No identifica tres coeficientes ni demuestra ausencia física de efecto."
+    },
+    {
+      "id": "M33_FORCE_OBSERVATION_CONTRACT",
+      "status": "IMPLEMENTED",
+      "evidence": "M33_IDENTIFIABILITY_CONTRACT_ES.md",
+      "result": "Derivación estándar condicional de fuerza a v² y obligación del operador observacional para diferencia de trazadores; no se declara equivalencia propia."
+    }
+  ],
+  "blocked": [
+    {
+      "id": "DAVE_GATE_V1_3",
+      "status": "BLOCKED_MISSING_ORIGINAL_GATE_IMPLEMENTATION",
+      "evidence": "DAVE_SOURCE_SEARCH.json",
+      "required_inputs": [
+        "Fuente exacta y versión del estimador/gate",
+        "Registros, máscaras, unidades, coordenadas, pasos temporal/espacial",
+        "Coeficientes/derivadas locales y manejo de bordes",
+        "Umbrales originales y recibo"
+      ],
+      "not_claimed": [
+        "bug confirmado",
+        "flujo rescatado",
+        "ausencia en todos los repositorios remotos"
+      ]
+    },
+    {
+      "id": "SOLAR_PROSPECTIVE_VALIDATION",
+      "status": "NOT_EXECUTED",
+      "required_inputs": [
+        "Contrato de emisión/latencia y vintages",
+        "Entrenamiento anterior al test",
+        "Regla local ex ante y política de falta de datos",
+        "Evaluación futura independiente de exposiciones previas"
+      ]
+    },
+    {
+      "id": "M33_PHYSICAL_KERNEL_EQUIVALENCE",
+      "status": "NOT_ESTABLISHED",
+      "required_inputs": [
+        "Definición simbólica original del kernel y coeficientes",
+        "Modelo directo de fuerza a velocidades y diferencia de trazadores",
+        "Operadores instrumentales, máscaras y geometría"
+      ]
+    },
+    {
+      "id": "M33_NUISANCE_RANK_AND_COVARIANCE",
+      "status": "NOT_COMPUTED",
+      "required_inputs": [
+        "N y Sigma calibradas y justificadas desde medición",
+        "Identificación de direcciones informativas tras proyección nuisance"
+      ]
+    },
+    {
+      "id": "M33_2D_DISCRIMINATION",
+      "status": "NOT_EXECUTED",
+      "required_inputs": [
+        "Mapas y respuestas reales",
+        "Una fila con k*n no nulo y separable de nuisance",
+        "Comparadores físicos de igual información"
+      ]
+    }
+  ],
+  "validation": {
+    "script_exit_code": 0,
+    "search_items": 159,
+    "search_skips": 0,
+    "pattern_examples_all_match": true,
+    "rank_tolerance": 2.6474643971234344e-17,
+    "kernel_max_absolute_residual": 2.6020852139652106e-18,
+    "historical_outcome": "NO_DEVELOPMENT_DOMINANT_LIFT",
+    "originals_modified": false
+  },
+  "reproduction_command": "python3 research/continuity_v4_20261020/evidence/physical_contracts/audit_physical_contracts.py --repo . --out research/continuity_v4_20261020/evidence/physical_contracts",
+  "persistence": "Entrega final de ocho archivos al coordinador /root para sincronización y verificación; el checkpoint anterior fue confirmado, pero este estado no acredita por sí mismo el guardado remoto de la versión final.",
+  "artifacts": [
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/DAVE_SOURCE_SEARCH.json",
+      "bytes": 52142,
+      "sha256": "70e77b3d34bfa75597047bbbff5b4406e8603e527782c403ae63af95c20f74c3"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/M33_IDENTIFIABILITY_CONTRACT_ES.md",
+      "bytes": 11297,
+      "sha256": "c20fd40df004f024c983a8d458e21d481d9d63c08fb1e58ba34b916b78eb5884"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/PHYSICAL_CONTRACT_AUDIT.json",
+      "bytes": 13401,
+      "sha256": "b87cd7b4aac410af5a71cdcf6fae54ab6bfddfdfe9b9b1f3ae765f9a2334cdc4"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/PRIMARY_SOURCES.json",
+      "bytes": 17711,
+      "sha256": "1a283863f7ba4fb31fec84c6cd76c63e8195da02ad2edaf069e855fe7c49b661"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/SOLAR_LOCAL_PRESERVED.csv",
+      "bytes": 5424,
+      "sha256": "be95e32a62384275ec4a74a3d773fe78f89a3517d08a94eeab49e1f2a89bcde7"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/SOLAR_OPERATIONAL_CONTRACT_ES.md",
+      "bytes": 11882,
+      "sha256": "f5006ab61bfd91fd2c7e5635cb56a50d7a2427817a56127c31bc4acc93de8547"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/audit_physical_contracts.py",
+      "bytes": 10123,
+      "sha256": "7a1a057e2850af8a60e8165c3390d8029d31f09be33ebb3f2b40b371837eddd6"
+    }
+  ]
+}
