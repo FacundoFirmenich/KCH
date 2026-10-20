@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "bytes": 11385,
+      "name": "DICTAMEN_GREEDY_ES.md",
+      "sha256": "33ee7c7451f81d2d65b6e1ab17ab5106843bfaf4f2d2d29b6023ec032bacbafb"
+    },
+    {
+      "bytes": 1963,
+      "name": "GREEDY_COMPARISON_RESULT.json",
+      "sha256": "fbf512ff6898b94ee942a3b8155356fcb30dc0aa0c697ea553a5095353558a5a"
+    },
+    {
+      "bytes": 1051,
+      "name": "GREEDY_INDEPENDENT_CHECK.json",
+      "sha256": "2d9607e616f72554067c38b80acd6c5a0ae8dd86f588a89aaac339e21b5ff190"
+    },
+    {
+      "bytes": 2053,
+      "name": "GREEDY_JURISDICTIONS.json",
+      "sha256": "8d988e8cbed7f62028b1381aa3a9bce32dc6b1996b54a533494f2d7a1744fc76"
+    },
+    {
+      "bytes": 4543,
+      "name": "GREEDY_ROUTE_COMPARISON.csv",
+      "sha256": "e46da85a63fed7de3ce6245b17ae4174d4e0541019c72e3ee74d5488539ec56e"
+    },
+    {
+      "bytes": 172970,
+      "name": "GREEDY_ROUTE_WITNESSES.json",
+      "sha256": "4228d6164f3a49fac92733f871f78ec8c963b162eb2f5c82345dfac4474dd5bc"
+    },
+    {
+      "bytes": 172970,
+      "name": "GREEDY_ROUTE_WITNESSES.partial.json",
+      "sha256": "4228d6164f3a49fac92733f871f78ec8c963b162eb2f5c82345dfac4474dd5bc"
+    },
+    {
+      "bytes": 3979,
+      "name": "PROTOCOL_GREEDY_V1.json",
+      "sha256": "be6faf00581fc4f37b4f4d4af0d90edad8b003a37afbff7b18f50e4140f2165c"
+    },
+    {
+      "bytes": 15453,
+      "name": "check_greedy_baseline.py",
+      "sha256": "0f4da35a8f86032b78f078a48ef7fbdc4bcf93fff31a172426c628247de306c5"
+    },
+    {
+      "bytes": 9483,
+      "name": "run_greedy_baseline.py",
+      "sha256": "9fc1b113a4eeaa57febe471b25a3409fbd804f198936aab22a4036222e0bd969"
+    }
+  ],
+  "final_adjudication_file": "GREEDY_INDEPENDENT_CHECK.json",
+  "no_hhc": true,
+  "no_original_files_modified": true,
+  "no_synthetic_data": true,
+  "protocol_sha256": "be6faf00581fc4f37b4f4d4af0d90edad8b003a37afbff7b18f50e4140f2165c",
+  "result_phase_status_preserved": "COMPUTED_PENDING_INDEPENDENT_CHECK",
+  "schema": "ECH_GREEDY_DELIVERY_MANIFEST_V1",
+  "status": "INDEPENDENT_CHECK_PASS"
+}

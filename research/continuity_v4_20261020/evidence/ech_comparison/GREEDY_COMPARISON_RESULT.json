@@ -1,0 +1,40 @@
+{
+  "all_routes": 46,
+  "better_than_historical": 2,
+  "distinct_stage_inputs": 85,
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14"
+  },
+  "equal_historical": 18,
+  "equal_joint_optimum": 15,
+  "first_stage_above_exact_local_minimum": 12,
+  "limitations": [
+    "Stagewise greedy versus joint optimum changes future-contract information as well as decision rule; no causal attribution of entire gap to algorithm or lookahead.",
+    "Historical comparator shares a stagewise information restriction but is an archived exact local-selection policy, not a greedy baseline.",
+    "No approximation-ratio theorem is claimed.",
+    "Route cost sums describe independent executions, not one shared acquisition experiment.",
+    "Kernel is finite and deterministic, not an observational sample and not external validation.",
+    "Timing is one descriptive run with disclosed stage caching, not a hardware-controlled speed benchmark.",
+    "No graph-wide policy optimum, noisy decoder, physical error independence, authority or receipt-chain claim."
+  ],
+  "max_excess_over_joint": 3,
+  "permission_granted": false,
+  "producer_sha256": "9fc1b113a4eeaa57febe471b25a3409fbd804f198936aab22a4036222e0bd969",
+  "protocol_sha256": "be6faf00581fc4f37b4f4d4af0d90edad8b003a37afbff7b18f50e4140f2165c",
+  "schema": "ECH_FROZEN_GREEDY_COMPARISON_V1",
+  "status": "COMPUTED_PENDING_INDEPENDENT_CHECK",
+  "strictly_above_joint": 31,
+  "sum_independent_greedy_cost": 365,
+  "sum_independent_historical_cost": 335,
+  "sum_independent_joint_cost": 320,
+  "timing": {
+    "elapsed_seconds": 11.699972526999773,
+    "kernel_construction_seconds": 11.587332353999955,
+    "single_run_descriptive_not_performance_benchmark": true,
+    "stage_policy_seconds_unique_inputs": 0.03112852300546365,
+    "unexecuted_repeated_stage_times_excluded": true
+  },
+  "witnesses_sha256": "4228d6164f3a49fac92733f871f78ec8c963b162eb2f5c82345dfac4474dd5bc",
+  "worse_than_historical": 26
+}

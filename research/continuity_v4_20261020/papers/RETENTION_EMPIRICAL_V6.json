@@ -1,0 +1,202 @@
+{
+  "date": "2026-10-20",
+  "source_path": "research/continuity_20261013/papers/PAPER_2_FAIL_CLOSED_HELICAL_TESTS_CALIFORNIA_V5.md",
+  "source_bytes": 38476,
+  "source_sha256": "2a11ed91da8d1c78050a2500b12982bacf9c0cfb1e39253caa11844776736122",
+  "v6_path": "research/continuity_v4_20261020/papers/PAPER_2_CONDITIONAL_AXIAL_TRANSPORT_LIMITS_V6.md",
+  "v6_bytes": 70400,
+  "v6_sha256": "b69292192b7cfc8f48797ba3857b2872cbdd36cab2f88875d12db4044cee5978",
+  "method": "V6 analytical main text followed by a complete byte-identical archival V5 appendix. All original headings, paragraphs, tables, equations, references, caveats and adjudications retained. Main interpretation narrows historical framing where stated.",
+  "archive_start_byte": 31895,
+  "archive_source_bytes": 38476,
+  "source_fully_preserved": true,
+  "source_sections": [
+    {
+      "source_heading": "# Fail-Closed Predictive Tests of Static and Dynamic Helical Structure in California Earthquake Catalogs",
+      "source_byte_start": 0,
+      "source_byte_end_exclusive": 553,
+      "source_sha256": "766f39a23d68f10103e5b4d75621a31a6e62ce59626bc6be44dfc5f2b59658b5",
+      "v6_byte_start": 31895,
+      "v6_byte_end_exclusive": 32448,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## Abstract",
+      "source_byte_start": 553,
+      "source_byte_end_exclusive": 3062,
+      "source_sha256": "bd4c4e6252a5526ae5e4901d27a3e54659e3f4fdd48fe68c4c66bd7558f1e73e",
+      "v6_byte_start": 32448,
+      "v6_byte_end_exclusive": 34957,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 1. Introduction",
+      "source_byte_start": 3062,
+      "source_byte_end_exclusive": 4988,
+      "source_sha256": "6e840390ce7e8cabc4994384d4bfc7bd353bd3871d67306041819e90489a3c75",
+      "v6_byte_start": 34957,
+      "v6_byte_end_exclusive": 36883,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 2. Scientific scope and ontological units",
+      "source_byte_start": 4988,
+      "source_byte_end_exclusive": 6440,
+      "source_sha256": "d5c99ae0667ab76abd3bc727cbd3271e35f3f4c9dab49ec19287820d8ce88ba6",
+      "v6_byte_start": 36883,
+      "v6_byte_end_exclusive": 38335,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 3. Governance and fail-closed design",
+      "source_byte_start": 6440,
+      "source_byte_end_exclusive": 10147,
+      "source_sha256": "7fcb87355f0a5dc35729696a550f231aa8fb82d40d1ff8d62b604d5b146ecdc0",
+      "v6_byte_start": 38335,
+      "v6_byte_end_exclusive": 42042,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 4. Gate sequence",
+      "source_byte_start": 10147,
+      "source_byte_end_exclusive": 18507,
+      "source_sha256": "67a6cf90f74bc015fc9f5033b8d7026459d296ad5f600a0ac7d2b57a98af8d37",
+      "v6_byte_start": 42042,
+      "v6_byte_end_exclusive": 50402,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 5. Dynamic results, conditional on historical membership",
+      "source_byte_start": 18507,
+      "source_byte_end_exclusive": 20363,
+      "source_sha256": "455f1ecad46c1f1fdab3259eb7613bcfa0906d38f96b0ab35effb66ac26d2fac",
+      "v6_byte_start": 50402,
+      "v6_byte_end_exclusive": 52258,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 6. v0.9-A upper-bound and GO/NO-GO analysis",
+      "source_byte_start": 20363,
+      "source_byte_end_exclusive": 22947,
+      "source_sha256": "21e25220a20b1a541531ce7e76d2d686910b42f63de60fe5ae764e1b3f3f69f7",
+      "v6_byte_start": 52258,
+      "v6_byte_end_exclusive": 54842,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 7. Decision and terminal rule",
+      "source_byte_start": 22947,
+      "source_byte_end_exclusive": 30582,
+      "source_sha256": "017c9e1e25591245e1fa8a764230fd9d70f58c1211609c0ed41f78dbf4e9f24c",
+      "v6_byte_start": 54842,
+      "v6_byte_end_exclusive": 62477,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 8. Interpretation",
+      "source_byte_start": 30582,
+      "source_byte_end_exclusive": 31393,
+      "source_sha256": "c0440af89cecc64d46008389f1bc70295b1453609ed94b5c462aaf0a2f3bb5fc",
+      "v6_byte_start": 62477,
+      "v6_byte_end_exclusive": 63288,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 9. Limitations",
+      "source_byte_start": 31393,
+      "source_byte_end_exclusive": 33604,
+      "source_sha256": "3b7ee16ddc24ca1edf19e549e0d0bea500325d9e99f620a19fb360f3e3c058e2",
+      "v6_byte_start": 63288,
+      "v6_byte_end_exclusive": 65499,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 10. Reproducibility and provenance",
+      "source_byte_start": 33604,
+      "source_byte_end_exclusive": 34561,
+      "source_sha256": "5f67f19d5a822ecc1c19a3ce1674ab3974d0729a872c60c38bab0418fef78bc2",
+      "v6_byte_start": 65499,
+      "v6_byte_end_exclusive": 66456,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## 11. Conclusions",
+      "source_byte_start": 34561,
+      "source_byte_end_exclusive": 35642,
+      "source_sha256": "038143852d433950acadbd4be5af9ff1e45b02aa026565b8cdd1071b50c50a7f",
+      "v6_byte_start": 66456,
+      "v6_byte_end_exclusive": 67537,
+      "preservation": "byte_identical",
+      "verified": true
+    },
+    {
+      "source_heading": "## References",
+      "source_byte_start": 35642,
+      "source_byte_end_exclusive": 38476,
+      "source_sha256": "b677fd370c76a040c799069275ddb3fd79e46a280d26819581bb7444817e0787",
+      "v6_byte_start": 67537,
+      "v6_byte_end_exclusive": 70371,
+      "preservation": "byte_identical",
+      "verified": true
+    }
+  ],
+  "main_text_mapping": [
+    {
+      "v6_section": "1",
+      "source": "V5 7.3",
+      "change": "Terminal effects placed first; lower and upper endpoint labels preserved separately."
+    },
+    {
+      "v6_section": "2",
+      "source": "V5 2, 3.2, 4.4, 7.3",
+      "change": "Conditional axial-mark estimand and score unit explicit; exact density implementation remains a verification obligation."
+    },
+    {
+      "v6_section": "3",
+      "source": "V5 Introduction/References plus seismic_statistics_sources.json",
+      "change": "Closest marked-ETAS and evaluation predecessors added; candidate novelty narrowed."
+    },
+    {
+      "v6_section": "4",
+      "source": "V5 6.1, 7.3, 9.1, 9.2",
+      "change": "Conditional exclusion of material advantage separated from equivalence and physical claims; joint power not inferred."
+    },
+    {
+      "v6_section": "5",
+      "source": "V5 7.3 and critical review",
+      "change": "Executed rival separated from unperformed comparative obligations."
+    },
+    {
+      "v6_section": "6",
+      "source": "V5 4.5, 7.3",
+      "change": "Historical membership reservation separated from terminal source and product-comparability issue."
+    },
+    {
+      "v6_section": "7",
+      "source": "V5 3.1, 4.2, 4.3, 5, 6, 7",
+      "change": "Local favorable/adverse observations and adaptive history kept visible."
+    },
+    {
+      "v6_section": "8-10",
+      "source": "V5 8-11 plus critical review",
+      "change": "Implemented editorial correction distinguished from outstanding computational/coverage verification."
+    }
+  ],
+  "no_new_observations": true,
+  "no_scientific_models_rerun": true,
+  "no_originals_modified": true,
+  "no_hhc": true,
+  "all_preserved_sections_verified": true
+}
