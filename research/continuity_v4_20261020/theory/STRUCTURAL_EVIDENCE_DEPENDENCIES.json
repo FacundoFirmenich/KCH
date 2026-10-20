@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "kind": "Deterministic reading and algebraic decomposition of existing certified values, not a new optimization or kernel replay",
+  "routes": 46,
+  "tie_choice_positive": 11,
+  "strict_nonminimality_positive": 0,
+  "returned_nonminimal_first_witnesses": 30,
+  "zero_minimum_first_same_sensor": 14,
+  "same_sensor_routes": 33,
+  "different_sensor_routes": 13,
+  "independent_route_totals": {
+    "A": 335,
+    "R": 320,
+    "J": 320
+  },
+  "sources": [
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/JOINT_ROUTE_CERTIFICATES.json",
+      "sha256": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/LOCAL_MINIMUM_LOOKAHEAD_CATALOG.json",
+      "sha256": "85e190980d26982c07b3b7dbb25278ada23cc41ec84656a4a2f7162baa529fe8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/POSTHOC_LOCAL_TIE_CERTIFICATES.json",
+      "sha256": "44369f886b912d165da207abf95274ee51a68c61f7465498448f8585092afed8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/PROTOCOL_FIXED_TWO_STAGE.json",
+      "sha256": "e4054024e5789f8a82d3ef8bb5c2ee312f291d1954bda28efff4583e53d81db8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/PROTOCOL_POSTHOC_LOCAL_TIE_AUDIT.json",
+      "sha256": "3b9f6476168cde70dc28afbfe8130e5e8582a7eb305f46cc2c69e01c41b5f187"
+    }
+  ],
+  "no_new_empirical_data": true,
+  "no_hhc": true,
+  "permission_granted": false
+}

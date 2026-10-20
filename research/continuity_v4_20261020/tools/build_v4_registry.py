@@ -29,6 +29,7 @@ def main():
       'GREEDY_CHECK':'evidence/ech_comparison/GREEDY_INDEPENDENT_CHECK.json',
       'GREEDY_LOCAL':'evidence/ech_comparison/GREEDY_JURISDICTIONS.json',
       'ECH_STRUCTURE':'theory/ECH_STRUCTURAL_CONTRIBUTION.md',
+      'ECH_STRUCTURE_REVIEW':'theory/STRUCTURAL_REVIEW.json',
       'PHYSICAL_AUDIT':'evidence/physical_contracts/PHYSICAL_CONTRACT_AUDIT.json',
       'SOLAR_CONTRACT':'evidence/physical_contracts/SOLAR_OPERATIONAL_CONTRACT_ES.md',
       'M33_CONTRACT':'evidence/physical_contracts/M33_IDENTIFIABILITY_CONTRACT_ES.md',
@@ -47,7 +48,7 @@ def main():
       'INDEPENDENTLY_VERIFIED_REAL_ARCHIVED_FINITE_COMPARISON',['GREEDY_PROTOCOL','GREEDY_RESULT','GREEDY_CHECK','GREEDY_LOCAL'],['ECH_JOINT_FIXED_ROUTES'],['RETROSPECTIVE_DEVELOPMENT','ALGORITHM_AND_FUTURE_INFORMATION_DIFFER','SINGLE_KERNEL_NOT_EXTERNAL_VALIDATION','TIMING_NOT_CONTROLLED_BENCHMARK'],
       'Equiparar información futura entre políticas y evaluar otro kernel real con protocolo fijado.',['Los 31 excesos se deben exclusivamente a no anticipar.','Hay ventaja universal, garantía de aproximación o de velocidad.'])
     claim('ECH_COST_DECOMPOSITION','ech','A−J=(A−R)+(R−J), donde R restringe a primeras etapas mínimas; el catálogo archivado tiene R=J en 46 rutas. El módulo explicita condiciones estructurales y cociente suficiente.',
-      'CONDITIONAL_ANALYTIC_CHARACTERIZATION_WITH_FINITE_INSTANTIATION',['ECH_STRUCTURE','ECH_LOOKAHEAD_CATALOG'],['ECH_LOCAL_MINIMUM_LOOKAHEAD','ECH_PLANNING_QUOTIENT'],['BELLMAN_AND_DOMINANCE_PRINCIPLES_STANDARD','FINITE_EQUALITY_NOT_UNIVERSAL'],
+      'CONDITIONAL_ANALYTIC_CHARACTERIZATION_WITH_FINITE_INSTANTIATION',['ECH_STRUCTURE','ECH_STRUCTURE_REVIEW','ECH_LOOKAHEAD_CATALOG'],['ECH_LOCAL_MINIMUM_LOOKAHEAD','ECH_PLANNING_QUOTIENT'],['BELLMAN_AND_DOMINANCE_PRINCIPLES_STANDARD','FINITE_EQUALITY_NOT_UNIVERSAL','AGENT_REVIEW_NOT_FORMAL_OR_HUMAN_PEER_REVIEW'],
       'Probar alcance de condiciones fuera del catálogo y separar anticipación de la regla de decisión.',['Toda instancia siempre tiene solución conjunta óptima con primera etapa mínima.'])
     claim('SOLAR_V4_CLOCK_CONTRACT','solar','Dos de tres folds LOHO ajustan con regiones de años posteriores al test; G usa actividad del extremo final y selección de cinco snapshots completos usa metadatos futuros. Resultados locales 4/7/5/0 conservados.',
       'VERIFIED_RETROSPECTIVE_OPERATIONAL_INTERPRETATION',['PHYSICAL_AUDIT','SOLAR_CONTRACT'],['SOLAR_TEMPORAL_V16','SOLAR_LOCAL_DIAGNOSTIC'],['NOT_CHRONOLOGICAL_REPLAY','G_RECONSTRUCTION','NO_NEW_VALIDATION'],

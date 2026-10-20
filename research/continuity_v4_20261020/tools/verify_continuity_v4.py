@@ -70,6 +70,10 @@ def main():
           fresh_receipt_sha256=digest(fresh/'GREEDY_INDEPENDENT_CHECK.json'),checks=fresh_receipt)
 
         theory=root/'theory';deps=read(theory/'STRUCTURAL_EVIDENCE_DEPENDENCIES.json')
+        review=read(theory/'STRUCTURAL_REVIEW.json')
+        require(review['status']=='PASS_WITH_DECLARED_SCOPE' and not review['blocking_findings'],'Structural review has unresolved blockers')
+        for f in review['reviewed_files']:require(digest(repo/f['path'])==f['sha256'],'Structural text changed after review')
+        report['structural_review_scope']='Separate-agent mathematical review; not proof-assistant verification or human peer review.'
         for s in deps['sources']:require(digest(repo/s['path'])==s['sha256'],'Structural source mismatch '+s['path'])
         v3=repo/'research/continuity_v3_20261013/evidence/ech_joint'
         plans={p['route_id']:p for p in read(v3/'LOCAL_MINIMUM_LOOKAHEAD_CATALOG.json')['plans']}

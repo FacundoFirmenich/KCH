@@ -1,0 +1,28 @@
+name: KCH review implementation v4
+on:
+  pull_request:
+    paths:
+      - research/continuity_v4_20261020/**
+      - .github/workflows/research-review-implementation.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify retained corpus and independently reconstruct greedy choices
+        run: python research/continuity_v4_20261020/tools/verify_continuity_v4.py --repo . --out "${{ runner.temp }}/kch-v4"
+      - name: Upload newly generated verification receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kch-continuity-v4-checks-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/kch-v4/
+          if-no-files-found: error
+          retention-days: 30
