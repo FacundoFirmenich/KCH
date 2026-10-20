@@ -1,0 +1,11 @@
+# Alcance fijado antes del cálculo diagnóstico
+
+Este análisis es descriptivo y post hoc sobre el resultado solar v1.6 ya observado. No constituye preregistro confirmatorio. No cambia fechas, selección de campos, operadores, parámetros de predicción, normalizadores, fases, rivales, puntuaciones ni umbrales del gate v1.6. No accede a campos nuevos, segmentos FITS, holdout de 2026 ni resultados de fulguraciones.
+
+La cobertura será exhaustiva: las 3 trayectorias HARP, 4 transiciones por trayectoria, 16 componentes de fibra y 5 rivales. Se publicarán las 960 celdas y sus agregaciones completas por HARP, transición, escala, familia de operador y componente. La integral entre escalas se conservará como categoría propia: no se atribuirá a una escala ni se duplicará en ellas. Se mostrarán NMSE, NMAE y diferencias contra la identidad, con denominadores explícitos y sin seleccionar únicamente victorias.
+
+Las predicciones usarán exclusivamente los coeficientes y normalizadores congelados de cada fold leave-one-HARP-out. La reproducción independiente existente verificará sus 60 comparaciones numéricas. Se explicarán H y L mediante la identidad algebraica de ganancia cuadrática 2·delta·corrección − corrección², conservando todas las contribuciones. Se publicarán los signos y contribuciones de cada trayectoria de entrenamiento; la sensibilidad analítica al retirar una trayectoria o una transición se informará únicamente como sensibilidad de parámetros, sin reentrenar el gate ni sustituir predicciones. Se conservará la fase original de L, s_k = (−1)^k.
+
+Las componentes, las escalas y las transiciones solapadas no son réplicas independientes; no se estimarán p-valores ni intervalos de significación artificiales. Los tres HARPs son unidades de desarrollo. La comparación con actividad usa información del extremo de la transición y sigue siendo una reconstrucción condicional, no un pronóstico ex ante. Los rótulos de H, L y M no identifican por sí solos una topología física.
+
+Fuentes exclusivas: research/continuity_v2_20261013/evidence/solar, .github/helical_v16/TEMPORAL_PROTOCOL_V1_6.json y research/continuity_v2_20261013/tools/verify_solar_v16.py. El resultado global NO_DEVELOPMENT_DOMINANT_LIFT permanece congelado.

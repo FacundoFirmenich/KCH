@@ -9,3 +9,6 @@
 *.zip binary
 *.whl binary
 *.sqlite3 binary
+# Preserve exact frozen CSV bytes and their scientific checksum contracts.
+research/continuity_v3_20261013/evidence/solar_local/*.csv -text
+research/continuity_v3_20261013/evidence/ech_joint/*.csv -text

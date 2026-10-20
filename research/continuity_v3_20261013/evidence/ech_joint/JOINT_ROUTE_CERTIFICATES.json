@@ -1,0 +1,7294 @@
+[
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "241ee0b7157e5b9d9e3e1f7b6669c9112964d683812330560140be4f624757be",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 5,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 5.0,
+    "elapsed_seconds": 1.2560282749909675,
+    "exact_dual_lower_bound": "33/8",
+    "first_cost": 5,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "MODE:01e",
+      "MODE:027",
+      "MODE:04b",
+      "MODE:071",
+      "MODE:5a0"
+    ],
+    "grouping": {
+      "capacity_digest": "7fc2236f852deb107ff927f860533f5026aa2c0719079f28b77455f073d7aabf",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 26,
+      "first_capacity_sum": 4017,
+      "first_groups": 2705,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 26,
+      "second_capacity_sum": 4017,
+      "second_groups": 2705,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:01e",
+      "ACTIONABLE:025",
+      "ACTIONABLE:046",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:061",
+      "ACTIONABLE:078",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:112",
+      "ACTIONABLE:62f",
+      "ACTIONABLE:890",
+      "ACTIONABLE:980",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:f00"
+    ],
+    "joint_cost": 5,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "3/8"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "13/24"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/16"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/8"
+      },
+      {
+        "classes": [
+          1,
+          10
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/24"
+      },
+      {
+        "classes": [
+          3,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/24"
+      },
+      {
+        "classes": [
+          4,
+          40
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/24"
+      },
+      {
+        "classes": [
+          4,
+          51
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          29,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          30,
+          40
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/24"
+      },
+      {
+        "classes": [
+          35,
+          54
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/12"
+      },
+      {
+        "classes": [
+          38,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/24"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/16"
+      },
+      {
+        "classes": [
+          50,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/48"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/16"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate": "ACTIONABLE__MODE__d1",
+      "route_id": "S01P1",
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "square_id": "S01"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "6af3c2ef67c5b6496628ac569c465e1ba2097bb44fa0d6fb657a7423436ed8aa",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 10,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 9.999999999999753,
+    "elapsed_seconds": 0.8631056790036382,
+    "exact_dual_lower_bound": "19/2",
+    "first_cost": 10,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "ACTIONABLE:00f",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:04a",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:072",
+      "ACTIONABLE:290",
+      "ACTIONABLE:581",
+      "ACTIONABLE:80a",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:c20"
+    ],
+    "grouping": {
+      "capacity_digest": "6c6748d7f847f95cb81ecdef575211e1062c1ab467e979f1614bbf6d3a5d694d",
+      "first_available_coordinates": 4004,
+      "first_capacity_max": 308,
+      "first_capacity_sum": 4004,
+      "first_groups": 347,
+      "first_sensor": "ACTIONABLE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 26,
+      "second_capacity_sum": 4017,
+      "second_groups": 2705,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:01e",
+      "ACTIONABLE:025",
+      "ACTIONABLE:046",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:061",
+      "ACTIONABLE:078",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:112",
+      "ACTIONABLE:62f",
+      "ACTIONABLE:890",
+      "ACTIONABLE:980",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:f00"
+    ],
+    "joint_cost": 10,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "67/142"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "69/71"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "129/142"
+      },
+      {
+        "classes": [
+          3,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "69/71"
+      },
+      {
+        "classes": [
+          3,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "29/71"
+      },
+      {
+        "classes": [
+          15,
+          25
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "9/142"
+      },
+      {
+        "classes": [
+          22,
+          23
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "13/142"
+      },
+      {
+        "classes": [
+          22,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "13/142"
+      },
+      {
+        "classes": [
+          27,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "10/71"
+      },
+      {
+        "classes": [
+          32,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "7/142"
+      },
+      {
+        "classes": [
+          32,
+          39
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "23/142"
+      },
+      {
+        "classes": [
+          35,
+          45
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "30/71"
+      },
+      {
+        "classes": [
+          35,
+          54
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "11/142"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "125/142"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "50/71"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "129/142"
+      },
+      {
+        "classes": [
+          54,
+          57
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "25/142"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "13/142"
+      },
+      {
+        "classes": [
+          1,
+          60
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          2,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "10/71"
+      },
+      {
+        "classes": [
+          3,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          9,
+          47
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "23/71"
+      },
+      {
+        "classes": [
+          15,
+          25
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          24,
+          60
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          26,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "17/71"
+      },
+      {
+        "classes": [
+          27,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          28,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "13/71"
+      },
+      {
+        "classes": [
+          29,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          32,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/71"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "21/71"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 10,
+      "archived_local_cost": 10,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d2",
+      "route_id": "S01P2",
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "square_id": "S01"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "6d0bb7ab6555aea9418a45f670d198777f66098f3eb121b2655acf6d73f7911f",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 5,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 5.0,
+    "elapsed_seconds": 2.4773465229955036,
+    "exact_dual_lower_bound": "5",
+    "first_cost": 5,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "MODE:025",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:142"
+    ],
+    "grouping": {
+      "capacity_digest": "2c801fce7a186f716c638a3dff18564535e2fe9f2d32064b04909bdaabe9426d",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 26,
+      "first_capacity_sum": 4017,
+      "first_groups": 2886,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 26,
+      "second_capacity_sum": 4017,
+      "second_groups": 2886,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:00f",
+      "ACTIONABLE:01e",
+      "ACTIONABLE:025",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:046",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:072",
+      "ACTIONABLE:078",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:0ca",
+      "ACTIONABLE:0e1",
+      "ACTIONABLE:183",
+      "ACTIONABLE:190",
+      "ACTIONABLE:203",
+      "ACTIONABLE:5a0",
+      "ACTIONABLE:610",
+      "ACTIONABLE:806",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:a4f",
+      "ACTIONABLE:b00",
+      "ACTIONABLE:c80"
+    ],
+    "joint_cost": 5,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S02P1",
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "square_id": "S02"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "7ffb1cbfd5c43f5373fccc559a1bf431926ca17eca949133224bf283868d3bed",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 13,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 12.999999999993983,
+    "elapsed_seconds": 4.150378512000316,
+    "exact_dual_lower_bound": "38/3",
+    "first_cost": 13,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "ACTIONABLE:00b",
+      "ACTIONABLE:02e",
+      "ACTIONABLE:045",
+      "ACTIONABLE:047",
+      "ACTIONABLE:05a",
+      "ACTIONABLE:071",
+      "ACTIONABLE:0a5",
+      "ACTIONABLE:1e0",
+      "ACTIONABLE:3a0",
+      "ACTIONABLE:590",
+      "ACTIONABLE:809",
+      "ACTIONABLE:842",
+      "ACTIONABLE:a80"
+    ],
+    "grouping": {
+      "capacity_digest": "cb03dc5e72de080903055392064d411fdc153f3b5ef22b79c582834e378f4657",
+      "first_available_coordinates": 3994,
+      "first_capacity_max": 271,
+      "first_capacity_sum": 3994,
+      "first_groups": 349,
+      "first_sensor": "ACTIONABLE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 26,
+      "second_capacity_sum": 4017,
+      "second_groups": 2886,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:00f",
+      "ACTIONABLE:01e",
+      "ACTIONABLE:025",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:046",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:072",
+      "ACTIONABLE:078",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:0ca",
+      "ACTIONABLE:0e1",
+      "ACTIONABLE:183",
+      "ACTIONABLE:190",
+      "ACTIONABLE:203",
+      "ACTIONABLE:5a0",
+      "ACTIONABLE:610",
+      "ACTIONABLE:806",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:a4f",
+      "ACTIONABLE:b00",
+      "ACTIONABLE:c80"
+    ],
+    "joint_cost": 13,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "259/360"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "463/720"
+      },
+      {
+        "classes": [
+          2,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "7/30"
+      },
+      {
+        "classes": [
+          2,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "61/180"
+      },
+      {
+        "classes": [
+          2,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "223/360"
+      },
+      {
+        "classes": [
+          3,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "7/9"
+      },
+      {
+        "classes": [
+          9,
+          47
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "9/80"
+      },
+      {
+        "classes": [
+          26,
+          40
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/9"
+      },
+      {
+        "classes": [
+          27,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/9"
+      },
+      {
+        "classes": [
+          34,
+          39
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "5/9"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "223/360"
+      },
+      {
+        "classes": [
+          40,
+          47
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/9"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          46,
+          54
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/9"
+      },
+      {
+        "classes": [
+          48,
+          51
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "347/720"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "77/240"
+      },
+      {
+        "classes": [
+          53,
+          54
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/9"
+      },
+      {
+        "classes": [
+          54,
+          57
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/9"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/120"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "257/720"
+      },
+      {
+        "classes": [
+          4,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "79/720"
+      },
+      {
+        "classes": [
+          4,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "79/720"
+      },
+      {
+        "classes": [
+          7,
+          32
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/12"
+      },
+      {
+        "classes": [
+          7,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/36"
+      },
+      {
+        "classes": [
+          8,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "13/240"
+      },
+      {
+        "classes": [
+          9,
+          47
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "79/720"
+      },
+      {
+        "classes": [
+          21,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "37/720"
+      },
+      {
+        "classes": [
+          21,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "41/720"
+      },
+      {
+        "classes": [
+          22,
+          29
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/144"
+      },
+      {
+        "classes": [
+          22,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "19/120"
+      },
+      {
+        "classes": [
+          26,
+          30
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "19/180"
+      },
+      {
+        "classes": [
+          29,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "19/360"
+      },
+      {
+        "classes": [
+          30,
+          32
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/360"
+      },
+      {
+        "classes": [
+          32,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/40"
+      },
+      {
+        "classes": [
+          34,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/40"
+      },
+      {
+        "classes": [
+          42,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/18"
+      },
+      {
+        "classes": [
+          48,
+          51
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "71/240"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "59/360"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "211/720"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 13,
+      "archived_local_cost": 13,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d3",
+      "route_id": "S02P2",
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "square_id": "S02"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "0b3698854bfaed1f7a2ed85bd68cc4c5ea471ea2dbaeb4f0906ed6224950fe95",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 5,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 5.0,
+    "elapsed_seconds": 0.34271083600469865,
+    "exact_dual_lower_bound": "5",
+    "first_cost": 5,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "MODE:035",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:08e",
+      "MODE:441"
+    ],
+    "grouping": {
+      "capacity_digest": "cecc8d736c76f2149ea13326b47ed6fe5e8ab7d9cbd6f79d79a07e179ab17003",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 42,
+      "first_capacity_sum": 4017,
+      "first_groups": 2740,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 42,
+      "second_capacity_sum": 4017,
+      "second_groups": 2740,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:00b",
+      "ACTIONABLE:00f",
+      "ACTIONABLE:01e",
+      "ACTIONABLE:025",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:046",
+      "ACTIONABLE:04a",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:05a",
+      "ACTIONABLE:061",
+      "ACTIONABLE:06e",
+      "ACTIONABLE:071",
+      "ACTIONABLE:072",
+      "ACTIONABLE:078",
+      "ACTIONABLE:08e",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:1e0",
+      "ACTIONABLE:1f2",
+      "ACTIONABLE:244",
+      "ACTIONABLE:390",
+      "ACTIONABLE:3a0",
+      "ACTIONABLE:5a0",
+      "ACTIONABLE:700",
+      "ACTIONABLE:80a",
+      "ACTIONABLE:825",
+      "ACTIONABLE:882",
+      "ACTIONABLE:890",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:910",
+      "ACTIONABLE:a01",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:a6e",
+      "ACTIONABLE:b00",
+      "ACTIONABLE:c80"
+    ],
+    "joint_cost": 5,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S03P1",
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "square_id": "S03"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "f037318cbd309c0058dae72fe2f7251a63b3efdb55387170cdaceee14406ea9a",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 14,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 13.999999999999984,
+    "elapsed_seconds": 2.8322194700012915,
+    "exact_dual_lower_bound": "27/2",
+    "first_cost": 14,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "ACTIONABLE:00e",
+      "ACTIONABLE:01b",
+      "ACTIONABLE:045",
+      "ACTIONABLE:074",
+      "ACTIONABLE:0ca",
+      "ACTIONABLE:0cc",
+      "ACTIONABLE:0e1",
+      "ACTIONABLE:225",
+      "ACTIONABLE:2a0",
+      "ACTIONABLE:590",
+      "ACTIONABLE:842",
+      "ACTIONABLE:a02",
+      "ACTIONABLE:a4f",
+      "ACTIONABLE:a80"
+    ],
+    "grouping": {
+      "capacity_digest": "71c9d6403e3448536df938bb01a9f42ae7b1205dafa6f107c0150cbd65786bc3",
+      "first_available_coordinates": 3982,
+      "first_capacity_max": 270,
+      "first_capacity_sum": 3982,
+      "first_groups": 371,
+      "first_sensor": "ACTIONABLE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 42,
+      "second_capacity_sum": 4017,
+      "second_groups": 2740,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:00b",
+      "ACTIONABLE:00f",
+      "ACTIONABLE:01e",
+      "ACTIONABLE:025",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:046",
+      "ACTIONABLE:04a",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:05a",
+      "ACTIONABLE:061",
+      "ACTIONABLE:06e",
+      "ACTIONABLE:071",
+      "ACTIONABLE:072",
+      "ACTIONABLE:078",
+      "ACTIONABLE:08e",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:1e0",
+      "ACTIONABLE:1f2",
+      "ACTIONABLE:244",
+      "ACTIONABLE:390",
+      "ACTIONABLE:3a0",
+      "ACTIONABLE:5a0",
+      "ACTIONABLE:700",
+      "ACTIONABLE:80a",
+      "ACTIONABLE:825",
+      "ACTIONABLE:882",
+      "ACTIONABLE:890",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:910",
+      "ACTIONABLE:a01",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:a6e",
+      "ACTIONABLE:b00",
+      "ACTIONABLE:c80"
+    ],
+    "joint_cost": 14,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1558/1755"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "341/351"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1304/1755"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "514/1755"
+      },
+      {
+        "classes": [
+          2,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "427/1170"
+      },
+      {
+        "classes": [
+          2,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "569/3510"
+      },
+      {
+        "classes": [
+          3,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1613/1755"
+      },
+      {
+        "classes": [
+          3,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1087/3510"
+      },
+      {
+        "classes": [
+          9,
+          47
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "133/270"
+      },
+      {
+        "classes": [
+          22,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "73/117"
+      },
+      {
+        "classes": [
+          27,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          34,
+          39
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1669/3510"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "46/195"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "544/585"
+      },
+      {
+        "classes": [
+          48,
+          51
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1681/3510"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          54,
+          57
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "197/1755"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "10/351"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "451/1755"
+      },
+      {
+        "classes": [
+          2,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/135"
+      },
+      {
+        "classes": [
+          3,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "142/1755"
+      },
+      {
+        "classes": [
+          3,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "334/1755"
+      },
+      {
+        "classes": [
+          4,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "173/1170"
+      },
+      {
+        "classes": [
+          4,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "593/3510"
+      },
+      {
+        "classes": [
+          7,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "31/1170"
+      },
+      {
+        "classes": [
+          7,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "19/3510"
+      },
+      {
+        "classes": [
+          8,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "151/1755"
+      },
+      {
+        "classes": [
+          9,
+          47
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/135"
+      },
+      {
+        "classes": [
+          14,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "29/585"
+      },
+      {
+        "classes": [
+          14,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/27"
+      },
+      {
+        "classes": [
+          14,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "16/351"
+      },
+      {
+        "classes": [
+          21,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "11/195"
+      },
+      {
+        "classes": [
+          22,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "58/585"
+      },
+      {
+        "classes": [
+          22,
+          30
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "74/1755"
+      },
+      {
+        "classes": [
+          22,
+          31
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/135"
+      },
+      {
+        "classes": [
+          22,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "73/1755"
+      },
+      {
+        "classes": [
+          26,
+          30
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "112/1755"
+      },
+      {
+        "classes": [
+          26,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/135"
+      },
+      {
+        "classes": [
+          28,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "19/135"
+      },
+      {
+        "classes": [
+          29,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "43/1755"
+      },
+      {
+        "classes": [
+          30,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "223/1755"
+      },
+      {
+        "classes": [
+          34,
+          39
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "43/1755"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "173/1755"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "41/585"
+      },
+      {
+        "classes": [
+          48,
+          51
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "37/1755"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 14,
+      "archived_local_cost": 14,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d4",
+      "route_id": "S03P2",
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "square_id": "S03"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "74eda21ccdf59a7402076e0ad6011c374facb89eb8e07d1f5ef7db46b094f39e",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 5,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 4.999999999999993,
+    "elapsed_seconds": 2.5997185349988285,
+    "exact_dual_lower_bound": "5",
+    "first_cost": 5,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "MODE:035",
+      "MODE:04b",
+      "MODE:072",
+      "MODE:08e",
+      "MODE:441"
+    ],
+    "grouping": {
+      "capacity_digest": "38c31948cc9159db8439f62109aa35b3967ab641b427cf0a4706ba3c84df0560",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 30,
+      "first_capacity_sum": 4017,
+      "first_groups": 2969,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 30,
+      "second_capacity_sum": 4017,
+      "second_groups": 2969,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:00b",
+      "ACTIONABLE:00f",
+      "ACTIONABLE:01b",
+      "ACTIONABLE:01e",
+      "ACTIONABLE:023",
+      "ACTIONABLE:025",
+      "ACTIONABLE:027",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:035",
+      "ACTIONABLE:045",
+      "ACTIONABLE:046",
+      "ACTIONABLE:047",
+      "ACTIONABLE:04a",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:04e",
+      "ACTIONABLE:056",
+      "ACTIONABLE:05a",
+      "ACTIONABLE:061",
+      "ACTIONABLE:070",
+      "ACTIONABLE:072",
+      "ACTIONABLE:074",
+      "ACTIONABLE:078",
+      "ACTIONABLE:08e",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:0ca",
+      "ACTIONABLE:190",
+      "ACTIONABLE:1e0",
+      "ACTIONABLE:244",
+      "ACTIONABLE:310",
+      "ACTIONABLE:390",
+      "ACTIONABLE:3a0",
+      "ACTIONABLE:442",
+      "ACTIONABLE:5a0",
+      "ACTIONABLE:720",
+      "ACTIONABLE:806",
+      "ACTIONABLE:861",
+      "ACTIONABLE:890",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:8f2",
+      "ACTIONABLE:a01",
+      "ACTIONABLE:a02",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:a6e",
+      "ACTIONABLE:a80",
+      "ACTIONABLE:b00",
+      "ACTIONABLE:c80",
+      "ACTIONABLE:d00"
+    ],
+    "joint_cost": 5,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate": "ACTIONABLE__MODE__d4",
+      "route_id": "S04P1",
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "square_id": "S04"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "79f0699abaa7d2cc047cd9d58a6f8ae226848d86a95f9ee96e26edb1fdccafc8",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 15,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 15.0,
+    "elapsed_seconds": 1.9546076889964752,
+    "exact_dual_lower_bound": "29/2",
+    "first_cost": 15,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "ACTIONABLE:00e",
+      "ACTIONABLE:052",
+      "ACTIONABLE:064",
+      "ACTIONABLE:065",
+      "ACTIONABLE:071",
+      "ACTIONABLE:0ce",
+      "ACTIONABLE:14a",
+      "ACTIONABLE:1b2",
+      "ACTIONABLE:20b",
+      "ACTIONABLE:2a0",
+      "ACTIONABLE:4e0",
+      "ACTIONABLE:590",
+      "ACTIONABLE:809",
+      "ACTIONABLE:c02",
+      "ACTIONABLE:e00"
+    ],
+    "grouping": {
+      "capacity_digest": "5fab180a1a47a976240e2af9b3e6f002cc7629d8015b3b3a47cd2c7fd8d1ea18",
+      "first_available_coordinates": 3969,
+      "first_capacity_max": 359,
+      "first_capacity_sum": 3969,
+      "first_groups": 394,
+      "first_sensor": "ACTIONABLE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 30,
+      "second_capacity_sum": 4017,
+      "second_groups": 2969,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "ACTIONABLE:00b",
+      "ACTIONABLE:00f",
+      "ACTIONABLE:01b",
+      "ACTIONABLE:01e",
+      "ACTIONABLE:023",
+      "ACTIONABLE:025",
+      "ACTIONABLE:027",
+      "ACTIONABLE:02d",
+      "ACTIONABLE:035",
+      "ACTIONABLE:045",
+      "ACTIONABLE:046",
+      "ACTIONABLE:047",
+      "ACTIONABLE:04a",
+      "ACTIONABLE:04b",
+      "ACTIONABLE:04c",
+      "ACTIONABLE:04e",
+      "ACTIONABLE:056",
+      "ACTIONABLE:05a",
+      "ACTIONABLE:061",
+      "ACTIONABLE:070",
+      "ACTIONABLE:072",
+      "ACTIONABLE:074",
+      "ACTIONABLE:078",
+      "ACTIONABLE:08e",
+      "ACTIONABLE:0a2",
+      "ACTIONABLE:0ca",
+      "ACTIONABLE:190",
+      "ACTIONABLE:1e0",
+      "ACTIONABLE:244",
+      "ACTIONABLE:310",
+      "ACTIONABLE:390",
+      "ACTIONABLE:3a0",
+      "ACTIONABLE:442",
+      "ACTIONABLE:5a0",
+      "ACTIONABLE:720",
+      "ACTIONABLE:806",
+      "ACTIONABLE:861",
+      "ACTIONABLE:890",
+      "ACTIONABLE:8e0",
+      "ACTIONABLE:8f2",
+      "ACTIONABLE:a01",
+      "ACTIONABLE:a02",
+      "ACTIONABLE:a20",
+      "ACTIONABLE:a6e",
+      "ACTIONABLE:a80",
+      "ACTIONABLE:b00",
+      "ACTIONABLE:c80",
+      "ACTIONABLE:d00"
+    ],
+    "joint_cost": 15,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "12/19"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "43/95"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "66/95"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "5/38"
+      },
+      {
+        "classes": [
+          2,
+          34
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "81/190"
+      },
+      {
+        "classes": [
+          2,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "59/95"
+      },
+      {
+        "classes": [
+          3,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          3,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "7/38"
+      },
+      {
+        "classes": [
+          22,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "6/95"
+      },
+      {
+        "classes": [
+          34,
+          39
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "88/95"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "59/95"
+      },
+      {
+        "classes": [
+          45,
+          54
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          48,
+          51
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "17/19"
+      },
+      {
+        "classes": [
+          54,
+          57
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "64/95"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "18/95"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "52/95"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "29/95"
+      },
+      {
+        "classes": [
+          1,
+          60
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "17/95"
+      },
+      {
+        "classes": [
+          3,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "16/95"
+      },
+      {
+        "classes": [
+          7,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "13/95"
+      },
+      {
+        "classes": [
+          8,
+          26
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/95"
+      },
+      {
+        "classes": [
+          12,
+          44
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "14/95"
+      },
+      {
+        "classes": [
+          22,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/95"
+      },
+      {
+        "classes": [
+          22,
+          31
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/95"
+      },
+      {
+        "classes": [
+          22,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "4/95"
+      },
+      {
+        "classes": [
+          26,
+          29
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "13/95"
+      },
+      {
+        "classes": [
+          26,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "4/19"
+      },
+      {
+        "classes": [
+          28,
+          36
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/95"
+      },
+      {
+        "classes": [
+          34,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/95"
+      },
+      {
+        "classes": [
+          36,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/95"
+      },
+      {
+        "classes": [
+          36,
+          42
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "9/95"
+      },
+      {
+        "classes": [
+          41,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "36/95"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/19"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "31/95"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 15,
+      "archived_local_cost": 15,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d5",
+      "route_id": "S04P2",
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "square_id": "S04"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "5722baa0a2f22cd753091c8d2a675aa20a7bc27b0084896be259143267531253",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.1460330679983599,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "EXACT:027",
+      "EXACT:04b",
+      "EXACT:056",
+      "EXACT:074",
+      "EXACT:2ad",
+      "EXACT:918"
+    ],
+    "grouping": {
+      "capacity_digest": "79f43b04ca30496fc4511f015f4ff1aca4c032ee38eb1cc91a9811065f745717",
+      "first_available_coordinates": 4011,
+      "first_capacity_max": 91,
+      "first_capacity_sum": 4011,
+      "first_groups": 1358,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4011,
+      "second_capacity_max": 91,
+      "second_capacity_sum": 4011,
+      "second_groups": 1358,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:4e0",
+      "EXACT:806"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          56
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 7,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__EXACT__d1",
+      "route_id": "S05P1",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "37c1101959665d551acc4e267fc36171b11a0ac77b001f2c49b21ef23d52ef1b",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.21587797600659542,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "EXACT:04b",
+      "EXACT:05c",
+      "EXACT:074",
+      "EXACT:0a5",
+      "EXACT:105",
+      "EXACT:8e9"
+    ],
+    "grouping": {
+      "capacity_digest": "79f43b04ca30496fc4511f015f4ff1aca4c032ee38eb1cc91a9811065f745717",
+      "first_available_coordinates": 4011,
+      "first_capacity_max": 91,
+      "first_capacity_sum": 4011,
+      "first_groups": 1358,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4011,
+      "second_capacity_max": 91,
+      "second_capacity_sum": 4011,
+      "second_groups": 1358,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:4e0",
+      "EXACT:806"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          56
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 7,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S05P2",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "7efd53a38fa40764a2310ab5fc983f9d1dde5ee30bd82a3c3c2ac716414988a3",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 7.0,
+    "elapsed_seconds": 0.02336733599076979,
+    "exact_dual_lower_bound": "7",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:01e",
+      "EXACT:04a",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:085",
+      "EXACT:08b",
+      "EXACT:4b4"
+    ],
+    "grouping": {
+      "capacity_digest": "b50257f484402600956d31cc10735290332a5c7d228b515af511c7aac3d8f258",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 412,
+      "first_capacity_sum": 4005,
+      "first_groups": 244,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4005,
+      "second_capacity_max": 412,
+      "second_capacity_sum": 4005,
+      "second_groups": 244,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a8",
+      "EXACT:0ce",
+      "EXACT:403",
+      "EXACT:4bd",
+      "EXACT:b0d"
+    ],
+    "joint_cost": 7,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S06P1",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "223ef9de8ecfb351a13f86078614c6bef50ce546fc04a25da03ee521e56425de",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 7.0,
+    "elapsed_seconds": 0.023790520994225517,
+    "exact_dual_lower_bound": "7",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "EXACT:02b",
+      "EXACT:05a",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:0c1",
+      "EXACT:10e",
+      "EXACT:18a"
+    ],
+    "grouping": {
+      "capacity_digest": "b50257f484402600956d31cc10735290332a5c7d228b515af511c7aac3d8f258",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 412,
+      "first_capacity_sum": 4005,
+      "first_groups": 244,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4005,
+      "second_capacity_max": 412,
+      "second_capacity_sum": 4005,
+      "second_groups": 244,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a8",
+      "EXACT:0ce",
+      "EXACT:403",
+      "EXACT:4bd",
+      "EXACT:b0d"
+    ],
+    "joint_cost": 7,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 9,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S06P2",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06"
+    },
+    "saving_against_archived_local_policy": 2,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "b41e38d1a59013b0686193d2a76047304adcae475c0ef792f2b581973e5540fd",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.02087404500343837,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "EXACT:00b",
+      "EXACT:00e",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:0ca",
+      "EXACT:1b0",
+      "EXACT:700"
+    ],
+    "grouping": {
+      "capacity_digest": "ab0b859ae1b285f1b8f64cac766fd84d345744391f9abdf8758463b65fb4bfde",
+      "first_available_coordinates": 3998,
+      "first_capacity_max": 231,
+      "first_capacity_sum": 3998,
+      "first_groups": 175,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3998,
+      "second_capacity_max": 231,
+      "second_capacity_sum": 3998,
+      "second_groups": 175,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:025",
+      "EXACT:02d",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:05e",
+      "EXACT:070",
+      "EXACT:074",
+      "EXACT:078",
+      "EXACT:10b",
+      "EXACT:14a",
+      "EXACT:2e2",
+      "EXACT:2ed",
+      "EXACT:409",
+      "EXACT:425",
+      "EXACT:4e2",
+      "EXACT:4f2",
+      "EXACT:e8b"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 9,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d4",
+      "intermediate": "MODE__EXACT__d3",
+      "route_id": "S07P1",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 1,
+    "second_witness": [
+      "EXACT:053"
+    ],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "de13aa8e537b2b5c084460e2f1ecebd7c4a841663e36bb1fff931755a1b277bf",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.02431268100917805,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 1,
+    "first_witness": [
+      "EXACT:01b",
+      "EXACT:02e",
+      "EXACT:035",
+      "EXACT:04a",
+      "EXACT:04d",
+      "EXACT:071",
+      "EXACT:189",
+      "EXACT:2a2"
+    ],
+    "grouping": {
+      "capacity_digest": "ab0b859ae1b285f1b8f64cac766fd84d345744391f9abdf8758463b65fb4bfde",
+      "first_available_coordinates": 3998,
+      "first_capacity_max": 231,
+      "first_capacity_sum": 3998,
+      "first_groups": 175,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3998,
+      "second_capacity_max": 231,
+      "second_capacity_sum": 3998,
+      "second_groups": 175,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:025",
+      "EXACT:02d",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:05e",
+      "EXACT:070",
+      "EXACT:074",
+      "EXACT:078",
+      "EXACT:10b",
+      "EXACT:14a",
+      "EXACT:2e2",
+      "EXACT:2ed",
+      "EXACT:409",
+      "EXACT:425",
+      "EXACT:4e2",
+      "EXACT:4f2",
+      "EXACT:e8b"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d4",
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "route_id": "S07P2",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07"
+    },
+    "saving_against_archived_local_policy": 2,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "f8a7e84a7ae096549c8f22d0d60dcd4745c26ce26aa9e115db3e830adcbb0a2e",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 9,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 9.0,
+    "elapsed_seconds": 0.028135733999079093,
+    "exact_dual_lower_bound": "9",
+    "first_cost": 9,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:00b",
+      "EXACT:047",
+      "EXACT:059",
+      "EXACT:065",
+      "EXACT:074",
+      "EXACT:08e",
+      "EXACT:092",
+      "EXACT:1b0",
+      "EXACT:24a"
+    ],
+    "grouping": {
+      "capacity_digest": "a6f6373769851d9ab91c5da96611c1c6b499b77bd8614948806424ade186639e",
+      "first_available_coordinates": 3991,
+      "first_capacity_max": 523,
+      "first_capacity_sum": 3991,
+      "first_groups": 115,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3991,
+      "second_capacity_max": 523,
+      "second_capacity_sum": 3991,
+      "second_groups": 115,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00e",
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:04f",
+      "EXACT:05a",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a5",
+      "EXACT:14a",
+      "EXACT:1cd",
+      "EXACT:20b",
+      "EXACT:225",
+      "EXACT:270",
+      "EXACT:2cd",
+      "EXACT:2dd",
+      "EXACT:470",
+      "EXACT:4fc",
+      "EXACT:9ab",
+      "EXACT:9de",
+      "EXACT:9f6",
+      "EXACT:d8b"
+    ],
+    "joint_cost": 9,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 4,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 10,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d5",
+      "intermediate": "MODE__EXACT__d4",
+      "route_id": "S08P1",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "07f8aa9cfdf3c364fa57fde1956d6ff48858ea34b707064ca55bd2a4cc62bb87",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 9,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 9.0,
+    "elapsed_seconds": 0.022524668005644344,
+    "exact_dual_lower_bound": "9",
+    "first_cost": 9,
+    "first_stage_excess_over_archived_local_minimum": 2,
+    "first_witness": [
+      "EXACT:015",
+      "EXACT:01b",
+      "EXACT:02e",
+      "EXACT:055",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:089",
+      "EXACT:183",
+      "EXACT:24a"
+    ],
+    "grouping": {
+      "capacity_digest": "a6f6373769851d9ab91c5da96611c1c6b499b77bd8614948806424ade186639e",
+      "first_available_coordinates": 3991,
+      "first_capacity_max": 523,
+      "first_capacity_sum": 3991,
+      "first_groups": 115,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3991,
+      "second_capacity_max": 523,
+      "second_capacity_sum": 3991,
+      "second_groups": 115,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00e",
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:02d",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:04f",
+      "EXACT:05a",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:0a5",
+      "EXACT:14a",
+      "EXACT:1cd",
+      "EXACT:20b",
+      "EXACT:225",
+      "EXACT:270",
+      "EXACT:2cd",
+      "EXACT:2dd",
+      "EXACT:470",
+      "EXACT:4fc",
+      "EXACT:9ab",
+      "EXACT:9de",
+      "EXACT:9f6",
+      "EXACT:d8b"
+    ],
+    "joint_cost": 9,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 4,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d5",
+      "intermediate": "ACTIONABLE__EXACT__d5",
+      "route_id": "S08P2",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "4063060f3521e73251829e5d4f58d94a14bdb2d3306608138ae98035f3bf14a7",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 2,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 2.0,
+    "elapsed_seconds": 0.02960287300811615,
+    "exact_dual_lower_bound": "2",
+    "first_cost": 2,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:015",
+      "MODE:019"
+    ],
+    "grouping": {
+      "capacity_digest": "c71796d601958462d53387f0938d9acbebf609ca912c828e7ca1220ce7043ac9",
+      "first_available_coordinates": 4010,
+      "first_capacity_max": 3962,
+      "first_capacity_sum": 4010,
+      "first_groups": 3,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 3972,
+      "second_capacity_sum": 4017,
+      "second_groups": 2,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "joint_cost": 2,
+    "minimum_stage1_distance": 1,
+    "minimum_stage2_distance": 1,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 2,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d1",
+      "intermediate": "MODE__MODE__d1",
+      "route_id": "S09P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S09"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "4d5c75ea24e4fbea8a72441ddd553a5fce09f72d935e765417b59ab9b8817efc",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 1,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 1.0,
+    "elapsed_seconds": 0.017250261997105554,
+    "exact_dual_lower_bound": "1",
+    "first_cost": 1,
+    "first_stage_excess_over_archived_local_minimum": 1,
+    "first_witness": [
+      "EXACT:015"
+    ],
+    "grouping": {
+      "capacity_digest": "09f2e4aa4b29766225a736448628677627a6708294dea5065e5d88356e24eadb",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 3972,
+      "first_capacity_sum": 4017,
+      "first_groups": 2,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 3972,
+      "second_capacity_sum": 4017,
+      "second_groups": 2,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "joint_cost": 1,
+    "minimum_stage1_distance": 1,
+    "minimum_stage2_distance": 1,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 1,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d1",
+      "intermediate": "ACTIONABLE__EXACT__d1",
+      "route_id": "S09P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S09"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "900f01da8ed075b2c0c9e614d8155d5a73eee9727c3cf15f795ee2b480ecbad6",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.3574019789957674,
+    "exact_dual_lower_bound": "91/12",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "MODE:00f",
+      "MODE:025",
+      "MODE:029",
+      "MODE:031",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:103",
+      "MODE:245"
+    ],
+    "grouping": {
+      "capacity_digest": "24ca76a3dc126845bc1eb9490445eaf9e66b1cd6180fb3cf7be8e3a824563122",
+      "first_available_coordinates": 4010,
+      "first_capacity_max": 38,
+      "first_capacity_sum": 4010,
+      "first_groups": 2044,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4010,
+      "second_capacity_max": 38,
+      "second_capacity_sum": 4010,
+      "second_groups": 2044,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/3"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/12"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/3"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/12"
+      },
+      {
+        "classes": [
+          2,
+          5
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "5/12"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/3"
+      },
+      {
+        "classes": [
+          14,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/12"
+      },
+      {
+        "classes": [
+          30,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          41,
+          49
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/4"
+      },
+      {
+        "classes": [
+          44,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/12"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/3"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 8,
+      "archived_second_cost": 6,
+      "destination": "MODE__MODE__d2",
+      "intermediate": "MODE__MODE__d1",
+      "route_id": "S10P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "ec847173d12e470f917b9c44a3837c19cdf384920b982a43a775b29eebab08f5",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.6286280019994592,
+    "exact_dual_lower_bound": "91/12",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 2,
+    "first_witness": [
+      "MODE:00f",
+      "MODE:017",
+      "MODE:019",
+      "MODE:031",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:0a5",
+      "MODE:520"
+    ],
+    "grouping": {
+      "capacity_digest": "24ca76a3dc126845bc1eb9490445eaf9e66b1cd6180fb3cf7be8e3a824563122",
+      "first_available_coordinates": 4010,
+      "first_capacity_max": 38,
+      "first_capacity_sum": 4010,
+      "first_groups": 2044,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4010,
+      "second_capacity_max": 38,
+      "second_capacity_sum": 4010,
+      "second_groups": 2044,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "7/12"
+      },
+      {
+        "classes": [
+          2,
+          5
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "2/3"
+      },
+      {
+        "classes": [
+          14,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "5/12"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/3"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "7/12"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/3"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "5/12"
+      },
+      {
+        "classes": [
+          30,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          41,
+          49
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/4"
+      },
+      {
+        "classes": [
+          44,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/6"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/12"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/3"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 10,
+      "archived_second_cost": 4,
+      "destination": "MODE__MODE__d2",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S10P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10"
+    },
+    "saving_against_archived_local_policy": 2,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "5567225f692328c58b8ef28f0a59129db6a79f62e255fe75f14cda954122eb55",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 5,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 5.0,
+    "elapsed_seconds": 0.45836815299117006,
+    "exact_dual_lower_bound": "5",
+    "first_cost": 5,
+    "first_stage_excess_over_archived_local_minimum": 5,
+    "first_witness": [
+      "EXACT:00f",
+      "EXACT:05a",
+      "EXACT:071",
+      "EXACT:125",
+      "EXACT:c24"
+    ],
+    "grouping": {
+      "capacity_digest": "b1fecb9469a855f0bea954f0463d8a8c52196493ad6d48a2ae2bfcc08c09658f",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 26,
+      "first_capacity_sum": 4017,
+      "first_groups": 2273,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 26,
+      "second_capacity_sum": 4017,
+      "second_groups": 2273,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "joint_cost": 5,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          55,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d1",
+      "route_id": "S11P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S11"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "7bf94968a7652acbd133e9daf7df3d8c5443fedc464c0d0933c32744921176e9",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.9068740970105864,
+    "exact_dual_lower_bound": "66/13",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:00f",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:643",
+      "MODE:803",
+      "MODE:825"
+    ],
+    "grouping": {
+      "capacity_digest": "760f5c5ae6505a3f0cacf3083063318b9178025638c1ddca38bdd17d2c7621e6",
+      "first_available_coordinates": 4010,
+      "first_capacity_max": 38,
+      "first_capacity_sum": 4010,
+      "first_groups": 1950,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 26,
+      "second_capacity_sum": 4017,
+      "second_groups": 2273,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:027",
+      "MODE:04b",
+      "MODE:078",
+      "MODE:10e",
+      "MODE:405",
+      "MODE:8b0",
+      "MODE:a02"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "6/13"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "3/13"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/13"
+      },
+      {
+        "classes": [
+          5,
+          8
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "4/13"
+      },
+      {
+        "classes": [
+          11,
+          55
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "3/13"
+      },
+      {
+        "classes": [
+          14,
+          22
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "4/13"
+      },
+      {
+        "classes": [
+          30,
+          37
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/13"
+      },
+      {
+        "classes": [
+          35,
+          54
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/13"
+      },
+      {
+        "classes": [
+          44,
+          48
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "3/13"
+      },
+      {
+        "classes": [
+          45,
+          53
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "3/13"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "7/13"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "8/13"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "10/13"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "5/13"
+      },
+      {
+        "classes": [
+          18,
+          31
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/13"
+      },
+      {
+        "classes": [
+          50,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "4/13"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "2/13"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 6,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d2",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S11P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S11"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "7c0dc3a5a2f9d0525ef9b0c37466e9adaae6f52b03b1babec16522f61f7322fc",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 3,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 3.0,
+    "elapsed_seconds": 0.03405815199948847,
+    "exact_dual_lower_bound": "3",
+    "first_cost": 3,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:015",
+      "MODE:019",
+      "MODE:029"
+    ],
+    "grouping": {
+      "capacity_digest": "97d0aa745f0ef149dcce94a9e7477711864e22b9d72b53216a993eae7da926f3",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 3232,
+      "first_capacity_sum": 4005,
+      "first_groups": 5,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 3110,
+      "second_capacity_sum": 4017,
+      "second_groups": 3,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "joint_cost": 3,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 2,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 3,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S12P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S12"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "7b10c8b87c686ad8db39423e775d893ffb368aa96f3a75d03e3a40f46c75adc1",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 2,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 2.0,
+    "elapsed_seconds": 0.021185834993957542,
+    "exact_dual_lower_bound": "2",
+    "first_cost": 2,
+    "first_stage_excess_over_archived_local_minimum": 2,
+    "first_witness": [
+      "EXACT:00e",
+      "EXACT:015"
+    ],
+    "grouping": {
+      "capacity_digest": "f8649d809f382ee337de90154ef41e2e7edcc79de42646e01e40355099d86b0b",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 3110,
+      "first_capacity_sum": 4017,
+      "first_groups": 3,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 3110,
+      "second_capacity_sum": 4017,
+      "second_groups": 3,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "joint_cost": 2,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 2,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S12P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S12"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "2ff64565618e307d12e39b59a4803ac608545068bb7886c93b3d32c9d72889d4",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 10,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 10.0,
+    "elapsed_seconds": 0.2880524409993086,
+    "exact_dual_lower_bound": "10",
+    "first_cost": 10,
+    "first_stage_excess_over_archived_local_minimum": 7,
+    "first_witness": [
+      "MODE:019",
+      "MODE:01b",
+      "MODE:029",
+      "MODE:031",
+      "MODE:035",
+      "MODE:04a",
+      "MODE:071",
+      "MODE:803",
+      "MODE:80e",
+      "MODE:de3"
+    ],
+    "grouping": {
+      "capacity_digest": "5ba4adb4abd17cf3470b81609ec516744c3a96909f6a4156f39fa48f4c746fc3",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 82,
+      "first_capacity_sum": 4005,
+      "first_groups": 1811,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4005,
+      "second_capacity_max": 82,
+      "second_capacity_sum": 4005,
+      "second_groups": 1811,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "joint_cost": 10,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 11,
+      "archived_second_cost": 8,
+      "destination": "MODE__MODE__d3",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S13P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13"
+    },
+    "saving_against_archived_local_policy": 1,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "64303c6d3232e41e1fc616ce850a03af788d53f65dc0f9b48d25b4828cdccf22",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 10,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 10.0,
+    "elapsed_seconds": 0.327385458003846,
+    "exact_dual_lower_bound": "10",
+    "first_cost": 10,
+    "first_stage_excess_over_archived_local_minimum": 3,
+    "first_witness": [
+      "MODE:019",
+      "MODE:01e",
+      "MODE:029",
+      "MODE:02b",
+      "MODE:031",
+      "MODE:035",
+      "MODE:071",
+      "MODE:0ca",
+      "MODE:520",
+      "MODE:e00"
+    ],
+    "grouping": {
+      "capacity_digest": "5ba4adb4abd17cf3470b81609ec516744c3a96909f6a4156f39fa48f4c746fc3",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 82,
+      "first_capacity_sum": 4005,
+      "first_groups": 1811,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4005,
+      "second_capacity_max": 82,
+      "second_capacity_sum": 4005,
+      "second_groups": 1811,
+      "second_sensor": "MODE"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "joint_cost": 10,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 12,
+      "archived_second_cost": 5,
+      "destination": "MODE__MODE__d3",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S13P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13"
+    },
+    "saving_against_archived_local_policy": 2,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "3b7d0a1b321f0e75a1e173ffb2efcf6b50bf2f30110b09b81c34ebdc61bef49d",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.12099094998848159,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:04b",
+      "EXACT:072",
+      "EXACT:08e",
+      "EXACT:225",
+      "EXACT:c10",
+      "EXACT:e6b"
+    ],
+    "grouping": {
+      "capacity_digest": "07007b8766af80344180c504dc8edcb3a1d29f9e9df1ebe952cf311abcf5a352",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 51,
+      "first_capacity_sum": 4017,
+      "first_groups": 1313,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 51,
+      "second_capacity_sum": 4017,
+      "second_groups": 1313,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          55,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S14P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S14"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "c6b2f698e4d2915e2e0ee475847d24aca7721e047bee0dec572322543f107cc6",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 7.0,
+    "elapsed_seconds": 0.7543748839962063,
+    "exact_dual_lower_bound": "7",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:072",
+      "MODE:0a5",
+      "MODE:105",
+      "MODE:24a",
+      "MODE:40e",
+      "MODE:803",
+      "MODE:80b"
+    ],
+    "grouping": {
+      "capacity_digest": "613d06632cde2dafdc4a438a7d7656c60a249446c04c4b39aa4cc454b39b1274",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 83,
+      "first_capacity_sum": 4005,
+      "first_groups": 1714,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 51,
+      "second_capacity_sum": 4017,
+      "second_groups": 1313,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:02d",
+      "MODE:02e",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:078",
+      "MODE:083",
+      "MODE:141",
+      "MODE:1e8",
+      "MODE:225",
+      "MODE:580"
+    ],
+    "joint_cost": 7,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          56,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d3",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S14P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S14"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "1540e71bb0e33758f53ebd78c8984578ed66d888a1516539e8a37e0d1460ee29",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 4,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 4.0,
+    "elapsed_seconds": 0.029709713999181986,
+    "exact_dual_lower_bound": "4",
+    "first_cost": 4,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:015",
+      "MODE:019",
+      "MODE:029",
+      "MODE:031"
+    ],
+    "grouping": {
+      "capacity_digest": "77a6586907287679d73bb61eea6811c0d66b7d4e93e468c6b98ce1750f2ed2b4",
+      "first_available_coordinates": 3998,
+      "first_capacity_max": 3952,
+      "first_capacity_sum": 3998,
+      "first_groups": 3,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 3972,
+      "second_capacity_sum": 4017,
+      "second_groups": 2,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:01b",
+      "MODE:01e",
+      "MODE:02d",
+      "MODE:035",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:06a",
+      "MODE:071",
+      "MODE:078",
+      "MODE:0a5",
+      "MODE:0f0",
+      "MODE:105",
+      "MODE:1d4",
+      "MODE:332",
+      "MODE:580",
+      "MODE:803",
+      "MODE:80e",
+      "MODE:a6b"
+    ],
+    "joint_cost": 4,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 3,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 4,
+      "archived_local_cost": 4,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__MODE__d3",
+      "route_id": "S15P1",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S15"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "3138c23d170a618f1ef1ac3c33c6237af810924c27878177c25ec0ec8d7f91a1",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 3,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 3.0,
+    "elapsed_seconds": 0.017102163008530624,
+    "exact_dual_lower_bound": "3",
+    "first_cost": 3,
+    "first_stage_excess_over_archived_local_minimum": 3,
+    "first_witness": [
+      "EXACT:007",
+      "EXACT:00b",
+      "EXACT:015"
+    ],
+    "grouping": {
+      "capacity_digest": "09f2e4aa4b29766225a736448628677627a6708294dea5065e5d88356e24eadb",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 3972,
+      "first_capacity_sum": 4017,
+      "first_groups": 2,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 3972,
+      "second_capacity_sum": 4017,
+      "second_groups": 2,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:01b",
+      "MODE:01e",
+      "MODE:02d",
+      "MODE:035",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:06a",
+      "MODE:071",
+      "MODE:078",
+      "MODE:0a5",
+      "MODE:0f0",
+      "MODE:105",
+      "MODE:1d4",
+      "MODE:332",
+      "MODE:580",
+      "MODE:803",
+      "MODE:80e",
+      "MODE:a6b"
+    ],
+    "joint_cost": 3,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 3,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 3,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S15P2",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S15"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "b0a0ef40dc02d623d7990ada1c5b77bac49050ed01b0fbcf6aefbe5c1dc96937",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.08595422400685493,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:00f",
+      "EXACT:04e",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:406",
+      "EXACT:b3c"
+    ],
+    "grouping": {
+      "capacity_digest": "bc37554a377f94ada1ee7f45e09ea13b7a500542de150c4cd815638033f87be7",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 116,
+      "first_capacity_sum": 4017,
+      "first_groups": 444,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 116,
+      "second_capacity_sum": 4017,
+      "second_groups": 444,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:01b",
+      "MODE:01e",
+      "MODE:02d",
+      "MODE:035",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:06a",
+      "MODE:071",
+      "MODE:078",
+      "MODE:0a5",
+      "MODE:0f0",
+      "MODE:105",
+      "MODE:1d4",
+      "MODE:332",
+      "MODE:580",
+      "MODE:803",
+      "MODE:80e",
+      "MODE:a6b"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          55,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d4",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S16P1",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S16"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "6d74ccd6ffda276c1de58f8b03dd661d2141952539aff27c963f1dc7de822818",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 7.0,
+    "elapsed_seconds": 0.08451394399162382,
+    "exact_dual_lower_bound": "7",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:00b",
+      "MODE:070",
+      "MODE:0ca",
+      "MODE:10e",
+      "MODE:203",
+      "MODE:40c",
+      "MODE:825"
+    ],
+    "grouping": {
+      "capacity_digest": "3f38bed4e7e716dd8818c527ade9bb7d1fc3e8aa6226aebf454af32791ab39ee",
+      "first_available_coordinates": 3998,
+      "first_capacity_max": 164,
+      "first_capacity_sum": 3998,
+      "first_groups": 528,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 116,
+      "second_capacity_sum": 4017,
+      "second_groups": 444,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:01b",
+      "MODE:01e",
+      "MODE:02d",
+      "MODE:035",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:06a",
+      "MODE:071",
+      "MODE:078",
+      "MODE:0a5",
+      "MODE:0f0",
+      "MODE:105",
+      "MODE:1d4",
+      "MODE:332",
+      "MODE:580",
+      "MODE:803",
+      "MODE:80e",
+      "MODE:a6b"
+    ],
+    "joint_cost": 7,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          8,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          56,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d4",
+      "intermediate": "ACTIONABLE__MODE__d4",
+      "route_id": "S16P2",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S16"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "0af5b0fa6be2ce565de59ee85627c2a67482c450a817daaab4711ee169d6dfa4",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.022345567005686462,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:04b",
+      "EXACT:065",
+      "EXACT:072",
+      "EXACT:08e",
+      "EXACT:0c1",
+      "EXACT:183"
+    ],
+    "grouping": {
+      "capacity_digest": "9c8586a24457467709f7ca2583fed437eecf4bd0c6a02b73f861b02b9fa95260",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 476,
+      "first_capacity_sum": 4017,
+      "first_groups": 95,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 476,
+      "second_capacity_sum": 4017,
+      "second_groups": 95,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:01b",
+      "MODE:01e",
+      "MODE:027",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:065",
+      "MODE:06a",
+      "MODE:071",
+      "MODE:074",
+      "MODE:078",
+      "MODE:08e",
+      "MODE:0f0",
+      "MODE:10b",
+      "MODE:125",
+      "MODE:203",
+      "MODE:225",
+      "MODE:3a1",
+      "MODE:405",
+      "MODE:441",
+      "MODE:44a",
+      "MODE:4a0",
+      "MODE:80e",
+      "MODE:9b5",
+      "MODE:c4f",
+      "MODE:d2f"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          55,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d5",
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "route_id": "S17P1",
+      "source": "ACTIONABLE__MODE__d4",
+      "square_id": "S17"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "34eb67127e8afecba2ddec4e0c111e1dcc861440882a61ce54cbcce364df0fac",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 6.9999999999999964,
+    "elapsed_seconds": 0.043967976002022624,
+    "exact_dual_lower_bound": "7",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:025",
+      "MODE:04a",
+      "MODE:072",
+      "MODE:08b",
+      "MODE:091",
+      "MODE:10e",
+      "MODE:450"
+    ],
+    "grouping": {
+      "capacity_digest": "7b67be65eefcbe2423abbd9b4d4642f04ee2b8dc2e6bbfc66509e6ba7123af0a",
+      "first_available_coordinates": 3991,
+      "first_capacity_max": 723,
+      "first_capacity_sum": 3991,
+      "first_groups": 160,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 476,
+      "second_capacity_sum": 4017,
+      "second_groups": 95,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:01b",
+      "MODE:01e",
+      "MODE:027",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:065",
+      "MODE:06a",
+      "MODE:071",
+      "MODE:074",
+      "MODE:078",
+      "MODE:08e",
+      "MODE:0f0",
+      "MODE:10b",
+      "MODE:125",
+      "MODE:203",
+      "MODE:225",
+      "MODE:3a1",
+      "MODE:405",
+      "MODE:441",
+      "MODE:44a",
+      "MODE:4a0",
+      "MODE:80e",
+      "MODE:9b5",
+      "MODE:c4f",
+      "MODE:d2f"
+    ],
+    "joint_cost": 7,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          41
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          62
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          62,
+          63
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          8,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d5",
+      "intermediate": "ACTIONABLE__MODE__d5",
+      "route_id": "S17P2",
+      "source": "ACTIONABLE__MODE__d4",
+      "square_id": "S17"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "b64ee9dd0d54a1e5729090e50997d4149b90dd70858dcc20783c4628a78d8981",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.08837913699971978,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:01e",
+      "EXACT:04b",
+      "EXACT:071",
+      "EXACT:425",
+      "EXACT:8b7",
+      "EXACT:979"
+    ],
+    "grouping": {
+      "capacity_digest": "737ec1893e9bb6c03f30590886124f7238416fdec53cafc94a633413b277a7ad",
+      "first_available_coordinates": 4011,
+      "first_capacity_max": 45,
+      "first_capacity_sum": 4011,
+      "first_groups": 1753,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4011,
+      "second_capacity_max": 45,
+      "second_capacity_sum": 4011,
+      "second_groups": 1753,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:035",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:cf3",
+      "EXACT:e4e"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          41,
+          49
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "EXACT__EXACT__d2",
+      "intermediate": "EXACT__EXACT__d1",
+      "route_id": "S18P1",
+      "source": "MODE__EXACT__d1",
+      "square_id": "S18"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "562a4f6fc79ef00c6e22ad1a0077d670f5e143143ce163c693986015727349c3",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.39323242600949015,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "EXACT:01e",
+      "EXACT:04b",
+      "EXACT:074",
+      "EXACT:425",
+      "EXACT:607",
+      "EXACT:d00"
+    ],
+    "grouping": {
+      "capacity_digest": "737ec1893e9bb6c03f30590886124f7238416fdec53cafc94a633413b277a7ad",
+      "first_available_coordinates": 4011,
+      "first_capacity_max": 45,
+      "first_capacity_sum": 4011,
+      "first_groups": 1753,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4011,
+      "second_capacity_max": 45,
+      "second_capacity_sum": 4011,
+      "second_groups": 1753,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:035",
+      "EXACT:04e",
+      "EXACT:072",
+      "EXACT:cf3",
+      "EXACT:e4e"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          56
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 6,
+      "archived_second_cost": 0,
+      "destination": "EXACT__EXACT__d2",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S18P2",
+      "source": "MODE__EXACT__d1",
+      "square_id": "S18"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "4feaa643b5e4b41f86ff2a3d4875ea262ff1469b6e571daf797006f539d4a095",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.023298739004530944,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 7,
+    "first_witness": [
+      "EXACT:00b",
+      "EXACT:05a",
+      "EXACT:071",
+      "EXACT:08e",
+      "EXACT:0a5",
+      "EXACT:311",
+      "EXACT:380",
+      "EXACT:80e"
+    ],
+    "grouping": {
+      "capacity_digest": "c81a90d7b27df6ca472cc0ce2e38bdf33443b452e8231c69b53ae77af8dc29d6",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 549,
+      "first_capacity_sum": 4005,
+      "first_groups": 215,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4005,
+      "second_capacity_max": 549,
+      "second_capacity_sum": 4005,
+      "second_groups": 215,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:056",
+      "EXACT:072",
+      "EXACT:074",
+      "EXACT:61d",
+      "EXACT:803",
+      "EXACT:825",
+      "EXACT:933",
+      "EXACT:dcc"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d3",
+      "intermediate": "EXACT__EXACT__d2",
+      "route_id": "S19P1",
+      "source": "MODE__EXACT__d2",
+      "square_id": "S19"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "f447e24f475b68c6ee9bd7f119848f05aedece1c2b2600bf4046789aac80e7f6",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.03206512199540157,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 1,
+    "first_witness": [
+      "EXACT:01b",
+      "EXACT:01e",
+      "EXACT:05a",
+      "EXACT:071",
+      "EXACT:125",
+      "EXACT:20e",
+      "EXACT:212",
+      "EXACT:444"
+    ],
+    "grouping": {
+      "capacity_digest": "c81a90d7b27df6ca472cc0ce2e38bdf33443b452e8231c69b53ae77af8dc29d6",
+      "first_available_coordinates": 4005,
+      "first_capacity_max": 549,
+      "first_capacity_sum": 4005,
+      "first_groups": 215,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4005,
+      "second_capacity_max": 549,
+      "second_capacity_sum": 4005,
+      "second_groups": 215,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:02d",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:056",
+      "EXACT:072",
+      "EXACT:074",
+      "EXACT:61d",
+      "EXACT:803",
+      "EXACT:825",
+      "EXACT:933",
+      "EXACT:dcc"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d3",
+      "intermediate": "MODE__EXACT__d3",
+      "route_id": "S19P2",
+      "source": "MODE__EXACT__d2",
+      "square_id": "S19"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "c88f482a218abe4361b41ea3932f60f5443cf094699482904167076104b72caa",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.02718640999228228,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 7,
+    "first_witness": [
+      "EXACT:05a",
+      "EXACT:074",
+      "EXACT:089",
+      "EXACT:08b",
+      "EXACT:0a5",
+      "EXACT:114",
+      "EXACT:20e",
+      "EXACT:40e"
+    ],
+    "grouping": {
+      "capacity_digest": "9be1c47fb66d164c2c20228dff7a28eaf7a214747203e8b73a669b14104fd554",
+      "first_available_coordinates": 3998,
+      "first_capacity_max": 252,
+      "first_capacity_sum": 3998,
+      "first_groups": 137,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3998,
+      "second_capacity_max": 252,
+      "second_capacity_sum": 3998,
+      "second_groups": 137,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:025",
+      "EXACT:02d",
+      "EXACT:047",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:24a",
+      "EXACT:327",
+      "EXACT:40b",
+      "EXACT:4cd",
+      "EXACT:5eb",
+      "EXACT:a41",
+      "EXACT:d8d",
+      "EXACT:de0"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d4",
+      "intermediate": "EXACT__EXACT__d3",
+      "route_id": "S20P1",
+      "source": "MODE__EXACT__d3",
+      "square_id": "S20"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "8edd40318d7a4c3e9136f9b969c25b65a77fd00c35035316d085e806b7665946",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.02485070399416145,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 1,
+    "first_witness": [
+      "EXACT:027",
+      "EXACT:05a",
+      "EXACT:074",
+      "EXACT:08b",
+      "EXACT:08e",
+      "EXACT:10e",
+      "EXACT:30a",
+      "EXACT:482"
+    ],
+    "grouping": {
+      "capacity_digest": "9be1c47fb66d164c2c20228dff7a28eaf7a214747203e8b73a669b14104fd554",
+      "first_available_coordinates": 3998,
+      "first_capacity_max": 252,
+      "first_capacity_sum": 3998,
+      "first_groups": 137,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3998,
+      "second_capacity_max": 252,
+      "second_capacity_sum": 3998,
+      "second_groups": 137,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:025",
+      "EXACT:02d",
+      "EXACT:047",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:065",
+      "EXACT:071",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:24a",
+      "EXACT:327",
+      "EXACT:40b",
+      "EXACT:4cd",
+      "EXACT:5eb",
+      "EXACT:a41",
+      "EXACT:d8d",
+      "EXACT:de0"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 4,
+    "minimum_stage2_distance": 4,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d4",
+      "intermediate": "MODE__EXACT__d4",
+      "route_id": "S20P2",
+      "source": "MODE__EXACT__d3",
+      "square_id": "S20"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "9c69dde8aed7aec52692b95b5d44f8bc204bb885d02364d4af7c26e3ada0b4e1",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.019674153008963913,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 7,
+    "first_witness": [
+      "EXACT:00e",
+      "EXACT:01b",
+      "EXACT:025",
+      "EXACT:05a",
+      "EXACT:074",
+      "EXACT:083",
+      "EXACT:08e",
+      "EXACT:103"
+    ],
+    "grouping": {
+      "capacity_digest": "f8d56a233f207e598e4d410e8027711b7983a7ed996488ac2a5e6d938b096892",
+      "first_available_coordinates": 3991,
+      "first_capacity_max": 1758,
+      "first_capacity_sum": 3991,
+      "first_groups": 38,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3991,
+      "second_capacity_max": 1758,
+      "second_capacity_sum": 3991,
+      "second_groups": 38,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:02d",
+      "EXACT:02e",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:056",
+      "EXACT:065",
+      "EXACT:06a",
+      "EXACT:070",
+      "EXACT:071",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:20b",
+      "EXACT:225",
+      "EXACT:610",
+      "EXACT:616",
+      "EXACT:73f",
+      "EXACT:84a",
+      "EXACT:9ff",
+      "EXACT:b54",
+      "EXACT:b94",
+      "EXACT:bee",
+      "EXACT:c36"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d5",
+      "intermediate": "EXACT__EXACT__d4",
+      "route_id": "S21P1",
+      "source": "MODE__EXACT__d4",
+      "square_id": "S21"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "85275108255746479d5cf63c0a131bb8dd967f0a9d4096a79f6e2cd4c1dcdc46",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.01887076201091986,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 1,
+    "first_witness": [
+      "EXACT:00e",
+      "EXACT:01b",
+      "EXACT:027",
+      "EXACT:074",
+      "EXACT:083",
+      "EXACT:08e",
+      "EXACT:0ca",
+      "EXACT:103"
+    ],
+    "grouping": {
+      "capacity_digest": "f8d56a233f207e598e4d410e8027711b7983a7ed996488ac2a5e6d938b096892",
+      "first_available_coordinates": 3991,
+      "first_capacity_max": 1758,
+      "first_capacity_sum": 3991,
+      "first_groups": 38,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 3991,
+      "second_capacity_max": 1758,
+      "second_capacity_sum": 3991,
+      "second_groups": 38,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "EXACT:00f",
+      "EXACT:01e",
+      "EXACT:02b",
+      "EXACT:02d",
+      "EXACT:02e",
+      "EXACT:035",
+      "EXACT:04b",
+      "EXACT:04e",
+      "EXACT:056",
+      "EXACT:065",
+      "EXACT:06a",
+      "EXACT:070",
+      "EXACT:071",
+      "EXACT:072",
+      "EXACT:078",
+      "EXACT:20b",
+      "EXACT:225",
+      "EXACT:610",
+      "EXACT:616",
+      "EXACT:73f",
+      "EXACT:84a",
+      "EXACT:9ff",
+      "EXACT:b54",
+      "EXACT:b94",
+      "EXACT:bee",
+      "EXACT:c36"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 5,
+    "minimum_stage2_distance": 5,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          28
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          11,
+          19
+        ],
+        "residual_distance": 2,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d5",
+      "intermediate": "MODE__EXACT__d5",
+      "route_id": "S21P2",
+      "source": "MODE__EXACT__d4",
+      "square_id": "S21"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "ec9a2754f84535911c0a1277fceea8c1b792075c4123e046b378adea34eda325",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.15159389200562146,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:00f",
+      "EXACT:05a",
+      "EXACT:065",
+      "EXACT:083",
+      "EXACT:170",
+      "EXACT:91d"
+    ],
+    "grouping": {
+      "capacity_digest": "7721e94caeb5633a555d1a7104a74c658a8ed594e8a4b48e7339a91cba3dc41c",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 31,
+      "first_capacity_sum": 4017,
+      "first_groups": 1892,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 31,
+      "second_capacity_sum": 4017,
+      "second_groups": 1892,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:01e",
+      "MODE:027",
+      "MODE:031",
+      "MODE:04b",
+      "MODE:071",
+      "MODE:442",
+      "MODE:580"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          56
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__EXACT__d1",
+      "route_id": "S22P1",
+      "source": "MODE__MODE__d1",
+      "square_id": "S22"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "7aca1f95c8fc79b4d15fae56c08841de38b64f309d7a54acb0996d81e8b146fd",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 7,
+    "diagnostic_milp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "diagnostic_solver_lower_bound": 7.0,
+    "elapsed_seconds": 0.9117765100090764,
+    "exact_dual_lower_bound": "7",
+    "first_cost": 7,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:00f",
+      "MODE:019",
+      "MODE:05a",
+      "MODE:074",
+      "MODE:225",
+      "MODE:428",
+      "MODE:a46"
+    ],
+    "grouping": {
+      "capacity_digest": "6b3abe49168a85c651fa3557bbba101fef40296c42efe0361a6988eabf372e9c",
+      "first_available_coordinates": 4010,
+      "first_capacity_max": 44,
+      "first_capacity_sum": 4010,
+      "first_groups": 2246,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 31,
+      "second_capacity_sum": 4017,
+      "second_groups": 1892,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:01e",
+      "MODE:027",
+      "MODE:031",
+      "MODE:04b",
+      "MODE:071",
+      "MODE:442",
+      "MODE:580"
+    ],
+    "joint_cost": 7,
+    "minimum_stage1_distance": 2,
+    "minimum_stage2_distance": 2,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          61
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/2"
+      },
+      {
+        "classes": [
+          1,
+          49
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1/2"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S22P2",
+      "source": "MODE__MODE__d1",
+      "square_id": "S22"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "780a9d6d90b5031088d80f8cd26b3ccc66c52f12cea0981423bceb9de34ba88e",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 6,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 6.0,
+    "elapsed_seconds": 0.029991721996339038,
+    "exact_dual_lower_bound": "6",
+    "first_cost": 6,
+    "first_stage_excess_over_archived_local_minimum": 6,
+    "first_witness": [
+      "EXACT:02e",
+      "EXACT:04b",
+      "EXACT:065",
+      "EXACT:078",
+      "EXACT:094",
+      "EXACT:d09"
+    ],
+    "grouping": {
+      "capacity_digest": "8814773b43f10a683b99631f2ba5dd5bf6f247dfc9b7dbd1f080ee628439b3c3",
+      "first_available_coordinates": 4017,
+      "first_capacity_max": 593,
+      "first_capacity_sum": 4017,
+      "first_groups": 173,
+      "first_sensor": "EXACT",
+      "same_sensor_coupled": true,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 593,
+      "second_capacity_sum": 4017,
+      "second_groups": 173,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:019",
+      "MODE:01e",
+      "MODE:02d",
+      "MODE:031",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:071",
+      "MODE:074",
+      "MODE:125",
+      "MODE:141",
+      "MODE:580",
+      "MODE:6e7",
+      "MODE:803"
+    ],
+    "joint_cost": 6,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          56
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S23P1",
+      "source": "MODE__MODE__d2",
+      "square_id": "S23"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  },
+  {
+    "archived_local_witness_reverified": true,
+    "certificate_sha256": "a8cb593b25820ef34ee2724ccb5cfff072eacddd47c0f9adcbf17622cc6e5cf0",
+    "certified_gap": 0,
+    "certified_integer_lower_bound": 8,
+    "diagnostic_milp_status": "LP_INTEGER_WITNESS",
+    "diagnostic_solver_lower_bound": 8.0,
+    "elapsed_seconds": 0.04488656698958948,
+    "exact_dual_lower_bound": "8",
+    "first_cost": 8,
+    "first_stage_excess_over_archived_local_minimum": 0,
+    "first_witness": [
+      "MODE:029",
+      "MODE:02b",
+      "MODE:035",
+      "MODE:04a",
+      "MODE:072",
+      "MODE:08e",
+      "MODE:292",
+      "MODE:c06"
+    ],
+    "grouping": {
+      "capacity_digest": "818611298988157480b969e72fdb99da8228e2af6093918056f505fa2a711583",
+      "first_available_coordinates": 4003,
+      "first_capacity_max": 309,
+      "first_capacity_sum": 4003,
+      "first_groups": 457,
+      "first_sensor": "MODE",
+      "same_sensor_coupled": false,
+      "second_available_coordinates_before_stage1": 4017,
+      "second_capacity_max": 593,
+      "second_capacity_sum": 4017,
+      "second_groups": 173,
+      "second_sensor": "EXACT"
+    },
+    "inherited_coordinates": [
+      "MODE:00f",
+      "MODE:019",
+      "MODE:01e",
+      "MODE:02d",
+      "MODE:031",
+      "MODE:04b",
+      "MODE:05a",
+      "MODE:071",
+      "MODE:074",
+      "MODE:125",
+      "MODE:141",
+      "MODE:580",
+      "MODE:6e7",
+      "MODE:803"
+    ],
+    "joint_cost": 8,
+    "minimum_stage1_distance": 3,
+    "minimum_stage2_distance": 3,
+    "permission_granted": false,
+    "rational_dual": [
+      {
+        "classes": [
+          0,
+          1
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          24
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          0,
+          43
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          8
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          50,
+          55
+        ],
+        "residual_distance": 1,
+        "stage": 1,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          2,
+          13
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          13,
+          35
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      },
+      {
+        "classes": [
+          49,
+          50
+        ],
+        "residual_distance": 1,
+        "stage": 2,
+        "weight": "1"
+      }
+    ],
+    "route": {
+      "archived_first_cost": 8,
+      "archived_local_cost": 8,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__MODE__d3",
+      "route_id": "S23P2",
+      "source": "MODE__MODE__d2",
+      "square_id": "S23"
+    },
+    "saving_against_archived_local_policy": 0,
+    "second_cost": 0,
+    "second_witness": [],
+    "status": "EXACT_OPTIMUM"
+  }
+]

@@ -1,0 +1,81 @@
+{"route": "S01P1", "groups": [2705, 2705], "cost": 5, "lower": "33/8", "gap": 0, "archived": 5, "seconds": 1.26}
+{"route": "S01P2", "groups": [347, 2705], "cost": 10, "lower": "19/2", "gap": 0, "archived": 10, "seconds": 0.86}
+{"route": "S02P1", "groups": [2886, 2886], "cost": 5, "lower": "5", "gap": 0, "archived": 5, "seconds": 2.48}
+{"route": "S02P2", "groups": [349, 2886], "cost": 13, "lower": "38/3", "gap": 0, "archived": 13, "seconds": 4.15}
+{"route": "S03P1", "groups": [2740, 2740], "cost": 5, "lower": "5", "gap": 0, "archived": 5, "seconds": 0.34}
+{"route": "S03P2", "groups": [371, 2740], "cost": 14, "lower": "27/2", "gap": 0, "archived": 14, "seconds": 2.83}
+{"route": "S04P1", "groups": [2969, 2969], "cost": 5, "lower": "5", "gap": 0, "archived": 5, "seconds": 2.6}
+{"route": "S04P2", "groups": [394, 2969], "cost": 15, "lower": "29/2", "gap": 0, "archived": 15, "seconds": 1.95}
+{"route": "S05P1", "groups": [1358, 1358], "cost": 6, "lower": "6", "gap": 0, "archived": 7, "seconds": 0.15}
+{"route": "S05P2", "groups": [1358, 1358], "cost": 6, "lower": "6", "gap": 0, "archived": 7, "seconds": 0.22}
+{"route": "S06P1", "groups": [244, 244], "cost": 7, "lower": "7", "gap": 0, "archived": 8, "seconds": 0.02}
+{"route": "S06P2", "groups": [244, 244], "cost": 7, "lower": "7", "gap": 0, "archived": 9, "seconds": 0.02}
+{"route": "S07P1", "groups": [175, 175], "cost": 8, "lower": "8", "gap": 0, "archived": 9, "seconds": 0.02}
+{"route": "S07P2", "groups": [175, 175], "cost": 8, "lower": "8", "gap": 0, "archived": 10, "seconds": 0.02}
+{"route": "S08P1", "groups": [115, 115], "cost": 9, "lower": "9", "gap": 0, "archived": 10, "seconds": 0.03}
+{"route": "S08P2", "groups": [115, 115], "cost": 9, "lower": "9", "gap": 0, "archived": 10, "seconds": 0.02}
+{"route": "S09P1", "groups": [3, 2], "cost": 2, "lower": "2", "gap": 0, "archived": 2, "seconds": 0.03}
+{"route": "S09P2", "groups": [2, 2], "cost": 1, "lower": "1", "gap": 0, "archived": 1, "seconds": 0.02}
+{"route": "S10P1", "groups": [2044, 2044], "cost": 8, "lower": "91/12", "gap": 0, "archived": 8, "seconds": 0.36}
+{"route": "S10P2", "groups": [2044, 2044], "cost": 8, "lower": "91/12", "gap": 0, "archived": 10, "seconds": 0.63}
+{"route": "S11P1", "groups": [2273, 2273], "cost": 5, "lower": "5", "gap": 0, "archived": 5, "seconds": 0.46}
+{"route": "S11P2", "groups": [1950, 2273], "cost": 6, "lower": "66/13", "gap": 0, "archived": 6, "seconds": 0.91}
+{"route": "S12P1", "groups": [5, 3], "cost": 3, "lower": "3", "gap": 0, "archived": 3, "seconds": 0.03}
+{"route": "S12P2", "groups": [3, 3], "cost": 2, "lower": "2", "gap": 0, "archived": 2, "seconds": 0.02}
+{"route": "S13P1", "groups": [1811, 1811], "cost": 10, "lower": "10", "gap": 0, "archived": 11, "seconds": 0.29}
+{"route": "S13P2", "groups": [1811, 1811], "cost": 10, "lower": "10", "gap": 0, "archived": 12, "seconds": 0.33}
+{"route": "S14P1", "groups": [1313, 1313], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.12}
+{"route": "S14P2", "groups": [1714, 1313], "cost": 7, "lower": "7", "gap": 0, "archived": 7, "seconds": 0.75}
+{"route": "S15P1", "groups": [3, 2], "cost": 4, "lower": "4", "gap": 0, "archived": 4, "seconds": 0.03}
+{"route": "S15P2", "groups": [2, 2], "cost": 3, "lower": "3", "gap": 0, "archived": 3, "seconds": 0.02}
+{"route": "S16P1", "groups": [444, 444], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.09}
+{"route": "S16P2", "groups": [528, 444], "cost": 7, "lower": "7", "gap": 0, "archived": 7, "seconds": 0.08}
+{"route": "S17P1", "groups": [95, 95], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.02}
+{"route": "S17P2", "groups": [160, 95], "cost": 7, "lower": "7", "gap": 0, "archived": 7, "seconds": 0.04}
+{"route": "S18P1", "groups": [1753, 1753], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.09}
+{"route": "S18P2", "groups": [1753, 1753], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.39}
+{"route": "S19P1", "groups": [215, 215], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.02}
+{"route": "S19P2", "groups": [215, 215], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.03}
+{"route": "S20P1", "groups": [137, 137], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.03}
+{"route": "S20P2", "groups": [137, 137], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.02}
+{"route": "S21P1", "groups": [38, 38], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.02}
+{"route": "S21P2", "groups": [38, 38], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.02}
+{"route": "S22P1", "groups": [1892, 1892], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.15}
+{"route": "S22P2", "groups": [2246, 1892], "cost": 7, "lower": "7", "gap": 0, "archived": 7, "seconds": 0.91}
+{"route": "S23P1", "groups": [173, 173], "cost": 6, "lower": "6", "gap": 0, "archived": 6, "seconds": 0.03}
+{"route": "S23P2", "groups": [457, 173], "cost": 8, "lower": "8", "gap": 0, "archived": 8, "seconds": 0.04}
+{
+  "schema": "ECH_JOINT_FIXED_TWO_STAGE_RESULT_V1",
+  "status": "ALL_46_FIXED_ROUTES_EXACTLY_CERTIFIED",
+  "protocol_sha256": "e4054024e5789f8a82d3ef8bb5c2ee312f291d1954bda28efff4583e53d81db8",
+  "solver_script_sha256": "a18863bb4b68768ab8c072f7ac56c3435ee912efcc12d9380c027a69ab7ea4e6",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "routes": 46,
+  "certified_optimal_routes": 46,
+  "improved_routes": 11,
+  "unchanged_routes": 35,
+  "archived_total_cost_across_routes": 335,
+  "joint_total_cost_across_routes": 320,
+  "route_sum_interpretation": "Sum of independently evaluated route costs, not one executable shared acquisition experiment.",
+  "maximum_route_saving": 2,
+  "routes_whose_returned_witness_acquires_extra_at_first_stage": 30,
+  "archived_noncommuting_cost_squares": 17,
+  "joint_noncommuting_cost_squares": 13,
+  "joint_commuting_cost_squares": 10,
+  "certificate_sha256": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0",
+  "scope_boundaries": [
+    "New anticipatory acquisition policy, not historical local-greedy policy.",
+    "Fixed-route optimum, not shortest path or global graph policy.",
+    "No source or intermediate codebook replacement.",
+    "All 46 routes included regardless of outcomes.",
+    "Finite deterministic kernel calculation, not physical or observational data.",
+    "Distinct coordinates with identical response patterns retain their true multiplicity/capacity.",
+    "No claim of unique optimal witnesses or historical receipt-chain reconstruction."
+  ],
+  "permission_granted": false,
+  "result_sha256": "d3215831b7c32a92674592fb5e427d86b0296f7cd3b427f92bc3dd3e3839e1e3"
+}

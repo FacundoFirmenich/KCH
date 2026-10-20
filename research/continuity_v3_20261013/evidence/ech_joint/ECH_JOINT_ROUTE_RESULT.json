@@ -1,0 +1,35 @@
+{
+  "archived_noncommuting_cost_squares": 17,
+  "archived_total_cost_across_routes": 335,
+  "certificate_sha256": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0",
+  "certified_optimal_routes": 46,
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14",
+    "scipy": "1.17.0"
+  },
+  "improved_routes": 11,
+  "joint_commuting_cost_squares": 10,
+  "joint_noncommuting_cost_squares": 13,
+  "joint_total_cost_across_routes": 320,
+  "maximum_route_saving": 2,
+  "permission_granted": false,
+  "protocol_sha256": "e4054024e5789f8a82d3ef8bb5c2ee312f291d1954bda28efff4583e53d81db8",
+  "result_sha256": "d3215831b7c32a92674592fb5e427d86b0296f7cd3b427f92bc3dd3e3839e1e3",
+  "route_sum_interpretation": "Sum of independently evaluated route costs, not one executable shared acquisition experiment.",
+  "routes": 46,
+  "routes_whose_returned_witness_acquires_extra_at_first_stage": 30,
+  "schema": "ECH_JOINT_FIXED_TWO_STAGE_RESULT_V1",
+  "scope_boundaries": [
+    "New anticipatory acquisition policy, not historical local-greedy policy.",
+    "Fixed-route optimum, not shortest path or global graph policy.",
+    "No source or intermediate codebook replacement.",
+    "All 46 routes included regardless of outcomes.",
+    "Finite deterministic kernel calculation, not physical or observational data.",
+    "Distinct coordinates with identical response patterns retain their true multiplicity/capacity.",
+    "No claim of unique optimal witnesses or historical receipt-chain reconstruction."
+  ],
+  "solver_script_sha256": "a18863bb4b68768ab8c072f7ac56c3435ee912efcc12d9380c027a69ab7ea4e6",
+  "status": "ALL_46_FIXED_ROUTES_EXACTLY_CERTIFIED",
+  "unchanged_routes": 35
+}

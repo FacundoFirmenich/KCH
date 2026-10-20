@@ -1,0 +1,492 @@
+{
+  "all_original_squares": 23,
+  "input_sha256": {
+    "inputs/cas_constitutional_kernel_v1.json": "82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138",
+    "inputs/compiled_distance_codebooks.json": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b",
+    "results/EXACT_BRIDGE_CERTIFICATES.json": "aaf4b8a0da82db4677dc032816d9c9c43bdcc7698a70a29c611b3a49139b97d9",
+    "results/FINITE_ATLAS_REPLAY_DETAIL.json": "dec586c672132e706633ea72305736d13309a76a18bc8528efe927d172230eb6",
+    "results/original_sensor_semantics.py": "8f579feb5b5bc5279ce0cc57612480ceb9fb38550f8f440bfcb29c87d0fcd1ea"
+  },
+  "mathematical_model": {
+    "objective": "min sum_q x_q + sum_q y_q",
+    "stage1": "distance(E,p)+sum diff(sensor1,q,p)*x_q >= d1 for every pair distinguished by target1",
+    "stage2": "distance(E,p)+sum diff(sensor1,q,p)*x_q+sum diff(sensor2,q,p)*y_q >= d2 for every pair distinguished by target2",
+    "uniqueness": "x_q+y_q<=1 when same typed coordinate exists in both stages",
+    "variables": "x_q,y_q binary, q ranges over each stage destination sensor and all 4017 admissible masks, excluding inherited coordinates"
+  },
+  "new_policy": "Anticipation allowed: acquire any number of distinct admissible coordinates under intermediate sensor at stage 1, satisfy intermediate contract, then acquire only under final destination sensor. Every new coordinate acquired at most once; all inherited source coordinates persist. Minimize total acquisitions for each FIXED two-stage route.",
+  "permission_granted": false,
+  "routes": [
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate": "ACTIONABLE__MODE__d1",
+      "route_id": "S01P1",
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "square_id": "S01"
+    },
+    {
+      "archived_first_cost": 10,
+      "archived_local_cost": 10,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d2",
+      "route_id": "S01P2",
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "square_id": "S01"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S02P1",
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "square_id": "S02"
+    },
+    {
+      "archived_first_cost": 13,
+      "archived_local_cost": 13,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d3",
+      "route_id": "S02P2",
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "square_id": "S02"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S03P1",
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "square_id": "S03"
+    },
+    {
+      "archived_first_cost": 14,
+      "archived_local_cost": 14,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d4",
+      "route_id": "S03P2",
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "square_id": "S03"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate": "ACTIONABLE__MODE__d4",
+      "route_id": "S04P1",
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "square_id": "S04"
+    },
+    {
+      "archived_first_cost": 15,
+      "archived_local_cost": 15,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d5",
+      "route_id": "S04P2",
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "square_id": "S04"
+    },
+    {
+      "archived_first_cost": 1,
+      "archived_local_cost": 7,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__EXACT__d1",
+      "route_id": "S05P1",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05"
+    },
+    {
+      "archived_first_cost": 6,
+      "archived_local_cost": 7,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S05P2",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05"
+    },
+    {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S06P1",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 9,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S06P2",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06"
+    },
+    {
+      "archived_first_cost": 2,
+      "archived_local_cost": 9,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d4",
+      "intermediate": "MODE__EXACT__d3",
+      "route_id": "S07P1",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d4",
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "route_id": "S07P2",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07"
+    },
+    {
+      "archived_first_cost": 3,
+      "archived_local_cost": 10,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d5",
+      "intermediate": "MODE__EXACT__d4",
+      "route_id": "S08P1",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d5",
+      "intermediate": "ACTIONABLE__EXACT__d5",
+      "route_id": "S08P2",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08"
+    },
+    {
+      "archived_first_cost": 2,
+      "archived_local_cost": 2,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d1",
+      "intermediate": "MODE__MODE__d1",
+      "route_id": "S09P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S09"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 1,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d1",
+      "intermediate": "ACTIONABLE__EXACT__d1",
+      "route_id": "S09P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S09"
+    },
+    {
+      "archived_first_cost": 2,
+      "archived_local_cost": 8,
+      "archived_second_cost": 6,
+      "destination": "MODE__MODE__d2",
+      "intermediate": "MODE__MODE__d1",
+      "route_id": "S10P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10"
+    },
+    {
+      "archived_first_cost": 6,
+      "archived_local_cost": 10,
+      "archived_second_cost": 4,
+      "destination": "MODE__MODE__d2",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S10P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d1",
+      "route_id": "S11P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S11"
+    },
+    {
+      "archived_first_cost": 6,
+      "archived_local_cost": 6,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d2",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S11P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S11"
+    },
+    {
+      "archived_first_cost": 3,
+      "archived_local_cost": 3,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S12P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S12"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 2,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S12P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S12"
+    },
+    {
+      "archived_first_cost": 3,
+      "archived_local_cost": 11,
+      "archived_second_cost": 8,
+      "destination": "MODE__MODE__d3",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S13P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 12,
+      "archived_second_cost": 5,
+      "destination": "MODE__MODE__d3",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S13P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S14P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S14"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d3",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S14P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S14"
+    },
+    {
+      "archived_first_cost": 4,
+      "archived_local_cost": 4,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__MODE__d3",
+      "route_id": "S15P1",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S15"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 3,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S15P2",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S15"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d4",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S16P1",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S16"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d4",
+      "intermediate": "ACTIONABLE__MODE__d4",
+      "route_id": "S16P2",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S16"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d5",
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "route_id": "S17P1",
+      "source": "ACTIONABLE__MODE__d4",
+      "square_id": "S17"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d5",
+      "intermediate": "ACTIONABLE__MODE__d5",
+      "route_id": "S17P2",
+      "source": "ACTIONABLE__MODE__d4",
+      "square_id": "S17"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "EXACT__EXACT__d2",
+      "intermediate": "EXACT__EXACT__d1",
+      "route_id": "S18P1",
+      "source": "MODE__EXACT__d1",
+      "square_id": "S18"
+    },
+    {
+      "archived_first_cost": 6,
+      "archived_local_cost": 6,
+      "archived_second_cost": 0,
+      "destination": "EXACT__EXACT__d2",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S18P2",
+      "source": "MODE__EXACT__d1",
+      "square_id": "S18"
+    },
+    {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d3",
+      "intermediate": "EXACT__EXACT__d2",
+      "route_id": "S19P1",
+      "source": "MODE__EXACT__d2",
+      "square_id": "S19"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d3",
+      "intermediate": "MODE__EXACT__d3",
+      "route_id": "S19P2",
+      "source": "MODE__EXACT__d2",
+      "square_id": "S19"
+    },
+    {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d4",
+      "intermediate": "EXACT__EXACT__d3",
+      "route_id": "S20P1",
+      "source": "MODE__EXACT__d3",
+      "square_id": "S20"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d4",
+      "intermediate": "MODE__EXACT__d4",
+      "route_id": "S20P2",
+      "source": "MODE__EXACT__d3",
+      "square_id": "S20"
+    },
+    {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d5",
+      "intermediate": "EXACT__EXACT__d4",
+      "route_id": "S21P1",
+      "source": "MODE__EXACT__d4",
+      "square_id": "S21"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d5",
+      "intermediate": "MODE__EXACT__d5",
+      "route_id": "S21P2",
+      "source": "MODE__EXACT__d4",
+      "square_id": "S21"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__EXACT__d1",
+      "route_id": "S22P1",
+      "source": "MODE__MODE__d1",
+      "square_id": "S22"
+    },
+    {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S22P2",
+      "source": "MODE__MODE__d1",
+      "square_id": "S22"
+    },
+    {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S23P1",
+      "source": "MODE__MODE__d2",
+      "square_id": "S23"
+    },
+    {
+      "archived_first_cost": 8,
+      "archived_local_cost": 8,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__MODE__d3",
+      "route_id": "S23P2",
+      "source": "MODE__MODE__d2",
+      "square_id": "S23"
+    }
+  ],
+  "schema": "ECH_JOINT_FIXED_TWO_STAGE_PROTOCOL_V1",
+  "scope_boundaries": [
+    "New anticipatory acquisition policy, not historical local-greedy policy.",
+    "Fixed-route optimum, not shortest path or global graph policy.",
+    "No source or intermediate codebook replacement.",
+    "All 46 routes included regardless of outcomes.",
+    "Finite deterministic kernel calculation, not physical or observational data.",
+    "Distinct coordinates with identical response patterns retain their true multiplicity/capacity.",
+    "No claim of unique optimal witnesses or historical receipt-chain reconstruction."
+  ],
+  "scope_frozen_before_computation": true
+}

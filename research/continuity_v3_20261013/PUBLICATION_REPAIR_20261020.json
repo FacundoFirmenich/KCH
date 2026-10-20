@@ -1,0 +1,65 @@
+{
+  "format": "KCH_V3_PUBLICATION_BYTE_REPAIR",
+  "date": "2026-10-20",
+  "original_commit": "808dbfbdb1a77af30547c3ab7e76cf460f9e3634",
+  "original_failed_run": 38398317682,
+  "pull_request": "https://github.com/FacundoFirmenich/KCH/pull/36",
+  "cause": "Path.read_text universal newline conversion CRLF to LF while preparing original API tree payload; numeric values unchanged. Not attributed to Git server.",
+  "repair": "Restore 10 CSV files to exact original SHA256 and byte length; preserve scientific results and expected hashes. Add scoped -text attributes for future Git handling.",
+  "restored_files": [
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/JOINT_ROUTE_COMPARISON.csv",
+      "bytes": 4869,
+      "sha256": "01a4fbb8331b52e45f08d12fa6d0821b2e12ad8afd28a5c31994630eec699eef"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/ech_joint/POSTHOC_LOCAL_TIE_COMPARISON.csv",
+      "bytes": 743,
+      "sha256": "7a2eeb1e0a466d5be7bc5ef4737b758ed21bba76edf1f261a80c95f496a67b1b"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/AGGREGATES_ALL_1200.csv",
+      "bytes": 342871,
+      "sha256": "0134b1566888444615b6ec026a8c8945d32b6dc2c3fc99467533fac450dd1952"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/CELLS_ALL_960.csv",
+      "bytes": 317312,
+      "sha256": "e0cec861b31fd56da6d90949ac58a451fc599e3ccaaca49a970dcc055d1464d8"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/SNAPSHOT_COVERAGE_ALL_15.csv",
+      "bytes": 951,
+      "sha256": "ada2953a0150b89147e183de3f7ced9e61c377bb94a4721b3d7f1f63d8d9e715"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_HARP_CONTRIBUTIONS_ALL_192.csv",
+      "bytes": 36282,
+      "sha256": "29bf51233dcd5ac07982c390d171530c45dfc3a1a432afaec96bea3586e1deca"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_PARAMETERS_H_L_ALL_96.csv",
+      "bytes": 27001,
+      "sha256": "d7211f573ae98e9a0b84a81efd80a9812b32a9a8e5131060229c800c456ab076"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_SNAPSHOT_DERIVATIVES_ALL_60.csv",
+      "bytes": 4849,
+      "sha256": "5ecf4f6d43b2ae72ae6228b5e5451d0ae94e1145ccd0120929819cfeba9e38c4"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRAIN_TRANSITION_INFLUENCE_ALL_768.csv",
+      "bytes": 167984,
+      "sha256": "4f0a0136b3ed7455e09e93f295709052d688f06bac16d1eac7f045acc1953712"
+    },
+    {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/TRANSITIONS_ALL_12.csv",
+      "bytes": 2512,
+      "sha256": "92d187ffec1dedae3f64c3cc549d1ea96480b29c452f43871e12ad09b2601332"
+    }
+  ],
+  "original_delivery_entries_verified_after_restoration": 49,
+  "receipt_handling": "Remove copied old receipts before verification; upload integral receipt only after successful rerun. Original failed run included two historical receipts, which are not new PASS evidence.",
+  "scientific_result_changed": false,
+  "synthetic_observations_created": false
+}

@@ -1,0 +1,477 @@
+{
+  "all_improvements_attainable_by_local_minimum_ties": true,
+  "claims": 34,
+  "domains": [
+    "bayme",
+    "ceh",
+    "cuantoritmica",
+    "ech",
+    "formal",
+    "galactic_mhd",
+    "kch_fabric",
+    "physical_bench",
+    "pluriverse",
+    "runtime",
+    "seismic",
+    "solar"
+  ],
+  "effective_reservations": {
+    "BAYME_CEH": [],
+    "BAYME_OPERATIONS": [
+      "NO_CURRENT_OPERATIONAL_STATE_CHECK",
+      "REPORT_RECOVERED_NOT_RAW_LEDGER_REPLAY"
+    ],
+    "CEH_PROGRAM": [
+      "NO_COMPLETE_CEH_EMPIRICAL_BENCHMARK"
+    ],
+    "CUANTORITMICA": [
+      "UNITS_BASE_ROUNDING_AND_SEARCH_BUDGET_NOT_UNIVERSALLY_FIXED"
+    ],
+    "ECH": [
+      "ALL_23_SQUARE_COUNTS_NOT_PROVED_TIE_INVARIANT",
+      "FINITE_KERNEL_NOT_PHYSICAL_VALIDATION",
+      "HISTORICAL_RECEIPT_CHAINS_NOT_VERIFIED",
+      "LOCAL_NOT_GLOBAL_PATH_OPTIMALITY",
+      "ORIGINAL_GENERATOR_AND_CACHE_NOT_RECOVERED"
+    ],
+    "ECH_JOINT_FIXED_ROUTES": [
+      "ALL_23_SQUARE_COUNTS_NOT_PROVED_TIE_INVARIANT",
+      "FINITE_KERNEL_NOT_PHYSICAL_VALIDATION",
+      "FIXED_TWO_STAGE_ROUTES_NOT_ALL_GRAPH_POLICY",
+      "HISTORICAL_RECEIPT_CHAINS_NOT_VERIFIED",
+      "LOCAL_NOT_GLOBAL_PATH_OPTIMALITY",
+      "ORIGINAL_GENERATOR_AND_CACHE_NOT_RECOVERED"
+    ],
+    "ECH_LOCAL_MINIMUM_LOOKAHEAD": [
+      "ALL_23_SQUARE_COUNTS_NOT_PROVED_TIE_INVARIANT",
+      "CATALOGUE_REQUIRES_EXACT_ROUTE_AND_INHERITED_STATE",
+      "FINITE_KERNEL_NOT_PHYSICAL_VALIDATION",
+      "FIXED_TWO_STAGE_ROUTES_NOT_ALL_GRAPH_POLICY",
+      "HISTORICAL_RECEIPT_CHAINS_NOT_VERIFIED",
+      "LOCAL_NOT_GLOBAL_PATH_OPTIMALITY",
+      "ORIGINAL_GENERATOR_AND_CACHE_NOT_RECOVERED",
+      "POSTHOC_MECHANISM_AUDIT"
+    ],
+    "ECH_PLANNING_QUOTIENT": [
+      "ALL_23_SQUARE_COUNTS_NOT_PROVED_TIE_INVARIANT",
+      "DOES_NOT_PRESERVE_DECODING_OBSERVATIONS_OR_RECEIPT_AUTHORITY",
+      "FINITE_KERNEL_NOT_PHYSICAL_VALIDATION",
+      "HISTORICAL_RECEIPT_CHAINS_NOT_VERIFIED",
+      "LOCAL_NOT_GLOBAL_PATH_OPTIMALITY",
+      "ORIGINAL_GENERATOR_AND_CACHE_NOT_RECOVERED",
+      "SUFFICIENT_NOT_MINIMAL_QUOTIENT",
+      "UNIT_COST_FIXED_KERNEL_DISTANCE_CONTRACT_ASSUMPTIONS"
+    ],
+    "IDENTIFIABILITY": [],
+    "KCH_FABRIC": [
+      "HISTORICAL_ALPHA_SCOPE"
+    ],
+    "M31_RESPONSE": [
+      "CENTRAL_FIELD_MODEL_NOT_FULL_POSTERIOR"
+    ],
+    "M33_2D": [
+      "ARCHIVED_TRANSCRIPTION_NOT_INDEPENDENTLY_REFETCHED",
+      "COEFFICIENT_PRODUCTS_NOT_SEPARATE_FACTORS",
+      "COVARIANCE_SENSITIVITY_NOT_PUBLISHED_FULL_COVARIANCE"
+    ],
+    "M33_RADIAL": [
+      "ARCHIVED_TRANSCRIPTION_NOT_INDEPENDENTLY_REFETCHED",
+      "COEFFICIENT_PRODUCTS_NOT_SEPARATE_FACTORS",
+      "COVARIANCE_SENSITIVITY_NOT_PUBLISHED_FULL_COVARIANCE"
+    ],
+    "OBSERVATION_QUOTIENT": [],
+    "PARITY_BRIDGES": [],
+    "PHYSICAL_BENCH": [
+      "CURRENT_HARDWARE_AND_SUPPLIER_STATUS_NOT_REVERIFIED"
+    ],
+    "PLURIVERSE": [
+      "NO_COMPARABLE_CLOSED_LATENT_RIVAL",
+      "NO_EMPIRICAL_COSMOLOGICAL_DISCRIMINATION"
+    ],
+    "RETURN_TRANSPORT": [],
+    "RUNTIME_CUSTODY": [],
+    "SEISMIC_BLIND_V09": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_DESIGN_V09A": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_DYNAMIC_V082": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_LOCAL": [],
+    "SEISMIC_MEMBERSHIP": [
+      "UNCERTIFIED_HISTORICAL_EVENT_MEMBERSHIP"
+    ],
+    "SEISMIC_PILOT_GLOBAL": [
+      "INDIO_PILOT_TO_TEST_OVERLAP_NOT_QUANTIFIED"
+    ],
+    "SEISMIC_TERMINAL_V11": [
+      "MODEL_SOURCE_GRAPH_CONDITIONAL",
+      "SAME_GEOGRAPHY_TEMPORAL_REPLICATION"
+    ],
+    "SOLAR_BASIS": [],
+    "SOLAR_DIRECT": [],
+    "SOLAR_FLUX": [
+      "ORIGINAL_SAFE_RESULT_NOT_REEXECUTED_IN_THIS_CONTINUITY"
+    ],
+    "SOLAR_FORECAST": [],
+    "SOLAR_HEMISPHERE": [],
+    "SOLAR_LOCAL_DIAGNOSTIC": [
+      "ENDPOINT_ACTIVITY_IS_NOT_EX_ANTE",
+      "OVERLAPPING_AGGREGATES_NOT_INDEPENDENT_REPLICATES",
+      "POSTHOC_NOT_NEW_CONFIRMATION",
+      "QUALITY_SELECTED_LOCAL_WINDOWS",
+      "SOME_SOURCE_FIELDS_PREVIOUSLY_OBSERVED",
+      "THREE_HISTORICAL_DEVELOPMENT_HARPS"
+    ],
+    "SOLAR_TEMPORAL": [
+      "ENDPOINT_ACTIVITY_IS_NOT_EX_ANTE",
+      "FIXED_GRID_QUALITY_FAILURE"
+    ],
+    "SOLAR_TEMPORAL_V16": [
+      "ENDPOINT_ACTIVITY_IS_NOT_EX_ANTE",
+      "QUALITY_SELECTED_LOCAL_WINDOWS",
+      "SOME_SOURCE_FIELDS_PREVIOUSLY_OBSERVED",
+      "THREE_HISTORICAL_DEVELOPMENT_HARPS"
+    ]
+  },
+  "exact_joint_routes": 46,
+  "format": "KCH_INTEGRAL_CORPUS_VERIFICATION_V3",
+  "improved_archived_routes": 11,
+  "locally_minimal_joint_optimal_catalogue": [
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S01P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S01P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S02P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S02P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S03P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S03P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S04P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S04P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S05P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S05P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S06P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S06P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S07P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S07P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S08P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S08P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S09P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S09P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S10P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S10P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S11P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S11P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S12P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S12P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S13P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "NEW_LOCAL_MINIMUM_TIE",
+      "route_id": "S13P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S14P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S14P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S15P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S15P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S16P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S16P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S17P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S17P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S18P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S18P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S19P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S19P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S20P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S20P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S21P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S21P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S22P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S22P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S23P1",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    },
+    {
+      "first_cost_locally_minimal": true,
+      "kind": "ARCHIVED_LOCAL_MINIMUM_PLAN",
+      "route_id": "S23P2",
+      "second_cost_locally_minimal_by_joint_lower_bound": true,
+      "total_cost_joint_optimal": true
+    }
+  ],
+  "new_authority_granted": false,
+  "optimal_value_asymmetric_squares": 13,
+  "parent_registry_unchanged": true,
+  "planning_quotient_patterns": 7880,
+  "solar_aggregate_rows": 1200,
+  "solar_gate_preserved": true,
+  "solar_local_cells": 960,
+  "solar_numeric_checks": 43924,
+  "sources": 34,
+  "status": "PASS",
+  "synthetic_observations_created": false
+}
