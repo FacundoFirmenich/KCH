@@ -1,0 +1,345 @@
+{
+  "format": "KCH_PHYSICAL_CONTRACT_AUDIT_V1",
+  "date": "2026-10-20",
+  "source_files": {
+    "protocol": {
+      "path": "research/continuity_v2_20261013/evidence/solar/SELECTED_PROTOCOL_V1_6.json",
+      "sha256": "0feccf5ff2774dc4810a01e588ce11c21679d48ae52f5dfbc71699629ca08d4c"
+    },
+    "result": {
+      "path": "research/continuity_v2_20261013/evidence/solar/TEMPORAL_LIFT_DEVELOPMENT_RESULT_V1_6.json",
+      "sha256": "f70febf57e5abe59b61207fd338acd57e369d6d466fb7e59d6bcd4d515f875a6"
+    },
+    "local": {
+      "path": "research/continuity_v3_20261013/evidence/solar_local/AGGREGATES_ALL_1200.csv",
+      "sha256": "0134b1566888444615b6ec026a8c8945d32b6dc2c3fc99467533fac450dd1952"
+    },
+    "m33": {
+      "path": "research/continuity_20261013/evidence/m33/M33_RADIAL_VERIFICATION.json",
+      "sha256": "0dbdc75eade85f1ced260b8d364cc2fe5def50ee17b26691bfab60e1f54053cb"
+    }
+  },
+  "new_observations": false,
+  "new_model_fits": false,
+  "synthetic_data": false,
+  "scientific_result_changed": false,
+  "solar": {
+    "historical_outcome": "NO_DEVELOPMENT_DOMINANT_LIFT",
+    "folds": [
+      {
+        "held_out_harp": 401,
+        "train_harps": [
+          2920,
+          5249
+        ],
+        "test_start_tai": "2011.03.09_11:24:00_TAI",
+        "test_end_tai": "2011.03.10_11:24:00_TAI",
+        "max_train_time_tai": "2015.03.02_23:48:00_TAI",
+        "train_harps_after_test_start": [
+          2920,
+          5249
+        ],
+        "chronological_fit_before_test_start": false,
+        "retrospective_development": true,
+        "prospective_validation": false
+      },
+      {
+        "held_out_harp": 2920,
+        "train_harps": [
+          401,
+          5249
+        ],
+        "test_start_tai": "2013.07.07_23:48:00_TAI",
+        "test_end_tai": "2013.07.08_23:48:00_TAI",
+        "max_train_time_tai": "2015.03.02_23:48:00_TAI",
+        "train_harps_after_test_start": [
+          5249
+        ],
+        "chronological_fit_before_test_start": false,
+        "retrospective_development": true,
+        "prospective_validation": false
+      },
+      {
+        "held_out_harp": 5249,
+        "train_harps": [
+          2920,
+          401
+        ],
+        "test_start_tai": "2015.03.01_23:48:00_TAI",
+        "test_end_tai": "2015.03.02_23:48:00_TAI",
+        "max_train_time_tai": "2013.07.08_23:48:00_TAI",
+        "train_harps_after_test_start": [],
+        "chronological_fit_before_test_start": true,
+        "retrospective_development": true,
+        "prospective_validation": false
+      }
+    ],
+    "folds_with_future_training_sources": 2,
+    "models": [
+      {
+        "model_id": "G_ACTIVITY_AFFINE",
+        "equation": "z_y=a*z_x+b_component+c*delta_q",
+        "trainable_parameters": 18,
+        "test_endpoint_activity_input": true,
+        "equation_compatible_with_issue_time_inputs_if_parameters_preavailable": false,
+        "current_task": "RECONSTRUCT",
+        "PREDICT_validated": false,
+        "TRACK_validated": false,
+        "learned_parameters_require_emission_time_provenance": true
+      },
+      {
+        "model_id": "H_HELICAL_TRANSLATION",
+        "equation": "y=x+b",
+        "trainable_parameters": 16,
+        "test_endpoint_activity_input": false,
+        "equation_compatible_with_issue_time_inputs_if_parameters_preavailable": true,
+        "current_task": "RETROSPECTIVE_TRANSITION_EVALUATION",
+        "PREDICT_validated": false,
+        "TRACK_validated": false,
+        "learned_parameters_require_emission_time_provenance": true
+      },
+      {
+        "model_id": "L_LEMNISCATIC_ALTERNATING",
+        "equation": "y=x+s_k*b",
+        "trainable_parameters": 16,
+        "test_endpoint_activity_input": false,
+        "equation_compatible_with_issue_time_inputs_if_parameters_preavailable": true,
+        "current_task": "RETROSPECTIVE_TRANSITION_EVALUATION",
+        "PREDICT_validated": false,
+        "TRACK_validated": false,
+        "learned_parameters_require_emission_time_provenance": true
+      },
+      {
+        "model_id": "M_MOBIUS_SIGN",
+        "equation": "y=-x",
+        "trainable_parameters": 0,
+        "test_endpoint_activity_input": false,
+        "equation_compatible_with_issue_time_inputs_if_parameters_preavailable": true,
+        "current_task": "RETROSPECTIVE_TRANSITION_EVALUATION",
+        "PREDICT_validated": false,
+        "TRACK_validated": false,
+        "learned_parameters_require_emission_time_provenance": false
+      },
+      {
+        "model_id": "T0_TRIVIAL_IDENTITY",
+        "equation": "y=x",
+        "trainable_parameters": 0,
+        "test_endpoint_activity_input": false,
+        "equation_compatible_with_issue_time_inputs_if_parameters_preavailable": true,
+        "current_task": "RETROSPECTIVE_TRANSITION_EVALUATION",
+        "PREDICT_validated": false,
+        "TRACK_validated": false,
+        "learned_parameters_require_emission_time_provenance": false
+      }
+    ],
+    "window_selection_uses_complete_future_metadata": true,
+    "note": "Selection conditioned on all five snapshots satisfying quality/support; not an online eligibility policy.",
+    "local_wins": {
+      "H_HELICAL_TRANSLATION": 4,
+      "L_LEMNISCATIC_ALTERNATING": 7,
+      "G_ACTIVITY_AFFINE": 5,
+      "M_MOBIUS_SIGN": 0
+    }
+  },
+  "m33": {
+    "operator_source": "deterministic_primary.natural_response.response_matrix_kms_per_eta",
+    "matrix_rows": 2,
+    "matrix_columns": 3,
+    "rank_archived": 2,
+    "nullity": 1,
+    "unit_null_direction_eta": [
+      0.33333333333333803,
+      0.6666666666666619,
+      0.6666666666666692
+    ],
+    "K_times_null_direction_kms_per_eta": [
+      -2.6020852139652106e-18,
+      -1.734723475976807e-18
+    ],
+    "nonzero_singular_value_ratio": 14.241271117172493,
+    "interpretation": "With this fixed two-ring operator, eta and eta+t*n have the same predicted two-ring vector. This is a structural ambiguity, not a parameter fit or physical amplitude estimate.",
+    "nuisance_adjusted_rank_computed": false,
+    "physical_lorentz_kernel_equivalence_proved": false,
+    "historical_deterministic_primary": {
+      "scenario": "inclination_plus_corr3_L0p5",
+      "ring_means_kms": [
+        -2.745511046068306,
+        -1.3078672795449826
+      ],
+      "ring_se_kms": [
+        3.3232212491851354,
+        3.884041402803687
+      ],
+      "chi2_null": 0.8176597943726727,
+      "p_null": 0.6644272436537919,
+      "min_covariance_eigenvalue": 5.951773995512065,
+      "minimum_eta_norm": 289.9970493373486,
+      "natural_response": {
+        "response_matrix_kms_per_eta": [
+          [
+            0.021648579209053345,
+            0.008597515469585624,
+            -0.019421805074112317
+          ],
+          [
+            0.016004890444171405,
+            0.009771788161595461,
+            -0.017774233383681143
+          ]
+        ],
+        "rank": 2,
+        "singular_values": [
+          0.039743732241205844,
+          0.0027907433201859225
+        ],
+        "ring_envelope_eta_norm_le_1_kms": [
+          0.030327953547135945,
+          0.02583733218392703
+        ]
+      },
+      "reference_means_kms": {
+        "Koch corrected table": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "Koch Brandt fit": [
+          -3.3859692660392273,
+          -1.5330389448087285
+        ],
+        "Corbelli/Sellwood fit": [
+          -2.8539000947984503,
+          -1.076338261294465
+        ]
+      },
+      "reference_spread_kms": [
+        0.6404582199709212,
+        0.4567006835142635
+      ],
+      "reference_to_natural_ratio": [
+        21.11775260323833,
+        17.67599999346563
+      ],
+      "leave_one_bin_out": {
+        "n_refits": 28,
+        "ring_min_kms": [
+          -3.429756241678821,
+          -1.8409945012146256
+        ],
+        "ring_max_kms": [
+          -1.9555134230302775,
+          -1.0541064223131156
+        ],
+        "ring_sd_kms": [
+          0.2577871131906906,
+          0.14234561939629642
+        ]
+      }
+    },
+    "historical_covariance_scenarios": {
+      "published_diagonal": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          0.7569478633861201,
+          0.6225508172173911
+        ],
+        "chi2_null": 17.569160134546,
+        "p_null": 0.0001530753816665455,
+        "min_covariance_eigenvalue": 2.1682134467238208
+      },
+      "inclination_only": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          2.7270893931619367,
+          3.384277423264019
+        ],
+        "chi2_null": 3.9508394508683664,
+        "p_null": 0.13870308281196772,
+        "min_covariance_eigenvalue": 2.2004652137807375
+      },
+      "inclination_plus_unc1": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          2.749912100103627,
+          3.402695060920762
+        ],
+        "chi2_null": 3.24140633461245,
+        "p_null": 0.1977595921019471,
+        "min_covariance_eigenvalue": 3.200465213780737
+      },
+      "inclination_plus_corr2_L0p5": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          3.01819078764496,
+          3.624527231436853
+        ],
+        "chi2_null": 1.275016174696981,
+        "p_null": 0.5286080292113634,
+        "min_covariance_eigenvalue": 4.644420756813946
+      },
+      "inclination_plus_corr3_L0p5": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          3.3232212491851354,
+          3.884041402803687
+        ],
+        "chi2_null": 0.8176597943726727,
+        "p_null": 0.6644272436537919,
+        "min_covariance_eigenvalue": 5.951773995512065
+      },
+      "inclination_plus_corr5_L0p5": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          4.15134144107057,
+          4.617492123863802
+        ],
+        "chi2_null": 0.44420397538396894,
+        "p_null": 0.8008336849903905,
+        "min_covariance_eigenvalue": 9.923097614043202
+      },
+      "inclination_plus_corr3_L0p25": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          3.1171768919055096,
+          3.708833184528555
+        ],
+        "chi2_null": 1.0264289812291167,
+        "p_null": 0.5985683905338681,
+        "min_covariance_eigenvalue": 7.915590973188568
+      },
+      "inclination_plus_corr3_L1p0": {
+        "ring_means_kms": [
+          -2.745511046068306,
+          -1.3078672795449826
+        ],
+        "ring_se_kms": [
+          3.5647721770028338,
+          4.092320163850526
+        ],
+        "chi2_null": 0.700557662990319,
+        "p_null": 0.7044916278761837,
+        "min_covariance_eigenvalue": 4.82043461478374
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-20",
+  "scope": "Contexto transversal; menor profundidad que revisiones especializadas",
+  "sources": [
+    {
+      "id": "R01",
+      "authors": [
+        "W3C PROV Working Group"
+      ],
+      "year": 2013,
+      "title": "PROV-DM: The PROV Data Model",
+      "url": "https://www.w3.org/TR/prov-dm/",
+      "reading_depth": "Recomendación oficial; introducción, alcance y organización del modelo. No auditoría íntegra de todas las restricciones.",
+      "role": "Antecedente de procedencia, entidades, actividades, agentes y derivación."
+    },
+    {
+      "id": "R02",
+      "authors": [
+        "Todd J. Green",
+        "Grigoris Karvounarakis",
+        "Val Tannen"
+      ],
+      "year": 2007,
+      "title": "Provenance Semirings",
+      "url": "https://web.cs.ucdavis.edu/~green/papers/pods07.pdf",
+      "reading_depth": "Texto primario; abstract, introducción y contribuciones. No auditoría de todas las pruebas.",
+      "role": "Antecedente algebraico de procedencia y linaje."
+    },
+    {
+      "id": "R03",
+      "authors": [
+        "Theodore P. Hill"
+      ],
+      "year": 1995,
+      "title": "A Statistical Derivation of the Significant-Digit Law",
+      "url": "https://digitalcommons.calpoly.edu/rgp_rsr/28/",
+      "reading_depth": "Registro institucional y abstract. No texto completo.",
+      "role": "Regularidades de dígitos requieren contraste con leyes de mezcla e invariancia conocidas."
+    },
+    {
+      "id": "R04",
+      "authors": [
+        "Neil J. Cornish",
+        "David N. Spergel",
+        "Glenn D. Starkman"
+      ],
+      "year": 1998,
+      "title": "Measuring the topology of the universe",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC34195/",
+      "reading_depth": "Texto primario; mecanismo de círculos emparejados y motivación observacional. No reanálisis cosmológico.",
+      "role": "Ejemplo de puente entre topología y observable; no evidencia para Pluriverse."
+    },
+    {
+      "id": "R05",
+      "authors": [
+        "Joint Committee for Guides in Metrology"
+      ],
+      "year": 2008,
+      "title": "Evaluation of measurement data - Guide to the expression of uncertainty in measurement, JCGM 100:2008",
+      "url": "https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf",
+      "reading_depth": "Referencia oficial y alcance general de la guía; no auditoría de la enmienda de 2026.",
+      "role": "Función de medición y presupuesto de incertidumbre del banco físico."
+    },
+    {
+      "id": "R06",
+      "authors": [
+        "Journal of Artificial Intelligence Research"
+      ],
+      "year": 2026,
+      "title": "About the Journal - alcance y criterios editoriales vigentes consultados",
+      "url": "https://www.jair.org/index.php/jair/about",
+      "reading_depth": "Página oficial: objetivos, originalidad, significación, claridad, reproducibilidad y relación con predecesores.",
+      "role": "Criterios editoriales; 2026 es fecha de consulta, no fecha de publicación."
+    },
+    {
+      "id": "R07",
+      "authors": [
+        "American Physical Society"
+      ],
+      "year": 2026,
+      "title": "Physical Review E - Information for Authors",
+      "url": "https://journals.aps.org/pre/authors",
+      "reading_depth": "Página oficial de autores y alcance; consulta dirigida, no verificación de plazos ni costes.",
+      "role": "Encaje temático; 2026 es fecha de consulta."
+    },
+    {
+      "id": "R08",
+      "authors": [
+        "Seismological Society of America"
+      ],
+      "year": 2026,
+      "title": "Seismological Research Letters - Information for Authors",
+      "url": "https://www.seismosoc.org/publications/srl-authorsinfo-2/",
+      "reading_depth": "Página oficial y alcance editorial; no comprobación de todas las condiciones de envío.",
+      "role": "Encaje temático; 2026 es fecha de consulta."
+    }
+  ],
+  "direct_retrievals": [
+    {
+      "date": "2026-10-20",
+      "url": "https://www.w3.org/TR/prov-dm/"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://web.cs.ucdavis.edu/~green/papers/pods07.pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://digitalcommons.calpoly.edu/rgp_rsr/28/"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC34195/"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://www.jair.org/index.php/jair/about"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://journals.aps.org/pre/authors"
+    },
+    {
+      "date": "2026-10-20",
+      "url": "https://www.seismosoc.org/publications/srl-authorsinfo-2/"
+    }
+  ],
+  "search_log_limit": "Se conservan aperturas directas verificables. Este archivo no reconstruye consultas literales anteriores ausentes del registro; los logs especializados tampoco se presentan como censo completo.",
+  "additional_root_reads": [
+    {
+      "id": "L12",
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol379-cp2026/LIPIcs.CP.2026.52/LIPIcs.CP.2026.52.pdf",
+      "depth": "Introducción, secciones 2 y 3, arquitectura de racionalización; no réplica de benchmarks."
+    },
+    {
+      "id": "SS12",
+      "url": "https://central.scec.org/node/45670",
+      "depth": "Registro oficial y póster completo enlazado, con Zhuang y Maita como autores en PDF."
+    },
+    {
+      "id": "SS03",
+      "url": "https://arxiv.org/abs/2405.10712",
+      "depth": "Abstract y metadatos de publicación SRL2025 y preprint v2 de febrero2026."
+    },
+    {
+      "id": "F02",
+      "url": "https://arxiv.org/abs/cond-mat/9907176",
+      "depth": "Abstract y metadatos; lectura especializada de texto completo seleccionada registrada en formal_sources."
+    },
+    {
+      "id": "F05",
+      "url": "https://proceedings.mlr.press/v108/abel20a.html",
+      "depth": "Abstract y metadatos; garantías descritas."
+    },
+    {
+      "id": "S07",
+      "url": "https://arxiv.org/html/2604.16098v1",
+      "depth": "Abstract, introducción y pasajes sobre derivadas internas de ventana y estimaciones de flujo."
+    }
+  ]
+}
