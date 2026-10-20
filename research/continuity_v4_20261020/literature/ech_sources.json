@@ -1,0 +1,439 @@
+{
+  "format": "ECH_CRITICAL_LITERATURE_REVIEW_SOURCES_V1",
+  "date": "2026-10-20",
+  "review_scope": "Focused primary-source review, not exhaustive systematic review or proof of novelty priority.",
+  "method_prohibition": "HHC not used, not loaded, not invoked.",
+  "no_experiments_or_source_modifications": true,
+  "search_log": [
+    {
+      "date": "2026-10-20",
+      "engine": "system2_search_query",
+      "query": "test cover multicover robust fault identification erroneous sensors Abbas",
+      "purpose": "Terminology and nearest-neighbor robustness search; broad-query recall imperfect, followed by direct primary PDFs"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2_search_query",
+      "query": "adaptive submodularity varying query sets Fern Golovin Krause",
+      "purpose": "Locate PMLR/JAIR primary records and definitions"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2_search_query",
+      "query": "certifying integer programming rational proof checker VIPR Cheung Eifler",
+      "purpose": "Locate exact certification papers, author software and contemporary citations"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2_search_query",
+      "query": "\"A Safe Computational Framework for Integer Programming\" 2022 3485630",
+      "purpose": "Verify journal year and DOI with author/institution metadata"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2_search_query",
+      "query": "\"Safe and Verified Gomory\" 2024 742 763",
+      "purpose": "Verify final 2024 title/pages/DOI"
+    }
+  ],
+  "search_log_limit": "Exact queries explicitly retained in this JSON; earlier exploratory query variants are not reconstructed from memory. Supplementary discovery used primary bibliographies and shared team retrieval, followed by direct opening.",
+  "additional_direct_lookups": [
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022000005000140",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L01"
+    },
+    {
+      "url": "https://arxiv.org/abs/cs/9501101",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L02"
+    },
+    {
+      "url": "https://ocs.aaai.org/Library/JAIR/Vol42/jair42-012.php",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L03"
+    },
+    {
+      "url": "https://proceedings.mlr.press/v76/fern17a.html",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L04"
+    },
+    {
+      "url": "https://arxiv.org/abs/1611.08832",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L05"
+    },
+    {
+      "url": "https://epubs.siam.org/doi/10.1137/23M156046X",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L06"
+    },
+    {
+      "url": "https://arxiv.org/abs/1809.01572",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L07"
+    },
+    {
+      "url": "https://people.eecs.berkeley.edu/~necula/papers.html",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L08"
+    },
+    {
+      "url": "https://arxiv.org/abs/1507.07134",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L09"
+    },
+    {
+      "url": "https://doi.org/10.1145/3055004.3055020",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L10"
+    },
+    {
+      "url": "https://proceedings.mlr.press/v108/abel20a.html",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L11"
+    },
+    {
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CP.2026.52",
+      "date": "2026-10-20",
+      "reason": "Primary metadata/text verification",
+      "id": "L12"
+    }
+  ],
+  "sources": [
+    {
+      "id": "L01",
+      "title": "Tight approximability results for test set problems in bioinformatics",
+      "authors": [
+        "Piotr Berman",
+        "Bhaskar DasGupta",
+        "Ming-Yang Kao"
+      ],
+      "year": 2005,
+      "venue": "Journal of Computer and System Sciences 71(2):145–162",
+      "doi": "10.1016/j.jcss.2005.02.001",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022000005000140",
+      "full_text_url": null,
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn40search2",
+        "turn45search2",
+        "turn55view4"
+      ],
+      "reading_depth": "Publisher/institutional metadata and abstract; full text not retrieved",
+      "comparison_role": "Test set and pair-distinguishability predecessor",
+      "reading_limitations": "No theorem-level audit. Author conference PDF retrieval failed."
+    },
+    {
+      "id": "L02",
+      "title": "Solving Multiclass Learning Problems via Error-Correcting Output Codes",
+      "authors": [
+        "Thomas G. Dietterich",
+        "Ghulum Bakiri"
+      ],
+      "year": 1995,
+      "venue": "Journal of Artificial Intelligence Research 2:263–286",
+      "doi": "10.1613/jair.105",
+      "url": "https://arxiv.org/abs/cs/9501101",
+      "full_text_url": "https://arxiv.org/pdf/cs/9501101",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn55view1",
+        "turn59view2"
+      ],
+      "reading_depth": "Abstract and Hamming-distance/error-correction subsection",
+      "comparison_role": "Established relation between minimum code distance and bounded coordinate errors",
+      "reading_limitations": "Not read cover to cover; trained binary classifiers differ from deterministic typed ECH responses."
+    },
+    {
+      "id": "L03",
+      "title": "Adaptive Submodularity: Theory and Applications in Active Learning and Stochastic Optimization",
+      "authors": [
+        "Daniel Golovin",
+        "Andreas Krause"
+      ],
+      "year": 2011,
+      "venue": "Journal of Artificial Intelligence Research 42:427–486",
+      "doi": "10.1613/jair.3278",
+      "url": "https://ocs.aaai.org/Library/JAIR/Vol42/jair42-012.php",
+      "full_text_url": "https://arxiv.org/pdf/1003.3967",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn55view0",
+        "turn98academia36",
+        "turn98search3"
+      ],
+      "reading_depth": "Introduction and definitions of realizations, partial observations, adaptive policy; revised arXiv version accessible",
+      "comparison_role": "Conceptual boundary: adaptive policies depend on observed answers",
+      "reading_limitations": "No transfer of approximation guarantees to ECH; coverage corrections and all hypotheses would require separate audit."
+    },
+    {
+      "id": "L04",
+      "title": "Adaptive Submodularity with Varying Query Sets: An Application to Active Multi-label Learning",
+      "authors": [
+        "Alan Fern",
+        "Robby Goetschalckx",
+        "Mandana Hamidi-Haines",
+        "Prasad Tadepalli"
+      ],
+      "year": 2017,
+      "venue": "ALT, Proceedings of Machine Learning Research 76:577–592",
+      "doi": null,
+      "url": "https://proceedings.mlr.press/v76/fern17a.html",
+      "full_text_url": "https://proceedings.mlr.press/v76/fern17a/fern17a.pdf",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn81view1",
+        "turn55view3",
+        "turn98search0"
+      ],
+      "reading_depth": "Official metadata/abstract and beginning of PDF framework",
+      "comparison_role": "Changing availability is already studied in adaptive query settings",
+      "reading_limitations": "No proof audit; random query availability differs from fixed ECH stage schedules."
+    },
+    {
+      "id": "L05",
+      "title": "Verifying Integer Programming Results",
+      "authors": [
+        "Kevin K. H. Cheung",
+        "Ambros Gleixner",
+        "Daniel E. Steffy"
+      ],
+      "year": 2017,
+      "venue": "IPCO 2017:148–160",
+      "doi": "10.1007/978-3-319-59250-3_13",
+      "url": "https://arxiv.org/abs/1611.08832",
+      "full_text_url": "https://arxiv.org/pdf/1611.08832",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn43view1",
+        "turn98academia40"
+      ],
+      "reading_depth": "Abstract, introduction and LP/IP certificate principle",
+      "comparison_role": "Direct predecessor for exact rational certificates independently checked from solver",
+      "reading_limitations": "No complete VIPR format audit and no software execution."
+    },
+    {
+      "id": "L06",
+      "title": "Safe and Verified Gomory Mixed-Integer Cuts in a Rational Mixed-Integer Program Framework",
+      "authors": [
+        "Leon Eifler",
+        "Ambros Gleixner"
+      ],
+      "year": 2024,
+      "venue": "SIAM Journal on Optimization 34(1):742–763",
+      "doi": "10.1137/23M156046X",
+      "url": "https://epubs.siam.org/doi/10.1137/23M156046X",
+      "full_text_url": "https://arxiv.org/pdf/2303.12365",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn65view1",
+        "turn85search0"
+      ],
+      "reading_depth": "Publisher metadata; preprint abstract, introduction and certification architecture",
+      "comparison_role": "Certified exact MIP extends beyond cases closed by a rounded LP dual bound",
+      "reading_limitations": "No full proof audit of safe cuts and no reproduced timing."
+    },
+    {
+      "id": "L07",
+      "title": "A Safe Computational Framework for Integer Programming Applied to Chvátal’s Conjecture",
+      "authors": [
+        "Leon Eifler",
+        "Ambros Gleixner",
+        "Jonad Pulaj"
+      ],
+      "year": 2022,
+      "venue": "ACM Transactions on Mathematical Software 48(2)",
+      "doi": "10.1145/3485630",
+      "url": "https://arxiv.org/abs/1809.01572",
+      "full_text_url": "https://arxiv.org/pdf/1809.01572",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn81view3",
+        "turn84view1",
+        "turn85search15"
+      ],
+      "reading_depth": "Abstract and framework/input-checker sections; Coq encoding checks examined",
+      "comparison_role": "Independent numeric certificates do not themselves establish correctness of problem encoding",
+      "reading_limitations": "Did not audit all Coq code, reproduce computational proof or claim formal verification of ECH checker."
+    },
+    {
+      "id": "L08",
+      "title": "Proof-Carrying Code",
+      "authors": [
+        "George C. Necula"
+      ],
+      "year": 1997,
+      "venue": "POPL 1997:106–119",
+      "doi": "10.1145/263699.263712",
+      "url": "https://people.eecs.berkeley.edu/~necula/papers.html",
+      "full_text_url": null,
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn55view2",
+        "turn59view0"
+      ],
+      "reading_depth": "Author bibliography and abstract; DOI metadata",
+      "comparison_role": "Conceptual predecessor for untrusted producer with independently checkable evidence",
+      "reading_limitations": "Full PDF retrieval failed; safety proof for code is not the same theorem as optimization optimality."
+    },
+    {
+      "id": "L09",
+      "title": "Sensor placement for fault location identification in water networks: A minimum test cover approach",
+      "authors": [
+        "Lina Sela Perelman",
+        "Waseem Abbas",
+        "Xenofon Koutsoukos",
+        "Saurabh Amin"
+      ],
+      "year": 2016,
+      "venue": "Automatica 72:166–176",
+      "doi": "10.1016/j.automatica.2016.06.005",
+      "url": "https://arxiv.org/abs/1507.07134",
+      "full_text_url": "https://arxiv.org/html/1507.07134v3",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn74view1",
+        "turn85view0"
+      ],
+      "reading_depth": "Abstract, introduction, formulation and comparator descriptions",
+      "comparison_role": "Direct identification-to-test-cover mapping and greedy/augmented-greedy baselines",
+      "reading_limitations": "No experimental reanalysis. A real network topology with simulated faults is not a field measurement dataset."
+    },
+    {
+      "id": "L10",
+      "title": "Resilient Sensor Placement for Fault Localization in Water Distribution Networks",
+      "authors": [
+        "Waseem Abbas",
+        "Lina Sela Perelman",
+        "Saurabh Amin",
+        "Xenofon Koutsoukos"
+      ],
+      "year": 2017,
+      "venue": "ACM/IEEE ICCPS 2017",
+      "doi": "10.1145/3055004.3055020",
+      "url": "https://doi.org/10.1145/3055004.3055020",
+      "full_text_url": "https://cs.vuse.vanderbilt.edu/koutsoxd/www/Publications/p165-abbas.pdf",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn81view2",
+        "turn84view0",
+        "turn84view2"
+      ],
+      "reading_depth": "Sections 2–3 including multilevel/error model, Proposition 3.2 and Section 3.2.1 greedy multicover construction",
+      "comparison_role": "Nearest robust identification predecessor: pair separation, arbitrary sensor errors, d≥2e+1, multicover",
+      "reading_limitations": "Not reexecuted. Their sensor-valued Hamming metric must not be confused with counting every encoded output bit as independent sensor."
+    },
+    {
+      "id": "L11",
+      "title": "Value Preserving State-Action Abstractions",
+      "authors": [
+        "David Abel",
+        "Nate Umbanhowar",
+        "Khimya Khetarpal",
+        "Dilip Arumugam",
+        "Doina Precup",
+        "Michael Littman"
+      ],
+      "year": 2020,
+      "venue": "AISTATS, Proceedings of Machine Learning Research 108:1639–1650",
+      "doi": null,
+      "url": "https://proceedings.mlr.press/v108/abel20a.html",
+      "full_text_url": "https://proceedings.mlr.press/v108/abel20a/abel20a.pdf",
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn81view0"
+      ],
+      "reading_depth": "Official abstract and PDF introduction",
+      "comparison_role": "Broader value-preserving abstraction context; preservation requires explicit conditions",
+      "reading_limitations": "No theorem-by-theorem audit; ECH is not automatically a stochastic shortest-path or general MDP result."
+    },
+    {
+      "id": "L12",
+      "title": "VIPR Certificate Construction from Black-Box ILP Solvers",
+      "authors": [
+        "Stefan Szeider"
+      ],
+      "year": 2026,
+      "venue": "CP 2026, LIPIcs 379:52:1–52:14",
+      "doi": "10.4230/LIPIcs.CP.2026.52",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CP.2026.52",
+      "full_text_url": null,
+      "primary_source": true,
+      "verified_on": "2026-10-20",
+      "web_refs": [
+        "turn87view0",
+        "turn98search12"
+      ],
+      "reading_depth": "Official publication metadata and abstract; publication date 2026-07-13",
+      "comparison_role": "Direct contemporary predecessor: floating-point oracle translated into independently verifiable rational VIPR certificates",
+      "reading_limitations": "Full paper not read. Findings about specific performance or cascaded rationalization not imported into ECH."
+    }
+  ],
+  "supplementary_retrieved_not_counted_in_12": [
+    {
+      "title": "Towards a Unified Theory of State Abstraction for MDPs",
+      "authors": [
+        "Lihong Li",
+        "Thomas J. Walsh",
+        "Michael L. Littman"
+      ],
+      "year": 2006,
+      "url": "https://thomasjwalsh.net/pub/aima06Towards.pdf",
+      "web_ref": "turn97view0",
+      "status": "Author PDF obtained and introduction/Section 3.1 read after main review; fuller assessment in formal team review. Adds historical proximity of exact state abstraction; no separate novelty conclusion."
+    }
+  ],
+  "local_documents_read": [
+    "recovery/repo/research/continuity_v3_20261013/README_ES.md",
+    "recovery/repo/research/continuity_v3_20261013/CLAIM_EVIDENCE_REGISTRY.json (ECH entries and cross-domain reservations)",
+    "recovery/repo/research/continuity_v3_20261013/evidence/ech_joint/DICTAMEN_ES.md",
+    "recovery/repo/research/continuity_v3_20261013/evidence/quotient/COCIENTE_DE_PLANIFICACION_ES.md",
+    "recovery/repo/research/continuity_v2_20261013/evidence/ech/DICTAMEN_ES.md"
+  ],
+  "critical_distinctions": [
+    "Bounded coordinate-error correction does not require probabilistic independence; common-mode failures can exceed the coordinate budget.",
+    "All-pairs deterministic test design is not an observation-adaptive policy.",
+    "Finite optimality certificates do not establish method novelty or external generalization.",
+    "Independent checker is not automatically formally verified; encoding correctness is a separate proof obligation.",
+    "Column compression is not evidence of actual state-history collisions; 93 archived ledgers remain distinct in quotient.",
+    "335 to 320 sums costs of independent routes, not a shared experiment.",
+    "All 11 improvements admit minimal first-step tie choices; no instance requires overacquisition in this frozen family."
+  ],
+  "scores_0_to_4": {
+    "scale": "0 absent; 1 initial; 2 partial; 3 solid within declared scope; 4 closed for the stated claim. Review judgments; no aggregation.",
+    "clarity": 3,
+    "finite_correctness_documentary": 3,
+    "established_novelty": 1,
+    "finite_evidence": 3,
+    "external_utility_evidence": 1,
+    "reproducibility_recovered_corpus": 3,
+    "comparators": 1,
+    "reasons_in": "ech_review.md",
+    "not_probabilities": true,
+    "no_total_score": true
+  },
+  "venue_scope": "Conditional editorial fit only; no acceptance estimates or current call/deadline verification."
+}

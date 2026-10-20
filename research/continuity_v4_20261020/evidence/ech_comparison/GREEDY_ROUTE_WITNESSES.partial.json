@@ -1,0 +1,6596 @@
+[
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 1,
+    "historical_cost": 5,
+    "joint_certificate_sha256": "241ee0b7157e5b9d9e3e1f7b6669c9112964d683812330560140be4f624757be",
+    "joint_optimum": 5,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate": "ACTIONABLE__MODE__d1",
+      "route_id": "S01P1",
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "square_id": "S01"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d1",
+        "elapsed_seconds": 0.00033791699934226926,
+        "inherited_coordinates": [
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:061",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:112",
+          "ACTIONABLE:62f",
+          "ACTIONABLE:890",
+          "ACTIONABLE:980",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:f00"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__MODE__d2",
+        "elapsed_seconds": 0.0007748779989924515,
+        "inherited_coordinates": [
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:061",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:112",
+          "ACTIONABLE:62f",
+          "ACTIONABLE:890",
+          "ACTIONABLE:980",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:f00"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:027",
+            "gain": 95,
+            "total_deficit_before": 141,
+            "unsatisfied_pairs_before": 141
+          },
+          {
+            "coordinate": "MODE:0cc",
+            "gain": 28,
+            "total_deficit_before": 46,
+            "unsatisfied_pairs_before": 46
+          },
+          {
+            "coordinate": "MODE:00b",
+            "gain": 12,
+            "total_deficit_before": 18,
+            "unsatisfied_pairs_before": 18
+          },
+          {
+            "coordinate": "MODE:01e",
+            "gain": 3,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 2,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:027",
+          "MODE:0cc",
+          "MODE:00b",
+          "MODE:01e",
+          "MODE:04a",
+          "MODE:070"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 10,
+    "greedy_minus_historical": 0,
+    "historical_cost": 10,
+    "joint_certificate_sha256": "6af3c2ef67c5b6496628ac569c465e1ba2097bb44fa0d6fb657a7423436ed8aa",
+    "joint_optimum": 10,
+    "route": {
+      "archived_first_cost": 10,
+      "archived_local_cost": 10,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d2",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d2",
+      "route_id": "S01P2",
+      "source": "ACTIONABLE__ACTIONABLE__d1",
+      "square_id": "S01"
+    },
+    "stages": [
+      {
+        "cost": 10,
+        "destination": "ACTIONABLE__ACTIONABLE__d2",
+        "elapsed_seconds": 0.001009203000648995,
+        "inherited_coordinates": [
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:061",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:112",
+          "ACTIONABLE:62f",
+          "ACTIONABLE:890",
+          "ACTIONABLE:980",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:f00"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "ACTIONABLE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "ACTIONABLE:842",
+            "gain": 58,
+            "total_deficit_before": 141,
+            "unsatisfied_pairs_before": 141
+          },
+          {
+            "coordinate": "ACTIONABLE:027",
+            "gain": 34,
+            "total_deficit_before": 83,
+            "unsatisfied_pairs_before": 83
+          },
+          {
+            "coordinate": "ACTIONABLE:a01",
+            "gain": 18,
+            "total_deficit_before": 49,
+            "unsatisfied_pairs_before": 49
+          },
+          {
+            "coordinate": "ACTIONABLE:00f",
+            "gain": 9,
+            "total_deficit_before": 31,
+            "unsatisfied_pairs_before": 31
+          },
+          {
+            "coordinate": "ACTIONABLE:8e0",
+            "gain": 6,
+            "total_deficit_before": 22,
+            "unsatisfied_pairs_before": 22
+          },
+          {
+            "coordinate": "ACTIONABLE:05a",
+            "gain": 5,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "ACTIONABLE:390",
+            "gain": 5,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "ACTIONABLE:04c",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "ACTIONABLE:070",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "ACTIONABLE:1a0",
+            "gain": 2,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          }
+        ],
+        "witness": [
+          "ACTIONABLE:842",
+          "ACTIONABLE:027",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:390",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:070",
+          "ACTIONABLE:1a0"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d2",
+        "elapsed_seconds": 9.348800085717812e-05,
+        "inherited_coordinates": [
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:070",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:112",
+          "ACTIONABLE:1a0",
+          "ACTIONABLE:390",
+          "ACTIONABLE:62f",
+          "ACTIONABLE:842",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:980",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:f00"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 1,
+    "historical_cost": 5,
+    "joint_certificate_sha256": "6d0bb7ab6555aea9418a45f670d198777f66098f3eb121b2655acf6d73f7911f",
+    "joint_optimum": 5,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S02P1",
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "square_id": "S02"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d2",
+        "elapsed_seconds": 0.00020382000002427958,
+        "inherited_coordinates": [
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:0e1",
+          "ACTIONABLE:183",
+          "ACTIONABLE:190",
+          "ACTIONABLE:203",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:610",
+          "ACTIONABLE:806",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a4f",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__MODE__d3",
+        "elapsed_seconds": 0.0008307410007546423,
+        "inherited_coordinates": [
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:0e1",
+          "ACTIONABLE:183",
+          "ACTIONABLE:190",
+          "ACTIONABLE:203",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:610",
+          "ACTIONABLE:806",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a4f",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:142",
+            "gain": 115,
+            "total_deficit_before": 185,
+            "unsatisfied_pairs_before": 185
+          },
+          {
+            "coordinate": "MODE:04b",
+            "gain": 39,
+            "total_deficit_before": 70,
+            "unsatisfied_pairs_before": 70
+          },
+          {
+            "coordinate": "MODE:00e",
+            "gain": 18,
+            "total_deficit_before": 31,
+            "unsatisfied_pairs_before": 31
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 9,
+            "total_deficit_before": 13,
+            "unsatisfied_pairs_before": 13
+          },
+          {
+            "coordinate": "MODE:072",
+            "gain": 3,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:046",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:142",
+          "MODE:04b",
+          "MODE:00e",
+          "MODE:025",
+          "MODE:072",
+          "MODE:046"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 2,
+    "greedy_cost": 15,
+    "greedy_minus_historical": 2,
+    "historical_cost": 13,
+    "joint_certificate_sha256": "7ffb1cbfd5c43f5373fccc559a1bf431926ca17eca949133224bf283868d3bed",
+    "joint_optimum": 13,
+    "route": {
+      "archived_first_cost": 13,
+      "archived_local_cost": 13,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d3",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d3",
+      "route_id": "S02P2",
+      "source": "ACTIONABLE__ACTIONABLE__d2",
+      "square_id": "S02"
+    },
+    "stages": [
+      {
+        "cost": 15,
+        "destination": "ACTIONABLE__ACTIONABLE__d3",
+        "elapsed_seconds": 0.001447657001335756,
+        "inherited_coordinates": [
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:0e1",
+          "ACTIONABLE:183",
+          "ACTIONABLE:190",
+          "ACTIONABLE:203",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:610",
+          "ACTIONABLE:806",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a4f",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "ACTIONABLE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "ACTIONABLE:809",
+            "gain": 68,
+            "total_deficit_before": 185,
+            "unsatisfied_pairs_before": 185
+          },
+          {
+            "coordinate": "ACTIONABLE:142",
+            "gain": 49,
+            "total_deficit_before": 117,
+            "unsatisfied_pairs_before": 117
+          },
+          {
+            "coordinate": "ACTIONABLE:980",
+            "gain": 25,
+            "total_deficit_before": 68,
+            "unsatisfied_pairs_before": 68
+          },
+          {
+            "coordinate": "ACTIONABLE:007",
+            "gain": 13,
+            "total_deficit_before": 43,
+            "unsatisfied_pairs_before": 43
+          },
+          {
+            "coordinate": "ACTIONABLE:05a",
+            "gain": 5,
+            "total_deficit_before": 30,
+            "unsatisfied_pairs_before": 30
+          },
+          {
+            "coordinate": "ACTIONABLE:00b",
+            "gain": 4,
+            "total_deficit_before": 25,
+            "unsatisfied_pairs_before": 25
+          },
+          {
+            "coordinate": "ACTIONABLE:390",
+            "gain": 4,
+            "total_deficit_before": 21,
+            "unsatisfied_pairs_before": 21
+          },
+          {
+            "coordinate": "ACTIONABLE:045",
+            "gain": 3,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "ACTIONABLE:070",
+            "gain": 3,
+            "total_deficit_before": 14,
+            "unsatisfied_pairs_before": 14
+          },
+          {
+            "coordinate": "ACTIONABLE:8a0",
+            "gain": 3,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "ACTIONABLE:00e",
+            "gain": 2,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "ACTIONABLE:027",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "ACTIONABLE:0e0",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "ACTIONABLE:047",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "ACTIONABLE:380",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "ACTIONABLE:809",
+          "ACTIONABLE:142",
+          "ACTIONABLE:980",
+          "ACTIONABLE:007",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:00b",
+          "ACTIONABLE:390",
+          "ACTIONABLE:045",
+          "ACTIONABLE:070",
+          "ACTIONABLE:8a0",
+          "ACTIONABLE:00e",
+          "ACTIONABLE:027",
+          "ACTIONABLE:0e0",
+          "ACTIONABLE:047",
+          "ACTIONABLE:380"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d3",
+        "elapsed_seconds": 0.00015925399929983541,
+        "inherited_coordinates": [
+          "ACTIONABLE:007",
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00e",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:045",
+          "ACTIONABLE:046",
+          "ACTIONABLE:047",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:070",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:0e0",
+          "ACTIONABLE:0e1",
+          "ACTIONABLE:142",
+          "ACTIONABLE:183",
+          "ACTIONABLE:190",
+          "ACTIONABLE:203",
+          "ACTIONABLE:380",
+          "ACTIONABLE:390",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:610",
+          "ACTIONABLE:806",
+          "ACTIONABLE:809",
+          "ACTIONABLE:8a0",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:980",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a4f",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 1,
+    "historical_cost": 5,
+    "joint_certificate_sha256": "0b3698854bfaed1f7a2ed85bd68cc4c5ea471ea2dbaeb4f0906ed6224950fe95",
+    "joint_optimum": 5,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S03P1",
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "square_id": "S03"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d3",
+        "elapsed_seconds": 0.0002597720013000071,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:06e",
+          "ACTIONABLE:071",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:1f2",
+          "ACTIONABLE:244",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:700",
+          "ACTIONABLE:80a",
+          "ACTIONABLE:825",
+          "ACTIONABLE:882",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:910",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__MODE__d4",
+        "elapsed_seconds": 0.0007878079995862208,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:06e",
+          "ACTIONABLE:071",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:1f2",
+          "ACTIONABLE:244",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:700",
+          "ACTIONABLE:80a",
+          "ACTIONABLE:825",
+          "ACTIONABLE:882",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:910",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:08e",
+            "gain": 88,
+            "total_deficit_before": 153,
+            "unsatisfied_pairs_before": 153
+          },
+          {
+            "coordinate": "MODE:105",
+            "gain": 40,
+            "total_deficit_before": 65,
+            "unsatisfied_pairs_before": 65
+          },
+          {
+            "coordinate": "MODE:01b",
+            "gain": 15,
+            "total_deficit_before": 25,
+            "unsatisfied_pairs_before": 25
+          },
+          {
+            "coordinate": "MODE:06a",
+            "gain": 6,
+            "total_deficit_before": 10,
+            "unsatisfied_pairs_before": 10
+          },
+          {
+            "coordinate": "MODE:074",
+            "gain": 3,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:08e",
+          "MODE:105",
+          "MODE:01b",
+          "MODE:06a",
+          "MODE:074",
+          "MODE:025"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 15,
+    "greedy_minus_historical": 1,
+    "historical_cost": 14,
+    "joint_certificate_sha256": "f037318cbd309c0058dae72fe2f7251a63b3efdb55387170cdaceee14406ea9a",
+    "joint_optimum": 14,
+    "route": {
+      "archived_first_cost": 14,
+      "archived_local_cost": 14,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d4",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d4",
+      "route_id": "S03P2",
+      "source": "ACTIONABLE__ACTIONABLE__d3",
+      "square_id": "S03"
+    },
+    "stages": [
+      {
+        "cost": 15,
+        "destination": "ACTIONABLE__ACTIONABLE__d4",
+        "elapsed_seconds": 0.0015953840011206921,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:046",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:06e",
+          "ACTIONABLE:071",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:1f2",
+          "ACTIONABLE:244",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:700",
+          "ACTIONABLE:80a",
+          "ACTIONABLE:825",
+          "ACTIONABLE:882",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:910",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "ACTIONABLE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "ACTIONABLE:803",
+            "gain": 49,
+            "total_deficit_before": 153,
+            "unsatisfied_pairs_before": 153
+          },
+          {
+            "coordinate": "ACTIONABLE:809",
+            "gain": 25,
+            "total_deficit_before": 104,
+            "unsatisfied_pairs_before": 104
+          },
+          {
+            "coordinate": "ACTIONABLE:580",
+            "gain": 24,
+            "total_deficit_before": 79,
+            "unsatisfied_pairs_before": 79
+          },
+          {
+            "coordinate": "ACTIONABLE:017",
+            "gain": 21,
+            "total_deficit_before": 55,
+            "unsatisfied_pairs_before": 55
+          },
+          {
+            "coordinate": "ACTIONABLE:945",
+            "gain": 9,
+            "total_deficit_before": 34,
+            "unsatisfied_pairs_before": 34
+          },
+          {
+            "coordinate": "ACTIONABLE:0ca",
+            "gain": 5,
+            "total_deficit_before": 25,
+            "unsatisfied_pairs_before": 25
+          },
+          {
+            "coordinate": "ACTIONABLE:032",
+            "gain": 4,
+            "total_deficit_before": 20,
+            "unsatisfied_pairs_before": 20
+          },
+          {
+            "coordinate": "ACTIONABLE:01b",
+            "gain": 3,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "ACTIONABLE:00e",
+            "gain": 2,
+            "total_deficit_before": 13,
+            "unsatisfied_pairs_before": 13
+          },
+          {
+            "coordinate": "ACTIONABLE:027",
+            "gain": 2,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "ACTIONABLE:070",
+            "gain": 2,
+            "total_deficit_before": 9,
+            "unsatisfied_pairs_before": 9
+          },
+          {
+            "coordinate": "ACTIONABLE:0e1",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "ACTIONABLE:1a0",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "ACTIONABLE:290",
+            "gain": 2,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "ACTIONABLE:047",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "ACTIONABLE:803",
+          "ACTIONABLE:809",
+          "ACTIONABLE:580",
+          "ACTIONABLE:017",
+          "ACTIONABLE:945",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:032",
+          "ACTIONABLE:01b",
+          "ACTIONABLE:00e",
+          "ACTIONABLE:027",
+          "ACTIONABLE:070",
+          "ACTIONABLE:0e1",
+          "ACTIONABLE:1a0",
+          "ACTIONABLE:290",
+          "ACTIONABLE:047"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d4",
+        "elapsed_seconds": 0.0001908309986902168,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00e",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:017",
+          "ACTIONABLE:01b",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:032",
+          "ACTIONABLE:046",
+          "ACTIONABLE:047",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:06e",
+          "ACTIONABLE:070",
+          "ACTIONABLE:071",
+          "ACTIONABLE:072",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:0e1",
+          "ACTIONABLE:1a0",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:1f2",
+          "ACTIONABLE:244",
+          "ACTIONABLE:290",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:580",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:700",
+          "ACTIONABLE:803",
+          "ACTIONABLE:809",
+          "ACTIONABLE:80a",
+          "ACTIONABLE:825",
+          "ACTIONABLE:882",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:910",
+          "ACTIONABLE:945",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 1,
+    "historical_cost": 5,
+    "joint_certificate_sha256": "74eda21ccdf59a7402076e0ad6011c374facb89eb8e07d1f5ef7db46b094f39e",
+    "joint_optimum": 5,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate": "ACTIONABLE__MODE__d4",
+      "route_id": "S04P1",
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "square_id": "S04"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d4",
+        "elapsed_seconds": 0.00028575000033015385,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01b",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:023",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:035",
+          "ACTIONABLE:045",
+          "ACTIONABLE:046",
+          "ACTIONABLE:047",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:04e",
+          "ACTIONABLE:056",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:070",
+          "ACTIONABLE:072",
+          "ACTIONABLE:074",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:190",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:244",
+          "ACTIONABLE:310",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:442",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:720",
+          "ACTIONABLE:806",
+          "ACTIONABLE:861",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:8f2",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a02",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:a80",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80",
+          "ACTIONABLE:d00"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__MODE__d5",
+        "elapsed_seconds": 0.0008124529995257035,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01b",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:023",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:035",
+          "ACTIONABLE:045",
+          "ACTIONABLE:046",
+          "ACTIONABLE:047",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:04e",
+          "ACTIONABLE:056",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:070",
+          "ACTIONABLE:072",
+          "ACTIONABLE:074",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:190",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:244",
+          "ACTIONABLE:310",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:442",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:720",
+          "ACTIONABLE:806",
+          "ACTIONABLE:861",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:8f2",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a02",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:a80",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80",
+          "ACTIONABLE:d00"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:08e",
+            "gain": 100,
+            "total_deficit_before": 166,
+            "unsatisfied_pairs_before": 166
+          },
+          {
+            "coordinate": "MODE:203",
+            "gain": 44,
+            "total_deficit_before": 66,
+            "unsatisfied_pairs_before": 66
+          },
+          {
+            "coordinate": "MODE:078",
+            "gain": 13,
+            "total_deficit_before": 22,
+            "unsatisfied_pairs_before": 22
+          },
+          {
+            "coordinate": "MODE:04b",
+            "gain": 5,
+            "total_deficit_before": 9,
+            "unsatisfied_pairs_before": 9
+          },
+          {
+            "coordinate": "MODE:035",
+            "gain": 3,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:08e",
+          "MODE:203",
+          "MODE:078",
+          "MODE:04b",
+          "MODE:035",
+          "MODE:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 2,
+    "greedy_cost": 17,
+    "greedy_minus_historical": 2,
+    "historical_cost": 15,
+    "joint_certificate_sha256": "79f0699abaa7d2cc047cd9d58a6f8ae226848d86a95f9ee96e26edb1fdccafc8",
+    "joint_optimum": 15,
+    "route": {
+      "archived_first_cost": 15,
+      "archived_local_cost": 15,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__MODE__d5",
+      "intermediate": "ACTIONABLE__ACTIONABLE__d5",
+      "route_id": "S04P2",
+      "source": "ACTIONABLE__ACTIONABLE__d4",
+      "square_id": "S04"
+    },
+    "stages": [
+      {
+        "cost": 17,
+        "destination": "ACTIONABLE__ACTIONABLE__d5",
+        "elapsed_seconds": 0.0016290629991999594,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01b",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:023",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:035",
+          "ACTIONABLE:045",
+          "ACTIONABLE:046",
+          "ACTIONABLE:047",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:04e",
+          "ACTIONABLE:056",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:070",
+          "ACTIONABLE:072",
+          "ACTIONABLE:074",
+          "ACTIONABLE:078",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:190",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:244",
+          "ACTIONABLE:310",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:442",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:720",
+          "ACTIONABLE:806",
+          "ACTIONABLE:861",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:8f2",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a02",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:a80",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80",
+          "ACTIONABLE:d00"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "ACTIONABLE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "ACTIONABLE:809",
+            "gain": 63,
+            "total_deficit_before": 166,
+            "unsatisfied_pairs_before": 166
+          },
+          {
+            "coordinate": "ACTIONABLE:142",
+            "gain": 39,
+            "total_deficit_before": 103,
+            "unsatisfied_pairs_before": 103
+          },
+          {
+            "coordinate": "ACTIONABLE:980",
+            "gain": 25,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "ACTIONABLE:00e",
+            "gain": 8,
+            "total_deficit_before": 39,
+            "unsatisfied_pairs_before": 39
+          },
+          {
+            "coordinate": "ACTIONABLE:203",
+            "gain": 7,
+            "total_deficit_before": 31,
+            "unsatisfied_pairs_before": 31
+          },
+          {
+            "coordinate": "ACTIONABLE:06a",
+            "gain": 4,
+            "total_deficit_before": 24,
+            "unsatisfied_pairs_before": 24
+          },
+          {
+            "coordinate": "ACTIONABLE:083",
+            "gain": 3,
+            "total_deficit_before": 20,
+            "unsatisfied_pairs_before": 20
+          },
+          {
+            "coordinate": "ACTIONABLE:8a0",
+            "gain": 3,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "ACTIONABLE:02b",
+            "gain": 2,
+            "total_deficit_before": 14,
+            "unsatisfied_pairs_before": 14
+          },
+          {
+            "coordinate": "ACTIONABLE:064",
+            "gain": 2,
+            "total_deficit_before": 12,
+            "unsatisfied_pairs_before": 12
+          },
+          {
+            "coordinate": "ACTIONABLE:065",
+            "gain": 2,
+            "total_deficit_before": 10,
+            "unsatisfied_pairs_before": 10
+          },
+          {
+            "coordinate": "ACTIONABLE:071",
+            "gain": 2,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "ACTIONABLE:290",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "ACTIONABLE:01a",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "ACTIONABLE:04d",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "ACTIONABLE:0e0",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "ACTIONABLE:380",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "ACTIONABLE:809",
+          "ACTIONABLE:142",
+          "ACTIONABLE:980",
+          "ACTIONABLE:00e",
+          "ACTIONABLE:203",
+          "ACTIONABLE:06a",
+          "ACTIONABLE:083",
+          "ACTIONABLE:8a0",
+          "ACTIONABLE:02b",
+          "ACTIONABLE:064",
+          "ACTIONABLE:065",
+          "ACTIONABLE:071",
+          "ACTIONABLE:290",
+          "ACTIONABLE:01a",
+          "ACTIONABLE:04d",
+          "ACTIONABLE:0e0",
+          "ACTIONABLE:380"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__MODE__d5",
+        "elapsed_seconds": 0.00023197100017569028,
+        "inherited_coordinates": [
+          "ACTIONABLE:00b",
+          "ACTIONABLE:00e",
+          "ACTIONABLE:00f",
+          "ACTIONABLE:01a",
+          "ACTIONABLE:01b",
+          "ACTIONABLE:01e",
+          "ACTIONABLE:023",
+          "ACTIONABLE:025",
+          "ACTIONABLE:027",
+          "ACTIONABLE:02b",
+          "ACTIONABLE:02d",
+          "ACTIONABLE:035",
+          "ACTIONABLE:045",
+          "ACTIONABLE:046",
+          "ACTIONABLE:047",
+          "ACTIONABLE:04a",
+          "ACTIONABLE:04b",
+          "ACTIONABLE:04c",
+          "ACTIONABLE:04d",
+          "ACTIONABLE:04e",
+          "ACTIONABLE:056",
+          "ACTIONABLE:05a",
+          "ACTIONABLE:061",
+          "ACTIONABLE:064",
+          "ACTIONABLE:065",
+          "ACTIONABLE:06a",
+          "ACTIONABLE:070",
+          "ACTIONABLE:071",
+          "ACTIONABLE:072",
+          "ACTIONABLE:074",
+          "ACTIONABLE:078",
+          "ACTIONABLE:083",
+          "ACTIONABLE:08e",
+          "ACTIONABLE:0a2",
+          "ACTIONABLE:0ca",
+          "ACTIONABLE:0e0",
+          "ACTIONABLE:142",
+          "ACTIONABLE:190",
+          "ACTIONABLE:1e0",
+          "ACTIONABLE:203",
+          "ACTIONABLE:244",
+          "ACTIONABLE:290",
+          "ACTIONABLE:310",
+          "ACTIONABLE:380",
+          "ACTIONABLE:390",
+          "ACTIONABLE:3a0",
+          "ACTIONABLE:442",
+          "ACTIONABLE:5a0",
+          "ACTIONABLE:720",
+          "ACTIONABLE:806",
+          "ACTIONABLE:809",
+          "ACTIONABLE:861",
+          "ACTIONABLE:890",
+          "ACTIONABLE:8a0",
+          "ACTIONABLE:8e0",
+          "ACTIONABLE:8f2",
+          "ACTIONABLE:980",
+          "ACTIONABLE:a01",
+          "ACTIONABLE:a02",
+          "ACTIONABLE:a20",
+          "ACTIONABLE:a6e",
+          "ACTIONABLE:a80",
+          "ACTIONABLE:b00",
+          "ACTIONABLE:c80",
+          "ACTIONABLE:d00"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 1,
+    "historical_cost": 7,
+    "joint_certificate_sha256": "5722baa0a2f22cd753091c8d2a675aa20a7bc27b0084896be259143267531253",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 7,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__EXACT__d1",
+      "route_id": "S05P1",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05"
+    },
+    "stages": [
+      {
+        "cost": 1,
+        "destination": "MODE__EXACT__d1",
+        "elapsed_seconds": 0.0002483749995008111,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:4e0",
+          "EXACT:806"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015"
+        ]
+      },
+      {
+        "cost": 7,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.00032104099955176935,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:015",
+          "EXACT:02d",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:4e0",
+          "EXACT:806"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 16,
+            "total_deficit_before": 30,
+            "unsatisfied_pairs_before": 30
+          },
+          {
+            "coordinate": "EXACT:18b",
+            "gain": 7,
+            "total_deficit_before": 14,
+            "unsatisfied_pairs_before": 14
+          },
+          {
+            "coordinate": "EXACT:047",
+            "gain": 3,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:18b",
+          "EXACT:047",
+          "EXACT:00b",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:083"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 1,
+    "historical_cost": 7,
+    "joint_certificate_sha256": "37c1101959665d551acc4e267fc36171b11a0ac77b001f2c49b21ef23d52ef1b",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 7,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S05P2",
+      "source": "ACTIONABLE__EXACT__d1",
+      "square_id": "S05"
+    },
+    "stages": [
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__EXACT__d2",
+        "elapsed_seconds": 0.0004392850005388027,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:4e0",
+          "EXACT:806"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:146",
+            "gain": 19,
+            "total_deficit_before": 36,
+            "unsatisfied_pairs_before": 36
+          },
+          {
+            "coordinate": "EXACT:091",
+            "gain": 10,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "EXACT:04b",
+            "gain": 3,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:078",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:146",
+          "EXACT:091",
+          "EXACT:04b",
+          "EXACT:078",
+          "EXACT:025",
+          "EXACT:103"
+        ]
+      },
+      {
+        "cost": 2,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.00011011100104951765,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:091",
+          "EXACT:103",
+          "EXACT:146",
+          "EXACT:4e0",
+          "EXACT:806"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:017",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:017"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 0,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "7efd53a38fa40764a2310ab5fc983f9d1dde5ee30bd82a3c3c2ac716414988a3",
+    "joint_optimum": 7,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S06P1",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06"
+    },
+    "stages": [
+      {
+        "cost": 1,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.0001869650004664436,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a8",
+          "EXACT:0ce",
+          "EXACT:403",
+          "EXACT:4bd",
+          "EXACT:b0d"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015"
+        ]
+      },
+      {
+        "cost": 7,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 0.0003486120003799442,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:015",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a8",
+          "EXACT:0ce",
+          "EXACT:403",
+          "EXACT:4bd",
+          "EXACT:b0d"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:01e",
+            "gain": 9,
+            "total_deficit_before": 22,
+            "unsatisfied_pairs_before": 22
+          },
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 6,
+            "total_deficit_before": 13,
+            "unsatisfied_pairs_before": 13
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:071",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:01e",
+          "EXACT:05a",
+          "EXACT:025",
+          "EXACT:071",
+          "EXACT:00b",
+          "EXACT:083",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 0,
+    "historical_cost": 9,
+    "joint_certificate_sha256": "223ef9de8ecfb351a13f86078614c6bef50ce546fc04a25da03ee521e56425de",
+    "joint_optimum": 7,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 9,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S06P2",
+      "source": "ACTIONABLE__EXACT__d2",
+      "square_id": "S06"
+    },
+    "stages": [
+      {
+        "cost": 7,
+        "destination": "ACTIONABLE__EXACT__d3",
+        "elapsed_seconds": 0.0003737300012289779,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a8",
+          "EXACT:0ce",
+          "EXACT:403",
+          "EXACT:4bd",
+          "EXACT:b0d"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:190",
+            "gain": 8,
+            "total_deficit_before": 19,
+            "unsatisfied_pairs_before": 19
+          },
+          {
+            "coordinate": "EXACT:01e",
+            "gain": 4,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:04a",
+            "gain": 3,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:190",
+          "EXACT:01e",
+          "EXACT:04a",
+          "EXACT:00b",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      },
+      {
+        "cost": 2,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 0.00012199900083942339,
+        "inherited_coordinates": [
+          "EXACT:00b",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04a",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:070",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a8",
+          "EXACT:0ce",
+          "EXACT:103",
+          "EXACT:190",
+          "EXACT:403",
+          "EXACT:4bd",
+          "EXACT:b0d"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:017",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:017"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 0,
+    "historical_cost": 9,
+    "joint_certificate_sha256": "b41e38d1a59013b0686193d2a76047304adcae475c0ef792f2b581973e5540fd",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 9,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d4",
+      "intermediate": "MODE__EXACT__d3",
+      "route_id": "S07P1",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07"
+    },
+    "stages": [
+      {
+        "cost": 2,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 0.000257108000369044,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:05e",
+          "EXACT:070",
+          "EXACT:074",
+          "EXACT:078",
+          "EXACT:10b",
+          "EXACT:14a",
+          "EXACT:2e2",
+          "EXACT:2ed",
+          "EXACT:409",
+          "EXACT:425",
+          "EXACT:4e2",
+          "EXACT:4f2",
+          "EXACT:e8b"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:017",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:017"
+        ]
+      },
+      {
+        "cost": 7,
+        "destination": "MODE__EXACT__d4",
+        "elapsed_seconds": 0.0004179540010227356,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:015",
+          "EXACT:017",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:05e",
+          "EXACT:070",
+          "EXACT:074",
+          "EXACT:078",
+          "EXACT:10b",
+          "EXACT:14a",
+          "EXACT:2e2",
+          "EXACT:2ed",
+          "EXACT:409",
+          "EXACT:425",
+          "EXACT:4e2",
+          "EXACT:4f2",
+          "EXACT:e8b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 6,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "EXACT:08e",
+            "gain": 4,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:035",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:071",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:08e",
+          "EXACT:00b",
+          "EXACT:035",
+          "EXACT:071",
+          "EXACT:083",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 9,
+    "greedy_minus_historical": -1,
+    "historical_cost": 10,
+    "joint_certificate_sha256": "de13aa8e537b2b5c084460e2f1ecebd7c4a841663e36bb1fff931755a1b277bf",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d4",
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "route_id": "S07P2",
+      "source": "ACTIONABLE__EXACT__d3",
+      "square_id": "S07"
+    },
+    "stages": [
+      {
+        "cost": 7,
+        "destination": "ACTIONABLE__EXACT__d4",
+        "elapsed_seconds": 0.00040944099964690395,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:05e",
+          "EXACT:070",
+          "EXACT:074",
+          "EXACT:078",
+          "EXACT:10b",
+          "EXACT:14a",
+          "EXACT:2e2",
+          "EXACT:2ed",
+          "EXACT:409",
+          "EXACT:425",
+          "EXACT:4e2",
+          "EXACT:4f2",
+          "EXACT:e8b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:106",
+            "gain": 8,
+            "total_deficit_before": 19,
+            "unsatisfied_pairs_before": 19
+          },
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 4,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 3,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:027",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:071",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:106",
+          "EXACT:05a",
+          "EXACT:00e",
+          "EXACT:00b",
+          "EXACT:027",
+          "EXACT:071",
+          "EXACT:083"
+        ]
+      },
+      {
+        "cost": 2,
+        "destination": "MODE__EXACT__d4",
+        "elapsed_seconds": 0.00021818000095663592,
+        "inherited_coordinates": [
+          "EXACT:00b",
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:027",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:05a",
+          "EXACT:05e",
+          "EXACT:070",
+          "EXACT:071",
+          "EXACT:074",
+          "EXACT:078",
+          "EXACT:083",
+          "EXACT:106",
+          "EXACT:10b",
+          "EXACT:14a",
+          "EXACT:2e2",
+          "EXACT:2ed",
+          "EXACT:409",
+          "EXACT:425",
+          "EXACT:4e2",
+          "EXACT:4f2",
+          "EXACT:e8b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:017",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:017"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 11,
+    "greedy_minus_historical": 1,
+    "historical_cost": 10,
+    "joint_certificate_sha256": "f8a7e84a7ae096549c8f22d0d60dcd4745c26ce26aa9e115db3e830adcbb0a2e",
+    "joint_optimum": 9,
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 10,
+      "archived_second_cost": 7,
+      "destination": "MODE__EXACT__d5",
+      "intermediate": "MODE__EXACT__d4",
+      "route_id": "S08P1",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08"
+    },
+    "stages": [
+      {
+        "cost": 3,
+        "destination": "MODE__EXACT__d4",
+        "elapsed_seconds": 0.00037363899900810793,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:04f",
+          "EXACT:05a",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a5",
+          "EXACT:14a",
+          "EXACT:1cd",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:270",
+          "EXACT:2cd",
+          "EXACT:2dd",
+          "EXACT:470",
+          "EXACT:4fc",
+          "EXACT:9ab",
+          "EXACT:9de",
+          "EXACT:9f6",
+          "EXACT:d8b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:017",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:01d",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:017",
+          "EXACT:01d"
+        ]
+      },
+      {
+        "cost": 8,
+        "destination": "MODE__EXACT__d5",
+        "elapsed_seconds": 0.000390334000258008,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:015",
+          "EXACT:017",
+          "EXACT:01d",
+          "EXACT:01e",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:04f",
+          "EXACT:05a",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a5",
+          "EXACT:14a",
+          "EXACT:1cd",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:270",
+          "EXACT:2cd",
+          "EXACT:2dd",
+          "EXACT:470",
+          "EXACT:4fc",
+          "EXACT:9ab",
+          "EXACT:9de",
+          "EXACT:9f6",
+          "EXACT:d8b"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:056",
+            "gain": 5,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "EXACT:04a",
+            "gain": 3,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:08a",
+            "gain": 3,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:02e",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:056",
+          "EXACT:04a",
+          "EXACT:08a",
+          "EXACT:00b",
+          "EXACT:025",
+          "EXACT:02e",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 11,
+    "greedy_minus_historical": 1,
+    "historical_cost": 10,
+    "joint_certificate_sha256": "07f8aa9cfdf3c364fa57fde1956d6ff48858ea34b707064ca55bd2a4cc62bb87",
+    "joint_optimum": 9,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 10,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d5",
+      "intermediate": "ACTIONABLE__EXACT__d5",
+      "route_id": "S08P2",
+      "source": "ACTIONABLE__EXACT__d4",
+      "square_id": "S08"
+    },
+    "stages": [
+      {
+        "cost": 7,
+        "destination": "ACTIONABLE__EXACT__d5",
+        "elapsed_seconds": 0.0004290100005164277,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:04f",
+          "EXACT:05a",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:0a5",
+          "EXACT:14a",
+          "EXACT:1cd",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:270",
+          "EXACT:2cd",
+          "EXACT:2dd",
+          "EXACT:470",
+          "EXACT:4fc",
+          "EXACT:9ab",
+          "EXACT:9de",
+          "EXACT:9f6",
+          "EXACT:d8b"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:106",
+            "gain": 8,
+            "total_deficit_before": 18,
+            "unsatisfied_pairs_before": 18
+          },
+          {
+            "coordinate": "EXACT:04a",
+            "gain": 3,
+            "total_deficit_before": 10,
+            "unsatisfied_pairs_before": 10
+          },
+          {
+            "coordinate": "EXACT:01b",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:02e",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:106",
+          "EXACT:04a",
+          "EXACT:01b",
+          "EXACT:02e",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:083"
+        ]
+      },
+      {
+        "cost": 4,
+        "destination": "MODE__EXACT__d5",
+        "elapsed_seconds": 0.0002625859997351654,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01b",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:02e",
+          "EXACT:035",
+          "EXACT:04a",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:04f",
+          "EXACT:05a",
+          "EXACT:070",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:083",
+          "EXACT:0a5",
+          "EXACT:106",
+          "EXACT:14a",
+          "EXACT:1cd",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:270",
+          "EXACT:2cd",
+          "EXACT:2dd",
+          "EXACT:470",
+          "EXACT:4fc",
+          "EXACT:9ab",
+          "EXACT:9de",
+          "EXACT:9f6",
+          "EXACT:d8b"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:01d",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:015",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:017",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:045",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:01d",
+          "EXACT:015",
+          "EXACT:017",
+          "EXACT:045"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 2,
+    "greedy_minus_historical": 0,
+    "historical_cost": 2,
+    "joint_certificate_sha256": "4063060f3521e73251829e5d4f58d94a14bdb2d3306608138ae98035f3bf14a7",
+    "joint_optimum": 2,
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 2,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d1",
+      "intermediate": "MODE__MODE__d1",
+      "route_id": "S09P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S09"
+    },
+    "stages": [
+      {
+        "cost": 2,
+        "destination": "MODE__MODE__d1",
+        "elapsed_seconds": 0.00030813299963483587,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:015",
+            "gain": 2,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:015",
+          "MODE:019"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d1",
+        "elapsed_seconds": 4.673900002671871e-05,
+        "inherited_coordinates": [
+          "MODE:015",
+          "MODE:019",
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 1,
+    "greedy_minus_historical": 0,
+    "historical_cost": 1,
+    "joint_certificate_sha256": "4d5c75ea24e4fbea8a72441ddd553a5fce09f72d935e765417b59ab9b8817efc",
+    "joint_optimum": 1,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 1,
+      "archived_second_cost": 1,
+      "destination": "MODE__EXACT__d1",
+      "intermediate": "ACTIONABLE__EXACT__d1",
+      "route_id": "S09P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S09"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d1",
+        "elapsed_seconds": 7.014300172158983e-05,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 1,
+        "destination": "MODE__EXACT__d1",
+        "elapsed_seconds": 0.00011340600030962378,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 3,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          }
+        ],
+        "witness": [
+          "EXACT:015"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 3,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 11,
+    "greedy_minus_historical": 3,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "900f01da8ed075b2c0c9e614d8155d5a73eee9727c3cf15f795ee2b480ecbad6",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 2,
+      "archived_local_cost": 8,
+      "archived_second_cost": 6,
+      "destination": "MODE__MODE__d2",
+      "intermediate": "MODE__MODE__d1",
+      "route_id": "S10P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10"
+    },
+    "stages": [
+      {
+        "cost": 2,
+        "destination": "MODE__MODE__d1",
+        "elapsed_seconds": 0.00030813299963483587,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:015",
+            "gain": 2,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:015",
+          "MODE:019"
+        ]
+      },
+      {
+        "cost": 9,
+        "destination": "MODE__MODE__d2",
+        "elapsed_seconds": 0.0006284229984885314,
+        "inherited_coordinates": [
+          "MODE:015",
+          "MODE:019",
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:056",
+            "gain": 24,
+            "total_deficit_before": 46,
+            "unsatisfied_pairs_before": 46
+          },
+          {
+            "coordinate": "MODE:023",
+            "gain": 9,
+            "total_deficit_before": 22,
+            "unsatisfied_pairs_before": 22
+          },
+          {
+            "coordinate": "MODE:04e",
+            "gain": 5,
+            "total_deficit_before": 13,
+            "unsatisfied_pairs_before": 13
+          },
+          {
+            "coordinate": "MODE:00f",
+            "gain": 2,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "MODE:0a5",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:056",
+          "MODE:023",
+          "MODE:04e",
+          "MODE:00f",
+          "MODE:0a5",
+          "MODE:029",
+          "MODE:04a",
+          "MODE:070",
+          "MODE:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 9,
+    "greedy_minus_historical": -1,
+    "historical_cost": 10,
+    "joint_certificate_sha256": "ec847173d12e470f917b9c44a3837c19cdf384920b982a43a775b29eebab08f5",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 10,
+      "archived_second_cost": 4,
+      "destination": "MODE__MODE__d2",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S10P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S10"
+    },
+    "stages": [
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__MODE__d2",
+        "elapsed_seconds": 0.0005813339994347189,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:04a",
+            "gain": 34,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "MODE:04d",
+            "gain": 14,
+            "total_deficit_before": 30,
+            "unsatisfied_pairs_before": 30
+          },
+          {
+            "coordinate": "MODE:141",
+            "gain": 8,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "MODE:0a5",
+            "gain": 4,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "MODE:00f",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:072",
+            "gain": 2,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          }
+        ],
+        "witness": [
+          "MODE:04a",
+          "MODE:04d",
+          "MODE:141",
+          "MODE:0a5",
+          "MODE:00f",
+          "MODE:072"
+        ]
+      },
+      {
+        "cost": 3,
+        "destination": "MODE__MODE__d2",
+        "elapsed_seconds": 0.00013215500075602904,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:027",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:04d",
+          "MODE:072",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:10e",
+          "MODE:141",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:035",
+            "gain": 4,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:035",
+          "MODE:019",
+          "MODE:029"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 1,
+    "historical_cost": 5,
+    "joint_certificate_sha256": "5567225f692328c58b8ef28f0a59129db6a79f62e255fe75f14cda954122eb55",
+    "joint_optimum": 5,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 5,
+      "archived_second_cost": 5,
+      "destination": "ACTIONABLE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d1",
+      "route_id": "S11P1",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S11"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d1",
+        "elapsed_seconds": 7.014300172158983e-05,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__EXACT__d2",
+        "elapsed_seconds": 0.0004520939983194694,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 51,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "EXACT:189",
+            "gain": 7,
+            "total_deficit_before": 13,
+            "unsatisfied_pairs_before": 13
+          },
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 3,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:189",
+          "EXACT:00e",
+          "EXACT:00b",
+          "EXACT:025",
+          "EXACT:070"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 0,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "7bf94968a7652acbd133e9daf7df3d8c5443fedc464c0d0933c32744921176e9",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 6,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d2",
+      "intermediate": "ACTIONABLE__MODE__d2",
+      "route_id": "S11P2",
+      "source": "ACTIONABLE__MODE__d1",
+      "square_id": "S11"
+    },
+    "stages": [
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__MODE__d2",
+        "elapsed_seconds": 0.0005813339994347189,
+        "inherited_coordinates": [
+          "MODE:027",
+          "MODE:04b",
+          "MODE:078",
+          "MODE:10e",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:04a",
+            "gain": 34,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "MODE:04d",
+            "gain": 14,
+            "total_deficit_before": 30,
+            "unsatisfied_pairs_before": 30
+          },
+          {
+            "coordinate": "MODE:141",
+            "gain": 8,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "MODE:0a5",
+            "gain": 4,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "MODE:00f",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:072",
+            "gain": 2,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          }
+        ],
+        "witness": [
+          "MODE:04a",
+          "MODE:04d",
+          "MODE:141",
+          "MODE:0a5",
+          "MODE:00f",
+          "MODE:072"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d2",
+        "elapsed_seconds": 0.00010073799967358354,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:027",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:04d",
+          "MODE:072",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:10e",
+          "MODE:141",
+          "MODE:405",
+          "MODE:8b0",
+          "MODE:a02"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 3,
+    "greedy_minus_historical": 0,
+    "historical_cost": 3,
+    "joint_certificate_sha256": "7c0dc3a5a2f9d0525ef9b0c37466e9adaae6f52b03b1babec16522f61f7322fc",
+    "joint_optimum": 3,
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 3,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S12P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S12"
+    },
+    "stages": [
+      {
+        "cost": 3,
+        "destination": "MODE__MODE__d2",
+        "elapsed_seconds": 0.00025110900060099084,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:015",
+            "gain": 3,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:015",
+          "MODE:019",
+          "MODE:029"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 6.312299956334755e-05,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:015",
+          "MODE:019",
+          "MODE:029",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 2,
+    "greedy_minus_historical": 0,
+    "historical_cost": 2,
+    "joint_certificate_sha256": "7b10c8b87c686ad8db39423e775d893ffb368aa96f3a75d03e3a40f46c75adc1",
+    "joint_optimum": 2,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 2,
+      "archived_second_cost": 2,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S12P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S12"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d2",
+        "elapsed_seconds": 8.807899939711206e-05,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 2,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.0001730940002744319,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 4,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:007",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:007"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 12,
+    "greedy_minus_historical": 1,
+    "historical_cost": 11,
+    "joint_certificate_sha256": "2ff64565618e307d12e39b59a4803ac608545068bb7886c93b3d32c9d72889d4",
+    "joint_optimum": 10,
+    "route": {
+      "archived_first_cost": 3,
+      "archived_local_cost": 11,
+      "archived_second_cost": 8,
+      "destination": "MODE__MODE__d3",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S13P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13"
+    },
+    "stages": [
+      {
+        "cost": 3,
+        "destination": "MODE__MODE__d2",
+        "elapsed_seconds": 0.00025110900060099084,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:015",
+            "gain": 3,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:015",
+          "MODE:019",
+          "MODE:029"
+        ]
+      },
+      {
+        "cost": 9,
+        "destination": "MODE__MODE__d3",
+        "elapsed_seconds": 0.0005827460008731578,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:015",
+          "MODE:019",
+          "MODE:029",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:04c",
+            "gain": 21,
+            "total_deficit_before": 47,
+            "unsatisfied_pairs_before": 47
+          },
+          {
+            "coordinate": "MODE:00e",
+            "gain": 9,
+            "total_deficit_before": 26,
+            "unsatisfied_pairs_before": 26
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 5,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 5,
+            "total_deficit_before": 12,
+            "unsatisfied_pairs_before": 12
+          },
+          {
+            "coordinate": "MODE:01b",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "MODE:035",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "MODE:031",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:085",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:04c",
+          "MODE:00e",
+          "MODE:04a",
+          "MODE:103",
+          "MODE:01b",
+          "MODE:035",
+          "MODE:031",
+          "MODE:070",
+          "MODE:085"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 3,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 13,
+    "greedy_minus_historical": 1,
+    "historical_cost": 12,
+    "joint_certificate_sha256": "64303c6d3232e41e1fc616ce850a03af788d53f65dc0f9b48d25b4828cdccf22",
+    "joint_optimum": 10,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 12,
+      "archived_second_cost": 5,
+      "destination": "MODE__MODE__d3",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S13P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S13"
+    },
+    "stages": [
+      {
+        "cost": 8,
+        "destination": "ACTIONABLE__MODE__d3",
+        "elapsed_seconds": 0.0005688660003215773,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:04c",
+            "gain": 31,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "MODE:803",
+            "gain": 17,
+            "total_deficit_before": 33,
+            "unsatisfied_pairs_before": 33
+          },
+          {
+            "coordinate": "MODE:01e",
+            "gain": 7,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 3,
+            "total_deficit_before": 9,
+            "unsatisfied_pairs_before": 9
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 3,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:00b",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:04c",
+          "MODE:803",
+          "MODE:01e",
+          "MODE:04a",
+          "MODE:103",
+          "MODE:00b",
+          "MODE:025",
+          "MODE:070"
+        ]
+      },
+      {
+        "cost": 5,
+        "destination": "MODE__MODE__d3",
+        "elapsed_seconds": 0.0002853189998859307,
+        "inherited_coordinates": [
+          "MODE:00b",
+          "MODE:00f",
+          "MODE:01e",
+          "MODE:025",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:04c",
+          "MODE:05a",
+          "MODE:070",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:103",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580",
+          "MODE:803"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:415",
+            "gain": 4,
+            "total_deficit_before": 9,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "MODE:015",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:031",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:415",
+          "MODE:015",
+          "MODE:019",
+          "MODE:029",
+          "MODE:031"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 0,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "3b7d0a1b321f0e75a1e173ffb2efcf6b50bf2f30110b09b81c34ebdc61bef49d",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d2",
+      "route_id": "S14P1",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S14"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d2",
+        "elapsed_seconds": 8.807899939711206e-05,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__EXACT__d3",
+        "elapsed_seconds": 0.0004951770006300649,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:04e",
+            "gain": 46,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "EXACT:482",
+            "gain": 12,
+            "total_deficit_before": 18,
+            "unsatisfied_pairs_before": 18
+          },
+          {
+            "coordinate": "EXACT:00f",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:072",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04e",
+          "EXACT:482",
+          "EXACT:00f",
+          "EXACT:072",
+          "EXACT:025",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 1,
+    "historical_cost": 7,
+    "joint_certificate_sha256": "c6b2f698e4d2915e2e0ee475847d24aca7721e047bee0dec572322543f107cc6",
+    "joint_optimum": 7,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d3",
+      "intermediate": "ACTIONABLE__MODE__d3",
+      "route_id": "S14P2",
+      "source": "ACTIONABLE__MODE__d2",
+      "square_id": "S14"
+    },
+    "stages": [
+      {
+        "cost": 8,
+        "destination": "ACTIONABLE__MODE__d3",
+        "elapsed_seconds": 0.0005688660003215773,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:04c",
+            "gain": 31,
+            "total_deficit_before": 64,
+            "unsatisfied_pairs_before": 64
+          },
+          {
+            "coordinate": "MODE:803",
+            "gain": 17,
+            "total_deficit_before": 33,
+            "unsatisfied_pairs_before": 33
+          },
+          {
+            "coordinate": "MODE:01e",
+            "gain": 7,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 3,
+            "total_deficit_before": 9,
+            "unsatisfied_pairs_before": 9
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 3,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:00b",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:04c",
+          "MODE:803",
+          "MODE:01e",
+          "MODE:04a",
+          "MODE:103",
+          "MODE:00b",
+          "MODE:025",
+          "MODE:070"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d3",
+        "elapsed_seconds": 0.00015395599984913133,
+        "inherited_coordinates": [
+          "MODE:00b",
+          "MODE:00f",
+          "MODE:01e",
+          "MODE:025",
+          "MODE:02d",
+          "MODE:02e",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:04c",
+          "MODE:05a",
+          "MODE:070",
+          "MODE:074",
+          "MODE:078",
+          "MODE:083",
+          "MODE:103",
+          "MODE:141",
+          "MODE:1e8",
+          "MODE:225",
+          "MODE:580",
+          "MODE:803"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 4,
+    "greedy_minus_historical": 0,
+    "historical_cost": 4,
+    "joint_certificate_sha256": "1540e71bb0e33758f53ebd78c8984578ed66d888a1516539e8a37e0d1460ee29",
+    "joint_optimum": 4,
+    "route": {
+      "archived_first_cost": 4,
+      "archived_local_cost": 4,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__MODE__d3",
+      "route_id": "S15P1",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S15"
+    },
+    "stages": [
+      {
+        "cost": 4,
+        "destination": "MODE__MODE__d3",
+        "elapsed_seconds": 0.00032462699891766533,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:015",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "MODE:031",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:015",
+          "MODE:019",
+          "MODE:029",
+          "MODE:031"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 8.931100092013367e-05,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:015",
+          "MODE:019",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:029",
+          "MODE:02d",
+          "MODE:031",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 3,
+    "greedy_minus_historical": 0,
+    "historical_cost": 3,
+    "joint_certificate_sha256": "3138c23d170a618f1ef1ac3c33c6237af810924c27878177c25ec0ec8d7f91a1",
+    "joint_optimum": 3,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 3,
+      "archived_second_cost": 3,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S15P2",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S15"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d3",
+        "elapsed_seconds": 0.00011122300020360854,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 3,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 0.00022289799926511478,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:015",
+            "gain": 3,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:007",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 1
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:015",
+          "EXACT:007",
+          "EXACT:00b"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 0,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "b0a0ef40dc02d623d7990ada1c5b77bac49050ed01b0fbcf6aefbe5c1dc96937",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d4",
+      "intermediate": "ACTIONABLE__EXACT__d3",
+      "route_id": "S16P1",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S16"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d3",
+        "elapsed_seconds": 0.00011122300020360854,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "ACTIONABLE__EXACT__d4",
+        "elapsed_seconds": 0.00044056800106773153,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:04e",
+            "gain": 27,
+            "total_deficit_before": 34,
+            "unsatisfied_pairs_before": 34
+          },
+          {
+            "coordinate": "EXACT:00f",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:086",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04e",
+          "EXACT:00f",
+          "EXACT:086",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 2,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 2,
+    "historical_cost": 7,
+    "joint_certificate_sha256": "6d74ccd6ffda276c1de58f8b03dd661d2141952539aff27c963f1dc7de822818",
+    "joint_optimum": 7,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d4",
+      "intermediate": "ACTIONABLE__MODE__d4",
+      "route_id": "S16P2",
+      "source": "ACTIONABLE__MODE__d3",
+      "square_id": "S16"
+    },
+    "stages": [
+      {
+        "cost": 9,
+        "destination": "ACTIONABLE__MODE__d4",
+        "elapsed_seconds": 0.0005153769998287316,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:078",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:046",
+            "gain": 16,
+            "total_deficit_before": 34,
+            "unsatisfied_pairs_before": 34
+          },
+          {
+            "coordinate": "MODE:083",
+            "gain": 7,
+            "total_deficit_before": 18,
+            "unsatisfied_pairs_before": 18
+          },
+          {
+            "coordinate": "MODE:007",
+            "gain": 3,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "MODE:00e",
+            "gain": 2,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:046",
+          "MODE:083",
+          "MODE:007",
+          "MODE:00e",
+          "MODE:04a",
+          "MODE:00b",
+          "MODE:025",
+          "MODE:070",
+          "MODE:103"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d4",
+        "elapsed_seconds": 9.863499872153625e-05,
+        "inherited_coordinates": [
+          "MODE:007",
+          "MODE:00b",
+          "MODE:00e",
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:025",
+          "MODE:02d",
+          "MODE:035",
+          "MODE:046",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:06a",
+          "MODE:070",
+          "MODE:071",
+          "MODE:078",
+          "MODE:083",
+          "MODE:0a5",
+          "MODE:0f0",
+          "MODE:103",
+          "MODE:105",
+          "MODE:1d4",
+          "MODE:332",
+          "MODE:580",
+          "MODE:803",
+          "MODE:80e",
+          "MODE:a6b"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 7,
+    "greedy_minus_historical": 1,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "0af5b0fa6be2ce565de59ee85627c2a67482c450a817daaab4711ee169d6dfa4",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "ACTIONABLE__EXACT__d5",
+      "intermediate": "ACTIONABLE__EXACT__d4",
+      "route_id": "S17P1",
+      "source": "ACTIONABLE__MODE__d4",
+      "square_id": "S17"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d4",
+        "elapsed_seconds": 0.00027660600062517915,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:027",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:065",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:074",
+          "MODE:078",
+          "MODE:08e",
+          "MODE:0f0",
+          "MODE:10b",
+          "MODE:125",
+          "MODE:203",
+          "MODE:225",
+          "MODE:3a1",
+          "MODE:405",
+          "MODE:441",
+          "MODE:44a",
+          "MODE:4a0",
+          "MODE:80e",
+          "MODE:9b5",
+          "MODE:c4f",
+          "MODE:d2f"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 7,
+        "destination": "ACTIONABLE__EXACT__d5",
+        "elapsed_seconds": 0.00039773400021658745,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:027",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:065",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:074",
+          "MODE:078",
+          "MODE:08e",
+          "MODE:0f0",
+          "MODE:10b",
+          "MODE:125",
+          "MODE:203",
+          "MODE:225",
+          "MODE:3a1",
+          "MODE:405",
+          "MODE:441",
+          "MODE:44a",
+          "MODE:4a0",
+          "MODE:80e",
+          "MODE:9b5",
+          "MODE:c4f",
+          "MODE:d2f"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "EXACT:04e",
+            "gain": 19,
+            "total_deficit_before": 28,
+            "unsatisfied_pairs_before": 28
+          },
+          {
+            "coordinate": "EXACT:056",
+            "gain": 3,
+            "total_deficit_before": 9,
+            "unsatisfied_pairs_before": 9
+          },
+          {
+            "coordinate": "EXACT:086",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:086",
+          "EXACT:00b",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 1,
+    "historical_cost": 7,
+    "joint_certificate_sha256": "34eb67127e8afecba2ddec4e0c111e1dcc861440882a61ce54cbcce364df0fac",
+    "joint_optimum": 7,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "ACTIONABLE__EXACT__d5",
+      "intermediate": "ACTIONABLE__MODE__d5",
+      "route_id": "S17P2",
+      "source": "ACTIONABLE__MODE__d4",
+      "square_id": "S17"
+    },
+    "stages": [
+      {
+        "cost": 8,
+        "destination": "ACTIONABLE__MODE__d5",
+        "elapsed_seconds": 0.0005804020001960453,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:027",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:065",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:074",
+          "MODE:078",
+          "MODE:08e",
+          "MODE:0f0",
+          "MODE:10b",
+          "MODE:125",
+          "MODE:203",
+          "MODE:225",
+          "MODE:3a1",
+          "MODE:405",
+          "MODE:441",
+          "MODE:44a",
+          "MODE:4a0",
+          "MODE:80e",
+          "MODE:9b5",
+          "MODE:c4f",
+          "MODE:d2f"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "MODE",
+        "target": "ACTIONABLE",
+        "trace": [
+          {
+            "coordinate": "MODE:046",
+            "gain": 12,
+            "total_deficit_before": 28,
+            "unsatisfied_pairs_before": 28
+          },
+          {
+            "coordinate": "MODE:085",
+            "gain": 5,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "MODE:00e",
+            "gain": 3,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 2,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "MODE:072",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:00b",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:046",
+          "MODE:085",
+          "MODE:00e",
+          "MODE:04a",
+          "MODE:072",
+          "MODE:103",
+          "MODE:00b",
+          "MODE:025"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "ACTIONABLE__EXACT__d5",
+        "elapsed_seconds": 0.00012310099918977357,
+        "inherited_coordinates": [
+          "MODE:00b",
+          "MODE:00e",
+          "MODE:00f",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:025",
+          "MODE:027",
+          "MODE:046",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:065",
+          "MODE:06a",
+          "MODE:071",
+          "MODE:072",
+          "MODE:074",
+          "MODE:078",
+          "MODE:085",
+          "MODE:08e",
+          "MODE:0f0",
+          "MODE:103",
+          "MODE:10b",
+          "MODE:125",
+          "MODE:203",
+          "MODE:225",
+          "MODE:3a1",
+          "MODE:405",
+          "MODE:441",
+          "MODE:44a",
+          "MODE:4a0",
+          "MODE:80e",
+          "MODE:9b5",
+          "MODE:c4f",
+          "MODE:d2f"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "ACTIONABLE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 7,
+    "greedy_minus_historical": 1,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "b64ee9dd0d54a1e5729090e50997d4149b90dd70858dcc20783c4628a78d8981",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "EXACT__EXACT__d2",
+      "intermediate": "EXACT__EXACT__d1",
+      "route_id": "S18P1",
+      "source": "MODE__EXACT__d1",
+      "square_id": "S18"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "EXACT__EXACT__d1",
+        "elapsed_seconds": 9.797399980016053e-05,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:035",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:cf3",
+          "EXACT:e4e"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 7,
+        "destination": "EXACT__EXACT__d2",
+        "elapsed_seconds": 0.00045828300062566996,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:035",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:cf3",
+          "EXACT:e4e"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:04b",
+            "gain": 24,
+            "total_deficit_before": 49,
+            "unsatisfied_pairs_before": 49
+          },
+          {
+            "coordinate": "EXACT:10e",
+            "gain": 13,
+            "total_deficit_before": 25,
+            "unsatisfied_pairs_before": 25
+          },
+          {
+            "coordinate": "EXACT:089",
+            "gain": 6,
+            "total_deficit_before": 12,
+            "unsatisfied_pairs_before": 12
+          },
+          {
+            "coordinate": "EXACT:056",
+            "gain": 3,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04b",
+          "EXACT:10e",
+          "EXACT:089",
+          "EXACT:056",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 7,
+    "greedy_minus_historical": 1,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "562a4f6fc79ef00c6e22ad1a0077d670f5e143143ce163c693986015727349c3",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 6,
+      "archived_local_cost": 6,
+      "archived_second_cost": 0,
+      "destination": "EXACT__EXACT__d2",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S18P2",
+      "source": "MODE__EXACT__d1",
+      "square_id": "S18"
+    },
+    "stages": [
+      {
+        "cost": 7,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.0004334169989306247,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:035",
+          "EXACT:04e",
+          "EXACT:072",
+          "EXACT:cf3",
+          "EXACT:e4e"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:04b",
+            "gain": 23,
+            "total_deficit_before": 47,
+            "unsatisfied_pairs_before": 47
+          },
+          {
+            "coordinate": "EXACT:10e",
+            "gain": 12,
+            "total_deficit_before": 24,
+            "unsatisfied_pairs_before": 24
+          },
+          {
+            "coordinate": "EXACT:089",
+            "gain": 6,
+            "total_deficit_before": 12,
+            "unsatisfied_pairs_before": 12
+          },
+          {
+            "coordinate": "EXACT:056",
+            "gain": 3,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04b",
+          "EXACT:10e",
+          "EXACT:089",
+          "EXACT:056",
+          "EXACT:025",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "EXACT__EXACT__d2",
+        "elapsed_seconds": 4.975299998477567e-05,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:025",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:070",
+          "EXACT:072",
+          "EXACT:089",
+          "EXACT:103",
+          "EXACT:10e",
+          "EXACT:cf3",
+          "EXACT:e4e"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 0,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "4feaa643b5e4b41f86ff2a3d4875ea262ff1469b6e571daf797006f539d4a095",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d3",
+      "intermediate": "EXACT__EXACT__d2",
+      "route_id": "S19P1",
+      "source": "MODE__EXACT__d2",
+      "square_id": "S19"
+    },
+    "stages": [
+      {
+        "cost": 1,
+        "destination": "EXACT__EXACT__d2",
+        "elapsed_seconds": 0.00018889700004365295,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:072",
+          "EXACT:074",
+          "EXACT:61d",
+          "EXACT:803",
+          "EXACT:825",
+          "EXACT:933",
+          "EXACT:dcc"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:00e"
+        ]
+      },
+      {
+        "cost": 7,
+        "destination": "EXACT__EXACT__d3",
+        "elapsed_seconds": 0.00031445199965673964,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:072",
+          "EXACT:074",
+          "EXACT:61d",
+          "EXACT:803",
+          "EXACT:825",
+          "EXACT:933",
+          "EXACT:dcc"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 6,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "EXACT:086",
+            "gain": 5,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:035",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:01e",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:086",
+          "EXACT:035",
+          "EXACT:00b",
+          "EXACT:01e",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 0,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "f447e24f475b68c6ee9bd7f119848f05aedece1c2b2600bf4046789aac80e7f6",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d3",
+      "intermediate": "MODE__EXACT__d3",
+      "route_id": "S19P2",
+      "source": "MODE__EXACT__d2",
+      "square_id": "S19"
+    },
+    "stages": [
+      {
+        "cost": 7,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 0.0005466639995574951,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:072",
+          "EXACT:074",
+          "EXACT:61d",
+          "EXACT:803",
+          "EXACT:825",
+          "EXACT:933",
+          "EXACT:dcc"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 9,
+            "total_deficit_before": 24,
+            "unsatisfied_pairs_before": 24
+          },
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 5,
+            "total_deficit_before": 15,
+            "unsatisfied_pairs_before": 15
+          },
+          {
+            "coordinate": "EXACT:086",
+            "gain": 5,
+            "total_deficit_before": 10,
+            "unsatisfied_pairs_before": 10
+          },
+          {
+            "coordinate": "EXACT:035",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:00e",
+          "EXACT:05a",
+          "EXACT:086",
+          "EXACT:035",
+          "EXACT:00b",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      },
+      {
+        "cost": 1,
+        "destination": "EXACT__EXACT__d3",
+        "elapsed_seconds": 0.0001005770009214757,
+        "inherited_coordinates": [
+          "EXACT:00b",
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:02d",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:05a",
+          "EXACT:070",
+          "EXACT:072",
+          "EXACT:074",
+          "EXACT:086",
+          "EXACT:103",
+          "EXACT:61d",
+          "EXACT:803",
+          "EXACT:825",
+          "EXACT:933",
+          "EXACT:dcc"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:01e",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:01e"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 0,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "c88f482a218abe4361b41ea3932f60f5443cf094699482904167076104b72caa",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d4",
+      "intermediate": "EXACT__EXACT__d3",
+      "route_id": "S20P1",
+      "source": "MODE__EXACT__d3",
+      "square_id": "S20"
+    },
+    "stages": [
+      {
+        "cost": 1,
+        "destination": "EXACT__EXACT__d3",
+        "elapsed_seconds": 0.00026168400108872447,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:047",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:065",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:24a",
+          "EXACT:327",
+          "EXACT:40b",
+          "EXACT:4cd",
+          "EXACT:5eb",
+          "EXACT:a41",
+          "EXACT:d8d",
+          "EXACT:de0"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:00e"
+        ]
+      },
+      {
+        "cost": 7,
+        "destination": "EXACT__EXACT__d4",
+        "elapsed_seconds": 0.00032789099896035623,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:047",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:065",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:24a",
+          "EXACT:327",
+          "EXACT:40b",
+          "EXACT:4cd",
+          "EXACT:5eb",
+          "EXACT:a41",
+          "EXACT:d8d",
+          "EXACT:de0"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 7,
+            "total_deficit_before": 17,
+            "unsatisfied_pairs_before": 17
+          },
+          {
+            "coordinate": "EXACT:08a",
+            "gain": 4,
+            "total_deficit_before": 10,
+            "unsatisfied_pairs_before": 10
+          },
+          {
+            "coordinate": "EXACT:035",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:02e",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:08a",
+          "EXACT:035",
+          "EXACT:00b",
+          "EXACT:02e",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 1,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "8edd40318d7a4c3e9136f9b969c25b65a77fd00c35035316d085e806b7665946",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d4",
+      "intermediate": "MODE__EXACT__d4",
+      "route_id": "S20P2",
+      "source": "MODE__EXACT__d3",
+      "square_id": "S20"
+    },
+    "stages": [
+      {
+        "cost": 8,
+        "destination": "MODE__EXACT__d4",
+        "elapsed_seconds": 0.000448919001428294,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02d",
+          "EXACT:047",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:065",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:24a",
+          "EXACT:327",
+          "EXACT:40b",
+          "EXACT:4cd",
+          "EXACT:5eb",
+          "EXACT:a41",
+          "EXACT:d8d",
+          "EXACT:de0"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:056",
+            "gain": 7,
+            "total_deficit_before": 20,
+            "unsatisfied_pairs_before": 20
+          },
+          {
+            "coordinate": "EXACT:414",
+            "gain": 5,
+            "total_deficit_before": 13,
+            "unsatisfied_pairs_before": 13
+          },
+          {
+            "coordinate": "EXACT:04a",
+            "gain": 3,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:027",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:056",
+          "EXACT:414",
+          "EXACT:04a",
+          "EXACT:00b",
+          "EXACT:00e",
+          "EXACT:027",
+          "EXACT:070",
+          "EXACT:083"
+        ]
+      },
+      {
+        "cost": 1,
+        "destination": "EXACT__EXACT__d4",
+        "elapsed_seconds": 0.00012087799950677436,
+        "inherited_coordinates": [
+          "EXACT:00b",
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:027",
+          "EXACT:02d",
+          "EXACT:047",
+          "EXACT:04a",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:065",
+          "EXACT:070",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:083",
+          "EXACT:24a",
+          "EXACT:327",
+          "EXACT:40b",
+          "EXACT:414",
+          "EXACT:4cd",
+          "EXACT:5eb",
+          "EXACT:a41",
+          "EXACT:d8d",
+          "EXACT:de0"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:02e",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:02e"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 8,
+    "greedy_minus_historical": 0,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "9c69dde8aed7aec52692b95b5d44f8bc204bb885d02364d4af7c26e3ada0b4e1",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 1,
+      "archived_local_cost": 8,
+      "archived_second_cost": 7,
+      "destination": "EXACT__EXACT__d5",
+      "intermediate": "EXACT__EXACT__d4",
+      "route_id": "S21P1",
+      "source": "MODE__EXACT__d4",
+      "square_id": "S21"
+    },
+    "stages": [
+      {
+        "cost": 1,
+        "destination": "EXACT__EXACT__d4",
+        "elapsed_seconds": 0.00030857399906381033,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:02e",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:065",
+          "EXACT:06a",
+          "EXACT:070",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:610",
+          "EXACT:616",
+          "EXACT:73f",
+          "EXACT:84a",
+          "EXACT:9ff",
+          "EXACT:b54",
+          "EXACT:b94",
+          "EXACT:bee",
+          "EXACT:c36"
+        ],
+        "minimum_distance": 4,
+        "required_distance": 4,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:00e"
+        ]
+      },
+      {
+        "cost": 7,
+        "destination": "EXACT__EXACT__d5",
+        "elapsed_seconds": 0.0005478849998326041,
+        "inherited_coordinates": [
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:02e",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:065",
+          "EXACT:06a",
+          "EXACT:070",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:610",
+          "EXACT:616",
+          "EXACT:73f",
+          "EXACT:84a",
+          "EXACT:9ff",
+          "EXACT:b54",
+          "EXACT:b94",
+          "EXACT:bee",
+          "EXACT:c36"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 7,
+            "total_deficit_before": 14,
+            "unsatisfied_pairs_before": 14
+          },
+          {
+            "coordinate": "EXACT:074",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:08e",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:074",
+          "EXACT:00b",
+          "EXACT:025",
+          "EXACT:083",
+          "EXACT:08e",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 1,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "85275108255746479d5cf63c0a131bb8dd967f0a9d4096a79f6e2cd4c1dcdc46",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 8,
+      "archived_second_cost": 1,
+      "destination": "EXACT__EXACT__d5",
+      "intermediate": "MODE__EXACT__d5",
+      "route_id": "S21P2",
+      "source": "MODE__EXACT__d4",
+      "square_id": "S21"
+    },
+    "stages": [
+      {
+        "cost": 8,
+        "destination": "MODE__EXACT__d5",
+        "elapsed_seconds": 0.0005008049993193708,
+        "inherited_coordinates": [
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:02e",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:065",
+          "EXACT:06a",
+          "EXACT:070",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:078",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:610",
+          "EXACT:616",
+          "EXACT:73f",
+          "EXACT:84a",
+          "EXACT:9ff",
+          "EXACT:b54",
+          "EXACT:b94",
+          "EXACT:bee",
+          "EXACT:c36"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:04d",
+            "gain": 7,
+            "total_deficit_before": 18,
+            "unsatisfied_pairs_before": 18
+          },
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 5,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:00b",
+            "gain": 1,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "EXACT:00e",
+            "gain": 1,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:025",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:074",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04d",
+          "EXACT:05a",
+          "EXACT:00b",
+          "EXACT:00e",
+          "EXACT:025",
+          "EXACT:074",
+          "EXACT:083",
+          "EXACT:103"
+        ]
+      },
+      {
+        "cost": 1,
+        "destination": "EXACT__EXACT__d5",
+        "elapsed_seconds": 0.00017564800145919435,
+        "inherited_coordinates": [
+          "EXACT:00b",
+          "EXACT:00e",
+          "EXACT:00f",
+          "EXACT:01e",
+          "EXACT:025",
+          "EXACT:02b",
+          "EXACT:02d",
+          "EXACT:02e",
+          "EXACT:035",
+          "EXACT:04b",
+          "EXACT:04d",
+          "EXACT:04e",
+          "EXACT:056",
+          "EXACT:05a",
+          "EXACT:065",
+          "EXACT:06a",
+          "EXACT:070",
+          "EXACT:071",
+          "EXACT:072",
+          "EXACT:074",
+          "EXACT:078",
+          "EXACT:083",
+          "EXACT:103",
+          "EXACT:20b",
+          "EXACT:225",
+          "EXACT:610",
+          "EXACT:616",
+          "EXACT:73f",
+          "EXACT:84a",
+          "EXACT:9ff",
+          "EXACT:b54",
+          "EXACT:b94",
+          "EXACT:bee",
+          "EXACT:c36"
+        ],
+        "minimum_distance": 5,
+        "required_distance": 5,
+        "sensor": "EXACT",
+        "target": "EXACT",
+        "trace": [
+          {
+            "coordinate": "EXACT:08e",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:08e"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 0,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 6,
+    "greedy_minus_historical": 0,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "ec9a2754f84535911c0a1277fceea8c1b792075c4123e046b378adea34eda325",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__EXACT__d1",
+      "route_id": "S22P1",
+      "source": "MODE__MODE__d1",
+      "square_id": "S22"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d1",
+        "elapsed_seconds": 0.00010471400128153618,
+        "inherited_coordinates": [
+          "MODE:01e",
+          "MODE:027",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:071",
+          "MODE:442",
+          "MODE:580"
+        ],
+        "minimum_distance": 1,
+        "required_distance": 1,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 6,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.00041194500045094173,
+        "inherited_coordinates": [
+          "MODE:01e",
+          "MODE:027",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:071",
+          "MODE:442",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:05a",
+            "gain": 57,
+            "total_deficit_before": 73,
+            "unsatisfied_pairs_before": 73
+          },
+          {
+            "coordinate": "EXACT:086",
+            "gain": 8,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "EXACT:00f",
+            "gain": 4,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "EXACT:035",
+            "gain": 2,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:05a",
+          "EXACT:086",
+          "EXACT:00f",
+          "EXACT:035",
+          "EXACT:070",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 2,
+    "first_excess_over_certified_local_minimum": 2,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 2,
+    "historical_cost": 7,
+    "joint_certificate_sha256": "7aca1f95c8fc79b4d15fae56c08841de38b64f309d7a54acb0996d81e8b146fd",
+    "joint_optimum": 7,
+    "route": {
+      "archived_first_cost": 7,
+      "archived_local_cost": 7,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d2",
+      "intermediate": "MODE__MODE__d2",
+      "route_id": "S22P2",
+      "source": "MODE__MODE__d1",
+      "square_id": "S22"
+    },
+    "stages": [
+      {
+        "cost": 9,
+        "destination": "MODE__MODE__d2",
+        "elapsed_seconds": 0.0006172569992486387,
+        "inherited_coordinates": [
+          "MODE:01e",
+          "MODE:027",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:071",
+          "MODE:442",
+          "MODE:580"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:04c",
+            "gain": 39,
+            "total_deficit_before": 73,
+            "unsatisfied_pairs_before": 73
+          },
+          {
+            "coordinate": "MODE:8a1",
+            "gain": 16,
+            "total_deficit_before": 34,
+            "unsatisfied_pairs_before": 34
+          },
+          {
+            "coordinate": "MODE:05a",
+            "gain": 10,
+            "total_deficit_before": 18,
+            "unsatisfied_pairs_before": 18
+          },
+          {
+            "coordinate": "MODE:00f",
+            "gain": 2,
+            "total_deficit_before": 8,
+            "unsatisfied_pairs_before": 8
+          },
+          {
+            "coordinate": "MODE:015",
+            "gain": 2,
+            "total_deficit_before": 6,
+            "unsatisfied_pairs_before": 6
+          },
+          {
+            "coordinate": "MODE:019",
+            "gain": 1,
+            "total_deficit_before": 4,
+            "unsatisfied_pairs_before": 4
+          },
+          {
+            "coordinate": "MODE:025",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:04c",
+          "MODE:8a1",
+          "MODE:05a",
+          "MODE:00f",
+          "MODE:015",
+          "MODE:019",
+          "MODE:025",
+          "MODE:070",
+          "MODE:103"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 6.763999954273459e-05,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:015",
+          "MODE:019",
+          "MODE:01e",
+          "MODE:025",
+          "MODE:027",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:04c",
+          "MODE:05a",
+          "MODE:070",
+          "MODE:071",
+          "MODE:103",
+          "MODE:442",
+          "MODE:580",
+          "MODE:8a1"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 0,
+    "greedy_cost": 7,
+    "greedy_minus_historical": 1,
+    "historical_cost": 6,
+    "joint_certificate_sha256": "780a9d6d90b5031088d80f8cd26b3ccc66c52f12cea0981423bceb9de34ba88e",
+    "joint_optimum": 6,
+    "route": {
+      "archived_first_cost": 0,
+      "archived_local_cost": 6,
+      "archived_second_cost": 6,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__EXACT__d2",
+      "route_id": "S23P1",
+      "source": "MODE__MODE__d2",
+      "square_id": "S23"
+    },
+    "stages": [
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d2",
+        "elapsed_seconds": 0.00013086199942335952,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:019",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:071",
+          "MODE:074",
+          "MODE:125",
+          "MODE:141",
+          "MODE:580",
+          "MODE:6e7",
+          "MODE:803"
+        ],
+        "minimum_distance": 2,
+        "required_distance": 2,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      },
+      {
+        "cost": 7,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 0.00037725400034105405,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:019",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:071",
+          "MODE:074",
+          "MODE:125",
+          "MODE:141",
+          "MODE:580",
+          "MODE:6e7",
+          "MODE:803"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "EXACT:04e",
+            "gain": 36,
+            "total_deficit_before": 47,
+            "unsatisfied_pairs_before": 47
+          },
+          {
+            "coordinate": "EXACT:046",
+            "gain": 4,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "EXACT:01b",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "EXACT:035",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "EXACT:070",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "EXACT:083",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "EXACT:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "EXACT:04e",
+          "EXACT:046",
+          "EXACT:01b",
+          "EXACT:035",
+          "EXACT:070",
+          "EXACT:083",
+          "EXACT:103"
+        ]
+      }
+    ]
+  },
+  {
+    "excess_over_joint": 1,
+    "first_excess_over_certified_local_minimum": 1,
+    "greedy_cost": 9,
+    "greedy_minus_historical": 1,
+    "historical_cost": 8,
+    "joint_certificate_sha256": "a8cb593b25820ef34ee2724ccb5cfff072eacddd47c0f9adcbf17622cc6e5cf0",
+    "joint_optimum": 8,
+    "route": {
+      "archived_first_cost": 8,
+      "archived_local_cost": 8,
+      "archived_second_cost": 0,
+      "destination": "MODE__EXACT__d3",
+      "intermediate": "MODE__MODE__d3",
+      "route_id": "S23P2",
+      "source": "MODE__MODE__d2",
+      "square_id": "S23"
+    },
+    "stages": [
+      {
+        "cost": 9,
+        "destination": "MODE__MODE__d3",
+        "elapsed_seconds": 0.000618369000221719,
+        "inherited_coordinates": [
+          "MODE:00f",
+          "MODE:019",
+          "MODE:01e",
+          "MODE:02d",
+          "MODE:031",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:071",
+          "MODE:074",
+          "MODE:125",
+          "MODE:141",
+          "MODE:580",
+          "MODE:6e7",
+          "MODE:803"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "MODE",
+        "target": "MODE",
+        "trace": [
+          {
+            "coordinate": "MODE:146",
+            "gain": 23,
+            "total_deficit_before": 47,
+            "unsatisfied_pairs_before": 47
+          },
+          {
+            "coordinate": "MODE:00e",
+            "gain": 8,
+            "total_deficit_before": 24,
+            "unsatisfied_pairs_before": 24
+          },
+          {
+            "coordinate": "MODE:083",
+            "gain": 5,
+            "total_deficit_before": 16,
+            "unsatisfied_pairs_before": 16
+          },
+          {
+            "coordinate": "MODE:04a",
+            "gain": 4,
+            "total_deficit_before": 11,
+            "unsatisfied_pairs_before": 11
+          },
+          {
+            "coordinate": "MODE:01b",
+            "gain": 2,
+            "total_deficit_before": 7,
+            "unsatisfied_pairs_before": 7
+          },
+          {
+            "coordinate": "MODE:035",
+            "gain": 2,
+            "total_deficit_before": 5,
+            "unsatisfied_pairs_before": 5
+          },
+          {
+            "coordinate": "MODE:029",
+            "gain": 1,
+            "total_deficit_before": 3,
+            "unsatisfied_pairs_before": 3
+          },
+          {
+            "coordinate": "MODE:070",
+            "gain": 1,
+            "total_deficit_before": 2,
+            "unsatisfied_pairs_before": 2
+          },
+          {
+            "coordinate": "MODE:103",
+            "gain": 1,
+            "total_deficit_before": 1,
+            "unsatisfied_pairs_before": 1
+          }
+        ],
+        "witness": [
+          "MODE:146",
+          "MODE:00e",
+          "MODE:083",
+          "MODE:04a",
+          "MODE:01b",
+          "MODE:035",
+          "MODE:029",
+          "MODE:070",
+          "MODE:103"
+        ]
+      },
+      {
+        "cost": 0,
+        "destination": "MODE__EXACT__d3",
+        "elapsed_seconds": 8.470499960822053e-05,
+        "inherited_coordinates": [
+          "MODE:00e",
+          "MODE:00f",
+          "MODE:019",
+          "MODE:01b",
+          "MODE:01e",
+          "MODE:029",
+          "MODE:02d",
+          "MODE:031",
+          "MODE:035",
+          "MODE:04a",
+          "MODE:04b",
+          "MODE:05a",
+          "MODE:070",
+          "MODE:071",
+          "MODE:074",
+          "MODE:083",
+          "MODE:103",
+          "MODE:125",
+          "MODE:141",
+          "MODE:146",
+          "MODE:580",
+          "MODE:6e7",
+          "MODE:803"
+        ],
+        "minimum_distance": 3,
+        "required_distance": 3,
+        "sensor": "EXACT",
+        "target": "MODE",
+        "trace": [],
+        "witness": []
+      }
+    ]
+  }
+]

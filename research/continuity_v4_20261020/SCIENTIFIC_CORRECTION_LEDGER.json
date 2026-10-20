@@ -1,0 +1,152 @@
+{
+  "schema": "KCH_SCIENTIFIC_CORRECTION_LEDGER_V4",
+  "date": "2026-10-20",
+  "no_hhc": true,
+  "all_gaps_closed": false,
+  "new_observations": false,
+  "review_basis": "Review 2026-10-20; broad targeted literature analysis with declared read depths, not exhaustive census.",
+  "parent_claims_preserved": 34,
+  "new_claims": 7,
+  "corrections": [
+    {
+      "id": "P0-01",
+      "obligation": "Conservar corpus y manuscritos",
+      "status": "IMPLEMENTED",
+      "implemented": "108 archivos de entrada intactos; retención ejecutable de ambos V6.",
+      "remaining": "Ninguno para esta obligación."
+    },
+    {
+      "id": "P0-02",
+      "obligation": "Reubicar novedad formal",
+      "status": "IMPLEMENTED",
+      "implemented": "Antecedentes próximos y alcance de suficiencia explícitos en PAPER1 V6.",
+      "remaining": "Novedad diferencial y minimalidad siguen abiertas."
+    },
+    {
+      "id": "P0-03",
+      "obligation": "Precisar estimando sísmico y terminal",
+      "status": "IMPLEMENTED",
+      "implemented": "PAPER2 V6 terminal-first, marca axial condicional y límites estadísticos.",
+      "remaining": "Auditoría computacional de densidad y bootstrap pendiente."
+    },
+    {
+      "id": "P0-04",
+      "obligation": "Comparador algorítmico ECH real",
+      "status": "IMPLEMENTED_AND_INDEPENDENTLY_VERIFIED",
+      "implemented": "Greedy congelado, 46 rutas completas, testigos y checker independiente.",
+      "remaining": "Información futura no equiparada; un solo kernel."
+    },
+    {
+      "id": "P0-05",
+      "obligation": "Contrato temporal solar",
+      "status": "IMPLEMENTED_AND_VERIFIED",
+      "implemented": "G, LOHO y selección completa de ventanas delimitados; ganancias locales conservadas.",
+      "remaining": "Replay cronológico nuevo no ejecutado."
+    },
+    {
+      "id": "P0-06",
+      "obligation": "Identificación M33",
+      "status": "IMPLEMENTED_FOR_ARCHIVED_OPERATOR",
+      "implemented": "Rango, núcleo, covarianzas y norma puntual distinguidos.",
+      "remaining": "Puente físico y rango con nuisance pendientes."
+    },
+    {
+      "id": "P0-07",
+      "obligation": "Recuperar ejecución DAVE v1.3",
+      "status": "BLOCKED_BY_SOURCE_IN_INSPECTED_CORPUS",
+      "implemented": "Búsqueda con inventario y contratos de diagnóstico.",
+      "remaining": "Código original e inputs no recuperados en el corpus inspeccionado."
+    },
+    {
+      "id": "P0-08",
+      "obligation": "Auditar densidad sísmica ejecutada",
+      "status": "DOCUMENTED_NOT_EXECUTED",
+      "implemented": "Fórmula, normalización, clipping y dependencias necesarios están especificados.",
+      "remaining": "Requiere fuente ejecutada y pérdidas por unidad."
+    },
+    {
+      "id": "P1-01",
+      "obligation": "Separar mecanismos ECH",
+      "status": "IMPLEMENTED_ANALYTIC_AND_FINITE",
+      "implemented": "Descomposición A−J y caracterización condicionada; catálogo R=J conservado.",
+      "remaining": "No theorem de equivalencia universal ni comparación causal de anticipación."
+    },
+    {
+      "id": "P1-02",
+      "obligation": "Generalización ECH",
+      "status": "NOT_EXECUTED",
+      "implemented": "Frontera explícita y prohibición de extrapolar tasas del catálogo.",
+      "remaining": "Otro kernel real y comparación con información equiparada."
+    },
+    {
+      "id": "P1-03",
+      "obligation": "Prueba solar cronológica",
+      "status": "NOT_EXECUTED",
+      "implemented": "Contrato operacional especifica entradas y timestamps requeridos.",
+      "remaining": "Nuevo protocolo y observaciones/partición no elegidas con resultados."
+    },
+    {
+      "id": "P1-04",
+      "obligation": "M33 2D y 75 sensibilidades",
+      "status": "NOT_EXECUTED",
+      "implemented": "Protocolo existente conservado; condición para romper núcleo identificada.",
+      "remaining": "Datos adjudicables, operador físico y nuisance."
+    },
+    {
+      "id": "P1-05",
+      "obligation": "Conservar doce ramas",
+      "status": "IMPLEMENTED",
+      "implemented": "34 claims anteriores intactos y siete nuevos, con fuentes y dependencias.",
+      "remaining": "Brechas específicas permanecen por rama, sin contaminación automática."
+    },
+    {
+      "id": "P1-06",
+      "obligation": "Despliegue de revisión reproducible",
+      "status": "IMPLEMENTED_DRAFT_BRANCH",
+      "implemented": "PR37, hashes de fuentes, manifiesto y CI con recibos nuevos.",
+      "remaining": "No merge ni promoción canónica; PASS no equivale a validación científica global."
+    }
+  ],
+  "original_review_P0_crosswalk": [
+    {
+      "obligation": "Contribution/predecessor matrix",
+      "artifact": "CONTRIBUTION_MATRIX_ES.md",
+      "status": "IMPLEMENTED_WITH_OPEN_NOVELTY_DELTA"
+    },
+    {
+      "obligation": "Operational language",
+      "artifact": "CONTRIBUTION_MATRIX_ES.md",
+      "status": "IMPLEMENTED_WITH_EXPLICIT_PHYSICAL_GAPS"
+    },
+    {
+      "obligation": "Evidence units",
+      "artifact": "CONTRIBUTION_MATRIX_ES.md",
+      "status": "IMPLEMENTED_NOT_A_NEW_DEPENDENCE_ANALYSIS"
+    },
+    {
+      "obligation": "Corpus reservations",
+      "artifact": "CLAIM_EVIDENCE_REGISTRY.json",
+      "status": "PRESERVED_AND_EXTENDED"
+    },
+    {
+      "obligation": "Version synchronization",
+      "artifact": "CONTRIBUTION_MATRIX_ES.md",
+      "status": "IMPLEMENTED_WITH_PRIOR_BYTES_UNCHANGED"
+    }
+  ],
+  "required_domains": [
+    "bayme",
+    "ceh",
+    "cuantoritmica",
+    "ech",
+    "formal",
+    "galactic_mhd",
+    "kch_fabric",
+    "physical_bench",
+    "pluriverse",
+    "runtime",
+    "seismic",
+    "solar"
+  ],
+  "publication_readiness": "Improved reviewability; no acceptance, novelty, power or identifiability score is promoted merely by editorial changes."
+}

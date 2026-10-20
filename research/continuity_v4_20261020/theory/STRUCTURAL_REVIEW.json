@@ -1,0 +1,123 @@
+{
+  "schema": "ech_structural_review_v1",
+  "date": "2026-10-20",
+  "reviewer": "ech_baselines_v4: separate agent from the structural module author",
+  "status": "PASS_WITH_DECLARED_SCOPE",
+  "blocking_findings": [],
+  "reviewed_files": [
+    {
+      "path": "research/continuity_v4_20261020/theory/ECH_STRUCTURAL_CONTRIBUTION.md",
+      "sha256": "42d973b59b23ab796d13f286fd4c48ba76fe88bbd84bbbb0163c1229c46f974c"
+    },
+    {
+      "path": "research/continuity_v4_20261020/theory/EXACT_SAVING_DECOMPOSITION_46.csv",
+      "sha256": "7f4cad24523a23df15f986ad1b4e7f5689e7ab61b9cb09023569999f4cbbca05"
+    },
+    {
+      "path": "research/continuity_v4_20261020/theory/STRUCTURAL_EVIDENCE_DEPENDENCIES.json",
+      "sha256": "e3d05da33ce46bef71796698e82f5fee3c56cf9e12de282fbff7841772da4bcf"
+    }
+  ],
+  "method": "Full mathematical reading of the three propositions and their assumptions; deterministic comparison of every decomposition row with archived source fields and certificate links. No new optimization, generated instances, empirical observations, or literature search.",
+  "mathematical_assessments": [
+    {
+      "proposition": 1,
+      "status": "PASS",
+      "finding": "The finite completion criterion R=J is necessary and sufficient for an optimal plan with a cardinality-minimum first stage. Restricted feasibility gives J<=R<=A for the certified archived feasible plan. The decomposition and strict inequality v(m)-v(k)>k-m follow exactly under the stated finiteness condition.",
+      "assumptions_checked": [
+        "First-stage sets are legal additions in Q1 excluding inherited evidence.",
+        "A finite joint optimum exists.",
+        "The archived first set is cardinality-minimum and its continuation is conditionally optimal.",
+        "The comparison involving v(m) is explicitly restricted to finite v(m)."
+      ],
+      "interpretation_limit": "A returned nonminimum first-stage witness does not prove that all joint optima require nonminimum acquisition."
+    },
+    {
+      "proposition": 2,
+      "status": "PASS",
+      "finding": "For fixed legal final additions U, membership B in the minimum-first family ensures the first contract; B subset U intersection Q1 and U minus Q2 subset B are necessary and sufficient for the second additions U minus B to remain admissible. Disjointness from inherited evidence follows from legality of U. Final evidence and unit total cost are preserved.",
+      "assumptions_checked": [
+        "The final set is the union of a legal plan.",
+        "Contracts depend on accumulated evidence.",
+        "No expiry, response-dependent availability, or timing cost intervenes."
+      ],
+      "interpretation_limit": "The criterion is existential over at least one optimal final set. The module does not establish that all returned optimal witnesses can be rescheduled; no containment search was performed. The zero-minimum same-sensor case follows directly."
+    },
+    {
+      "proposition": 3,
+      "status": "PASS",
+      "finding": "Grouping by sensor and complete separation vector, with true capacity and inherited counts retained, permits a symmetric lifting of every reduced acquisition vector to unused concrete coordinates. Costs, contracts, residual capacity, successor counts and finite-route feasibility are preserved. Refining additionally by exact fixed cost suffices for the stated heterogeneous-cost extension.",
+      "assumptions_checked": [
+        "A fixed finite kernel defines coordinate separation vectors and capacities.",
+        "Acquisition admissibility depends on the declared stage sensor; no extra coordinate-specific permission is omitted.",
+        "Histories have the same group counts at the same route stage.",
+        "No reacquisition, expiry, destructive update or response-dependent action policy is introduced."
+      ],
+      "interpretation_limit": "This is sufficient planning state, not a minimal quotient and not preservation of response labels, decoding, receipts, timestamps or authority."
+    }
+  ],
+  "table_audit": {
+    "status": "PASS",
+    "field_and_linkage_checks": 1025,
+    "routes": 46,
+    "all_routes_R_equals_J": true,
+    "tie_choice_positive": 11,
+    "strict_nonminimality_positive": 0,
+    "returned_nonminimal_first_witnesses": 30,
+    "zero_minimum_first_same_sensor": 14,
+    "same_sensor_routes": 33,
+    "different_sensor_routes": 13,
+    "independent_route_totals": {
+      "A": 335,
+      "R": 320,
+      "J": 320
+    },
+    "checks": [
+      "Unique and complete route identity across CSV, catalogue and joint certificates.",
+      "Route source, intermediate, destination, inherited coordinates and sensor jurisdiction.",
+      "Original first-stage minimum certificate identity and cost.",
+      "Archived stage witness lengths and costs.",
+      "Catalogue minimum-first witness length, completion cost and coordinate disjointness.",
+      "Joint certificate hash, witness cost, exact lower bound and zero certified gap.",
+      "Every row obeys J=R<=A and A-J=(A-R)+(R-J).",
+      "All five hashes in STRUCTURAL_EVIDENCE_DEPENDENCIES.json match current sources.",
+      "Published aggregate counts and independent-route sums match all 46 rows."
+    ],
+    "source_files": [
+      {
+        "path": "research/continuity_v2_20261013/evidence/ech/results/EXACT_BRIDGE_CERTIFICATES.json",
+        "sha256": "aaf4b8a0da82db4677dc032816d9c9c43bdcc7698a70a29c611b3a49139b97d9"
+      },
+      {
+        "path": "research/continuity_v2_20261013/evidence/ech/results/FINITE_ATLAS_REPLAY_DETAIL.json",
+        "sha256": "dec586c672132e706633ea72305736d13309a76a18bc8528efe927d172230eb6"
+      },
+      {
+        "path": "research/continuity_v2_20261013/evidence/ech/inputs/compiled_distance_codebooks.json",
+        "sha256": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b"
+      },
+      {
+        "path": "research/continuity_v3_20261013/evidence/ech_joint/LOCAL_MINIMUM_LOOKAHEAD_CATALOG.json",
+        "sha256": "85e190980d26982c07b3b7dbb25278ada23cc41ec84656a4a2f7162baa529fe8"
+      },
+      {
+        "path": "research/continuity_v3_20261013/evidence/ech_joint/JOINT_ROUTE_CERTIFICATES.json",
+        "sha256": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0"
+      }
+    ]
+  },
+  "nonblocking_scope_notes": [
+    "An information-effect comparison needs otherwise controlled policies; comparing arbitrary destination-aware and destination-blind algorithms does not isolate a causal effect of information. The module states no measured information advantage.",
+    "The propositions instantiate established finite optimization and state-abstraction arguments; no novelty or priority assessment is supplied by this review."
+  ],
+  "verification_limits": [
+    "The table pass independently checks fields, links, costs, counts and algebra; it is not a new full kernel replay of every catalogue witness.",
+    "Feasibility of minimum-first catalogue witnesses remains dependent on the existing v3 certified catalogue workflow. The separate v4 greedy checker reconstructed the kernel and checked original first-stage and joint lower bounds, but this does not substitute for a catalogue-wide replay.",
+    "This is mathematical review by a separate agent, not formal proof-assistant verification or independent human peer review.",
+    "No approximation ratio, runtime advantage, external generalization, physical interpretation or operational authority follows from these results."
+  ],
+  "no_new_empirical_data": true,
+  "no_new_optimizer_run": true,
+  "no_hhc": true,
+  "only_new_review_file_written": true
+}

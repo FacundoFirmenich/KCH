@@ -1,0 +1,356 @@
+{
+  "created": "2026-10-20",
+  "scope": "Revisión selectiva crítica de fundamentos formales, no revisión sistemática ni exhaustiva de toda la literatura.",
+  "method_exclusion": "HHC no utilizado; prohibido expresamente por el usuario.",
+  "sources": [
+    {
+      "id": "F01",
+      "title": "Detecting strange attractors in turbulence",
+      "authors": [
+        "Floris Takens"
+      ],
+      "year": 1981,
+      "url": "https://www.math.ucdavis.edu/~saito/data/synchrosqueezing/takens_detect-strange-attractors-turbulence.pdf",
+      "doi_verified": null,
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Introducción y teorema 1 con hipótesis: variedad compacta m-dimensional, difeomorfismo y observable C2 genéricos, 2m+1 coordenadas. PDF descargado; no auditoría completa de la demostración.",
+      "supports": "La memoria temporal puede reconstruir estado bajo hipótesis; una proyección instantánea insuficiente no prueba imposibilidad de reconstrucción.",
+      "relationship": "Vecino clásico directo del problema de recurrencia proyectada.",
+      "access_limits": "Copia institucional de texto completo; DOI del manuscrito no se resolvió independientemente.",
+      "web_refs": [
+        "turn38search15"
+      ]
+    },
+    {
+      "id": "F02",
+      "title": "Computational Mechanics: Pattern and Prediction, Structure and Simplicity",
+      "authors": [
+        "Cosma Rohilla Shalizi",
+        "James P. Crutchfield"
+      ],
+      "year": 2001,
+      "url": "https://arxiv.org/html/cond-mat/9907176v2",
+      "doi_verified": "10.1023/A:1010388907793",
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Texto completo HTML consultado: definición 5 de estados causales, teoremas de predicción y minimalidad, suficiencia y equivalencia de historias.",
+      "supports": "Equivalencia de pasados por ley de futuros y representación predictiva mínima; no convierte equivalencia observacional en ontología física.",
+      "relationship": "Antecedente directo y más exigente que añadir linaje por definición.",
+      "access_limits": "Preprint de autores y metadatos de artículo; no reprobada cada demostración.",
+      "web_refs": [
+        "turn39view0",
+        "turn47view0",
+        "turn53view4",
+        "turn53view5"
+      ]
+    },
+    {
+      "id": "F03",
+      "title": "Predictive Representations of State",
+      "authors": [
+        "Michael L. Littman",
+        "Richard S. Sutton",
+        "Satinder Singh"
+      ],
+      "year": 2001,
+      "url": "https://papers.nips.cc/paper_files/paper/2001/file/1e4d36177d71bbb3558e43af9577d70e-Paper.pdf",
+      "doi_verified": null,
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Introducción, definición de PSR, ecuaciones 1–3 y teorema 1; comienzo de la construcción desde POMDP.",
+      "supports": "Estado como predicciones de pruebas futuras condicionadas por acciones; suficiencia y tamaño de representación lineal frente a POMDP finito.",
+      "relationship": "Antecedente directo para memoria útil para tareas e interacciones.",
+      "access_limits": "PDF oficial accesible; espejo de Michigan dio error y se sustituyó por editor. No se verificó toda la prueba constructiva.",
+      "web_refs": [
+        "turn53view1",
+        "turn78view0"
+      ]
+    },
+    {
+      "id": "F04",
+      "title": "Towards a Unified Theory of State Abstraction for MDPs",
+      "authors": [
+        "Lihong Li",
+        "Thomas J. Walsh",
+        "Michael L. Littman"
+      ],
+      "year": 2006,
+      "url": "https://thomasjwalsh.net/pub/aima06Towards.pdf",
+      "doi_verified": null,
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Secciones 3.2–3.4; definiciones 2–3, cinco clases de irrelevancia y teorema 4; comprobación de tipos de garantía.",
+      "supports": "Distintas abstracciones preservan modelo, valores o políticas bajo condiciones distintas; suficiencia respecto de una tarea no implica equivalencia universal.",
+      "relationship": "Antecedente directo para clasificar el cociente ECH; candidato a comparación obligatoria.",
+      "access_limits": "PDF de autor accesible. Enlace UMass falló 502/503.",
+      "web_refs": [
+        "turn68search36",
+        "turn73view0",
+        "turn76view1",
+        "turn76view2"
+      ]
+    },
+    {
+      "id": "F05",
+      "title": "Value Preserving State-Action Abstractions",
+      "authors": [
+        "David Abel",
+        "Nate Umbanhowar",
+        "Khimya Khetarpal",
+        "Dilip Arumugam",
+        "Doina Precup",
+        "Michael L. Littman"
+      ],
+      "year": 2020,
+      "url": "https://proceedings.mlr.press/v108/abel20a.html",
+      "doi_verified": null,
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Página oficial y PDF: resumen, definiciones, teorema 1 de cotas, condiciones para opciones y discusión de necesidad.",
+      "supports": "Las garantías de compresión conjunta de estados y acciones requieren emparejar lo que preservan y cómo se ejecutan las acciones abstractas.",
+      "relationship": "Estado del arte publicado pertinente; supera en generalidad una compresión de coordenadas con costo unitario fijo.",
+      "access_limits": "Texto completo oficial descargado; no reproducción de experimentos ni verificación integral de pruebas.",
+      "web_refs": [
+        "turn42search3",
+        "turn53view0"
+      ]
+    },
+    {
+      "id": "F06",
+      "title": "Identification in Parametric Models",
+      "authors": [
+        "Thomas J. Rothenberg"
+      ],
+      "year": 1971,
+      "url": "https://www.jstor.org/stable/1913267",
+      "doi_verified": "10.2307/1913267",
+      "reading_depth": "metadata_only",
+      "what_read": "Metadatos editoriales y búsqueda; texto completo no recuperado. No se atribuye una relectura de la prueba de identificación.",
+      "supports": "Referencia primaria que debe revisarse para condiciones de regularidad de Fisher; la corrección de V5 se evaluó por su argumento algebraico local, no por supuesto acceso al artículo.",
+      "relationship": "Ya citado en V5; ancla histórica de identificación regular, no de imposibilidad universal en puntos singulares.",
+      "access_limits": "JSTOR devolvió página sin contenido útil; espejo NYU 404. No se determinó si el límite era paywall o acceso técnico.",
+      "web_refs": [
+        "turn38search2",
+        "turn61view1"
+      ]
+    },
+    {
+      "id": "F07",
+      "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "authors": [
+        "Tilmann Gneiting",
+        "Adrian E. Raftery"
+      ],
+      "year": 2007,
+      "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+      "doi_verified": "10.1198/016214506000001437",
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Secciones 2–4, especialmente score logarítmico ecuación 19 y conexión entropía/divergencia; PDF de autores.",
+      "supports": "El log-score propio y la divergencia KL son clásicos; diferencia oracular condicionada y ganancia de predictores estimados son objetos diferentes.",
+      "relationship": "Comparador teórico directo para la supuesta novedad de la identidad log-score/CMI.",
+      "access_limits": "Texto completo disponible y extractos pertinentes leídos; DOI contrastado en página editorial.",
+      "web_refs": [
+        "turn39search1",
+        "turn39search3"
+      ]
+    },
+    {
+      "id": "F08",
+      "title": "Holonomy, the Quantum Adiabatic Theorem, and Berry’s Phase",
+      "authors": [
+        "Barry Simon"
+      ],
+      "year": 1983,
+      "url": "https://authors.library.caltech.edu/records/2pepc-k9f58",
+      "doi_verified": "10.1103/PhysRevLett.51.2167",
+      "reading_depth": "abstract_and_metadata",
+      "what_read": "Resumen de autor y registro institucional; explica la conexión natural que permite interpretar fase geométrica como holonomía.",
+      "supports": "Un ejemplo físico de holonomía incorpora conexión y estructura de fibrado; la analogía no otorga transporte a cualquier ledger.",
+      "relationship": "Antecedente geométrico para disciplinar vocabulario, no teorema general de todas las afirmaciones topológicas del proyecto.",
+      "access_limits": "PDF enlazado devolvió error del lector; no se leyó el texto completo.",
+      "web_refs": [
+        "turn39search2",
+        "turn53view3",
+        "turn95view1"
+      ]
+    },
+    {
+      "id": "F09",
+      "title": "The degree of knottedness of tangled vortex lines",
+      "authors": [
+        "H. K. Moffatt"
+      ],
+      "year": 1969,
+      "url": "https://www.damtp.cam.ac.uk/user/hkm2/PDFs/Moffatt_1969_JFM_35_117.pdf",
+      "doi_verified": null,
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Resumen, introducción y definición de helicidad integral con sus condiciones de conservación; lectura selectiva del PDF de autor.",
+      "supports": "Helicidad de campo y topología de líneas requieren variables y condiciones físicas específicas; no equivalen a torsión de una trayectoria de observaciones.",
+      "relationship": "Contrapunto primario para evitar inferir helicidad física de no retorno o paridad de caminos.",
+      "access_limits": "PDF se pudo convertir a texto; lectura selectiva, no revisión de todos los cálculos. DOI no verificado.",
+      "web_refs": [
+        "turn42search2"
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "Equivalent Comparisons of Experiments",
+      "authors": [
+        "David Blackwell"
+      ],
+      "year": 1953,
+      "url": "https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-24/issue-2/Equivalent-Comparisons-of-Experiments/10.1214/aoms/1177729032.full",
+      "doi_verified": "10.1214/aoms/1177729032",
+      "reading_depth": "metadata_only",
+      "what_read": "Metadatos de editor; página de texto completo no devolvió contenido.",
+      "supports": "Vecino bibliográfico para comparación entre experimentos; no se usa esta lectura limitada como verificación de un teorema detallado.",
+      "relationship": "Frontera bibliográfica pendiente: comparar experimentos, no solo transformaciones de una misma medición.",
+      "access_limits": "Acceso técnico limitado; no se ha establecido paywall.",
+      "web_refs": [
+        "turn42search0",
+        "turn61view2"
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "Adaptive state-action abstractions via rate-distortion",
+      "authors": [
+        "Fernando E. Rosas"
+      ],
+      "year": 2026,
+      "url": "https://arxiv.org/html/2606.06123v1",
+      "doi_verified": null,
+      "reading_depth": "full_text_selected_sections",
+      "what_read": "Versión v1 de 4 junio 2026; introducción, teorema 1 de descomposición error de aprendizaje/abstracción, apéndice D sobre error promedio y peor caso.",
+      "supports": "La frontera reciente propone ajustar resolución por balance entre errores; un diagnóstico medio no certifica automáticamente peor caso sin cobertura.",
+      "relationship": "Referencia reciente exploratoria para situar la exigencia contemporánea, no consenso ni sustituto de comparación con trabajos publicados.",
+      "access_limits": "Preprint; no se verificó publicación revisada por pares, todas sus pruebas ni experimentos.",
+      "web_refs": [
+        "turn47view3",
+        "turn61view3",
+        "turn73view2"
+      ]
+    },
+    {
+      "id": "F12",
+      "title": "Persistent Cohomology and Circular Coordinates",
+      "authors": [
+        "Vin de Silva",
+        "Dmitriy Morozov",
+        "Mikael Vejdemo-Johansson"
+      ],
+      "year": 2011,
+      "url": "https://mrzv.org/publications/circular/",
+      "doi_verified": "10.1007/s00454-011-9344-x",
+      "reading_depth": "abstract_and_metadata",
+      "what_read": "Resumen y datos bibliográficos en página de autor, contrastados con editor. No se inspeccionó todo el algoritmo.",
+      "supports": "La cohomología puede construir coordenadas circulares; extraer una coordenada de fase no identifica por sí solo fibra, transporte ni causalidad.",
+      "relationship": "Ya citado en V5; vecino directo del requisito de justificar la fase periódica.",
+      "access_limits": "Resumen público. Se distinguió artículo publicado con tres autores de preprint temprano con dos autores.",
+      "web_refs": [
+        "turn78search0",
+        "turn78search3",
+        "turn95view0"
+      ]
+    }
+  ],
+  "search_log": [
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Shalizi Crutchfield Computational Mechanics Pattern and Prediction Structure and Simplicity 2001 causal states minimal sufficient statistics"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Li Walsh Littman 2006 Towards a Unified Theory of State Abstraction for MDPs pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Rothenberg Identification in Parametric Models 1971 regular point information matrix identification"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Takens 1981 Detecting strange attractors turbulence embedding theorem original pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Simon 1983 Holonomy the quantum adiabatic theorem Berry phase Physical Review Letters 51 2167 pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Gneiting Raftery 2007 Strictly Proper Scoring Rules Prediction and Estimation pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Blackwell 1953 Equivalent Comparisons of Experiments pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Littman Sutton Singh 2001 Predictive Representations of State pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Moffatt 1969 degree knottedness tangled vortex lines helicity pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system1",
+      "query": "Abel 2020 Value Preserving State Action Abstractions PMLR"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2",
+      "query": "\"Towards a Unified Theory of State Abstraction for MDPs\" pdf Li Walsh Littman 2006"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2",
+      "query": "\"Adaptive state-action abstractions via rate-distortion\" authors"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2",
+      "query": "\"Rothenberg\" \"regular point\" \"Identification in Parametric Models\" pdf"
+    },
+    {
+      "date": "2026-10-20",
+      "engine": "system2",
+      "query": "de Silva Morozov Vejdemo Johansson Persistent cohomology circular coordinates 2011 arxiv"
+    }
+  ],
+  "screened_not_included": [
+    {
+      "reference": "Pacini (2022), identificación local y Hellinger",
+      "reason": "Hallado durante búsqueda de Rothenberg; PDF institucional de Bristol devolvió 403; no se le atribuye contenido revisado."
+    }
+  ],
+  "local_corpus": [
+    {
+      "path": "recovery/repo/research/continuity_20261013/papers/PAPER_1_PROJECTED_RECURRENCE_HELICAL_LIFTS_V5.md",
+      "reading": "texto completo, incluida recuperación separada del tramo 310–490 inicialmente truncado"
+    },
+    {
+      "path": "recovery/repo/research/continuity_v3_20261013/README_ES.md",
+      "reading": "completo"
+    },
+    {
+      "path": "recovery/repo/research/continuity_v3_20261013/CLAIM_EVIDENCE_REGISTRY.json",
+      "reading": "estructura general y afirmaciones formales/ECH revisadas; registros de otros dominios usados solo como contexto"
+    },
+    {
+      "path": "recovery/repo/research/continuity_v3_20261013/evidence/quotient/COCIENTE_DE_PLANIFICACION_ES.md",
+      "reading": "completo"
+    }
+  ],
+  "verification_limits": [
+    "No se modificaron artículos ni cálculos.",
+    "No se ejecutó un nuevo benchmark ni se reprodujeron experimentos de publicaciones externas.",
+    "Lectura selectiva de secciones primarias no equivale a validación completa de cada artículo.",
+    "DOI nulo significa no verificado en esta revisión, no inexistente.",
+    "Las puntuaciones del informe son juicio del revisor, no medidas bibliométricas ni probabilidades de aceptación."
+  ]
+}

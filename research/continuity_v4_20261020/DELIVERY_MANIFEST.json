@@ -1,0 +1,234 @@
+{
+  "schema": "KCH_V4_DELIVERY_MANIFEST",
+  "date": "2026-10-20",
+  "parent_commit": "3d50f0ae68affbc747d73eb855863ead02d02782",
+  "branch": "continuity/review-implementation-20261020",
+  "draft_pr": "https://github.com/FacundoFirmenich/KCH/pull/37",
+  "exclusions": [
+    "Self digest is external in the Git tree.",
+    "CORPUS_VERIFICATION.json is a generated receipt; CI generates a fresh copy outside corpus.",
+    "Python bytecode caches are not delivered."
+  ],
+  "files": [
+    {
+      "path": "research/continuity_v4_20261020/CLAIM_EVIDENCE_REGISTRY.json",
+      "bytes": 48416,
+      "sha256": "2aef287a014f1b8a716778c510d98e7311f38d0c326250fa041f128dec75dad7"
+    },
+    {
+      "path": "research/continuity_v4_20261020/CONTRIBUTION_MATRIX_ES.md",
+      "bytes": 10010,
+      "sha256": "82dfd392568313ae86abd62587ec160c970212c233a720722741b16e1862b7a4"
+    },
+    {
+      "path": "research/continuity_v4_20261020/ENTRY_SCOPE.json",
+      "bytes": 23489,
+      "sha256": "e5f2930779d68333bc40ce62f4610c2b73415adcc6d9f42c86cbfe1c026b48f9"
+    },
+    {
+      "path": "research/continuity_v4_20261020/README_ES.md",
+      "bytes": 12705,
+      "sha256": "c3f83384798208d15714e6bd60bbb2c3072fbabfcbc83cd3f8b35878cc19aef3"
+    },
+    {
+      "path": "research/continuity_v4_20261020/SCIENTIFIC_CORRECTION_LEDGER.json",
+      "bytes": 5771,
+      "sha256": "5ea2444c47e5d31748521fa87b33670fe7cadb3ad8d3d81f5284924f610f9122"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/DELIVERY_MANIFEST.json",
+      "bytes": 2032,
+      "sha256": "4050b164b279e55c681208e8d548d357617fffa793f629711245d22d8b7bd8e7"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/DICTAMEN_GREEDY_ES.md",
+      "bytes": 11385,
+      "sha256": "33ee7c7451f81d2d65b6e1ab17ab5106843bfaf4f2d2d29b6023ec032bacbafb"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/GREEDY_COMPARISON_RESULT.json",
+      "bytes": 1963,
+      "sha256": "fbf512ff6898b94ee942a3b8155356fcb30dc0aa0c697ea553a5095353558a5a"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/GREEDY_INDEPENDENT_CHECK.json",
+      "bytes": 1051,
+      "sha256": "2d9607e616f72554067c38b80acd6c5a0ae8dd86f588a89aaac339e21b5ff190"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/GREEDY_JURISDICTIONS.json",
+      "bytes": 2053,
+      "sha256": "8d988e8cbed7f62028b1381aa3a9bce32dc6b1996b54a533494f2d7a1744fc76"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/GREEDY_ROUTE_COMPARISON.csv",
+      "bytes": 4543,
+      "sha256": "e46da85a63fed7de3ce6245b17ae4174d4e0541019c72e3ee74d5488539ec56e"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/GREEDY_ROUTE_WITNESSES.json",
+      "bytes": 172970,
+      "sha256": "4228d6164f3a49fac92733f871f78ec8c963b162eb2f5c82345dfac4474dd5bc"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/GREEDY_ROUTE_WITNESSES.partial.json",
+      "bytes": 172970,
+      "sha256": "4228d6164f3a49fac92733f871f78ec8c963b162eb2f5c82345dfac4474dd5bc"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/PROTOCOL_GREEDY_V1.json",
+      "bytes": 3979,
+      "sha256": "be6faf00581fc4f37b4f4d4af0d90edad8b003a37afbff7b18f50e4140f2165c"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/check_greedy_baseline.py",
+      "bytes": 15453,
+      "sha256": "0f4da35a8f86032b78f078a48ef7fbdc4bcf93fff31a172426c628247de306c5"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/ech_comparison/run_greedy_baseline.py",
+      "bytes": 9483,
+      "sha256": "9fc1b113a4eeaa57febe471b25a3409fbd804f198936aab22a4036222e0bd969"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/DAVE_SOURCE_SEARCH.json",
+      "bytes": 52142,
+      "sha256": "70e77b3d34bfa75597047bbbff5b4406e8603e527782c403ae63af95c20f74c3"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/M33_IDENTIFIABILITY_CONTRACT_ES.md",
+      "bytes": 11297,
+      "sha256": "c20fd40df004f024c983a8d458e21d481d9d63c08fb1e58ba34b916b78eb5884"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/PHYSICAL_CONTRACT_AUDIT.json",
+      "bytes": 13401,
+      "sha256": "b87cd7b4aac410af5a71cdcf6fae54ab6bfddfdfe9b9b1f3ae765f9a2334cdc4"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/PHYSICAL_CORRECTIONS_STATUS.json",
+      "bytes": 6054,
+      "sha256": "f73c6c91487466a014c1fc8a9b626cd5b8055d9c677b799efabc007d0fbe0d60"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/PRIMARY_SOURCES.json",
+      "bytes": 17711,
+      "sha256": "1a283863f7ba4fb31fec84c6cd76c63e8195da02ad2edaf069e855fe7c49b661"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/SOLAR_LOCAL_PRESERVED.csv",
+      "bytes": 5424,
+      "sha256": "be95e32a62384275ec4a74a3d773fe78f89a3517d08a94eeab49e1f2a89bcde7"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/SOLAR_OPERATIONAL_CONTRACT_ES.md",
+      "bytes": 11882,
+      "sha256": "f5006ab61bfd91fd2c7e5635cb56a50d7a2427817a56127c31bc4acc93de8547"
+    },
+    {
+      "path": "research/continuity_v4_20261020/evidence/physical_contracts/audit_physical_contracts.py",
+      "bytes": 10123,
+      "sha256": "7a1a057e2850af8a60e8165c3390d8029d31f09be33ebb3f2b40b371837eddd6"
+    },
+    {
+      "path": "research/continuity_v4_20261020/literature/ech_sources.json",
+      "bytes": 17815,
+      "sha256": "d06a7e078b9e496b27f2c5b2acd00ffcdfff0d3a9b9e6a345529b6e3e78afc42"
+    },
+    {
+      "path": "research/continuity_v4_20261020/literature/formal_sources.json",
+      "bytes": 16397,
+      "sha256": "47f7c2e161930433518c7d8f8f4444c2f1db2ad05689b28c09cc30cb68f66791"
+    },
+    {
+      "path": "research/continuity_v4_20261020/literature/root_context_sources.json",
+      "bytes": 6180,
+      "sha256": "be938c3577aa70cf5973367598c0d02c76cf3ea9bdf5ae8a2bfc932bd86e5a05"
+    },
+    {
+      "path": "research/continuity_v4_20261020/literature/seismic_statistics_sources.json",
+      "bytes": 19149,
+      "sha256": "402d46aab60291850780b8b89e749d76272011376470e24ec4bcff33327534c5"
+    },
+    {
+      "path": "research/continuity_v4_20261020/literature/solar_mhd_sources.json",
+      "bytes": 18055,
+      "sha256": "de31f0c6e1f8d8a1d24be7e10ef24a449920482398dd07fa7f35cbf79193835f"
+    },
+    {
+      "path": "research/continuity_v4_20261020/papers/CHANGELOG_EMPIRICAL_V6_ES.md",
+      "bytes": 6065,
+      "sha256": "698b7df2258f7deffd87a8a7d2183a6d22e1b5e20ddf100751fd8981abfe7f7d"
+    },
+    {
+      "path": "research/continuity_v4_20261020/papers/CHANGELOG_FORMAL_V6_ES.md",
+      "bytes": 8610,
+      "sha256": "95eeb1d4300460276966c6c8de5860cecd7f5477d3d53446cbddc82e388c4ae8"
+    },
+    {
+      "path": "research/continuity_v4_20261020/papers/PAPER_1_TASK_RELATIVE_STATE_SUFFICIENCY_V6.md",
+      "bytes": 71797,
+      "sha256": "75f729346629c71d9f682c4fa395626ed081ac7fcaee61ee9d8dc02c9010c983"
+    },
+    {
+      "path": "research/continuity_v4_20261020/papers/PAPER_1_V6_RETENTION_MAP.json",
+      "bytes": 28480,
+      "sha256": "ac8effb2d80aecb72c5e26424842832acc58c9361738d56fce948416394cbf72"
+    },
+    {
+      "path": "research/continuity_v4_20261020/papers/PAPER_2_CONDITIONAL_AXIAL_TRANSPORT_LIMITS_V6.md",
+      "bytes": 70400,
+      "sha256": "b69292192b7cfc8f48797ba3857b2872cbdd36cab2f88875d12db4044cee5978"
+    },
+    {
+      "path": "research/continuity_v4_20261020/papers/RETENTION_EMPIRICAL_V6.json",
+      "bytes": 7797,
+      "sha256": "aa9addd71d80f5f25f66b60eeb47db170f1e4860b0386b8bb36784bfd0fa9850"
+    },
+    {
+      "path": "research/continuity_v4_20261020/theory/ECH_STRUCTURAL_CONTRIBUTION.md",
+      "bytes": 12593,
+      "sha256": "42d973b59b23ab796d13f286fd4c48ba76fe88bbd84bbbb0163c1229c46f974c"
+    },
+    {
+      "path": "research/continuity_v4_20261020/theory/EXACT_SAVING_DECOMPOSITION_46.csv",
+      "bytes": 10405,
+      "sha256": "7f4cad24523a23df15f986ad1b4e7f5689e7ab61b9cb09023569999f4cbbca05"
+    },
+    {
+      "path": "research/continuity_v4_20261020/theory/STRUCTURAL_EVIDENCE_DEPENDENCIES.json",
+      "bytes": 1559,
+      "sha256": "e3d05da33ce46bef71796698e82f5fee3c56cf9e12de282fbff7841772da4bcf"
+    },
+    {
+      "path": "research/continuity_v4_20261020/theory/STRUCTURAL_REVIEW.json",
+      "bytes": 7593,
+      "sha256": "6449746369fda97c32c747cd0e452b41079cd18a7a8dc3d94e26956a9b74fc58"
+    },
+    {
+      "path": "research/continuity_v4_20261020/tools/build_delivery_manifest.py",
+      "bytes": 1339,
+      "sha256": "e83e0da5d4e2bc21757cf28109eb0dc0ae71b44c66f9843f0d4116655cc8194d"
+    },
+    {
+      "path": "research/continuity_v4_20261020/tools/build_v4_registry.py",
+      "bytes": 12300,
+      "sha256": "9e1ff485dc02f0a85a410fa3ec0b36ca7cb0bb338af035e64c465321788e64fd"
+    },
+    {
+      "path": "research/continuity_v4_20261020/tools/check_manuscript_retention.py",
+      "bytes": 13640,
+      "sha256": "0841177ea56e21cad53e242955c1d1f6b5e2a45ef2454c9498f2131d8349089d"
+    },
+    {
+      "path": "research/continuity_v4_20261020/tools/verify_continuity_v4.py",
+      "bytes": 12214,
+      "sha256": "8ad16ca06b9de937182295f475f50b064bce0c44096b8050316db990e7e567b2"
+    },
+    {
+      "path": ".github/workflows/research-review-implementation.yml",
+      "bytes": 1068,
+      "sha256": "acef689c325cd6a4f84a0e85e335cd3d838621e43f5980019d0e278e2b8e51ed"
+    }
+  ]
+}

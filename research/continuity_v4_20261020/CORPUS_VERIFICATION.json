@@ -1,0 +1,83 @@
+{
+  "schema": "KCH_CONTINUITY_V4_VERIFICATION",
+  "status": "PASS",
+  "scientific_confirmation": false,
+  "new_authority_granted": false,
+  "unchanged_parent_files": 108,
+  "inherited_claims_unchanged": 34,
+  "claims": 41,
+  "sources": 48,
+  "domains": 12,
+  "remote_source_references_not_redownloaded": 13,
+  "manuscript_retention_receipt_sha256": "046d6c0613d951b5b24455db555ed8317917cd89b5b6f1e90a9f60d566280b8a",
+  "ech": {
+    "routes": 46,
+    "greedy_equal_joint_optimum": 15,
+    "first_minimum_but_suboptimal_total": 19,
+    "fresh_receipt_sha256": "b7967713b1423a3c28361a4d64212af81b2843cdc564f3079bbe8351687c4a74",
+    "checks": {
+      "all_original_coordinates_checked": true,
+      "checker_sha256": "0f4da35a8f86032b78f078a48ef7fbdc4bcf93fff31a172426c628247de306c5",
+      "elapsed_seconds": 7.028730129999531,
+      "exact_greedy_candidate_gain_checks": 1383265,
+      "exact_rational_coordinate_inequalities_checked": 524911,
+      "grouped_matrices_trusted": false,
+      "joint_optima_recertified": 46,
+      "original_root_structural_hashes_checked": 90,
+      "permission_granted": false,
+      "producer_imported": false,
+      "protocol_sha256": "be6faf00581fc4f37b4f4d4af0d90edad8b003a37afbff7b18f50e4140f2165c",
+      "result_sha256": "fbf512ff6898b94ee942a3b8155356fcb30dc0aa0c697ea553a5095353558a5a",
+      "routes_checked": 46,
+      "schema": "ECH_GREEDY_INDEPENDENT_CHECK_V1",
+      "solver_imported": false,
+      "stage_pair_feasibility_checks": 376824,
+      "stages_reconstructed": 85,
+      "status": "PASS",
+      "third_party_libraries_imported": false,
+      "unique_first_stage_optima_recertified": 39,
+      "unique_greedy_steps_checked": 346,
+      "witnesses_sha256": "4228d6164f3a49fac92733f871f78ec8c963b162eb2f5c82345dfac4474dd5bc"
+    }
+  },
+  "structural_review_scope": "Separate-agent mathematical review; not proof-assistant verification or human peer review.",
+  "structural_decomposition": {
+    "routes": 46,
+    "tie_choice_saving_positive": 11,
+    "strict_nonminimality_saving_positive": 0,
+    "scope": "Recomputed from inherited certified values; analytic proof requires mathematical review, not this arithmetic check."
+  },
+  "solar": {
+    "future_training_folds": [
+      401,
+      2920
+    ],
+    "local_wins_preserved": {
+      "H_HELICAL_TRANSLATION": 4,
+      "L_LEMNISCATIC_ALTERNATING": 7,
+      "G_ACTIVITY_AFFINE": 5,
+      "M_MOBIUS_SIGN": 0
+    },
+    "historical_outcome": "NO_DEVELOPMENT_DOMINANT_LIFT"
+  },
+  "m33": {
+    "rank": 2,
+    "nullity": 1,
+    "exact_nonzero_cross_product": [
+      "7394303684760307511785815740981/200000000000000000000000000000000000",
+      "1478860736952031001605627757559/20000000000000000000000000000000000",
+      "2957721473904092879056371159413/40000000000000000000000000000000000"
+    ],
+    "exact_K_times_cross_product": [
+      "0",
+      "0"
+    ],
+    "unit_null_direction": [
+      0.33333333333333787,
+      0.6666666666666621,
+      0.666666666666669
+    ],
+    "qualification": "Exact rational statement for archived decimal matrix; no Lorentz-kernel equivalence or nuisance-adjusted identification claim."
+  },
+  "manifest_entries_verified": 44
+}
