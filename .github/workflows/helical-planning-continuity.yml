@@ -32,6 +32,7 @@ jobs:
           cp -a "$old_ech" "$RUNNER_TEMP/kch-v3/ech-original"
           cp -a "$task_root/evidence/ech_joint" "$RUNNER_TEMP/kch-v3/ech-joint"
           cp -a "$task_root/evidence/solar_local" "$RUNNER_TEMP/kch-v3/solar-local"
+          rm -f "$RUNNER_TEMP/kch-v3/ech-original/results/SOLVER_FREE_CERTIFICATE_CHECK.json" "$RUNNER_TEMP/kch-v3/ech-joint/SOLVER_FREE_JOINT_CHECK.json" "$RUNNER_TEMP/kch-v3/ech-joint/SOLVER_FREE_POSTHOC_TIE_CHECK.json" "$RUNNER_TEMP/kch-v3/solar-local/SOLAR_LOCAL_VERIFICATION.json"
           python "$old_ech/tools/check_ech_certificates.py" --inputs "$old_ech/inputs" --results "$RUNNER_TEMP/kch-v3/ech-original/results"
           python "$task_root/evidence/ech_joint/check_joint_certificates.py" --source "$old_ech" --results "$RUNNER_TEMP/kch-v3/ech-joint" --catalog "$RUNNER_TEMP/kch-v3/ech-joint/LOCAL_MINIMUM_LOOKAHEAD_CATALOG.json"
           python "$task_root/evidence/ech_joint/check_posthoc_local_ties.py" --source "$old_ech" --results "$RUNNER_TEMP/kch-v3/ech-joint"
@@ -39,6 +40,7 @@ jobs:
           python "$task_root/evidence/quotient/verify_planning_quotient.py" --ech "$old_ech" --out "$RUNNER_TEMP/kch-v3/quotient"
           cmp "$task_root/evidence/quotient/results/PLANNING_PATTERN_PARTITION.json" "$RUNNER_TEMP/kch-v3/quotient/PLANNING_PATTERN_PARTITION.json"
           python "$task_root/tools/verify_continuity_v3.py"
+          cp "$task_root/CORPUS_VERIFICATION.json" "$RUNNER_TEMP/kch-v3/CORPUS_VERIFICATION.json"
       - name: Upload fresh verification receipts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -50,6 +52,6 @@ jobs:
             ${{ runner.temp }}/kch-v3/ech-joint/SOLVER_FREE_POSTHOC_TIE_CHECK.json
             ${{ runner.temp }}/kch-v3/solar-local/SOLAR_LOCAL_VERIFICATION.json
             ${{ runner.temp }}/kch-v3/quotient/PLANNING_QUOTIENT_VERIFICATION.json
-            research/continuity_v3_20261013/CORPUS_VERIFICATION.json
+            ${{ runner.temp }}/kch-v3/CORPUS_VERIFICATION.json
           if-no-files-found: error
           retention-days: 30

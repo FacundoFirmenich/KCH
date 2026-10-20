@@ -13,6 +13,11 @@
       "sha256": "0c4f01114ece0ec8e3bdea2b4b8ae3e36a5097786702a2177bb406be779747c1"
     },
     {
+      "path": "research/continuity_v3_20261013/PUBLICATION_REPAIR_20261020.json",
+      "bytes": 3147,
+      "sha256": "3e1625092360105fef58d56073d9ae2fd10653561311da424e4a017e7998b97d"
+    },
+    {
       "path": "research/continuity_v3_20261013/README_ES.md",
       "bytes": 14505,
       "sha256": "a6f6215e3d36f9227908f5c331dac029247288950718428b6fe886bb1d103b5e"
@@ -244,8 +249,14 @@
     },
     {
       "path": ".github/workflows/helical-planning-continuity.yml",
-      "bytes": 2995,
-      "sha256": "65454f93ff5b31ce49cfba5353663aa4944d6a67990bc982891eeb0bff5db37a"
+      "bytes": 3373,
+      "sha256": "3893c7c33c32fa71f6f73ef91f5f0b61a171c62253a6840ae7fb4ad0082068c8"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 390,
+      "sha256": "5583975c835ee607cbdd28e7005d0fa903bf841f6f896b9f2d54746d37cd21e9"
     }
-  ]
+  ],
+  "publication_repair_date": "2026-10-20"
 }
