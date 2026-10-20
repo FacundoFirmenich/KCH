@@ -1,0 +1,46 @@
+{
+  "baseline_results_seen": false,
+  "existing_joint_results_already_known": true,
+  "input_sha256": {
+    "research/continuity_v2_20261013/evidence/ech/inputs/cas_constitutional_kernel_v1.json": "82a9d8b10b90ea1debfeb480ac10e5bcc183e034d0d33a6dbf23b55931053138",
+    "research/continuity_v2_20261013/evidence/ech/inputs/compiled_distance_codebooks.json": "9d5ffe66c18b6c764963a484f91eed09ebb064a59be205fc3f7a0681adb81a5b",
+    "research/continuity_v2_20261013/evidence/ech/results/EXACT_BRIDGE_CERTIFICATES.json": "aaf4b8a0da82db4677dc032816d9c9c43bdcc7698a70a29c611b3a49139b97d9",
+    "research/continuity_v2_20261013/evidence/ech/results/FINITE_ATLAS_REPLAY_DETAIL.json": "dec586c672132e706633ea72305736d13309a76a18bc8528efe927d172230eb6",
+    "research/continuity_v3_20261013/evidence/ech_joint/JOINT_ROUTE_CERTIFICATES.json": "f14655ea2e34c085ac91620a3cf736b39e60dfd7d46fa5c466f471f3004c16f0",
+    "research/continuity_v3_20261013/evidence/ech_joint/PROTOCOL_FIXED_TWO_STAGE.json": "e4054024e5789f8a82d3ef8bb5c2ee312f291d1954bda28efff4583e53d81db8"
+  },
+  "limitations": [
+    "Stagewise greedy versus joint optimum changes future-contract information as well as decision rule; no causal attribution of entire gap to algorithm or lookahead.",
+    "Historical comparator shares a stagewise information restriction but is an archived exact local-selection policy, not a greedy baseline.",
+    "No approximation-ratio theorem is claimed.",
+    "Route cost sums describe independent executions, not one shared acquisition experiment.",
+    "Kernel is finite and deterministic, not an observational sample and not external validation.",
+    "Timing is one descriptive run with disclosed stage caching, not a hardware-controlled speed benchmark.",
+    "No graph-wide policy optimum, noisy decoder, physical error independence, authority or receipt-chain claim."
+  ],
+  "permission_granted": false,
+  "policy": {
+    "available_information": "Inherited typed coordinates, finite response kernel, current destination target/sensor/distance only. Subsequent destination and optimal/historical witness are not passed to stage policy.",
+    "demand": "Each coordinate reduces each positive pair deficit by at most one; gain counts pair constraints with positive residual demand, not the sum of residual distances attached to a query.",
+    "modifications_after_results": "No tie-rule tuning or policy selection is authorized under this protocol.",
+    "objective": "At each stage, repeatedly maximize the number of currently unsatisfied relevant pair constraints separated by one new coordinate, divided by unit acquisition cost.",
+    "stage_two": "Continue from full stage-one evidence; use only final destination sensor.",
+    "stop": "Immediately once current destination contract is met; acquire nothing if already met.",
+    "tie_break": "Ascending numerical mask (equivalently fixed-width 3-digit hex lexical order) among maximum positive gains.",
+    "uniqueness": "Exclude every inherited or already acquired typed coordinate. Same mask under another sensor remains a different coordinate."
+  },
+  "producer_sha256": "9fc1b113a4eeaa57febe471b25a3409fbd804f198936aab22a4036222e0bd969",
+  "public_preregistration": false,
+  "schema": "ECH_STAGEWISE_GREEDY_PROTOCOL_V1",
+  "scope": "All 46 archived routes; actual archived finite deterministic ECH kernel. No synthetic observations or instance generation.",
+  "scope_checks": [
+    "46/46 routes, both stages feasible",
+    "All chosen coordinates satisfy sensor, domain and uniqueness",
+    "Replay exact greedy maximizer and first-mask tie at every step",
+    "Check recorded optimum via archived rational dual over every original coordinate and matching integer witness",
+    "Validate first-stage certified local minimum comparison",
+    "Retain every route and sensor-pair jurisdiction including ties and losses"
+  ],
+  "status": "FROZEN_BEFORE_BASELINE_EXECUTION",
+  "written_at_utc": "2026-10-20T17:07:34.268184+00:00"
+}
