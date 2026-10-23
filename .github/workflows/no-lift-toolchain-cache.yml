@@ -34,7 +34,8 @@ jobs:
             bee4a54f3ee3d4afc347c3240ec2d9e93b075104 \
             tla2tools.jar | sha1sum -c -
           sha1sum tla2tools.jar > tla2tools.jar.sha1
-          java -cp tla2tools.jar tlc2.TLC -help > tlc-help.txt
+          java -cp tla2tools.jar tlc2.TLC -help > tlc-help.txt 2>&1 || true
+          test -s tlc-help.txt
       - name: Record acquisition receipt
         run: |
           cat > TOOLCHAIN_RECEIPT.json <<'JSON'
