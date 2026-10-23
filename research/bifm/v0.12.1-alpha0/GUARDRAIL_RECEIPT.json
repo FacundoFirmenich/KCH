@@ -1,0 +1,20 @@
+{
+  "status": "PASS_V0_12_1_NONFINITE_GUARDRAIL",
+  "adversarial_nonfinite_tests": 2,
+  "finite_canonical_cases_bit_identical": 24,
+  "full_pytest_passed": 6,
+  "full_pytest_failed": 0,
+  "frozen_v0120_adverse_witness_preserved": true,
+  "source_sha256": "99040ace67c31b323aa61ae701d74b51b32fbf8bbe133607ef71e242f70748a7",
+  "test_sha256": "a28df3f398cf91132b0aaee228aeb6ef72f510561bcaac5578e20bceb80cb438",
+  "combined_score_status": "PROHIBITED_NOT_COMPUTED",
+  "coefficient_transport_status": "NOT_AUTHORIZED",
+  "fresh_chinese_execution": "NOT_EXECUTED_CURRENT_RUNTIME",
+  "future_only_probe_rows": 30,
+  "future_probe_classes": {
+    "HIGH_EIG": 15,
+    "LOW_INFORMATION_EXTREME_CONTROL": 15
+  },
+  "authority": "NONE",
+  "claim_boundary": "Software correction only; no empirical-performance or authority promotion. The frozen v0.12.0 source and evidence remain immutable."
+}
