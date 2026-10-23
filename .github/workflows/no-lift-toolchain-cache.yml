@@ -25,6 +25,12 @@ jobs:
             7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d \
             lean-4.35.0-linux.tar.zst | sha256sum -c -
           sha256sum lean-4.35.0-linux.tar.zst > lean-4.35.0-linux.tar.zst.sha256
+          split -b 180M -d -a 2 lean-4.35.0-linux.tar.zst lean-4.35.0-linux.tar.zst.part-
+          test -f lean-4.35.0-linux.tar.zst.part-00
+          test -f lean-4.35.0-linux.tar.zst.part-01
+          test -f lean-4.35.0-linux.tar.zst.part-02
+          test -f lean-4.35.0-linux.tar.zst.part-03
+          sha256sum lean-4.35.0-linux.tar.zst.part-* > lean-parts.sha256
       - name: Download exact TLA+ tools v1.7.4
         run: |
           set -euo pipefail
@@ -43,7 +49,8 @@ jobs:
             "lean": {
               "version": "v4.35.0",
               "asset": "lean-4.35.0-linux.tar.zst",
-              "sha256": "7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d"
+              "sha256": "7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d",
+              "transport": "four 180MiB-or-smaller artifact chunks"
             },
             "tlaplus": {
               "version": "v1.7.4",
@@ -66,10 +73,29 @@ jobs:
           compression-level: 0
       - uses: actions/upload-artifact@v4
         with:
-          name: no-lift-lean-v4.35.0-linux
+          name: no-lift-lean-v4.35.0-part-00
+          path: lean-4.35.0-linux.tar.zst.part-00
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-part-01
+          path: lean-4.35.0-linux.tar.zst.part-01
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-part-02
+          path: lean-4.35.0-linux.tar.zst.part-02
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-part-03
           path: |
-            lean-4.35.0-linux.tar.zst
+            lean-4.35.0-linux.tar.zst.part-03
             lean-4.35.0-linux.tar.zst.sha256
+            lean-parts.sha256
             TOOLCHAIN_RECEIPT.json
           if-no-files-found: error
           compression-level: 0
