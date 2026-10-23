@@ -1,0 +1,83 @@
+name: BIFM v0.11.1 exact model replay full grid
+
+on:
+  push:
+    branches:
+      - bifm/v0.11.1-model-replay-exact
+    paths:
+      - .github/workflows/bifm-v0111-model-replay-full.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 30
+      matrix:
+        layer: [4, 14, 24]
+        eidx: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-cache
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    steps:
+      - name: Checkout exact frozen scientific source
+        uses: actions/checkout@v4
+        with:
+          ref: 30d2366b46657395ca4b106eae7c0667195fcb4d
+          path: frozen-source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Restore exact model and dataset bytes
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.HF_HOME }}
+          key: bifm-v0111-qwen3-06b-c1899de-arc-210d026
+      - name: Install inference dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch
+          python -m pip install transformers huggingface_hub pandas pyarrow accelerate safetensors
+          python -m pip freeze | sort > pip-freeze.txt
+      - name: Pin dataset revision in frozen collector copy
+        run: |
+          cp frozen-source/research/bifm/v0.11.1-alpha0/collect_qwen_shard.py collect_qwen_shard_pinned.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('collect_qwen_shard_pinned.py')
+          s=p.read_text(); old='dsha=api.dataset_info(DATASET_ID).sha'; new='dsha="210d026faf9955653af8916fad021475a3f00453"'
+          assert s.count(old)==1
+          p.write_text(s.replace(old,new))
+          PY
+      - name: Run exact revision shard
+        env:
+          BIFM_LAYER: ${{ matrix.layer }}
+          BIFM_EIDX: ${{ matrix.eidx }}
+          BIFM_OUT: shard_L${{ matrix.layer }}_E${{ matrix.eidx }}
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v python collect_qwen_shard_pinned.py 2>&1 | tee shard.log
+      - name: Verify and record shard
+        run: |
+          set -euo pipefail
+          test -f shard_L${{ matrix.layer }}_E${{ matrix.eidx }}/qwen_L${{ matrix.layer }}_E${{ matrix.eidx }}.npz
+          test -f shard_L${{ matrix.layer }}_E${{ matrix.eidx }}/qwen_L${{ matrix.layer }}_E${{ matrix.eidx }}_receipt.json
+          sha256sum shard_L${{ matrix.layer }}_E${{ matrix.eidx }}/* shard.log pip-freeze.txt collect_qwen_shard_pinned.py > SHARD_MANIFEST.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bifm-v0111-L${{ matrix.layer }}-E${{ matrix.eidx }}
+          path: |
+            shard_L${{ matrix.layer }}_E${{ matrix.eidx }}/
+            shard.log
+            pip-freeze.txt
+            collect_qwen_shard_pinned.py
+            SHARD_MANIFEST.sha256
+          if-no-files-found: error
+          compression-level: 0
