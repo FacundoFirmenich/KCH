@@ -1,0 +1,29 @@
+name: NO-LIFT compatible hub wheel
+
+on:
+  push:
+    branches: [tooling/no-lift-formal-assets-v1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wheel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip download --no-deps --only-binary=:all: --dest wheels huggingface_hub==0.36.0
+      - run: sha256sum wheels/* > WHEELS.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-huggingface-hub-0.36.0
+          path: |
+            wheels/
+            WHEELS.sha256
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
