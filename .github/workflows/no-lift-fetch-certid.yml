@@ -24,26 +24,57 @@ jobs:
       - name: Install acquisition dependency
         run: python -m pip install --disable-pip-version-check requests
       - name: Fetch CERTID anonymous repository
+        id: fetch
+        continue-on-error: true
         run: |
+          set -o pipefail
           python tooling/fetch_anonymous_4open_repo.py \
             --repo-id certid-D718 \
             --output certid-D718 \
-            --workers 12 | tee CERTID_ACQUISITION_OUTPUT.json
+            --workers 12 2>&1 | tee CERTID_ACQUISITION_OUTPUT.txt
+          echo "${PIPESTATUS[0]}" > CERTID_FETCH_EXIT_CODE.txt
       - name: Inventory and hash acquisition receipt
+        if: always()
         run: |
-          find certid-D718 -type f | sort > CERTID_FILE_LIST.txt
-          sha256sum CERTID_ACQUISITION_OUTPUT.json CERTID_FILE_LIST.txt \
-            certid-D718/ACQUISITION_MANIFEST.json certid-D718/MANIFEST.sha256 \
-            > CERTID_ACQUISITION_RECEIPT.sha256
-          du -sh certid-D718 | tee CERTID_SIZE.txt
+          test -f CERTID_FETCH_EXIT_CODE.txt || echo 99 > CERTID_FETCH_EXIT_CODE.txt
+          find certid-D718 -type f 2>/dev/null | sort > CERTID_FILE_LIST.txt || true
+          if test -f certid-D718/ACQUISITION_MANIFEST.json && test -f certid-D718/MANIFEST.sha256; then
+            sha256sum CERTID_ACQUISITION_OUTPUT.txt CERTID_FILE_LIST.txt \
+              CERTID_FETCH_EXIT_CODE.txt certid-D718/ACQUISITION_MANIFEST.json \
+              certid-D718/MANIFEST.sha256 > CERTID_ACQUISITION_RECEIPT.sha256
+            du -sh certid-D718 | tee CERTID_SIZE.txt
+          else
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          output = Path('CERTID_ACQUISITION_OUTPUT.txt').read_text(errors='replace') if Path('CERTID_ACQUISITION_OUTPUT.txt').exists() else ''
+          payload = {
+              'status': 'FAIL_CLOSED',
+              'repo_id': 'certid-D718',
+              'exit_code': int(Path('CERTID_FETCH_EXIT_CODE.txt').read_text().strip()),
+              'manifest_present': Path('certid-D718/ACQUISITION_MANIFEST.json').exists(),
+              'last_output_lines': output.splitlines()[-40:],
+          }
+          Path('CERTID_ACQUISITION_FAILURE.json').write_text(json.dumps(payload, indent=2, sort_keys=True))
+          PY
+            sha256sum CERTID_ACQUISITION_OUTPUT.txt CERTID_FILE_LIST.txt \
+              CERTID_FETCH_EXIT_CODE.txt CERTID_ACQUISITION_FAILURE.json \
+              > CERTID_ACQUISITION_RECEIPT.sha256
+          fi
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: no-lift-certid-D718
           path: |
             certid-D718/
-            CERTID_ACQUISITION_OUTPUT.json
+            CERTID_ACQUISITION_OUTPUT.txt
+            CERTID_FETCH_EXIT_CODE.txt
             CERTID_FILE_LIST.txt
+            CERTID_ACQUISITION_FAILURE.json
             CERTID_ACQUISITION_RECEIPT.sha256
             CERTID_SIZE.txt
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14
+      - name: Enforce fail-closed acquisition
+        if: always()
+        run: test "$(cat CERTID_FETCH_EXIT_CODE.txt)" -eq 0
