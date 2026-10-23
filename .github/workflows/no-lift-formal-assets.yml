@@ -1,0 +1,54 @@
+name: NO-LIFT formal toolchain asset ferry
+
+on:
+  push:
+    branches:
+      - tooling/no-lift-formal-assets-v1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Fetch pinned Lean and TLC assets
+        run: |
+          set -euxo pipefail
+          curl -L --fail --retry 5 -o lean-4.35.0-linux.tar.zst \
+            https://github.com/leanprover/lean4/releases/download/v4.35.0/lean-4.35.0-linux.tar.zst
+          curl -L --fail --retry 5 -o tla2tools-v1.7.4.jar \
+            https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+      - name: Verify pinned checksums
+        run: |
+          set -euxo pipefail
+          printf '%s  %s\n' \
+            '7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d' \
+            lean-4.35.0-linux.tar.zst | sha256sum -c -
+          printf '%s  %s\n' \
+            'bee4a54f3ee3d4afc347c3240ec2d9e93b075104' \
+            tla2tools-v1.7.4.jar | sha1sum -c -
+          sha256sum lean-4.35.0-linux.tar.zst > lean.sha256
+          sha1sum tla2tools-v1.7.4.jar > tla.sha1
+      - name: Upload TLC asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-tla2tools-v1.7.4
+          path: |
+            tla2tools-v1.7.4.jar
+            tla.sha1
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
+      - name: Upload Lean asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-linux
+          path: |
+            lean-4.35.0-linux.tar.zst
+            lean.sha256
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
