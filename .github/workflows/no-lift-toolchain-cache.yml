@@ -1,0 +1,74 @@
+name: NO-LIFT verified formal toolchain cache
+
+on:
+  push:
+    branches:
+      - toolchain-cache/no-lift-v1
+    paths:
+      - .github/workflows/no-lift-toolchain-cache.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Download exact Lean v4.35.0 Linux toolchain
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 5 --output lean-4.35.0-linux.tar.zst \
+            https://github.com/leanprover/lean4/releases/download/v4.35.0/lean-4.35.0-linux.tar.zst
+          printf '%s  %s\n' \
+            7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d \
+            lean-4.35.0-linux.tar.zst | sha256sum -c -
+          sha256sum lean-4.35.0-linux.tar.zst > lean-4.35.0-linux.tar.zst.sha256
+      - name: Download exact TLA+ tools v1.7.4
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 5 --output tla2tools.jar \
+            https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+          printf '%s  %s\n' \
+            bee4a54f3ee3d4afc347c3240ec2d9e93b075104 \
+            tla2tools.jar | sha1sum -c -
+          sha1sum tla2tools.jar > tla2tools.jar.sha1
+          java -cp tla2tools.jar tlc2.TLC -help > tlc-help.txt
+      - name: Record acquisition receipt
+        run: |
+          cat > TOOLCHAIN_RECEIPT.json <<'JSON'
+          {
+            "lean": {
+              "version": "v4.35.0",
+              "asset": "lean-4.35.0-linux.tar.zst",
+              "sha256": "7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d"
+            },
+            "tlaplus": {
+              "version": "v1.7.4",
+              "asset": "tla2tools.jar",
+              "sha1": "bee4a54f3ee3d4afc347c3240ec2d9e93b075104"
+            },
+            "source": "official GitHub releases",
+            "papers_or_private_sources_included": false
+          }
+          JSON
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-tlaplus-v1.7.4
+          path: |
+            tla2tools.jar
+            tla2tools.jar.sha1
+            tlc-help.txt
+            TOOLCHAIN_RECEIPT.json
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-linux
+          path: |
+            lean-4.35.0-linux.tar.zst
+            lean-4.35.0-linux.tar.zst.sha256
+            TOOLCHAIN_RECEIPT.json
+          if-no-files-found: error
+          compression-level: 0
