@@ -1,0 +1,63 @@
+name: NO-LIFT Lean asset chunk ferry
+
+on:
+  push:
+    branches:
+      - tooling/no-lift-formal-assets-v1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  split-and-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Fetch pinned Lean asset
+        run: |
+          set -euxo pipefail
+          curl -L --fail --retry 5 -o lean-4.35.0-linux.tar.zst \
+            https://github.com/leanprover/lean4/releases/download/v4.35.0/lean-4.35.0-linux.tar.zst
+          printf '%s  %s\n' \
+            '7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d' \
+            lean-4.35.0-linux.tar.zst | sha256sum -c -
+          split -b 190M -d -a 2 lean-4.35.0-linux.tar.zst lean.part.
+          ls -lh lean.part.*
+          sha256sum lean.part.* > lean.parts.sha256
+          sha256sum lean-4.35.0-linux.tar.zst > lean.full.sha256
+      - name: Upload chunk 00
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-chunk-00
+          path: lean.part.00
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
+      - name: Upload chunk 01
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-chunk-01
+          path: lean.part.01
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
+      - name: Upload chunk 02
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-chunk-02
+          path: lean.part.02
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
+      - name: Upload chunk 03 and manifests
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-lean-v4.35.0-chunk-03
+          path: |
+            lean.part.03
+            lean.parts.sha256
+            lean.full.sha256
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
