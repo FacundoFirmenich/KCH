@@ -1,0 +1,50 @@
+--- research/bifm/v0.12.0-alpha0/talamo_exact.py
++++ research/bifm/v0.12.1-alpha0/talamo_exact.py
+@@ -135,7 +135,14 @@
+         base = scores.float()
+         finite_base = torch.isfinite(base)
+         stat_base = self._finite_stat_copy(base)
+-        original_top1 = torch.argmax(stat_base, dim=-1, keepdim=True)
++        # Non-finite logits are masks, not candidates. They remain byte-for-value
++        # unchanged in the returned tensor and cannot define or contaminate top-1.
++        finite_top1_view = torch.where(
++            finite_base,
++            stat_base,
++            torch.tensor(-torch.inf, device=base.device, dtype=stat_base.dtype),
++        )
++        original_top1 = torch.argmax(finite_top1_view, dim=-1, keepdim=True)
+@@ -178,15 +185,35 @@
+-        top1_changed_before = torch.argmax(modified, dim=-1, keepdim=True).ne(original_top1)
++        top1_view_before = torch.where(
++            finite_base,
++            modified,
++            torch.tensor(-torch.inf, device=modified.device, dtype=modified.dtype),
++        )
++        top1_changed_before = torch.argmax(top1_view_before, dim=-1, keepdim=True).ne(original_top1)
+         if cfg.preserve_top1 and top1_changed_before.any():
+-            blended = work * cfg.top1_preserve_momentum + modified * (1.0 - cfg.top1_preserve_momentum)
+-            max_other = blended.clone()
++            # Blend only finite values. The historical implementation blended the
++            # restored NaN/-Inf masks and could propagate NaN into the winning
++            # finite logit during top-1 repair.
++            finite_modified = torch.where(finite_base, modified, work)
++            blended = work * cfg.top1_preserve_momentum + finite_modified * (1.0 - cfg.top1_preserve_momentum)
++            max_other = torch.where(
++                finite_base,
++                blended,
++                torch.tensor(-torch.inf, device=blended.device, dtype=blended.dtype),
++            )
+             max_other.scatter_(1, original_top1, -torch.inf)
+             required = torch.max(max_other, dim=-1, keepdim=True).values + 1e-4
+             blended.scatter_(1, original_top1, required)
+-            modified = torch.where(top1_changed_before, blended, modified)
+-        top1_changed_final = torch.argmax(modified, dim=-1, keepdim=True).ne(original_top1)
++            repaired = torch.where(finite_base, blended, base)
++            modified = torch.where(top1_changed_before, repaired, modified)
++        modified = torch.where(finite_base, modified, base)
++        top1_view_final = torch.where(
++            finite_base,
++            modified,
++            torch.tensor(-torch.inf, device=modified.device, dtype=modified.dtype),
++        )
++        top1_changed_final = torch.argmax(top1_view_final, dim=-1, keepdim=True).ne(original_top1)
