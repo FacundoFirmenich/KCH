@@ -1,0 +1,65 @@
+name: NO-LIFT exact Qwen ARC asset ferry
+
+on:
+  push:
+    branches: [tooling/no-lift-formal-assets-v1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ferry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check huggingface_hub==1.16.1
+      - run: python tooling/no_lift_fetch_qwen_arc.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-00
+          path: qwen_arc.part.00
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-01
+          path: qwen_arc.part.01
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-02
+          path: qwen_arc.part.02
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-03
+          path: qwen_arc.part.03
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-04
+          path: qwen_arc.part.04
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-05
+          path: qwen_arc.part.05
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qwen-arc-manifests
+          path: |
+            EXACT_ASSET_MANIFEST.json
+            exact_qwen_arc_assets.tar.sha256
+            qwen_arc.parts.sha256
+          retention-days: 2
