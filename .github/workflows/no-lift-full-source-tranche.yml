@@ -1,0 +1,117 @@
+name: NO-LIFT full-source balanced tranche
+
+on:
+  push:
+    branches:
+      - no-lift-full-source-tranche-v1.0.0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PDF tooling
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils
+
+      - name: Acquire full PDF sources fail-closed per candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p sources/pdf sources/text receipts logs
+          tail -n +2 no_lift/full_source_tranche_v1_0_0/candidates.tsv | \
+          while IFS=$'\t' read -r candidate family arxiv_id; do
+            printf 'candidate=%s family=%s arxiv=%s\n' "$candidate" "$family" "$arxiv_id"
+            pdf="sources/pdf/${candidate}.pdf"
+            txt="sources/text/${candidate}.txt"
+            log="logs/${candidate}.curl.log"
+            status="DOWNLOAD_FAILED"
+            http_url="https://arxiv.org/pdf/${arxiv_id}"
+            if curl -fL --retry 5 --retry-all-errors --connect-timeout 30 --max-time 600 \
+              -A 'NO-LIFT-UDCIC/1.0 source-verification research workflow' \
+              "$http_url" -o "$pdf" 2>"$log"; then
+              if test "$(head -c 4 "$pdf")" = '%PDF'; then
+                if pdftotext -layout "$pdf" "$txt"; then
+                  status="PASS"
+                else
+                  status="PDF_TEXT_EXTRACTION_FAILED"
+                fi
+              else
+                status="NOT_PDF"
+              fi
+            fi
+            python - "$candidate" "$family" "$arxiv_id" "$status" "$pdf" "$txt" <<'PY'
+          import hashlib, json, os, subprocess, sys
+          from pathlib import Path
+          candidate, family, arxiv_id, status, pdf_s, txt_s = sys.argv[1:]
+          pdf=Path(pdf_s); txt=Path(txt_s)
+          receipt={
+            'schema_version':'1.0.0',
+            'candidate_id':candidate,
+            'family':family,
+            'arxiv_id':arxiv_id,
+            'source_url':f'https://arxiv.org/pdf/{arxiv_id}',
+            'status':status,
+            'authority':'FULL_SOURCE_ACQUISITION_ONLY_NO_GOLD_PROMOTION'
+          }
+          if pdf.exists():
+            b=pdf.read_bytes(); receipt['pdf_bytes']=len(b); receipt['pdf_sha256']=hashlib.sha256(b).hexdigest()
+            try:
+              info=subprocess.check_output(['pdfinfo',str(pdf)],text=True,stderr=subprocess.STDOUT)
+              receipt['pdfinfo']=info
+              for line in info.splitlines():
+                if line.startswith('Pages:'): receipt['pages']=int(line.split(':',1)[1].strip())
+                if line.startswith('Title:'): receipt['pdf_title']=line.split(':',1)[1].strip()
+            except Exception as e: receipt['pdfinfo_error']=type(e).__name__+': '+str(e)
+          if txt.exists():
+            b=txt.read_bytes(); receipt['text_bytes']=len(b); receipt['text_sha256']=hashlib.sha256(b).hexdigest(); receipt['page_segments']=len(txt.read_text(errors='replace').split('\f'))
+          Path(f'receipts/{candidate}.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+            sleep 3
+          done
+
+      - name: Build source index and exact hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          rows=[json.loads(p.read_text()) for p in sorted(Path('receipts').glob('*.json'))]
+          Path('source_index.jsonl').write_text('\n'.join(json.dumps(x,sort_keys=True) for x in rows)+'\n')
+          counts=Counter(x['status'] for x in rows)
+          summary={
+            'schema_version':'1.0.0',
+            'candidates':len(rows),
+            'status_counts':dict(counts),
+            'full_pdf_passes':counts.get('PASS',0),
+            'claim_boundary':'Full-source acquisition only. No adjudication or gold promotion.',
+            'status':'PASS' if counts.get('PASS',0)==len(rows)==32 else 'PARTIAL_FAIL_CLOSED'
+          }
+          Path('acquisition_summary.json').write_text(json.dumps(summary,indent=2,sort_keys=True)+'\n')
+          PY
+          find sources receipts -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          sha256sum source_index.jsonl acquisition_summary.json >> SHA256SUMS.txt
+          cat acquisition_summary.json
+
+      - name: Upload full-source tranche
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-full-source-tranche-v1.0.0
+          path: |
+            sources
+            receipts
+            logs
+            source_index.jsonl
+            acquisition_summary.json
+            SHA256SUMS.txt
+            no_lift/full_source_tranche_v1_0_0/candidates.tsv
+          if-no-files-found: warn
+          retention-days: 30
