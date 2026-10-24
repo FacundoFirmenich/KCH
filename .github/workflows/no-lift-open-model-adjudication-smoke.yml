@@ -1,0 +1,164 @@
+name: NO-LIFT open-model adjudication smoke gate
+
+on:
+  push:
+    branches:
+      - no-lift-open-model-adjudication-smoke-v1.0.0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adjudicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      LLAMA_COMMIT: 620d2225cc436ab0b001e3200e590e3b286ef9ab
+      QWEN_REPO: Qwen/Qwen2.5-3B-Instruct-GGUF
+      QWEN_FILE: qwen2.5-3b-instruct-q4_k_m.gguf
+      PHI_REPO: bartowski/Phi-3.5-mini-instruct-GGUF
+      PHI_FILE: Phi-3.5-mini-instruct-Q4_K_M.gguf
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ninja-build libcurl4-openssl-dev
+
+      - name: Build pinned llama.cpp server
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/ggml-org/llama.cpp.git llama.cpp
+          cd llama.cpp
+          git checkout "$LLAMA_COMMIT"
+          test "$(git rev-parse HEAD)" = "$LLAMA_COMMIT"
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DGGML_NATIVE=OFF \
+            -DGGML_OPENMP=ON \
+            -DLLAMA_CURL=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_EXAMPLES=OFF
+          cmake --build build --target llama-server -j 3
+          ./build/bin/llama-server --version | tee ../llama_server_version.txt
+
+      - name: Resolve and download exact model artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p models metadata
+          curl -fL --retry 5 --retry-all-errors "https://huggingface.co/api/models/${QWEN_REPO}" -o metadata/qwen_model_api.json
+          curl -fL --retry 5 --retry-all-errors "https://huggingface.co/api/models/${PHI_REPO}" -o metadata/phi_model_api.json
+          QWEN_REV=$(python -c "import json; print(json.load(open('metadata/qwen_model_api.json'))['sha'])")
+          PHI_REV=$(python -c "import json; print(json.load(open('metadata/phi_model_api.json'))['sha'])")
+          printf '%s\n' "$QWEN_REV" > metadata/qwen_revision.txt
+          printf '%s\n' "$PHI_REV" > metadata/phi_revision.txt
+          curl -fL --retry 5 --retry-all-errors \
+            "https://huggingface.co/${QWEN_REPO}/resolve/${QWEN_REV}/${QWEN_FILE}?download=true" \
+            -o "models/${QWEN_FILE}"
+          curl -fL --retry 5 --retry-all-errors \
+            "https://huggingface.co/${PHI_REPO}/resolve/${PHI_REV}/${PHI_FILE}?download=true" \
+            -o "models/${PHI_FILE}"
+          test "$(head -c 4 models/${QWEN_FILE})" = GGUF
+          test "$(head -c 4 models/${PHI_FILE})" = GGUF
+          sha256sum models/*.gguf | tee metadata/model_sha256.txt
+          stat --printf='%n %s bytes\n' models/*.gguf | tee metadata/model_sizes.txt
+
+      - name: PASS A — Qwen 2.5 3B Instruct
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p outputs logs
+          ./llama.cpp/build/bin/llama-server \
+            -m "models/${QWEN_FILE}" \
+            --alias qwen2.5-3b-instruct-q4_k_m \
+            --host 127.0.0.1 --port 8080 \
+            -c 8192 -np 1 -t 4 --no-webui \
+            > logs/pass_a_server.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 120); do
+            if curl -fsS http://127.0.0.1:8080/health > logs/pass_a_health.json; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:8080/health > logs/pass_a_health_final.json
+          python no_lift/open_model_adjudication_smoke_v1_0_0/run_smoke.py \
+            --card no_lift/open_model_adjudication_smoke_v1_0_0/smoke_card.json \
+            --pass-id PASS_A \
+            --model-id "${QWEN_REPO}@$(cat metadata/qwen_revision.txt):${QWEN_FILE}" \
+            --model-file "models/${QWEN_FILE}" \
+            --output outputs/pass_a.json \
+            --raw-output outputs/pass_a_raw.txt
+          kill "$pid"
+          wait "$pid" || true
+          trap - EXIT
+
+      - name: PASS B — Phi 3.5 Mini Instruct
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./llama.cpp/build/bin/llama-server \
+            -m "models/${PHI_FILE}" \
+            --alias phi-3.5-mini-instruct-q4_k_m \
+            --host 127.0.0.1 --port 8081 \
+            -c 8192 -np 1 -t 4 --no-webui \
+            > logs/pass_b_server.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 120); do
+            if curl -fsS http://127.0.0.1:8081/health > logs/pass_b_health.json; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:8081/health > logs/pass_b_health_final.json
+          python no_lift/open_model_adjudication_smoke_v1_0_0/run_smoke.py \
+            --card no_lift/open_model_adjudication_smoke_v1_0_0/smoke_card.json \
+            --pass-id PASS_B \
+            --model-id "${PHI_REPO}@$(cat metadata/phi_revision.txt):${PHI_FILE}" \
+            --model-file "models/${PHI_FILE}" \
+            --url http://127.0.0.1:8081/v1/chat/completions \
+            --output outputs/pass_b.json \
+            --raw-output outputs/pass_b_raw.txt
+          kill "$pid"
+          wait "$pid" || true
+          trap - EXIT
+
+      - name: Compare independent smoke outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          a=json.loads(Path('outputs/pass_a.json').read_text())
+          b=json.loads(Path('outputs/pass_b.json').read_text())
+          keys=['state','construct_validity','certificate_status','claim_ceiling']
+          receipt={
+            'claim_id':a['claim_id'],
+            'pass_a_model':a['adjudicator_receipt']['model_id'],
+            'pass_b_model':b['adjudicator_receipt']['model_id'],
+            'same_model':a['adjudicator_receipt']['model_artifact_sha256']==b['adjudicator_receipt']['model_artifact_sha256'],
+            'agreement_on_frozen_fields':all(a[k]==b[k] for k in keys),
+            'status':'AGREEMENT' if all(a[k]==b[k] for k in keys) else 'UNRESOLVED_CONFLICT',
+            'promotion_authority':'SMOKE_ONLY_NO_GOLD_PROMOTION'
+          }
+          assert receipt['same_model'] is False
+          Path('outputs/comparison.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+          sha256sum outputs/* metadata/* llama_server_version.txt > SHA256SUMS.txt
+
+      - name: Upload fail-closed evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-open-model-adjudication-smoke-v1.0.0
+          path: |
+            outputs
+            logs
+            metadata
+            llama_server_version.txt
+            SHA256SUMS.txt
+            no_lift/open_model_adjudication_smoke_v1_0_0/smoke_card.json
+            no_lift/open_model_adjudication_smoke_v1_0_0/run_smoke.py
+          if-no-files-found: warn
+          retention-days: 30
