@@ -1,0 +1,2 @@
+Return exactly one JSON object and no surrounding prose or code fence:
+{"status":"PASS","gate":"GITHUB_MODELS_SMOKE","independent":true}
