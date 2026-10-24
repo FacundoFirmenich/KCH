@@ -1,0 +1,81 @@
+name: NO-LIFT Copilot CLI smoke gate
+
+on:
+  push:
+    branches:
+      - no-lift-copilot-cli-smoke-v1.0.0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  models: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
+      - name: Run independent inference
+        id: inference
+        continue-on-error: true
+        uses: actions/ai-inference@41caef41a74eb26f6d0c6b1e9941d691588e0b2b
+        with:
+          prompt-file: no_lift/github_models_smoke_v1_0_0/prompt.txt
+          model: gpt-4.1
+          system-prompt: You are an independent machine-readable scientific adjudicator. Output exactly the requested JSON.
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT || github.token }}
+      - name: Preserve result
+        if: always()
+        shell: bash
+        env:
+          RESPONSE: ${{ steps.inference.outputs.response }}
+          RESPONSE_FILE: ${{ steps.inference.outputs.response-file }}
+          OUTCOME: ${{ steps.inference.outcome }}
+          CONCLUSION: ${{ steps.inference.conclusion }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' "$OUTCOME" > action_outcome.txt
+          printf '%s\n' "$CONCLUSION" > action_conclusion.txt
+          printf '%s\n' "$RESPONSE" > copilot_response_output.txt
+          if test -n "$RESPONSE_FILE" && test -f "$RESPONSE_FILE"; then cp "$RESPONSE_FILE" copilot_response_file.txt; fi
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path('copilot_response_file.txt')
+          text=p.read_text().strip() if p.exists() else os.environ.get('RESPONSE','').strip()
+          receipt={
+            'action_outcome':os.environ.get('OUTCOME'),
+            'action_conclusion':os.environ.get('CONCLUSION'),
+            'response_present':bool(text),
+            'authority':'SMOKE_ONLY_NO_GOLD_PROMOTION'
+          }
+          if text:
+            try:
+              t=text
+              if t.startswith('```'): t=t.split('\n',1)[1].rsplit('```',1)[0].strip()
+              receipt['parsed_response']=json.loads(t)
+            except Exception as e:
+              receipt['parse_error']=type(e).__name__+': '+str(e)
+          Path('copilot_smoke_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+          sha256sum action_outcome.txt action_conclusion.txt copilot_response_output.txt copilot_smoke_receipt.json > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: no-lift-copilot-cli-smoke-v1.0.0
+          path: |
+            action_outcome.txt
+            action_conclusion.txt
+            copilot_response_output.txt
+            copilot_response_file.txt
+            copilot_smoke_receipt.json
+            SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30
