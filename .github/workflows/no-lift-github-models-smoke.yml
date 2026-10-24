@@ -1,0 +1,55 @@
+name: NO-LIFT GitHub Models smoke gate
+
+on:
+  push:
+    branches:
+      - no-lift-github-models-smoke-v1.0.0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  models: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Independent model smoke call
+        id: inference
+        uses: actions/ai-inference@v1
+        with:
+          prompt-file: no_lift/github_models_smoke_v1_0_0/prompt.txt
+          model: gpt-4.1
+          system-prompt: You are an independent machine-readable scientific adjudicator. Output exactly the requested JSON.
+          token: ${{ github.token }}
+
+      - name: Preserve and validate response
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp '${{ steps.inference.outputs.response-file }}' github_models_smoke_raw.txt
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          text=Path('github_models_smoke_raw.txt').read_text().strip()
+          if text.startswith('```'):
+              text=text.split('\n',1)[1].rsplit('```',1)[0].strip()
+          data=json.loads(text)
+          expected={'status':'PASS','gate':'GITHUB_MODELS_SMOKE','independent':True}
+          assert data == expected, (data, expected)
+          Path('github_models_smoke.json').write_text(json.dumps(data,indent=2,sort_keys=True)+'\n')
+          PY
+          sha256sum github_models_smoke.json > github_models_smoke.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-github-models-smoke-v1.0.0
+          path: |
+            github_models_smoke.json
+            github_models_smoke_raw.txt
+            github_models_smoke.sha256
+          if-no-files-found: error
+          retention-days: 30
