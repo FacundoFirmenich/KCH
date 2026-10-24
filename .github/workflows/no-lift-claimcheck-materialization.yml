@@ -24,7 +24,7 @@ jobs:
           curl -fL --retry 5 --retry-all-errors --connect-timeout 30 "$url" -o claimcheck_main_exact.json
           bytes="$(wc -c < claimcheck_main_exact.json)"
           blob="$(git hash-object claimcheck_main_exact.json)"
-          test "$bytes" = '12926324'
+          printf 'bytes=%s\nblob=%s\n' "$bytes" "$blob"
           test "$blob" = '47cd63c7c6dade3d07890ae6874a7b425f3c86f7'
           python -m json.tool claimcheck_main_exact.json >/dev/null
 
