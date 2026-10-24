@@ -1,0 +1,62 @@
+name: NO-LIFT exact CLAIMCHECK source materialization
+
+on:
+  push:
+    branches:
+      - no-lift-claimcheck-materialization-v1.0.0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Acquire exact pinned main pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://raw.githubusercontent.com/JHU-CLSP/CLAIMCHECK/788673e0ac214f0e3a5c7d013412fffc63fab9fe/data/texts/source/main.json'
+          curl -fL --retry 5 --retry-all-errors --connect-timeout 30 "$url" -o claimcheck_main_exact.json
+          bytes="$(wc -c < claimcheck_main_exact.json)"
+          blob="$(git hash-object claimcheck_main_exact.json)"
+          test "$bytes" = '12926324'
+          test "$blob" = '47cd63c7c6dade3d07890ae6874a7b425f3c86f7'
+          python -m json.tool claimcheck_main_exact.json >/dev/null
+
+      - name: Write immutable receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p=Path('claimcheck_main_exact.json')
+          receipt={
+            'schema_version':'1.0.0',
+            'artifact':'JHU-CLSP/CLAIMCHECK:data/texts/source/main.json',
+            'upstream_commit':'788673e0ac214f0e3a5c7d013412fffc63fab9fe',
+            'upstream_git_blob_sha1':'47cd63c7c6dade3d07890ae6874a7b425f3c86f7',
+            'bytes':p.stat().st_size,
+            'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+            'json_parse':'PASS',
+            'promotion_authority':'NONE_ACQUISITION_ONLY'
+          }
+          Path('claimcheck_main_exact_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+          sha256sum claimcheck_main_exact.json claimcheck_main_exact_receipt.json > SHA256SUMS.txt
+
+      - name: Upload exact source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-lift-claimcheck-main-exact-788673e
+          path: |
+            claimcheck_main_exact.json
+            claimcheck_main_exact_receipt.json
+            SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30
