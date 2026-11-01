@@ -1,0 +1,41 @@
+{
+  "schema": "kch.effects-observatory.activation-receipt.v0.1.0",
+  "decision": "ASK_USER_BEFORE_USE",
+  "execution_authorized": false,
+  "authority_source": "none",
+  "need_score": 0.84,
+  "trigger_reasons": [
+    "need_score_threshold",
+    "automatic_evidence_gate_blocked"
+  ],
+  "profile": {
+    "policy": "ASK",
+    "explicit_user_request": false,
+    "risk": 0.8,
+    "coupling": 0.8,
+    "provenance_need": 0.9,
+    "authority_sensitivity": 0.9,
+    "recovery_need": 0.8,
+    "budget_remaining_ratio": 0.5,
+    "reserve_ratio": 0.15
+  },
+  "evidence_sha256": "f5aac6e55f6430ac89ae5538c17b1bc2da16834806213d2890d5bd9f3b0bd0d2",
+  "automatic_evidence_gate": {
+    "minimum_admissible_pairs": 20,
+    "minimum_discordant_pairs": 5,
+    "minimum_probability_candidate_better": 0.95,
+    "credible_interval_lower_must_exceed": 0.0,
+    "requires_complete_cost_and_latency": true,
+    "eligible": false,
+    "current_state": "BLOCKED_INSUFFICIENT_EVIDENCE"
+  },
+  "cost_claim": "NOT_ESTIMABLE_WITHOUT_PROVIDER_USAGE_RECEIPTS",
+  "traceability": {
+    "pre_execution_receipt_required": true,
+    "post_execution_usage_receipt_required": true,
+    "silent_activation_allowed": false
+  },
+  "recommendation_is_authority": false,
+  "receipt_sha256": "2977bbcb9ac42b7b6e6ae123bc6693eb680adbbe6a3c7ffd4fa218d99ad4877f",
+  "created_at": "2026-11-01T10:20:18.203445Z"
+}

@@ -1,0 +1,42 @@
+name: KCH effects observatory
+
+on:
+  pull_request:
+    paths:
+      - "benchmarks/KCH_EFFECTS_OBSERVATORY_v0.1.0/**"
+      - "benchmarks/KCH_PREPILOT_001/evaluation.json"
+      - "benchmarks/KCH_PREPILOT_002/evaluation.json"
+      - "benchmarks/KCH_PREPILOT_003/evaluation.json"
+  push:
+    branches: [main]
+    paths:
+      - "benchmarks/KCH_EFFECTS_OBSERVATORY_v0.1.0/**"
+      - "benchmarks/KCH_PREPILOT_001/evaluation.json"
+      - "benchmarks/KCH_PREPILOT_002/evaluation.json"
+      - "benchmarks/KCH_PREPILOT_003/evaluation.json"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests over canonical historical inputs
+        working-directory: benchmarks/KCH_EFFECTS_OBSERVATORY_v0.1.0
+        run: python -m unittest -v test_observatory.py
+      - name: Recompile and compare sealed results
+        working-directory: benchmarks/KCH_EFFECTS_OBSERVATORY_v0.1.0
+        run: |
+          python observatory.py analyze \
+            ../KCH_PREPILOT_001/evaluation.json \
+            ../KCH_PREPILOT_002/evaluation.json \
+            ../KCH_PREPILOT_003/evaluation.json \
+            --json /tmp/effects_report.json \
+            --markdown /tmp/EFFECTS_REPORT.md
+          cmp results/effects_report.json /tmp/effects_report.json
+          cmp results/EFFECTS_REPORT.md /tmp/EFFECTS_REPORT.md

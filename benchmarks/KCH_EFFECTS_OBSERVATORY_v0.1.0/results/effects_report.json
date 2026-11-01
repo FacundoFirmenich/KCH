@@ -1,0 +1,116 @@
+{
+  "schema": "kch.effects-observatory.v0.1.0",
+  "source": "FacundoFirmenich/KCH@main/benchmarks/KCH_PREPILOT_001..003/evaluation.json",
+  "pairs": [
+    {
+      "case_id": "KCH-PREPILOT-001",
+      "baseline_arm": "BASELINE_SIN_KCH",
+      "candidate_arm": "KCH_CANDIDATO_CON_ARNES",
+      "baseline_score": 95.0,
+      "candidate_score": 95.0,
+      "maximum": 95.0,
+      "normalized_delta_points": 0.0,
+      "baseline_receipt_bytes": 16044,
+      "candidate_receipt_bytes": 10838,
+      "receipt_size_ratio": 0.6755173273497881,
+      "condition_gate": "INVALID_CONDITION_INTEGRITY",
+      "admissible": false,
+      "descriptive_outcome": "TIE",
+      "causal_effect": "NOT_ESTIMABLE",
+      "invalid_reason": "INVALID_CONDITION_INTEGRITY",
+      "source_sha256": "3487d283e67c8428a835d28b73a0788cbba9063b286fb78e27b79a6b97c7c51d"
+    },
+    {
+      "case_id": "KCH-PREPILOT-002",
+      "baseline_arm": "BASELINE_SIN_KCH",
+      "candidate_arm": "KCH_RUNTIME_ASSISTED_CANONICAL",
+      "baseline_score": 95.0,
+      "candidate_score": 95.0,
+      "maximum": 95.0,
+      "normalized_delta_points": 0.0,
+      "baseline_receipt_bytes": 15178,
+      "candidate_receipt_bytes": 136344,
+      "receipt_size_ratio": 8.983001713005667,
+      "condition_gate": "PASS_SINGLE_NONRANDOMIZED_PAIR",
+      "admissible": true,
+      "descriptive_outcome": "TIE",
+      "causal_effect": "NOT_ESTIMABLE",
+      "invalid_reason": null,
+      "source_sha256": "44bcf4b35e8cf8052d7d5b92c6f9198454d933476b5e0303f417a67fb7583b2b"
+    },
+    {
+      "case_id": "KCH-PREPILOT-003",
+      "baseline_arm": "BASELINE_RELEASE_AUDIT",
+      "candidate_arm": "KCH_INSTALLED_R9_ASSISTED",
+      "baseline_score": 100.0,
+      "candidate_score": 100.0,
+      "maximum": 100.0,
+      "normalized_delta_points": 0.0,
+      "baseline_receipt_bytes": 120044,
+      "candidate_receipt_bytes": 118520,
+      "receipt_size_ratio": 0.9873046549598481,
+      "condition_gate": "PASS_SINGLE_NONRANDOMIZED_PAIR",
+      "admissible": true,
+      "descriptive_outcome": "TIE",
+      "causal_effect": "NOT_ESTIMABLE",
+      "invalid_reason": null,
+      "source_sha256": "3785c88397d6192e77060816ea206e70b08b58aa2ebf5490f282cc6527d7ce4b"
+    }
+  ],
+  "aggregate": {
+    "total_pairs": 3,
+    "admissible_pairs": 2,
+    "invalid_pairs": 1,
+    "candidate_wins": 0,
+    "baseline_wins": 0,
+    "ties": 2,
+    "median_normalized_delta_points": 0.0,
+    "pooled_causal_effect": "NOT_ESTIMABLE",
+    "industrial_validation": false,
+    "heterogeneous_case_pooling_performed": false
+  },
+  "paired_bayes": {
+    "model": "BETA_BINOMIAL_DIRECTIONAL_ON_ADMISSIBLE_CASE_WINS_EXCLUDING_TIES",
+    "prior": {
+      "alpha": 1.0,
+      "beta": 1.0
+    },
+    "posterior_alpha": 1.0,
+    "posterior_beta": 1.0,
+    "discordant_cases": 0,
+    "probability_candidate_better": 0.5,
+    "probability_practical_equivalence_rope_theta_0_45_0_55": 0.10000000000000003,
+    "conditional_advantage_mean": 0.0,
+    "conditional_advantage_credible95": [
+      -0.95,
+      0.9499999999999997
+    ],
+    "interpretation": "No discordant admissible case means the directional posterior is unchanged from the prior."
+  },
+  "measurement_completeness": {
+    "missing_metrics": [
+      "wall_clock_latency",
+      "provider_input_tokens",
+      "provider_output_tokens",
+      "provider_reasoning_tokens",
+      "provider_cost",
+      "user_corrections",
+      "task_resolution",
+      "human_utility",
+      "errors_avoided"
+    ],
+    "complete_for_quality_superiority": false,
+    "complete_for_cost_optimization": false
+  },
+  "automatic_activation_gate": {
+    "minimum_admissible_pairs": 20,
+    "minimum_discordant_pairs": 5,
+    "minimum_probability_candidate_better": 0.95,
+    "credible_interval_lower_must_exceed": 0.0,
+    "requires_complete_cost_and_latency": true,
+    "eligible": false,
+    "current_state": "BLOCKED_INSUFFICIENT_EVIDENCE"
+  },
+  "claim_ceiling": "Two valid descriptive ties and one invalid pair. No measured quality uplift, causal effect, cost advantage, time advantage, human utility, or industrial validation.",
+  "evidence_sha256": "f5aac6e55f6430ac89ae5538c17b1bc2da16834806213d2890d5bd9f3b0bd0d2"
+}
