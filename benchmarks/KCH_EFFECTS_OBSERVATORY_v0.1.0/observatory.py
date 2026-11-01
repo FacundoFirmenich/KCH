@@ -224,7 +224,7 @@ def compile_effects(documents: Iterable[dict[str, Any]]) -> dict[str, Any]:
         "paired_bayes": posterior,
         "measurement_completeness": {"missing_metrics": missing_metrics, "complete_for_quality_superiority": False, "complete_for_cost_optimization": False},
         "automatic_activation_gate": {**automatic_gate, "eligible": eligible, "current_state": "BLOCKED_INSUFFICIENT_EVIDENCE" if not eligible else "ELIGIBLE_UNDER_EXPLICIT_POLICY"},
-        "claim_ceiling": "Two valid descriptive ties and one invalid pair. No measured quality uplift, causal effect, cost advantage, time advantage, human utility, or industrial validation.",
+        "claim_ceiling": "Dos empates descriptivos válidos y un par inválido. No hay mejora de calidad medida, efecto causal, ventaja de coste o tiempo, utilidad humana ni validación industrial.",
     }
     return {**core, "evidence_sha256": sha256_json(core)}
 

@@ -10,10 +10,10 @@ Pares: 3; admisibles: 2; inválidos: 1; victorias KCH: 0; derrotas: 0; empates: 
 
 Posterior direccional P(KCH mejor) = 0.500; intervalo creíble 95% de ventaja condicional = [-0.950, 0.950]. Al no haber pares discordantes, este posterior no aprendió nada respecto del prior.
 
-**Techo de afirmación:** Two valid descriptive ties and one invalid pair. No measured quality uplift, causal effect, cost advantage, time advantage, human utility, or industrial validation.
+**Techo de afirmación:** Dos empates descriptivos válidos y un par inválido. No hay mejora de calidad medida, efecto causal, ventaja de coste o tiempo, utilidad humana ni validación industrial.
 
 **Activación automática:** BLOCKED_INSUFFICIENT_EVIDENCE.
 
 Métricas ausentes: wall_clock_latency, provider_input_tokens, provider_output_tokens, provider_reasoning_tokens, provider_cost, user_corrections, task_resolution, human_utility, errors_avoided.
 
-SHA-256 lógico de evidencia compilada: `f5aac6e55f6430ac89ae5538c17b1bc2da16834806213d2890d5bd9f3b0bd0d2`
+SHA-256 lógico de evidencia compilada: `ddcccff17974a130340668fb6c19fc4332f896683c4a9fc6f69269fa9496aade`

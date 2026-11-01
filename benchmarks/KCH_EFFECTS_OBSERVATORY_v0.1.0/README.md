@@ -23,7 +23,7 @@ The governor separates need, recommendation, authority, execution, and learning:
 5. Budget at or below the user reserve fails closed before activation.
 6. Every decision emits a hash-bound pre-execution receipt; actual provider usage must be supplied later in a post-execution receipt and is never invented.
 
-The current demonstration profile records the user's 13% remaining budget against a 15% reserve. Despite a need score of `0.918`, the deterministic decision is `OFF_BUDGET_RESERVE`.
+The public example uses a 50% remaining budget, a 15% reserve and no explicit request. Its need score is `0.840`, so the deterministic result is `ASK_USER_BEFORE_USE`: high need is visible, but execution is not authorized. A private current-budget profile can be evaluated locally without publishing account state.
 
 ## Run
 
@@ -39,8 +39,8 @@ python observatory.py analyze \
 
 python observatory.py decide \
   --evidence results/effects_report.json \
-  --profile activation_profile_current.json \
-  --output results/ACTIVATION_RECEIPT_CURRENT.json
+  --profile activation_profile.example.json \
+  --output results/ACTIVATION_RECEIPT_EXAMPLE.json
 
 python -m unittest -v test_observatory.py
 ```
